@@ -21,6 +21,11 @@ export class UserOperation extends APIResource {
 
 export interface UserOperationScanParams {
   /**
+   * The chain name
+   */
+  chain: string;
+
+  /**
    * The user operation request that was received by the wallet
    */
   data: UserOperationScanParams.Data;
@@ -34,24 +39,6 @@ export interface UserOperationScanParams {
    * The address of the account (wallet) sending the request in hex string format
    */
   account_address?: string;
-
-  /**
-   * An enumeration.
-   */
-  chain?:
-    | 'arbitrum'
-    | 'avalanche'
-    | 'base'
-    | 'base-sepolia'
-    | 'bsc'
-    | 'ethereum'
-    | 'optimism'
-    | 'polygon'
-    | 'zksync'
-    | 'zora'
-    | 'linea'
-    | 'blast'
-    | 'unknown';
 
   /**
    * List of one or both of options for the desired output. "simulation" - include
