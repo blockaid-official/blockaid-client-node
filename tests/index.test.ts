@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Blockaid from 'blockaid';
-import { APIUserAbortError } from 'blockaid';
-import { Headers } from 'blockaid/core';
+import Blockaid from '@blockaid/client';
+import { APIUserAbortError } from '@blockaid/client';
+import { Headers } from '@blockaid/client/core';
 import defaultFetch, { Response, type RequestInit, type RequestInfo } from 'node-fetch';
 
 describe('instantiate client', () => {

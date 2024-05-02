@@ -1,12 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from 'blockaid/resource';
-import * as EvmAPI from 'blockaid/resources/evm/evm';
-import * as JsonRpcAPI from 'blockaid/resources/evm/json-rpc';
-import * as TransactionAPI from 'blockaid/resources/evm/transaction';
-import * as TransactionBulkAPI from 'blockaid/resources/evm/transaction-bulk';
-import * as TransactionRawAPI from 'blockaid/resources/evm/transaction-raw';
-import * as UserOperationAPI from 'blockaid/resources/evm/user-operation';
+import { APIResource } from '@blockaid/client/resource';
+import * as EvmAPI from '@blockaid/client/resources/evm/evm';
+import * as JsonRpcAPI from '@blockaid/client/resources/evm/json-rpc';
+import * as TransactionAPI from '@blockaid/client/resources/evm/transaction';
+import * as TransactionBulkAPI from '@blockaid/client/resources/evm/transaction-bulk';
+import * as TransactionRawAPI from '@blockaid/client/resources/evm/transaction-raw';
+import * as UserOperationAPI from '@blockaid/client/resources/evm/user-operation';
 
 export class Evm extends APIResource {
   jsonRpc: JsonRpcAPI.JsonRpc = new JsonRpcAPI.JsonRpc(this._client);

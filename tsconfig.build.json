@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "blockaid/*": ["dist/src/*"],
-      "blockaid": ["dist/src/index.ts"],
+      "@blockaid/client/*": ["dist/src/*"],
+      "@blockaid/client": ["dist/src/index.ts"],
     },
     "noEmit": false,
     "declaration": true,
