@@ -13,61 +13,59 @@ export class Site extends APIResource {
   }
 }
 
-export type SiteScanResponse = SiteScanResponse.SiteScanHitResponse | SiteScanResponse.SiteScanMissResponse;
+export interface SiteScanHitResponse {
+  attack_types: Record<string, SiteScanHitResponse.AttackTypes>;
 
-export namespace SiteScanResponse {
-  export interface SiteScanHitResponse {
-    attack_types: Record<string, SiteScanHitResponse.AttackTypes>;
+  contract_read: SiteScanHitResponse.ContractRead;
 
-    contract_read: SiteScanHitResponse.ContractRead;
+  contract_write: SiteScanHitResponse.ContractWrite;
 
-    contract_write: SiteScanHitResponse.ContractWrite;
+  is_malicious: boolean;
 
-    is_malicious: boolean;
+  is_reachable: boolean;
 
-    is_reachable: boolean;
+  is_web3_site: boolean;
 
-    is_web3_site: boolean;
+  json_rpc_operations: Array<string>;
 
-    json_rpc_operations: Array<string>;
+  malicious_score: number;
 
-    malicious_score: number;
+  network_operations: Array<string>;
 
-    network_operations: Array<string>;
+  scan_end_time: string;
 
-    scan_end_time: string;
+  scan_start_time: string;
 
-    scan_start_time: string;
+  status: 'hit';
 
-    status: 'hit';
+  url: string;
+}
 
-    url: string;
+export namespace SiteScanHitResponse {
+  export interface AttackTypes {
+    score: number;
+
+    threshold: number;
   }
 
-  export namespace SiteScanHitResponse {
-    export interface AttackTypes {
-      score: number;
+  export interface ContractRead {
+    contract_addresses: Array<string>;
 
-      threshold: number;
-    }
-
-    export interface ContractRead {
-      contract_addresses: Array<string>;
-
-      functions: Record<string, Array<string>>;
-    }
-
-    export interface ContractWrite {
-      contract_addresses: Array<string>;
-
-      functions: Record<string, Array<string>>;
-    }
+    functions: Record<string, Array<string>>;
   }
 
-  export interface SiteScanMissResponse {
-    status: 'miss';
+  export interface ContractWrite {
+    contract_addresses: Array<string>;
+
+    functions: Record<string, Array<string>>;
   }
 }
+
+export interface SiteScanMissResponse {
+  status: 'miss';
+}
+
+export type SiteScanResponse = SiteScanHitResponse | SiteScanMissResponse;
 
 export interface SiteScanParams {
   url: string;
@@ -88,6 +86,8 @@ export namespace SiteScanParams {
 }
 
 export namespace Site {
+  export import SiteScanHitResponse = SiteAPI.SiteScanHitResponse;
+  export import SiteScanMissResponse = SiteAPI.SiteScanMissResponse;
   export import SiteScanResponse = SiteAPI.SiteScanResponse;
   export import SiteScanParams = SiteAPI.SiteScanParams;
 }
