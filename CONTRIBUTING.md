@@ -50,7 +50,7 @@ Alternatively, to link a local copy of the repo:
 ```bash
 # Clone
 git clone https://www.github.com/stainless-sdks/new/blockaid-node
-cd blockaid-node
+cd blockaid-client-node
 
 # With yarn
 yarn link
