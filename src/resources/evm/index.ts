@@ -27,4 +27,4 @@ export { JsonRpcScanParams, JsonRpc } from './json-rpc';
 export { TransactionBulkScanResponse, TransactionBulkScanParams, TransactionBulk } from './transaction-bulk';
 export { TransactionRawScanParams, TransactionRaw } from './transaction-raw';
 export { TransactionScanParams, Transaction } from './transaction';
-export { UserOperation } from './user-operation';
+export { UserOperationScanParams, UserOperation } from './user-operation';

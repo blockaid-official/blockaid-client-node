@@ -342,6 +342,10 @@ export interface NonercTokenDetails {
 }
 
 export interface TransactionBulkResponse {
+  block?: string;
+
+  chain?: string;
+
   events?: Array<TransactionBulkResponse.Event>;
 
   gas_estimation?:
@@ -456,6 +460,10 @@ export interface TransactionScanFeature {
 }
 
 export interface TransactionScanResponse {
+  block?: string;
+
+  chain?: string;
+
   simulation?: TransactionSimulation | TransactionScanResponse.TransactionSimulationError;
 
   validation?: TransactionValidation | TransactionScanResponse.TransactrionValidationError;
@@ -655,4 +663,5 @@ export namespace Evm {
   export import TransactionRaw = TransactionRawAPI.TransactionRaw;
   export import TransactionRawScanParams = TransactionRawAPI.TransactionRawScanParams;
   export import UserOperation = UserOperationAPI.UserOperation;
+  export import UserOperationScanParams = UserOperationAPI.UserOperationScanParams;
 }
