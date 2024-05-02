@@ -11,6 +11,7 @@ const blockaid = new Blockaid({
 describe('resource userOperation', () => {
   test('scan: only required params', async () => {
     const responsePromise = blockaid.evm.userOperation.scan({
+      chain: 'base-sepolia',
       data: { operation: {} },
       metadata: { domain: 'example.com' },
     });
@@ -25,6 +26,7 @@ describe('resource userOperation', () => {
 
   test('scan: required and optional params', async () => {
     const response = await blockaid.evm.userOperation.scan({
+      chain: 'base-sepolia',
       data: {
         operation: {
           sender: '0x77bA5AC3ca4864be26CA3112baDf07286CcC3324',
@@ -45,7 +47,6 @@ describe('resource userOperation', () => {
       },
       metadata: { domain: 'example.com' },
       account_address: '0x77bA5AC3ca4864be26CA3112baDf07286CcC3324',
-      chain: 'base-sepolia',
       options: ['simulation', 'validation'],
     });
   });

@@ -12,6 +12,7 @@ describe('resource transaction', () => {
   test('scan: only required params', async () => {
     const responsePromise = blockaid.evm.transaction.scan({
       account_address: 'string',
+      chain: 'ethereum',
       data: { from: '0x5e1a0d484c5f0de722e82f9dca3a9d5a421d47cb' },
       metadata: { domain: 'https://boredapeyartclub.com' },
     });
@@ -27,6 +28,7 @@ describe('resource transaction', () => {
   test('scan: required and optional params', async () => {
     const response = await blockaid.evm.transaction.scan({
       account_address: 'string',
+      chain: 'ethereum',
       data: {
         from: '0x5e1a0d484c5f0de722e82f9dca3a9d5a421d47cb',
         to: '0x0d524a5b52737c0a02880d5e84f7d20b8d66bfba',
@@ -36,7 +38,6 @@ describe('resource transaction', () => {
         gas_price: 'string',
       },
       metadata: { domain: 'https://boredapeyartclub.com' },
-      chain: 'ethereum',
       options: ['simulation', 'validation'],
     });
   });

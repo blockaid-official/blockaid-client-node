@@ -24,6 +24,11 @@ export type TransactionBulkScanResponse = Array<EvmAPI.TransactionBulkResponse>;
 
 export interface TransactionBulkScanParams {
   /**
+   * The chain name
+   */
+  chain: string;
+
+  /**
    * Transaction bulk parameters
    */
   data: Array<TransactionBulkScanParams.Data>;
@@ -32,24 +37,6 @@ export interface TransactionBulkScanParams {
    * Object of additional information to validate against.
    */
   metadata: EvmAPI.Metadata;
-
-  /**
-   * An enumeration.
-   */
-  chain?:
-    | 'arbitrum'
-    | 'avalanche'
-    | 'base'
-    | 'base-sepolia'
-    | 'bsc'
-    | 'ethereum'
-    | 'optimism'
-    | 'polygon'
-    | 'zksync'
-    | 'zora'
-    | 'linea'
-    | 'blast'
-    | 'unknown';
 
   /**
    * List of one or both of options for the desired output. "simulation" - include
