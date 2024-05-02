@@ -10,7 +10,7 @@ const blockaid = new Blockaid({
 
 describe('resource site', () => {
   test('scan: only required params', async () => {
-    const responsePromise = blockaid.site.scan({ url: 'string' });
+    const responsePromise = blockaid.site.scan({ url: 'https://app.uniswap.org' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,6 +21,9 @@ describe('resource site', () => {
   });
 
   test('scan: required and optional params', async () => {
-    const response = await blockaid.site.scan({ url: 'string', metadata: { type: 'catalog' } });
+    const response = await blockaid.site.scan({
+      url: 'https://app.uniswap.org',
+      metadata: { type: 'catalog' },
+    });
   });
 });
