@@ -97,9 +97,9 @@ export class APIPromise<T> extends Promise<T> {
    *
    * 👋 Getting the wrong TypeScript type for `Response`?
    * Try setting `"moduleResolution": "NodeNext"` if you can,
-   * or add one of these imports before your first `import … from 'blockaid'`:
-   * - `import 'blockaid/shims/node'` (if you're running on Node)
-   * - `import 'blockaid/shims/web'` (otherwise)
+   * or add one of these imports before your first `import … from '@blockaid/client'`:
+   * - `import '@blockaid/client/shims/node'` (if you're running on Node)
+   * - `import '@blockaid/client/shims/web'` (otherwise)
    */
   asResponse(): Promise<Response> {
     return this.responsePromise.then((p) => p.response);
@@ -113,9 +113,9 @@ export class APIPromise<T> extends Promise<T> {
    *
    * 👋 Getting the wrong TypeScript type for `Response`?
    * Try setting `"moduleResolution": "NodeNext"` if you can,
-   * or add one of these imports before your first `import … from 'blockaid'`:
-   * - `import 'blockaid/shims/node'` (if you're running on Node)
-   * - `import 'blockaid/shims/web'` (otherwise)
+   * or add one of these imports before your first `import … from '@blockaid/client'`:
+   * - `import '@blockaid/client/shims/node'` (if you're running on Node)
+   * - `import '@blockaid/client/shims/web'` (otherwise)
    */
   async withResponse(): Promise<{ data: T; response: Response }> {
     const [data, response] = await Promise.all([this.parse(), this.asResponse()]);

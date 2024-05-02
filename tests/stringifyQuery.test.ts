@@ -1,4 +1,4 @@
-import { APIClient } from 'blockaid/core';
+import { APIClient } from '@blockaid/client/core';
 
 const { stringifyQuery } = APIClient.prototype as any;
 

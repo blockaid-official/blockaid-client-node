@@ -42,12 +42,12 @@ export let isFsReadStream: Shims['isFsReadStream'] | undefined = undefined;
 export function setShims(shims: Shims, options: { auto: boolean } = { auto: false }) {
   if (auto) {
     throw new Error(
-      `you must \`import 'blockaid/shims/${shims.kind}'\` before importing anything else from blockaid`,
+      `you must \`import '@blockaid/client/shims/${shims.kind}'\` before importing anything else from @blockaid/client`,
     );
   }
   if (kind) {
     throw new Error(
-      `can't \`import 'blockaid/shims/${shims.kind}'\` after \`import 'blockaid/shims/${kind}'\``,
+      `can't \`import '@blockaid/client/shims/${shims.kind}'\` after \`import '@blockaid/client/shims/${kind}'\``,
     );
   }
   auto = options.auto;

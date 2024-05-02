@@ -7,9 +7,9 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^blockaid$': '<rootDir>/src/index.ts',
-    '^blockaid/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
-    '^blockaid/(.*)$': '<rootDir>/src/$1',
+    '^@blockaid/client$': '<rootDir>/src/index.ts',
+    '^@blockaid/client/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
+    '^@blockaid/client/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',

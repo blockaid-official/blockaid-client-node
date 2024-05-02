@@ -4,8 +4,8 @@
 /**
  * Types will get added to this namespace when you import one of the following:
  *
- *   import 'blockaid/shims/node'
- *   import 'blockaid/shims/web'
+ *   import '@blockaid/client/shims/node'
+ *   import '@blockaid/client/shims/web'
  *
  * Importing more than one will cause type and runtime errors.
  */
