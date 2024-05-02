@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { toFile, type ResponseLike } from 'blockaid/uploads';
-import { File } from 'blockaid/_shims/index';
+import { toFile, type ResponseLike } from '@blockaid/client/uploads';
+import { File } from '@blockaid/client/_shims/index';
 
 class MyClass {
   name: string = 'foo';

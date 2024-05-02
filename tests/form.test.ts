@@ -1,6 +1,6 @@
-import { multipartFormRequestOptions, createForm } from 'blockaid/core';
-import { Blob } from 'blockaid/_shims/index';
-import { toFile } from 'blockaid';
+import { multipartFormRequestOptions, createForm } from '@blockaid/client/core';
+import { Blob } from '@blockaid/client/_shims/index';
+import { toFile } from '@blockaid/client';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {
