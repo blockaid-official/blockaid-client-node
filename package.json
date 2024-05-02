@@ -1,12 +1,12 @@
 {
-  "name": "blockaid",
-  "version": "0.0.1-alpha.0",
+  "name": "@blockaid/client",
+  "version": "0.7.0",
   "description": "The official TypeScript library for the Blockaid API",
   "author": "Blockaid <feedback@blockaid.io>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
-  "repository": "github:stainless-sdks/blockaid-client-node",
+  "repository": "github:blockaid-official/blockaid-client-node",
   "license": "Apache-2.0",
   "packageManager": "yarn@1.22.22",
   "files": [
@@ -61,8 +61,8 @@
     "./shims/web.mjs"
   ],
   "imports": {
-    "blockaid": ".",
-    "blockaid/*": "./src/*"
+    "@blockaid/client": ".",
+    "@blockaid/client/*": "./src/*"
   },
   "exports": {
     "./_shims/auto/*": {

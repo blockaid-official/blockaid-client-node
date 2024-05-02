@@ -6,9 +6,9 @@
     "rootDir": "./deno",
     "lib": ["es2020", "DOM"],
     "paths": {
-      "blockaid/_shims/auto/*": ["deno/_shims/auto/*-deno"],
-      "blockaid/*": ["deno/*"],
-      "blockaid": ["deno/index.ts"],
+      "@blockaid/client/_shims/auto/*": ["deno/_shims/auto/*-deno"],
+      "@blockaid/client/*": ["deno/*"],
+      "@blockaid/client": ["deno/index.ts"],
     },
     "noEmit": true,
     "declaration": true,

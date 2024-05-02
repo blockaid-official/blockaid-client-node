@@ -1,5 +1,5 @@
-import { createResponseHeaders } from 'blockaid/core';
-import { Headers } from 'blockaid/_shims/index';
+import { createResponseHeaders } from '@blockaid/client/core';
+import { Headers } from '@blockaid/client/_shims/index';
 
 describe('response parsing', () => {
   // TODO: test unicode characters

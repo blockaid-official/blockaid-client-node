@@ -9,9 +9,9 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "blockaid/_shims/auto/*": ["src/_shims/auto/*-node"],
-      "blockaid/*": ["src/*"],
-      "blockaid": ["src/index.ts"],
+      "@blockaid/client/_shims/auto/*": ["src/_shims/auto/*-node"],
+      "@blockaid/client/*": ["src/*"],
+      "@blockaid/client": ["src/index.ts"],
     },
     "noEmit": true,
 
