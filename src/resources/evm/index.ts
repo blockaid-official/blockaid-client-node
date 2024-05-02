@@ -1,14 +1,30 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { AddressScanResponse, AddressScanParams, Address } from './address';
 export {
-  AddressValidationResultType,
-  AddressBulkScanResponse,
-  AddressBulkScanParams,
-  AddressBulk,
-} from './address-bulk';
-export { Evm } from './evm';
-export { JsonRpcScanResponse, JsonRpcScanParams, JsonRpc } from './json-rpc';
+  AddressAssetDiff,
+  AddressAssetExposure,
+  Erc1155Diff,
+  Erc1155Exposure,
+  Erc1155TokenDetails,
+  Erc20Diff,
+  Erc20Exposure,
+  Erc20TokenDetails,
+  Erc721Diff,
+  Erc721Exposure,
+  Erc721TokenDetails,
+  Metadata,
+  NativeDiff,
+  NonercTokenDetails,
+  TransactionBulkResponse,
+  TransactionScanFeature,
+  TransactionScanResponse,
+  TransactionSimulation,
+  TransactionValidation,
+  UsdDiff,
+  Evm,
+} from './evm';
+export { JsonRpcScanParams, JsonRpc } from './json-rpc';
 export { TransactionBulkScanResponse, TransactionBulkScanParams, TransactionBulk } from './transaction-bulk';
-export { TransactionRawScanResponse, TransactionRawScanParams, TransactionRaw } from './transaction-raw';
-export { TransactionScanResponse, TransactionScanParams, Transaction } from './transaction';
+export { TransactionRawScanParams, TransactionRaw } from './transaction-raw';
+export { TransactionScanParams, Transaction } from './transaction';
+export { UserOperation } from './user-operation';

@@ -8,7 +8,7 @@ import * as API from 'blockaid/resources/index';
 
 export interface ClientOptions {
   /**
-   * Defaults to process.env['BLOCKAID_API_KEY'].
+   * Defaults to process.env['BLOCKAID_CLIENT_API_KEY'].
    */
   apiKey?: string | undefined;
 
@@ -78,7 +78,7 @@ export class Blockaid extends Core.APIClient {
   /**
    * API Client for interfacing with the Blockaid API.
    *
-   * @param {string | undefined} [opts.apiKey=process.env['BLOCKAID_API_KEY'] ?? undefined]
+   * @param {string | undefined} [opts.apiKey=process.env['BLOCKAID_CLIENT_API_KEY'] ?? undefined]
    * @param {string} [opts.baseURL=process.env['BLOCKAID_BASE_URL'] ?? https://api.blockaid.io/v0] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
@@ -89,12 +89,12 @@ export class Blockaid extends Core.APIClient {
    */
   constructor({
     baseURL = Core.readEnv('BLOCKAID_BASE_URL'),
-    apiKey = Core.readEnv('BLOCKAID_API_KEY'),
+    apiKey = Core.readEnv('BLOCKAID_CLIENT_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
       throw new Errors.BlockaidError(
-        "The BLOCKAID_API_KEY environment variable is missing or empty; either provide it, or instantiate the Blockaid client with an apiKey option, like new Blockaid({ apiKey: 'My API Key' }).",
+        "The BLOCKAID_CLIENT_API_KEY environment variable is missing or empty; either provide it, or instantiate the Blockaid client with an apiKey option, like new Blockaid({ apiKey: 'My API Key' }).",
       );
     }
 
@@ -116,9 +116,8 @@ export class Blockaid extends Core.APIClient {
     this.apiKey = apiKey;
   }
 
-  site: API.Site = new API.Site(this);
-  token: API.Token = new API.Token(this);
   evm: API.Evm = new API.Evm(this);
+  site: API.Site = new API.Site(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -158,13 +157,31 @@ export class Blockaid extends Core.APIClient {
 export namespace Blockaid {
   export import RequestOptions = Core.RequestOptions;
 
+  export import Evm = API.Evm;
+  export import AddressAssetDiff = API.AddressAssetDiff;
+  export import AddressAssetExposure = API.AddressAssetExposure;
+  export import Erc1155Diff = API.Erc1155Diff;
+  export import Erc1155Exposure = API.Erc1155Exposure;
+  export import Erc1155TokenDetails = API.Erc1155TokenDetails;
+  export import Erc20Diff = API.Erc20Diff;
+  export import Erc20Exposure = API.Erc20Exposure;
+  export import Erc20TokenDetails = API.Erc20TokenDetails;
+  export import Erc721Diff = API.Erc721Diff;
+  export import Erc721Exposure = API.Erc721Exposure;
+  export import Erc721TokenDetails = API.Erc721TokenDetails;
+  export import Metadata = API.Metadata;
+  export import NativeDiff = API.NativeDiff;
+  export import NonercTokenDetails = API.NonercTokenDetails;
+  export import TransactionBulkResponse = API.TransactionBulkResponse;
+  export import TransactionScanFeature = API.TransactionScanFeature;
+  export import TransactionScanResponse = API.TransactionScanResponse;
+  export import TransactionSimulation = API.TransactionSimulation;
+  export import TransactionValidation = API.TransactionValidation;
+  export import UsdDiff = API.UsdDiff;
+
   export import Site = API.Site;
+  export import SiteScanHitResponse = API.SiteScanHitResponse;
+  export import SiteScanMissResponse = API.SiteScanMissResponse;
   export import SiteScanResponse = API.SiteScanResponse;
   export import SiteScanParams = API.SiteScanParams;
-
-  export import Token = API.Token;
-  export import TokenScanResponse = API.TokenScanResponse;
-  export import TokenScanParams = API.TokenScanParams;
-
-  export import Evm = API.Evm;
 }

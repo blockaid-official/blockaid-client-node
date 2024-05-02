@@ -4,7 +4,7 @@
 
 This library provides convenient access to the Blockaid REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found [on docs.blockaid.com](https://docs.blockaid.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found [on docs.blockaid.io](https://docs.blockaid.io). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainlessapi.com/).
 
@@ -25,10 +25,24 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import Blockaid from 'blockaid';
 
-const blockaid = new Blockaid();
+const blockaid = new Blockaid({
+  apiKey: process.env['BLOCKAID_CLIENT_API_KEY'], // This is the default and can be omitted
+});
 
 async function main() {
-  const siteScanResponse = await blockaid.site.scan({ url: 'string' });
+  const transactionScanResponse = await blockaid.evm.jsonRpc.scan({
+    chain: 'ethereum',
+    data: {
+      method: 'eth_signTypedData_v4',
+      params: [
+        '0x49c73c9d361c04769a452E85D343b41aC38e0EE4',
+        '{"domain":{"chainId":1,"name":"Aave interest bearing WETH","version":"1","verifyingContract":"0x030ba81f1c18d280636f32af80b9aad02cf0854e"},"message":{"owner":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4","spender":"0xa74cbd5b80f73b5950768c8dc467f1c6307c00fd","value":"115792089237316195423570985008687907853269984665640564039457584007913129639935","nonce":"0","deadline":"1988064000","holder":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4"},"primaryType":"Permit","types":{"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}],"Permit":[{"name":"owner","type":"address"},{"name":"spender","type":"address"},{"name":"value","type":"uint256"},{"name":"nonce","type":"uint256"},{"name":"deadline","type":"uint256"}]}}',
+      ],
+    },
+    metadata: { domain: 'https://boredapeyartclub.com' },
+  });
+
+  console.log(transactionScanResponse.validation);
 }
 
 main();
@@ -42,11 +56,23 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import Blockaid from 'blockaid';
 
-const blockaid = new Blockaid();
+const blockaid = new Blockaid({
+  apiKey: process.env['BLOCKAID_CLIENT_API_KEY'], // This is the default and can be omitted
+});
 
 async function main() {
-  const params: Blockaid.SiteScanParams = { url: 'string' };
-  const siteScanResponse: Blockaid.SiteScanResponse = await blockaid.site.scan(params);
+  const params: Blockaid.Evm.JsonRpcScanParams = {
+    chain: 'ethereum',
+    data: {
+      method: 'eth_signTypedData_v4',
+      params: [
+        '0x49c73c9d361c04769a452E85D343b41aC38e0EE4',
+        '{"domain":{"chainId":1,"name":"Aave interest bearing WETH","version":"1","verifyingContract":"0x030ba81f1c18d280636f32af80b9aad02cf0854e"},"message":{"owner":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4","spender":"0xa74cbd5b80f73b5950768c8dc467f1c6307c00fd","value":"115792089237316195423570985008687907853269984665640564039457584007913129639935","nonce":"0","deadline":"1988064000","holder":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4"},"primaryType":"Permit","types":{"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}],"Permit":[{"name":"owner","type":"address"},{"name":"spender","type":"address"},{"name":"value","type":"uint256"},{"name":"nonce","type":"uint256"},{"name":"deadline","type":"uint256"}]}}',
+      ],
+    },
+    metadata: { domain: 'https://boredapeyartclub.com' },
+  };
+  const transactionScanResponse: Blockaid.TransactionScanResponse = await blockaid.evm.jsonRpc.scan(params);
 }
 
 main();
@@ -63,15 +89,27 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const siteScanResponse = await blockaid.site.scan({ url: 'string' }).catch(async (err) => {
-    if (err instanceof Blockaid.APIError) {
-      console.log(err.status); // 400
-      console.log(err.name); // BadRequestError
-      console.log(err.headers); // {server: 'nginx', ...}
-    } else {
-      throw err;
-    }
-  });
+  const transactionScanResponse = await blockaid.evm.jsonRpc
+    .scan({
+      chain: 'ethereum',
+      data: {
+        method: 'eth_signTypedData_v4',
+        params: [
+          '0x49c73c9d361c04769a452E85D343b41aC38e0EE4',
+          '{"domain":{"chainId":1,"name":"Aave interest bearing WETH","version":"1","verifyingContract":"0x030ba81f1c18d280636f32af80b9aad02cf0854e"},"message":{"owner":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4","spender":"0xa74cbd5b80f73b5950768c8dc467f1c6307c00fd","value":"115792089237316195423570985008687907853269984665640564039457584007913129639935","nonce":"0","deadline":"1988064000","holder":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4"},"primaryType":"Permit","types":{"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}],"Permit":[{"name":"owner","type":"address"},{"name":"spender","type":"address"},{"name":"value","type":"uint256"},{"name":"nonce","type":"uint256"},{"name":"deadline","type":"uint256"}]}}',
+        ],
+      },
+      metadata: { domain: 'https://boredapeyartclub.com' },
+    })
+    .catch(async (err) => {
+      if (err instanceof Blockaid.APIError) {
+        console.log(err.status); // 400
+        console.log(err.name); // BadRequestError
+        console.log(err.headers); // {server: 'nginx', ...}
+      } else {
+        throw err;
+      }
+    });
 }
 
 main();
@@ -106,7 +144,7 @@ const blockaid = new Blockaid({
 });
 
 // Or, configure per-request:
-await blockaid.site.scan({ url: 'string' }, {
+await blockaid.evm.jsonRpc.scan({ chain: 'ethereum', data: { method: 'eth_signTypedData_v4', params: ['0x49c73c9d361c04769a452E85D343b41aC38e0EE4', '{"domain":{"chainId":1,"name":"Aave interest bearing WETH","version":"1","verifyingContract":"0x030ba81f1c18d280636f32af80b9aad02cf0854e"},"message":{"owner":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4","spender":"0xa74cbd5b80f73b5950768c8dc467f1c6307c00fd","value":"115792089237316195423570985008687907853269984665640564039457584007913129639935","nonce":"0","deadline":"1988064000","holder":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4"},"primaryType":"Permit","types":{"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}],"Permit":[{"name":"owner","type":"address"},{"name":"spender","type":"address"},{"name":"value","type":"uint256"},{"name":"nonce","type":"uint256"},{"name":"deadline","type":"uint256"}]}}'] }, metadata: { domain: 'https://boredapeyartclub.com' } }, {
   maxRetries: 5,
 });
 ```
@@ -123,7 +161,7 @@ const blockaid = new Blockaid({
 });
 
 // Override per-request:
-await blockaid.site.scan({ url: 'string' }, {
+await blockaid.evm.jsonRpc.scan({ chain: 'ethereum', data: { method: 'eth_signTypedData_v4', params: ['0x49c73c9d361c04769a452E85D343b41aC38e0EE4', '{"domain":{"chainId":1,"name":"Aave interest bearing WETH","version":"1","verifyingContract":"0x030ba81f1c18d280636f32af80b9aad02cf0854e"},"message":{"owner":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4","spender":"0xa74cbd5b80f73b5950768c8dc467f1c6307c00fd","value":"115792089237316195423570985008687907853269984665640564039457584007913129639935","nonce":"0","deadline":"1988064000","holder":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4"},"primaryType":"Permit","types":{"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}],"Permit":[{"name":"owner","type":"address"},{"name":"spender","type":"address"},{"name":"value","type":"uint256"},{"name":"nonce","type":"uint256"},{"name":"deadline","type":"uint256"}]}}'] }, metadata: { domain: 'https://boredapeyartclub.com' } }, {
   timeout: 5 * 1000,
 });
 ```
@@ -144,13 +182,37 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const blockaid = new Blockaid();
 
-const response = await blockaid.site.scan({ url: 'string' }).asResponse();
+const response = await blockaid.evm.jsonRpc
+  .scan({
+    chain: 'ethereum',
+    data: {
+      method: 'eth_signTypedData_v4',
+      params: [
+        '0x49c73c9d361c04769a452E85D343b41aC38e0EE4',
+        '{"domain":{"chainId":1,"name":"Aave interest bearing WETH","version":"1","verifyingContract":"0x030ba81f1c18d280636f32af80b9aad02cf0854e"},"message":{"owner":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4","spender":"0xa74cbd5b80f73b5950768c8dc467f1c6307c00fd","value":"115792089237316195423570985008687907853269984665640564039457584007913129639935","nonce":"0","deadline":"1988064000","holder":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4"},"primaryType":"Permit","types":{"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}],"Permit":[{"name":"owner","type":"address"},{"name":"spender","type":"address"},{"name":"value","type":"uint256"},{"name":"nonce","type":"uint256"},{"name":"deadline","type":"uint256"}]}}',
+      ],
+    },
+    metadata: { domain: 'https://boredapeyartclub.com' },
+  })
+  .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: siteScanResponse, response: raw } = await blockaid.site.scan({ url: 'string' }).withResponse();
+const { data: transactionScanResponse, response: raw } = await blockaid.evm.jsonRpc
+  .scan({
+    chain: 'ethereum',
+    data: {
+      method: 'eth_signTypedData_v4',
+      params: [
+        '0x49c73c9d361c04769a452E85D343b41aC38e0EE4',
+        '{"domain":{"chainId":1,"name":"Aave interest bearing WETH","version":"1","verifyingContract":"0x030ba81f1c18d280636f32af80b9aad02cf0854e"},"message":{"owner":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4","spender":"0xa74cbd5b80f73b5950768c8dc467f1c6307c00fd","value":"115792089237316195423570985008687907853269984665640564039457584007913129639935","nonce":"0","deadline":"1988064000","holder":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4"},"primaryType":"Permit","types":{"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}],"Permit":[{"name":"owner","type":"address"},{"name":"spender","type":"address"},{"name":"value","type":"uint256"},{"name":"nonce","type":"uint256"},{"name":"deadline","type":"uint256"}]}}',
+      ],
+    },
+    metadata: { domain: 'https://boredapeyartclub.com' },
+  })
+  .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(siteScanResponse);
+console.log(transactionScanResponse.validation);
 ```
 
 ### Making custom/undocumented requests
@@ -254,8 +316,18 @@ const blockaid = new Blockaid({
 });
 
 // Override per-request:
-await blockaid.site.scan(
-  { url: 'string' },
+await blockaid.evm.jsonRpc.scan(
+  {
+    chain: 'ethereum',
+    data: {
+      method: 'eth_signTypedData_v4',
+      params: [
+        '0x49c73c9d361c04769a452E85D343b41aC38e0EE4',
+        '{"domain":{"chainId":1,"name":"Aave interest bearing WETH","version":"1","verifyingContract":"0x030ba81f1c18d280636f32af80b9aad02cf0854e"},"message":{"owner":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4","spender":"0xa74cbd5b80f73b5950768c8dc467f1c6307c00fd","value":"115792089237316195423570985008687907853269984665640564039457584007913129639935","nonce":"0","deadline":"1988064000","holder":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4"},"primaryType":"Permit","types":{"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}],"Permit":[{"name":"owner","type":"address"},{"name":"spender","type":"address"},{"name":"value","type":"uint256"},{"name":"nonce","type":"uint256"},{"name":"deadline","type":"uint256"}]}}',
+      ],
+    },
+    metadata: { domain: 'https://boredapeyartclub.com' },
+  },
   {
     httpAgent: new http.Agent({ keepAlive: false }),
   },
