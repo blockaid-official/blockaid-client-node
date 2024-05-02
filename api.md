@@ -53,6 +53,10 @@ Methods:
 
 ## UserOperation
 
+Methods:
+
+- <code title="post /evm/user-operation/scan">client.evm.userOperation.<a href="./src/resources/evm/user-operation.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+
 # Site
 
 Types:
