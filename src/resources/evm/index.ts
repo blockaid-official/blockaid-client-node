@@ -3,6 +3,7 @@
 export {
   AddressAssetDiff,
   AddressAssetExposure,
+  Chain,
   Erc1155Diff,
   Erc1155Exposure,
   Erc1155TokenDetails,

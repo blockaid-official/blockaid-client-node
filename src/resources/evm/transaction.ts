@@ -29,7 +29,7 @@ export interface TransactionScanParams {
   /**
    * The chain name
    */
-  chain: string;
+  chain: EvmAPI.Chain;
 
   /**
    * Transaction parameters

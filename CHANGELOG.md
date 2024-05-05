@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.7.2 (2024-05-05)
+
+Full Changelog: [v0.7.0...v0.7.2](https://github.com/blockaid-official/blockaid-client-node/compare/v0.7.0...v0.7.2)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#6](https://github.com/blockaid-official/blockaid-client-node/issues/6)) ([ccc675e](https://github.com/blockaid-official/blockaid-client-node/commit/ccc675e73aa38ba8770040947885cc88cc9e56dc))
+* **api:** OpenAPI spec update via Stainless API ([#8](https://github.com/blockaid-official/blockaid-client-node/issues/8)) ([9a4df57](https://github.com/blockaid-official/blockaid-client-node/commit/9a4df57a892c633ffc46f2a7eeaa583d4ee5f26d))
+* **api:** OpenAPI spec update via Stainless API ([#9](https://github.com/blockaid-official/blockaid-client-node/issues/9)) ([d3c52ba](https://github.com/blockaid-official/blockaid-client-node/commit/d3c52ba54333d7ad6621436eec3b8da844d39418))
+
 ## 0.7.0 (2024-05-02)
 
 Full Changelog: [v0.0.1-alpha.0...v0.7.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.0.1-alpha.0...v0.7.0)

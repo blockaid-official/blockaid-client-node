@@ -78,6 +78,24 @@ export interface AddressAssetExposure {
   spenders: Record<string, Erc20Exposure | Erc721Exposure | Erc1155Exposure>;
 }
 
+/**
+ * The chain name
+ */
+export type Chain =
+  | 'arbitrum'
+  | 'avalanche'
+  | 'base'
+  | 'base-sepolia'
+  | 'bsc'
+  | 'ethereum'
+  | 'optimism'
+  | 'polygon'
+  | 'zksync'
+  | 'zora'
+  | 'linea'
+  | 'blast'
+  | 'unknown';
+
 export interface Erc1155Diff {
   /**
    * value before divided by decimal, that was transferred from this address
@@ -635,6 +653,7 @@ export interface UsdDiff {
 export namespace Evm {
   export import AddressAssetDiff = EvmAPI.AddressAssetDiff;
   export import AddressAssetExposure = EvmAPI.AddressAssetExposure;
+  export import Chain = EvmAPI.Chain;
   export import Erc1155Diff = EvmAPI.Erc1155Diff;
   export import Erc1155Exposure = EvmAPI.Erc1155Exposure;
   export import Erc1155TokenDetails = EvmAPI.Erc1155TokenDetails;

@@ -26,7 +26,7 @@ export interface TransactionBulkScanParams {
   /**
    * The chain name
    */
-  chain: string;
+  chain: EvmAPI.Chain;
 
   /**
    * Transaction bulk parameters
