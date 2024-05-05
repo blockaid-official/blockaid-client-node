@@ -199,6 +199,7 @@ export namespace Blockaid {
   export import TransactionSimulation = API.TransactionSimulation;
   export import TransactionSimulationError = API.TransactionSimulationError;
   export import TransactionValidation = API.TransactionValidation;
+  export import TransactionValidationError = API.TransactionValidationError;
   export import UsdDiff = API.UsdDiff;
 
   export import Site = API.Site;
