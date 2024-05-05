@@ -15,6 +15,7 @@ export {
   Metadata,
   NativeDiff,
   NonercTokenDetails,
+  SupportedChain,
   TransactionBulkResponse,
   TransactionScanFeature,
   TransactionScanResponse,
