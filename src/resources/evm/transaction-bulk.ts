@@ -24,7 +24,7 @@ export type TransactionBulkScanResponse = Array<EvmAPI.TransactionBulkResponse>;
 
 export interface TransactionBulkScanParams {
   /**
-   * An enumeration.
+   * The chain name
    */
   chain: EvmAPI.Chain;
 

@@ -21,7 +21,7 @@ export class JsonRpc extends APIResource {
 
 export interface JsonRpcScanParams {
   /**
-   * An enumeration.
+   * The chain name
    */
   chain: EvmAPI.Chain;
 
