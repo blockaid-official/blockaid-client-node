@@ -21,7 +21,7 @@ export class UserOperation extends APIResource {
 
 export interface UserOperationScanParams {
   /**
-   * An enumeration.
+   * The chain name
    */
   chain: EvmAPI.Chain;
 
