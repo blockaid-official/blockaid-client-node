@@ -22,6 +22,7 @@ Types:
 - <code><a href="./src/resources/evm/evm.ts">TransactionScanFeature</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionScanResponse</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionSimulation</a></code>
+- <code><a href="./src/resources/evm/evm.ts">TransactionSimulationError</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionValidation</a></code>
 - <code><a href="./src/resources/evm/evm.ts">UsdDiff</a></code>
 
