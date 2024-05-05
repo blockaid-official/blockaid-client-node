@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.4 (2024-05-05)
+
+Full Changelog: [v0.7.3...v0.7.4](https://github.com/blockaid-official/blockaid-client-node/compare/v0.7.3...v0.7.4)
+
+### Features
+
+* feat: add additional types ([4298573](https://github.com/blockaid-official/blockaid-client-node/commit/4298573937f3ad856e6e62439cd85ae8c3c70ab9))
+
 ## 0.7.3 (2024-05-05)
 
 Full Changelog: [v0.7.2...v0.7.3](https://github.com/blockaid-official/blockaid-client-node/compare/v0.7.2...v0.7.3)
