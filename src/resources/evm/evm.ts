@@ -368,7 +368,7 @@ export interface TransactionBulkResponse {
     | TransactionBulkResponse.TransactionScanGasEstimation
     | TransactionBulkResponse.TransactionScanGasEstimationError;
 
-  simulation?: TransactionSimulation | TransactionBulkResponse.TransactionSimulationError;
+  simulation?: TransactionSimulation | TransactionSimulationError;
 
   validation?: TransactionValidation | TransactionBulkResponse.TransactrionValidationError;
 }
@@ -407,13 +407,6 @@ export namespace TransactionBulkResponse {
   }
 
   export interface TransactionScanGasEstimationError {
-    error: string;
-  }
-
-  export interface TransactionSimulationError {
-    /**
-     * An error message if the simulation failed.
-     */
     error: string;
   }
 
@@ -480,19 +473,12 @@ export interface TransactionScanResponse {
 
   chain?: string;
 
-  simulation?: TransactionSimulation | TransactionScanResponse.TransactionSimulationError;
+  simulation?: TransactionSimulation | TransactionSimulationError;
 
   validation?: TransactionValidation | TransactionScanResponse.TransactrionValidationError;
 }
 
 export namespace TransactionScanResponse {
-  export interface TransactionSimulationError {
-    /**
-     * An error message if the simulation failed.
-     */
-    error: string;
-  }
-
   export interface TransactrionValidationError {
     /**
      * A textual classification that can be presented to the user explaining the
@@ -610,6 +596,13 @@ export namespace TransactionSimulation {
   }
 }
 
+export interface TransactionSimulationError {
+  /**
+   * An error message if the simulation failed.
+   */
+  error: string;
+}
+
 export interface TransactionValidation {
   /**
    * A list of features about this transaction explaining the validation.
@@ -669,6 +662,7 @@ export namespace Evm {
   export import TransactionScanFeature = EvmAPI.TransactionScanFeature;
   export import TransactionScanResponse = EvmAPI.TransactionScanResponse;
   export import TransactionSimulation = EvmAPI.TransactionSimulation;
+  export import TransactionSimulationError = EvmAPI.TransactionSimulationError;
   export import TransactionValidation = EvmAPI.TransactionValidation;
   export import UsdDiff = EvmAPI.UsdDiff;
   export import JsonRpc = JsonRpcAPI.JsonRpc;

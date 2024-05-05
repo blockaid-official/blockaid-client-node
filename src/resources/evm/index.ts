@@ -21,6 +21,7 @@ export {
   TransactionScanFeature,
   TransactionScanResponse,
   TransactionSimulation,
+  TransactionSimulationError,
   TransactionValidation,
   UsdDiff,
   Evm,
