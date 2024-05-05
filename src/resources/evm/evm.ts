@@ -16,55 +16,6 @@ export class Evm extends APIResource {
   userOperation: UserOperationAPI.UserOperation = new UserOperationAPI.UserOperation(this._client);
 }
 
-export interface AddressAssetDiff {
-  /**
-   * description of the asset for the current diff
-   */
-  asset:
-    | Erc20TokenDetails
-    | Erc1155TokenDetails
-    | Erc721TokenDetails
-    | NonercTokenDetails
-    | AddressAssetDiff.NativeAssetDetails;
-
-  /**
-   * amount of the asset that was transferred to the address in this transaction
-   */
-  in: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
-
-  /**
-   * amount of the asset that was transferred from the address in this transaction
-   */
-  out: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
-}
-
-export namespace AddressAssetDiff {
-  export interface NativeAssetDetails {
-    chain_id: number;
-
-    chain_name: string;
-
-    decimals: number;
-
-    logo_url: string;
-
-    /**
-     * asset type.
-     */
-    type: 'NATIVE';
-
-    /**
-     * string represents the name of the asset
-     */
-    name?: string;
-
-    /**
-     * asset's symbol name
-     */
-    symbol?: string;
-  }
-}
-
 export interface AddressAssetExposure {
   /**
    * description of the asset for the current diff
@@ -76,6 +27,28 @@ export interface AddressAssetExposure {
    * transaction for the current address and asset
    */
   spenders: Record<string, Erc20Exposure | Erc721Exposure | Erc1155Exposure>;
+}
+
+export interface AssetDiff {
+  /**
+   * description of the asset for the current diff
+   */
+  asset:
+    | Erc20TokenDetails
+    | Erc1155TokenDetails
+    | Erc721TokenDetails
+    | NonercTokenDetails
+    | NativeAssetDetails;
+
+  /**
+   * amount of the asset that was transferred to the address in this transaction
+   */
+  in: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
+
+  /**
+   * amount of the asset that was transferred from the address in this transaction
+   */
+  out: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
 }
 
 /**
@@ -310,6 +283,31 @@ export interface Metadata {
   domain: string;
 }
 
+export interface NativeAssetDetails {
+  chain_id: number;
+
+  chain_name: string;
+
+  decimals: number;
+
+  logo_url: string;
+
+  /**
+   * asset type.
+   */
+  type: 'NATIVE';
+
+  /**
+   * string represents the name of the asset
+   */
+  name?: string;
+
+  /**
+   * asset's symbol name
+   */
+  symbol?: string;
+}
+
 export interface NativeDiff {
   /**
    * value before divided by decimal, that was transferred from this address
@@ -370,9 +368,9 @@ export interface TransactionBulkResponse {
     | TransactionBulkResponse.TransactionScanGasEstimation
     | TransactionBulkResponse.TransactionScanGasEstimationError;
 
-  simulation?: TransactionSimulation | TransactionBulkResponse.TransactionSimulationError;
+  simulation?: TransactionSimulation | TransactionSimulationError;
 
-  validation?: TransactionValidation | TransactionBulkResponse.TransactrionValidationError;
+  validation?: TransactionValidation | TransactionValidationError;
 }
 
 export namespace TransactionBulkResponse {
@@ -411,48 +409,6 @@ export namespace TransactionBulkResponse {
   export interface TransactionScanGasEstimationError {
     error: string;
   }
-
-  export interface TransactionSimulationError {
-    /**
-     * An error message if the simulation failed.
-     */
-    error: string;
-  }
-
-  export interface TransactrionValidationError {
-    /**
-     * A textual classification that can be presented to the user explaining the
-     * reason.
-     */
-    classification: '';
-
-    /**
-     * A textual description that can be presented to the user about what this
-     * transaction is doing.
-     */
-    description: '';
-
-    /**
-     * An error message if the validation failed.
-     */
-    error: string;
-
-    /**
-     * A list of features about this transaction explaining the validation.
-     */
-    features: Array<EvmAPI.TransactionScanFeature>;
-
-    /**
-     * A textual description about the reasons the transaction was flagged with
-     * result_type.
-     */
-    reason: '';
-
-    /**
-     * A string indicating if the transaction is safe to sign or not.
-     */
-    result_type: 'Error';
-  }
 }
 
 export interface TransactionScanFeature {
@@ -482,53 +438,9 @@ export interface TransactionScanResponse {
 
   chain?: string;
 
-  simulation?: TransactionSimulation | TransactionScanResponse.TransactionSimulationError;
+  simulation?: TransactionSimulation | TransactionSimulationError;
 
-  validation?: TransactionValidation | TransactionScanResponse.TransactrionValidationError;
-}
-
-export namespace TransactionScanResponse {
-  export interface TransactionSimulationError {
-    /**
-     * An error message if the simulation failed.
-     */
-    error: string;
-  }
-
-  export interface TransactrionValidationError {
-    /**
-     * A textual classification that can be presented to the user explaining the
-     * reason.
-     */
-    classification: '';
-
-    /**
-     * A textual description that can be presented to the user about what this
-     * transaction is doing.
-     */
-    description: '';
-
-    /**
-     * An error message if the validation failed.
-     */
-    error: string;
-
-    /**
-     * A list of features about this transaction explaining the validation.
-     */
-    features: Array<EvmAPI.TransactionScanFeature>;
-
-    /**
-     * A textual description about the reasons the transaction was flagged with
-     * result_type.
-     */
-    reason: '';
-
-    /**
-     * A string indicating if the transaction is safe to sign or not.
-     */
-    result_type: 'Error';
-  }
+  validation?: TransactionValidation | TransactionValidationError;
 }
 
 export interface TransactionSimulation {
@@ -549,7 +461,7 @@ export interface TransactionSimulation {
    * dictionary describes the assets differences as a result of this transaction for
    * every involved address
    */
-  assets_diffs: Record<string, Array<AddressAssetDiff>>;
+  assets_diffs: Record<string, Array<AssetDiff>>;
 
   /**
    * dictionary describes the exposure differences as a result of this transaction
@@ -581,7 +493,7 @@ export namespace TransactionSimulation {
     /**
      * All assets diffs related to the account address
      */
-    assets_diffs: Array<EvmAPI.AddressAssetDiff>;
+    assets_diffs: Array<EvmAPI.AssetDiff>;
 
     /**
      * All assets exposures related to the account address
@@ -610,6 +522,13 @@ export namespace TransactionSimulation {
      */
     name_tag?: string;
   }
+}
+
+export interface TransactionSimulationError {
+  /**
+   * An error message if the simulation failed.
+   */
+  error: string;
 }
 
 export interface TransactionValidation {
@@ -642,6 +561,41 @@ export interface TransactionValidation {
   reason?: string;
 }
 
+export interface TransactionValidationError {
+  /**
+   * A textual classification that can be presented to the user explaining the
+   * reason.
+   */
+  classification: '';
+
+  /**
+   * A textual description that can be presented to the user about what this
+   * transaction is doing.
+   */
+  description: '';
+
+  /**
+   * An error message if the validation failed.
+   */
+  error: string;
+
+  /**
+   * A list of features about this transaction explaining the validation.
+   */
+  features: Array<TransactionScanFeature>;
+
+  /**
+   * A textual description about the reasons the transaction was flagged with
+   * result_type.
+   */
+  reason: '';
+
+  /**
+   * A string indicating if the transaction is safe to sign or not.
+   */
+  result_type: 'Error';
+}
+
 export interface UsdDiff {
   in: string;
 
@@ -651,8 +605,8 @@ export interface UsdDiff {
 }
 
 export namespace Evm {
-  export import AddressAssetDiff = EvmAPI.AddressAssetDiff;
   export import AddressAssetExposure = EvmAPI.AddressAssetExposure;
+  export import AssetDiff = EvmAPI.AssetDiff;
   export import Chain = EvmAPI.Chain;
   export import Erc1155Diff = EvmAPI.Erc1155Diff;
   export import Erc1155Exposure = EvmAPI.Erc1155Exposure;
@@ -664,13 +618,16 @@ export namespace Evm {
   export import Erc721Exposure = EvmAPI.Erc721Exposure;
   export import Erc721TokenDetails = EvmAPI.Erc721TokenDetails;
   export import Metadata = EvmAPI.Metadata;
+  export import NativeAssetDetails = EvmAPI.NativeAssetDetails;
   export import NativeDiff = EvmAPI.NativeDiff;
   export import NonercTokenDetails = EvmAPI.NonercTokenDetails;
   export import TransactionBulkResponse = EvmAPI.TransactionBulkResponse;
   export import TransactionScanFeature = EvmAPI.TransactionScanFeature;
   export import TransactionScanResponse = EvmAPI.TransactionScanResponse;
   export import TransactionSimulation = EvmAPI.TransactionSimulation;
+  export import TransactionSimulationError = EvmAPI.TransactionSimulationError;
   export import TransactionValidation = EvmAPI.TransactionValidation;
+  export import TransactionValidationError = EvmAPI.TransactionValidationError;
   export import UsdDiff = EvmAPI.UsdDiff;
   export import JsonRpc = JsonRpcAPI.JsonRpc;
   export import JsonRpcScanParams = JsonRpcAPI.JsonRpcScanParams;

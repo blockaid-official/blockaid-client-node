@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export {
-  AddressAssetDiff,
   AddressAssetExposure,
+  AssetDiff,
   Chain,
   Erc1155Diff,
   Erc1155Exposure,
@@ -14,13 +14,16 @@ export {
   Erc721Exposure,
   Erc721TokenDetails,
   Metadata,
+  NativeAssetDetails,
   NativeDiff,
   NonercTokenDetails,
   TransactionBulkResponse,
   TransactionScanFeature,
   TransactionScanResponse,
   TransactionSimulation,
+  TransactionSimulationError,
   TransactionValidation,
+  TransactionValidationError,
   UsdDiff,
   Evm,
 } from './evm';
