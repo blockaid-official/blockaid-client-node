@@ -370,7 +370,7 @@ export interface TransactionBulkResponse {
 
   simulation?: TransactionSimulation | TransactionSimulationError;
 
-  validation?: TransactionValidation | TransactionBulkResponse.TransactrionValidationError;
+  validation?: TransactionValidation | TransactionValidationError;
 }
 
 export namespace TransactionBulkResponse {
@@ -409,41 +409,6 @@ export namespace TransactionBulkResponse {
   export interface TransactionScanGasEstimationError {
     error: string;
   }
-
-  export interface TransactrionValidationError {
-    /**
-     * A textual classification that can be presented to the user explaining the
-     * reason.
-     */
-    classification: '';
-
-    /**
-     * A textual description that can be presented to the user about what this
-     * transaction is doing.
-     */
-    description: '';
-
-    /**
-     * An error message if the validation failed.
-     */
-    error: string;
-
-    /**
-     * A list of features about this transaction explaining the validation.
-     */
-    features: Array<EvmAPI.TransactionScanFeature>;
-
-    /**
-     * A textual description about the reasons the transaction was flagged with
-     * result_type.
-     */
-    reason: '';
-
-    /**
-     * A string indicating if the transaction is safe to sign or not.
-     */
-    result_type: 'Error';
-  }
 }
 
 export interface TransactionScanFeature {
@@ -475,44 +440,7 @@ export interface TransactionScanResponse {
 
   simulation?: TransactionSimulation | TransactionSimulationError;
 
-  validation?: TransactionValidation | TransactionScanResponse.TransactrionValidationError;
-}
-
-export namespace TransactionScanResponse {
-  export interface TransactrionValidationError {
-    /**
-     * A textual classification that can be presented to the user explaining the
-     * reason.
-     */
-    classification: '';
-
-    /**
-     * A textual description that can be presented to the user about what this
-     * transaction is doing.
-     */
-    description: '';
-
-    /**
-     * An error message if the validation failed.
-     */
-    error: string;
-
-    /**
-     * A list of features about this transaction explaining the validation.
-     */
-    features: Array<EvmAPI.TransactionScanFeature>;
-
-    /**
-     * A textual description about the reasons the transaction was flagged with
-     * result_type.
-     */
-    reason: '';
-
-    /**
-     * A string indicating if the transaction is safe to sign or not.
-     */
-    result_type: 'Error';
-  }
+  validation?: TransactionValidation | TransactionValidationError;
 }
 
 export interface TransactionSimulation {
@@ -633,6 +561,41 @@ export interface TransactionValidation {
   reason?: string;
 }
 
+export interface TransactionValidationError {
+  /**
+   * A textual classification that can be presented to the user explaining the
+   * reason.
+   */
+  classification: '';
+
+  /**
+   * A textual description that can be presented to the user about what this
+   * transaction is doing.
+   */
+  description: '';
+
+  /**
+   * An error message if the validation failed.
+   */
+  error: string;
+
+  /**
+   * A list of features about this transaction explaining the validation.
+   */
+  features: Array<TransactionScanFeature>;
+
+  /**
+   * A textual description about the reasons the transaction was flagged with
+   * result_type.
+   */
+  reason: '';
+
+  /**
+   * A string indicating if the transaction is safe to sign or not.
+   */
+  result_type: 'Error';
+}
+
 export interface UsdDiff {
   in: string;
 
@@ -664,6 +627,7 @@ export namespace Evm {
   export import TransactionSimulation = EvmAPI.TransactionSimulation;
   export import TransactionSimulationError = EvmAPI.TransactionSimulationError;
   export import TransactionValidation = EvmAPI.TransactionValidation;
+  export import TransactionValidationError = EvmAPI.TransactionValidationError;
   export import UsdDiff = EvmAPI.UsdDiff;
   export import JsonRpc = JsonRpcAPI.JsonRpc;
   export import JsonRpcScanParams = JsonRpcAPI.JsonRpcScanParams;
