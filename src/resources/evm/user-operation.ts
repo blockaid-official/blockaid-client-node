@@ -23,7 +23,7 @@ export interface UserOperationScanParams {
   /**
    * An enumeration.
    */
-  chain: EvmAPI.SupportedChain;
+  chain: EvmAPI.Chain;
 
   /**
    * The user operation request that was received by the wallet

@@ -23,7 +23,7 @@ export interface JsonRpcScanParams {
   /**
    * An enumeration.
    */
-  chain: EvmAPI.SupportedChain;
+  chain: EvmAPI.Chain;
 
   /**
    * JSON-RPC request that was received by the wallet.

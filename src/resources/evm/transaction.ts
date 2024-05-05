@@ -29,7 +29,7 @@ export interface TransactionScanParams {
   /**
    * An enumeration.
    */
-  chain: EvmAPI.SupportedChain;
+  chain: EvmAPI.Chain;
 
   /**
    * Transaction parameters
