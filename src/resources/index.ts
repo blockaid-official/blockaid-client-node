@@ -23,6 +23,7 @@ export {
   TransactionSimulation,
   TransactionSimulationError,
   TransactionValidation,
+  TransactionValidationError,
   UsdDiff,
   Evm,
 } from './evm/evm';
