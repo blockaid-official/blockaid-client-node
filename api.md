@@ -14,6 +14,7 @@ Types:
 - <code><a href="./src/resources/evm/evm.ts">Erc721Exposure</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc721TokenDetails</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Metadata</a></code>
+- <code><a href="./src/resources/evm/evm.ts">NativeAssetDetails</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NativeDiff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NonercTokenDetails</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionBulkResponse</a></code>

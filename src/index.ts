@@ -189,6 +189,7 @@ export namespace Blockaid {
   export import Erc721Exposure = API.Erc721Exposure;
   export import Erc721TokenDetails = API.Erc721TokenDetails;
   export import Metadata = API.Metadata;
+  export import NativeAssetDetails = API.NativeAssetDetails;
   export import NativeDiff = API.NativeDiff;
   export import NonercTokenDetails = API.NonercTokenDetails;
   export import TransactionBulkResponse = API.TransactionBulkResponse;
