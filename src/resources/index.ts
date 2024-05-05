@@ -13,6 +13,7 @@ export {
   Erc721Exposure,
   Erc721TokenDetails,
   Metadata,
+  NativeAssetDetails,
   NativeDiff,
   NonercTokenDetails,
   TransactionBulkResponse,
