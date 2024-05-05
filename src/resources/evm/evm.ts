@@ -43,12 +43,12 @@ export interface AssetDiff {
   /**
    * amount of the asset that was transferred to the address in this transaction
    */
-  in: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
+  in: Array<GeneralAssetDiff>;
 
   /**
    * amount of the asset that was transferred from the address in this transaction
    */
-  out: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
+  out: Array<GeneralAssetDiff>;
 }
 
 /**
@@ -68,6 +68,8 @@ export type Chain =
   | 'linea'
   | 'blast'
   | 'unknown';
+
+export type GeneralAssetDiff = Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff
 
 export interface Erc1155Diff {
   /**
@@ -97,7 +99,7 @@ export interface Erc1155Diff {
 }
 
 export interface Erc1155Exposure {
-  exposure: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
+  exposure: Array<Erc1155Diff>;
 
   /**
    * boolean indicates whether an is_approved_for_all function was used (missing in
@@ -167,7 +169,7 @@ export interface Erc20Exposure {
    */
   approval: number;
 
-  exposure: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
+  exposure: Array<Erc20Diff>;
 
   /**
    * the expiration time of the permit2 protocol
@@ -235,7 +237,7 @@ export interface Erc721Diff {
 }
 
 export interface Erc721Exposure {
-  exposure: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
+  exposure: Array<Erc721Diff>;
 
   /**
    * boolean indicates whether an is_approved_for_all function was used (missing in
@@ -357,6 +359,10 @@ export interface NonercTokenDetails {
   symbol?: string;
 }
 
+export type TransactionSimulationResponse = TransactionSimulation | TransactionSimulationError
+
+export type TransactionValidationResponse = TransactionValidation | TransactionValidationError
+
 export interface TransactionBulkResponse {
   block?: string;
 
@@ -368,9 +374,9 @@ export interface TransactionBulkResponse {
     | TransactionBulkResponse.TransactionScanGasEstimation
     | TransactionBulkResponse.TransactionScanGasEstimationError;
 
-  simulation?: TransactionSimulation | TransactionSimulationError;
+  simulation?: TransactionSimulationResponse;
 
-  validation?: TransactionValidation | TransactionValidationError;
+  validation?: TransactionValidationResponse;
 }
 
 export namespace TransactionBulkResponse {
@@ -624,8 +630,10 @@ export namespace Evm {
   export import TransactionBulkResponse = EvmAPI.TransactionBulkResponse;
   export import TransactionScanFeature = EvmAPI.TransactionScanFeature;
   export import TransactionScanResponse = EvmAPI.TransactionScanResponse;
+  export import TransactionSimulationResponse = EvmAPI.TransactionSimulationResponse;
   export import TransactionSimulation = EvmAPI.TransactionSimulation;
   export import TransactionSimulationError = EvmAPI.TransactionSimulationError;
+  export import TransactionValidationResponse = EvmAPI.TransactionValidationResponse;
   export import TransactionValidation = EvmAPI.TransactionValidation;
   export import TransactionValidationError = EvmAPI.TransactionValidationError;
   export import UsdDiff = EvmAPI.UsdDiff;
