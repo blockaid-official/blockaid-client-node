@@ -29,7 +29,7 @@ export interface TransactionRawScanParams {
   /**
    * An enumeration.
    */
-  chain: EvmAPI.SupportedChain;
+  chain: EvmAPI.Chain;
 
   /**
    * Hex string of the raw transaction data
