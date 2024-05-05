@@ -3,6 +3,7 @@
 Types:
 
 - <code><a href="./src/resources/evm/evm.ts">AddressAssetExposure</a></code>
+- <code><a href="./src/resources/evm/evm.ts">AssetDiff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Chain</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155Diff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155Exposure</a></code>

@@ -29,6 +29,28 @@ export interface AddressAssetExposure {
   spenders: Record<string, Erc20Exposure | Erc721Exposure | Erc1155Exposure>;
 }
 
+export interface AssetDiff {
+  /**
+   * description of the asset for the current diff
+   */
+  asset:
+    | Erc20TokenDetails
+    | Erc1155TokenDetails
+    | Erc721TokenDetails
+    | NonercTokenDetails
+    | NativeAssetDetails;
+
+  /**
+   * amount of the asset that was transferred to the address in this transaction
+   */
+  in: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
+
+  /**
+   * amount of the asset that was transferred from the address in this transaction
+   */
+  out: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
+}
+
 /**
  * The chain name
  */
@@ -525,7 +547,7 @@ export interface TransactionSimulation {
    * dictionary describes the assets differences as a result of this transaction for
    * every involved address
    */
-  assets_diffs: Record<string, Array<TransactionSimulation.AssetsDiff>>;
+  assets_diffs: Record<string, Array<AssetDiff>>;
 
   /**
    * dictionary describes the exposure differences as a result of this transaction
@@ -557,7 +579,7 @@ export namespace TransactionSimulation {
     /**
      * All assets diffs related to the account address
      */
-    assets_diffs: Array<AccountSummary.AssetsDiff>;
+    assets_diffs: Array<EvmAPI.AssetDiff>;
 
     /**
      * All assets exposures related to the account address
@@ -575,30 +597,6 @@ export namespace TransactionSimulation {
     total_usd_exposure: Record<string, string>;
   }
 
-  export namespace AccountSummary {
-    export interface AssetsDiff {
-      /**
-       * description of the asset for the current diff
-       */
-      asset:
-        | EvmAPI.Erc20TokenDetails
-        | EvmAPI.Erc1155TokenDetails
-        | EvmAPI.Erc721TokenDetails
-        | EvmAPI.NonercTokenDetails
-        | EvmAPI.NativeAssetDetails;
-
-      /**
-       * amount of the asset that was transferred to the address in this transaction
-       */
-      in: Array<EvmAPI.Erc1155Diff | EvmAPI.Erc721Diff | EvmAPI.Erc20Diff | EvmAPI.NativeDiff>;
-
-      /**
-       * amount of the asset that was transferred from the address in this transaction
-       */
-      out: Array<EvmAPI.Erc1155Diff | EvmAPI.Erc721Diff | EvmAPI.Erc20Diff | EvmAPI.NativeDiff>;
-    }
-  }
-
   export interface AddressDetails {
     /**
      * contains the contract's name if the address is a verified contract
@@ -609,28 +607,6 @@ export namespace TransactionSimulation {
      * known name tag for the address
      */
     name_tag?: string;
-  }
-
-  export interface AssetsDiff {
-    /**
-     * description of the asset for the current diff
-     */
-    asset:
-      | EvmAPI.Erc20TokenDetails
-      | EvmAPI.Erc1155TokenDetails
-      | EvmAPI.Erc721TokenDetails
-      | EvmAPI.NonercTokenDetails
-      | EvmAPI.NativeAssetDetails;
-
-    /**
-     * amount of the asset that was transferred to the address in this transaction
-     */
-    in: Array<EvmAPI.Erc1155Diff | EvmAPI.Erc721Diff | EvmAPI.Erc20Diff | EvmAPI.NativeDiff>;
-
-    /**
-     * amount of the asset that was transferred from the address in this transaction
-     */
-    out: Array<EvmAPI.Erc1155Diff | EvmAPI.Erc721Diff | EvmAPI.Erc20Diff | EvmAPI.NativeDiff>;
   }
 }
 
@@ -674,6 +650,7 @@ export interface UsdDiff {
 
 export namespace Evm {
   export import AddressAssetExposure = EvmAPI.AddressAssetExposure;
+  export import AssetDiff = EvmAPI.AssetDiff;
   export import Chain = EvmAPI.Chain;
   export import Erc1155Diff = EvmAPI.Erc1155Diff;
   export import Erc1155Exposure = EvmAPI.Erc1155Exposure;

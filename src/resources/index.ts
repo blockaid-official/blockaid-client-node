@@ -2,6 +2,7 @@
 
 export {
   AddressAssetExposure,
+  AssetDiff,
   Chain,
   Erc1155Diff,
   Erc1155Exposure,
