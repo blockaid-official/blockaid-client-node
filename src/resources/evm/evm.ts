@@ -261,6 +261,31 @@ export interface Metadata {
   domain: string;
 }
 
+export interface NativeAssetDetails {
+  chain_id: number;
+
+  chain_name: string;
+
+  decimals: number;
+
+  logo_url: string;
+
+  /**
+   * asset type.
+   */
+  type: 'NATIVE';
+
+  /**
+   * string represents the name of the asset
+   */
+  name?: string;
+
+  /**
+   * asset's symbol name
+   */
+  symbol?: string;
+}
+
 export interface NativeDiff {
   /**
    * value before divided by decimal, that was transferred from this address
@@ -560,7 +585,7 @@ export namespace TransactionSimulation {
         | EvmAPI.Erc1155TokenDetails
         | EvmAPI.Erc721TokenDetails
         | EvmAPI.NonercTokenDetails
-        | AssetsDiff.NativeAssetDetails;
+        | EvmAPI.NativeAssetDetails;
 
       /**
        * amount of the asset that was transferred to the address in this transaction
@@ -571,33 +596,6 @@ export namespace TransactionSimulation {
        * amount of the asset that was transferred from the address in this transaction
        */
       out: Array<EvmAPI.Erc1155Diff | EvmAPI.Erc721Diff | EvmAPI.Erc20Diff | EvmAPI.NativeDiff>;
-    }
-
-    export namespace AssetsDiff {
-      export interface NativeAssetDetails {
-        chain_id: number;
-
-        chain_name: string;
-
-        decimals: number;
-
-        logo_url: string;
-
-        /**
-         * asset type.
-         */
-        type: 'NATIVE';
-
-        /**
-         * string represents the name of the asset
-         */
-        name?: string;
-
-        /**
-         * asset's symbol name
-         */
-        symbol?: string;
-      }
     }
   }
 
@@ -622,7 +620,7 @@ export namespace TransactionSimulation {
       | EvmAPI.Erc1155TokenDetails
       | EvmAPI.Erc721TokenDetails
       | EvmAPI.NonercTokenDetails
-      | AssetsDiff.NativeAssetDetails;
+      | EvmAPI.NativeAssetDetails;
 
     /**
      * amount of the asset that was transferred to the address in this transaction
@@ -633,33 +631,6 @@ export namespace TransactionSimulation {
      * amount of the asset that was transferred from the address in this transaction
      */
     out: Array<EvmAPI.Erc1155Diff | EvmAPI.Erc721Diff | EvmAPI.Erc20Diff | EvmAPI.NativeDiff>;
-  }
-
-  export namespace AssetsDiff {
-    export interface NativeAssetDetails {
-      chain_id: number;
-
-      chain_name: string;
-
-      decimals: number;
-
-      logo_url: string;
-
-      /**
-       * asset type.
-       */
-      type: 'NATIVE';
-
-      /**
-       * string represents the name of the asset
-       */
-      name?: string;
-
-      /**
-       * asset's symbol name
-       */
-      symbol?: string;
-    }
   }
 }
 
@@ -714,6 +685,7 @@ export namespace Evm {
   export import Erc721Exposure = EvmAPI.Erc721Exposure;
   export import Erc721TokenDetails = EvmAPI.Erc721TokenDetails;
   export import Metadata = EvmAPI.Metadata;
+  export import NativeAssetDetails = EvmAPI.NativeAssetDetails;
   export import NativeDiff = EvmAPI.NativeDiff;
   export import NonercTokenDetails = EvmAPI.NonercTokenDetails;
   export import TransactionBulkResponse = EvmAPI.TransactionBulkResponse;
