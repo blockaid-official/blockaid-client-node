@@ -79,7 +79,7 @@ export interface AddressAssetExposure {
 }
 
 /**
- * An enumeration.
+ * The chain name
  */
 export type Chain =
   | 'arbitrum'
