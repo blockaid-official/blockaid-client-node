@@ -178,6 +178,7 @@ export namespace Blockaid {
 
   export import Evm = API.Evm;
   export import AddressAssetExposure = API.AddressAssetExposure;
+  export import AssetDiff = API.AssetDiff;
   export import Chain = API.Chain;
   export import Erc1155Diff = API.Erc1155Diff;
   export import Erc1155Exposure = API.Erc1155Exposure;
