@@ -341,6 +341,24 @@ export interface NonercTokenDetails {
   symbol?: string;
 }
 
+/**
+ * An enumeration.
+ */
+export type SupportedChain =
+  | 'arbitrum'
+  | 'avalanche'
+  | 'base'
+  | 'base-sepolia'
+  | 'bsc'
+  | 'ethereum'
+  | 'optimism'
+  | 'polygon'
+  | 'zksync'
+  | 'zora'
+  | 'linea'
+  | 'blast'
+  | 'unknown';
+
 export interface TransactionBulkResponse {
   block?: string;
 
@@ -647,6 +665,7 @@ export namespace Evm {
   export import Metadata = EvmAPI.Metadata;
   export import NativeDiff = EvmAPI.NativeDiff;
   export import NonercTokenDetails = EvmAPI.NonercTokenDetails;
+  export import SupportedChain = EvmAPI.SupportedChain;
   export import TransactionBulkResponse = EvmAPI.TransactionBulkResponse;
   export import TransactionScanFeature = EvmAPI.TransactionScanFeature;
   export import TransactionScanResponse = EvmAPI.TransactionScanResponse;

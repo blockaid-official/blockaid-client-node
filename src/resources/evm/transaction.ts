@@ -27,9 +27,9 @@ export interface TransactionScanParams {
   account_address: string;
 
   /**
-   * The chain name
+   * An enumeration.
    */
-  chain: string;
+  chain: EvmAPI.SupportedChain;
 
   /**
    * Transaction parameters
