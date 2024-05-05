@@ -4,6 +4,7 @@ Types:
 
 - <code><a href="./src/resources/evm/evm.ts">AddressAssetDiff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">AddressAssetExposure</a></code>
+- <code><a href="./src/resources/evm/evm.ts">Chain</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155Diff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155Exposure</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155TokenDetails</a></code>
@@ -16,7 +17,6 @@ Types:
 - <code><a href="./src/resources/evm/evm.ts">Metadata</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NativeDiff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NonercTokenDetails</a></code>
-- <code><a href="./src/resources/evm/evm.ts">SupportedChain</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionBulkResponse</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionScanFeature</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionScanResponse</a></code>

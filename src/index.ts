@@ -179,6 +179,7 @@ export namespace Blockaid {
   export import Evm = API.Evm;
   export import AddressAssetDiff = API.AddressAssetDiff;
   export import AddressAssetExposure = API.AddressAssetExposure;
+  export import Chain = API.Chain;
   export import Erc1155Diff = API.Erc1155Diff;
   export import Erc1155Exposure = API.Erc1155Exposure;
   export import Erc1155TokenDetails = API.Erc1155TokenDetails;
@@ -191,7 +192,6 @@ export namespace Blockaid {
   export import Metadata = API.Metadata;
   export import NativeDiff = API.NativeDiff;
   export import NonercTokenDetails = API.NonercTokenDetails;
-  export import SupportedChain = API.SupportedChain;
   export import TransactionBulkResponse = API.TransactionBulkResponse;
   export import TransactionScanFeature = API.TransactionScanFeature;
   export import TransactionScanResponse = API.TransactionScanResponse;

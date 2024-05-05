@@ -3,6 +3,7 @@
 export {
   AddressAssetDiff,
   AddressAssetExposure,
+  Chain,
   Erc1155Diff,
   Erc1155Exposure,
   Erc1155TokenDetails,
@@ -15,7 +16,6 @@ export {
   Metadata,
   NativeDiff,
   NonercTokenDetails,
-  SupportedChain,
   TransactionBulkResponse,
   TransactionScanFeature,
   TransactionScanResponse,
