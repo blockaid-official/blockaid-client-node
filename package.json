@@ -1,6 +1,6 @@
 {
   "name": "@blockaid/client",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "The official TypeScript library for the Blockaid API",
   "author": "Blockaid <feedback@blockaid.io>",
   "types": "dist/index.d.ts",
