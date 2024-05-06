@@ -51,36 +51,18 @@ export interface AssetDiff {
   out: Array<GeneralAssetDiff>;
 }
 
-/**
- * The chain name
- */
-export type Chain =
-  | 'arbitrum'
-  | 'avalanche'
-  | 'base'
-  | 'base-sepolia'
-  | 'bsc'
-  | 'ethereum'
-  | 'optimism'
-  | 'polygon'
-  | 'zksync'
-  | 'zora'
-  | 'linea'
-  | 'blast'
-  | 'unknown';
-
 export type GeneralAssetDiff = Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff
 
 export interface Erc1155Diff {
   /**
-   * value before divided by decimal, that was transferred from this address
-   */
-  raw_value: number;
-
-  /**
    * id of the token
    */
   token_id: number;
+
+  /**
+   * value before divided by decimal, that was transferred from this address
+   */
+  value: number;
 
   /**
    * url of the token logo
@@ -363,23 +345,62 @@ export type TransactionSimulationResponse = TransactionSimulation | TransactionS
 
 export type TransactionValidationResponse = TransactionValidation | TransactionValidationError
 
-export interface TransactionBulkResponse {
-  block?: string;
+/**
+ * The chain name
+ */
+export type TokenScanSupportedChain =
+  | 'arbitrum'
+  | 'avalanche'
+  | 'base'
+  | 'bsc'
+  | 'ethereum'
+  | 'optimism'
+  | 'polygon'
+  | 'zora'
+  | 'solana'
+  | 'unknown';
 
-  chain?: string;
+export interface TransactionScanFeature {
+  /**
+   * Textual description
+   */
+  description: string;
 
-  events?: Array<TransactionBulkResponse.Event>;
+  /**
+   * Feature name
+   */
+  feature_id: string;
+
+  /**
+   * An enumeration.
+   */
+  type: 'Malicious' | 'Warning' | 'Benign' | 'Info';
+
+  /**
+   * Address the feature refers to
+   */
+  address?: string;
+}
+
+export interface TransactionScanResponse {
+  block: string;
+
+  chain: string;
+
+  events?: Array<TransactionScanResponse.Event>;
+
+  features?: unknown;
 
   gas_estimation?:
-    | TransactionBulkResponse.TransactionScanGasEstimation
-    | TransactionBulkResponse.TransactionScanGasEstimationError;
+    | TransactionScanResponse.TransactionScanGasEstimation
+    | TransactionScanResponse.TransactionScanGasEstimationError;
 
   simulation?: TransactionSimulationResponse;
 
   validation?: TransactionValidationResponse;
 }
 
-export namespace TransactionBulkResponse {
+export namespace TransactionScanResponse {
   export interface Event {
     data: string;
 
@@ -417,37 +438,23 @@ export namespace TransactionBulkResponse {
   }
 }
 
-export interface TransactionScanFeature {
-  /**
-   * Textual description
-   */
-  description: string;
-
-  /**
-   * Feature name
-   */
-  feature_id: string;
-
-  /**
-   * An enumeration.
-   */
-  type: 'Malicious' | 'Warning' | 'Benign' | 'Info';
-
-  /**
-   * Address the feature refers to
-   */
-  address?: string;
-}
-
-export interface TransactionScanResponse {
-  block?: string;
-
-  chain?: string;
-
-  simulation?: TransactionSimulation | TransactionSimulationError;
-
-  validation?: TransactionValidation | TransactionValidationError;
-}
+/**
+ * The chain name
+ */
+export type TransactionScanSupportedChain =
+  | 'arbitrum'
+  | 'avalanche'
+  | 'base'
+  | 'base-sepolia'
+  | 'bsc'
+  | 'ethereum'
+  | 'optimism'
+  | 'polygon'
+  | 'zksync'
+  | 'zora'
+  | 'linea'
+  | 'blast'
+  | 'unknown';
 
 export interface TransactionSimulation {
   /**
@@ -568,38 +575,11 @@ export interface TransactionValidation {
 }
 
 export interface TransactionValidationError {
-  /**
-   * A textual classification that can be presented to the user explaining the
-   * reason.
-   */
-  classification: '';
+  loc: Array<string | number>;
 
-  /**
-   * A textual description that can be presented to the user about what this
-   * transaction is doing.
-   */
-  description: '';
+  msg: string;
 
-  /**
-   * An error message if the validation failed.
-   */
-  error: string;
-
-  /**
-   * A list of features about this transaction explaining the validation.
-   */
-  features: Array<TransactionScanFeature>;
-
-  /**
-   * A textual description about the reasons the transaction was flagged with
-   * result_type.
-   */
-  reason: '';
-
-  /**
-   * A string indicating if the transaction is safe to sign or not.
-   */
-  result_type: 'Error';
+  type: string;
 }
 
 export interface UsdDiff {
@@ -613,7 +593,6 @@ export interface UsdDiff {
 export namespace Evm {
   export import AddressAssetExposure = EvmAPI.AddressAssetExposure;
   export import AssetDiff = EvmAPI.AssetDiff;
-  export import Chain = EvmAPI.Chain;
   export import Erc1155Diff = EvmAPI.Erc1155Diff;
   export import Erc1155Exposure = EvmAPI.Erc1155Exposure;
   export import Erc1155TokenDetails = EvmAPI.Erc1155TokenDetails;
@@ -627,9 +606,10 @@ export namespace Evm {
   export import NativeAssetDetails = EvmAPI.NativeAssetDetails;
   export import NativeDiff = EvmAPI.NativeDiff;
   export import NonercTokenDetails = EvmAPI.NonercTokenDetails;
-  export import TransactionBulkResponse = EvmAPI.TransactionBulkResponse;
+  export import TokenScanSupportedChain = EvmAPI.TokenScanSupportedChain;
   export import TransactionScanFeature = EvmAPI.TransactionScanFeature;
   export import TransactionScanResponse = EvmAPI.TransactionScanResponse;
+  export import TransactionScanSupportedChain = EvmAPI.TransactionScanSupportedChain;
   export import TransactionSimulationResponse = EvmAPI.TransactionSimulationResponse;
   export import TransactionSimulation = EvmAPI.TransactionSimulation;
   export import TransactionSimulationError = EvmAPI.TransactionSimulationError;
