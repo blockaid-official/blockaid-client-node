@@ -23,7 +23,7 @@ export interface JsonRpcScanParams {
   /**
    * The chain name
    */
-  chain: EvmAPI.Chain;
+  chain: EvmAPI.TransactionScanSupportedChain;
 
   /**
    * JSON-RPC request that was received by the wallet.
@@ -41,11 +41,11 @@ export interface JsonRpcScanParams {
   account_address?: string;
 
   /**
-   * List of one or both of options for the desired output. "simulation" - include
+   * list of one or both of options for the desired output. "simulation" - include
    * simulation output in your response. "validation" - include security validation
    * of the transaction in your response. Default is ["validation"]
    */
-  options?: Array<'validation' | 'simulation'>;
+  options?: Array<'validation' | 'simulation' | 'gas_estimation' | 'events'>;
 }
 
 export namespace JsonRpcScanParams {
