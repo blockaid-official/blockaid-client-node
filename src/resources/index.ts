@@ -3,6 +3,7 @@
 export {
   AddressAssetExposure,
   AssetDiff,
+  GeneralAssetDiff,
   Erc1155Diff,
   Erc1155Exposure,
   Erc1155TokenDetails,
@@ -20,8 +21,10 @@ export {
   TransactionScanFeature,
   TransactionScanResponse,
   TransactionScanSupportedChain,
+  TransactionSimulationResponse,
   TransactionSimulation,
   TransactionSimulationError,
+  TransactionValidationResponse,
   TransactionValidation,
   TransactionValidationError,
   UsdDiff,
