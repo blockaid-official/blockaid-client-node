@@ -9,7 +9,7 @@ export class Site extends APIResource {
    * Scan Site
    */
   scan(body: SiteScanParams, options?: Core.RequestOptions): Core.APIPromise<SiteScanResponse> {
-    return this._client.post('/site/scan', { body, ...options });
+    return this._client.post('/v0/site/scan', { body, ...options });
   }
 }
 

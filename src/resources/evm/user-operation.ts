@@ -15,7 +15,7 @@ export class UserOperation extends APIResource {
     body: UserOperationScanParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<EvmAPI.TransactionScanResponse> {
-    return this._client.post('/evm/user-operation/scan', { body, ...options });
+    return this._client.post('/v0/evm/user-operation/scan', { body, ...options });
   }
 }
 

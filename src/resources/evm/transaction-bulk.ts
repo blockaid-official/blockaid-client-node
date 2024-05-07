@@ -16,7 +16,7 @@ export class TransactionBulk extends APIResource {
     body: TransactionBulkScanParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<TransactionBulkScanResponse> {
-    return this._client.post('/evm/transaction-bulk/scan', { body, ...options });
+    return this._client.post('/v0/evm/transaction-bulk/scan', { body, ...options });
   }
 }
 

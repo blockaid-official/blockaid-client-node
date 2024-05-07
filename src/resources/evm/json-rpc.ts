@@ -15,7 +15,7 @@ export class JsonRpc extends APIResource {
     body: JsonRpcScanParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<EvmAPI.TransactionScanResponse> {
-    return this._client.post('/evm/json-rpc/scan', { body, ...options });
+    return this._client.post('/v0/evm/json-rpc/scan', { body, ...options });
   }
 }
 
