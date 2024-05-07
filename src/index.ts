@@ -118,6 +118,7 @@ export class Blockaid extends Core.APIClient {
 
   evm: API.Evm = new API.Evm(this);
   site: API.Site = new API.Site(this);
+  token: API.Token = new API.Token(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -207,6 +208,10 @@ export namespace Blockaid {
   export import SiteScanMissResponse = API.SiteScanMissResponse;
   export import SiteScanResponse = API.SiteScanResponse;
   export import SiteScanParams = API.SiteScanParams;
+
+  export import Token = API.Token;
+  export import TokenScanResponse = API.TokenScanResponse;
+  export import TokenScanParams = API.TokenScanParams;
 }
 
 export default Blockaid;
