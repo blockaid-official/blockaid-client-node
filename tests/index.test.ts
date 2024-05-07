@@ -151,13 +151,13 @@ describe('instantiate client', () => {
     test('empty env variable', () => {
       process.env['BLOCKAID_BASE_URL'] = ''; // empty
       const client = new Blockaid({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://api.blockaid.io/v0');
+      expect(client.baseURL).toEqual('https://api.blockaid.io');
     });
 
     test('blank env variable', () => {
       process.env['BLOCKAID_BASE_URL'] = '  '; // blank
       const client = new Blockaid({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://api.blockaid.io/v0');
+      expect(client.baseURL).toEqual('https://api.blockaid.io');
     });
   });
 
