@@ -28,3 +28,4 @@ export {
   Evm,
 } from './evm/evm';
 export { SiteScanHitResponse, SiteScanMissResponse, SiteScanResponse, SiteScanParams, Site } from './site';
+export { TokenScanResponse, TokenScanParams, Token } from './token';
