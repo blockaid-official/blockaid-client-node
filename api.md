@@ -72,3 +72,13 @@ Types:
 Methods:
 
 - <code title="post /v0/site/scan">client.site.<a href="./src/resources/site.ts">scan</a>({ ...params }) -> SiteScanResponse</code>
+
+# Token
+
+Types:
+
+- <code><a href="./src/resources/token.ts">TokenScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/token/scan">client.token.<a href="./src/resources/token.ts">scan</a>({ ...params }) -> TokenScanResponse</code>
