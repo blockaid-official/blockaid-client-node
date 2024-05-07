@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.7.7 (2024-05-07)
+
+Full Changelog: [v0.7.6...v0.7.7](https://github.com/blockaid-official/blockaid-client-node/compare/v0.7.6...v0.7.7)
+
+### Features
+
+* **api:** update via SDK Studio ([#25](https://github.com/blockaid-official/blockaid-client-node/issues/25)) ([1743e8d](https://github.com/blockaid-official/blockaid-client-node/commit/1743e8d641b4efc053a1d73e04390d10ffad6811))
+* **api:** update via SDK Studio ([#27](https://github.com/blockaid-official/blockaid-client-node/issues/27)) ([7d515de](https://github.com/blockaid-official/blockaid-client-node/commit/7d515de192042be1104a34ea6c0c185b3d64e02b))
+* **api:** update via SDK Studio ([#28](https://github.com/blockaid-official/blockaid-client-node/issues/28)) ([9b21d46](https://github.com/blockaid-official/blockaid-client-node/commit/9b21d46e3f70481cfb961c97d7a1a244dc851d60))
+
 ## 0.7.6 (2024-05-07)
 
 Full Changelog: [v0.7.5...v0.7.6](https://github.com/blockaid-official/blockaid-client-node/compare/v0.7.5...v0.7.6)
