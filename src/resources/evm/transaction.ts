@@ -15,7 +15,7 @@ export class Transaction extends APIResource {
     body: TransactionScanParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<EvmAPI.TransactionScanResponse> {
-    return this._client.post('/evm/transaction/scan', { body, ...options });
+    return this._client.post('/v0/evm/transaction/scan', { body, ...options });
   }
 }
 
