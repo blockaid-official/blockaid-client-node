@@ -575,11 +575,38 @@ export interface TransactionValidation {
 }
 
 export interface TransactionValidationError {
-  loc: Array<string | number>;
+  /**
+   * A textual classification that can be presented to the user explaining the
+   * reason.
+   */
+  classification: '';
 
-  msg: string;
+  /**
+   * A textual description that can be presented to the user about what this
+   * transaction is doing.
+   */
+  description: '';
 
-  type: string;
+  /**
+   * An error message if the validation failed.
+   */
+  error: string;
+
+  /**
+   * A list of features about this transaction explaining the validation.
+   */
+  features: Array<TransactionScanFeature>;
+
+  /**
+   * A textual description about the reasons the transaction was flagged with
+   * result_type.
+   */
+  reason: '';
+
+  /**
+   * A string indicating if the transaction is safe to sign or not.
+   */
+  result_type: 'Error';
 }
 
 export interface UsdDiff {
