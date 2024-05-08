@@ -81,7 +81,7 @@ export namespace SiteScanParams {
   export interface WalletRequestMetadata {
     account_address: string;
 
-    type: 'catalog';
+    type: 'wallet';
   }
 }
 
