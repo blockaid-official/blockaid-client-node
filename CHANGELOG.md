@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.9.0 (2024-05-09)
+
+Full Changelog: [v0.8.0...v0.9.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.8.0...v0.9.0)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#35](https://github.com/blockaid-official/blockaid-client-node/issues/35)) ([795f352](https://github.com/blockaid-official/blockaid-client-node/commit/795f352cdefb10ccd13d09f4e65e29c8ac1f7431))
+* **api:** OpenAPI spec update via Stainless API ([#37](https://github.com/blockaid-official/blockaid-client-node/issues/37)) ([96b4df6](https://github.com/blockaid-official/blockaid-client-node/commit/96b4df6b244af5661b07d910056e6a86a82ea7fd))
+* **api:** OpenAPI spec update via Stainless API ([#38](https://github.com/blockaid-official/blockaid-client-node/issues/38)) ([000f7d8](https://github.com/blockaid-official/blockaid-client-node/commit/000f7d8cf99c90a4970a19451d13734f87b48ba5))
+* **api:** OpenAPI spec update via Stainless API ([#39](https://github.com/blockaid-official/blockaid-client-node/issues/39)) ([dc85042](https://github.com/blockaid-official/blockaid-client-node/commit/dc850429773ae15e38b47c3e0e8fba105640a7e6))
+* **api:** OpenAPI spec update via Stainless API ([#40](https://github.com/blockaid-official/blockaid-client-node/issues/40)) ([b55a3c8](https://github.com/blockaid-official/blockaid-client-node/commit/b55a3c8109b1f15ca842d1265eba359bd0a37105))
+* **api:** OpenAPI spec update via Stainless API ([#41](https://github.com/blockaid-official/blockaid-client-node/issues/41)) ([cd355cc](https://github.com/blockaid-official/blockaid-client-node/commit/cd355cc7126e0d3f31837daee871a855f214498d))
+* **api:** OpenAPI spec update via Stainless API ([#42](https://github.com/blockaid-official/blockaid-client-node/issues/42)) ([304d26d](https://github.com/blockaid-official/blockaid-client-node/commit/304d26d55731d34ed85d80a6c9daa60ec6c98e96))
+
 ## 0.8.0 (2024-05-09)
 
 Full Changelog: [v0.7.7...v0.8.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.7.7...v0.8.0)
