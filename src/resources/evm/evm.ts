@@ -430,11 +430,15 @@ export namespace TransactionScanResponse {
   export interface TransactionScanGasEstimation {
     estimate: number;
 
+    status: 'Success';
+
     used: number;
   }
 
   export interface TransactionScanGasEstimationError {
     error: string;
+
+    status: 'Error';
   }
 }
 
@@ -482,6 +486,11 @@ export interface TransactionSimulation {
    * function)
    */
   exposures: Record<string, Array<AddressAssetExposure>>;
+
+  /**
+   * A string indicating if the simulation was successful or not.
+   */
+  status: 'Success';
 
   /**
    * dictionary represents the usd value each address gained / lost during this
@@ -542,6 +551,11 @@ export interface TransactionSimulationError {
    * An error message if the simulation failed.
    */
   error: string;
+
+  /**
+   * A string indicating if the simulation was successful or not.
+   */
+  status: 'Error';
 }
 
 export interface TransactionValidation {
