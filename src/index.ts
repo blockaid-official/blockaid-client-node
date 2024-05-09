@@ -78,7 +78,7 @@ export class Blockaid extends Core.APIClient {
   /**
    * API Client for interfacing with the Blockaid API.
    *
-   * @param {string | undefined} [opts.apiKey=process.env['BLOCKAID_CLIENT_API_KEY'] ?? undefined]
+   * @param {string | undefined} [opts.apiKey=process.env['BLOCKAID_CLIENT_API_KEY']]
    * @param {string} [opts.baseURL=process.env['BLOCKAID_BASE_URL'] ?? https://api.blockaid.io] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
