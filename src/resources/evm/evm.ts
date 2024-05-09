@@ -564,6 +564,11 @@ export interface TransactionValidation {
   result_type: 'Benign' | 'Warning' | 'Malicious';
 
   /**
+   * A string indicating if the simulation was successful or not.
+   */
+  status: 'Success';
+
+  /**
    * A textual classification that can be presented to the user explaining the
    * reason.
    */
@@ -615,6 +620,11 @@ export interface TransactionValidationError {
    * A string indicating if the transaction is safe to sign or not.
    */
   result_type: 'Error';
+
+  /**
+   * A string indicating if the simulation was successful or not.
+   */
+  status: 'Success';
 }
 
 export interface UsdDiff {
