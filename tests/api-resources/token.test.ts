@@ -11,7 +11,7 @@ const blockaid = new Blockaid({
 describe('resource token', () => {
   test('scan: only required params', async () => {
     const responsePromise = blockaid.token.scan({
-      address: '0x833110ae77ad7d1f883ffc4f6eb0059143d2754c',
+      address: '0x66587563e933bbf3974b89156b47bb82b921eb35',
       chain: 'ethereum',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -25,7 +25,7 @@ describe('resource token', () => {
 
   test('scan: required and optional params', async () => {
     const response = await blockaid.token.scan({
-      address: '0x833110ae77ad7d1f883ffc4f6eb0059143d2754c',
+      address: '0x66587563e933bbf3974b89156b47bb82b921eb35',
       chain: 'ethereum',
       metadata: { domain: 'string' },
       token_id: 0,
