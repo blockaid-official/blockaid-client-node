@@ -66,11 +66,6 @@ export interface TokenScanParams {
    * Object of additional information to validate against.
    */
   metadata?: TokenScanParams.Metadata;
-
-  /**
-   * (optional) Token ID for ERC721 or ERC1155
-   */
-  token_id?: number;
 }
 
 export namespace TokenScanParams {

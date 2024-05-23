@@ -28,7 +28,6 @@ describe('resource token', () => {
       address: '0x66587563e933bbf3974b89156b47bb82b921eb35',
       chain: 'ethereum',
       metadata: { domain: 'string' },
-      token_id: 0,
     });
   });
 });
