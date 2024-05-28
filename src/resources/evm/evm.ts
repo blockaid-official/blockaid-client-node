@@ -51,7 +51,7 @@ export interface AssetDiff {
   out: Array<GeneralAssetDiff>;
 }
 
-export type GeneralAssetDiff = Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff
+export type GeneralAssetDiff = Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff;
 
 export interface Erc1155Diff {
   /**
@@ -341,9 +341,9 @@ export interface NonercTokenDetails {
   symbol?: string;
 }
 
-export type TransactionSimulationResponse = TransactionSimulation | TransactionSimulationError
+export type TransactionSimulationResponse = TransactionSimulation | TransactionSimulationError;
 
-export type TransactionValidationResponse = TransactionValidation | TransactionValidationError
+export type TransactionValidationResponse = TransactionValidation | TransactionValidationError;
 
 /**
  * The chain name
