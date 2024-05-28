@@ -77,7 +77,7 @@ export interface Erc1155Diff {
   /**
    * usd equal of the asset that was transferred from this address
    */
-  usd_price?: number;
+  usd_price?: string;
 }
 
 export interface Erc1155Exposure {
@@ -136,12 +136,12 @@ export interface Erc20Diff {
   /**
    * usd equal of the asset that was transferred from this address
    */
-  usd_price?: number;
+  usd_price?: string;
 
   /**
    * value after divided by decimals, that was transferred from this address
    */
-  value?: number;
+  value?: string;
 }
 
 export interface Erc20Exposure {
@@ -215,7 +215,7 @@ export interface Erc721Diff {
   /**
    * usd equal of the asset that was transferred from this address
    */
-  usd_price?: number;
+  usd_price?: string;
 }
 
 export interface Erc721Exposure {
@@ -306,12 +306,12 @@ export interface NativeDiff {
   /**
    * usd equal of the asset that was transferred from this address
    */
-  usd_price?: number;
+  usd_price?: string;
 
   /**
    * value after divided by decimals, that was transferred from this address
    */
-  value?: number;
+  value?: string;
 }
 
 export interface NonercTokenDetails {
