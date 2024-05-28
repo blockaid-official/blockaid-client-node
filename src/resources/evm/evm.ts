@@ -62,7 +62,7 @@ export interface Erc1155Diff {
   /**
    * value before divided by decimal, that was transferred from this address
    */
-  value: number;
+  value: string;
 
   /**
    * url of the token logo
@@ -126,7 +126,7 @@ export interface Erc20Diff {
   /**
    * value before divided by decimal, that was transferred from this address
    */
-  raw_value: number;
+  raw_value: string;
 
   /**
    * user friendly description of the asset transfer
@@ -296,7 +296,7 @@ export interface NativeDiff {
   /**
    * value before divided by decimal, that was transferred from this address
    */
-  raw_value: number;
+  raw_value: string;
 
   /**
    * user friendly description of the asset transfer
