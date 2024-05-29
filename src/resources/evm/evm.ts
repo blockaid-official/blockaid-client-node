@@ -457,8 +457,7 @@ export type TransactionScanSupportedChain =
   | 'zksync'
   | 'zora'
   | 'linea'
-  | 'blast'
-  | 'unknown';
+  | 'blast';
 
 export interface TransactionSimulation {
   /**
