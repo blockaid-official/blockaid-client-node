@@ -21,9 +21,9 @@ export class UserOperation extends APIResource {
 
 export interface UserOperationScanParams {
   /**
-   * The chain name
+   * The chain name or chain ID
    */
-  chain: EvmAPI.TransactionScanSupportedChain;
+  chain: EvmAPI.TransactionScanSupportedChain | (string & {});
 
   /**
    * The user operation request that was received by the wallet
