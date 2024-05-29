@@ -1,6 +1,6 @@
 # Blockaid Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/@blockaid/client.svg)](https://npmjs.org/package/@blockaid/client)
+[![NPM version](https://img.shields.io/npm/v/@blockaid/client.svg)](https://npmjs.org/package/@blockaid/client) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@blockaid/client)
 
 This library provides convenient access to the Blockaid REST API from server-side TypeScript or JavaScript.
 
