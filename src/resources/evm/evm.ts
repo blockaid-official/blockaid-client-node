@@ -458,7 +458,10 @@ export type TransactionScanSupportedChain =
   | 'zora'
   | 'linea'
   | 'blast'
-  | 'unknown';
+  | 'scroll'
+  | 'ethereum-sepolia'
+  | 'degen'
+  | 'avalanche-fuji';
 
 export interface TransactionSimulation {
   /**

@@ -24,9 +24,9 @@ export type TransactionBulkScanResponse = Array<EvmAPI.TransactionScanResponse>;
 
 export interface TransactionBulkScanParams {
   /**
-   * The chain name
+   * The chain name or chain ID
    */
-  chain: EvmAPI.TransactionScanSupportedChain;
+  chain: EvmAPI.TransactionScanSupportedChain | (string & {});
 
   /**
    * Transaction bulk parameters

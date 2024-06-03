@@ -21,9 +21,9 @@ export class JsonRpc extends APIResource {
 
 export interface JsonRpcScanParams {
   /**
-   * The chain name
+   * The chain name or chain ID
    */
-  chain: EvmAPI.TransactionScanSupportedChain;
+  chain: EvmAPI.TransactionScanSupportedChain | (string & {});
 
   /**
    * JSON-RPC request that was received by the wallet.
