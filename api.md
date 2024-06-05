@@ -51,6 +51,10 @@ Methods:
 
 ## TransactionRaw
 
+Methods:
+
+- <code title="post /v0/evm/transaction-raw/scan">client.evm.transactionRaw.<a href="./src/resources/evm/transaction-raw.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+
 ## UserOperation
 
 Methods:
