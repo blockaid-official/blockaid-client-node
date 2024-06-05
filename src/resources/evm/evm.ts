@@ -671,7 +671,6 @@ export namespace Evm {
   export import TransactionBulkScanResponse = TransactionBulkAPI.TransactionBulkScanResponse;
   export import TransactionBulkScanParams = TransactionBulkAPI.TransactionBulkScanParams;
   export import TransactionRaw = TransactionRawAPI.TransactionRaw;
-  export import TransactionRawScanParams = TransactionRawAPI.TransactionRawScanParams;
   export import UserOperation = UserOperationAPI.UserOperation;
   export import UserOperationScanParams = UserOperationAPI.UserOperationScanParams;
 }
