@@ -55,7 +55,7 @@ export interface TokenScanParams {
   /**
    * Token address to validate (EVM / Solana)
    */
-  address: string | string;
+  address: string;
 
   /**
    * The chain name
