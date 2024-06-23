@@ -27,9 +27,9 @@ export interface PostTransactionBulkScanParams {
   chain: EvmAPI.TransactionScanSupportedChain | (string & {});
 
   /**
-   * Transaction bulk parameters
+   * Transaction hashes to scan
    */
-  data: Array<PostTransactionBulkScanParams.Data>;
+  data: Array<string>;
 
   /**
    * Object of additional information to validate against.
@@ -42,40 +42,6 @@ export interface PostTransactionBulkScanParams {
    * of the transaction in your response. Default is ["validation"]
    */
   options?: Array<'validation' | 'simulation' | 'gas_estimation' | 'events'>;
-}
-
-export namespace PostTransactionBulkScanParams {
-  export interface Data {
-    /**
-     * The source address of the transaction in hex string format
-     */
-    from: string;
-
-    /**
-     * The encoded call data of the transaction in hex string format
-     */
-    data?: string;
-
-    /**
-     * The gas required for the transaction in hex string format.
-     */
-    gas?: string;
-
-    /**
-     * The gas price for the transaction in hex string format.
-     */
-    gas_price?: string;
-
-    /**
-     * The destination address of the transaction in hex string format
-     */
-    to?: string;
-
-    /**
-     * The value of the transaction in Wei in hex string format
-     */
-    value?: string;
-  }
 }
 
 export namespace PostTransactionBulk {
