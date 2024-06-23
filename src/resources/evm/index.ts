@@ -28,6 +28,12 @@ export {
   Evm,
 } from './evm';
 export { JsonRpcScanParams, JsonRpc } from './json-rpc';
+export {
+  PostTransactionBulkScanResponse,
+  PostTransactionBulkScanParams,
+  PostTransactionBulk,
+} from './post-transaction-bulk';
+export { PostTransactionScanParams, PostTransaction } from './post-transaction';
 export { TransactionBulkScanResponse, TransactionBulkScanParams, TransactionBulk } from './transaction-bulk';
 export { TransactionRawScanParams, TransactionRaw } from './transaction-raw';
 export { TransactionScanParams, Transaction } from './transaction';
