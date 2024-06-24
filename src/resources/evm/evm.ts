@@ -454,6 +454,7 @@ export type TransactionScanSupportedChain =
   | 'optimism'
   | 'polygon'
   | 'zksync'
+  | 'zksync-sepolia'
   | 'zora'
   | 'linea'
   | 'blast'
