@@ -392,6 +392,8 @@ export interface TransactionScanResponse {
 
   chain: string;
 
+  account_address?: string;
+
   events?: Array<TransactionScanResponse.Event>;
 
   features?: unknown;
