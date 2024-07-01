@@ -61,6 +61,22 @@ Methods:
 
 - <code title="post /v0/evm/user-operation/scan">client.evm.userOperation.<a href="./src/resources/evm/user-operation.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
 
+## PostTransaction
+
+Methods:
+
+- <code title="post /v0/evm/post-transaction/scan">client.evm.postTransaction.<a href="./src/resources/evm/post-transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+
+## PostTransactionBulk
+
+Types:
+
+- <code><a href="./src/resources/evm/post-transaction-bulk.ts">PostTransactionBulkScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/evm/post-transaction-bulk/scan">client.evm.postTransactionBulk.<a href="./src/resources/evm/post-transaction-bulk.ts">scan</a>({ ...params }) -> PostTransactionBulkScanResponse</code>
+
 # Site
 
 Types:

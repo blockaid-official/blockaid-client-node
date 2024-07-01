@@ -2,39 +2,29 @@
 
 import { APIResource } from '@blockaid/client/resource';
 import * as Core from '@blockaid/client/core';
-import * as TransactionRawAPI from '@blockaid/client/resources/evm/transaction-raw';
+import * as PostTransactionAPI from '@blockaid/client/resources/evm/post-transaction';
 import * as EvmAPI from '@blockaid/client/resources/evm/evm';
 
-export class TransactionRaw extends APIResource {
+export class PostTransaction extends APIResource {
   /**
-   * Gets a raw transaction and returns a full simulation indicating what will happen
-   * in the transaction together with a recommended action and some textual reasons
-   * of why the transaction was flagged that way.
+   * Scan a transaction that was already executed on chain, returns validation with
+   * features indicating address poisoning entites and malicious operators.
    */
   scan(
-    body: TransactionRawScanParams,
+    body: PostTransactionScanParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<EvmAPI.TransactionScanResponse> {
-    return this._client.post('/v0/evm/transaction-raw/scan', { body, ...options });
+    return this._client.post('/v0/evm/post-transaction/scan', { body, ...options });
   }
 }
 
-export interface TransactionRawScanParams {
-  /**
-   * The address to relate the transaction to. Account address determines in which
-   * perspective the transaction is simulated and validated.
-   */
-  account_address: string;
-
+export interface PostTransactionScanParams {
   /**
    * The chain name or chain ID
    */
   chain: EvmAPI.TransactionScanSupportedChain | (string & {});
 
-  /**
-   * Hex string of the raw transaction data
-   */
-  data: string;
+  data: PostTransactionScanParams.Data;
 
   /**
    * Object of additional information to validate against.
@@ -49,6 +39,15 @@ export interface TransactionRawScanParams {
   options?: Array<'validation' | 'simulation' | 'gas_estimation' | 'events'>;
 }
 
-export namespace TransactionRaw {
-  export import TransactionRawScanParams = TransactionRawAPI.TransactionRawScanParams;
+export namespace PostTransactionScanParams {
+  export interface Data {
+    /**
+     * The transaction hash to scan
+     */
+    tx_hash: string;
+  }
+}
+
+export namespace PostTransaction {
+  export import PostTransactionScanParams = PostTransactionAPI.PostTransactionScanParams;
 }

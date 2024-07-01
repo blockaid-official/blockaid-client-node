@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from './core';
 import * as Errors from './error';
-import { type Agent } from './_shims/index';
 import * as Uploads from './uploads';
+import { type Agent } from './_shims/index';
+import * as Core from '@blockaid/client/core';
 import * as API from '@blockaid/client/resources/index';
 
 export interface ClientOptions {
@@ -69,7 +69,9 @@ export interface ClientOptions {
   defaultQuery?: Core.DefaultQuery;
 }
 
-/** API Client for interfacing with the Blockaid API. */
+/**
+ * API Client for interfacing with the Blockaid API.
+ */
 export class Blockaid extends Core.APIClient {
   apiKey: string;
 
@@ -111,6 +113,7 @@ export class Blockaid extends Core.APIClient {
       maxRetries: options.maxRetries,
       fetch: options.fetch,
     });
+
     this._options = options;
 
     this.apiKey = apiKey;
