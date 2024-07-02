@@ -85,14 +85,12 @@ Types:
 - <code><a href="./src/resources/stellar/stellar.ts">StellarAssetTransferDetailsSchema</a></code>
 - <code><a href="./src/resources/stellar/stellar.ts">StellarTransactionScanRequest</a></code>
 - <code><a href="./src/resources/stellar/stellar.ts">StellarTransactionScanResponse</a></code>
-- <code><a href="./src/resources/stellar/stellar.ts">TransactionScanRequest</a></code>
-- <code><a href="./src/resources/stellar/stellar.ts">TransactionScanResponse</a></code>
 
 ## Transaction
 
 Methods:
 
-- <code title="post /v0/stellar/scan/transaction">client.stellar.transaction.<a href="./src/resources/stellar/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+- <code title="post /v0/stellar/scan/transaction">client.stellar.transaction.<a href="./src/resources/stellar/transaction.ts">scan</a>({ ...params }) -> StellarTransactionScanResponse</code>
 
 # Site
 

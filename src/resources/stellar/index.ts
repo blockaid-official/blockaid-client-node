@@ -5,8 +5,6 @@ export {
   StellarAssetTransferDetailsSchema,
   StellarTransactionScanRequest,
   StellarTransactionScanResponse,
-  TransactionScanRequest,
-  TransactionScanResponse,
   Stellar,
 } from './stellar';
 export { TransactionScanParams, Transaction } from './transaction';
