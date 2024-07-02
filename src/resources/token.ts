@@ -53,7 +53,7 @@ export namespace TokenScanResponse {
 
 export interface TokenScanParams {
   /**
-   * Token address to validate (EVM / Solana)
+   * Token address to validate (EVM / Solana / Stellar)
    */
   address: string;
 
