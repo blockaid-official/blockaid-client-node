@@ -357,6 +357,7 @@ export type TokenScanSupportedChain =
   | 'polygon'
   | 'zora'
   | 'solana'
+  | 'stellar'
   | 'unknown';
 
 export interface TransactionScanFeature {
