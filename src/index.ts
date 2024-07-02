@@ -120,6 +120,7 @@ export class Blockaid extends Core.APIClient {
   }
 
   evm: API.Evm = new API.Evm(this);
+  stellar: API.Stellar = new API.Stellar(this);
   site: API.Site = new API.Site(this);
   token: API.Token = new API.Token(this);
 
@@ -205,6 +206,14 @@ export namespace Blockaid {
   export import TransactionValidation = API.TransactionValidation;
   export import TransactionValidationError = API.TransactionValidationError;
   export import UsdDiff = API.UsdDiff;
+
+  export import Stellar = API.Stellar;
+  export import StellarAssetContractDetailsSchema = API.StellarAssetContractDetailsSchema;
+  export import StellarAssetTransferDetailsSchema = API.StellarAssetTransferDetailsSchema;
+  export import StellarTransactionScanRequest = API.StellarTransactionScanRequest;
+  export import StellarTransactionScanResponse = API.StellarTransactionScanResponse;
+  export import TransactionScanRequest = API.TransactionScanRequest;
+  export import TransactionScanResponse = API.TransactionScanResponse;
 
   export import Site = API.Site;
   export import SiteScanHitResponse = API.SiteScanHitResponse;
