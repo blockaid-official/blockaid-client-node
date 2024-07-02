@@ -12,7 +12,7 @@ export class Transaction extends APIResource {
   scan(
     body: TransactionScanParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<StellarAPI.TransactionScanResponse> {
+  ): Core.APIPromise<StellarAPI.StellarTransactionScanResponse> {
     return this._client.post('/v0/stellar/scan/transaction', { body, ...options });
   }
 }

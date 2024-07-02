@@ -212,8 +212,6 @@ export namespace Blockaid {
   export import StellarAssetTransferDetailsSchema = API.StellarAssetTransferDetailsSchema;
   export import StellarTransactionScanRequest = API.StellarTransactionScanRequest;
   export import StellarTransactionScanResponse = API.StellarTransactionScanResponse;
-  export import TransactionScanRequest = API.TransactionScanRequest;
-  export import TransactionScanResponse = API.TransactionScanResponse;
 
   export import Site = API.Site;
   export import SiteScanHitResponse = API.SiteScanHitResponse;

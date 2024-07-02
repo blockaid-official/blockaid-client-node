@@ -33,8 +33,6 @@ export {
   StellarAssetTransferDetailsSchema,
   StellarTransactionScanRequest,
   StellarTransactionScanResponse,
-  TransactionScanRequest,
-  TransactionScanResponse,
   Stellar,
 } from './stellar/stellar';
 export { TokenScanResponse, TokenScanParams, Token } from './token';
