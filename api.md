@@ -61,6 +61,37 @@ Methods:
 
 - <code title="post /v0/evm/user-operation/scan">client.evm.userOperation.<a href="./src/resources/evm/user-operation.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
 
+## PostTransaction
+
+Methods:
+
+- <code title="post /v0/evm/post-transaction/scan">client.evm.postTransaction.<a href="./src/resources/evm/post-transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+
+## PostTransactionBulk
+
+Types:
+
+- <code><a href="./src/resources/evm/post-transaction-bulk.ts">PostTransactionBulkScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/evm/post-transaction-bulk/scan">client.evm.postTransactionBulk.<a href="./src/resources/evm/post-transaction-bulk.ts">scan</a>({ ...params }) -> PostTransactionBulkScanResponse</code>
+
+# Stellar
+
+Types:
+
+- <code><a href="./src/resources/stellar/stellar.ts">StellarAssetContractDetailsSchema</a></code>
+- <code><a href="./src/resources/stellar/stellar.ts">StellarAssetTransferDetailsSchema</a></code>
+- <code><a href="./src/resources/stellar/stellar.ts">StellarTransactionScanRequest</a></code>
+- <code><a href="./src/resources/stellar/stellar.ts">StellarTransactionScanResponse</a></code>
+
+## Transaction
+
+Methods:
+
+- <code title="post /v0/stellar/scan/transaction">client.stellar.transaction.<a href="./src/resources/stellar/transaction.ts">scan</a>({ ...params }) -> StellarTransactionScanResponse</code>
+
 # Site
 
 Types:

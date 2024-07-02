@@ -31,4 +31,11 @@ export {
   Evm,
 } from './evm/evm';
 export { SiteScanHitResponse, SiteScanMissResponse, SiteScanResponse, SiteScanParams, Site } from './site';
+export {
+  StellarAssetContractDetailsSchema,
+  StellarAssetTransferDetailsSchema,
+  StellarTransactionScanRequest,
+  StellarTransactionScanResponse,
+  Stellar,
+} from './stellar/stellar';
 export { TokenScanResponse, TokenScanParams, Token } from './token';

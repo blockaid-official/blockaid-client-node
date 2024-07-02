@@ -3,6 +3,8 @@
 import { APIResource } from '@blockaid/client/resource';
 import * as EvmAPI from '@blockaid/client/resources/evm/evm';
 import * as JsonRpcAPI from '@blockaid/client/resources/evm/json-rpc';
+import * as PostTransactionAPI from '@blockaid/client/resources/evm/post-transaction';
+import * as PostTransactionBulkAPI from '@blockaid/client/resources/evm/post-transaction-bulk';
 import * as TransactionAPI from '@blockaid/client/resources/evm/transaction';
 import * as TransactionBulkAPI from '@blockaid/client/resources/evm/transaction-bulk';
 import * as TransactionRawAPI from '@blockaid/client/resources/evm/transaction-raw';
@@ -14,6 +16,9 @@ export class Evm extends APIResource {
   transactionBulk: TransactionBulkAPI.TransactionBulk = new TransactionBulkAPI.TransactionBulk(this._client);
   transactionRaw: TransactionRawAPI.TransactionRaw = new TransactionRawAPI.TransactionRaw(this._client);
   userOperation: UserOperationAPI.UserOperation = new UserOperationAPI.UserOperation(this._client);
+  postTransaction: PostTransactionAPI.PostTransaction = new PostTransactionAPI.PostTransaction(this._client);
+  postTransactionBulk: PostTransactionBulkAPI.PostTransactionBulk =
+    new PostTransactionBulkAPI.PostTransactionBulk(this._client);
 }
 
 export interface AddressAssetExposure {
@@ -358,6 +363,7 @@ export type TokenScanSupportedChain =
   | 'polygon'
   | 'zora'
   | 'solana'
+  | 'stellar'
   | 'unknown';
 
 export interface TransactionScanFeature {
@@ -386,6 +392,8 @@ export interface TransactionScanResponse {
   block: string;
 
   chain: string;
+
+  account_address?: string;
 
   events?: Array<TransactionScanResponse.Event>;
 
@@ -455,6 +463,7 @@ export type TransactionScanSupportedChain =
   | 'optimism'
   | 'polygon'
   | 'zksync'
+  | 'zksync-sepolia'
   | 'zora'
   | 'linea'
   | 'blast'
@@ -682,4 +691,9 @@ export namespace Evm {
   export import TransactionRawScanParams = TransactionRawAPI.TransactionRawScanParams;
   export import UserOperation = UserOperationAPI.UserOperation;
   export import UserOperationScanParams = UserOperationAPI.UserOperationScanParams;
+  export import PostTransaction = PostTransactionAPI.PostTransaction;
+  export import PostTransactionScanParams = PostTransactionAPI.PostTransactionScanParams;
+  export import PostTransactionBulk = PostTransactionBulkAPI.PostTransactionBulk;
+  export import PostTransactionBulkScanResponse = PostTransactionBulkAPI.PostTransactionBulkScanResponse;
+  export import PostTransactionBulkScanParams = PostTransactionBulkAPI.PostTransactionBulkScanParams;
 }

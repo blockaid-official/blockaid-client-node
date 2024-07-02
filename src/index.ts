@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from './core';
 import * as Errors from './error';
-import { type Agent } from './_shims/index';
 import * as Uploads from './uploads';
+import { type Agent } from './_shims/index';
+import * as Core from '@blockaid/client/core';
 import * as API from '@blockaid/client/resources/index';
 
 export interface ClientOptions {
@@ -69,7 +69,9 @@ export interface ClientOptions {
   defaultQuery?: Core.DefaultQuery;
 }
 
-/** API Client for interfacing with the Blockaid API. */
+/**
+ * API Client for interfacing with the Blockaid API.
+ */
 export class Blockaid extends Core.APIClient {
   apiKey: string;
 
@@ -111,12 +113,14 @@ export class Blockaid extends Core.APIClient {
       maxRetries: options.maxRetries,
       fetch: options.fetch,
     });
+
     this._options = options;
 
     this.apiKey = apiKey;
   }
 
   evm: API.Evm = new API.Evm(this);
+  stellar: API.Stellar = new API.Stellar(this);
   site: API.Site = new API.Site(this);
   token: API.Token = new API.Token(this);
 
@@ -205,6 +209,12 @@ export namespace Blockaid {
   export import TransactionValidation = API.TransactionValidation;
   export import TransactionValidationError = API.TransactionValidationError;
   export import UsdDiff = API.UsdDiff;
+
+  export import Stellar = API.Stellar;
+  export import StellarAssetContractDetailsSchema = API.StellarAssetContractDetailsSchema;
+  export import StellarAssetTransferDetailsSchema = API.StellarAssetTransferDetailsSchema;
+  export import StellarTransactionScanRequest = API.StellarTransactionScanRequest;
+  export import StellarTransactionScanResponse = API.StellarTransactionScanResponse;
 
   export import Site = API.Site;
   export import SiteScanHitResponse = API.SiteScanHitResponse;

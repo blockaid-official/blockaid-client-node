@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@blockaid/client/core';
 import { APIResource } from '@blockaid/client/resource';
+import * as Core from '@blockaid/client/core';
 import * as TransactionAPI from '@blockaid/client/resources/evm/transaction';
 import * as EvmAPI from '@blockaid/client/resources/evm/evm';
 
