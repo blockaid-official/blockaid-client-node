@@ -557,7 +557,7 @@ export interface SuccessfulSimulationResultSchema {
   >;
 
   /**
-   * Summary of ownership changes; By account address
+   * Summary of ownership changes, By account address
    */
   assets_ownership_diff: Record<
     string,
