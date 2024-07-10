@@ -120,6 +120,7 @@ export class Blockaid extends Core.APIClient {
   }
 
   evm: API.Evm = new API.Evm(this);
+  solana: API.Solana = new API.Solana(this);
   stellar: API.Stellar = new API.Stellar(this);
   site: API.Site = new API.Site(this);
   token: API.Token = new API.Token(this);
@@ -209,6 +210,37 @@ export namespace Blockaid {
   export import TransactionValidation = API.TransactionValidation;
   export import TransactionValidationError = API.TransactionValidationError;
   export import UsdDiff = API.UsdDiff;
+
+  export import Solana = API.Solana;
+  export import AccountSummarySchema = API.AccountSummarySchema;
+  export import AddressScanRequestSchema = API.AddressScanRequestSchema;
+  export import AddressScanResponseSchema = API.AddressScanResponseSchema;
+  export import AssetTransferDetailsSchema = API.AssetTransferDetailsSchema;
+  export import CnftDetailsSchema = API.CnftDetailsSchema;
+  export import CnftDiffSchema = API.CnftDiffSchema;
+  export import CnftMintAccountDetailsSchema = API.CnftMintAccountDetailsSchema;
+  export import CombinedValidationResult = API.CombinedValidationResult;
+  export import DelegatedAssetDetailsSchema = API.DelegatedAssetDetailsSchema;
+  export import FungibleMintAccountDetailsSchema = API.FungibleMintAccountDetailsSchema;
+  export import NativeSolDetailsSchema = API.NativeSolDetailsSchema;
+  export import NativeSolDiffSchema = API.NativeSolDiffSchema;
+  export import NativeSolOwnershipDiffSchema = API.NativeSolOwnershipDiffSchema;
+  export import NonFungibleMintAccountDetailsSchema = API.NonFungibleMintAccountDetailsSchema;
+  export import PdaAccountSchema = API.PdaAccountSchema;
+  export import ProgramAccountDetailsSchema = API.ProgramAccountDetailsSchema;
+  export import ResponseSchema = API.ResponseSchema;
+  export import SplFungibleTokenDetailsSchema = API.SplFungibleTokenDetailsSchema;
+  export import SplFungibleTokenDiffSchema = API.SplFungibleTokenDiffSchema;
+  export import SplNonFungibleTokenDetailsSchema = API.SplNonFungibleTokenDetailsSchema;
+  export import SplNonFungibleTokenDiffSchema = API.SplNonFungibleTokenDiffSchema;
+  export import SplTokenOwnershipDiffSchema = API.SplTokenOwnershipDiffSchema;
+  export import StakedSolAssetDetailsSchema = API.StakedSolAssetDetailsSchema;
+  export import StakedSolWithdrawAuthorityDiffSchema = API.StakedSolWithdrawAuthorityDiffSchema;
+  export import SuccessfulSimulationResultSchema = API.SuccessfulSimulationResultSchema;
+  export import SystemAccountDetailsSchema = API.SystemAccountDetailsSchema;
+  export import TokenAccountDetailsSchema = API.TokenAccountDetailsSchema;
+  export import TotalUsdDiffSchema = API.TotalUsdDiffSchema;
+  export import TxScanRequestSchema = API.TxScanRequestSchema;
 
   export import Stellar = API.Stellar;
   export import StellarAssetContractDetailsSchema = API.StellarAssetContractDetailsSchema;
