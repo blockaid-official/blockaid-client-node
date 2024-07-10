@@ -81,10 +81,13 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/solana/solana.ts">AccountSummarySchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">AddressScanRequestSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">AddressScanResponseSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">CombinedValidationResult</a></code>
+- <code><a href="./src/resources/solana/solana.ts">DelegatedAssetDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">ResponseSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">SuccessfulSimulationResultSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">TxScanRequestSchema</a></code>
 
 ## Message
