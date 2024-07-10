@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.12.0 (2024-07-10)
+
+Full Changelog: [v0.11.0...v0.12.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.11.0...v0.12.0)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#87](https://github.com/blockaid-official/blockaid-client-node/issues/87)) ([7d60c38](https://github.com/blockaid-official/blockaid-client-node/commit/7d60c3815b70babbede9627f621544cf5498bb90))
+* **api:** OpenAPI spec update via Stainless API ([#89](https://github.com/blockaid-official/blockaid-client-node/issues/89)) ([f4b6395](https://github.com/blockaid-official/blockaid-client-node/commit/f4b63951748d0226d57a0743ce89ceab56505f0f))
+* **api:** OpenAPI spec update via Stainless API ([#90](https://github.com/blockaid-official/blockaid-client-node/issues/90)) ([0b65cf9](https://github.com/blockaid-official/blockaid-client-node/commit/0b65cf9df1d3c2d8fc82f96216351c8304438e60))
+* **api:** OpenAPI spec update via Stainless API ([#96](https://github.com/blockaid-official/blockaid-client-node/issues/96)) ([eb7b243](https://github.com/blockaid-official/blockaid-client-node/commit/eb7b243708915dde71c3ea6c849bb0885b1e06c1))
+* **api:** update via SDK Studio ([#91](https://github.com/blockaid-official/blockaid-client-node/issues/91)) ([1ad5f36](https://github.com/blockaid-official/blockaid-client-node/commit/1ad5f36e8451733d3bce71fda0e6cb44c11295e3))
+* **api:** update via SDK Studio ([#92](https://github.com/blockaid-official/blockaid-client-node/issues/92)) ([eed8ae5](https://github.com/blockaid-official/blockaid-client-node/commit/eed8ae51bdc84c35966caa1b264ebc70a3850ec1))
+* **api:** update via SDK Studio ([#93](https://github.com/blockaid-official/blockaid-client-node/issues/93)) ([f003d97](https://github.com/blockaid-official/blockaid-client-node/commit/f003d97e3a1003669f945786bdd938345a0c59f5))
+* **api:** update via SDK Studio ([#94](https://github.com/blockaid-official/blockaid-client-node/issues/94)) ([804e325](https://github.com/blockaid-official/blockaid-client-node/commit/804e325e147a36e5d2b63503836b530acdf20aed))
+* **api:** update via SDK Studio ([#95](https://github.com/blockaid-official/blockaid-client-node/issues/95)) ([1faf207](https://github.com/blockaid-official/blockaid-client-node/commit/1faf207a39c3e052dfd03d5754f59615955f42ab))
+
 ## 0.11.0 (2024-07-02)
 
 Full Changelog: [v0.10.0...v0.11.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.10.0...v0.11.0)
