@@ -212,12 +212,11 @@ export namespace Blockaid {
   export import UsdDiff = API.UsdDiff;
 
   export import Solana = API.Solana;
-  export import AssetTransferDetailsSchema = API.AssetTransferDetailsSchema;
-  export import CnftDetailsSchema = API.CnftDetailsSchema;
-  export import CnftDiffSchema = API.CnftDiffSchema;
-  export import NativeSolDetailsSchema = API.NativeSolDetailsSchema;
-  export import SplFungibleTokenDetailsSchema = API.SplFungibleTokenDetailsSchema;
-  export import SplNonFungibleTokenDetailsSchema = API.SplNonFungibleTokenDetailsSchema;
+  export import AddressScanRequestSchema = API.AddressScanRequestSchema;
+  export import AddressScanResponseSchema = API.AddressScanResponseSchema;
+  export import CombinedValidationResult = API.CombinedValidationResult;
+  export import ResponseSchema = API.ResponseSchema;
+  export import TxScanRequestSchema = API.TxScanRequestSchema;
 
   export import Stellar = API.Stellar;
   export import StellarAssetContractDetailsSchema = API.StellarAssetContractDetailsSchema;

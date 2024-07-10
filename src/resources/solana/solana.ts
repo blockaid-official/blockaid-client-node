@@ -10,110 +10,1837 @@ export class Solana extends APIResource {
   address: AddressAPI.Address = new AddressAPI.Address(this._client);
 }
 
-export interface AssetTransferDetailsSchema {
+export interface AddressScanRequestSchema {
   /**
-   * Raw value of the transfer
+   * Encoded public key
    */
-  raw_value: number;
-
-  /**
-   * Value of the transfer
-   */
-  value: number;
-
-  /**
-   * Summarized description of the transfer
-   */
-  summary?: string | null;
-
-  /**
-   * USD price of the asset
-   */
-  usd_price?: number | null;
-}
-
-export interface CnftDetailsSchema {
   address: string;
 
-  decimals: number;
-
-  name: string;
-
-  symbol: string;
-
-  logo?: string;
+  metadata: AddressScanRequestSchema.Metadata;
 
   /**
-   * Type of the asset (`"CNFT"`)
+   * Chain to scan the transaction on
    */
-  type?: string;
+  chain?: string;
 }
 
-export interface CnftDiffSchema {
-  asset: CnftDetailsSchema;
-
-  /**
-   * Incoming transfers of the asset
-   */
-  in?: AssetTransferDetailsSchema | null;
-
-  out?: AssetTransferDetailsSchema | null;
+export namespace AddressScanRequestSchema {
+  export interface Metadata {
+    /**
+     * URL of the dApp related to the address
+     */
+    url: string;
+  }
 }
 
-export interface NativeSolDetailsSchema {
-  decimals?: number;
+export interface AddressScanResponseSchema {
+  /**
+   * Features about the result
+   */
+  features: Array<AddressScanResponseSchema.Feature>;
 
   /**
-   * Type of the asset (`"SOL"`)
+   * An enumeration.
    */
-  type?: string;
+  result_type: 'Malicious' | 'Warning' | 'Benign';
 }
 
-export interface SplFungibleTokenDetailsSchema {
-  address: string;
+export namespace AddressScanResponseSchema {
+  export interface Feature {
+    /**
+     * Description of the feature
+     */
+    description: string;
 
-  decimals: number;
+    /**
+     * ID of the feature
+     */
+    feature_id: string;
 
-  name: string;
-
-  symbol: string;
-
-  logo?: string;
-
-  /**
-   * Type of the asset (`"TOKEN"`)
-   */
-  type?: string;
+    /**
+     * An enumeration.
+     */
+    type: 'Malicious' | 'Warning' | 'Benign' | 'Info';
+  }
 }
 
-export interface SplNonFungibleTokenDetailsSchema {
-  address: string;
-
-  name: string;
-
-  symbol: string;
-
-  decimals?: number;
-
-  logo?: string;
+export interface CombinedValidationResult {
+  /**
+   * Transaction validation result
+   */
+  validation: CombinedValidationResult.Validation;
 
   /**
-   * Type of the asset (`"NFT"`)
+   * Transaction simulation result
    */
-  type?: string;
+  simulation?: CombinedValidationResult.Simulation | null;
+}
+
+export namespace CombinedValidationResult {
+  /**
+   * Transaction validation result
+   */
+  export interface Validation {
+    /**
+     * A list of features about this transaction explaining the validation
+     */
+    features: Array<string>;
+
+    /**
+     * An enumeration.
+     */
+    reason:
+      | ''
+      | 'shared_state_in_bulk'
+      | 'unknown_profiter'
+      | 'unfair_trade'
+      | 'transfer_farming'
+      | 'writable_accounts_farming'
+      | 'native_ownership_change'
+      | 'spl_token_ownership_change'
+      | 'exposure_farming'
+      | 'known_attacker'
+      | 'invalid_signature'
+      | 'other';
+
+    /**
+     * An enumeration.
+     */
+    verdict: 'Benign' | 'Warning' | 'Malicious';
+  }
+
+  /**
+   * Transaction simulation result
+   */
+  export interface Simulation {
+    /**
+     * Summary of the requested account address
+     */
+    account_summary: Simulation.AccountSummary;
+
+    /**
+     * Summary of the accounts involved in the transaction simulation
+     */
+    accounts_details: Array<
+      | Simulation.SystemAccountDetailsSchema
+      | Simulation.TokenAccountDetailsSchema
+      | Simulation.FungibleMintAccountDetailsSchema
+      | Simulation.NonFungibleMintAccountDetailsSchema
+      | Simulation.ProgramAccountDetailsSchema
+      | Simulation.PdaAccountSchema
+      | Simulation.CnftMintAccountDetailsSchema
+    >;
+
+    /**
+     * Summary of the assets involved in the transaction simulation
+     */
+    assets_diff: Record<
+      string,
+      Array<
+        | Simulation.NativeSolDiffSchema
+        | Simulation.SplFungibleTokenDiffSchema
+        | Simulation.SplNonFungibleTokenDiffSchema
+        | Simulation.CnftDiffSchema
+      >
+    >;
+
+    /**
+     * Summary of ownership changes; By account address
+     */
+    assets_ownership_diff: Record<
+      string,
+      Array<
+        | Simulation.NativeSolOwnershipDiffSchema
+        | Simulation.SplTokenOwnershipDiffSchema
+        | Simulation.StakedSolWithdrawAuthorityDiffSchema
+      >
+    >;
+
+    /**
+     * Summary of the delegations, by account address
+     */
+    delegations: Record<string, Array<Simulation.Delegation>>;
+  }
+
+  export namespace Simulation {
+    /**
+     * Summary of the requested account address
+     */
+    export interface AccountSummary {
+      /**
+       * Total USD diff for the requested account address
+       */
+      total_usd_diff: AccountSummary.TotalUsdDiff;
+
+      /**
+       * Assets diff of the requested account address
+       */
+      account_assets_diff?: Array<
+        | AccountSummary.NativeSolDiffSchema
+        | AccountSummary.SplFungibleTokenDiffSchema
+        | AccountSummary.SplNonFungibleTokenDiffSchema
+        | AccountSummary.CnftDiffSchema
+      >;
+
+      /**
+       * Delegated assets of the requested account address
+       */
+      account_delegations?: Array<AccountSummary.AccountDelegation>;
+
+      /**
+       * Account ownerships diff of the requested account address
+       */
+      account_ownerships_diff?: Array<
+        | AccountSummary.NativeSolOwnershipDiffSchema
+        | AccountSummary.SplTokenOwnershipDiffSchema
+        | AccountSummary.StakedSolWithdrawAuthorityDiffSchema
+      >;
+    }
+
+    export namespace AccountSummary {
+      /**
+       * Total USD diff for the requested account address
+       */
+      export interface TotalUsdDiff {
+        /**
+         * Total incoming USD transfers
+         */
+        in: number;
+
+        /**
+         * Total outgoing USD transfers
+         */
+        out: number;
+
+        /**
+         * Total USD transfers
+         */
+        total: number;
+      }
+
+      export interface NativeSolDiffSchema {
+        asset: NativeSolDiffSchema.Asset;
+
+        /**
+         * Incoming transfers of the asset
+         */
+        in?: NativeSolDiffSchema.In | null;
+
+        out?: NativeSolDiffSchema.Out | null;
+      }
+
+      export namespace NativeSolDiffSchema {
+        export interface Asset {
+          decimals?: number;
+
+          /**
+           * Type of the asset (`"SOL"`)
+           */
+          type?: string;
+        }
+
+        /**
+         * Incoming transfers of the asset
+         */
+        export interface In {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * Value of the transfer
+           */
+          value: number;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
+        }
+
+        export interface Out {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * Value of the transfer
+           */
+          value: number;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
+        }
+      }
+
+      export interface SplFungibleTokenDiffSchema {
+        asset: SplFungibleTokenDiffSchema.Asset;
+
+        /**
+         * Incoming transfers of the asset
+         */
+        in?: SplFungibleTokenDiffSchema.In | null;
+
+        out?: SplFungibleTokenDiffSchema.Out | null;
+      }
+
+      export namespace SplFungibleTokenDiffSchema {
+        export interface Asset {
+          address: string;
+
+          decimals: number;
+
+          name: string;
+
+          symbol: string;
+
+          logo?: string;
+
+          /**
+           * Type of the asset (`"TOKEN"`)
+           */
+          type?: string;
+        }
+
+        /**
+         * Incoming transfers of the asset
+         */
+        export interface In {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * Value of the transfer
+           */
+          value: number;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
+        }
+
+        export interface Out {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * Value of the transfer
+           */
+          value: number;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
+        }
+      }
+
+      export interface SplNonFungibleTokenDiffSchema {
+        asset: SplNonFungibleTokenDiffSchema.Asset;
+
+        /**
+         * Incoming transfers of the asset
+         */
+        in?: SplNonFungibleTokenDiffSchema.In | null;
+
+        out?: SplNonFungibleTokenDiffSchema.Out | null;
+      }
+
+      export namespace SplNonFungibleTokenDiffSchema {
+        export interface Asset {
+          address: string;
+
+          name: string;
+
+          symbol: string;
+
+          decimals?: number;
+
+          logo?: string;
+
+          /**
+           * Type of the asset (`"NFT"`)
+           */
+          type?: string;
+        }
+
+        /**
+         * Incoming transfers of the asset
+         */
+        export interface In {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * Value of the transfer
+           */
+          value: number;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
+        }
+
+        export interface Out {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * Value of the transfer
+           */
+          value: number;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
+        }
+      }
+
+      export interface CnftDiffSchema {
+        asset: CnftDiffSchema.Asset;
+
+        /**
+         * Incoming transfers of the asset
+         */
+        in?: CnftDiffSchema.In | null;
+
+        out?: CnftDiffSchema.Out | null;
+      }
+
+      export namespace CnftDiffSchema {
+        export interface Asset {
+          address: string;
+
+          decimals: number;
+
+          name: string;
+
+          symbol: string;
+
+          logo?: string;
+
+          /**
+           * Type of the asset (`"CNFT"`)
+           */
+          type?: string;
+        }
+
+        /**
+         * Incoming transfers of the asset
+         */
+        export interface In {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * Value of the transfer
+           */
+          value: number;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
+        }
+
+        export interface Out {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * Value of the transfer
+           */
+          value: number;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
+        }
+      }
+
+      export interface AccountDelegation {
+        asset:
+          | AccountDelegation.SplFungibleTokenDetailsSchema
+          | AccountDelegation.SplNonFungibleTokenDetailsSchema
+          | AccountDelegation.CnftDetailsSchema;
+
+        /**
+         * The delegate's address
+         */
+        delegate: string;
+
+        /**
+         * Details of the delegation
+         */
+        delegation: AccountDelegation.Delegation;
+      }
+
+      export namespace AccountDelegation {
+        export interface SplFungibleTokenDetailsSchema {
+          address: string;
+
+          decimals: number;
+
+          name: string;
+
+          symbol: string;
+
+          logo?: string;
+
+          /**
+           * Type of the asset (`"TOKEN"`)
+           */
+          type?: string;
+        }
+
+        export interface SplNonFungibleTokenDetailsSchema {
+          address: string;
+
+          name: string;
+
+          symbol: string;
+
+          decimals?: number;
+
+          logo?: string;
+
+          /**
+           * Type of the asset (`"NFT"`)
+           */
+          type?: string;
+        }
+
+        export interface CnftDetailsSchema {
+          address: string;
+
+          decimals: number;
+
+          name: string;
+
+          symbol: string;
+
+          logo?: string;
+
+          /**
+           * Type of the asset (`"CNFT"`)
+           */
+          type?: string;
+        }
+
+        /**
+         * Details of the delegation
+         */
+        export interface Delegation {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * Value of the transfer
+           */
+          value: number;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
+        }
+      }
+
+      export interface NativeSolOwnershipDiffSchema {
+        asset: NativeSolOwnershipDiffSchema.Asset;
+
+        /**
+         * The owner post the transaction
+         */
+        post_owner: string;
+
+        /**
+         * Incoming transfers of the asset
+         */
+        in_?: NativeSolOwnershipDiffSchema.In | null;
+
+        /**
+         * Details of the moved value
+         */
+        out?: NativeSolOwnershipDiffSchema.Out | null;
+
+        /**
+         * The owner prior to the transaction
+         */
+        pre_owner?: string | null;
+      }
+
+      export namespace NativeSolOwnershipDiffSchema {
+        export interface Asset {
+          decimals?: number;
+
+          /**
+           * Type of the asset (`"SOL"`)
+           */
+          type?: string;
+        }
+
+        /**
+         * Incoming transfers of the asset
+         */
+        export interface In {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * Value of the transfer
+           */
+          value: number;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
+        }
+
+        /**
+         * Details of the moved value
+         */
+        export interface Out {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * Value of the transfer
+           */
+          value: number;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
+        }
+      }
+
+      export interface SplTokenOwnershipDiffSchema {
+        asset:
+          | SplTokenOwnershipDiffSchema.SplFungibleTokenDetailsSchema
+          | SplTokenOwnershipDiffSchema.SplNonFungibleTokenDetailsSchema;
+
+        /**
+         * The owner post the transaction
+         */
+        post_owner: string;
+
+        /**
+         * Incoming transfers of the asset
+         */
+        in_?: SplTokenOwnershipDiffSchema.In | null;
+
+        /**
+         * Details of the moved value
+         */
+        out?: SplTokenOwnershipDiffSchema.Out | null;
+
+        /**
+         * The owner prior to the transaction
+         */
+        pre_owner?: string | null;
+      }
+
+      export namespace SplTokenOwnershipDiffSchema {
+        export interface SplFungibleTokenDetailsSchema {
+          address: string;
+
+          decimals: number;
+
+          name: string;
+
+          symbol: string;
+
+          logo?: string;
+
+          /**
+           * Type of the asset (`"TOKEN"`)
+           */
+          type?: string;
+        }
+
+        export interface SplNonFungibleTokenDetailsSchema {
+          address: string;
+
+          name: string;
+
+          symbol: string;
+
+          decimals?: number;
+
+          logo?: string;
+
+          /**
+           * Type of the asset (`"NFT"`)
+           */
+          type?: string;
+        }
+
+        /**
+         * Incoming transfers of the asset
+         */
+        export interface In {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * Value of the transfer
+           */
+          value: number;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
+        }
+
+        /**
+         * Details of the moved value
+         */
+        export interface Out {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * Value of the transfer
+           */
+          value: number;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
+        }
+      }
+
+      export interface StakedSolWithdrawAuthorityDiffSchema {
+        /**
+         * The owner post the transaction
+         */
+        post_owner: string;
+
+        asset?: StakedSolWithdrawAuthorityDiffSchema.Asset;
+
+        /**
+         * Incoming transfers of the asset
+         */
+        in_?: StakedSolWithdrawAuthorityDiffSchema.In | null;
+
+        /**
+         * Details of the moved value
+         */
+        out?: StakedSolWithdrawAuthorityDiffSchema.Out | null;
+
+        /**
+         * The owner prior to the transaction
+         */
+        pre_owner?: string | null;
+      }
+
+      export namespace StakedSolWithdrawAuthorityDiffSchema {
+        export interface Asset {
+          decimals?: number;
+
+          /**
+           * Type of the asset (`"STAKED_SOL"`)
+           */
+          type?: string;
+        }
+
+        /**
+         * Incoming transfers of the asset
+         */
+        export interface In {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * Value of the transfer
+           */
+          value: number;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
+        }
+
+        /**
+         * Details of the moved value
+         */
+        export interface Out {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * Value of the transfer
+           */
+          value: number;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
+        }
+      }
+    }
+
+    export interface SystemAccountDetailsSchema {
+      /**
+       * Encoded public key of the account
+       */
+      account_address: string;
+
+      /**
+       * Whether the account had been written to during the simulation
+       */
+      was_written_to: boolean;
+
+      /**
+       * Description of the account
+       */
+      description?: string | null;
+
+      type?: 'SYSTEM_ACCOUNT';
+    }
+
+    export interface TokenAccountDetailsSchema {
+      /**
+       * Encoded public key of the account
+       */
+      account_address: string;
+
+      /**
+       * Encoded public key of the mint
+       */
+      mint_address: string;
+
+      /**
+       * Encoded public key of the owner
+       */
+      owner_address: string;
+
+      /**
+       * Whether the account had been written to during the simulation
+       */
+      was_written_to: boolean;
+
+      /**
+       * Description of the account
+       */
+      description?: string | null;
+
+      type?: 'TOKEN_ACCOUNT';
+    }
+
+    export interface FungibleMintAccountDetailsSchema {
+      /**
+       * Encoded public key of the account
+       */
+      account_address: string;
+
+      /**
+       * Name of the mint
+       */
+      name: string;
+
+      /**
+       * Symbol of the mint
+       */
+      symbol: string;
+
+      /**
+       * Whether the account had been written to during the simulation
+       */
+      was_written_to: boolean;
+
+      /**
+       * Description of the account
+       */
+      description?: string | null;
+
+      /**
+       * Logo of the mint
+       */
+      logo?: string;
+
+      type?: 'FUNGIBLE_MINT_ACCOUNT';
+    }
+
+    export interface NonFungibleMintAccountDetailsSchema {
+      /**
+       * Encoded public key of the account
+       */
+      account_address: string;
+
+      /**
+       * Name of the mint
+       */
+      name: string;
+
+      /**
+       * Symbol of the mint
+       */
+      symbol: string;
+
+      /**
+       * URI of the mint
+       */
+      uri: string;
+
+      /**
+       * Whether the account had been written to during the simulation
+       */
+      was_written_to: boolean;
+
+      /**
+       * Description of the account
+       */
+      description?: string | null;
+
+      /**
+       * Logo of the mint
+       */
+      logo?: string;
+
+      type?: 'NON_FUNGIBLE_MINT_ACCOUNT';
+    }
+
+    export interface ProgramAccountDetailsSchema {
+      /**
+       * Encoded public key of the account
+       */
+      account_address: string;
+
+      type: 'PROGRAM' | 'NATIVE_PROGRAM';
+
+      /**
+       * Whether the account had been written to during the simulation
+       */
+      was_written_to: boolean;
+
+      /**
+       * Description of the account
+       */
+      description?: string | null;
+    }
+
+    export interface PdaAccountSchema {
+      /**
+       * Encoded public key of the account
+       */
+      account_address: string;
+
+      /**
+       * The address of the owning program
+       */
+      owner: string;
+
+      /**
+       * Whether the account had been written to during the simulation
+       */
+      was_written_to: boolean;
+
+      /**
+       * Description of the account
+       */
+      description?: string | null;
+
+      type?: 'PDA';
+    }
+
+    export interface CnftMintAccountDetailsSchema {
+      /**
+       * Encoded public key of the account
+       */
+      account_address: string;
+
+      /**
+       * Name of the mint
+       */
+      name: string;
+
+      /**
+       * Symbol of the mint
+       */
+      symbol: string;
+
+      /**
+       * URI of the mint
+       */
+      uri: string;
+
+      /**
+       * Whether the account had been written to during the simulation
+       */
+      was_written_to: boolean;
+
+      /**
+       * Description of the account
+       */
+      description?: string | null;
+
+      /**
+       * Logo of the mint
+       */
+      logo?: string;
+
+      type?: 'CNFT_MINT_ACCOUNT';
+    }
+
+    export interface NativeSolDiffSchema {
+      asset: NativeSolDiffSchema.Asset;
+
+      /**
+       * Incoming transfers of the asset
+       */
+      in?: NativeSolDiffSchema.In | null;
+
+      out?: NativeSolDiffSchema.Out | null;
+    }
+
+    export namespace NativeSolDiffSchema {
+      export interface Asset {
+        decimals?: number;
+
+        /**
+         * Type of the asset (`"SOL"`)
+         */
+        type?: string;
+      }
+
+      /**
+       * Incoming transfers of the asset
+       */
+      export interface In {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * Value of the transfer
+         */
+        value: number;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
+      }
+
+      export interface Out {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * Value of the transfer
+         */
+        value: number;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
+      }
+    }
+
+    export interface SplFungibleTokenDiffSchema {
+      asset: SplFungibleTokenDiffSchema.Asset;
+
+      /**
+       * Incoming transfers of the asset
+       */
+      in?: SplFungibleTokenDiffSchema.In | null;
+
+      out?: SplFungibleTokenDiffSchema.Out | null;
+    }
+
+    export namespace SplFungibleTokenDiffSchema {
+      export interface Asset {
+        address: string;
+
+        decimals: number;
+
+        name: string;
+
+        symbol: string;
+
+        logo?: string;
+
+        /**
+         * Type of the asset (`"TOKEN"`)
+         */
+        type?: string;
+      }
+
+      /**
+       * Incoming transfers of the asset
+       */
+      export interface In {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * Value of the transfer
+         */
+        value: number;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
+      }
+
+      export interface Out {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * Value of the transfer
+         */
+        value: number;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
+      }
+    }
+
+    export interface SplNonFungibleTokenDiffSchema {
+      asset: SplNonFungibleTokenDiffSchema.Asset;
+
+      /**
+       * Incoming transfers of the asset
+       */
+      in?: SplNonFungibleTokenDiffSchema.In | null;
+
+      out?: SplNonFungibleTokenDiffSchema.Out | null;
+    }
+
+    export namespace SplNonFungibleTokenDiffSchema {
+      export interface Asset {
+        address: string;
+
+        name: string;
+
+        symbol: string;
+
+        decimals?: number;
+
+        logo?: string;
+
+        /**
+         * Type of the asset (`"NFT"`)
+         */
+        type?: string;
+      }
+
+      /**
+       * Incoming transfers of the asset
+       */
+      export interface In {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * Value of the transfer
+         */
+        value: number;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
+      }
+
+      export interface Out {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * Value of the transfer
+         */
+        value: number;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
+      }
+    }
+
+    export interface CnftDiffSchema {
+      asset: CnftDiffSchema.Asset;
+
+      /**
+       * Incoming transfers of the asset
+       */
+      in?: CnftDiffSchema.In | null;
+
+      out?: CnftDiffSchema.Out | null;
+    }
+
+    export namespace CnftDiffSchema {
+      export interface Asset {
+        address: string;
+
+        decimals: number;
+
+        name: string;
+
+        symbol: string;
+
+        logo?: string;
+
+        /**
+         * Type of the asset (`"CNFT"`)
+         */
+        type?: string;
+      }
+
+      /**
+       * Incoming transfers of the asset
+       */
+      export interface In {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * Value of the transfer
+         */
+        value: number;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
+      }
+
+      export interface Out {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * Value of the transfer
+         */
+        value: number;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
+      }
+    }
+
+    export interface NativeSolOwnershipDiffSchema {
+      asset: NativeSolOwnershipDiffSchema.Asset;
+
+      /**
+       * The owner post the transaction
+       */
+      post_owner: string;
+
+      /**
+       * Incoming transfers of the asset
+       */
+      in_?: NativeSolOwnershipDiffSchema.In | null;
+
+      /**
+       * Details of the moved value
+       */
+      out?: NativeSolOwnershipDiffSchema.Out | null;
+
+      /**
+       * The owner prior to the transaction
+       */
+      pre_owner?: string | null;
+    }
+
+    export namespace NativeSolOwnershipDiffSchema {
+      export interface Asset {
+        decimals?: number;
+
+        /**
+         * Type of the asset (`"SOL"`)
+         */
+        type?: string;
+      }
+
+      /**
+       * Incoming transfers of the asset
+       */
+      export interface In {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * Value of the transfer
+         */
+        value: number;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
+      }
+
+      /**
+       * Details of the moved value
+       */
+      export interface Out {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * Value of the transfer
+         */
+        value: number;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
+      }
+    }
+
+    export interface SplTokenOwnershipDiffSchema {
+      asset:
+        | SplTokenOwnershipDiffSchema.SplFungibleTokenDetailsSchema
+        | SplTokenOwnershipDiffSchema.SplNonFungibleTokenDetailsSchema;
+
+      /**
+       * The owner post the transaction
+       */
+      post_owner: string;
+
+      /**
+       * Incoming transfers of the asset
+       */
+      in_?: SplTokenOwnershipDiffSchema.In | null;
+
+      /**
+       * Details of the moved value
+       */
+      out?: SplTokenOwnershipDiffSchema.Out | null;
+
+      /**
+       * The owner prior to the transaction
+       */
+      pre_owner?: string | null;
+    }
+
+    export namespace SplTokenOwnershipDiffSchema {
+      export interface SplFungibleTokenDetailsSchema {
+        address: string;
+
+        decimals: number;
+
+        name: string;
+
+        symbol: string;
+
+        logo?: string;
+
+        /**
+         * Type of the asset (`"TOKEN"`)
+         */
+        type?: string;
+      }
+
+      export interface SplNonFungibleTokenDetailsSchema {
+        address: string;
+
+        name: string;
+
+        symbol: string;
+
+        decimals?: number;
+
+        logo?: string;
+
+        /**
+         * Type of the asset (`"NFT"`)
+         */
+        type?: string;
+      }
+
+      /**
+       * Incoming transfers of the asset
+       */
+      export interface In {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * Value of the transfer
+         */
+        value: number;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
+      }
+
+      /**
+       * Details of the moved value
+       */
+      export interface Out {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * Value of the transfer
+         */
+        value: number;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
+      }
+    }
+
+    export interface StakedSolWithdrawAuthorityDiffSchema {
+      /**
+       * The owner post the transaction
+       */
+      post_owner: string;
+
+      asset?: StakedSolWithdrawAuthorityDiffSchema.Asset;
+
+      /**
+       * Incoming transfers of the asset
+       */
+      in_?: StakedSolWithdrawAuthorityDiffSchema.In | null;
+
+      /**
+       * Details of the moved value
+       */
+      out?: StakedSolWithdrawAuthorityDiffSchema.Out | null;
+
+      /**
+       * The owner prior to the transaction
+       */
+      pre_owner?: string | null;
+    }
+
+    export namespace StakedSolWithdrawAuthorityDiffSchema {
+      export interface Asset {
+        decimals?: number;
+
+        /**
+         * Type of the asset (`"STAKED_SOL"`)
+         */
+        type?: string;
+      }
+
+      /**
+       * Incoming transfers of the asset
+       */
+      export interface In {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * Value of the transfer
+         */
+        value: number;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
+      }
+
+      /**
+       * Details of the moved value
+       */
+      export interface Out {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * Value of the transfer
+         */
+        value: number;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
+      }
+    }
+
+    export interface Delegation {
+      asset:
+        | Delegation.SplFungibleTokenDetailsSchema
+        | Delegation.SplNonFungibleTokenDetailsSchema
+        | Delegation.CnftDetailsSchema;
+
+      /**
+       * The delegate's address
+       */
+      delegate: string;
+
+      /**
+       * Details of the delegation
+       */
+      delegation: Delegation.Delegation;
+    }
+
+    export namespace Delegation {
+      export interface SplFungibleTokenDetailsSchema {
+        address: string;
+
+        decimals: number;
+
+        name: string;
+
+        symbol: string;
+
+        logo?: string;
+
+        /**
+         * Type of the asset (`"TOKEN"`)
+         */
+        type?: string;
+      }
+
+      export interface SplNonFungibleTokenDetailsSchema {
+        address: string;
+
+        name: string;
+
+        symbol: string;
+
+        decimals?: number;
+
+        logo?: string;
+
+        /**
+         * Type of the asset (`"NFT"`)
+         */
+        type?: string;
+      }
+
+      export interface CnftDetailsSchema {
+        address: string;
+
+        decimals: number;
+
+        name: string;
+
+        symbol: string;
+
+        logo?: string;
+
+        /**
+         * Type of the asset (`"CNFT"`)
+         */
+        type?: string;
+      }
+
+      /**
+       * Details of the delegation
+       */
+      export interface Delegation {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * Value of the transfer
+         */
+        value: number;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
+      }
+    }
+  }
+}
+
+export interface ResponseSchema {
+  /**
+   * Encoding of the public keys
+   */
+  encoding?: string;
+
+  /**
+   * Error message if the simulation failed
+   */
+  error?: string | null;
+
+  /**
+   * Summary of the result
+   */
+  result?: CombinedValidationResult | null;
+}
+
+export interface TxScanRequestSchema {
+  /**
+   * Encoded public key of the account to simulate the transaction on
+   */
+  account_address: string;
+
+  metadata: TxScanRequestSchema.Metadata;
+
+  /**
+   * Transactions to scan
+   */
+  transactions: Array<string>;
+
+  /**
+   * Chain to scan the transaction on
+   */
+  chain?: string;
+
+  /**
+   * Encoding of the transaction and public keys
+   */
+  encoding?: string;
+
+  /**
+   * The RPC method used by dApp to propose the transaction
+   */
+  method?: string;
+}
+
+export namespace TxScanRequestSchema {
+  export interface Metadata {
+    /**
+     * URL of the dApp that originated the transaction
+     */
+    url?: string | null;
+  }
 }
 
 export namespace Solana {
-  export import AssetTransferDetailsSchema = SolanaAPI.AssetTransferDetailsSchema;
-  export import CnftDetailsSchema = SolanaAPI.CnftDetailsSchema;
-  export import CnftDiffSchema = SolanaAPI.CnftDiffSchema;
-  export import NativeSolDetailsSchema = SolanaAPI.NativeSolDetailsSchema;
-  export import SplFungibleTokenDetailsSchema = SolanaAPI.SplFungibleTokenDetailsSchema;
-  export import SplNonFungibleTokenDetailsSchema = SolanaAPI.SplNonFungibleTokenDetailsSchema;
+  export import AddressScanRequestSchema = SolanaAPI.AddressScanRequestSchema;
+  export import AddressScanResponseSchema = SolanaAPI.AddressScanResponseSchema;
+  export import CombinedValidationResult = SolanaAPI.CombinedValidationResult;
+  export import ResponseSchema = SolanaAPI.ResponseSchema;
+  export import TxScanRequestSchema = SolanaAPI.TxScanRequestSchema;
   export import Message = MessageAPI.Message;
-  export import MessageScanResponse = MessageAPI.MessageScanResponse;
   export import MessageScanParams = MessageAPI.MessageScanParams;
   export import Address = AddressAPI.Address;
-  export import AddressScanResponse = AddressAPI.AddressScanResponse;
   export import AddressScanParams = AddressAPI.AddressScanParams;
 }

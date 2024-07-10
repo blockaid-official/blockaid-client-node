@@ -31,12 +31,11 @@ export {
   Evm,
 } from './evm/evm';
 export {
-  AssetTransferDetailsSchema,
-  CnftDetailsSchema,
-  CnftDiffSchema,
-  NativeSolDetailsSchema,
-  SplFungibleTokenDetailsSchema,
-  SplNonFungibleTokenDetailsSchema,
+  AddressScanRequestSchema,
+  AddressScanResponseSchema,
+  CombinedValidationResult,
+  ResponseSchema,
+  TxScanRequestSchema,
   Solana,
 } from './solana/solana';
 export { SiteScanHitResponse, SiteScanMissResponse, SiteScanResponse, SiteScanParams, Site } from './site';

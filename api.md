@@ -81,32 +81,23 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/solana/solana.ts">AssetTransferDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">CnftDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">CnftDiffSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">NativeSolDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">SplFungibleTokenDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">SplNonFungibleTokenDetailsSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">AddressScanRequestSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">AddressScanResponseSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">CombinedValidationResult</a></code>
+- <code><a href="./src/resources/solana/solana.ts">ResponseSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">TxScanRequestSchema</a></code>
 
 ## Message
 
-Types:
-
-- <code><a href="./src/resources/solana/message.ts">MessageScanResponse</a></code>
-
 Methods:
 
-- <code title="post /v0/solana/message/scan">client.solana.message.<a href="./src/resources/solana/message.ts">scan</a>({ ...params }) -> MessageScanResponse</code>
+- <code title="post /v0/solana/message/scan">client.solana.message.<a href="./src/resources/solana/message.ts">scan</a>({ ...params }) -> ResponseSchema</code>
 
 ## Address
 
-Types:
-
-- <code><a href="./src/resources/solana/address.ts">AddressScanResponse</a></code>
-
 Methods:
 
-- <code title="post /v0/solana/address/scan">client.solana.address.<a href="./src/resources/solana/address.ts">scan</a>({ ...params }) -> AddressScanResponse</code>
+- <code title="post /v0/solana/address/scan">client.solana.address.<a href="./src/resources/solana/address.ts">scan</a>({ ...params }) -> AddressScanResponseSchema</code>
 
 # Stellar
 

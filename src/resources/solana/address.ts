@@ -3,6 +3,7 @@
 import { APIResource } from '@blockaid/client/resource';
 import * as Core from '@blockaid/client/core';
 import * as AddressAPI from '@blockaid/client/resources/solana/address';
+import * as SolanaAPI from '@blockaid/client/resources/solana/solana';
 
 export class Address extends APIResource {
   /**
@@ -10,39 +11,11 @@ export class Address extends APIResource {
    * this address is malicious as well as textual reasons of why the address was
    * flagged that way.
    */
-  scan(body: AddressScanParams, options?: Core.RequestOptions): Core.APIPromise<AddressScanResponse> {
+  scan(
+    body: AddressScanParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SolanaAPI.AddressScanResponseSchema> {
     return this._client.post('/v0/solana/address/scan', { body, ...options });
-  }
-}
-
-export interface AddressScanResponse {
-  /**
-   * Features about the result
-   */
-  features: Array<AddressScanResponse.Feature>;
-
-  /**
-   * An enumeration.
-   */
-  result_type: 'Malicious' | 'Warning' | 'Benign';
-}
-
-export namespace AddressScanResponse {
-  export interface Feature {
-    /**
-     * Description of the feature
-     */
-    description: string;
-
-    /**
-     * ID of the feature
-     */
-    feature_id: string;
-
-    /**
-     * An enumeration.
-     */
-    type: 'Malicious' | 'Warning' | 'Benign' | 'Info';
   }
 }
 
@@ -70,6 +43,5 @@ export namespace AddressScanParams {
 }
 
 export namespace Address {
-  export import AddressScanResponse = AddressAPI.AddressScanResponse;
   export import AddressScanParams = AddressAPI.AddressScanParams;
 }
