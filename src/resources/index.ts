@@ -30,6 +30,7 @@ export {
 export {
   AssetTransferDetailsSchema,
   CnftDetailsSchema,
+  CnftDiffSchema,
   NativeSolDetailsSchema,
   SplFungibleTokenDetailsSchema,
   SplNonFungibleTokenDetailsSchema,

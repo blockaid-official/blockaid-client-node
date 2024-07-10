@@ -111,7 +111,7 @@ export namespace MessageScanResponse {
           | Simulation.NativeSolDiffSchema
           | Simulation.SplFungibleTokenDiffSchema
           | Simulation.SplNonFungibleTokenDiffSchema
-          | Simulation.CnftDiffSchema
+          | SolanaAPI.CnftDiffSchema
         >
       >;
 
@@ -150,7 +150,7 @@ export namespace MessageScanResponse {
           | AccountSummary.NativeSolDiffSchema
           | AccountSummary.SplFungibleTokenDiffSchema
           | AccountSummary.SplNonFungibleTokenDiffSchema
-          | AccountSummary.CnftDiffSchema
+          | SolanaAPI.CnftDiffSchema
         >;
 
         /**
@@ -213,17 +213,6 @@ export namespace MessageScanResponse {
 
         export interface SplNonFungibleTokenDiffSchema {
           asset: SolanaAPI.SplNonFungibleTokenDetailsSchema;
-
-          /**
-           * Incoming transfers of the asset
-           */
-          in?: SolanaAPI.AssetTransferDetailsSchema | null;
-
-          out?: SolanaAPI.AssetTransferDetailsSchema | null;
-        }
-
-        export interface CnftDiffSchema {
-          asset: SolanaAPI.CnftDetailsSchema;
 
           /**
            * Incoming transfers of the asset
@@ -561,17 +550,6 @@ export namespace MessageScanResponse {
 
       export interface SplNonFungibleTokenDiffSchema {
         asset: SolanaAPI.SplNonFungibleTokenDetailsSchema;
-
-        /**
-         * Incoming transfers of the asset
-         */
-        in?: SolanaAPI.AssetTransferDetailsSchema | null;
-
-        out?: SolanaAPI.AssetTransferDetailsSchema | null;
-      }
-
-      export interface CnftDiffSchema {
-        asset: SolanaAPI.CnftDetailsSchema;
 
         /**
          * Incoming transfers of the asset

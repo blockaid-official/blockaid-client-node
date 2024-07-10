@@ -83,6 +83,7 @@ Types:
 
 - <code><a href="./src/resources/solana/solana.ts">AssetTransferDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">CnftDetailsSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">CnftDiffSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">NativeSolDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">SplFungibleTokenDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">SplNonFungibleTokenDetailsSchema</a></code>
