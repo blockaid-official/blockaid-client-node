@@ -77,6 +77,36 @@ Methods:
 
 - <code title="post /v0/evm/post-transaction-bulk/scan">client.evm.postTransactionBulk.<a href="./src/resources/evm/post-transaction-bulk.ts">scan</a>({ ...params }) -> PostTransactionBulkScanResponse</code>
 
+# Solana
+
+Types:
+
+- <code><a href="./src/resources/solana/solana.ts">AssetTransferDetailsSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">CnftDetailsSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">NativeSolDetailsSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">SplFungibleTokenDetailsSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">SplNonFungibleTokenDetailsSchema</a></code>
+
+## Message
+
+Types:
+
+- <code><a href="./src/resources/solana/message.ts">MessageScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/solana/message/scan">client.solana.message.<a href="./src/resources/solana/message.ts">scan</a>({ ...params }) -> MessageScanResponse</code>
+
+## Address
+
+Types:
+
+- <code><a href="./src/resources/solana/address.ts">AddressScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/solana/address/scan">client.solana.address.<a href="./src/resources/solana/address.ts">scan</a>({ ...params }) -> AddressScanResponse</code>
+
 # Stellar
 
 Types:
