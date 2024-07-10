@@ -214,6 +214,7 @@ export namespace Blockaid {
   export import Solana = API.Solana;
   export import AssetTransferDetailsSchema = API.AssetTransferDetailsSchema;
   export import CnftDetailsSchema = API.CnftDetailsSchema;
+  export import CnftDiffSchema = API.CnftDiffSchema;
   export import NativeSolDetailsSchema = API.NativeSolDetailsSchema;
   export import SplFungibleTokenDetailsSchema = API.SplFungibleTokenDetailsSchema;
   export import SplNonFungibleTokenDetailsSchema = API.SplNonFungibleTokenDetailsSchema;

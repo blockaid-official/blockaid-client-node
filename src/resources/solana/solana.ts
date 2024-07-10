@@ -49,6 +49,17 @@ export interface CnftDetailsSchema {
   type?: string;
 }
 
+export interface CnftDiffSchema {
+  asset: CnftDetailsSchema;
+
+  /**
+   * Incoming transfers of the asset
+   */
+  in?: AssetTransferDetailsSchema | null;
+
+  out?: AssetTransferDetailsSchema | null;
+}
+
 export interface NativeSolDetailsSchema {
   decimals?: number;
 
@@ -95,6 +106,7 @@ export interface SplNonFungibleTokenDetailsSchema {
 export namespace Solana {
   export import AssetTransferDetailsSchema = SolanaAPI.AssetTransferDetailsSchema;
   export import CnftDetailsSchema = SolanaAPI.CnftDetailsSchema;
+  export import CnftDiffSchema = SolanaAPI.CnftDiffSchema;
   export import NativeSolDetailsSchema = SolanaAPI.NativeSolDetailsSchema;
   export import SplFungibleTokenDetailsSchema = SolanaAPI.SplFungibleTokenDetailsSchema;
   export import SplNonFungibleTokenDetailsSchema = SolanaAPI.SplNonFungibleTokenDetailsSchema;

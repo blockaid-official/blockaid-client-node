@@ -4,6 +4,7 @@ export { AddressScanResponse, AddressScanParams, Address } from './address';
 export {
   AssetTransferDetailsSchema,
   CnftDetailsSchema,
+  CnftDiffSchema,
   NativeSolDetailsSchema,
   SplFungibleTokenDetailsSchema,
   SplNonFungibleTokenDetailsSchema,
