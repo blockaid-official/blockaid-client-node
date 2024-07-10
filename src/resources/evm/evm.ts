@@ -470,7 +470,8 @@ export type TransactionScanSupportedChain =
   | 'scroll'
   | 'ethereum-sepolia'
   | 'degen'
-  | 'avalanche-fuji';
+  | 'avalanche-fuji'
+  | 'immutable-zkevm';
 
 export interface TransactionSimulation {
   /**
