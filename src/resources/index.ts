@@ -27,6 +27,14 @@ export {
   UsdDiff,
   Evm,
 } from './evm/evm';
+export {
+  AssetTransferDetailsSchema,
+  CnftDetailsSchema,
+  NativeSolDetailsSchema,
+  SplFungibleTokenDetailsSchema,
+  SplNonFungibleTokenDetailsSchema,
+  Solana,
+} from './solana/solana';
 export { SiteScanHitResponse, SiteScanMissResponse, SiteScanResponse, SiteScanParams, Site } from './site';
 export {
   StellarAssetContractDetailsSchema,
