@@ -13,7 +13,7 @@ describe('resource postTransaction', () => {
     const responsePromise = blockaid.evm.postTransaction.scan({
       chain: 'ethereum',
       data: { tx_hash: '0xc01780dadc107754b331250b4797606949cb3d0087facc0a737122d5e973c83c' },
-      metadata: { domain: 'string' },
+      metadata: { domain: 'domain' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,7 +28,8 @@ describe('resource postTransaction', () => {
     const response = await blockaid.evm.postTransaction.scan({
       chain: 'ethereum',
       data: { tx_hash: '0xc01780dadc107754b331250b4797606949cb3d0087facc0a737122d5e973c83c' },
-      metadata: { domain: 'string' },
+      metadata: { domain: 'domain' },
+      block: 0,
       options: ['validation', 'simulation'],
     });
   });
