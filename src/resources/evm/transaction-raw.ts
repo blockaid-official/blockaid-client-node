@@ -42,6 +42,12 @@ export interface TransactionRawScanParams {
   metadata: EvmAPI.Metadata;
 
   /**
+   * The relative block for the block validation. Can be "latest", "earliest",
+   * "pending" or a block number.
+   */
+  block?: number | string;
+
+  /**
    * list of one or both of options for the desired output. "simulation" - include
    * simulation output in your response. "validation" - include security validation
    * of the transaction in your response. Default is ["validation"]
