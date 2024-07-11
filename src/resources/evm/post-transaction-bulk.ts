@@ -37,8 +37,7 @@ export interface PostTransactionBulkScanParams {
   metadata: EvmAPI.Metadata;
 
   /**
-   * The relative block for the block validation. Can be "latest", "earliest",
-   * "pending" or a block number.
+   * The relative block for the block validation. Can be "latest" or a block number.
    */
   block?: number | string;
 

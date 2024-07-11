@@ -41,8 +41,7 @@ export interface UserOperationScanParams {
   account_address?: string;
 
   /**
-   * The relative block for the block validation. Can be "latest", "earliest",
-   * "pending" or a block number.
+   * The relative block for the block validation. Can be "latest" or a block number.
    */
   block?: number | string;
 
