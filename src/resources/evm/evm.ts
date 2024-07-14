@@ -363,8 +363,7 @@ export type TokenScanSupportedChain =
   | 'polygon'
   | 'zora'
   | 'solana'
-  | 'stellar'
-  | 'unknown';
+  | 'stellar';
 
 export interface TransactionScanFeature {
   /**
@@ -470,7 +469,8 @@ export type TransactionScanSupportedChain =
   | 'scroll'
   | 'ethereum-sepolia'
   | 'degen'
-  | 'avalanche-fuji';
+  | 'avalanche-fuji'
+  | 'immutable-zkevm';
 
 export interface TransactionSimulation {
   /**

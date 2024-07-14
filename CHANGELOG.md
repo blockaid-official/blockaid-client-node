@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.13.0 (2024-07-14)
+
+Full Changelog: [v0.12.0...v0.13.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.12.0...v0.13.0)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#100](https://github.com/blockaid-official/blockaid-client-node/issues/100)) ([fd1b7e5](https://github.com/blockaid-official/blockaid-client-node/commit/fd1b7e579931570c26cf3b2e360970a55f747f1a))
+* **api:** OpenAPI spec update via Stainless API ([#101](https://github.com/blockaid-official/blockaid-client-node/issues/101)) ([4ba45cd](https://github.com/blockaid-official/blockaid-client-node/commit/4ba45cd97102087c9811690530e14de1fcaf9ae2))
+* **api:** OpenAPI spec update via Stainless API ([#102](https://github.com/blockaid-official/blockaid-client-node/issues/102)) ([6f20d3b](https://github.com/blockaid-official/blockaid-client-node/commit/6f20d3bbcbafda3fa86b926e4f09af28e4f4d8bf))
+* **api:** OpenAPI spec update via Stainless API ([#103](https://github.com/blockaid-official/blockaid-client-node/issues/103)) ([8eb5d51](https://github.com/blockaid-official/blockaid-client-node/commit/8eb5d51d9300f261b655cdac97b9ec8913fd22a8))
+* **api:** OpenAPI spec update via Stainless API ([#104](https://github.com/blockaid-official/blockaid-client-node/issues/104)) ([34f96e5](https://github.com/blockaid-official/blockaid-client-node/commit/34f96e5a7e0ed4c71734b004a6a4ce4ebf38fdc3))
+* **api:** OpenAPI spec update via Stainless API ([#105](https://github.com/blockaid-official/blockaid-client-node/issues/105)) ([19daedd](https://github.com/blockaid-official/blockaid-client-node/commit/19daeddc0261193a54bc1c9d2ecb1bec31cc981c))
+* **api:** OpenAPI spec update via Stainless API ([#106](https://github.com/blockaid-official/blockaid-client-node/issues/106)) ([f4224c6](https://github.com/blockaid-official/blockaid-client-node/commit/f4224c63c8c083eac642dcc742bb262b763cfc41))
+* **api:** OpenAPI spec update via Stainless API ([#98](https://github.com/blockaid-official/blockaid-client-node/issues/98)) ([21c40e8](https://github.com/blockaid-official/blockaid-client-node/commit/21c40e834ff7b9963e56cb76886bdd8ada6a720f))
+
 ## 0.12.0 (2024-07-10)
 
 Full Changelog: [v0.11.0...v0.12.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.11.0...v0.12.0)

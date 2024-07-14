@@ -11,7 +11,7 @@ const blockaid = new Blockaid({
 describe('resource transaction', () => {
   test('scan: only required params', async () => {
     const responsePromise = blockaid.evm.transaction.scan({
-      account_address: 'string',
+      account_address: 'account_address',
       chain: 'ethereum',
       data: { from: '0x5e1a0d484c5f0de722e82f9dca3a9d5a421d47cb' },
       metadata: { domain: 'https://boredapeyartclub.com' },
@@ -27,17 +27,18 @@ describe('resource transaction', () => {
 
   test('scan: required and optional params', async () => {
     const response = await blockaid.evm.transaction.scan({
-      account_address: 'string',
+      account_address: 'account_address',
       chain: 'ethereum',
       data: {
         from: '0x5e1a0d484c5f0de722e82f9dca3a9d5a421d47cb',
         to: '0x0d524a5b52737c0a02880d5e84f7d20b8d66bfba',
         data: '0x',
         value: '0x1000000000000000',
-        gas: 'string',
-        gas_price: 'string',
+        gas: 'gas',
+        gas_price: 'gas_price',
       },
       metadata: { domain: 'https://boredapeyartclub.com' },
+      block: 0,
       options: ['simulation', 'validation'],
     });
   });

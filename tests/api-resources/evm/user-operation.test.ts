@@ -47,6 +47,7 @@ describe('resource userOperation', () => {
       },
       metadata: { domain: 'example.com' },
       account_address: '0x77bA5AC3ca4864be26CA3112baDf07286CcC3324',
+      block: '0x5c6fd5',
       options: ['simulation', 'validation'],
     });
   });

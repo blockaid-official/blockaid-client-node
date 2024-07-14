@@ -11,9 +11,9 @@ const blockaid = new Blockaid({
 describe('resource transaction', () => {
   test('scan: only required params', async () => {
     const responsePromise = blockaid.stellar.transaction.scan({
-      account_address: 'string',
+      account_address: 'account_address',
       chain: 'pubnet',
-      metadata: { url: 'string' },
+      metadata: { type: 'wallet', url: 'url' },
       transactions: ['string', 'string', 'string'],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -27,9 +27,9 @@ describe('resource transaction', () => {
 
   test('scan: required and optional params', async () => {
     const response = await blockaid.stellar.transaction.scan({
-      account_address: 'string',
+      account_address: 'account_address',
       chain: 'pubnet',
-      metadata: { type: 'wallet', url: 'string' },
+      metadata: { type: 'wallet', url: 'url' },
       transactions: ['string', 'string', 'string'],
       options: ['validation'],
     });
