@@ -23,7 +23,7 @@ export interface TransactionScanParams {
   /**
    * A CAIP-2 chain ID or a Stellar network name
    */
-  chain: 'pubnet' | 'futurenet';
+  chain: 'pubnet' | 'futurenet' | 'testnet';
 
   /**
    * Metadata
@@ -49,21 +49,21 @@ export interface TransactionScanParams {
 export namespace TransactionScanParams {
   export interface StellarWalletRequestMetadata {
     /**
-     * URL of the dApp that originated the transaction
-     */
-    url: string;
-
-    /**
      * Metadata for wallet requests
      */
-    type?: 'wallet';
+    type: 'wallet';
+
+    /**
+     * URL of the dApp originating the transaction
+     */
+    url: string;
   }
 
   export interface StellarInAppRequestMetadata {
     /**
      * Metadata for in-app requests
      */
-    type?: 'in_app';
+    type: 'in_app';
   }
 }
 

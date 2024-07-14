@@ -13,7 +13,7 @@ describe('resource transaction', () => {
     const responsePromise = blockaid.stellar.transaction.scan({
       account_address: 'account_address',
       chain: 'pubnet',
-      metadata: { url: 'url' },
+      metadata: { type: 'wallet', url: 'url' },
       transactions: ['string', 'string', 'string'],
     });
     const rawResponse = await responsePromise.asResponse();
