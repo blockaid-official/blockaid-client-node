@@ -58,7 +58,7 @@ export interface StellarTransactionScanRequest {
   /**
    * A CAIP-2 chain ID or a Stellar network name
    */
-  chain: 'pubnet' | 'futurenet';
+  chain: 'pubnet' | 'futurenet' | 'testnet';
 
   /**
    * Metadata
@@ -84,21 +84,21 @@ export interface StellarTransactionScanRequest {
 export namespace StellarTransactionScanRequest {
   export interface StellarWalletRequestMetadata {
     /**
-     * URL of the dApp that originated the transaction
-     */
-    url: string;
-
-    /**
      * Metadata for wallet requests
      */
-    type?: 'wallet';
+    type: 'wallet';
+
+    /**
+     * URL of the dApp originating the transaction
+     */
+    url: string;
   }
 
   export interface StellarInAppRequestMetadata {
     /**
      * Metadata for in-app requests
      */
-    type?: 'in_app';
+    type: 'in_app';
   }
 }
 
@@ -145,13 +145,13 @@ export namespace StellarTransactionScanResponse {
      * Mapping between the address of an account to the ownership diff of the account
      * during the transaction
      */
-    assets_ownership_diff?: Record<string, StellarSimulationResultSchema.AssetsOwnershipDiff>;
+    assets_ownership_diff?: Record<string, Array<StellarSimulationResultSchema.AssetsOwnershipDiff>>;
 
     /**
      * Mapping between the address of an account to the exposure of the assets during
      * the transaction
      */
-    exposures?: Record<string, StellarSimulationResultSchema.Exposures>;
+    exposures?: Record<string, Array<StellarSimulationResultSchema.Exposure>>;
   }
 
   export namespace StellarSimulationResultSchema {
@@ -163,12 +163,12 @@ export namespace StellarTransactionScanResponse {
       /**
        * Exposures made by the requested account address
        */
-      account_exposures: AccountSummary.AccountExposures;
+      account_exposures: Array<AccountSummary.AccountExposure>;
 
       /**
        * Account ownerships diff of the requested account address
        */
-      account_ownerships_diff: AccountSummary.AccountOwnershipsDiff;
+      account_ownerships_diff: Array<AccountSummary.AccountOwnershipsDiff>;
 
       /**
        * Total USD diff for the requested account address
@@ -187,25 +187,27 @@ export namespace StellarTransactionScanResponse {
     }
 
     export namespace AccountSummary {
-      /**
-       * Exposures made by the requested account address
-       */
-      export interface AccountExposures {
+      export interface AccountExposure {
         asset: StellarAPI.StellarAssetContractDetailsSchema;
 
         /**
          * Mapping between the address of a Spender to the exposure of the asset during the
          * transaction
          */
-        spenders?: Record<string, AccountExposures.Spenders>;
+        spenders?: Record<string, AccountExposure.Spenders>;
       }
 
-      export namespace AccountExposures {
+      export namespace AccountExposure {
         export interface Spenders {
           /**
            * Raw value of the exposure
            */
           raw_value: number;
+
+          /**
+           * USD value of the exposure
+           */
+          usd_price: number;
 
           /**
            * Value of the exposure
@@ -219,9 +221,6 @@ export namespace StellarTransactionScanResponse {
         }
       }
 
-      /**
-       * Account ownerships diff of the requested account address
-       */
       export interface AccountOwnershipsDiff {
         /**
          * List of public keys that can sign on behalf of the account post-transaction
@@ -232,6 +231,8 @@ export namespace StellarTransactionScanResponse {
          * List of public keys that can sign on behalf of the account pre-transaction
          */
         pre_signers: Array<string>;
+
+        type: 'SET_OPTIONS';
       }
 
       /**
@@ -399,24 +400,31 @@ export namespace StellarTransactionScanResponse {
        * List of public keys that can sign on behalf of the account pre-transaction
        */
       pre_signers: Array<string>;
+
+      type: 'SET_OPTIONS';
     }
 
-    export interface Exposures {
+    export interface Exposure {
       asset: StellarAPI.StellarAssetContractDetailsSchema;
 
       /**
        * Mapping between the address of a Spender to the exposure of the asset during the
        * transaction
        */
-      spenders?: Record<string, Exposures.Spenders>;
+      spenders?: Record<string, Exposure.Spenders>;
     }
 
-    export namespace Exposures {
+    export namespace Exposure {
       export interface Spenders {
         /**
          * Raw value of the exposure
          */
         raw_value: number;
+
+        /**
+         * USD value of the exposure
+         */
+        usd_price: number;
 
         /**
          * Value of the exposure
