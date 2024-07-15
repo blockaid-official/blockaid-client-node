@@ -527,7 +527,7 @@ export namespace TransactionSimulation {
     /**
      * All assets diffs related to the account address
      */
-    assets_diffs: Array<EvmAPI.AssetDiff>;
+    assets_diffs: Array<AccountSummary.AssetsDiff>;
 
     /**
      * All assets exposures related to the account address
@@ -543,6 +543,94 @@ export namespace TransactionSimulation {
      * Total usd exposure related to the account address
      */
     total_usd_exposure: Record<string, string>;
+  }
+
+  export namespace AccountSummary {
+    export interface AssetsDiff {
+      /**
+       * description of the asset for the current diff
+       */
+      asset:
+        | EvmAPI.Erc20TokenDetails
+        | EvmAPI.Erc1155TokenDetails
+        | EvmAPI.Erc721TokenDetails
+        | EvmAPI.NonercTokenDetails
+        | EvmAPI.NativeAssetDetails;
+
+      /**
+       * amount of the asset that was transferred to the address in this transaction
+       */
+      in: Array<EvmAPI.Erc1155Diff | EvmAPI.Erc721Diff | EvmAPI.Erc20Diff | EvmAPI.NativeDiff>;
+
+      /**
+       * amount of the asset that was transferred from the address in this transaction
+       */
+      out: Array<EvmAPI.Erc1155Diff | EvmAPI.Erc721Diff | EvmAPI.Erc20Diff | EvmAPI.NativeDiff>;
+
+      /**
+       * shows the balance before making the transaction and after
+       */
+      balance_changes?: AssetsDiff.BalanceChanges;
+    }
+
+    export namespace AssetsDiff {
+      /**
+       * shows the balance before making the transaction and after
+       */
+      export interface BalanceChanges {
+        /**
+         * balance of the account after making the transaction
+         */
+        after: BalanceChanges.After;
+
+        /**
+         * balance of the account before making the transaction
+         */
+        before: BalanceChanges.Before;
+      }
+
+      export namespace BalanceChanges {
+        /**
+         * balance of the account after making the transaction
+         */
+        export interface After {
+          /**
+           * value before divided by decimal, that was transferred from this address
+           */
+          raw_value: string;
+
+          /**
+           * usd equal of the asset that was transferred from this address
+           */
+          usd_price?: string;
+
+          /**
+           * value after divided by decimals, that was transferred from this address
+           */
+          value?: string;
+        }
+
+        /**
+         * balance of the account before making the transaction
+         */
+        export interface Before {
+          /**
+           * value before divided by decimal, that was transferred from this address
+           */
+          raw_value: string;
+
+          /**
+           * usd equal of the asset that was transferred from this address
+           */
+          usd_price?: string;
+
+          /**
+           * value after divided by decimals, that was transferred from this address
+           */
+          value?: string;
+        }
+      }
+    }
   }
 
   export interface AddressDetails {

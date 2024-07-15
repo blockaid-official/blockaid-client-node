@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.14.0 (2024-07-15)
+
+Full Changelog: [v0.13.0...v0.14.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.13.0...v0.14.0)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#108](https://github.com/blockaid-official/blockaid-client-node/issues/108)) ([f3665c1](https://github.com/blockaid-official/blockaid-client-node/commit/f3665c19d1ec77823fe202cf4a2bd07a4cdb0905))
+
 ## 0.13.0 (2024-07-14)
 
 Full Changelog: [v0.12.0...v0.13.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.12.0...v0.13.0)
