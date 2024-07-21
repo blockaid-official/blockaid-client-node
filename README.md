@@ -22,7 +22,7 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import Blockaid from '@blockaid/client';
 
-const blockaid = new Blockaid({
+const client = new Blockaid({
   apiKey: process.env['BLOCKAID_CLIENT_API_KEY'], // This is the default and can be omitted
 });
 
@@ -53,7 +53,7 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import Blockaid from '@blockaid/client';
 
-const blockaid = new Blockaid({
+const client = new Blockaid({
   apiKey: process.env['BLOCKAID_CLIENT_API_KEY'], // This is the default and can be omitted
 });
 
@@ -136,7 +136,7 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const blockaid = new Blockaid({
+const client = new Blockaid({
   maxRetries: 0, // default is 2
 });
 
@@ -153,7 +153,7 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const blockaid = new Blockaid({
+const client = new Blockaid({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
@@ -177,7 +177,7 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 
 <!-- prettier-ignore -->
 ```ts
-const blockaid = new Blockaid();
+const client = new Blockaid();
 
 const response = await blockaid.evm.jsonRpc
   .scan({
@@ -308,7 +308,7 @@ import http from 'http';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 
 // Configure the default for all requests:
-const blockaid = new Blockaid({
+const client = new Blockaid({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
 });
 
@@ -348,14 +348,6 @@ We are keen for your feedback; please open an [issue](https://www.github.com/blo
 TypeScript >= 4.5 is supported.
 
 The following runtimes are supported:
-
-- Node.js 18 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
-- Deno v1.28.0 or higher, using `import Blockaid from "npm:@blockaid/client"`.
-- Bun 1.0 or later.
-- Cloudflare Workers.
-- Vercel Edge Runtime.
-- Jest 28 or greater with the `"node"` environment (`"jsdom"` is not supported at this time).
-- Nitro v2.6 or greater.
 
 Note that React Native is not supported at this time.
 
