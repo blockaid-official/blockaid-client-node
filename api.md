@@ -134,10 +134,6 @@ Types:
 
 ## Transaction
 
-Methods:
-
-- <code title="post /v0/stellar/scan/transaction">client.stellar.transaction.<a href="./src/resources/stellar/transaction.ts">scan</a>({ ...params }) -> StellarTransactionScanResponse</code>
-
 # Site
 
 Types:

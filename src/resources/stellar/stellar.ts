@@ -524,5 +524,4 @@ export namespace Stellar {
   export import StellarTransactionScanRequest = StellarAPI.StellarTransactionScanRequest;
   export import StellarTransactionScanResponse = StellarAPI.StellarTransactionScanResponse;
   export import Transaction = TransactionAPI.Transaction;
-  export import TransactionScanParams = TransactionAPI.TransactionScanParams;
 }
