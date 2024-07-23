@@ -3,8 +3,8 @@
 import * as Errors from './error';
 import * as Uploads from './uploads';
 import { type Agent } from './_shims/index';
-import * as Core from '@blockaid/client/core';
-import * as API from '@blockaid/client/resources/index';
+import * as Core from './core';
+import * as API from './resources/index';
 
 export interface ClientOptions {
   /**

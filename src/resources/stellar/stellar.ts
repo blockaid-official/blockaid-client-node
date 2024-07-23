@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '@blockaid/client/resource';
-import * as StellarAPI from '@blockaid/client/resources/stellar/stellar';
-import * as TransactionAPI from '@blockaid/client/resources/stellar/transaction';
+import { APIResource } from '../../resource';
+import * as StellarAPI from './stellar';
+import * as TransactionAPI from './transaction';
 
 export class Stellar extends APIResource {
   transaction: TransactionAPI.Transaction = new TransactionAPI.Transaction(this._client);

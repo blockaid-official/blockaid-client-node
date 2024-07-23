@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '@blockaid/client/resource';
-import * as Core from '@blockaid/client/core';
-import * as TransactionRawAPI from '@blockaid/client/resources/evm/transaction-raw';
-import * as EvmAPI from '@blockaid/client/resources/evm/evm';
+import { APIResource } from '../../resource';
+import * as Core from '../../core';
+import * as TransactionRawAPI from './transaction-raw';
+import * as EvmAPI from './evm';
 
 export class TransactionRaw extends APIResource {
   /**

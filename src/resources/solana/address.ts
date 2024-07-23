@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '@blockaid/client/resource';
-import * as Core from '@blockaid/client/core';
-import * as AddressAPI from '@blockaid/client/resources/solana/address';
-import * as SolanaAPI from '@blockaid/client/resources/solana/solana';
+import { APIResource } from '../../resource';
+import * as Core from '../../core';
+import * as AddressAPI from './address';
+import * as SolanaAPI from './solana';
 
 export class Address extends APIResource {
   /**
