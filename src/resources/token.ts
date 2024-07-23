@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '@blockaid/client/resource';
-import * as Core from '@blockaid/client/core';
-import * as TokenAPI from '@blockaid/client/resources/token';
-import * as EvmAPI from '@blockaid/client/resources/evm/evm';
+import { APIResource } from '../resource';
+import * as Core from '../core';
+import * as TokenAPI from './token';
+import * as EvmAPI from './evm/evm';
 
 export class Token extends APIResource {
   /**
