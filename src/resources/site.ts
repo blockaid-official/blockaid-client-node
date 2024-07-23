@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '@blockaid/client/resource';
-import * as Core from '@blockaid/client/core';
-import * as SiteAPI from '@blockaid/client/resources/site';
+import { APIResource } from '../resource';
+import * as Core from '../core';
+import * as SiteAPI from './site';
 
 export class Site extends APIResource {
   /**
