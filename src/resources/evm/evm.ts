@@ -363,7 +363,12 @@ export type TokenScanSupportedChain =
   | 'polygon'
   | 'zora'
   | 'solana'
-  | 'stellar';
+  | 'stellar'
+  | 'linea'
+  | 'blast'
+  | 'zksync'
+  | 'scroll'
+  | 'degen';
 
 export interface TransactionScanFeature {
   /**
