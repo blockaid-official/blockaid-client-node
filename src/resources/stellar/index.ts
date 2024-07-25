@@ -7,4 +7,4 @@ export {
   StellarTransactionScanResponse,
   Stellar,
 } from './stellar';
-export { Transaction } from './transaction';
+export { TransactionScanParams, Transaction } from './transaction';
