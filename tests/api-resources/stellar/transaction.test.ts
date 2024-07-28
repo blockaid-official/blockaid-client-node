@@ -3,18 +3,20 @@
 import Blockaid from '@blockaid/client';
 import { Response } from 'node-fetch';
 
-const blockaid = new Blockaid({
+const client = new Blockaid({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource transaction', () => {
   test('scan: only required params', async () => {
-    const responsePromise = blockaid.stellar.transaction.scan({
-      account_address: 'account_address',
+    const responsePromise = client.stellar.transaction.scan({
+      account_address: 'GDPMFLKUGASUTWBN2XGYYKD27QGHCYH4BUFUTER4L23INYQ4JHDWFOIE',
       chain: 'pubnet',
-      metadata: { type: 'wallet', url: 'url' },
-      transactions: ['string', 'string', 'string'],
+      metadata: { type: 'wallet', url: 'localhost' },
+      transactions: [
+        'AAAAAgAAAADewq1UMCVJ2C3VzYwoevwMcWD8DQtJkjxetobiHEnHYgAAAAEAAAAAAAAAAgAAAAAAAAAAAAAAAQAAAAEAAAAA3sKtVDAlSdgt1c2MKHr8DHFg/A0LSZI8XraG4hxJx2IAAAABAAAAACI40RTBOFEE7uT5mZkoq30mbvxLPJpMUm9cIFHgK9SRAAAAAAAAAAAAmJaAAAAAAAAAAAA=',
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -26,12 +28,14 @@ describe('resource transaction', () => {
   });
 
   test('scan: required and optional params', async () => {
-    const response = await blockaid.stellar.transaction.scan({
-      account_address: 'account_address',
+    const response = await client.stellar.transaction.scan({
+      account_address: 'GDPMFLKUGASUTWBN2XGYYKD27QGHCYH4BUFUTER4L23INYQ4JHDWFOIE',
       chain: 'pubnet',
-      metadata: { type: 'wallet', url: 'url' },
-      transactions: ['string', 'string', 'string'],
-      options: ['validation'],
+      metadata: { type: 'wallet', url: 'localhost' },
+      transactions: [
+        'AAAAAgAAAADewq1UMCVJ2C3VzYwoevwMcWD8DQtJkjxetobiHEnHYgAAAAEAAAAAAAAAAgAAAAAAAAAAAAAAAQAAAAEAAAAA3sKtVDAlSdgt1c2MKHr8DHFg/A0LSZI8XraG4hxJx2IAAAABAAAAACI40RTBOFEE7uT5mZkoq30mbvxLPJpMUm9cIFHgK9SRAAAAAAAAAAAAmJaAAAAAAAAAAAA=',
+      ],
+      options: ['simulation', 'validation'],
     });
   });
 });

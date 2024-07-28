@@ -4,7 +4,7 @@
 
 This library provides convenient access to the Blockaid REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found [on docs.blockaid.io](https://docs.blockaid.io). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.blockaid.io](https://docs.blockaid.io). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainlessapi.com/).
 
@@ -22,12 +22,12 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import Blockaid from '@blockaid/client';
 
-const blockaid = new Blockaid({
+const client = new Blockaid({
   apiKey: process.env['BLOCKAID_CLIENT_API_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
-  const transactionScanResponse = await blockaid.evm.jsonRpc.scan({
+  const transactionScanResponse = await client.evm.jsonRpc.scan({
     chain: 'ethereum',
     data: {
       method: 'eth_signTypedData_v4',
@@ -53,7 +53,7 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import Blockaid from '@blockaid/client';
 
-const blockaid = new Blockaid({
+const client = new Blockaid({
   apiKey: process.env['BLOCKAID_CLIENT_API_KEY'], // This is the default and can be omitted
 });
 
@@ -69,7 +69,7 @@ async function main() {
     },
     metadata: { domain: 'https://boredapeyartclub.com' },
   };
-  const transactionScanResponse: Blockaid.TransactionScanResponse = await blockaid.evm.jsonRpc.scan(params);
+  const transactionScanResponse: Blockaid.TransactionScanResponse = await client.evm.jsonRpc.scan(params);
 }
 
 main();
@@ -86,7 +86,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const transactionScanResponse = await blockaid.evm.jsonRpc
+  const transactionScanResponse = await client.evm.jsonRpc
     .scan({
       chain: 'ethereum',
       data: {
@@ -136,12 +136,12 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const blockaid = new Blockaid({
+const client = new Blockaid({
   maxRetries: 0, // default is 2
 });
 
 // Or, configure per-request:
-await blockaid.evm.jsonRpc.scan({ chain: 'ethereum', data: { method: 'eth_signTypedData_v4', params: ['0x49c73c9d361c04769a452E85D343b41aC38e0EE4', '{"domain":{"chainId":1,"name":"Aave interest bearing WETH","version":"1","verifyingContract":"0x030ba81f1c18d280636f32af80b9aad02cf0854e"},"message":{"owner":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4","spender":"0xa74cbd5b80f73b5950768c8dc467f1c6307c00fd","value":"115792089237316195423570985008687907853269984665640564039457584007913129639935","nonce":"0","deadline":"1988064000","holder":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4"},"primaryType":"Permit","types":{"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}],"Permit":[{"name":"owner","type":"address"},{"name":"spender","type":"address"},{"name":"value","type":"uint256"},{"name":"nonce","type":"uint256"},{"name":"deadline","type":"uint256"}]}}'] }, metadata: { domain: 'https://boredapeyartclub.com' } }, {
+await client.evm.jsonRpc.scan({ chain: 'ethereum', data: { method: 'eth_signTypedData_v4', params: ['0x49c73c9d361c04769a452E85D343b41aC38e0EE4', '{"domain":{"chainId":1,"name":"Aave interest bearing WETH","version":"1","verifyingContract":"0x030ba81f1c18d280636f32af80b9aad02cf0854e"},"message":{"owner":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4","spender":"0xa74cbd5b80f73b5950768c8dc467f1c6307c00fd","value":"115792089237316195423570985008687907853269984665640564039457584007913129639935","nonce":"0","deadline":"1988064000","holder":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4"},"primaryType":"Permit","types":{"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}],"Permit":[{"name":"owner","type":"address"},{"name":"spender","type":"address"},{"name":"value","type":"uint256"},{"name":"nonce","type":"uint256"},{"name":"deadline","type":"uint256"}]}}'] }, metadata: { domain: 'https://boredapeyartclub.com' } }, {
   maxRetries: 5,
 });
 ```
@@ -153,12 +153,12 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const blockaid = new Blockaid({
+const client = new Blockaid({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
 // Override per-request:
-await blockaid.evm.jsonRpc.scan({ chain: 'ethereum', data: { method: 'eth_signTypedData_v4', params: ['0x49c73c9d361c04769a452E85D343b41aC38e0EE4', '{"domain":{"chainId":1,"name":"Aave interest bearing WETH","version":"1","verifyingContract":"0x030ba81f1c18d280636f32af80b9aad02cf0854e"},"message":{"owner":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4","spender":"0xa74cbd5b80f73b5950768c8dc467f1c6307c00fd","value":"115792089237316195423570985008687907853269984665640564039457584007913129639935","nonce":"0","deadline":"1988064000","holder":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4"},"primaryType":"Permit","types":{"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}],"Permit":[{"name":"owner","type":"address"},{"name":"spender","type":"address"},{"name":"value","type":"uint256"},{"name":"nonce","type":"uint256"},{"name":"deadline","type":"uint256"}]}}'] }, metadata: { domain: 'https://boredapeyartclub.com' } }, {
+await client.evm.jsonRpc.scan({ chain: 'ethereum', data: { method: 'eth_signTypedData_v4', params: ['0x49c73c9d361c04769a452E85D343b41aC38e0EE4', '{"domain":{"chainId":1,"name":"Aave interest bearing WETH","version":"1","verifyingContract":"0x030ba81f1c18d280636f32af80b9aad02cf0854e"},"message":{"owner":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4","spender":"0xa74cbd5b80f73b5950768c8dc467f1c6307c00fd","value":"115792089237316195423570985008687907853269984665640564039457584007913129639935","nonce":"0","deadline":"1988064000","holder":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4"},"primaryType":"Permit","types":{"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}],"Permit":[{"name":"owner","type":"address"},{"name":"spender","type":"address"},{"name":"value","type":"uint256"},{"name":"nonce","type":"uint256"},{"name":"deadline","type":"uint256"}]}}'] }, metadata: { domain: 'https://boredapeyartclub.com' } }, {
   timeout: 5 * 1000,
 });
 ```
@@ -177,9 +177,9 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 
 <!-- prettier-ignore -->
 ```ts
-const blockaid = new Blockaid();
+const client = new Blockaid();
 
-const response = await blockaid.evm.jsonRpc
+const response = await client.evm.jsonRpc
   .scan({
     chain: 'ethereum',
     data: {
@@ -195,7 +195,7 @@ const response = await blockaid.evm.jsonRpc
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: transactionScanResponse, response: raw } = await blockaid.evm.jsonRpc
+const { data: transactionScanResponse, response: raw } = await client.evm.jsonRpc
   .scan({
     chain: 'ethereum',
     data: {
@@ -308,12 +308,12 @@ import http from 'http';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 
 // Configure the default for all requests:
-const blockaid = new Blockaid({
+const client = new Blockaid({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
 });
 
 // Override per-request:
-await blockaid.evm.jsonRpc.scan(
+await client.evm.jsonRpc.scan(
   {
     chain: 'ethereum',
     data: {
@@ -348,14 +348,6 @@ We are keen for your feedback; please open an [issue](https://www.github.com/blo
 TypeScript >= 4.5 is supported.
 
 The following runtimes are supported:
-
-- Node.js 18 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
-- Deno v1.28.0 or higher, using `import Blockaid from "npm:@blockaid/client"`.
-- Bun 1.0 or later.
-- Cloudflare Workers.
-- Vercel Edge Runtime.
-- Jest 28 or greater with the `"node"` environment (`"jsdom"` is not supported at this time).
-- Nitro v2.6 or greater.
 
 Note that React Native is not supported at this time.
 

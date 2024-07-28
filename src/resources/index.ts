@@ -62,7 +62,15 @@ export {
   UsdDiff,
   Evm,
 } from './evm/evm';
-export { SiteScanHitResponse, SiteScanMissResponse, SiteScanResponse, SiteScanParams, Site } from './site';
+export {
+  SiteScanHitResponse,
+  SiteScanMissResponse,
+  SiteReportResponse,
+  SiteScanResponse,
+  SiteReportParams,
+  SiteScanParams,
+  Site,
+} from './site';
 export {
   StellarAssetContractDetailsSchema,
   StellarAssetTransferDetailsSchema,
@@ -70,4 +78,4 @@ export {
   StellarTransactionScanResponse,
   Stellar,
 } from './stellar/stellar';
-export { TokenScanResponse, TokenScanParams, Token } from './token';
+export { TokenReportResponse, TokenScanResponse, TokenReportParams, TokenScanParams, Token } from './token';

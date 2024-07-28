@@ -3,14 +3,14 @@
 import Blockaid from '@blockaid/client';
 import { Response } from 'node-fetch';
 
-const blockaid = new Blockaid({
+const client = new Blockaid({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource transactionBulk', () => {
   test('scan: only required params', async () => {
-    const responsePromise = blockaid.evm.transactionBulk.scan({
+    const responsePromise = client.evm.transactionBulk.scan({
       chain: 'ethereum',
       data: [
         { from: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' },
@@ -28,7 +28,7 @@ describe('resource transactionBulk', () => {
   });
 
   test('scan: required and optional params', async () => {
-    const response = await blockaid.evm.transactionBulk.scan({
+    const response = await client.evm.transactionBulk.scan({
       chain: 'ethereum',
       data: [
         {

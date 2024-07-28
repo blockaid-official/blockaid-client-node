@@ -3,8 +3,8 @@
 import * as Errors from './error';
 import * as Uploads from './uploads';
 import { type Agent } from './_shims/index';
-import * as Core from '@blockaid/client/core';
-import * as API from '@blockaid/client/resources/index';
+import * as Core from './core';
+import * as API from './resources/index';
 
 export interface ClientOptions {
   /**
@@ -251,11 +251,15 @@ export namespace Blockaid {
   export import Site = API.Site;
   export import SiteScanHitResponse = API.SiteScanHitResponse;
   export import SiteScanMissResponse = API.SiteScanMissResponse;
+  export import SiteReportResponse = API.SiteReportResponse;
   export import SiteScanResponse = API.SiteScanResponse;
+  export import SiteReportParams = API.SiteReportParams;
   export import SiteScanParams = API.SiteScanParams;
 
   export import Token = API.Token;
+  export import TokenReportResponse = API.TokenReportResponse;
   export import TokenScanResponse = API.TokenScanResponse;
+  export import TokenReportParams = API.TokenReportParams;
   export import TokenScanParams = API.TokenScanParams;
 }
 

@@ -3,14 +3,37 @@
 import Blockaid from '@blockaid/client';
 import { Response } from 'node-fetch';
 
-const blockaid = new Blockaid({
+const client = new Blockaid({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource postTransaction', () => {
+  test('report: only required params', async () => {
+    const responsePromise = client.evm.postTransaction.report({
+      details: 'Details about the report',
+      event: 'FALSE_NEGATIVE',
+      report: { type: 'request_id', request_id: 'ghi123' },
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('report: required and optional params', async () => {
+    const response = await client.evm.postTransaction.report({
+      details: 'Details about the report',
+      event: 'FALSE_NEGATIVE',
+      report: { type: 'request_id', request_id: 'ghi123' },
+    });
+  });
+
   test('scan: only required params', async () => {
-    const responsePromise = blockaid.evm.postTransaction.scan({
+    const responsePromise = client.evm.postTransaction.scan({
       chain: 'ethereum',
       data: { tx_hash: '0xc01780dadc107754b331250b4797606949cb3d0087facc0a737122d5e973c83c' },
       metadata: { domain: 'domain' },
@@ -25,7 +48,7 @@ describe('resource postTransaction', () => {
   });
 
   test('scan: required and optional params', async () => {
-    const response = await blockaid.evm.postTransaction.scan({
+    const response = await client.evm.postTransaction.scan({
       chain: 'ethereum',
       data: { tx_hash: '0xc01780dadc107754b331250b4797606949cb3d0087facc0a737122d5e973c83c' },
       metadata: { domain: 'domain' },

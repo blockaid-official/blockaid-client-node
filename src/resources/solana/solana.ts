@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '@blockaid/client/resource';
-import * as SolanaAPI from '@blockaid/client/resources/solana/solana';
-import * as AddressAPI from '@blockaid/client/resources/solana/address';
-import * as MessageAPI from '@blockaid/client/resources/solana/message';
+import { APIResource } from '../../resource';
+import * as SolanaAPI from './solana';
+import * as AddressAPI from './address';
+import * as MessageAPI from './message';
 
 export class Solana extends APIResource {
   message: MessageAPI.Message = new MessageAPI.Message(this._client);
