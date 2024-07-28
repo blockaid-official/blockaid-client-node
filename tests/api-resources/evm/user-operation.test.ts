@@ -3,14 +3,14 @@
 import Blockaid from '@blockaid/client';
 import { Response } from 'node-fetch';
 
-const blockaid = new Blockaid({
+const client = new Blockaid({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource userOperation', () => {
   test('scan: only required params', async () => {
-    const responsePromise = blockaid.evm.userOperation.scan({
+    const responsePromise = client.evm.userOperation.scan({
       chain: 'base-sepolia',
       data: { operation: {} },
       metadata: { domain: 'example.com' },
@@ -25,7 +25,7 @@ describe('resource userOperation', () => {
   });
 
   test('scan: required and optional params', async () => {
-    const response = await blockaid.evm.userOperation.scan({
+    const response = await client.evm.userOperation.scan({
       chain: 'base-sepolia',
       data: {
         operation: {

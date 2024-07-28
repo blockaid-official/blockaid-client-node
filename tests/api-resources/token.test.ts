@@ -3,14 +3,14 @@
 import Blockaid from '@blockaid/client';
 import { Response } from 'node-fetch';
 
-const blockaid = new Blockaid({
+const client = new Blockaid({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource token', () => {
   test('scan: only required params', async () => {
-    const responsePromise = blockaid.token.scan({
+    const responsePromise = client.token.scan({
       address: '0x66587563e933bbf3974b89156b47bb82b921eb35',
       chain: 'ethereum',
     });
@@ -24,7 +24,7 @@ describe('resource token', () => {
   });
 
   test('scan: required and optional params', async () => {
-    const response = await blockaid.token.scan({
+    const response = await client.token.scan({
       address: '0x66587563e933bbf3974b89156b47bb82b921eb35',
       chain: 'ethereum',
       metadata: { domain: 'domain' },
