@@ -3,14 +3,14 @@
 import Blockaid from '@blockaid/client';
 import { Response } from 'node-fetch';
 
-const blockaid = new Blockaid({
+const client = new Blockaid({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource message', () => {
   test('scan: only required params', async () => {
-    const responsePromise = blockaid.solana.message.scan({
+    const responsePromise = client.solana.message.scan({
       account_address: '86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY',
       metadata: {},
       transactions: [
@@ -27,7 +27,7 @@ describe('resource message', () => {
   });
 
   test('scan: required and optional params', async () => {
-    const response = await blockaid.solana.message.scan({
+    const response = await client.solana.message.scan({
       account_address: '86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY',
       metadata: { url: 'https://example.com' },
       transactions: [
