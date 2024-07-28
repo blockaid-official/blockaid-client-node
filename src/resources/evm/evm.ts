@@ -776,6 +776,8 @@ export namespace Evm {
   export import JsonRpc = JsonRpcAPI.JsonRpc;
   export import JsonRpcScanParams = JsonRpcAPI.JsonRpcScanParams;
   export import Transaction = TransactionAPI.Transaction;
+  export import TransactionReportResponse = TransactionAPI.TransactionReportResponse;
+  export import TransactionReportParams = TransactionAPI.TransactionReportParams;
   export import TransactionScanParams = TransactionAPI.TransactionScanParams;
   export import TransactionBulk = TransactionBulkAPI.TransactionBulk;
   export import TransactionBulkScanResponse = TransactionBulkAPI.TransactionBulkScanResponse;
@@ -785,6 +787,8 @@ export namespace Evm {
   export import UserOperation = UserOperationAPI.UserOperation;
   export import UserOperationScanParams = UserOperationAPI.UserOperationScanParams;
   export import PostTransaction = PostTransactionAPI.PostTransaction;
+  export import PostTransactionReportResponse = PostTransactionAPI.PostTransactionReportResponse;
+  export import PostTransactionReportParams = PostTransactionAPI.PostTransactionReportParams;
   export import PostTransactionScanParams = PostTransactionAPI.PostTransactionScanParams;
   export import PostTransactionBulk = PostTransactionBulkAPI.PostTransactionBulk;
   export import PostTransactionBulkScanResponse = PostTransactionBulkAPI.PostTransactionBulkScanResponse;

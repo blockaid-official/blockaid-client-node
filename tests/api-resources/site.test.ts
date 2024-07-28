@@ -9,6 +9,29 @@ const client = new Blockaid({
 });
 
 describe('resource site', () => {
+  test('report: only required params', async () => {
+    const responsePromise = client.site.report({
+      details: 'Details about the report',
+      event: 'FALSE_POSITIVE',
+      report: { type: 'request_id', request_id: 'abc123' },
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('report: required and optional params', async () => {
+    const response = await client.site.report({
+      details: 'Details about the report',
+      event: 'FALSE_POSITIVE',
+      report: { type: 'request_id', request_id: 'abc123' },
+    });
+  });
+
   test('scan: only required params', async () => {
     const responsePromise = client.site.scan({ url: 'https://app.uniswap.org' });
     const rawResponse = await responsePromise.asResponse();

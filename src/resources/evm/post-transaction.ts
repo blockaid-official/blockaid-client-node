@@ -7,6 +7,13 @@ import * as EvmAPI from './evm';
 
 export class PostTransaction extends APIResource {
   /**
+   * Report for misclassification of an EVM post transaction.
+   */
+  report(body: PostTransactionReportParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+    return this._client.post('/v0/evm/post-transaction/report', { body, ...options });
+  }
+
+  /**
    * Scan a transaction that was already executed on chain, returns validation with
    * features indicating address poisoning entites and malicious operators.
    */
@@ -15,6 +22,46 @@ export class PostTransaction extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<EvmAPI.TransactionScanResponse> {
     return this._client.post('/v0/evm/post-transaction/scan', { body, ...options });
+  }
+}
+
+export type PostTransactionReportResponse = unknown;
+
+export interface PostTransactionReportParams {
+  details: string;
+
+  /**
+   * An enumeration.
+   */
+  event: 'FALSE_POSITIVE' | 'FALSE_NEGATIVE';
+
+  report:
+    | PostTransactionReportParams.ParamReportChainTransactionHashParams
+    | PostTransactionReportParams.RequestIDReport;
+}
+
+export namespace PostTransactionReportParams {
+  export interface ParamReportChainTransactionHashParams {
+    params: ParamReportChainTransactionHashParams.Params;
+
+    type: 'params';
+  }
+
+  export namespace ParamReportChainTransactionHashParams {
+    export interface Params {
+      /**
+       * The chain name
+       */
+      chain: EvmAPI.TransactionScanSupportedChain;
+
+      tx_hash: string;
+    }
+  }
+
+  export interface RequestIDReport {
+    request_id: string;
+
+    type: 'request_id';
   }
 }
 
@@ -54,5 +101,7 @@ export namespace PostTransactionScanParams {
 }
 
 export namespace PostTransaction {
+  export import PostTransactionReportResponse = PostTransactionAPI.PostTransactionReportResponse;
+  export import PostTransactionReportParams = PostTransactionAPI.PostTransactionReportParams;
   export import PostTransactionScanParams = PostTransactionAPI.PostTransactionScanParams;
 }

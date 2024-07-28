@@ -251,11 +251,15 @@ export namespace Blockaid {
   export import Site = API.Site;
   export import SiteScanHitResponse = API.SiteScanHitResponse;
   export import SiteScanMissResponse = API.SiteScanMissResponse;
+  export import SiteReportResponse = API.SiteReportResponse;
   export import SiteScanResponse = API.SiteScanResponse;
+  export import SiteReportParams = API.SiteReportParams;
   export import SiteScanParams = API.SiteScanParams;
 
   export import Token = API.Token;
+  export import TokenReportResponse = API.TokenReportResponse;
   export import TokenScanResponse = API.TokenScanResponse;
+  export import TokenReportParams = API.TokenReportParams;
   export import TokenScanParams = API.TokenScanParams;
 }
 
