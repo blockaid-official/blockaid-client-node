@@ -35,8 +35,13 @@ Methods:
 
 ## Transaction
 
+Types:
+
+- <code><a href="./src/resources/evm/transaction.ts">TransactionReportResponse</a></code>
+
 Methods:
 
+- <code title="post /v0/evm/transaction/report">client.evm.transaction.<a href="./src/resources/evm/transaction.ts">report</a>({ ...params }) -> unknown</code>
 - <code title="post /v0/evm/transaction/scan">client.evm.transaction.<a href="./src/resources/evm/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
 
 ## TransactionBulk
@@ -63,8 +68,13 @@ Methods:
 
 ## PostTransaction
 
+Types:
+
+- <code><a href="./src/resources/evm/post-transaction.ts">PostTransactionReportResponse</a></code>
+
 Methods:
 
+- <code title="post /v0/evm/post-transaction/report">client.evm.postTransaction.<a href="./src/resources/evm/post-transaction.ts">report</a>({ ...params }) -> unknown</code>
 - <code title="post /v0/evm/post-transaction/scan">client.evm.postTransaction.<a href="./src/resources/evm/post-transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
 
 ## PostTransactionBulk
@@ -144,18 +154,22 @@ Types:
 
 - <code><a href="./src/resources/site.ts">SiteScanHitResponse</a></code>
 - <code><a href="./src/resources/site.ts">SiteScanMissResponse</a></code>
+- <code><a href="./src/resources/site.ts">SiteReportResponse</a></code>
 - <code><a href="./src/resources/site.ts">SiteScanResponse</a></code>
 
 Methods:
 
+- <code title="post /v0/site/report">client.site.<a href="./src/resources/site.ts">report</a>({ ...params }) -> unknown</code>
 - <code title="post /v0/site/scan">client.site.<a href="./src/resources/site.ts">scan</a>({ ...params }) -> SiteScanResponse</code>
 
 # Token
 
 Types:
 
+- <code><a href="./src/resources/token.ts">TokenReportResponse</a></code>
 - <code><a href="./src/resources/token.ts">TokenScanResponse</a></code>
 
 Methods:
 
+- <code title="post /v0/token/report">client.token.<a href="./src/resources/token.ts">report</a>({ ...params }) -> unknown</code>
 - <code title="post /v0/token/scan">client.token.<a href="./src/resources/token.ts">scan</a>({ ...params }) -> TokenScanResponse</code>

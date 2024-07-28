@@ -7,6 +7,13 @@ import * as EvmAPI from './evm';
 
 export class Transaction extends APIResource {
   /**
+   * Report for misclassification of a transaction.
+   */
+  report(body: TransactionReportParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+    return this._client.post('/v0/evm/transaction/report', { body, ...options });
+  }
+
+  /**
    * Gets a transaction and returns a full simulation indicating what will happen in
    * the transaction together with a recommended action and some textual reasons of
    * why the transaction was flagged that way.
@@ -16,6 +23,50 @@ export class Transaction extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<EvmAPI.TransactionScanResponse> {
     return this._client.post('/v0/evm/transaction/scan', { body, ...options });
+  }
+}
+
+export type TransactionReportResponse = unknown;
+
+export interface TransactionReportParams {
+  details: string;
+
+  /**
+   * An enumeration.
+   */
+  event: 'FALSE_POSITIVE' | 'FALSE_NEGATIVE';
+
+  report:
+    | TransactionReportParams.ParamReportTransactionReportParams
+    | TransactionReportParams.RequestIDReport;
+}
+
+export namespace TransactionReportParams {
+  export interface ParamReportTransactionReportParams {
+    params: ParamReportTransactionReportParams.Params;
+
+    type: 'params';
+  }
+
+  export namespace ParamReportTransactionReportParams {
+    export interface Params {
+      account_address: string;
+
+      /**
+       * The chain name
+       */
+      chain: EvmAPI.TransactionScanSupportedChain;
+
+      data: unknown;
+
+      metadata: unknown;
+    }
+  }
+
+  export interface RequestIDReport {
+    request_id: string;
+
+    type: 'request_id';
   }
 }
 
@@ -92,5 +143,7 @@ export namespace TransactionScanParams {
 }
 
 export namespace Transaction {
+  export import TransactionReportResponse = TransactionAPI.TransactionReportResponse;
+  export import TransactionReportParams = TransactionAPI.TransactionReportParams;
   export import TransactionScanParams = TransactionAPI.TransactionScanParams;
 }
