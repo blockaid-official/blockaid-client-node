@@ -33,8 +33,18 @@ export {
   PostTransactionBulkScanParams,
   PostTransactionBulk,
 } from './post-transaction-bulk';
-export { PostTransactionScanParams, PostTransaction } from './post-transaction';
+export {
+  PostTransactionReportResponse,
+  PostTransactionReportParams,
+  PostTransactionScanParams,
+  PostTransaction,
+} from './post-transaction';
 export { TransactionBulkScanResponse, TransactionBulkScanParams, TransactionBulk } from './transaction-bulk';
 export { TransactionRawScanParams, TransactionRaw } from './transaction-raw';
-export { TransactionScanParams, Transaction } from './transaction';
+export {
+  TransactionReportResponse,
+  TransactionReportParams,
+  TransactionScanParams,
+  Transaction,
+} from './transaction';
 export { UserOperationScanParams, UserOperation } from './user-operation';

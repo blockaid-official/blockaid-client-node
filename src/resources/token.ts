@@ -7,6 +7,13 @@ import * as EvmAPI from './evm/evm';
 
 export class Token extends APIResource {
   /**
+   * Report for misclassification of a token.
+   */
+  report(body: TokenReportParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+    return this._client.post('/v0/token/report', { body, ...options });
+  }
+
+  /**
    * Gets a token address and scan the token to identify any indication of malicious
    * behaviour
    */
@@ -14,6 +21,8 @@ export class Token extends APIResource {
     return this._client.post('/v0/token/scan', { body, ...options });
   }
 }
+
+export type TokenReportResponse = unknown;
 
 export interface TokenScanResponse {
   /**
@@ -51,6 +60,42 @@ export namespace TokenScanResponse {
   }
 }
 
+export interface TokenReportParams {
+  details: string;
+
+  /**
+   * An enumeration.
+   */
+  event: 'FALSE_POSITIVE' | 'FALSE_NEGATIVE';
+
+  report: TokenReportParams.ParamReportAddressChainReportParams | TokenReportParams.RequestIDReport;
+}
+
+export namespace TokenReportParams {
+  export interface ParamReportAddressChainReportParams {
+    params: ParamReportAddressChainReportParams.Params;
+
+    type: 'params';
+  }
+
+  export namespace ParamReportAddressChainReportParams {
+    export interface Params {
+      address: string;
+
+      /**
+       * The chain name
+       */
+      chain: EvmAPI.TokenScanSupportedChain;
+    }
+  }
+
+  export interface RequestIDReport {
+    request_id: string;
+
+    type: 'request_id';
+  }
+}
+
 export interface TokenScanParams {
   /**
    * Token address to validate (EVM / Solana / Stellar)
@@ -81,6 +126,8 @@ export namespace TokenScanParams {
 }
 
 export namespace Token {
+  export import TokenReportResponse = TokenAPI.TokenReportResponse;
   export import TokenScanResponse = TokenAPI.TokenScanResponse;
+  export import TokenReportParams = TokenAPI.TokenReportParams;
   export import TokenScanParams = TokenAPI.TokenScanParams;
 }

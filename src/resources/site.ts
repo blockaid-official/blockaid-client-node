@@ -6,6 +6,13 @@ import * as SiteAPI from './site';
 
 export class Site extends APIResource {
   /**
+   * Report for misclassification of a site.
+   */
+  report(body: SiteReportParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+    return this._client.post('/v0/site/report', { body, ...options });
+  }
+
+  /**
    * Scan Site
    */
   scan(body: SiteScanParams, options?: Core.RequestOptions): Core.APIPromise<SiteScanResponse> {
@@ -65,7 +72,40 @@ export interface SiteScanMissResponse {
   status: 'miss';
 }
 
+export type SiteReportResponse = unknown;
+
 export type SiteScanResponse = SiteScanHitResponse | SiteScanMissResponse;
+
+export interface SiteReportParams {
+  details: string;
+
+  /**
+   * An enumeration.
+   */
+  event: 'FALSE_POSITIVE' | 'FALSE_NEGATIVE';
+
+  report: SiteReportParams.ParamReportSiteReportParams | SiteReportParams.RequestIDReport;
+}
+
+export namespace SiteReportParams {
+  export interface ParamReportSiteReportParams {
+    params: ParamReportSiteReportParams.Params;
+
+    type: 'params';
+  }
+
+  export namespace ParamReportSiteReportParams {
+    export interface Params {
+      url: string;
+    }
+  }
+
+  export interface RequestIDReport {
+    request_id: string;
+
+    type: 'request_id';
+  }
+}
 
 export interface SiteScanParams {
   url: string;
@@ -88,6 +128,8 @@ export namespace SiteScanParams {
 export namespace Site {
   export import SiteScanHitResponse = SiteAPI.SiteScanHitResponse;
   export import SiteScanMissResponse = SiteAPI.SiteScanMissResponse;
+  export import SiteReportResponse = SiteAPI.SiteReportResponse;
   export import SiteScanResponse = SiteAPI.SiteScanResponse;
+  export import SiteReportParams = SiteAPI.SiteReportParams;
   export import SiteScanParams = SiteAPI.SiteScanParams;
 }
