@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.15.0 (2024-07-28)
+
+Full Changelog: [v0.14.0...v0.15.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.14.0...v0.15.0)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#111](https://github.com/blockaid-official/blockaid-client-node/issues/111)) ([8f0aa10](https://github.com/blockaid-official/blockaid-client-node/commit/8f0aa104fb8ef3b88b049a60788c1af5b5489328))
+* **api:** OpenAPI spec update via Stainless API ([#113](https://github.com/blockaid-official/blockaid-client-node/issues/113)) ([4cacf4c](https://github.com/blockaid-official/blockaid-client-node/commit/4cacf4ca68e724c1975c78092ed310b453ee15b2))
+* **api:** OpenAPI spec update via Stainless API ([#116](https://github.com/blockaid-official/blockaid-client-node/issues/116)) ([cdddcb2](https://github.com/blockaid-official/blockaid-client-node/commit/cdddcb22e6d00bf50b5ca35bbc1354936bd56bc9))
+* **api:** OpenAPI spec update via Stainless API ([#117](https://github.com/blockaid-official/blockaid-client-node/issues/117)) ([c1637e9](https://github.com/blockaid-official/blockaid-client-node/commit/c1637e9bd22b2b1220caed9c59a5afb7f542ed30))
+* **api:** OpenAPI spec update via Stainless API ([#118](https://github.com/blockaid-official/blockaid-client-node/issues/118)) ([29fb0d5](https://github.com/blockaid-official/blockaid-client-node/commit/29fb0d585ff72be38c9221c12d5822dc4e53413a))
+* **api:** OpenAPI spec update via Stainless API ([#121](https://github.com/blockaid-official/blockaid-client-node/issues/121)) ([34397a3](https://github.com/blockaid-official/blockaid-client-node/commit/34397a3372b9a2623cbc159b08e40c91d6f62901))
+* **api:** OpenAPI spec update via Stainless API ([#122](https://github.com/blockaid-official/blockaid-client-node/issues/122)) ([8c247f2](https://github.com/blockaid-official/blockaid-client-node/commit/8c247f2d9df24f0b516e541855eb8a0beb00d6bd))
+
+
+### Bug Fixes
+
+* **compat:** remove ReadableStream polyfill redundant since node v16 ([#119](https://github.com/blockaid-official/blockaid-client-node/issues/119)) ([7129ae1](https://github.com/blockaid-official/blockaid-client-node/commit/7129ae179ae0e988e76a0cd8ebd11b8a5bb57636))
+* use relative paths ([#115](https://github.com/blockaid-official/blockaid-client-node/issues/115)) ([b57cf67](https://github.com/blockaid-official/blockaid-client-node/commit/b57cf67f519188e92f9424c0608fb71877d44f15))
+
+
+### Chores
+
+* **docs:** fix incorrect client var names ([#120](https://github.com/blockaid-official/blockaid-client-node/issues/120)) ([978013b](https://github.com/blockaid-official/blockaid-client-node/commit/978013b7afc5722b9fb1b842d10149c8d3cfcab0))
+* **tests:** update prism version ([#114](https://github.com/blockaid-official/blockaid-client-node/issues/114)) ([5ee709f](https://github.com/blockaid-official/blockaid-client-node/commit/5ee709facb5eeb693f3ae8d3c2c8e32c154e1077))
+
 ## 0.14.0 (2024-07-15)
 
 Full Changelog: [v0.13.0...v0.14.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.13.0...v0.14.0)
