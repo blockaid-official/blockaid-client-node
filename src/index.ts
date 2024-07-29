@@ -189,7 +189,7 @@ export namespace Blockaid {
   export import Erc1155Diff = API.Erc1155Diff;
   export import Erc1155Exposure = API.Erc1155Exposure;
   export import Erc1155TokenDetails = API.Erc1155TokenDetails;
-  export import Erc20AddressAssetExposure = API.Erc20AddressAssetExposure
+  export import Erc20AddressAssetExposure = API.Erc20AddressAssetExposure;
   export import Erc20Diff = API.Erc20Diff;
   export import Erc20Exposure = API.Erc20Exposure;
   export import Erc20TokenDetails = API.Erc20TokenDetails;
