@@ -141,6 +141,7 @@ export class Blockaid extends Core.APIClient {
   }
 
   static Blockaid = this;
+  static DEFAULT_TIMEOUT = 60000; // 1 minute
 
   static BlockaidError = Errors.BlockaidError;
   static APIError = Errors.APIError;
