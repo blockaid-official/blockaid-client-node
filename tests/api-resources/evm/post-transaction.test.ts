@@ -13,7 +13,7 @@ describe('resource postTransaction', () => {
     const responsePromise = client.evm.postTransaction.report({
       details: 'Details about the report',
       event: 'FALSE_NEGATIVE',
-      report: { type: 'request_id', request_id: 'ghi123' },
+      report: { type: 'request_id', request_id: '11111111-1111-1111-1111-111111111111' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,7 +28,7 @@ describe('resource postTransaction', () => {
     const response = await client.evm.postTransaction.report({
       details: 'Details about the report',
       event: 'FALSE_NEGATIVE',
-      report: { type: 'request_id', request_id: 'ghi123' },
+      report: { type: 'request_id', request_id: '11111111-1111-1111-1111-111111111111' },
     });
   });
 
