@@ -13,7 +13,7 @@ describe('resource transaction', () => {
     const responsePromise = client.evm.transaction.report({
       details: 'Details about the report',
       event: 'FALSE_POSITIVE',
-      report: { type: 'request_id', request_id: 'jkl456' },
+      report: { type: 'request_id', request_id: '11111111-1111-1111-1111-111111111111' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,7 +28,7 @@ describe('resource transaction', () => {
     const response = await client.evm.transaction.report({
       details: 'Details about the report',
       event: 'FALSE_POSITIVE',
-      report: { type: 'request_id', request_id: 'jkl456' },
+      report: { type: 'request_id', request_id: '11111111-1111-1111-1111-111111111111' },
     });
   });
 
