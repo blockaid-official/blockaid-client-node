@@ -28,6 +28,9 @@ export class PostTransaction extends APIResource {
 export type PostTransactionReportResponse = unknown;
 
 export interface PostTransactionReportParams {
+  /**
+   * Details about the report.
+   */
   details: string;
 
   /**
@@ -35,6 +38,9 @@ export interface PostTransactionReportParams {
    */
   event: 'FALSE_POSITIVE' | 'FALSE_NEGATIVE';
 
+  /**
+   * The report parameters.
+   */
   report:
     | PostTransactionReportParams.ParamReportChainTransactionHashParams
     | PostTransactionReportParams.RequestIDReport;
@@ -54,6 +60,9 @@ export namespace PostTransactionReportParams {
        */
       chain: EvmAPI.TransactionScanSupportedChain;
 
+      /**
+       * The transaction hash to report on.
+       */
       tx_hash: string;
     }
   }

@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.16.0 (2024-07-30)
+
+Full Changelog: [v0.15.0...v0.16.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.15.0...v0.16.0)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#125](https://github.com/blockaid-official/blockaid-client-node/issues/125)) ([57c1bf0](https://github.com/blockaid-official/blockaid-client-node/commit/57c1bf02596ebdf58a32e79602b6c029bf001836))
+* **api:** OpenAPI spec update via Stainless API ([#127](https://github.com/blockaid-official/blockaid-client-node/issues/127)) ([74e90fe](https://github.com/blockaid-official/blockaid-client-node/commit/74e90fee05679a8a2f79a88203b7e75a02a114e6))
+
+
+### Chores
+
+* **internal:** add constant for default timeout ([#128](https://github.com/blockaid-official/blockaid-client-node/issues/128)) ([75872ae](https://github.com/blockaid-official/blockaid-client-node/commit/75872aeb5ed1a48ba1be26de4555d52b701f71a2))
+
 ## 0.15.0 (2024-07-28)
 
 Full Changelog: [v0.14.0...v0.15.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.14.0...v0.15.0)

@@ -61,6 +61,9 @@ export namespace TokenScanResponse {
 }
 
 export interface TokenReportParams {
+  /**
+   * Details about the report.
+   */
   details: string;
 
   /**
@@ -68,18 +71,24 @@ export interface TokenReportParams {
    */
   event: 'FALSE_POSITIVE' | 'FALSE_NEGATIVE';
 
-  report: TokenReportParams.ParamReportAddressChainReportParams | TokenReportParams.RequestIDReport;
+  /**
+   * The report parameters.
+   */
+  report: TokenReportParams.ParamReportTokenReportParams | TokenReportParams.RequestIDReport;
 }
 
 export namespace TokenReportParams {
-  export interface ParamReportAddressChainReportParams {
-    params: ParamReportAddressChainReportParams.Params;
+  export interface ParamReportTokenReportParams {
+    params: ParamReportTokenReportParams.Params;
 
     type: 'params';
   }
 
-  export namespace ParamReportAddressChainReportParams {
+  export namespace ParamReportTokenReportParams {
     export interface Params {
+      /**
+       * The address of the token to report on.
+       */
       address: string;
 
       /**
