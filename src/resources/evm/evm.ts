@@ -469,7 +469,8 @@ export type TransactionScanSupportedChain =
   | 'ethereum-sepolia'
   | 'degen'
   | 'avalanche-fuji'
-  | 'immutable-zkevm';
+  | 'immutable-zkevm'
+  | 'gnosis';
 
 export interface TransactionSimulation {
   /**
