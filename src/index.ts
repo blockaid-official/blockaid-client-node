@@ -124,6 +124,7 @@ export class Blockaid extends Core.APIClient {
   stellar: API.Stellar = new API.Stellar(this);
   site: API.Site = new API.Site(this);
   token: API.Token = new API.Token(this);
+  tokenBulk: API.TokenBulk = new API.TokenBulk(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -259,6 +260,10 @@ export namespace Blockaid {
   export import TokenScanResponse = API.TokenScanResponse;
   export import TokenReportParams = API.TokenReportParams;
   export import TokenScanParams = API.TokenScanParams;
+
+  export import TokenBulk = API.TokenBulk;
+  export import TokenBulkScanResponse = API.TokenBulkScanResponse;
+  export import TokenBulkScanParams = API.TokenBulkScanParams;
 }
 
 export default Blockaid;
