@@ -78,4 +78,5 @@ export {
   StellarTransactionScanResponse,
   Stellar,
 } from './stellar/stellar';
+export { TokenBulkScanResponse, TokenBulkScanParams, TokenBulk } from './token-bulk';
 export { TokenReportResponse, TokenScanResponse, TokenReportParams, TokenScanParams, Token } from './token';
