@@ -60,7 +60,7 @@ export interface Erc1155Diff {
   /**
    * id of the token
    */
-  token_id: number;
+  token_id: string;
 
   /**
    * value before divided by decimal, that was transferred from this address
@@ -203,7 +203,7 @@ export interface Erc721Diff {
   /**
    * id of the token
    */
-  token_id: number;
+  token_id: string;
 
   /**
    * url of the token logo
