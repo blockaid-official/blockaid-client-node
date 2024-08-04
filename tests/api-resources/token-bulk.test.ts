@@ -11,8 +11,8 @@ const client = new Blockaid({
 describe('resource tokenBulk', () => {
   test('scan: only required params', async () => {
     const responsePromise = client.tokenBulk.scan({
-      chain: 'arbitrum',
-      tokens: ['string', 'string', 'string'],
+      chain: 'ethereum',
+      tokens: ['0x66587563e933bbf3974b89156b47bb82b921eb35', '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d'],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -25,8 +25,8 @@ describe('resource tokenBulk', () => {
 
   test('scan: required and optional params', async () => {
     const response = await client.tokenBulk.scan({
-      chain: 'arbitrum',
-      tokens: ['string', 'string', 'string'],
+      chain: 'ethereum',
+      tokens: ['0x66587563e933bbf3974b89156b47bb82b921eb35', '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d'],
       metadata: { domain: 'domain' },
     });
   });
