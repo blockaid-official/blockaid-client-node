@@ -683,7 +683,7 @@ export namespace TransactionSimulation {
     /**
      * The address the transaction is sent from.
      */
-    from_?: string;
+    from?: string;
 
     /**
      * The gas to be sent.
