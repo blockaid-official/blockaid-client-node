@@ -11,7 +11,7 @@ const client = new Blockaid({
 describe('resource jsonRpc', () => {
   test('scan: only required params', async () => {
     const responsePromise = client.evm.jsonRpc.scan({
-      chain: 'ethereum',
+      chain: 'arbitrum',
       data: {
         method: 'eth_signTypedData_v4',
         params: [
@@ -32,7 +32,7 @@ describe('resource jsonRpc', () => {
 
   test('scan: required and optional params', async () => {
     const response = await client.evm.jsonRpc.scan({
-      chain: 'ethereum',
+      chain: 'arbitrum',
       data: {
         method: 'eth_signTypedData_v4',
         params: [
@@ -43,7 +43,7 @@ describe('resource jsonRpc', () => {
       metadata: { domain: 'https://boredapeyartclub.com' },
       account_address: '0x49c73c9d361c04769a452E85D343b41aC38e0EE4',
       block: '18370320',
-      options: ['simulation', 'validation'],
+      options: ['validation', 'simulation'],
     });
   });
 });

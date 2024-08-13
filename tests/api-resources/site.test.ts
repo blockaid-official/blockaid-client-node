@@ -13,7 +13,7 @@ describe('resource site', () => {
     const responsePromise = client.site.report({
       details: 'Details about the report',
       event: 'FALSE_POSITIVE',
-      report: { type: 'request_id', request_id: '11111111-1111-1111-1111-111111111111' },
+      report: { request_id: '11111111-1111-1111-1111-111111111111', type: 'request_id' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,7 +28,7 @@ describe('resource site', () => {
     const response = await client.site.report({
       details: 'Details about the report',
       event: 'FALSE_POSITIVE',
-      report: { type: 'request_id', request_id: '11111111-1111-1111-1111-111111111111' },
+      report: { request_id: '11111111-1111-1111-1111-111111111111', type: 'request_id' },
     });
   });
 
