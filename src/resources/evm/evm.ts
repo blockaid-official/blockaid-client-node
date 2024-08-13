@@ -363,6 +363,7 @@ export type TokenScanSupportedChain =
   | 'polygon'
   | 'zora'
   | 'solana'
+  | 'starknet'
   | 'stellar'
   | 'linea'
   | 'blast'
