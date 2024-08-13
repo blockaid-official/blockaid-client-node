@@ -87,6 +87,8 @@ export type AssetDiff =
   | NonercAssetDiff;
 
 export interface Erc20AssetDiff {
+  assetType: 'ERC20';
+
   /**
    * description of the asset for the current diff
    */
@@ -104,6 +106,8 @@ export interface Erc20AssetDiff {
 }
 
 export interface Erc1155AssetDiff {
+  assetType: 'ERC1155';
+
   /**
    * description of the asset for the current diff
    */
@@ -121,6 +125,8 @@ export interface Erc1155AssetDiff {
 }
 
 export interface Erc721AssetDiff {
+  assetType: 'ERC721';
+
   /**
    * description of the asset for the current diff
    */
@@ -138,6 +144,8 @@ export interface Erc721AssetDiff {
 }
 
 export interface NativeAssetDiff {
+  assetType: 'NATIVE';
+
   /**
    * description of the asset for the current diff
    */
@@ -155,6 +163,8 @@ export interface NativeAssetDiff {
 }
 
 export interface NonercAssetDiff {
+  assetType: 'NONERC';
+
   /**
    * description of the asset for the current diff
    */
