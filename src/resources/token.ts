@@ -107,7 +107,7 @@ export namespace TokenReportParams {
 
 export interface TokenScanParams {
   /**
-   * Token address to validate (EVM / Solana / Stellar)
+   * Token address to validate (EVM / Solana / Stellar / Starknet)
    */
   address: string;
 
