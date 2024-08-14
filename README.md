@@ -23,7 +23,8 @@ The full API of this library can be found in [api.md](api.md).
 import Blockaid from '@blockaid/client';
 
 const client = new Blockaid({
-  apiKey: process.env['BLOCKAID_CLIENT_API_KEY'], // This is the default and can be omitted
+  accessToken: process.env['BLOCKAID_CLIENT_ACCESS_TOKEN'], // This is the default and can be omitted
+  apiKey: 'My API Key',
 });
 
 async function main() {
@@ -54,7 +55,8 @@ This library includes TypeScript definitions for all request params and response
 import Blockaid from '@blockaid/client';
 
 const client = new Blockaid({
-  apiKey: process.env['BLOCKAID_CLIENT_API_KEY'], // This is the default and can be omitted
+  accessToken: process.env['BLOCKAID_CLIENT_ACCESS_TOKEN'], // This is the default and can be omitted
+  apiKey: 'My API Key',
 });
 
 async function main() {
@@ -138,6 +140,7 @@ You can use the `maxRetries` option to configure or disable this:
 // Configure the default for all requests:
 const client = new Blockaid({
   maxRetries: 0, // default is 2
+  apiKey: 'My API Key',
 });
 
 // Or, configure per-request:
@@ -155,6 +158,7 @@ Requests time out after 1 minute by default. You can configure this with a `time
 // Configure the default for all requests:
 const client = new Blockaid({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
+  apiKey: 'My API Key',
 });
 
 // Override per-request:
@@ -310,6 +314,7 @@ import { HttpsProxyAgent } from 'https-proxy-agent';
 // Configure the default for all requests:
 const client = new Blockaid({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
+  apiKey: 'My API Key',
 });
 
 // Override per-request:
