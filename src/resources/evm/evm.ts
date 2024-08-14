@@ -21,13 +21,17 @@ export class Evm extends APIResource {
     new PostTransactionBulkAPI.PostTransactionBulk(this._client);
 }
 
-export type AddressAssetExposure = Erc20AddressAssetExposure | Erc721AddressAssetExposure | Erc1155AddressAssetExposure | NonercAddressAssetExposure
+export type AddressAssetExposure =
+  | Erc20AddressAssetExposure
+  | Erc721AddressAssetExposure
+  | Erc1155AddressAssetExposure
+  | NonercAddressAssetExposure;
 
 export interface Erc20AddressAssetExposure {
   /**
    * description of the asset for the current diff
    */
-  asset: Erc20TokenDetails
+  asset: Erc20TokenDetails;
 
   /**
    * dictionary of spender addresses where the exposure has changed during this
@@ -40,7 +44,7 @@ export interface Erc721AddressAssetExposure {
   /**
    * description of the asset for the current diff
    */
-  asset: Erc721TokenDetails
+  asset: Erc721TokenDetails;
 
   /**
    * dictionary of spender addresses where the exposure has changed during this
@@ -53,7 +57,7 @@ export interface Erc1155AddressAssetExposure {
   /**
    * description of the asset for the current diff
    */
-  asset: Erc1155TokenDetails
+  asset: Erc1155TokenDetails;
 
   /**
    * dictionary of spender addresses where the exposure has changed during this
@@ -66,7 +70,7 @@ export interface NonercAddressAssetExposure {
   /**
    * description of the asset for the current diff
    */
-  asset: NonercTokenDetails
+  asset: NonercTokenDetails;
 
   /**
    * dictionary of spender addresses where the exposure has changed during this
@@ -75,13 +79,18 @@ export interface NonercAddressAssetExposure {
   spenders: Record<string, NonercExposure>;
 }
 
-export type AssetDiff = Erc20AssetDiff | Erc1155AssetDiff | Erc721AssetDiff | NativeAssetDiff | NonercAssetDiff;
+export type AssetDiff =
+  | Erc20AssetDiff
+  | Erc1155AssetDiff
+  | Erc721AssetDiff
+  | NativeAssetDiff
+  | NonercAssetDiff;
 
 export interface Erc20AssetDiff {
   /**
    * description of the asset for the current diff
    */
-  asset: Erc20TokenDetails
+  asset: Erc20TokenDetails;
 
   /**
    * amount of the asset that was transferred to the address in this transaction
@@ -98,7 +107,7 @@ export interface Erc1155AssetDiff {
   /**
    * description of the asset for the current diff
    */
-  asset: Erc1155TokenDetails
+  asset: Erc1155TokenDetails;
 
   /**
    * amount of the asset that was transferred to the address in this transaction
@@ -115,7 +124,7 @@ export interface Erc721AssetDiff {
   /**
    * description of the asset for the current diff
    */
-  asset: Erc721TokenDetails
+  asset: Erc721TokenDetails;
 
   /**
    * amount of the asset that was transferred to the address in this transaction
@@ -132,7 +141,7 @@ export interface NativeAssetDiff {
   /**
    * description of the asset for the current diff
    */
-  asset: NativeAssetDetails
+  asset: NativeAssetDetails;
 
   /**
    * amount of the asset that was transferred to the address in this transaction
@@ -149,7 +158,7 @@ export interface NonercAssetDiff {
   /**
    * description of the asset for the current diff
    */
-  asset: NonercTokenDetails
+  asset: NonercTokenDetails;
 
   /**
    * amount of the asset that was transferred to the address in this transaction
@@ -383,7 +392,6 @@ export interface NonercExposure {
    */
   summary?: string;
 }
-
 
 export interface Metadata {
   /**
@@ -699,12 +707,12 @@ export namespace TransactionSimulation {
      * shows the balance before making the transaction and after
      */
     balance_changes?: AccountSummaryAssetsDiff.BalanceChanges;
-  }
-  
+  };
+
   export namespace AccountSummaryAssetsDiff {
-      /**
-       * shows the balance before making the transaction and after
-       */
+    /**
+     * shows the balance before making the transaction and after
+     */
     export interface BalanceChanges {
       /**
        * balance of the account after making the transaction
@@ -943,22 +951,22 @@ export interface UsdDiff {
 export namespace Evm {
   export import AddressAssetExposure = EvmAPI.AddressAssetExposure;
   export import AssetDiff = EvmAPI.AssetDiff;
-  export import Erc1155AddressAssetExposure = EvmAPI.Erc1155AddressAssetExposure
+  export import Erc1155AddressAssetExposure = EvmAPI.Erc1155AddressAssetExposure;
   export import Erc1155Diff = EvmAPI.Erc1155Diff;
   export import Erc1155Exposure = EvmAPI.Erc1155Exposure;
   export import Erc1155TokenDetails = EvmAPI.Erc1155TokenDetails;
-  export import Erc20AddressAssetExposure = EvmAPI.Erc20AddressAssetExposure
+  export import Erc20AddressAssetExposure = EvmAPI.Erc20AddressAssetExposure;
   export import Erc20Diff = EvmAPI.Erc20Diff;
   export import Erc20Exposure = EvmAPI.Erc20Exposure;
   export import Erc20TokenDetails = EvmAPI.Erc20TokenDetails;
-  export import Erc721AddressAssetExposure = EvmAPI.Erc721AddressAssetExposure
+  export import Erc721AddressAssetExposure = EvmAPI.Erc721AddressAssetExposure;
   export import Erc721Diff = EvmAPI.Erc721Diff;
   export import Erc721Exposure = EvmAPI.Erc721Exposure;
   export import Erc721TokenDetails = EvmAPI.Erc721TokenDetails;
   export import Metadata = EvmAPI.Metadata;
   export import NativeAssetDetails = EvmAPI.NativeAssetDetails;
   export import NativeDiff = EvmAPI.NativeDiff;
-  export import NonercAddressAssetExposure = EvmAPI.NonercAddressAssetExposure
+  export import NonercAddressAssetExposure = EvmAPI.NonercAddressAssetExposure;
   export import NonercDiff = EvmAPI.NonercDiff;
   export import NonercExposure = EvmAPI.NonercExposure;
   export import NonercTokenDetails = EvmAPI.NonercTokenDetails;
