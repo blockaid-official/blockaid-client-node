@@ -13,6 +13,11 @@ export interface ClientOptions {
   apiKey?: string | undefined;
 
   /**
+   * Defaults to process.env['BLOCKAID_CLIENT_ACCESS_TOKEN'].
+   */
+  accessToken?: string | undefined;
+
+  /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
    * Defaults to process.env['BLOCKAID_BASE_URL'].
@@ -74,6 +79,7 @@ export interface ClientOptions {
  */
 export class Blockaid extends Core.APIClient {
   apiKey: string;
+  accessToken: string;
 
   private _options: ClientOptions;
 
@@ -81,6 +87,7 @@ export class Blockaid extends Core.APIClient {
    * API Client for interfacing with the Blockaid API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['BLOCKAID_CLIENT_API_KEY'] ?? undefined]
+   * @param {string | undefined} [opts.accessToken=process.env['BLOCKAID_CLIENT_ACCESS_TOKEN'] ?? undefined]
    * @param {string} [opts.baseURL=process.env['BLOCKAID_BASE_URL'] ?? https://api.blockaid.io] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
@@ -92,6 +99,7 @@ export class Blockaid extends Core.APIClient {
   constructor({
     baseURL = Core.readEnv('BLOCKAID_BASE_URL'),
     apiKey = Core.readEnv('BLOCKAID_CLIENT_API_KEY'),
+    accessToken = Core.readEnv('BLOCKAID_CLIENT_ACCESS_TOKEN'),
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
@@ -99,9 +107,15 @@ export class Blockaid extends Core.APIClient {
         "The BLOCKAID_CLIENT_API_KEY environment variable is missing or empty; either provide it, or instantiate the Blockaid client with an apiKey option, like new Blockaid({ apiKey: 'My API Key' }).",
       );
     }
+    if (accessToken === undefined) {
+      throw new Errors.BlockaidError(
+        "The BLOCKAID_CLIENT_ACCESS_TOKEN environment variable is missing or empty; either provide it, or instantiate the Blockaid client with an accessToken option, like new Blockaid({ accessToken: 'My Access Token' }).",
+      );
+    }
 
     const options: ClientOptions = {
       apiKey,
+      accessToken,
       ...opts,
       baseURL: baseURL || `https://api.blockaid.io`,
     };
@@ -117,6 +131,7 @@ export class Blockaid extends Core.APIClient {
     this._options = options;
 
     this.apiKey = apiKey;
+    this.accessToken = accessToken;
   }
 
   evm: API.Evm = new API.Evm(this);
@@ -138,7 +153,7 @@ export class Blockaid extends Core.APIClient {
   }
 
   protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
-    return { 'X-API-Key': this.apiKey };
+    return { Authorization: `Bearer ${this.accessToken}` };
   }
 
   static Blockaid = this;
