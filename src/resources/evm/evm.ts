@@ -508,7 +508,13 @@ export type TokenScanSupportedChain =
   | 'polygon'
   | 'zora'
   | 'solana'
-  | 'stellar';
+  | 'stellar'
+  | 'starknet'
+  | 'linea'
+  | 'blast'
+  | 'zksync'
+  | 'scroll'
+  | 'degen';
 
 export interface TransactionScanFeature {
   /**
@@ -661,6 +667,11 @@ export interface TransactionSimulation {
    * spenders
    */
   total_usd_exposure: Record<string, Record<string, string>>;
+
+  /**
+   * The parameters of the transaction that was simulated.
+   */
+  params?: TransactionSimulation.Params;
 }
 
 export namespace TransactionSimulation {
@@ -767,6 +778,78 @@ export namespace TransactionSimulation {
      * known name tag for the address
      */
     name_tag?: string;
+  }
+
+  /**
+   * The parameters of the transaction that was simulated.
+   */
+  export interface Params {
+    /**
+     * The block tag to be sent.
+     */
+    block_tag?: string;
+
+    /**
+     * The calldata to be sent.
+     */
+    calldata?: Params.Calldata;
+
+    /**
+     * The chain to be sent.
+     */
+    chain?: string;
+
+    /**
+     * The data to be sent.
+     */
+    data?: string;
+
+    /**
+     * The address the transaction is sent from.
+     */
+    from?: string;
+
+    /**
+     * The gas to be sent.
+     */
+    gas?: string;
+
+    /**
+     * The gas price to be sent.
+     */
+    gas_price?: string;
+
+    /**
+     * The address the transaction is directed to.
+     */
+    to?: string;
+
+    /**
+     * The value to be sent.
+     */
+    value?: string;
+  }
+
+  export namespace Params {
+    /**
+     * The calldata to be sent.
+     */
+    export interface Calldata {
+      /**
+       * The function selector of the function called in the transaction
+       */
+      function_selector: string;
+
+      /**
+       * The function declaration of the function called in the transaction
+       */
+      function_declaration?: string;
+
+      /**
+       * The function signature of the function called in the transaction
+       */
+      function_signature?: string;
+    }
   }
 }
 
