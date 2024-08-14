@@ -124,6 +124,7 @@ export class Blockaid extends Core.APIClient {
   stellar: API.Stellar = new API.Stellar(this);
   site: API.Site = new API.Site(this);
   token: API.Token = new API.Token(this);
+  tokenBulk: API.TokenBulk = new API.TokenBulk(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -141,6 +142,7 @@ export class Blockaid extends Core.APIClient {
   }
 
   static Blockaid = this;
+  static DEFAULT_TIMEOUT = 60000; // 1 minute
 
   static BlockaidError = Errors.BlockaidError;
   static APIError = Errors.APIError;
@@ -189,7 +191,7 @@ export namespace Blockaid {
   export import Erc1155Diff = API.Erc1155Diff;
   export import Erc1155Exposure = API.Erc1155Exposure;
   export import Erc1155TokenDetails = API.Erc1155TokenDetails;
-  export import Erc20AddressAssetExposure = API.Erc20AddressAssetExposure
+  export import Erc20AddressAssetExposure = API.Erc20AddressAssetExposure;
   export import Erc20Diff = API.Erc20Diff;
   export import Erc20Exposure = API.Erc20Exposure;
   export import Erc20TokenDetails = API.Erc20TokenDetails;
@@ -266,6 +268,10 @@ export namespace Blockaid {
   export import TokenScanResponse = API.TokenScanResponse;
   export import TokenReportParams = API.TokenReportParams;
   export import TokenScanParams = API.TokenScanParams;
+
+  export import TokenBulk = API.TokenBulk;
+  export import TokenBulkScanResponse = API.TokenBulkScanResponse;
+  export import TokenBulkScanParams = API.TokenBulkScanParams;
 }
 
 export default Blockaid;

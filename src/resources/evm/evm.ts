@@ -21,13 +21,17 @@ export class Evm extends APIResource {
     new PostTransactionBulkAPI.PostTransactionBulk(this._client);
 }
 
-export type AddressAssetExposure = Erc20AddressAssetExposure | Erc721AddressAssetExposure | Erc1155AddressAssetExposure | NonercAddressAssetExposure
+export type AddressAssetExposure =
+  | Erc20AddressAssetExposure
+  | Erc721AddressAssetExposure
+  | Erc1155AddressAssetExposure
+  | NonercAddressAssetExposure;
 
 export interface Erc20AddressAssetExposure {
   /**
    * description of the asset for the current diff
    */
-  asset: Erc20TokenDetails
+  asset: Erc20TokenDetails;
 
   /**
    * dictionary of spender addresses where the exposure has changed during this
@@ -40,7 +44,7 @@ export interface Erc721AddressAssetExposure {
   /**
    * description of the asset for the current diff
    */
-  asset: Erc721TokenDetails
+  asset: Erc721TokenDetails;
 
   /**
    * dictionary of spender addresses where the exposure has changed during this
@@ -53,7 +57,7 @@ export interface Erc1155AddressAssetExposure {
   /**
    * description of the asset for the current diff
    */
-  asset: Erc1155TokenDetails
+  asset: Erc1155TokenDetails;
 
   /**
    * dictionary of spender addresses where the exposure has changed during this
@@ -66,7 +70,7 @@ export interface NonercAddressAssetExposure {
   /**
    * description of the asset for the current diff
    */
-  asset: NonercTokenDetails
+  asset: NonercTokenDetails;
 
   /**
    * dictionary of spender addresses where the exposure has changed during this
@@ -75,13 +79,18 @@ export interface NonercAddressAssetExposure {
   spenders: Record<string, NonercExposure>;
 }
 
-export type AssetDiff = Erc20AssetDiff | Erc1155AssetDiff | Erc721AssetDiff | NativeAssetDiff | NonercAssetDiff;
+export type AssetDiff =
+  | Erc20AssetDiff
+  | Erc1155AssetDiff
+  | Erc721AssetDiff
+  | NativeAssetDiff
+  | NonercAssetDiff;
 
 export interface Erc20AssetDiff {
   /**
    * description of the asset for the current diff
    */
-  asset: Erc20TokenDetails
+  asset: Erc20TokenDetails;
 
   /**
    * amount of the asset that was transferred to the address in this transaction
@@ -98,7 +107,7 @@ export interface Erc1155AssetDiff {
   /**
    * description of the asset for the current diff
    */
-  asset: Erc1155TokenDetails
+  asset: Erc1155TokenDetails;
 
   /**
    * amount of the asset that was transferred to the address in this transaction
@@ -115,7 +124,7 @@ export interface Erc721AssetDiff {
   /**
    * description of the asset for the current diff
    */
-  asset: Erc721TokenDetails
+  asset: Erc721TokenDetails;
 
   /**
    * amount of the asset that was transferred to the address in this transaction
@@ -132,7 +141,7 @@ export interface NativeAssetDiff {
   /**
    * description of the asset for the current diff
    */
-  asset: NativeAssetDetails
+  asset: NativeAssetDetails;
 
   /**
    * amount of the asset that was transferred to the address in this transaction
@@ -149,7 +158,7 @@ export interface NonercAssetDiff {
   /**
    * description of the asset for the current diff
    */
-  asset: NonercTokenDetails
+  asset: NonercTokenDetails;
 
   /**
    * amount of the asset that was transferred to the address in this transaction
@@ -166,7 +175,7 @@ export interface Erc1155Diff {
   /**
    * id of the token
    */
-  token_id: number;
+  token_id: string;
 
   /**
    * value before divided by decimal, that was transferred from this address
@@ -309,7 +318,7 @@ export interface Erc721Diff {
   /**
    * id of the token
    */
-  token_id: number;
+  token_id: string;
 
   /**
    * url of the token logo
@@ -383,7 +392,6 @@ export interface NonercExposure {
    */
   summary?: string;
 }
-
 
 export interface Metadata {
   /**
@@ -500,7 +508,13 @@ export type TokenScanSupportedChain =
   | 'polygon'
   | 'zora'
   | 'solana'
-  | 'stellar';
+  | 'starknet'
+  | 'stellar'
+  | 'linea'
+  | 'blast'
+  | 'zksync'
+  | 'scroll'
+  | 'degen';
 
 export interface TransactionScanFeature {
   /**
@@ -607,7 +621,8 @@ export type TransactionScanSupportedChain =
   | 'ethereum-sepolia'
   | 'degen'
   | 'avalanche-fuji'
-  | 'immutable-zkevm';
+  | 'immutable-zkevm'
+  | 'gnosis';
 
 export interface TransactionSimulation {
   /**
@@ -652,6 +667,11 @@ export interface TransactionSimulation {
    * spenders
    */
   total_usd_exposure: Record<string, Record<string, string>>;
+
+  /**
+   * The parameters of the transaction that was simulated.
+   */
+  params?: TransactionSimulation.Params;
 }
 
 export namespace TransactionSimulation {
@@ -687,12 +707,12 @@ export namespace TransactionSimulation {
      * shows the balance before making the transaction and after
      */
     balance_changes?: AccountSummaryAssetsDiff.BalanceChanges;
-  }
-  
+  };
+
   export namespace AccountSummaryAssetsDiff {
-      /**
-       * shows the balance before making the transaction and after
-       */
+    /**
+     * shows the balance before making the transaction and after
+     */
     export interface BalanceChanges {
       /**
        * balance of the account after making the transaction
@@ -758,6 +778,78 @@ export namespace TransactionSimulation {
      * known name tag for the address
      */
     name_tag?: string;
+  }
+
+  /**
+   * The parameters of the transaction that was simulated.
+   */
+  export interface Params {
+    /**
+     * The block tag to be sent.
+     */
+    block_tag?: string;
+
+    /**
+     * The calldata to be sent.
+     */
+    calldata?: Params.Calldata;
+
+    /**
+     * The chain to be sent.
+     */
+    chain?: string;
+
+    /**
+     * The data to be sent.
+     */
+    data?: string;
+
+    /**
+     * The address the transaction is sent from.
+     */
+    from?: string;
+
+    /**
+     * The gas to be sent.
+     */
+    gas?: string;
+
+    /**
+     * The gas price to be sent.
+     */
+    gas_price?: string;
+
+    /**
+     * The address the transaction is directed to.
+     */
+    to?: string;
+
+    /**
+     * The value to be sent.
+     */
+    value?: string;
+  }
+
+  export namespace Params {
+    /**
+     * The calldata to be sent.
+     */
+    export interface Calldata {
+      /**
+       * The function selector of the function called in the transaction
+       */
+      function_selector: string;
+
+      /**
+       * The function declaration of the function called in the transaction
+       */
+      function_declaration?: string;
+
+      /**
+       * The function signature of the function called in the transaction
+       */
+      function_signature?: string;
+    }
   }
 }
 
@@ -859,22 +951,22 @@ export interface UsdDiff {
 export namespace Evm {
   export import AddressAssetExposure = EvmAPI.AddressAssetExposure;
   export import AssetDiff = EvmAPI.AssetDiff;
-  export import Erc1155AddressAssetExposure = EvmAPI.Erc1155AddressAssetExposure
+  export import Erc1155AddressAssetExposure = EvmAPI.Erc1155AddressAssetExposure;
   export import Erc1155Diff = EvmAPI.Erc1155Diff;
   export import Erc1155Exposure = EvmAPI.Erc1155Exposure;
   export import Erc1155TokenDetails = EvmAPI.Erc1155TokenDetails;
-  export import Erc20AddressAssetExposure = EvmAPI.Erc20AddressAssetExposure
+  export import Erc20AddressAssetExposure = EvmAPI.Erc20AddressAssetExposure;
   export import Erc20Diff = EvmAPI.Erc20Diff;
   export import Erc20Exposure = EvmAPI.Erc20Exposure;
   export import Erc20TokenDetails = EvmAPI.Erc20TokenDetails;
-  export import Erc721AddressAssetExposure = EvmAPI.Erc721AddressAssetExposure
+  export import Erc721AddressAssetExposure = EvmAPI.Erc721AddressAssetExposure;
   export import Erc721Diff = EvmAPI.Erc721Diff;
   export import Erc721Exposure = EvmAPI.Erc721Exposure;
   export import Erc721TokenDetails = EvmAPI.Erc721TokenDetails;
   export import Metadata = EvmAPI.Metadata;
   export import NativeAssetDetails = EvmAPI.NativeAssetDetails;
   export import NativeDiff = EvmAPI.NativeDiff;
-  export import NonercAddressAssetExposure = EvmAPI.NonercAddressAssetExposure
+  export import NonercAddressAssetExposure = EvmAPI.NonercAddressAssetExposure;
   export import NonercDiff = EvmAPI.NonercDiff;
   export import NonercExposure = EvmAPI.NonercExposure;
   export import NonercTokenDetails = EvmAPI.NonercTokenDetails;

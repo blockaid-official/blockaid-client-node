@@ -29,6 +29,9 @@ export class Transaction extends APIResource {
 export type TransactionReportResponse = unknown;
 
 export interface TransactionReportParams {
+  /**
+   * Details about the report.
+   */
   details: string;
 
   /**
@@ -36,6 +39,9 @@ export interface TransactionReportParams {
    */
   event: 'FALSE_POSITIVE' | 'FALSE_NEGATIVE';
 
+  /**
+   * The report parameters.
+   */
   report:
     | TransactionReportParams.ParamReportTransactionReportParams
     | TransactionReportParams.RequestIDReport;
@@ -50,6 +56,10 @@ export namespace TransactionReportParams {
 
   export namespace ParamReportTransactionReportParams {
     export interface Params {
+      /**
+       * The address to relate the transaction to. Account address determines in which
+       * perspective the transaction is simulated and validated.
+       */
       account_address: string;
 
       /**
@@ -57,9 +67,61 @@ export namespace TransactionReportParams {
        */
       chain: EvmAPI.TransactionScanSupportedChain;
 
-      data: unknown;
+      /**
+       * Transaction parameters
+       */
+      data: Params.Transaction | Params.JsonRpc;
 
-      metadata: unknown;
+      /**
+       * Object of additional information to validate against.
+       */
+      metadata: EvmAPI.Metadata;
+    }
+
+    export namespace Params {
+      export interface Transaction {
+        /**
+         * The source address of the transaction in hex string format
+         */
+        from: string;
+
+        /**
+         * The encoded call data of the transaction in hex string format
+         */
+        data?: string;
+
+        /**
+         * The gas required for the transaction in hex string format.
+         */
+        gas?: string;
+
+        /**
+         * The gas price for the transaction in hex string format.
+         */
+        gas_price?: string;
+
+        /**
+         * The destination address of the transaction in hex string format
+         */
+        to?: string;
+
+        /**
+         * The value of the transaction in Wei in hex string format
+         */
+        value?: string;
+      }
+
+      export interface JsonRpc {
+        /**
+         * The method of the JSON-RPC request
+         */
+        method: string;
+
+        /**
+         * The parameters of the JSON-RPC request in JSON format
+         */
+        params: Array<unknown>;
+      }
     }
   }
 

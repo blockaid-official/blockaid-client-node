@@ -179,3 +179,13 @@ Methods:
 
 - <code title="post /v0/token/report">client.token.<a href="./src/resources/token.ts">report</a>({ ...params }) -> unknown</code>
 - <code title="post /v0/token/scan">client.token.<a href="./src/resources/token.ts">scan</a>({ ...params }) -> TokenScanResponse</code>
+
+# TokenBulk
+
+Types:
+
+- <code><a href="./src/resources/token-bulk.ts">TokenBulkScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/token-bulk/scan">client.tokenBulk.<a href="./src/resources/token-bulk.ts">scan</a>({ ...params }) -> TokenBulkScanResponse</code>
