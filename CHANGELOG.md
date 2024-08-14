@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.19.0 (2024-08-14)
+
+Full Changelog: [v0.18.1...v0.19.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.18.1...v0.19.0)
+
+### Features
+
+* improve asset diffs and exposure types ([98f8c14](https://github.com/blockaid-official/blockaid-client-node/commit/98f8c14d5f3f1c66f486ff515a4ec6419761a55b))
+* various codegen changes ([3141309](https://github.com/blockaid-official/blockaid-client-node/commit/31413096b2fb83251ded31bcfbf7198b2518f737))
+
 ## 0.18.1 (2024-08-14)
 
 Full Changelog: [v0.18.0...v0.18.1](https://github.com/blockaid-official/blockaid-client-node/compare/v0.18.0...v0.18.1)
