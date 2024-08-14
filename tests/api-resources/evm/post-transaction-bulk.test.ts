@@ -11,7 +11,7 @@ const client = new Blockaid({
 describe('resource postTransactionBulk', () => {
   test('scan: only required params', async () => {
     const responsePromise = client.evm.postTransactionBulk.scan({
-      chain: 'ethereum',
+      chain: 'arbitrum',
       data: [
         '0x11c865addc39f1e1c4f0f6c9a84533c501e3705a6397988af942b2103d5e87a2',
         '0x50a109a2c2dd396e49710613dcf652728656055d90f80094f10c3ddd05150d2e',
@@ -29,7 +29,7 @@ describe('resource postTransactionBulk', () => {
 
   test('scan: required and optional params', async () => {
     const response = await client.evm.postTransactionBulk.scan({
-      chain: 'ethereum',
+      chain: 'arbitrum',
       data: [
         '0x11c865addc39f1e1c4f0f6c9a84533c501e3705a6397988af942b2103d5e87a2',
         '0x50a109a2c2dd396e49710613dcf652728656055d90f80094f10c3ddd05150d2e',
