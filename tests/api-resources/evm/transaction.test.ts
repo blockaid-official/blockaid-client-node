@@ -13,7 +13,7 @@ describe('resource transaction', () => {
     const responsePromise = client.evm.transaction.report({
       details: 'Details about the report',
       event: 'FALSE_POSITIVE',
-      report: { type: 'request_id', request_id: 'jkl456' },
+      report: { request_id: '11111111-1111-1111-1111-111111111111', type: 'request_id' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,14 +28,14 @@ describe('resource transaction', () => {
     const response = await client.evm.transaction.report({
       details: 'Details about the report',
       event: 'FALSE_POSITIVE',
-      report: { type: 'request_id', request_id: 'jkl456' },
+      report: { request_id: '11111111-1111-1111-1111-111111111111', type: 'request_id' },
     });
   });
 
   test('scan: only required params', async () => {
     const responsePromise = client.evm.transaction.scan({
       account_address: 'account_address',
-      chain: 'ethereum',
+      chain: 'arbitrum',
       data: { from: '0x5e1a0d484c5f0de722e82f9dca3a9d5a421d47cb' },
       metadata: { domain: 'https://boredapeyartclub.com' },
     });
@@ -51,18 +51,18 @@ describe('resource transaction', () => {
   test('scan: required and optional params', async () => {
     const response = await client.evm.transaction.scan({
       account_address: 'account_address',
-      chain: 'ethereum',
+      chain: 'arbitrum',
       data: {
         from: '0x5e1a0d484c5f0de722e82f9dca3a9d5a421d47cb',
-        to: '0x0d524a5b52737c0a02880d5e84f7d20b8d66bfba',
         data: '0x',
-        value: '0x1000000000000000',
         gas: 'gas',
         gas_price: 'gas_price',
+        to: '0x0d524a5b52737c0a02880d5e84f7d20b8d66bfba',
+        value: '0x1000000000000000',
       },
       metadata: { domain: 'https://boredapeyartclub.com' },
       block: 0,
-      options: ['simulation', 'validation'],
+      options: ['validation', 'simulation'],
     });
   });
 });

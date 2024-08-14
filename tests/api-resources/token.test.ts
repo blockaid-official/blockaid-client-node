@@ -13,7 +13,7 @@ describe('resource token', () => {
     const responsePromise = client.token.report({
       details: 'Details about the report',
       event: 'FALSE_POSITIVE',
-      report: { type: 'request_id', request_id: 'def456' },
+      report: { request_id: '11111111-1111-1111-1111-111111111111', type: 'request_id' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,14 +28,14 @@ describe('resource token', () => {
     const response = await client.token.report({
       details: 'Details about the report',
       event: 'FALSE_POSITIVE',
-      report: { type: 'request_id', request_id: 'def456' },
+      report: { request_id: '11111111-1111-1111-1111-111111111111', type: 'request_id' },
     });
   });
 
   test('scan: only required params', async () => {
     const responsePromise = client.token.scan({
       address: '0x66587563e933bbf3974b89156b47bb82b921eb35',
-      chain: 'ethereum',
+      chain: 'arbitrum',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -49,7 +49,7 @@ describe('resource token', () => {
   test('scan: required and optional params', async () => {
     const response = await client.token.scan({
       address: '0x66587563e933bbf3974b89156b47bb82b921eb35',
-      chain: 'ethereum',
+      chain: 'arbitrum',
       metadata: { domain: 'domain' },
     });
   });

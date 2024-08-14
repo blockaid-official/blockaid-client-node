@@ -77,6 +77,9 @@ export type SiteReportResponse = unknown;
 export type SiteScanResponse = SiteScanHitResponse | SiteScanMissResponse;
 
 export interface SiteReportParams {
+  /**
+   * Details about the report.
+   */
   details: string;
 
   /**
@@ -84,6 +87,9 @@ export interface SiteReportParams {
    */
   event: 'FALSE_POSITIVE' | 'FALSE_NEGATIVE';
 
+  /**
+   * The report parameters.
+   */
   report: SiteReportParams.ParamReportSiteReportParams | SiteReportParams.RequestIDReport;
 }
 
@@ -96,6 +102,9 @@ export namespace SiteReportParams {
 
   export namespace ParamReportSiteReportParams {
     export interface Params {
+      /**
+       * The url of the site to report on.
+       */
       url: string;
     }
   }
