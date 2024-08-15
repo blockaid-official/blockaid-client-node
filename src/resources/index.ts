@@ -80,6 +80,8 @@ export {
 export {
   StellarAssetContractDetailsSchema,
   StellarAssetTransferDetailsSchema,
+  StellarTransactionScanRequest,
+  StellarTransactionScanResponse,
   Stellar,
 } from './stellar/stellar';
 export { TokenBulkScanResponse, TokenBulkScanParams, TokenBulk } from './token-bulk';
