@@ -7,13 +7,13 @@ import * as StellarAPI from './stellar';
 
 export class Transaction extends APIResource {
   /**
-   * Scan Transactions
+   * Scan Transaction
    */
   scan(
     body: TransactionScanParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<StellarAPI.StellarTransactionScanResponse> {
-    return this._client.post('/v0/stellar/scan/transaction', { body, ...options });
+    return this._client.post('/v0/stellar/transaction/scan', { body, ...options });
   }
 }
 
@@ -32,10 +32,7 @@ export interface TransactionScanParams {
     | TransactionScanParams.StellarWalletRequestMetadata
     | TransactionScanParams.StellarInAppRequestMetadata;
 
-  /**
-   * List of XDR-encoded transactions to be scanned
-   */
-  transactions: Array<string>;
+  transaction: string;
 
   /**
    * List of options to include in the response
