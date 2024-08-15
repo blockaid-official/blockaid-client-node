@@ -245,7 +245,6 @@ export namespace Blockaid {
   export import Stellar = API.Stellar;
   export import StellarAssetContractDetailsSchema = API.StellarAssetContractDetailsSchema;
   export import StellarAssetTransferDetailsSchema = API.StellarAssetTransferDetailsSchema;
-  export import StellarTransactionScanResponse = API.StellarTransactionScanResponse;
 
   export import Bitcoin = API.Bitcoin;
 
