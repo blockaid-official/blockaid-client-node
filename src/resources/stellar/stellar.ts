@@ -67,10 +67,7 @@ export interface StellarTransactionScanRequest {
     | StellarTransactionScanRequest.StellarWalletRequestMetadata
     | StellarTransactionScanRequest.StellarInAppRequestMetadata;
 
-  /**
-   * List of XDR-encoded transactions to be scanned
-   */
-  transactions: Array<string>;
+  transaction: string;
 
   /**
    * List of options to include in the response
@@ -469,15 +466,7 @@ export namespace StellarTransactionScanResponse {
      * A textual description about the reasons the transaction was flagged with
      * result_type
      */
-    reason:
-      | ''
-      | 'known_attacker'
-      | 'known_fraudulent_asset'
-      | 'malicious_memo'
-      | 'unfair_trade'
-      | 'transfer_farming'
-      | 'native_ownership_change'
-      | 'other';
+    reason: string;
 
     /**
      * Verdict of the validation

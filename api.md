@@ -152,7 +152,7 @@ Types:
 
 Methods:
 
-- <code title="post /v0/stellar/scan/transaction">client.stellar.transaction.<a href="./src/resources/stellar/transaction.ts">scan</a>({ ...params }) -> StellarTransactionScanResponse</code>
+- <code title="post /v0/stellar/transaction/scan">client.stellar.transaction.<a href="./src/resources/stellar/transaction.ts">scan</a>({ ...params }) -> StellarTransactionScanResponse</code>
 
 # Bitcoin
 
