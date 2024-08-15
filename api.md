@@ -145,13 +145,16 @@ Types:
 
 - <code><a href="./src/resources/stellar/stellar.ts">StellarAssetContractDetailsSchema</a></code>
 - <code><a href="./src/resources/stellar/stellar.ts">StellarAssetTransferDetailsSchema</a></code>
-- <code><a href="./src/resources/stellar/stellar.ts">StellarTransactionScanResponse</a></code>
 
 ## Transaction
 
+Types:
+
+- <code><a href="./src/resources/stellar/transaction.ts">TransactionScanResponse</a></code>
+
 Methods:
 
-- <code title="post /v0/stellar/transaction/scan">client.stellar.transaction.<a href="./src/resources/stellar/transaction.ts">scan</a>({ ...params }) -> StellarTransactionScanResponse</code>
+- <code title="post /v0/stellar/transaction/scan">client.stellar.transaction.<a href="./src/resources/stellar/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
 
 # Bitcoin
 
