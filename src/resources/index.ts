@@ -72,7 +72,6 @@ export {
 export {
   StellarAssetContractDetailsSchema,
   StellarAssetTransferDetailsSchema,
-  StellarTransactionScanRequest,
   StellarTransactionScanResponse,
   Stellar,
 } from './stellar/stellar';

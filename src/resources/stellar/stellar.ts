@@ -52,56 +52,6 @@ export interface StellarAssetTransferDetailsSchema {
   usd_price?: number;
 }
 
-export interface StellarTransactionScanRequest {
-  account_address: string;
-
-  /**
-   * A CAIP-2 chain ID or a Stellar network name
-   */
-  chain: 'pubnet' | 'futurenet' | 'testnet';
-
-  /**
-   * Metadata
-   */
-  metadata:
-    | StellarTransactionScanRequest.StellarWalletRequestMetadata
-    | StellarTransactionScanRequest.StellarInAppRequestMetadata;
-
-  /**
-   * List of XDR-encoded transactions to be scanned
-   */
-  transactions: Array<string>;
-
-  /**
-   * List of options to include in the response
-   *
-   * - `simulation`: Include simulation output in the response
-   * - `validation`: Include security validation of the transaction in the response
-   */
-  options?: Array<'validation' | 'simulation'>;
-}
-
-export namespace StellarTransactionScanRequest {
-  export interface StellarWalletRequestMetadata {
-    /**
-     * Metadata for wallet requests
-     */
-    type: 'wallet';
-
-    /**
-     * URL of the dApp originating the transaction
-     */
-    url: string;
-  }
-
-  export interface StellarInAppRequestMetadata {
-    /**
-     * Metadata for in-app requests
-     */
-    type: 'in_app';
-  }
-}
-
 export interface StellarTransactionScanResponse {
   /**
    * Simulation result; Only present if simulation option is included in the request
@@ -469,15 +419,7 @@ export namespace StellarTransactionScanResponse {
      * A textual description about the reasons the transaction was flagged with
      * result_type
      */
-    reason:
-      | ''
-      | 'known_attacker'
-      | 'known_fraudulent_asset'
-      | 'malicious_memo'
-      | 'unfair_trade'
-      | 'transfer_farming'
-      | 'native_ownership_change'
-      | 'other';
+    reason: string;
 
     /**
      * Verdict of the validation
@@ -521,7 +463,6 @@ export namespace StellarTransactionScanResponse {
 export namespace Stellar {
   export import StellarAssetContractDetailsSchema = StellarAPI.StellarAssetContractDetailsSchema;
   export import StellarAssetTransferDetailsSchema = StellarAPI.StellarAssetTransferDetailsSchema;
-  export import StellarTransactionScanRequest = StellarAPI.StellarTransactionScanRequest;
   export import StellarTransactionScanResponse = StellarAPI.StellarTransactionScanResponse;
   export import Transaction = TransactionAPI.Transaction;
   export import TransactionScanParams = TransactionAPI.TransactionScanParams;
