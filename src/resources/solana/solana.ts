@@ -181,14 +181,14 @@ export interface CnftMintAccountDetailsSchema {
 
 export interface CombinedValidationResult {
   /**
-   * Transaction validation result
-   */
-  validation: CombinedValidationResult.Validation;
-
-  /**
    * Transaction simulation result
    */
   simulation?: SuccessfulSimulationResultSchema | null;
+
+  /**
+   * Transaction validation result
+   */
+  validation?: CombinedValidationResult.Validation | null;
 }
 
 export namespace CombinedValidationResult {
@@ -662,6 +662,8 @@ export interface TxScanRequestSchema {
    * The RPC method used by dApp to propose the transaction
    */
   method?: string;
+
+  options?: Array<string>;
 }
 
 export namespace TxScanRequestSchema {
