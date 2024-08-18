@@ -123,7 +123,6 @@ export class Blockaid extends Core.APIClient {
   solana: API.Solana = new API.Solana(this);
   stellar: API.Stellar = new API.Stellar(this);
   bitcoin: API.Bitcoin = new API.Bitcoin(this);
-  starknet: API.Starknet = new API.Starknet(this);
   site: API.Site = new API.Site(this);
   token: API.Token = new API.Token(this);
   tokenBulk: API.TokenBulk = new API.TokenBulk(this);
@@ -258,8 +257,6 @@ export namespace Blockaid {
   export import StellarTransactionScanResponse = API.StellarTransactionScanResponse;
 
   export import Bitcoin = API.Bitcoin;
-
-  export import Starknet = API.Starknet;
 
   export import Site = API.Site;
   export import SiteScanHitResponse = API.SiteScanHitResponse;
