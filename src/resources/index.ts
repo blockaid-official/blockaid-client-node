@@ -69,7 +69,6 @@ export {
   SiteScanParams,
   Site,
 } from './site';
-export { Starknet } from './starknet/starknet';
 export {
   StellarAssetContractDetailsSchema,
   StellarAssetTransferDetailsSchema,
