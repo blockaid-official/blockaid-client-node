@@ -166,6 +166,18 @@ Methods:
 
 - <code title="post /v0/bitcoin/transaction/scan">client.bitcoin.transaction.<a href="./src/resources/bitcoin/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
 
+# Starknet
+
+## Transaction
+
+Types:
+
+- <code><a href="./src/resources/starknet/transaction.ts">TransactionScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/starknet/transaction/scan">client.starknet.transaction.<a href="./src/resources/starknet/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+
 # Site
 
 Types:
