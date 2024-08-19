@@ -4,6 +4,7 @@ export {
   AccountSummarySchema,
   AddressScanRequestSchema,
   AddressScanResponseSchema,
+  APIErrorDetails,
   AssetTransferDetailsSchema,
   CnftDetailsSchema,
   CnftDiffSchema,
@@ -11,6 +12,7 @@ export {
   CombinedValidationResult,
   DelegatedAssetDetailsSchema,
   FungibleMintAccountDetailsSchema,
+  InstructionErrorDetails,
   NativeSolDetailsSchema,
   NativeSolDiffSchema,
   NativeSolOwnershipDiffSchema,
@@ -29,6 +31,7 @@ export {
   SystemAccountDetailsSchema,
   TokenAccountDetailsSchema,
   TotalUsdDiffSchema,
+  TransactionErrorDetails,
   TxScanRequestSchema,
   Solana,
 } from './solana/solana';
