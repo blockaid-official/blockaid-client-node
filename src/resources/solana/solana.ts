@@ -277,6 +277,11 @@ export interface NativeSolDetailsSchema {
   decimals?: number;
 
   /**
+   * Logo of Sol
+   */
+  logo?: string | null;
+
+  /**
    * Type of the asset (`"SOL"`)
    */
   type?: string;
@@ -498,6 +503,11 @@ export interface SplTokenOwnershipDiffSchema {
 
 export interface StakedSolAssetDetailsSchema {
   decimals?: number;
+
+  /**
+   * Logo of Sol
+   */
+  logo?: string | null;
 
   /**
    * Type of the asset (`"STAKED_SOL"`)
