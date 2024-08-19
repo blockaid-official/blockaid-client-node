@@ -224,6 +224,7 @@ export namespace Blockaid {
   export import AccountSummarySchema = API.AccountSummarySchema;
   export import AddressScanRequestSchema = API.AddressScanRequestSchema;
   export import AddressScanResponseSchema = API.AddressScanResponseSchema;
+  export import APIErrorDetails = API.APIErrorDetails;
   export import AssetTransferDetailsSchema = API.AssetTransferDetailsSchema;
   export import CnftDetailsSchema = API.CnftDetailsSchema;
   export import CnftDiffSchema = API.CnftDiffSchema;
@@ -231,6 +232,7 @@ export namespace Blockaid {
   export import CombinedValidationResult = API.CombinedValidationResult;
   export import DelegatedAssetDetailsSchema = API.DelegatedAssetDetailsSchema;
   export import FungibleMintAccountDetailsSchema = API.FungibleMintAccountDetailsSchema;
+  export import InstructionErrorDetails = API.InstructionErrorDetails;
   export import NativeSolDetailsSchema = API.NativeSolDetailsSchema;
   export import NativeSolDiffSchema = API.NativeSolDiffSchema;
   export import NativeSolOwnershipDiffSchema = API.NativeSolOwnershipDiffSchema;
@@ -249,6 +251,7 @@ export namespace Blockaid {
   export import SystemAccountDetailsSchema = API.SystemAccountDetailsSchema;
   export import TokenAccountDetailsSchema = API.TokenAccountDetailsSchema;
   export import TotalUsdDiffSchema = API.TotalUsdDiffSchema;
+  export import TransactionErrorDetails = API.TransactionErrorDetails;
   export import TxScanRequestSchema = API.TxScanRequestSchema;
 
   export import Stellar = API.Stellar;

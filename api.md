@@ -100,6 +100,7 @@ Types:
 - <code><a href="./src/resources/solana/solana.ts">AccountSummarySchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">AddressScanRequestSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">AddressScanResponseSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">APIErrorDetails</a></code>
 - <code><a href="./src/resources/solana/solana.ts">AssetTransferDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">CnftDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">CnftDiffSchema</a></code>
@@ -107,6 +108,7 @@ Types:
 - <code><a href="./src/resources/solana/solana.ts">CombinedValidationResult</a></code>
 - <code><a href="./src/resources/solana/solana.ts">DelegatedAssetDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">FungibleMintAccountDetailsSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">InstructionErrorDetails</a></code>
 - <code><a href="./src/resources/solana/solana.ts">NativeSolDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">NativeSolDiffSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">NativeSolOwnershipDiffSchema</a></code>
@@ -125,6 +127,7 @@ Types:
 - <code><a href="./src/resources/solana/solana.ts">SystemAccountDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">TokenAccountDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">TotalUsdDiffSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">TransactionErrorDetails</a></code>
 - <code><a href="./src/resources/solana/solana.ts">TxScanRequestSchema</a></code>
 
 ## Message
