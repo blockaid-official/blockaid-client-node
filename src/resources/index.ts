@@ -81,16 +81,6 @@ export {
   Site,
 } from './site';
 export {
-  StarknetErc1155Details,
-  StarknetErc1155Diff,
-  StarknetErc20Details,
-  StarknetErc20Diff,
-  StarknetErc721Details,
-  StarknetErc721Diff,
-  StarknetNativeDiff,
-  Starknet,
-} from './starknet/starknet';
-export {
   StellarAssetContractDetailsSchema,
   StellarAssetTransferDetailsSchema,
   StellarTransactionScanRequest,
