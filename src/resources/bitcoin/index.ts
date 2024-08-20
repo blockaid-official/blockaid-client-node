@@ -1,4 +1,4 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Bitcoin } from './bitcoin';
-export { TransactionScanResponse, TransactionScanParams, Transaction } from './transaction';
+export { BitcoinTransactionScanRequest, BitcoinTransactionScanResponse, Bitcoin } from './bitcoin';
+export { TransactionScanParams, Transaction } from './transaction';

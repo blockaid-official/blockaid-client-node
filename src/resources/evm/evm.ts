@@ -25,80 +25,33 @@ export interface AddressAssetExposure {
   /**
    * description of the asset for the current diff
    */
-  asset: Erc20TokenDetails | Erc1155TokenDetails | Erc721TokenDetails | NonercTokenDetails;
+  asset: EvmErc20Details | EvmErc1155Details | EvmErc721Details | EvmNonercDetails;
 
   /**
    * dictionary of spender addresses where the exposure has changed during this
    * transaction for the current address and asset
    */
-  spenders: Record<string, Erc20Exposure | Erc721Exposure | Erc1155Exposure>;
+  spenders: Record<string, EvmErc20Exposure | EvmErc721Exposure | EvmErc1155Exposure>;
 }
 
 export interface AssetDiff {
   /**
    * description of the asset for the current diff
    */
-  asset:
-    | Erc20TokenDetails
-    | Erc1155TokenDetails
-    | Erc721TokenDetails
-    | NonercTokenDetails
-    | NativeAssetDetails;
+  asset: EvmErc20Details | EvmErc1155Details | EvmErc721Details | EvmNonercDetails | EvmNativeAssetDetails;
 
   /**
    * amount of the asset that was transferred to the address in this transaction
    */
-  in: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
+  in: Array<EvmErc1155Diff | EvmErc721Diff | EvmErc20Diff | EvmNativeDiff>;
 
   /**
    * amount of the asset that was transferred from the address in this transaction
    */
-  out: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
+  out: Array<EvmErc1155Diff | EvmErc721Diff | EvmErc20Diff | EvmNativeDiff>;
 }
 
-export interface Erc1155Diff {
-  /**
-   * id of the token
-   */
-  token_id: string;
-
-  /**
-   * value before divided by decimal, that was transferred from this address
-   */
-  value: string;
-
-  /**
-   * url of the token logo
-   */
-  logo_url?: string;
-
-  /**
-   * user friendly description of the asset transfer
-   */
-  summary?: string;
-
-  /**
-   * usd equal of the asset that was transferred from this address
-   */
-  usd_price?: string;
-}
-
-export interface Erc1155Exposure {
-  exposure: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
-
-  /**
-   * boolean indicates whether an is_approved_for_all function was used (missing in
-   * case of ERC20 / ERC1155)
-   */
-  is_approved_for_all: boolean;
-
-  /**
-   * user friendly description of the approval
-   */
-  summary?: string;
-}
-
-export interface Erc1155TokenDetails {
+export interface EvmErc1155Details {
   /**
    * address of the token
    */
@@ -125,11 +78,21 @@ export interface Erc1155TokenDetails {
   symbol?: string;
 }
 
-export interface Erc20Diff {
+export interface EvmErc1155Diff {
+  /**
+   * id of the token
+   */
+  token_id: string;
+
   /**
    * value before divided by decimal, that was transferred from this address
    */
-  raw_value: string;
+  value: string;
+
+  /**
+   * url of the token logo
+   */
+  logo_url?: string;
 
   /**
    * user friendly description of the asset transfer
@@ -140,26 +103,16 @@ export interface Erc20Diff {
    * usd equal of the asset that was transferred from this address
    */
   usd_price?: string;
-
-  /**
-   * value after divided by decimals, that was transferred from this address
-   */
-  value?: string;
 }
 
-export interface Erc20Exposure {
-  /**
-   * the amount that was asked in the approval request for this spender from the
-   * current address and asset
-   */
-  approval: number;
-
-  exposure: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
+export interface EvmErc1155Exposure {
+  exposure: Array<EvmErc1155Diff | EvmErc721Diff | EvmErc20Diff | EvmNativeDiff>;
 
   /**
-   * the expiration time of the permit2 protocol
+   * boolean indicates whether an is_approved_for_all function was used (missing in
+   * case of ERC20 / ERC1155)
    */
-  expiration?: string;
+  is_approved_for_all: boolean;
 
   /**
    * user friendly description of the approval
@@ -167,7 +120,7 @@ export interface Erc20Exposure {
   summary?: string;
 }
 
-export interface Erc20TokenDetails {
+export interface EvmErc20Details {
   /**
    * address of the token
    */
@@ -199,16 +152,11 @@ export interface Erc20TokenDetails {
   symbol?: string;
 }
 
-export interface Erc721Diff {
+export interface EvmErc20Diff {
   /**
-   * id of the token
+   * value before divided by decimal, that was transferred from this address
    */
-  token_id: string;
-
-  /**
-   * url of the token logo
-   */
-  logo_url?: string;
+  raw_value: string;
 
   /**
    * user friendly description of the asset transfer
@@ -219,16 +167,26 @@ export interface Erc721Diff {
    * usd equal of the asset that was transferred from this address
    */
   usd_price?: string;
-}
-
-export interface Erc721Exposure {
-  exposure: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
 
   /**
-   * boolean indicates whether an is_approved_for_all function was used (missing in
-   * case of ERC20 / ERC1155)
+   * value after divided by decimals, that was transferred from this address
    */
-  is_approved_for_all: boolean;
+  value?: string;
+}
+
+export interface EvmErc20Exposure {
+  /**
+   * the amount that was asked in the approval request for this spender from the
+   * current address and asset
+   */
+  approval: number;
+
+  exposure: Array<EvmErc1155Diff | EvmErc721Diff | EvmErc20Diff | EvmNativeDiff>;
+
+  /**
+   * the expiration time of the permit2 protocol
+   */
+  expiration?: string;
 
   /**
    * user friendly description of the approval
@@ -236,7 +194,7 @@ export interface Erc721Exposure {
   summary?: string;
 }
 
-export interface Erc721TokenDetails {
+export interface EvmErc721Details {
   /**
    * address of the token
    */
@@ -263,14 +221,44 @@ export interface Erc721TokenDetails {
   symbol?: string;
 }
 
-export interface Metadata {
+export interface EvmErc721Diff {
   /**
-   * cross reference transaction against the domain.
+   * id of the token
    */
-  domain: string;
+  token_id: string;
+
+  /**
+   * url of the token logo
+   */
+  logo_url?: string;
+
+  /**
+   * user friendly description of the asset transfer
+   */
+  summary?: string;
+
+  /**
+   * usd equal of the asset that was transferred from this address
+   */
+  usd_price?: string;
 }
 
-export interface NativeAssetDetails {
+export interface EvmErc721Exposure {
+  exposure: Array<EvmErc1155Diff | EvmErc721Diff | EvmErc20Diff | EvmNativeDiff>;
+
+  /**
+   * boolean indicates whether an is_approved_for_all function was used (missing in
+   * case of ERC20 / ERC1155)
+   */
+  is_approved_for_all: boolean;
+
+  /**
+   * user friendly description of the approval
+   */
+  summary?: string;
+}
+
+export interface EvmNativeAssetDetails {
   chain_id: number;
 
   chain_name: string;
@@ -295,7 +283,7 @@ export interface NativeAssetDetails {
   symbol?: string;
 }
 
-export interface NativeDiff {
+export interface EvmNativeDiff {
   /**
    * value before divided by decimal, that was transferred from this address
    */
@@ -317,7 +305,7 @@ export interface NativeDiff {
   value?: string;
 }
 
-export interface NonercTokenDetails {
+export interface EvmNonercDetails {
   /**
    * address of the token
    */
@@ -344,28 +332,7 @@ export interface NonercTokenDetails {
   symbol?: string;
 }
 
-/**
- * The chain name
- */
-export type TokenScanSupportedChain =
-  | 'arbitrum'
-  | 'avalanche'
-  | 'base'
-  | 'bsc'
-  | 'ethereum'
-  | 'optimism'
-  | 'polygon'
-  | 'zora'
-  | 'solana'
-  | 'starknet'
-  | 'stellar'
-  | 'linea'
-  | 'blast'
-  | 'zksync'
-  | 'scroll'
-  | 'degen';
-
-export interface TransactionScanFeature {
+export interface EvmTransactionScanFeature {
   /**
    * Textual description
    */
@@ -387,27 +354,99 @@ export interface TransactionScanFeature {
   address?: string;
 }
 
-export interface TransactionScanResponse {
+export interface EvmTransactionScanRequest {
+  /**
+   * The address to relate the transaction to. Account address determines in which
+   * perspective the transaction is simulated and validated.
+   */
+  account_address: string;
+
+  /**
+   * The chain name or chain ID
+   */
+  chain: EvmTransactionScanSupportedChain | (string & {});
+
+  /**
+   * Transaction parameters
+   */
+  data: EvmTransactionScanRequest.Data;
+
+  /**
+   * Object of additional information to validate against.
+   */
+  metadata: Metadata;
+
+  /**
+   * The relative block for the block validation. Can be "latest" or a block number.
+   */
+  block?: number | string;
+
+  /**
+   * list of one or both of options for the desired output. "simulation" - include
+   * simulation output in your response. "validation" - include security validation
+   * of the transaction in your response. Default is ["validation"]
+   */
+  options?: Array<'validation' | 'simulation' | 'gas_estimation' | 'events'>;
+}
+
+export namespace EvmTransactionScanRequest {
+  /**
+   * Transaction parameters
+   */
+  export interface Data {
+    /**
+     * The source address of the transaction in hex string format
+     */
+    from: string;
+
+    /**
+     * The encoded call data of the transaction in hex string format
+     */
+    data?: string;
+
+    /**
+     * The gas required for the transaction in hex string format.
+     */
+    gas?: string;
+
+    /**
+     * The gas price for the transaction in hex string format.
+     */
+    gas_price?: string;
+
+    /**
+     * The destination address of the transaction in hex string format
+     */
+    to?: string;
+
+    /**
+     * The value of the transaction in Wei in hex string format
+     */
+    value?: string;
+  }
+}
+
+export interface EvmTransactionScanResponse {
   block: string;
 
   chain: string;
 
   account_address?: string;
 
-  events?: Array<TransactionScanResponse.Event>;
+  events?: Array<EvmTransactionScanResponse.Event>;
 
   features?: unknown;
 
   gas_estimation?:
-    | TransactionScanResponse.TransactionScanGasEstimation
-    | TransactionScanResponse.TransactionScanGasEstimationError;
+    | EvmTransactionScanResponse.TransactionScanGasEstimation
+    | EvmTransactionScanResponse.TransactionScanGasEstimationError;
 
-  simulation?: TransactionSimulation | TransactionSimulationError;
+  simulation?: EvmTransactionSimulation | EvmTransactionSimulationError;
 
-  validation?: TransactionValidation | TransactionValidationError;
+  validation?: EvmTransactionValidation | EvmTransactionValidationError;
 }
 
-export namespace TransactionScanResponse {
+export namespace EvmTransactionScanResponse {
   export interface Event {
     data: string;
 
@@ -452,7 +491,7 @@ export namespace TransactionScanResponse {
 /**
  * The chain name
  */
-export type TransactionScanSupportedChain =
+export type EvmTransactionScanSupportedChain =
   | 'arbitrum'
   | 'avalanche'
   | 'base'
@@ -473,19 +512,19 @@ export type TransactionScanSupportedChain =
   | 'immutable-zkevm'
   | 'gnosis';
 
-export interface TransactionSimulation {
+export interface EvmTransactionSimulation {
   /**
    * Account summary for the account address. account address is determined implicit
    * by the `from` field in the transaction request, or explicit by the
    * account_address field in the request.
    */
-  account_summary: TransactionSimulation.AccountSummary;
+  account_summary: EvmTransactionSimulation.AccountSummary;
 
   /**
    * a dictionary including additional information about each relevant address in the
    * transaction.
    */
-  address_details: Record<string, TransactionSimulation.AddressDetails>;
+  address_details: Record<string, EvmTransactionSimulation.AddressDetails>;
 
   /**
    * dictionary describes the assets differences as a result of this transaction for
@@ -520,10 +559,10 @@ export interface TransactionSimulation {
   /**
    * The parameters of the transaction that was simulated.
    */
-  params?: TransactionSimulation.Params;
+  params?: EvmTransactionSimulation.Params;
 }
 
-export namespace TransactionSimulation {
+export namespace EvmTransactionSimulation {
   /**
    * Account summary for the account address. account address is determined implicit
    * by the `from` field in the transaction request, or explicit by the
@@ -557,21 +596,21 @@ export namespace TransactionSimulation {
        * description of the asset for the current diff
        */
       asset:
-        | EvmAPI.Erc20TokenDetails
-        | EvmAPI.Erc1155TokenDetails
-        | EvmAPI.Erc721TokenDetails
-        | EvmAPI.NonercTokenDetails
-        | EvmAPI.NativeAssetDetails;
+        | EvmAPI.EvmErc20Details
+        | EvmAPI.EvmErc1155Details
+        | EvmAPI.EvmErc721Details
+        | EvmAPI.EvmNonercDetails
+        | EvmAPI.EvmNativeAssetDetails;
 
       /**
        * amount of the asset that was transferred to the address in this transaction
        */
-      in: Array<EvmAPI.Erc1155Diff | EvmAPI.Erc721Diff | EvmAPI.Erc20Diff | EvmAPI.NativeDiff>;
+      in: Array<EvmAPI.EvmErc1155Diff | EvmAPI.EvmErc721Diff | EvmAPI.EvmErc20Diff | EvmAPI.EvmNativeDiff>;
 
       /**
        * amount of the asset that was transferred from the address in this transaction
        */
-      out: Array<EvmAPI.Erc1155Diff | EvmAPI.Erc721Diff | EvmAPI.Erc20Diff | EvmAPI.NativeDiff>;
+      out: Array<EvmAPI.EvmErc1155Diff | EvmAPI.EvmErc721Diff | EvmAPI.EvmErc20Diff | EvmAPI.EvmNativeDiff>;
 
       /**
        * shows the balance before making the transaction and after
@@ -724,7 +763,7 @@ export namespace TransactionSimulation {
   }
 }
 
-export interface TransactionSimulationError {
+export interface EvmTransactionSimulationError {
   /**
    * An error message if the simulation failed.
    */
@@ -736,11 +775,11 @@ export interface TransactionSimulationError {
   status: 'Error';
 }
 
-export interface TransactionValidation {
+export interface EvmTransactionValidation {
   /**
    * A list of features about this transaction explaining the validation.
    */
-  features: Array<TransactionScanFeature>;
+  features: Array<EvmTransactionScanFeature>;
 
   /**
    * An enumeration.
@@ -771,7 +810,7 @@ export interface TransactionValidation {
   reason?: string;
 }
 
-export interface TransactionValidationError {
+export interface EvmTransactionValidationError {
   /**
    * A textual classification that can be presented to the user explaining the
    * reason.
@@ -792,7 +831,7 @@ export interface TransactionValidationError {
   /**
    * A list of features about this transaction explaining the validation.
    */
-  features: Array<TransactionScanFeature>;
+  features: Array<EvmTransactionScanFeature>;
 
   /**
    * A textual description about the reasons the transaction was flagged with
@@ -811,6 +850,13 @@ export interface TransactionValidationError {
   status: 'Success';
 }
 
+export interface Metadata {
+  /**
+   * cross reference transaction against the domain.
+   */
+  domain: string;
+}
+
 export interface UsdDiff {
   in: string;
 
@@ -822,27 +868,27 @@ export interface UsdDiff {
 export namespace Evm {
   export import AddressAssetExposure = EvmAPI.AddressAssetExposure;
   export import AssetDiff = EvmAPI.AssetDiff;
-  export import Erc1155Diff = EvmAPI.Erc1155Diff;
-  export import Erc1155Exposure = EvmAPI.Erc1155Exposure;
-  export import Erc1155TokenDetails = EvmAPI.Erc1155TokenDetails;
-  export import Erc20Diff = EvmAPI.Erc20Diff;
-  export import Erc20Exposure = EvmAPI.Erc20Exposure;
-  export import Erc20TokenDetails = EvmAPI.Erc20TokenDetails;
-  export import Erc721Diff = EvmAPI.Erc721Diff;
-  export import Erc721Exposure = EvmAPI.Erc721Exposure;
-  export import Erc721TokenDetails = EvmAPI.Erc721TokenDetails;
+  export import EvmErc1155Details = EvmAPI.EvmErc1155Details;
+  export import EvmErc1155Diff = EvmAPI.EvmErc1155Diff;
+  export import EvmErc1155Exposure = EvmAPI.EvmErc1155Exposure;
+  export import EvmErc20Details = EvmAPI.EvmErc20Details;
+  export import EvmErc20Diff = EvmAPI.EvmErc20Diff;
+  export import EvmErc20Exposure = EvmAPI.EvmErc20Exposure;
+  export import EvmErc721Details = EvmAPI.EvmErc721Details;
+  export import EvmErc721Diff = EvmAPI.EvmErc721Diff;
+  export import EvmErc721Exposure = EvmAPI.EvmErc721Exposure;
+  export import EvmNativeAssetDetails = EvmAPI.EvmNativeAssetDetails;
+  export import EvmNativeDiff = EvmAPI.EvmNativeDiff;
+  export import EvmNonercDetails = EvmAPI.EvmNonercDetails;
+  export import EvmTransactionScanFeature = EvmAPI.EvmTransactionScanFeature;
+  export import EvmTransactionScanRequest = EvmAPI.EvmTransactionScanRequest;
+  export import EvmTransactionScanResponse = EvmAPI.EvmTransactionScanResponse;
+  export import EvmTransactionScanSupportedChain = EvmAPI.EvmTransactionScanSupportedChain;
+  export import EvmTransactionSimulation = EvmAPI.EvmTransactionSimulation;
+  export import EvmTransactionSimulationError = EvmAPI.EvmTransactionSimulationError;
+  export import EvmTransactionValidation = EvmAPI.EvmTransactionValidation;
+  export import EvmTransactionValidationError = EvmAPI.EvmTransactionValidationError;
   export import Metadata = EvmAPI.Metadata;
-  export import NativeAssetDetails = EvmAPI.NativeAssetDetails;
-  export import NativeDiff = EvmAPI.NativeDiff;
-  export import NonercTokenDetails = EvmAPI.NonercTokenDetails;
-  export import TokenScanSupportedChain = EvmAPI.TokenScanSupportedChain;
-  export import TransactionScanFeature = EvmAPI.TransactionScanFeature;
-  export import TransactionScanResponse = EvmAPI.TransactionScanResponse;
-  export import TransactionScanSupportedChain = EvmAPI.TransactionScanSupportedChain;
-  export import TransactionSimulation = EvmAPI.TransactionSimulation;
-  export import TransactionSimulationError = EvmAPI.TransactionSimulationError;
-  export import TransactionValidation = EvmAPI.TransactionValidation;
-  export import TransactionValidationError = EvmAPI.TransactionValidationError;
   export import UsdDiff = EvmAPI.UsdDiff;
   export import JsonRpc = JsonRpcAPI.JsonRpc;
   export import JsonRpcScanParams = JsonRpcAPI.JsonRpcScanParams;
