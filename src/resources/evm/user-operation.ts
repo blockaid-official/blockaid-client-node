@@ -14,7 +14,7 @@ export class UserOperation extends APIResource {
   scan(
     body: UserOperationScanParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<EvmAPI.EvmTransactionScanResponse> {
+  ): Core.APIPromise<EvmAPI.TransactionScanResponse> {
     return this._client.post('/v0/evm/user-operation/scan', { body, ...options });
   }
 }
@@ -23,7 +23,7 @@ export interface UserOperationScanParams {
   /**
    * The chain name or chain ID
    */
-  chain: EvmAPI.EvmTransactionScanSupportedChain | (string & {});
+  chain: EvmAPI.TransactionScanSupportedChain | (string & {});
 
   /**
    * The user operation request that was received by the wallet

@@ -18,13 +18,13 @@ export class PostTransactionBulk extends APIResource {
   }
 }
 
-export type PostTransactionBulkScanResponse = Array<EvmAPI.EvmTransactionScanResponse>;
+export type PostTransactionBulkScanResponse = Array<EvmAPI.TransactionScanResponse>;
 
 export interface PostTransactionBulkScanParams {
   /**
    * The chain name or chain ID
    */
-  chain: EvmAPI.EvmTransactionScanSupportedChain | (string & {});
+  chain: EvmAPI.TransactionScanSupportedChain | (string & {});
 
   /**
    * Transaction hashes to scan

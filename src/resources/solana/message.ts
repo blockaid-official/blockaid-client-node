@@ -9,10 +9,7 @@ export class Message extends APIResource {
   /**
    * Scan Messages
    */
-  scan(
-    body: MessageScanParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SolanaAPI.SolanaMessageScanResponse> {
+  scan(body: MessageScanParams, options?: Core.RequestOptions): Core.APIPromise<SolanaAPI.ResponseSchema> {
     return this._client.post('/v0/solana/message/scan', { body, ...options });
   }
 }
