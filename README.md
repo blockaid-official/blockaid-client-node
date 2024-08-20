@@ -27,7 +27,7 @@ const client = new Blockaid({
 });
 
 async function main() {
-  const transactionScanResponse = await client.evm.jsonRpc.scan({
+  const evmTransactionScanResponse = await client.evm.jsonRpc.scan({
     chain: 'arbitrum',
     data: {
       method: 'eth_signTypedData_v4',
@@ -39,7 +39,7 @@ async function main() {
     metadata: { domain: 'https://boredapeyartclub.com' },
   });
 
-  console.log(transactionScanResponse.validation);
+  console.log(evmTransactionScanResponse.validation);
 }
 
 main();
@@ -69,7 +69,9 @@ async function main() {
     },
     metadata: { domain: 'https://boredapeyartclub.com' },
   };
-  const transactionScanResponse: Blockaid.TransactionScanResponse = await client.evm.jsonRpc.scan(params);
+  const evmTransactionScanResponse: Blockaid.EvmTransactionScanResponse = await client.evm.jsonRpc.scan(
+    params,
+  );
 }
 
 main();
@@ -86,7 +88,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const transactionScanResponse = await client.evm.jsonRpc
+  const evmTransactionScanResponse = await client.evm.jsonRpc
     .scan({
       chain: 'arbitrum',
       data: {
@@ -195,7 +197,7 @@ const response = await client.evm.jsonRpc
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: transactionScanResponse, response: raw } = await client.evm.jsonRpc
+const { data: evmTransactionScanResponse, response: raw } = await client.evm.jsonRpc
   .scan({
     chain: 'arbitrum',
     data: {
@@ -209,7 +211,7 @@ const { data: transactionScanResponse, response: raw } = await client.evm.jsonRp
   })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(transactionScanResponse.validation);
+console.log(evmTransactionScanResponse.validation);
 ```
 
 ### Making custom/undocumented requests

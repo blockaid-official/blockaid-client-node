@@ -20,7 +20,7 @@ export class PostTransaction extends APIResource {
   scan(
     body: PostTransactionScanParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<EvmAPI.TransactionScanResponse> {
+  ): Core.APIPromise<EvmAPI.EvmTransactionScanResponse> {
     return this._client.post('/v0/evm/post-transaction/scan', { body, ...options });
   }
 }
@@ -58,7 +58,7 @@ export namespace PostTransactionReportParams {
       /**
        * The chain name
        */
-      chain: EvmAPI.TransactionScanSupportedChain;
+      chain: EvmAPI.EvmTransactionScanSupportedChain;
 
       /**
        * The transaction hash to report on.
@@ -78,7 +78,7 @@ export interface PostTransactionScanParams {
   /**
    * The chain name or chain ID
    */
-  chain: EvmAPI.TransactionScanSupportedChain | (string & {});
+  chain: EvmAPI.EvmTransactionScanSupportedChain | (string & {});
 
   data: PostTransactionScanParams.Data;
 

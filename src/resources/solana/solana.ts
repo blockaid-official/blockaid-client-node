@@ -36,60 +36,6 @@ export interface AccountSummarySchema {
   >;
 }
 
-export interface AddressScanRequestSchema {
-  /**
-   * Encoded public key
-   */
-  address: string;
-
-  metadata: AddressScanRequestSchema.Metadata;
-
-  /**
-   * Chain to scan the transaction on
-   */
-  chain?: string;
-}
-
-export namespace AddressScanRequestSchema {
-  export interface Metadata {
-    /**
-     * URL of the dApp related to the address
-     */
-    url: string;
-  }
-}
-
-export interface AddressScanResponseSchema {
-  /**
-   * Features about the result
-   */
-  features: Array<AddressScanResponseSchema.Feature>;
-
-  /**
-   * An enumeration.
-   */
-  result_type: 'Malicious' | 'Warning' | 'Benign';
-}
-
-export namespace AddressScanResponseSchema {
-  export interface Feature {
-    /**
-     * Description of the feature
-     */
-    description: string;
-
-    /**
-     * ID of the feature
-     */
-    feature_id: string;
-
-    /**
-     * An enumeration.
-     */
-    type: 'Malicious' | 'Warning' | 'Benign' | 'Info';
-  }
-}
-
 export interface APIErrorDetails {
   /**
    * Advanced message of the error
@@ -437,7 +383,101 @@ export interface ProgramAccountDetailsSchema {
   description?: string | null;
 }
 
-export interface ResponseSchema {
+export interface SolanaAddressScanRequest {
+  /**
+   * Encoded public key
+   */
+  address: string;
+
+  metadata: SolanaAddressScanRequest.Metadata;
+
+  /**
+   * Chain to scan the transaction on
+   */
+  chain?: string;
+}
+
+export namespace SolanaAddressScanRequest {
+  export interface Metadata {
+    /**
+     * URL of the dApp related to the address
+     */
+    url: string;
+  }
+}
+
+export interface SolanaAddressScanResponse {
+  /**
+   * Features about the result
+   */
+  features: Array<SolanaAddressScanResponse.Feature>;
+
+  /**
+   * An enumeration.
+   */
+  result_type: 'Malicious' | 'Warning' | 'Benign';
+}
+
+export namespace SolanaAddressScanResponse {
+  export interface Feature {
+    /**
+     * Description of the feature
+     */
+    description: string;
+
+    /**
+     * ID of the feature
+     */
+    feature_id: string;
+
+    /**
+     * An enumeration.
+     */
+    type: 'Malicious' | 'Warning' | 'Benign' | 'Info';
+  }
+}
+
+export interface SolanaMessageScanRequest {
+  /**
+   * Encoded public key of the account to simulate the transaction on
+   */
+  account_address: string;
+
+  metadata: SolanaMessageScanRequest.Metadata;
+
+  /**
+   * Transactions to scan
+   */
+  transactions: Array<string>;
+
+  /**
+   * Chain to scan the transaction on
+   */
+  chain?: string;
+
+  /**
+   * Encoding of the transaction and public keys
+   */
+  encoding?: string;
+
+  /**
+   * The RPC method used by dApp to propose the transaction
+   */
+  method?: string;
+
+  options?: Array<string>;
+}
+
+export namespace SolanaMessageScanRequest {
+  export interface Metadata {
+    /**
+     * URL of the dApp that originated the transaction
+     */
+    url?: string | null;
+  }
+}
+
+export interface SolanaMessageScanResponse {
   /**
    * An enumeration.
    */
@@ -702,50 +742,8 @@ export interface TransactionErrorDetails {
   type?: string;
 }
 
-export interface TxScanRequestSchema {
-  /**
-   * Encoded public key of the account to simulate the transaction on
-   */
-  account_address: string;
-
-  metadata: TxScanRequestSchema.Metadata;
-
-  /**
-   * Transactions to scan
-   */
-  transactions: Array<string>;
-
-  /**
-   * Chain to scan the transaction on
-   */
-  chain?: string;
-
-  /**
-   * Encoding of the transaction and public keys
-   */
-  encoding?: string;
-
-  /**
-   * The RPC method used by dApp to propose the transaction
-   */
-  method?: string;
-
-  options?: Array<string>;
-}
-
-export namespace TxScanRequestSchema {
-  export interface Metadata {
-    /**
-     * URL of the dApp that originated the transaction
-     */
-    url?: string | null;
-  }
-}
-
 export namespace Solana {
   export import AccountSummarySchema = SolanaAPI.AccountSummarySchema;
-  export import AddressScanRequestSchema = SolanaAPI.AddressScanRequestSchema;
-  export import AddressScanResponseSchema = SolanaAPI.AddressScanResponseSchema;
   export import APIErrorDetails = SolanaAPI.APIErrorDetails;
   export import AssetTransferDetailsSchema = SolanaAPI.AssetTransferDetailsSchema;
   export import CnftDetailsSchema = SolanaAPI.CnftDetailsSchema;
@@ -761,7 +759,10 @@ export namespace Solana {
   export import NonFungibleMintAccountDetailsSchema = SolanaAPI.NonFungibleMintAccountDetailsSchema;
   export import PdaAccountSchema = SolanaAPI.PdaAccountSchema;
   export import ProgramAccountDetailsSchema = SolanaAPI.ProgramAccountDetailsSchema;
-  export import ResponseSchema = SolanaAPI.ResponseSchema;
+  export import SolanaAddressScanRequest = SolanaAPI.SolanaAddressScanRequest;
+  export import SolanaAddressScanResponse = SolanaAPI.SolanaAddressScanResponse;
+  export import SolanaMessageScanRequest = SolanaAPI.SolanaMessageScanRequest;
+  export import SolanaMessageScanResponse = SolanaAPI.SolanaMessageScanResponse;
   export import SplFungibleTokenDetailsSchema = SolanaAPI.SplFungibleTokenDetailsSchema;
   export import SplFungibleTokenDiffSchema = SolanaAPI.SplFungibleTokenDiffSchema;
   export import SplNonFungibleTokenDetailsSchema = SolanaAPI.SplNonFungibleTokenDetailsSchema;
@@ -774,7 +775,6 @@ export namespace Solana {
   export import TokenAccountDetailsSchema = SolanaAPI.TokenAccountDetailsSchema;
   export import TotalUsdDiffSchema = SolanaAPI.TotalUsdDiffSchema;
   export import TransactionErrorDetails = SolanaAPI.TransactionErrorDetails;
-  export import TxScanRequestSchema = SolanaAPI.TxScanRequestSchema;
   export import Message = MessageAPI.Message;
   export import MessageScanParams = MessageAPI.MessageScanParams;
   export import Address = AddressAPI.Address;

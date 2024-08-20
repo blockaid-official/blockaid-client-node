@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as TokenAPI from './token';
-import * as EvmAPI from './evm/evm';
 
 export class Token extends APIResource {
   /**
@@ -21,6 +20,27 @@ export class Token extends APIResource {
     return this._client.post('/v0/token/scan', { body, ...options });
   }
 }
+
+/**
+ * The chain name
+ */
+export type TokenScanSupportedChain =
+  | 'arbitrum'
+  | 'avalanche'
+  | 'base'
+  | 'bsc'
+  | 'ethereum'
+  | 'optimism'
+  | 'polygon'
+  | 'zora'
+  | 'solana'
+  | 'starknet'
+  | 'stellar'
+  | 'linea'
+  | 'blast'
+  | 'zksync'
+  | 'scroll'
+  | 'degen';
 
 export type TokenReportResponse = unknown;
 
@@ -94,7 +114,7 @@ export namespace TokenReportParams {
       /**
        * The chain name
        */
-      chain: EvmAPI.TokenScanSupportedChain;
+      chain: TokenAPI.TokenScanSupportedChain;
     }
   }
 
@@ -114,7 +134,7 @@ export interface TokenScanParams {
   /**
    * The chain name
    */
-  chain: EvmAPI.TokenScanSupportedChain;
+  chain: TokenScanSupportedChain;
 
   /**
    * Object of additional information to validate against.
@@ -135,6 +155,7 @@ export namespace TokenScanParams {
 }
 
 export namespace Token {
+  export import TokenScanSupportedChain = TokenAPI.TokenScanSupportedChain;
   export import TokenReportResponse = TokenAPI.TokenReportResponse;
   export import TokenScanResponse = TokenAPI.TokenScanResponse;
   export import TokenReportParams = TokenAPI.TokenReportParams;

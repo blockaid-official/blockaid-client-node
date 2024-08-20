@@ -8,6 +8,8 @@ export {
   StarknetErc721Details,
   StarknetErc721Diff,
   StarknetNativeDiff,
+  StarknetTransactionScanRequest,
+  StarknetTransactionScanResponse,
   Starknet,
 } from './starknet';
-export { TransactionScanResponse, TransactionScanParams, Transaction } from './transaction';
+export { TransactionScanParams, Transaction } from './transaction';

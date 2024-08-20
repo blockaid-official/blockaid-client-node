@@ -20,13 +20,13 @@ export class TransactionBulk extends APIResource {
   }
 }
 
-export type TransactionBulkScanResponse = Array<EvmAPI.TransactionScanResponse>;
+export type TransactionBulkScanResponse = Array<EvmAPI.EvmTransactionScanResponse>;
 
 export interface TransactionBulkScanParams {
   /**
    * The chain name or chain ID
    */
-  chain: EvmAPI.TransactionScanSupportedChain | (string & {});
+  chain: EvmAPI.EvmTransactionScanSupportedChain | (string & {});
 
   /**
    * Transaction bulk parameters

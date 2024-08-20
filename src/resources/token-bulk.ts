@@ -3,7 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as TokenBulkAPI from './token-bulk';
-import * as EvmAPI from './evm/evm';
+import * as TokenAPI from './token';
 
 export class TokenBulk extends APIResource {
   /**
@@ -61,7 +61,7 @@ export interface TokenBulkScanParams {
   /**
    * The chain name
    */
-  chain: EvmAPI.TokenScanSupportedChain;
+  chain: TokenAPI.TokenScanSupportedChain;
 
   /**
    * A list of token addresses to scan
