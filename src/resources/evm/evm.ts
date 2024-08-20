@@ -706,7 +706,8 @@ export type TransactionScanSupportedChain =
   | 'degen'
   | 'avalanche-fuji'
   | 'immutable-zkevm'
-  | 'gnosis';
+  | 'gnosis'
+  | 'worldchain';
 
 export interface TransactionSimulation {
   /**
