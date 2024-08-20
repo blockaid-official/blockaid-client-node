@@ -189,31 +189,33 @@ export namespace Blockaid {
   export import Evm = API.Evm;
   export import AddressAssetExposure = API.AddressAssetExposure;
   export import AssetDiff = API.AssetDiff;
-  export import EvmErc1155Details = API.EvmErc1155Details;
-  export import EvmErc1155Diff = API.EvmErc1155Diff;
-  export import EvmErc1155Exposure = API.EvmErc1155Exposure;
-  export import EvmErc20Details = API.EvmErc20Details;
-  export import EvmErc20Diff = API.EvmErc20Diff;
-  export import EvmErc20Exposure = API.EvmErc20Exposure;
-  export import EvmErc721Details = API.EvmErc721Details;
-  export import EvmErc721Diff = API.EvmErc721Diff;
-  export import EvmErc721Exposure = API.EvmErc721Exposure;
-  export import EvmNativeAssetDetails = API.EvmNativeAssetDetails;
-  export import EvmNativeDiff = API.EvmNativeDiff;
-  export import EvmNonercDetails = API.EvmNonercDetails;
-  export import EvmTransactionScanFeature = API.EvmTransactionScanFeature;
-  export import EvmTransactionScanRequest = API.EvmTransactionScanRequest;
-  export import EvmTransactionScanResponse = API.EvmTransactionScanResponse;
-  export import EvmTransactionScanSupportedChain = API.EvmTransactionScanSupportedChain;
-  export import EvmTransactionSimulation = API.EvmTransactionSimulation;
-  export import EvmTransactionSimulationError = API.EvmTransactionSimulationError;
-  export import EvmTransactionValidation = API.EvmTransactionValidation;
-  export import EvmTransactionValidationError = API.EvmTransactionValidationError;
+  export import Erc1155Diff = API.Erc1155Diff;
+  export import Erc1155Exposure = API.Erc1155Exposure;
+  export import Erc1155TokenDetails = API.Erc1155TokenDetails;
+  export import Erc20Diff = API.Erc20Diff;
+  export import Erc20Exposure = API.Erc20Exposure;
+  export import Erc20TokenDetails = API.Erc20TokenDetails;
+  export import Erc721Diff = API.Erc721Diff;
+  export import Erc721Exposure = API.Erc721Exposure;
+  export import Erc721TokenDetails = API.Erc721TokenDetails;
   export import Metadata = API.Metadata;
+  export import NativeAssetDetails = API.NativeAssetDetails;
+  export import NativeDiff = API.NativeDiff;
+  export import NonercTokenDetails = API.NonercTokenDetails;
+  export import TokenScanSupportedChain = API.TokenScanSupportedChain;
+  export import TransactionScanFeature = API.TransactionScanFeature;
+  export import TransactionScanResponse = API.TransactionScanResponse;
+  export import TransactionScanSupportedChain = API.TransactionScanSupportedChain;
+  export import TransactionSimulation = API.TransactionSimulation;
+  export import TransactionSimulationError = API.TransactionSimulationError;
+  export import TransactionValidation = API.TransactionValidation;
+  export import TransactionValidationError = API.TransactionValidationError;
   export import UsdDiff = API.UsdDiff;
 
   export import Solana = API.Solana;
   export import AccountSummarySchema = API.AccountSummarySchema;
+  export import AddressScanRequestSchema = API.AddressScanRequestSchema;
+  export import AddressScanResponseSchema = API.AddressScanResponseSchema;
   export import APIErrorDetails = API.APIErrorDetails;
   export import AssetTransferDetailsSchema = API.AssetTransferDetailsSchema;
   export import CnftDetailsSchema = API.CnftDetailsSchema;
@@ -229,10 +231,7 @@ export namespace Blockaid {
   export import NonFungibleMintAccountDetailsSchema = API.NonFungibleMintAccountDetailsSchema;
   export import PdaAccountSchema = API.PdaAccountSchema;
   export import ProgramAccountDetailsSchema = API.ProgramAccountDetailsSchema;
-  export import SolanaAddressScanRequest = API.SolanaAddressScanRequest;
-  export import SolanaAddressScanResponse = API.SolanaAddressScanResponse;
-  export import SolanaMessageScanRequest = API.SolanaMessageScanRequest;
-  export import SolanaMessageScanResponse = API.SolanaMessageScanResponse;
+  export import ResponseSchema = API.ResponseSchema;
   export import SplFungibleTokenDetailsSchema = API.SplFungibleTokenDetailsSchema;
   export import SplFungibleTokenDiffSchema = API.SplFungibleTokenDiffSchema;
   export import SplNonFungibleTokenDetailsSchema = API.SplNonFungibleTokenDetailsSchema;
@@ -245,16 +244,15 @@ export namespace Blockaid {
   export import TokenAccountDetailsSchema = API.TokenAccountDetailsSchema;
   export import TotalUsdDiffSchema = API.TotalUsdDiffSchema;
   export import TransactionErrorDetails = API.TransactionErrorDetails;
+  export import TxScanRequestSchema = API.TxScanRequestSchema;
 
   export import Stellar = API.Stellar;
-  export import StellarAssetContractDetails = API.StellarAssetContractDetails;
-  export import StellarAssetTransferDetails = API.StellarAssetTransferDetails;
+  export import StellarAssetContractDetailsSchema = API.StellarAssetContractDetailsSchema;
+  export import StellarAssetTransferDetailsSchema = API.StellarAssetTransferDetailsSchema;
   export import StellarTransactionScanRequest = API.StellarTransactionScanRequest;
   export import StellarTransactionScanResponse = API.StellarTransactionScanResponse;
 
   export import Bitcoin = API.Bitcoin;
-  export import BitcoinTransactionScanRequest = API.BitcoinTransactionScanRequest;
-  export import BitcoinTransactionScanResponse = API.BitcoinTransactionScanResponse;
 
   export import Starknet = API.Starknet;
   export import StarknetErc1155Details = API.StarknetErc1155Details;
@@ -264,8 +262,6 @@ export namespace Blockaid {
   export import StarknetErc721Details = API.StarknetErc721Details;
   export import StarknetErc721Diff = API.StarknetErc721Diff;
   export import StarknetNativeDiff = API.StarknetNativeDiff;
-  export import StarknetTransactionScanRequest = API.StarknetTransactionScanRequest;
-  export import StarknetTransactionScanResponse = API.StarknetTransactionScanResponse;
 
   export import Site = API.Site;
   export import SiteScanHitResponse = API.SiteScanHitResponse;
@@ -276,7 +272,6 @@ export namespace Blockaid {
   export import SiteScanParams = API.SiteScanParams;
 
   export import Token = API.Token;
-  export import TokenScanSupportedChain = API.TokenScanSupportedChain;
   export import TokenReportResponse = API.TokenReportResponse;
   export import TokenScanResponse = API.TokenScanResponse;
   export import TokenReportParams = API.TokenReportParams;

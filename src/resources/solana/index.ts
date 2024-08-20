@@ -2,6 +2,8 @@
 
 export {
   AccountSummarySchema,
+  AddressScanRequestSchema,
+  AddressScanResponseSchema,
   APIErrorDetails,
   AssetTransferDetailsSchema,
   CnftDetailsSchema,
@@ -17,10 +19,7 @@ export {
   NonFungibleMintAccountDetailsSchema,
   PdaAccountSchema,
   ProgramAccountDetailsSchema,
-  SolanaAddressScanRequest,
-  SolanaAddressScanResponse,
-  SolanaMessageScanRequest,
-  SolanaMessageScanResponse,
+  ResponseSchema,
   SplFungibleTokenDetailsSchema,
   SplFungibleTokenDiffSchema,
   SplNonFungibleTokenDetailsSchema,
@@ -33,6 +32,7 @@ export {
   TokenAccountDetailsSchema,
   TotalUsdDiffSchema,
   TransactionErrorDetails,
+  TxScanRequestSchema,
   Solana,
 } from './solana';
 export { AddressScanParams, Address } from './address';

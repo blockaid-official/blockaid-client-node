@@ -8,7 +8,7 @@ export class Stellar extends APIResource {
   transaction: TransactionAPI.Transaction = new TransactionAPI.Transaction(this._client);
 }
 
-export interface StellarAssetContractDetails {
+export interface StellarAssetContractDetailsSchema {
   /**
    * Address of the asset's contract
    */
@@ -30,7 +30,7 @@ export interface StellarAssetContractDetails {
   type?: 'CONTRACT';
 }
 
-export interface StellarAssetTransferDetails {
+export interface StellarAssetTransferDetailsSchema {
   /**
    * Raw value of the transfer
    */
@@ -185,7 +185,7 @@ export namespace StellarTransactionScanResponse {
 
     export namespace AccountSummary {
       export interface AccountExposure {
-        asset: StellarAPI.StellarAssetContractDetails;
+        asset: StellarAPI.StellarAssetContractDetailsSchema;
 
         /**
          * Mapping between the address of a Spender to the exposure of the asset during the
@@ -259,17 +259,17 @@ export namespace StellarTransactionScanResponse {
         asset:
           | AssetsDiff.StellarLegacyAssetDetailsSchema
           | AssetsDiff.StellarNativeAssetDetailsSchema
-          | StellarAPI.StellarAssetContractDetails;
+          | StellarAPI.StellarAssetContractDetailsSchema;
 
         /**
          * Incoming transfers of the asset
          */
-        in?: StellarAPI.StellarAssetTransferDetails | null;
+        in?: StellarAPI.StellarAssetTransferDetailsSchema | null;
 
         /**
          * Outgoing transfers of the asset
          */
-        out?: StellarAPI.StellarAssetTransferDetails | null;
+        out?: StellarAPI.StellarAssetTransferDetailsSchema | null;
       }
 
       export namespace AssetsDiff {
@@ -333,17 +333,17 @@ export namespace StellarTransactionScanResponse {
       asset:
         | AssetsDiff.StellarLegacyAssetDetailsSchema
         | AssetsDiff.StellarNativeAssetDetailsSchema
-        | StellarAPI.StellarAssetContractDetails;
+        | StellarAPI.StellarAssetContractDetailsSchema;
 
       /**
        * Incoming transfers of the asset
        */
-      in?: StellarAPI.StellarAssetTransferDetails | null;
+      in?: StellarAPI.StellarAssetTransferDetailsSchema | null;
 
       /**
        * Outgoing transfers of the asset
        */
-      out?: StellarAPI.StellarAssetTransferDetails | null;
+      out?: StellarAPI.StellarAssetTransferDetailsSchema | null;
     }
 
     export namespace AssetsDiff {
@@ -402,7 +402,7 @@ export namespace StellarTransactionScanResponse {
     }
 
     export interface Exposure {
-      asset: StellarAPI.StellarAssetContractDetails;
+      asset: StellarAPI.StellarAssetContractDetailsSchema;
 
       /**
        * Mapping between the address of a Spender to the exposure of the asset during the
@@ -508,8 +508,8 @@ export namespace StellarTransactionScanResponse {
 }
 
 export namespace Stellar {
-  export import StellarAssetContractDetails = StellarAPI.StellarAssetContractDetails;
-  export import StellarAssetTransferDetails = StellarAPI.StellarAssetTransferDetails;
+  export import StellarAssetContractDetailsSchema = StellarAPI.StellarAssetContractDetailsSchema;
+  export import StellarAssetTransferDetailsSchema = StellarAPI.StellarAssetTransferDetailsSchema;
   export import StellarTransactionScanRequest = StellarAPI.StellarTransactionScanRequest;
   export import StellarTransactionScanResponse = StellarAPI.StellarTransactionScanResponse;
   export import Transaction = TransactionAPI.Transaction;

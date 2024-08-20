@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as TokenAPI from './token';
+import * as EvmAPI from './evm/evm';
 
 export class Token extends APIResource {
   /**
@@ -21,27 +22,6 @@ export class Token extends APIResource {
   }
 }
 
-/**
- * The chain name
- */
-export type TokenScanSupportedChain =
-  | 'arbitrum'
-  | 'avalanche'
-  | 'base'
-  | 'bsc'
-  | 'ethereum'
-  | 'optimism'
-  | 'polygon'
-  | 'zora'
-  | 'solana'
-  | 'starknet'
-  | 'stellar'
-  | 'linea'
-  | 'blast'
-  | 'zksync'
-  | 'scroll'
-  | 'degen';
-
 export type TokenReportResponse = unknown;
 
 export interface TokenScanResponse {
@@ -59,6 +39,16 @@ export interface TokenScanResponse {
    * An enumeration.
    */
   result_type: 'Benign' | 'Warning' | 'Malicious' | 'Spam';
+
+  /**
+   * Fees associated with the token
+   */
+  fees?: TokenScanResponse.Fees;
+
+  /**
+   * Metadata about the token
+   */
+  metadata?: TokenScanResponse.Metadata;
 }
 
 export namespace TokenScanResponse {
@@ -77,6 +67,46 @@ export namespace TokenScanResponse {
      * If score is higher or equal to this field, the token is using this attack type
      */
     threshold?: string;
+  }
+
+  /**
+   * Fees associated with the token
+   */
+  export interface Fees {
+    /**
+     * Buy fee of the token
+     */
+    buy?: number;
+
+    /**
+     * Sell fee of the token
+     */
+    sell?: number;
+
+    /**
+     * Transfer fee of the token
+     */
+    transfer?: number;
+  }
+
+  /**
+   * Metadata about the token
+   */
+  export interface Metadata {
+    /**
+     * URL of the token image
+     */
+    image_url?: string;
+
+    /**
+     * Name of the token
+     */
+    name?: string;
+
+    /**
+     * Symbol of the token
+     */
+    symbol?: string;
   }
 }
 
@@ -114,7 +144,7 @@ export namespace TokenReportParams {
       /**
        * The chain name
        */
-      chain: TokenAPI.TokenScanSupportedChain;
+      chain: EvmAPI.TokenScanSupportedChain;
     }
   }
 
@@ -134,7 +164,7 @@ export interface TokenScanParams {
   /**
    * The chain name
    */
-  chain: TokenScanSupportedChain;
+  chain: EvmAPI.TokenScanSupportedChain;
 
   /**
    * Object of additional information to validate against.
@@ -155,7 +185,6 @@ export namespace TokenScanParams {
 }
 
 export namespace Token {
-  export import TokenScanSupportedChain = TokenAPI.TokenScanSupportedChain;
   export import TokenReportResponse = TokenAPI.TokenReportResponse;
   export import TokenScanResponse = TokenAPI.TokenScanResponse;
   export import TokenReportParams = TokenAPI.TokenReportParams;

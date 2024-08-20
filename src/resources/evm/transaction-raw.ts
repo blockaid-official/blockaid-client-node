@@ -14,7 +14,7 @@ export class TransactionRaw extends APIResource {
   scan(
     body: TransactionRawScanParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<EvmAPI.EvmTransactionScanResponse> {
+  ): Core.APIPromise<EvmAPI.TransactionScanResponse> {
     return this._client.post('/v0/evm/transaction-raw/scan', { body, ...options });
   }
 }
@@ -29,7 +29,7 @@ export interface TransactionRawScanParams {
   /**
    * The chain name or chain ID
    */
-  chain: EvmAPI.EvmTransactionScanSupportedChain | (string & {});
+  chain: EvmAPI.TransactionScanSupportedChain | (string & {});
 
   /**
    * Hex string of the raw transaction data
