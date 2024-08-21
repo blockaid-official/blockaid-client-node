@@ -6,31 +6,11 @@ import { type Agent } from './_shims/index';
 import * as Core from './core';
 import * as API from './resources/index';
 
-const environments = {
-  production: 'https://api.blockaid.io',
-  direct: 'https://direct.api.blockaid.io',
-};
-type Environment = keyof typeof environments;
-
 export interface ClientOptions {
   /**
-   * Authentication method to api.blockaid.io
+   * Defaults to process.env['BLOCKAID_CLIENT_API_KEY'].
    */
-  apiKey?: string | null | undefined;
-
-  /**
-   * Authentication method to direct.api.blockaid.io
-   */
-  clientId?: string | null | undefined;
-
-  /**
-   * Specifies the environment to use for the API.
-   *
-   * Each environment maps to a different base URL:
-   * - `production` corresponds to `https://api.blockaid.io`
-   * - `direct` corresponds to `https://direct.api.blockaid.io`
-   */
-  environment?: Environment;
+  apiKey?: string | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -93,17 +73,14 @@ export interface ClientOptions {
  * API Client for interfacing with the Blockaid API.
  */
 export class Blockaid extends Core.APIClient {
-  apiKey: string | null;
-  clientId: string | null;
+  apiKey: string;
 
   private _options: ClientOptions;
 
   /**
    * API Client for interfacing with the Blockaid API.
    *
-   * @param {string | null | undefined} [opts.apiKey=process.env['BLOCKAID_CLIENT_API_KEY'] ?? null]
-   * @param {string | null | undefined} [opts.clientId=process.env['BLOCKAID_CLIENT_ID_KEY'] ?? null]
-   * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
+   * @param {string | undefined} [opts.apiKey=process.env['BLOCKAID_CLIENT_API_KEY'] ?? undefined]
    * @param {string} [opts.baseURL=process.env['BLOCKAID_BASE_URL'] ?? https://api.blockaid.io] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
@@ -114,26 +91,23 @@ export class Blockaid extends Core.APIClient {
    */
   constructor({
     baseURL = Core.readEnv('BLOCKAID_BASE_URL'),
-    apiKey = Core.readEnv('BLOCKAID_CLIENT_API_KEY') ?? null,
-    clientId = Core.readEnv('BLOCKAID_CLIENT_ID_KEY') ?? null,
+    apiKey = Core.readEnv('BLOCKAID_CLIENT_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
-    const options: ClientOptions = {
-      apiKey,
-      clientId,
-      ...opts,
-      baseURL,
-      environment: opts.environment ?? 'production',
-    };
-
-    if (baseURL && opts.environment) {
+    if (apiKey === undefined) {
       throw new Errors.BlockaidError(
-        'Ambiguous URL; The `baseURL` option (or BLOCKAID_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
+        "The BLOCKAID_CLIENT_API_KEY environment variable is missing or empty; either provide it, or instantiate the Blockaid client with an apiKey option, like new Blockaid({ apiKey: 'My API Key' }).",
       );
     }
 
+    const options: ClientOptions = {
+      apiKey,
+      ...opts,
+      baseURL: baseURL || `https://api.blockaid.io`,
+    };
+
     super({
-      baseURL: options.baseURL || environments[options.environment || 'production'],
+      baseURL: options.baseURL!,
       timeout: options.timeout ?? 60000 /* 1 minute */,
       httpAgent: options.httpAgent,
       maxRetries: options.maxRetries,
@@ -143,7 +117,6 @@ export class Blockaid extends Core.APIClient {
     this._options = options;
 
     this.apiKey = apiKey;
-    this.clientId = clientId;
   }
 
   evm: API.Evm = new API.Evm(this);
@@ -166,23 +139,7 @@ export class Blockaid extends Core.APIClient {
     };
   }
 
-  protected override validateHeaders(headers: Core.Headers, customHeaders: Core.Headers) {
-    if (this.apiKey && headers['x-api-key']) {
-      return;
-    }
-    if (customHeaders['x-api-key'] === null) {
-      return;
-    }
-
-    throw new Error(
-      'Could not resolve authentication method. Expected the apiKey to be set. Or for the "X-API-Key" headers to be explicitly omitted',
-    );
-  }
-
   protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
-    if (this.apiKey == null) {
-      return {};
-    }
     return { 'X-API-Key': this.apiKey };
   }
 
