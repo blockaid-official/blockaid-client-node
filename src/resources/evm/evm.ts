@@ -240,81 +240,6 @@ export interface Erc1155TokenDetails {
   symbol?: string;
 }
 
-export interface EvmErc1155Diff {
-  /**
-   * id of the token
-   */
-  token_id: string;
-
-  /**
-   * value before divided by decimal, that was transferred from this address
-   */
-  value: string;
-
-  /**
-   * url of the token logo
-   */
-  logo_url?: string;
-
-  /**
-   * user friendly description of the asset transfer
-   */
-  summary?: string;
-
-  /**
-   * usd equal of the asset that was transferred from this address
-   */
-  usd_price?: string;
-}
-
-export interface Erc20Exposure {
-  /**
-   * the amount that was asked in the approval request for this spender from the
-   * current address and asset
-   */
-  approval: number;
-
-  exposure: Array<Erc20Diff>;
-
-  /**
-   * boolean indicates whether an is_approved_for_all function was used (missing in
-   * case of ERC20 / ERC1155)
-   */
-  is_approved_for_all: boolean;
-
-  /**
-   * user friendly description of the approval
-   */
-  summary?: string;
-}
-
-export interface Erc1155TokenDetails {
-  /**
-   * address of the token
-   */
-  address: string;
-
-  /**
-   * asset type.
-   */
-  type: 'ERC1155';
-
-  /**
-   * url of the token logo
-   */
-  logo_url?: string;
-
-  /**
-   * string represents the name of the asset
-   */
-  name?: string;
-
-  /**
-   * asset's symbol name
-   */
-  symbol?: string;
-}
-
 export interface Erc20Diff {
   /**
    * value before divided by decimal, that was transferred from this address
@@ -344,7 +269,7 @@ export interface Erc20Exposure {
    */
   approval: number;
 
-  exposure: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
+  exposure: Array<Erc20Diff>;
 
   /**
    * the expiration time of the permit2 protocol
@@ -413,15 +338,6 @@ export interface Erc721Diff {
 
 export interface Erc721Exposure {
   exposure: Array<Erc721Diff>;
-
-  /**
-   * value after divided by decimals, that was transferred from this address
-   */
-  value?: string;
-}
-
-export interface Erc721Exposure {
-  exposure: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
 
   /**
    * boolean indicates whether an is_approved_for_all function was used (missing in
