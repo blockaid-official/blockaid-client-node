@@ -37,7 +37,7 @@ Types:
 
 Methods:
 
-- <code title="post /v0/evm/json-rpc/scan">client.evm.jsonRpc.<a href="./src/resources/evm/json-rpc.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+- <code title="post /v0/evm/json-rpc/scan">client.evm.jsonRpc.<a href="./src/resources/evm/json-rpc.ts">scan</a>({ ...params }) -> EvmTransactionScanResponse</code>
 
 ## Transaction
 
@@ -48,7 +48,7 @@ Types:
 Methods:
 
 - <code title="post /v0/evm/transaction/report">client.evm.transaction.<a href="./src/resources/evm/transaction.ts">report</a>({ ...params }) -> unknown</code>
-- <code title="post /v0/evm/transaction/scan">client.evm.transaction.<a href="./src/resources/evm/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+- <code title="post /v0/evm/transaction/scan">client.evm.transaction.<a href="./src/resources/evm/transaction.ts">scan</a>({ ...params }) -> EvmTransactionScanResponse</code>
 
 ## TransactionBulk
 
@@ -64,13 +64,13 @@ Methods:
 
 Methods:
 
-- <code title="post /v0/evm/transaction-raw/scan">client.evm.transactionRaw.<a href="./src/resources/evm/transaction-raw.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+- <code title="post /v0/evm/transaction-raw/scan">client.evm.transactionRaw.<a href="./src/resources/evm/transaction-raw.ts">scan</a>({ ...params }) -> EvmTransactionScanResponse</code>
 
 ## UserOperation
 
 Methods:
 
-- <code title="post /v0/evm/user-operation/scan">client.evm.userOperation.<a href="./src/resources/evm/user-operation.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+- <code title="post /v0/evm/user-operation/scan">client.evm.userOperation.<a href="./src/resources/evm/user-operation.ts">scan</a>({ ...params }) -> EvmTransactionScanResponse</code>
 
 ## PostTransaction
 
@@ -81,7 +81,7 @@ Types:
 Methods:
 
 - <code title="post /v0/evm/post-transaction/report">client.evm.postTransaction.<a href="./src/resources/evm/post-transaction.ts">report</a>({ ...params }) -> unknown</code>
-- <code title="post /v0/evm/post-transaction/scan">client.evm.postTransaction.<a href="./src/resources/evm/post-transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+- <code title="post /v0/evm/post-transaction/scan">client.evm.postTransaction.<a href="./src/resources/evm/post-transaction.ts">scan</a>({ ...params }) -> EvmTransactionScanResponse</code>
 
 ## PostTransactionBulk
 
@@ -98,8 +98,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/solana/solana.ts">AccountSummarySchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">AddressScanRequestSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">AddressScanResponseSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">APIErrorDetails</a></code>
 - <code><a href="./src/resources/solana/solana.ts">AssetTransferDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">CnftDetailsSchema</a></code>
@@ -115,7 +113,10 @@ Types:
 - <code><a href="./src/resources/solana/solana.ts">NonFungibleMintAccountDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">PdaAccountSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">ProgramAccountDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">ResponseSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">SolanaAddressScanRequest</a></code>
+- <code><a href="./src/resources/solana/solana.ts">SolanaAddressScanResponse</a></code>
+- <code><a href="./src/resources/solana/solana.ts">SolanaMessageScanRequest</a></code>
+- <code><a href="./src/resources/solana/solana.ts">SolanaMessageScanResponse</a></code>
 - <code><a href="./src/resources/solana/solana.ts">SplFungibleTokenDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">SplFungibleTokenDiffSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">SplNonFungibleTokenDetailsSchema</a></code>
@@ -128,26 +129,25 @@ Types:
 - <code><a href="./src/resources/solana/solana.ts">TokenAccountDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">TotalUsdDiffSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">TransactionErrorDetails</a></code>
-- <code><a href="./src/resources/solana/solana.ts">TxScanRequestSchema</a></code>
 
 ## Message
 
 Methods:
 
-- <code title="post /v0/solana/message/scan">client.solana.message.<a href="./src/resources/solana/message.ts">scan</a>({ ...params }) -> ResponseSchema</code>
+- <code title="post /v0/solana/message/scan">client.solana.message.<a href="./src/resources/solana/message.ts">scan</a>({ ...params }) -> SolanaMessageScanResponse</code>
 
 ## Address
 
 Methods:
 
-- <code title="post /v0/solana/address/scan">client.solana.address.<a href="./src/resources/solana/address.ts">scan</a>({ ...params }) -> AddressScanResponseSchema</code>
+- <code title="post /v0/solana/address/scan">client.solana.address.<a href="./src/resources/solana/address.ts">scan</a>({ ...params }) -> SolanaAddressScanResponse</code>
 
 # Stellar
 
 Types:
 
-- <code><a href="./src/resources/stellar/stellar.ts">StellarAssetContractDetailsSchema</a></code>
-- <code><a href="./src/resources/stellar/stellar.ts">StellarAssetTransferDetailsSchema</a></code>
+- <code><a href="./src/resources/stellar/stellar.ts">StellarAssetContractDetails</a></code>
+- <code><a href="./src/resources/stellar/stellar.ts">StellarAssetTransferDetails</a></code>
 - <code><a href="./src/resources/stellar/stellar.ts">StellarTransactionScanRequest</a></code>
 - <code><a href="./src/resources/stellar/stellar.ts">StellarTransactionScanResponse</a></code>
 
@@ -159,15 +159,16 @@ Methods:
 
 # Bitcoin
 
-## Transaction
-
 Types:
 
-- <code><a href="./src/resources/bitcoin/transaction.ts">TransactionScanResponse</a></code>
+- <code><a href="./src/resources/bitcoin/bitcoin.ts">BitcoinTransactionScanRequest</a></code>
+- <code><a href="./src/resources/bitcoin/bitcoin.ts">BitcoinTransactionScanResponse</a></code>
+
+## Transaction
 
 Methods:
 
-- <code title="post /v0/bitcoin/transaction/scan">client.bitcoin.transaction.<a href="./src/resources/bitcoin/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+- <code title="post /v0/bitcoin/transaction/scan">client.bitcoin.transaction.<a href="./src/resources/bitcoin/transaction.ts">scan</a>({ ...params }) -> BitcoinTransactionScanResponse</code>
 
 # Starknet
 
@@ -180,16 +181,14 @@ Types:
 - <code><a href="./src/resources/starknet/starknet.ts">StarknetErc721Details</a></code>
 - <code><a href="./src/resources/starknet/starknet.ts">StarknetErc721Diff</a></code>
 - <code><a href="./src/resources/starknet/starknet.ts">StarknetNativeDiff</a></code>
+- <code><a href="./src/resources/starknet/starknet.ts">StarknetTransactionScanRequest</a></code>
+- <code><a href="./src/resources/starknet/starknet.ts">StarknetTransactionScanResponse</a></code>
 
 ## Transaction
 
-Types:
-
-- <code><a href="./src/resources/starknet/transaction.ts">TransactionScanResponse</a></code>
-
 Methods:
 
-- <code title="post /v0/starknet/transaction/scan">client.starknet.transaction.<a href="./src/resources/starknet/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+- <code title="post /v0/starknet/transaction/scan">client.starknet.transaction.<a href="./src/resources/starknet/transaction.ts">scan</a>({ ...params }) -> StarknetTransactionScanResponse</code>
 
 # Site
 
@@ -209,6 +208,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/token.ts">TokenScanSupportedChain</a></code>
 - <code><a href="./src/resources/token.ts">TokenReportResponse</a></code>
 - <code><a href="./src/resources/token.ts">TokenScanResponse</a></code>
 

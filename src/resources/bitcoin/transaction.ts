@@ -3,106 +3,17 @@
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
 import * as TransactionAPI from './transaction';
+import * as BitcoinAPI from './bitcoin';
 
 export class Transaction extends APIResource {
   /**
    * Scan Transaction
    */
-  scan(body: TransactionScanParams, options?: Core.RequestOptions): Core.APIPromise<TransactionScanResponse> {
+  scan(
+    body: TransactionScanParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<BitcoinAPI.BitcoinTransactionScanResponse> {
     return this._client.post('/v0/bitcoin/transaction/scan', { body, ...options });
-  }
-}
-
-export interface TransactionScanResponse {
-  /**
-   * Simulation result; Only present if simulation option is included in the request
-   */
-  simulation?:
-    | TransactionScanResponse.BitcoinSimulationSchema
-    | TransactionScanResponse.BitcoinSimulationErrorSchema
-    | null;
-}
-
-export namespace TransactionScanResponse {
-  export interface BitcoinSimulationSchema {
-    /**
-     * A dictionary describing the assets differences as a result of this transaction
-     * for every involved address
-     */
-    assets_diffs: Record<string, Array<BitcoinSimulationSchema.AssetsDiff>>;
-
-    status?: 'Success';
-  }
-
-  export namespace BitcoinSimulationSchema {
-    export interface AssetsDiff {
-      /**
-       * Description of the asset for the current diff
-       */
-      asset: AssetsDiff.Asset;
-
-      /**
-       * The assets received by the address
-       */
-      in?: Array<AssetsDiff.In>;
-
-      /**
-       * The assets sent by the address
-       */
-      out?: Array<AssetsDiff.Out>;
-    }
-
-    export namespace AssetsDiff {
-      /**
-       * Description of the asset for the current diff
-       */
-      export interface Asset {
-        chain_name: string;
-
-        decimals: number;
-
-        logo_url: string;
-
-        name: string;
-
-        symbol: string;
-
-        type: 'NATIVE' | 'RUNE';
-
-        id?: string;
-
-        spaced_name?: string;
-      }
-
-      export interface In {
-        raw_value?: string;
-
-        summary?: string;
-
-        usd_price?: string;
-
-        value?: string;
-      }
-
-      export interface Out {
-        raw_value?: string;
-
-        summary?: string;
-
-        usd_price?: string;
-
-        value?: string;
-      }
-    }
-  }
-
-  export interface BitcoinSimulationErrorSchema {
-    /**
-     * Error message
-     */
-    error: string;
-
-    status?: 'Error';
   }
 }
 
@@ -156,6 +67,5 @@ export namespace TransactionScanParams {
 }
 
 export namespace Transaction {
-  export import TransactionScanResponse = TransactionAPI.TransactionScanResponse;
   export import TransactionScanParams = TransactionAPI.TransactionScanParams;
 }

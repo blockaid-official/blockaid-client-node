@@ -14,7 +14,7 @@ export class JsonRpc extends APIResource {
   scan(
     body: JsonRpcScanParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<EvmAPI.TransactionScanResponse> {
+  ): Core.APIPromise<EvmAPI.EvmTransactionScanResponse> {
     return this._client.post('/v0/evm/json-rpc/scan', { body, ...options });
   }
 }
@@ -23,7 +23,7 @@ export interface JsonRpcScanParams {
   /**
    * The chain name or chain ID
    */
-  chain: EvmAPI.TransactionScanSupportedChain | (string & {});
+  chain: EvmAPI.EvmTransactionScanSupportedChain | (string & {});
 
   /**
    * JSON-RPC request that was received by the wallet.
