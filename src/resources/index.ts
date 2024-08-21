@@ -62,7 +62,6 @@ export {
   UsdDiff,
   Evm,
 } from './evm/evm';
-export { Bitcoin } from './bitcoin/bitcoin';
 export {
   SiteScanHitResponse,
   SiteScanMissResponse,
