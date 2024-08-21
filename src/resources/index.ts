@@ -2,6 +2,8 @@
 
 export {
   AccountSummarySchema,
+  AddressScanRequestSchema,
+  AddressScanResponseSchema,
   APIErrorDetails,
   AssetTransferDetailsSchema,
   CnftDetailsSchema,
@@ -17,10 +19,7 @@ export {
   NonFungibleMintAccountDetailsSchema,
   PdaAccountSchema,
   ProgramAccountDetailsSchema,
-  SolanaAddressScanRequest,
-  SolanaAddressScanResponse,
-  SolanaMessageScanRequest,
-  SolanaMessageScanResponse,
+  ResponseSchema,
   SplFungibleTokenDetailsSchema,
   SplFungibleTokenDiffSchema,
   SplNonFungibleTokenDetailsSchema,
@@ -33,6 +32,7 @@ export {
   TokenAccountDetailsSchema,
   TotalUsdDiffSchema,
   TransactionErrorDetails,
+  TxScanRequestSchema,
   Solana,
 } from './solana/solana';
 export {
@@ -70,7 +70,7 @@ export {
   UsdDiff,
   Evm,
 } from './evm/evm';
-export { BitcoinTransactionScanRequest, BitcoinTransactionScanResponse, Bitcoin } from './bitcoin/bitcoin';
+export { Bitcoin } from './bitcoin/bitcoin';
 export {
   SiteScanHitResponse,
   SiteScanMissResponse,
@@ -88,23 +88,14 @@ export {
   StarknetErc721Details,
   StarknetErc721Diff,
   StarknetNativeDiff,
-  StarknetTransactionScanRequest,
-  StarknetTransactionScanResponse,
   Starknet,
 } from './starknet/starknet';
 export {
-  StellarAssetContractDetails,
-  StellarAssetTransferDetails,
+  StellarAssetContractDetailsSchema,
+  StellarAssetTransferDetailsSchema,
   StellarTransactionScanRequest,
   StellarTransactionScanResponse,
   Stellar,
 } from './stellar/stellar';
 export { TokenBulkScanResponse, TokenBulkScanParams, TokenBulk } from './token-bulk';
-export {
-  TokenScanSupportedChain,
-  TokenReportResponse,
-  TokenScanResponse,
-  TokenReportParams,
-  TokenScanParams,
-  Token,
-} from './token';
+export { TokenReportResponse, TokenScanResponse, TokenReportParams, TokenScanParams, Token } from './token';

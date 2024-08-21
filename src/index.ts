@@ -222,6 +222,8 @@ export namespace Blockaid {
 
   export import Solana = API.Solana;
   export import AccountSummarySchema = API.AccountSummarySchema;
+  export import AddressScanRequestSchema = API.AddressScanRequestSchema;
+  export import AddressScanResponseSchema = API.AddressScanResponseSchema;
   export import APIErrorDetails = API.APIErrorDetails;
   export import AssetTransferDetailsSchema = API.AssetTransferDetailsSchema;
   export import CnftDetailsSchema = API.CnftDetailsSchema;
@@ -237,10 +239,7 @@ export namespace Blockaid {
   export import NonFungibleMintAccountDetailsSchema = API.NonFungibleMintAccountDetailsSchema;
   export import PdaAccountSchema = API.PdaAccountSchema;
   export import ProgramAccountDetailsSchema = API.ProgramAccountDetailsSchema;
-  export import SolanaAddressScanRequest = API.SolanaAddressScanRequest;
-  export import SolanaAddressScanResponse = API.SolanaAddressScanResponse;
-  export import SolanaMessageScanRequest = API.SolanaMessageScanRequest;
-  export import SolanaMessageScanResponse = API.SolanaMessageScanResponse;
+  export import ResponseSchema = API.ResponseSchema;
   export import SplFungibleTokenDetailsSchema = API.SplFungibleTokenDetailsSchema;
   export import SplFungibleTokenDiffSchema = API.SplFungibleTokenDiffSchema;
   export import SplNonFungibleTokenDetailsSchema = API.SplNonFungibleTokenDetailsSchema;
@@ -253,16 +252,15 @@ export namespace Blockaid {
   export import TokenAccountDetailsSchema = API.TokenAccountDetailsSchema;
   export import TotalUsdDiffSchema = API.TotalUsdDiffSchema;
   export import TransactionErrorDetails = API.TransactionErrorDetails;
+  export import TxScanRequestSchema = API.TxScanRequestSchema;
 
   export import Stellar = API.Stellar;
-  export import StellarAssetContractDetails = API.StellarAssetContractDetails;
-  export import StellarAssetTransferDetails = API.StellarAssetTransferDetails;
+  export import StellarAssetContractDetailsSchema = API.StellarAssetContractDetailsSchema;
+  export import StellarAssetTransferDetailsSchema = API.StellarAssetTransferDetailsSchema;
   export import StellarTransactionScanRequest = API.StellarTransactionScanRequest;
   export import StellarTransactionScanResponse = API.StellarTransactionScanResponse;
 
   export import Bitcoin = API.Bitcoin;
-  export import BitcoinTransactionScanRequest = API.BitcoinTransactionScanRequest;
-  export import BitcoinTransactionScanResponse = API.BitcoinTransactionScanResponse;
 
   export import Starknet = API.Starknet;
   export import StarknetErc1155Details = API.StarknetErc1155Details;
@@ -272,8 +270,6 @@ export namespace Blockaid {
   export import StarknetErc721Details = API.StarknetErc721Details;
   export import StarknetErc721Diff = API.StarknetErc721Diff;
   export import StarknetNativeDiff = API.StarknetNativeDiff;
-  export import StarknetTransactionScanRequest = API.StarknetTransactionScanRequest;
-  export import StarknetTransactionScanResponse = API.StarknetTransactionScanResponse;
 
   export import Site = API.Site;
   export import SiteScanHitResponse = API.SiteScanHitResponse;
@@ -284,7 +280,6 @@ export namespace Blockaid {
   export import SiteScanParams = API.SiteScanParams;
 
   export import Token = API.Token;
-  export import TokenScanSupportedChain = API.TokenScanSupportedChain;
   export import TokenReportResponse = API.TokenReportResponse;
   export import TokenScanResponse = API.TokenScanResponse;
   export import TokenReportParams = API.TokenReportParams;

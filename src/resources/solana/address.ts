@@ -14,7 +14,7 @@ export class Address extends APIResource {
   scan(
     body: AddressScanParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<SolanaAPI.SolanaAddressScanResponse> {
+  ): Core.APIPromise<SolanaAPI.AddressScanResponseSchema> {
     return this._client.post('/v0/solana/address/scan', { body, ...options });
   }
 }
