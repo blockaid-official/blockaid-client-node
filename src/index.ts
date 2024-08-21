@@ -139,10 +139,6 @@ export class Blockaid extends Core.APIClient {
     };
   }
 
-  protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
-    return { 'X-API-Key': this.apiKey };
-  }
-
   static Blockaid = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
