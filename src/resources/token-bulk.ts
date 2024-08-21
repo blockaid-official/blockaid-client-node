@@ -35,16 +35,6 @@ export namespace TokenBulkScanResponse {
      * An enumeration.
      */
     result_type: 'Benign' | 'Warning' | 'Malicious' | 'Spam';
-
-    /**
-     * Fees associated with the token
-     */
-    fees?: Results.Fees;
-
-    /**
-     * Metadata about the token
-     */
-    metadata?: Results.Metadata;
   }
 
   export namespace Results {
@@ -63,46 +53,6 @@ export namespace TokenBulkScanResponse {
        * If score is higher or equal to this field, the token is using this attack type
        */
       threshold?: string;
-    }
-
-    /**
-     * Fees associated with the token
-     */
-    export interface Fees {
-      /**
-       * Buy fee of the token
-       */
-      buy?: number;
-
-      /**
-       * Sell fee of the token
-       */
-      sell?: number;
-
-      /**
-       * Transfer fee of the token
-       */
-      transfer?: number;
-    }
-
-    /**
-     * Metadata about the token
-     */
-    export interface Metadata {
-      /**
-       * URL of the token image
-       */
-      image_url?: string;
-
-      /**
-       * Name of the token
-       */
-      name?: string;
-
-      /**
-       * Symbol of the token
-       */
-      symbol?: string;
     }
   }
 }
