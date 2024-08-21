@@ -166,6 +166,26 @@ export class Blockaid extends Core.APIClient {
     };
   }
 
+  protected override validateHeaders(headers: Core.Headers, customHeaders: Core.Headers) {
+    if (this.apiKey && headers['x-api-key']) {
+      return;
+    }
+    if (customHeaders['x-api-key'] === null) {
+      return;
+    }
+
+    throw new Error(
+      'Could not resolve authentication method. Expected the apiKey to be set. Or for the "X-API-Key" headers to be explicitly omitted',
+    );
+  }
+
+  protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
+    if (this.apiKey == null) {
+      return {};
+    }
+    return { 'X-API-Key': this.apiKey };
+  }
+
   static Blockaid = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
