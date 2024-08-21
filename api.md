@@ -157,18 +157,6 @@ Methods:
 
 - <code title="post /v0/stellar/transaction/scan">client.stellar.transaction.<a href="./src/resources/stellar/transaction.ts">scan</a>({ ...params }) -> StellarTransactionScanResponse</code>
 
-# Bitcoin
-
-## Transaction
-
-Types:
-
-- <code><a href="./src/resources/bitcoin/transaction.ts">TransactionScanResponse</a></code>
-
-Methods:
-
-- <code title="post /v0/bitcoin/transaction/scan">client.bitcoin.transaction.<a href="./src/resources/bitcoin/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
-
 # Site
 
 Types:
