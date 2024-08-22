@@ -58,7 +58,7 @@ export interface TokenScanResponse {
   /**
    * Metadata of the token
    */
-  metadata: TokenScanResponse.Metadata;
+  metadata: TokenScanResponse.SolanaMetadata | TokenScanResponse.BasicMetadataToken;
 
   /**
    * An enumeration.
@@ -137,21 +137,45 @@ export namespace TokenScanResponse {
     }
   }
 
-  /**
-   * Metadata of the token
-   */
-  export interface Metadata {
-    freeze_authority: string;
-
-    mint_authority: string;
+  export interface SolanaMetadata {
+    /**
+     * Address of the deployer of the fungible token
+     */
+    deployer?: string;
 
     /**
-     * internal metadata
+     * Description of the token
      */
-    token_metadata: Metadata.TokenMetadata;
+    description?: string;
 
-    update_authority: string;
+    freeze_authority?: string;
 
+    /**
+     * URL of the token image
+     */
+    image_url?: string;
+
+    mint_authority?: string;
+
+    /**
+     * Name of the token
+     */
+    name?: string;
+
+    /**
+     * Symbol of the token
+     */
+    symbol?: string;
+
+    /**
+     * Type of the token
+     */
+    type?: string;
+
+    update_authority?: string;
+  }
+
+  export interface BasicMetadataToken {
     /**
      * Address of the deployer of the fungible token
      */
@@ -173,12 +197,6 @@ export namespace TokenScanResponse {
     name?: string;
 
     /**
-     * Price per unit of the token. For NFT, it's the price of the NFT. For ERC20, it's
-     * the price of a single token. Can be updated daily.
-     */
-    price_per_unit?: number;
-
-    /**
      * Symbol of the token
      */
     symbol?: string;
@@ -187,63 +205,6 @@ export namespace TokenScanResponse {
      * Type of the token
      */
     type?: string;
-  }
-
-  export namespace Metadata {
-    /**
-     * internal metadata
-     */
-    export interface TokenMetadata {
-      /**
-       * Address of the deployer of the fungible token
-       */
-      deployer?: string;
-
-      /**
-       * Description of the token
-       */
-      description?: string;
-
-      /**
-       * Number of owners of the fungible token, updated daily
-       */
-      holders_count?: number;
-
-      /**
-       * URL of the token image
-       */
-      image_url?: string;
-
-      /**
-       * List of malicious_urls
-       */
-      malicious_urls?: Array<string>;
-
-      /**
-       * Name of the token
-       */
-      name?: string;
-
-      /**
-       * Symbol of the token
-       */
-      symbol?: string;
-
-      /**
-       * An enumeration.
-       */
-      type?: 'erc20' | 'erc721' | 'erc1155' | 'FUNGIBLE' | 'NonFungible';
-
-      /**
-       * Uri of the token
-       */
-      uri?: string;
-
-      /**
-       * List of urls
-       */
-      urls?: Array<string>;
-    }
   }
 
   /**
