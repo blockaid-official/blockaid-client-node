@@ -20,7 +20,7 @@ or products provided by Blockaid please follow the respective company's security
 
 ### Blockaid Terms and Policies
 
-Please contact feedback@blockaid.io. for any questions or concerns regarding security of our services.
+Please contact feedback@blockaid.io for any questions or concerns regarding security of our services.
 
 ---
 
