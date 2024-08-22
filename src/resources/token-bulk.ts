@@ -269,7 +269,17 @@ export namespace TokenBulkScanResponse {
         | 'INAPPROPRIATE_CONTENT'
         | 'HIGH_TRANSFER_FEE'
         | 'HIGH_BUY_FEE'
-        | 'HIGH_SELL_FEE';
+        | 'HIGH_SELL_FEE'
+        | 'IS_MINTABLE'
+        | 'MODIFIABLE_TAXES'
+        | 'CAN_BLACKLIST'
+        | 'CAN_WHITELIST'
+        | 'HAS_TRADING_COOLDOWN'
+        | 'EXTERNAL_FUNCTIONS'
+        | 'HIDDEN_OWNER'
+        | 'TRANSFER_PAUSEABLE'
+        | 'OWNERSHIP_RENOUNCED'
+        | 'PROXY_CONTRACT';
 
       /**
        * An enumeration.
