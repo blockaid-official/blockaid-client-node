@@ -4,6 +4,7 @@ export {
   AccountSummarySchema,
   AddressScanRequestSchema,
   AddressScanResponseSchema,
+  APIErrorDetails,
   AssetTransferDetailsSchema,
   CnftDetailsSchema,
   CnftDiffSchema,
@@ -11,6 +12,7 @@ export {
   CombinedValidationResult,
   DelegatedAssetDetailsSchema,
   FungibleMintAccountDetailsSchema,
+  InstructionErrorDetails,
   NativeSolDetailsSchema,
   NativeSolDiffSchema,
   NativeSolOwnershipDiffSchema,
@@ -29,6 +31,7 @@ export {
   SystemAccountDetailsSchema,
   TokenAccountDetailsSchema,
   TotalUsdDiffSchema,
+  TransactionErrorDetails,
   TxScanRequestSchema,
   Solana,
 } from './solana/solana';
@@ -77,6 +80,16 @@ export {
   SiteScanParams,
   Site,
 } from './site';
+export {
+  StarknetErc1155Details,
+  StarknetErc1155Diff,
+  StarknetErc20Details,
+  StarknetErc20Diff,
+  StarknetErc721Details,
+  StarknetErc721Diff,
+  StarknetNativeDiff,
+  Starknet,
+} from './starknet/starknet';
 export {
   StellarAssetContractDetailsSchema,
   StellarAssetTransferDetailsSchema,

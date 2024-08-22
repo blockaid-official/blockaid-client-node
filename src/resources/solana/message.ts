@@ -41,6 +41,8 @@ export interface MessageScanParams {
    * The RPC method used by dApp to propose the transaction
    */
   method?: string;
+
+  options?: Array<string>;
 }
 
 export namespace MessageScanParams {

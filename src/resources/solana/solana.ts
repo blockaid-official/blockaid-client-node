@@ -90,6 +90,15 @@ export namespace AddressScanResponseSchema {
   }
 }
 
+export interface APIErrorDetails {
+  /**
+   * Advanced message of the error
+   */
+  message: string;
+
+  type?: string;
+}
+
 export interface AssetTransferDetailsSchema {
   /**
    * Raw value of the transfer
@@ -181,14 +190,14 @@ export interface CnftMintAccountDetailsSchema {
 
 export interface CombinedValidationResult {
   /**
-   * Transaction validation result
-   */
-  validation: CombinedValidationResult.Validation;
-
-  /**
    * Transaction simulation result
    */
   simulation?: SuccessfulSimulationResultSchema | null;
+
+  /**
+   * Transaction validation result
+   */
+  validation?: CombinedValidationResult.Validation | null;
 }
 
 export namespace CombinedValidationResult {
@@ -273,8 +282,37 @@ export interface FungibleMintAccountDetailsSchema {
   type?: 'FUNGIBLE_MINT_ACCOUNT';
 }
 
+export interface InstructionErrorDetails {
+  /**
+   * Index of the instruction in the transaction
+   */
+  instruction_index: number;
+
+  /**
+   * Advanced message of the error
+   */
+  message: string;
+
+  /**
+   * Index of the transaction in the bulk
+   */
+  transaction_index: number;
+
+  /**
+   * The program account that caused the error
+   */
+  program_account?: string | null;
+
+  type?: string;
+}
+
 export interface NativeSolDetailsSchema {
   decimals?: number;
+
+  /**
+   * Logo of Sol
+   */
+  logo?: string | null;
 
   /**
    * Type of the asset (`"SOL"`)
@@ -401,6 +439,11 @@ export interface ProgramAccountDetailsSchema {
 
 export interface ResponseSchema {
   /**
+   * An enumeration.
+   */
+  status: 'SUCCESS' | 'ERROR';
+
+  /**
    * Encoding of the public keys
    */
   encoding?: string;
@@ -409,6 +452,11 @@ export interface ResponseSchema {
    * Error message if the simulation failed
    */
   error?: string | null;
+
+  /**
+   * Advanced error details
+   */
+  error_details?: APIErrorDetails | TransactionErrorDetails | InstructionErrorDetails | null;
 
   /**
    * Summary of the result
@@ -498,6 +546,11 @@ export interface SplTokenOwnershipDiffSchema {
 
 export interface StakedSolAssetDetailsSchema {
   decimals?: number;
+
+  /**
+   * Logo of Sol
+   */
+  logo?: string | null;
 
   /**
    * Type of the asset (`"STAKED_SOL"`)
@@ -635,6 +688,20 @@ export interface TotalUsdDiffSchema {
   total: number;
 }
 
+export interface TransactionErrorDetails {
+  /**
+   * Advanced message of the error
+   */
+  message: string;
+
+  /**
+   * Index of the transaction in the bulk
+   */
+  transaction_index: number;
+
+  type?: string;
+}
+
 export interface TxScanRequestSchema {
   /**
    * Encoded public key of the account to simulate the transaction on
@@ -662,6 +729,8 @@ export interface TxScanRequestSchema {
    * The RPC method used by dApp to propose the transaction
    */
   method?: string;
+
+  options?: Array<string>;
 }
 
 export namespace TxScanRequestSchema {
@@ -677,6 +746,7 @@ export namespace Solana {
   export import AccountSummarySchema = SolanaAPI.AccountSummarySchema;
   export import AddressScanRequestSchema = SolanaAPI.AddressScanRequestSchema;
   export import AddressScanResponseSchema = SolanaAPI.AddressScanResponseSchema;
+  export import APIErrorDetails = SolanaAPI.APIErrorDetails;
   export import AssetTransferDetailsSchema = SolanaAPI.AssetTransferDetailsSchema;
   export import CnftDetailsSchema = SolanaAPI.CnftDetailsSchema;
   export import CnftDiffSchema = SolanaAPI.CnftDiffSchema;
@@ -684,6 +754,7 @@ export namespace Solana {
   export import CombinedValidationResult = SolanaAPI.CombinedValidationResult;
   export import DelegatedAssetDetailsSchema = SolanaAPI.DelegatedAssetDetailsSchema;
   export import FungibleMintAccountDetailsSchema = SolanaAPI.FungibleMintAccountDetailsSchema;
+  export import InstructionErrorDetails = SolanaAPI.InstructionErrorDetails;
   export import NativeSolDetailsSchema = SolanaAPI.NativeSolDetailsSchema;
   export import NativeSolDiffSchema = SolanaAPI.NativeSolDiffSchema;
   export import NativeSolOwnershipDiffSchema = SolanaAPI.NativeSolOwnershipDiffSchema;
@@ -702,6 +773,7 @@ export namespace Solana {
   export import SystemAccountDetailsSchema = SolanaAPI.SystemAccountDetailsSchema;
   export import TokenAccountDetailsSchema = SolanaAPI.TokenAccountDetailsSchema;
   export import TotalUsdDiffSchema = SolanaAPI.TotalUsdDiffSchema;
+  export import TransactionErrorDetails = SolanaAPI.TransactionErrorDetails;
   export import TxScanRequestSchema = SolanaAPI.TxScanRequestSchema;
   export import Message = MessageAPI.Message;
   export import MessageScanParams = MessageAPI.MessageScanParams;

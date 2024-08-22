@@ -8,15 +8,13 @@ const client = new Blockaid({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource postTransactionBulk', () => {
+describe('resource transaction', () => {
   test('scan: only required params', async () => {
-    const responsePromise = client.evm.postTransactionBulk.scan({
-      chain: 'arbitrum',
-      data: [
-        '0x11c865addc39f1e1c4f0f6c9a84533c501e3705a6397988af942b2103d5e87a2',
-        '0x50a109a2c2dd396e49710613dcf652728656055d90f80094f10c3ddd05150d2e',
-      ],
-      metadata: { domain: 'domain' },
+    const responsePromise = client.starknet.transaction.scan({
+      account_address: 'account_address',
+      chain: 'mainnet',
+      metadata: { type: 'wallet', url: 'url' },
+      transaction: { max_fee: 'max_fee', nonce: 'nonce', sender_address: 'sender_address', version: 1 },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,15 +26,18 @@ describe('resource postTransactionBulk', () => {
   });
 
   test('scan: required and optional params', async () => {
-    const response = await client.evm.postTransactionBulk.scan({
-      chain: 'arbitrum',
-      data: [
-        '0x11c865addc39f1e1c4f0f6c9a84533c501e3705a6397988af942b2103d5e87a2',
-        '0x50a109a2c2dd396e49710613dcf652728656055d90f80094f10c3ddd05150d2e',
-      ],
-      metadata: { domain: 'domain' },
-      block: 0,
-      options: ['validation', 'simulation'],
+    const response = await client.starknet.transaction.scan({
+      account_address: 'account_address',
+      chain: 'mainnet',
+      metadata: { type: 'wallet', url: 'url' },
+      transaction: {
+        max_fee: 'max_fee',
+        nonce: 'nonce',
+        sender_address: 'sender_address',
+        version: 1,
+        calldata: ['string', 'string', 'string'],
+      },
+      options: ['validation'],
     });
   });
 });
