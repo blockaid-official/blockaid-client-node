@@ -24,6 +24,7 @@ import Blockaid from '@blockaid/client';
 
 const client = new Blockaid({
   apiKey: process.env['BLOCKAID_CLIENT_API_KEY'], // This is the default and can be omitted
+  environment: 'sandbox', // defaults to 'production'
 });
 
 async function main() {
@@ -55,6 +56,7 @@ import Blockaid from '@blockaid/client';
 
 const client = new Blockaid({
   apiKey: process.env['BLOCKAID_CLIENT_API_KEY'], // This is the default and can be omitted
+  environment: 'sandbox', // defaults to 'production'
 });
 
 async function main() {
