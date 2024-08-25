@@ -23,7 +23,7 @@ The full API of this library can be found in [api.md](api.md).
 import Blockaid from '@blockaid/client';
 
 const client = new Blockaid({
-  apiKey: process.env['BLOCKAID_CLIENT_API_KEY'], // This is the default and can be omitted
+  environment: 'client', // defaults to 'production'
 });
 
 async function main() {
@@ -54,7 +54,7 @@ This library includes TypeScript definitions for all request params and response
 import Blockaid from '@blockaid/client';
 
 const client = new Blockaid({
-  apiKey: process.env['BLOCKAID_CLIENT_API_KEY'], // This is the default and can be omitted
+  environment: 'client', // defaults to 'production'
 });
 
 async function main() {
