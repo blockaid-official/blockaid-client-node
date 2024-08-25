@@ -193,6 +193,10 @@ export class Blockaid extends Core.APIClient {
     if (apiKeyAuth != null && !Core.isEmptyObj(apiKeyAuth)) {
       return apiKeyAuth;
     }
+
+    if (clientIdAuth != null && !Core.isEmptyObj(clientIdAuth)) {
+      return clientIdAuth;
+    }
     return {};
   }
 
