@@ -21,7 +21,7 @@ export interface ClientOptions {
   /**
    * Authentication method to client.blockaid.io
    */
-  clientId?: string | null | undefined;
+  clientId?: string | undefined;
 
   /**
    * Specifies the environment to use for the API.
@@ -94,7 +94,7 @@ export interface ClientOptions {
  */
 export class Blockaid extends Core.APIClient {
   apiKey: string | null;
-  clientId: string | null;
+  clientId: string;
 
   private _options: ClientOptions;
 
@@ -102,7 +102,7 @@ export class Blockaid extends Core.APIClient {
    * API Client for interfacing with the Blockaid API.
    *
    * @param {string | null | undefined} [opts.apiKey=process.env['BLOCKAID_CLIENT_API_KEY'] ?? null]
-   * @param {string | null | undefined} [opts.clientId=process.env['BLOCKAID_CLIENT_ID_KEY'] ?? null]
+   * @param {string | undefined} [opts.clientId=process.env['BLOCKAID_CLIENT_ID_KEY'] ?? undefined]
    * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
    * @param {string} [opts.baseURL=process.env['BLOCKAID_BASE_URL'] ?? https://api.blockaid.io] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
@@ -115,9 +115,15 @@ export class Blockaid extends Core.APIClient {
   constructor({
     baseURL = Core.readEnv('BLOCKAID_BASE_URL'),
     apiKey = Core.readEnv('BLOCKAID_CLIENT_API_KEY') ?? null,
-    clientId = Core.readEnv('BLOCKAID_CLIENT_ID_KEY') ?? null,
+    clientId = Core.readEnv('BLOCKAID_CLIENT_ID_KEY'),
     ...opts
   }: ClientOptions = {}) {
+    if (clientId === undefined) {
+      throw new Errors.BlockaidError(
+        "The BLOCKAID_CLIENT_ID_KEY environment variable is missing or empty; either provide it, or instantiate the Blockaid client with an clientId option, like new Blockaid({ clientId: 'My Client ID' }).",
+      );
+    }
+
     const options: ClientOptions = {
       apiKey,
       clientId,
@@ -166,26 +172,6 @@ export class Blockaid extends Core.APIClient {
     };
   }
 
-  protected override validateHeaders(headers: Core.Headers, customHeaders: Core.Headers) {
-    if (this.apiKey && headers['x-api-key']) {
-      return;
-    }
-    if (customHeaders['x-api-key'] === null) {
-      return;
-    }
-
-    if (this.clientId && headers['x-client-id']) {
-      return;
-    }
-    if (customHeaders['x-client-id'] === null) {
-      return;
-    }
-
-    throw new Error(
-      'Could not resolve authentication method. Expected either apiKey or clientId to be set. Or for one of the "X-API-Key" or "X-CLIENT-ID" headers to be explicitly omitted',
-    );
-  }
-
   protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
     const apiKeyAuth = this.apiKeyAuth(opts);
     const clientIdAuth = this.clientIdAuth(opts);
@@ -200,9 +186,6 @@ export class Blockaid extends Core.APIClient {
   }
 
   protected clientIdAuth(opts: Core.FinalRequestOptions): Core.Headers {
-    if (this.clientId == null) {
-      return {};
-    }
     return { 'X-CLIENT-ID': this.clientId };
   }
 
