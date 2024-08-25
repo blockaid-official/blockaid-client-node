@@ -670,6 +670,12 @@ export interface TransactionSimulation {
   total_usd_exposure: Record<string, Record<string, string>>;
 
   /**
+   * Describes the state differences as a result of this transaction for every
+   * involved address
+   */
+  contract_management?: Record<string, Array<TransactionSimulation.ContractManagement>>;
+
+  /**
    * The parameters of the transaction that was simulated.
    */
   params?: TransactionSimulation.Params;
@@ -779,6 +785,41 @@ export namespace TransactionSimulation {
      * known name tag for the address
      */
     name_tag?: string;
+  }
+
+  export interface ContractManagement {
+    /**
+     * The state after the transaction
+     */
+    after: ContractManagement.AddressChange | ContractManagement.OwnershipChange;
+
+    /**
+     * The state before the transaction
+     */
+    before: ContractManagement.AddressChange | ContractManagement.OwnershipChange;
+
+    /**
+     * An enumeration.
+     */
+    type: 'PROXY_UPGRADE' | 'OWNERSHIP_CHANGE';
+  }
+
+  export namespace ContractManagement {
+    export interface AddressChange {
+      address: string;
+    }
+
+    export interface OwnershipChange {
+      owners: Array<string>;
+    }
+
+    export interface AddressChange {
+      address: string;
+    }
+
+    export interface OwnershipChange {
+      owners: Array<string>;
+    }
   }
 
   /**
