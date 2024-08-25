@@ -6,11 +6,31 @@ import { type Agent } from './_shims/index';
 import * as Core from './core';
 import * as API from './resources/index';
 
+const environments = {
+  production: 'https://api.blockaid.io',
+  client: 'https://client.blockaid.io',
+};
+type Environment = keyof typeof environments;
+
 export interface ClientOptions {
   /**
-   * Defaults to process.env['BLOCKAID_CLIENT_API_KEY'].
+   * Authentication method to api.blockaid.io
    */
-  apiKey?: string | undefined;
+  apiKey?: string | null | undefined;
+
+  /**
+   * Authentication method to client.blockaid.io
+   */
+  clientId?: string | null | undefined;
+
+  /**
+   * Specifies the environment to use for the API.
+   *
+   * Each environment maps to a different base URL:
+   * - `production` corresponds to `https://api.blockaid.io`
+   * - `client` corresponds to `https://client.blockaid.io`
+   */
+  environment?: Environment;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -73,14 +93,17 @@ export interface ClientOptions {
  * API Client for interfacing with the Blockaid API.
  */
 export class Blockaid extends Core.APIClient {
-  apiKey: string;
+  apiKey: string | null;
+  clientId: string | null;
 
   private _options: ClientOptions;
 
   /**
    * API Client for interfacing with the Blockaid API.
    *
-   * @param {string | undefined} [opts.apiKey=process.env['BLOCKAID_CLIENT_API_KEY'] ?? undefined]
+   * @param {string | null | undefined} [opts.apiKey=process.env['BLOCKAID_CLIENT_API_KEY'] ?? null]
+   * @param {string | null | undefined} [opts.clientId=process.env['BLOCKAID_CLIENT_ID_KEY'] ?? null]
+   * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
    * @param {string} [opts.baseURL=process.env['BLOCKAID_BASE_URL'] ?? https://api.blockaid.io] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
@@ -91,23 +114,26 @@ export class Blockaid extends Core.APIClient {
    */
   constructor({
     baseURL = Core.readEnv('BLOCKAID_BASE_URL'),
-    apiKey = Core.readEnv('BLOCKAID_CLIENT_API_KEY'),
+    apiKey = Core.readEnv('BLOCKAID_CLIENT_API_KEY') ?? null,
+    clientId = Core.readEnv('BLOCKAID_CLIENT_ID_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
-    if (apiKey === undefined) {
+    const options: ClientOptions = {
+      apiKey,
+      clientId,
+      ...opts,
+      baseURL,
+      environment: opts.environment ?? 'production',
+    };
+
+    if (baseURL && opts.environment) {
       throw new Errors.BlockaidError(
-        "The BLOCKAID_CLIENT_API_KEY environment variable is missing or empty; either provide it, or instantiate the Blockaid client with an apiKey option, like new Blockaid({ apiKey: 'My API Key' }).",
+        'Ambiguous URL; The `baseURL` option (or BLOCKAID_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
       );
     }
 
-    const options: ClientOptions = {
-      apiKey,
-      ...opts,
-      baseURL: baseURL || `https://api.blockaid.io`,
-    };
-
     super({
-      baseURL: options.baseURL!,
+      baseURL: options.baseURL || environments[options.environment || 'production'],
       timeout: options.timeout ?? 60000 /* 1 minute */,
       httpAgent: options.httpAgent,
       maxRetries: options.maxRetries,
@@ -117,6 +143,7 @@ export class Blockaid extends Core.APIClient {
     this._options = options;
 
     this.apiKey = apiKey;
+    this.clientId = clientId;
   }
 
   evm: API.Evm = new API.Evm(this);
@@ -139,8 +166,52 @@ export class Blockaid extends Core.APIClient {
     };
   }
 
+  protected override validateHeaders(headers: Core.Headers, customHeaders: Core.Headers) {
+    if (this.apiKey && headers['x-api-key']) {
+      return;
+    }
+    if (customHeaders['x-api-key'] === null) {
+      return;
+    }
+
+    if (this.clientId && headers['x-client-id']) {
+      return;
+    }
+    if (customHeaders['x-client-id'] === null) {
+      return;
+    }
+
+    throw new Error(
+      'Could not resolve authentication method. Expected either apiKey or clientId to be set. Or for one of the "X-API-Key" or "X-CLIENT-ID" headers to be explicitly omitted',
+    );
+  }
+
   protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
+    const apiKeyAuth = this.apiKeyAuth(opts);
+    const clientIdAuth = this.clientIdAuth(opts);
+
+    if (apiKeyAuth != null && !Core.isEmptyObj(apiKeyAuth)) {
+      return apiKeyAuth;
+    }
+
+    if (clientIdAuth != null && !Core.isEmptyObj(clientIdAuth)) {
+      return clientIdAuth;
+    }
+    return {};
+  }
+
+  protected apiKeyAuth(opts: Core.FinalRequestOptions): Core.Headers {
+    if (this.apiKey == null) {
+      return {};
+    }
     return { 'X-API-Key': this.apiKey };
+  }
+
+  protected clientIdAuth(opts: Core.FinalRequestOptions): Core.Headers {
+    if (this.clientId == null) {
+      return {};
+    }
+    return { 'X-CLIENT-ID': this.clientId };
   }
 
   static Blockaid = this;
