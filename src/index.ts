@@ -189,6 +189,10 @@ export class Blockaid extends Core.APIClient {
   protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
     const apiKeyAuth = this.apiKeyAuth(opts);
     const clientIdAuth = this.clientIdAuth(opts);
+
+    if (apiKeyAuth != null && !Core.isEmptyObj(apiKeyAuth)) {
+      return apiKeyAuth;
+    }
     return {};
   }
 
