@@ -166,6 +166,46 @@ export class Blockaid extends Core.APIClient {
     };
   }
 
+  protected override validateHeaders(headers: Core.Headers, customHeaders: Core.Headers) {
+    if (this.apiKey && headers['x-api-key']) {
+      return;
+    }
+    if (customHeaders['x-api-key'] === null) {
+      return;
+    }
+
+    if (this.clientId && headers['x-client-id']) {
+      return;
+    }
+    if (customHeaders['x-client-id'] === null) {
+      return;
+    }
+
+    throw new Error(
+      'Could not resolve authentication method. Expected either apiKey or clientId to be set. Or for one of the "X-API-Key" or "X-CLIENT-ID" headers to be explicitly omitted',
+    );
+  }
+
+  protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
+    const apiKeyAuth = this.apiKeyAuth(opts);
+    const clientIdAuth = this.clientIdAuth(opts);
+    return {};
+  }
+
+  protected apiKeyAuth(opts: Core.FinalRequestOptions): Core.Headers {
+    if (this.apiKey == null) {
+      return {};
+    }
+    return { 'X-API-Key': this.apiKey };
+  }
+
+  protected clientIdAuth(opts: Core.FinalRequestOptions): Core.Headers {
+    if (this.clientId == null) {
+      return {};
+    }
+    return { 'X-CLIENT-ID': this.clientId };
+  }
+
   static Blockaid = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
