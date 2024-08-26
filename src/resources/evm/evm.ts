@@ -662,17 +662,23 @@ export namespace TransactionSimulation {
     /**
      * The state after the transaction
      */
-    after: ContractManagement.AddressChange | ContractManagement.OwnershipChange;
+    after:
+      | ContractManagement.AddressChange
+      | ContractManagement.OwnershipChange
+      | ContractManagement.ModulesChange;
 
     /**
      * The state before the transaction
      */
-    before: ContractManagement.AddressChange | ContractManagement.OwnershipChange;
+    before:
+      | ContractManagement.AddressChange
+      | ContractManagement.OwnershipChange
+      | ContractManagement.ModulesChange;
 
     /**
      * An enumeration.
      */
-    type: 'PROXY_UPGRADE' | 'OWNERSHIP_CHANGE';
+    type: 'PROXY_UPGRADE' | 'OWNERSHIP_CHANGE' | 'MODULE_CHANGE';
   }
 
   export namespace ContractManagement {
@@ -684,12 +690,20 @@ export namespace TransactionSimulation {
       owners: Array<string>;
     }
 
+    export interface ModulesChange {
+      modules: Array<string>;
+    }
+
     export interface AddressChange {
       address: string;
     }
 
     export interface OwnershipChange {
       owners: Array<string>;
+    }
+
+    export interface ModulesChange {
+      modules: Array<string>;
     }
   }
 
