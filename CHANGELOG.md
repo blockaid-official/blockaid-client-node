@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.25.0 (2024-09-01)
+
+Full Changelog: [v0.24.0...v0.25.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.24.0...v0.25.0)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#234](https://github.com/blockaid-official/blockaid-client-node/issues/234)) ([9c3ab39](https://github.com/blockaid-official/blockaid-client-node/commit/9c3ab39920e229f2fa9334e9e1665feaffd6ab2f))
+* **api:** OpenAPI spec update via Stainless API ([#236](https://github.com/blockaid-official/blockaid-client-node/issues/236)) ([cefe47e](https://github.com/blockaid-official/blockaid-client-node/commit/cefe47e0f7fd05d3cc0e8f1943a1489b9efc4c64))
+* **api:** OpenAPI spec update via Stainless API ([#237](https://github.com/blockaid-official/blockaid-client-node/issues/237)) ([99a87ff](https://github.com/blockaid-official/blockaid-client-node/commit/99a87ff00904ab9742593be7fd1663acd8910b75))
+
+
+### Chores
+
+* **ci:** check for build errors ([#238](https://github.com/blockaid-official/blockaid-client-node/issues/238)) ([2fee8d1](https://github.com/blockaid-official/blockaid-client-node/commit/2fee8d19055f424869a6b65b49bb1ad4eec398d2))
+* **ci:** install deps via ./script/bootstrap ([#240](https://github.com/blockaid-official/blockaid-client-node/issues/240)) ([99635d0](https://github.com/blockaid-official/blockaid-client-node/commit/99635d0961f837e60c550a834951f7f09dbeff34))
+* run tsc as part of lint script ([#239](https://github.com/blockaid-official/blockaid-client-node/issues/239)) ([9231b7d](https://github.com/blockaid-official/blockaid-client-node/commit/9231b7dd87e176cb6712d482fd33af5eb4a0aeae))
+
 ## 0.24.0 (2024-08-26)
 
 Full Changelog: [v0.23.0...v0.24.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.23.0...v0.24.0)
