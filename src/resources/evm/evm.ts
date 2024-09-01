@@ -58,6 +58,12 @@ export interface AssetDiff {
 
 export interface Erc1155Diff {
   /**
+   * Indicates whether the token ID represents an arbitrary token from a collection,
+   * unpredictable while running the simulation
+   */
+  arbitrary_collection_token: boolean;
+
+  /**
    * id of the token
    */
   token_id: string;
@@ -200,6 +206,12 @@ export interface Erc20TokenDetails {
 }
 
 export interface Erc721Diff {
+  /**
+   * Indicates whether the token ID represents an arbitrary token from a collection,
+   * unpredictable while running the simulation
+   */
+  arbitrary_collection_token: boolean;
+
   /**
    * id of the token
    */
