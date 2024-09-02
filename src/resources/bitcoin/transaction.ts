@@ -65,19 +65,23 @@ export namespace TransactionScanResponse {
 
         name: string;
 
-        symbol: string;
-
-        type: 'NATIVE' | 'RUNE';
+        type: 'NATIVE' | 'RUNE' | 'ORDINAL';
 
         id?: string;
 
         spaced_name?: string;
+
+        symbol?: string;
       }
 
       export interface In {
+        name?: string;
+
         raw_value?: string;
 
         summary?: string;
+
+        token_id?: string;
 
         usd_price?: string;
 
@@ -85,9 +89,13 @@ export namespace TransactionScanResponse {
       }
 
       export interface Out {
+        name?: string;
+
         raw_value?: string;
 
         summary?: string;
+
+        token_id?: string;
 
         usd_price?: string;
 
@@ -127,11 +135,6 @@ export interface TransactionScanParams {
   metadata?:
     | TransactionScanParams.BitcoinInAppRequestMetadata
     | TransactionScanParams.BitcoinWalletRequestMetadata;
-
-  /**
-   * Allows simulating mined transactions where the UTXOs have already been spent
-   */
-  skip_utxo_check?: boolean;
 }
 
 export namespace TransactionScanParams {
