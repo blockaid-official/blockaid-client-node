@@ -37,6 +37,7 @@ describe('resource transaction', () => {
         version: 1,
         calldata: ['string', 'string', 'string'],
       },
+      block_number: 'block_number',
       options: ['validation'],
     });
   });

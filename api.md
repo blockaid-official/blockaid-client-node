@@ -167,13 +167,9 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/starknet/starknet.ts">StarknetErc1155Details</a></code>
 - <code><a href="./src/resources/starknet/starknet.ts">StarknetErc1155Diff</a></code>
-- <code><a href="./src/resources/starknet/starknet.ts">StarknetErc20Details</a></code>
 - <code><a href="./src/resources/starknet/starknet.ts">StarknetErc20Diff</a></code>
-- <code><a href="./src/resources/starknet/starknet.ts">StarknetErc721Details</a></code>
 - <code><a href="./src/resources/starknet/starknet.ts">StarknetErc721Diff</a></code>
-- <code><a href="./src/resources/starknet/starknet.ts">StarknetNativeDiff</a></code>
 
 ## Transaction
 
