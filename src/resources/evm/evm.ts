@@ -273,7 +273,7 @@ export interface Erc20Exposure {
    * the amount that was asked in the approval request for this spender from the
    * current address and asset
    */
-  approval: number;
+  approval: string;
 
   exposure: Array<Erc20Diff>;
 
