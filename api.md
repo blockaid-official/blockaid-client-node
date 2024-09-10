@@ -123,6 +123,7 @@ Types:
 - <code><a href="./src/resources/solana/solana.ts">TotalUsdDiffSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">TransactionErrorDetails</a></code>
 - <code><a href="./src/resources/solana/solana.ts">TxScanRequestSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">ValidationFeature</a></code>
 
 ## Message
 
