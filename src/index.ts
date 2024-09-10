@@ -324,6 +324,7 @@ export namespace Blockaid {
   export import TotalUsdDiffSchema = API.TotalUsdDiffSchema;
   export import TransactionErrorDetails = API.TransactionErrorDetails;
   export import TxScanRequestSchema = API.TxScanRequestSchema;
+  export import ValidationFeature = API.ValidationFeature;
 
   export import Stellar = API.Stellar;
   export import StellarAssetContractDetailsSchema = API.StellarAssetContractDetailsSchema;

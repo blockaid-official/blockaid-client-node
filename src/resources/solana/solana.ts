@@ -206,6 +206,12 @@ export namespace CombinedValidationResult {
    */
   export interface Validation {
     /**
+     * A list of features explaining what is happening in the transaction in different
+     * levels of severity
+     */
+    extended_features: Array<SolanaAPI.ValidationFeature>;
+
+    /**
      * A list of features about this transaction explaining the validation
      */
     features: Array<string>;
@@ -742,6 +748,28 @@ export namespace TxScanRequestSchema {
   }
 }
 
+export interface ValidationFeature {
+  /**
+   * Textual description
+   */
+  description: string;
+
+  /**
+   * Feature name
+   */
+  feature_id: string;
+
+  /**
+   * An enumeration.
+   */
+  type: 'Info' | 'Benign' | 'Warning' | 'Malicious';
+
+  /**
+   * Address the feature refers to
+   */
+  address?: string | null;
+}
+
 export namespace Solana {
   export import AccountSummarySchema = SolanaAPI.AccountSummarySchema;
   export import AddressScanRequestSchema = SolanaAPI.AddressScanRequestSchema;
@@ -775,6 +803,7 @@ export namespace Solana {
   export import TotalUsdDiffSchema = SolanaAPI.TotalUsdDiffSchema;
   export import TransactionErrorDetails = SolanaAPI.TransactionErrorDetails;
   export import TxScanRequestSchema = SolanaAPI.TxScanRequestSchema;
+  export import ValidationFeature = SolanaAPI.ValidationFeature;
   export import Message = MessageAPI.Message;
   export import MessageScanParams = MessageAPI.MessageScanParams;
   export import Address = AddressAPI.Address;
