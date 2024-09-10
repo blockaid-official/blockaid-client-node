@@ -33,6 +33,7 @@ export {
   TotalUsdDiffSchema,
   TransactionErrorDetails,
   TxScanRequestSchema,
+  ValidationFeature,
   Solana,
 } from './solana';
 export { AddressScanParams, Address } from './address';
