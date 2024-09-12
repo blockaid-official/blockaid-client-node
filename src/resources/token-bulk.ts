@@ -54,7 +54,7 @@ export namespace TokenBulkScanResponse {
     /**
      * Metadata of the token
      */
-    metadata: Results.SolanaMetadata | Results.BasicMetadataToken;
+    metadata: Results.SolanaMetadata | Results.BitcoinMetadataToken | Results.EvmMetadataToken;
 
     /**
      * An enumeration.
@@ -135,6 +135,16 @@ export namespace TokenBulkScanResponse {
 
     export interface SolanaMetadata {
       /**
+       * Contract balance
+       */
+      contract_balance?: SolanaMetadata.ContractBalance;
+
+      /**
+       * Contract deploy date
+       */
+      creation_timestamp?: string;
+
+      /**
        * Address of the deployer of the fungible token
        */
       deployer?: string;
@@ -144,6 +154,14 @@ export namespace TokenBulkScanResponse {
        */
       description?: string;
 
+      /**
+       * social links of the token
+       */
+      external_links?: SolanaMetadata.ExternalLinks;
+
+      /**
+       * Solana token freeze authority account
+       */
       freeze_authority?: string;
 
       /**
@@ -151,6 +169,9 @@ export namespace TokenBulkScanResponse {
        */
       image_url?: string;
 
+      /**
+       * Solana token mint authority account
+       */
       mint_authority?: string;
 
       /**
@@ -159,6 +180,16 @@ export namespace TokenBulkScanResponse {
       name?: string;
 
       /**
+       * Contract owner address
+       */
+      owner?: string;
+
+      /**
+       * Contract owner balance
+       */
+      owner_balance?: SolanaMetadata.OwnerBalance;
+
+      /**
        * Symbol of the token
        */
       symbol?: string;
@@ -168,10 +199,86 @@ export namespace TokenBulkScanResponse {
        */
       type?: string;
 
+      /**
+       * Solana token update authority account
+       */
       update_authority?: string;
     }
 
-    export interface BasicMetadataToken {
+    export namespace SolanaMetadata {
+      /**
+       * Contract balance
+       */
+      export interface ContractBalance {
+        amount?: number;
+
+        amount_wei?: string;
+      }
+
+      /**
+       * social links of the token
+       */
+      export interface ExternalLinks {
+        homepage?: string;
+
+        telegram_channel_id?: string;
+
+        twitter_page?: string;
+      }
+
+      /**
+       * Contract owner balance
+       */
+      export interface OwnerBalance {
+        amount?: number;
+
+        amount_wei?: string;
+      }
+    }
+
+    export interface BitcoinMetadataToken {
+      /**
+       * The unique ID for the Rune
+       */
+      id?: string;
+
+      /**
+       * The formatted name of the rune, with spacers
+       */
+      formatted_name?: string;
+
+      /**
+       * Name of the token
+       */
+      name?: string;
+
+      /**
+       * The rune's unique sequential number.
+       */
+      number?: number;
+
+      /**
+       * Symbol of the token
+       */
+      symbol?: string;
+
+      /**
+       * Type of the token
+       */
+      type?: string;
+    }
+
+    export interface EvmMetadataToken {
+      /**
+       * Contract balance
+       */
+      contract_balance?: EvmMetadataToken.ContractBalance;
+
+      /**
+       * Contract deploy date
+       */
+      creation_timestamp?: string;
+
       /**
        * Address of the deployer of the fungible token
        */
@@ -181,6 +288,11 @@ export namespace TokenBulkScanResponse {
        * Description of the token
        */
       description?: string;
+
+      /**
+       * social links of the token
+       */
+      external_links?: EvmMetadataToken.ExternalLinks;
 
       /**
        * URL of the token image
@@ -193,6 +305,16 @@ export namespace TokenBulkScanResponse {
       name?: string;
 
       /**
+       * Contract owner address
+       */
+      owner?: string;
+
+      /**
+       * Contract owner balance
+       */
+      owner_balance?: EvmMetadataToken.OwnerBalance;
+
+      /**
        * Symbol of the token
        */
       symbol?: string;
@@ -201,6 +323,37 @@ export namespace TokenBulkScanResponse {
        * Type of the token
        */
       type?: string;
+    }
+
+    export namespace EvmMetadataToken {
+      /**
+       * Contract balance
+       */
+      export interface ContractBalance {
+        amount?: number;
+
+        amount_wei?: string;
+      }
+
+      /**
+       * social links of the token
+       */
+      export interface ExternalLinks {
+        homepage?: string;
+
+        telegram_channel_id?: string;
+
+        twitter_page?: string;
+      }
+
+      /**
+       * Contract owner balance
+       */
+      export interface OwnerBalance {
+        amount?: number;
+
+        amount_wei?: string;
+      }
     }
 
     /**
@@ -256,6 +409,7 @@ export namespace TokenBulkScanResponse {
         | 'HIGH_TRADE_VOLUME'
         | 'MARKET_PLACE_SALES_HISTORY'
         | 'HIGH_REPUTATION_TOKEN'
+        | 'ONCHAIN_ACTIVITY_VALIDATOR'
         | 'STATIC_CODE_SIGNATURE'
         | 'KNOWN_MALICIOUS'
         | 'METADATA'
