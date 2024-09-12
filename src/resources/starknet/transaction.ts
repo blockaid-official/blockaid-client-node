@@ -19,7 +19,7 @@ export interface TransactionScanResponse {
    * Simulation result; Only present if simulation option is included in the request
    */
   simulation?:
-    | TransactionScanResponse.StarknetSimulationResultSchema
+    | TransactionScanResponse.StarknetStarknetSimulationResultSchema
     | TransactionScanResponse.StarknetSimulationErrorSchema
     | null;
 
@@ -27,25 +27,25 @@ export interface TransactionScanResponse {
    * Validation result; Only present if validation option is included in the request
    */
   validation?:
-    | TransactionScanResponse.StarknetValidationResultSchema
+    | TransactionScanResponse.StarknetValidationResultSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchema
     | TransactionScanResponse.StarknetValidationErrorSchema
     | null;
 }
 
 export namespace TransactionScanResponse {
-  export interface StarknetSimulationResultSchema {
+  export interface StarknetStarknetSimulationResultSchema {
     /**
      * Summary of the actions and asset transfers that were made by the requested
      * account address
      */
-    account_summary: StarknetSimulationResultSchema.AccountSummary;
+    account_summary: StarknetStarknetSimulationResultSchema.AccountSummary;
 
     status: 'Success';
 
     /**
      * Details of addresses involved in the transaction
      */
-    address_details?: Array<StarknetSimulationResultSchema.AddressDetail>;
+    address_details?: Array<StarknetStarknetSimulationResultSchema.AddressDetail>;
 
     /**
      * Mapping between the address of an account to the assets diff during the
@@ -54,12 +54,16 @@ export namespace TransactionScanResponse {
     assets_diffs?: Record<
       string,
       Array<
-        | StarknetSimulationResultSchema.StarknetAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchema
-        | StarknetSimulationResultSchema.StarknetAccountSingleAssetDiffSchemaTypeErc20DetailsSchemaErc20DiffSchema
-        | StarknetSimulationResultSchema.StarknetAccountSingleAssetDiffSchemaTypeErc721DetailsSchemaErc721DiffSchema
-        | StarknetSimulationResultSchema.StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaErc1155DiffSchema
+        | StarknetStarknetSimulationResultSchema.StarknetAccountSingleAssetDiffSchemaTypeErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DiffSchema
+        | StarknetStarknetSimulationResultSchema.StarknetAccountSingleAssetDiffSchemaTypeErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DiffSchema
+        | StarknetStarknetSimulationResultSchema.StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DiffSchema
       >
     >;
+
+    /**
+     * Optional block number or tag context for the simulation
+     */
+    block_number?: string | null;
 
     /**
      * Mapping between the address of an account to the exposure of the assets during
@@ -68,14 +72,14 @@ export namespace TransactionScanResponse {
     exposures?: Record<
       string,
       Array<
-        | StarknetSimulationResultSchema.StarknetAddressAssetExposureSchemaErc20DetailsSchemaErc20ExposureSchema
-        | StarknetSimulationResultSchema.StarknetAddressAssetExposureSchemaErc721DetailsSchemaErc721ExposureSchema
-        | StarknetSimulationResultSchema.StarknetAddressAssetExposureSchemaErc1155DetailsSchemaErc1155ExposureSchema
+        | StarknetStarknetSimulationResultSchema.StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20ExposureSchema
+        | StarknetStarknetSimulationResultSchema.StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721ExposureSchema
+        | StarknetStarknetSimulationResultSchema.StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155ExposureSchema
       >
     >;
   }
 
-  export namespace StarknetSimulationResultSchema {
+  export namespace StarknetStarknetSimulationResultSchema {
     /**
      * Summary of the actions and asset transfers that were made by the requested
      * account address
@@ -84,10 +88,10 @@ export namespace TransactionScanResponse {
       /**
        * Exposures made by the requested account address
        */
-      exposures: Array<
-        | AccountSummary.StarknetAddressAssetExposureSchemaErc20DetailsSchemaErc20ExposureSchema
-        | AccountSummary.StarknetAddressAssetExposureSchemaErc721DetailsSchemaErc721ExposureSchema
-        | AccountSummary.StarknetAddressAssetExposureSchemaErc1155DetailsSchemaErc1155ExposureSchema
+      account_exposures: Array<
+        | AccountSummary.StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20ExposureSchema
+        | AccountSummary.StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721ExposureSchema
+        | AccountSummary.StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155ExposureSchema
       >;
 
       /**
@@ -99,10 +103,9 @@ export namespace TransactionScanResponse {
        * Assets diffs of the requested account address
        */
       assets_diffs?: Array<
-        | AccountSummary.StarknetAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchema
-        | AccountSummary.StarknetAccountSingleAssetDiffSchemaTypeErc20DetailsSchemaErc20DiffSchema
-        | AccountSummary.StarknetAccountSingleAssetDiffSchemaTypeErc721DetailsSchemaErc721DiffSchema
-        | AccountSummary.StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaErc1155DiffSchema
+        | AccountSummary.StarknetAccountSingleAssetDiffSchemaTypeErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DiffSchema
+        | AccountSummary.StarknetAccountSingleAssetDiffSchemaTypeErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DiffSchema
+        | AccountSummary.StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DiffSchema
       >;
 
       /**
@@ -112,24 +115,56 @@ export namespace TransactionScanResponse {
     }
 
     export namespace AccountSummary {
-      export interface StarknetAddressAssetExposureSchemaErc20DetailsSchemaErc20ExposureSchema {
-        asset: StarknetAPI.StarknetErc20Details;
+      export interface StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20ExposureSchema {
+        asset: StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20ExposureSchema.Asset;
 
         /**
          * Mapping between the spender address and the exposure of the asset
          */
         spenders?: Record<
           string,
-          StarknetAddressAssetExposureSchemaErc20DetailsSchemaErc20ExposureSchema.Spenders
+          StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20ExposureSchema.Spenders
         >;
       }
 
-      export namespace StarknetAddressAssetExposureSchemaErc20DetailsSchemaErc20ExposureSchema {
+      export namespace StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20ExposureSchema {
+        export interface Asset {
+          /**
+           * Address of the token's contract
+           */
+          address: string;
+
+          /**
+           * token's decimals
+           */
+          decimals: number;
+
+          /**
+           * token's name
+           */
+          name: string;
+
+          /**
+           * token's symbol
+           */
+          symbol: string;
+
+          /**
+           * URL of the asset's logo
+           */
+          logo_url?: string | null;
+
+          /**
+           * Type of the asset (`ERC20`)
+           */
+          type?: 'ERC20';
+        }
+
         export interface Spenders {
           /**
            * Approval value of the ERC20 token
            */
-          approval: number;
+          approval: string;
 
           exposure: Array<StarknetAPI.StarknetErc20Diff>;
 
@@ -145,19 +180,46 @@ export namespace TransactionScanResponse {
         }
       }
 
-      export interface StarknetAddressAssetExposureSchemaErc721DetailsSchemaErc721ExposureSchema {
-        asset: StarknetAPI.StarknetErc721Details;
+      export interface StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721ExposureSchema {
+        asset: StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721ExposureSchema.Asset;
 
         /**
          * Mapping between the spender address and the exposure of the asset
          */
         spenders?: Record<
           string,
-          StarknetAddressAssetExposureSchemaErc721DetailsSchemaErc721ExposureSchema.Spenders
+          StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721ExposureSchema.Spenders
         >;
       }
 
-      export namespace StarknetAddressAssetExposureSchemaErc721DetailsSchemaErc721ExposureSchema {
+      export namespace StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721ExposureSchema {
+        export interface Asset {
+          /**
+           * Address of the token's contract
+           */
+          address: string;
+
+          /**
+           * token's name
+           */
+          name: string;
+
+          /**
+           * token's symbol
+           */
+          symbol: string;
+
+          /**
+           * URL of the asset's logo
+           */
+          logo_url?: string | null;
+
+          /**
+           * Type of the asset (`ERC721`)
+           */
+          type?: 'ERC721';
+        }
+
         export interface Spenders {
           exposure: Array<StarknetAPI.StarknetErc721Diff>;
 
@@ -173,19 +235,46 @@ export namespace TransactionScanResponse {
         }
       }
 
-      export interface StarknetAddressAssetExposureSchemaErc1155DetailsSchemaErc1155ExposureSchema {
-        asset: StarknetAPI.StarknetErc1155Details;
+      export interface StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155ExposureSchema {
+        asset: StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155ExposureSchema.Asset;
 
         /**
          * Mapping between the spender address and the exposure of the asset
          */
         spenders?: Record<
           string,
-          StarknetAddressAssetExposureSchemaErc1155DetailsSchemaErc1155ExposureSchema.Spenders
+          StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155ExposureSchema.Spenders
         >;
       }
 
-      export namespace StarknetAddressAssetExposureSchemaErc1155DetailsSchemaErc1155ExposureSchema {
+      export namespace StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155ExposureSchema {
+        export interface Asset {
+          /**
+           * Address of the token's contract
+           */
+          address: string;
+
+          /**
+           * token's name
+           */
+          name: string;
+
+          /**
+           * token's symbol
+           */
+          symbol: string;
+
+          /**
+           * URL of the asset's logo
+           */
+          logo_url?: string | null;
+
+          /**
+           * Type of the asset (`ERC1155`)
+           */
+          type?: 'ERC1155';
+        }
+
         export interface Spenders {
           exposure: Array<StarknetAPI.StarknetErc1155Diff>;
 
@@ -221,46 +310,8 @@ export namespace TransactionScanResponse {
         total?: number;
       }
 
-      export interface StarknetAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchema {
-        asset: StarknetAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchema.Asset;
-
-        /**
-         * Details of the incoming transfer
-         */
-        in?: StarknetAPI.StarknetNativeDiff | null;
-
-        /**
-         * Details of the outgoing transfer
-         */
-        out?: StarknetAPI.StarknetNativeDiff | null;
-      }
-
-      export namespace StarknetAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchema {
-        export interface Asset {
-          /**
-           * Decimals of the asset
-           */
-          decimals?: 18;
-
-          /**
-           * Name of the asset
-           */
-          name?: 'STRK';
-
-          /**
-           * Symbol of the asset
-           */
-          symbol?: 'STRK';
-
-          /**
-           * Type of the asset (`NATIVE`)
-           */
-          type?: 'NATIVE';
-        }
-      }
-
-      export interface StarknetAccountSingleAssetDiffSchemaTypeErc20DetailsSchemaErc20DiffSchema {
-        asset: StarknetAPI.StarknetErc20Details;
+      export interface StarknetAccountSingleAssetDiffSchemaTypeErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DiffSchema {
+        asset: StarknetAccountSingleAssetDiffSchemaTypeErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DiffSchema.Asset;
 
         /**
          * Details of the incoming transfer
@@ -273,8 +324,42 @@ export namespace TransactionScanResponse {
         out?: StarknetAPI.StarknetErc20Diff | null;
       }
 
-      export interface StarknetAccountSingleAssetDiffSchemaTypeErc721DetailsSchemaErc721DiffSchema {
-        asset: StarknetAPI.StarknetErc721Details;
+      export namespace StarknetAccountSingleAssetDiffSchemaTypeErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DiffSchema {
+        export interface Asset {
+          /**
+           * Address of the token's contract
+           */
+          address: string;
+
+          /**
+           * token's decimals
+           */
+          decimals: number;
+
+          /**
+           * token's name
+           */
+          name: string;
+
+          /**
+           * token's symbol
+           */
+          symbol: string;
+
+          /**
+           * URL of the asset's logo
+           */
+          logo_url?: string | null;
+
+          /**
+           * Type of the asset (`ERC20`)
+           */
+          type?: 'ERC20';
+        }
+      }
+
+      export interface StarknetAccountSingleAssetDiffSchemaTypeErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DiffSchema {
+        asset: StarknetAccountSingleAssetDiffSchemaTypeErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DiffSchema.Asset;
 
         /**
          * Details of the incoming transfer
@@ -287,8 +372,37 @@ export namespace TransactionScanResponse {
         out?: StarknetAPI.StarknetErc721Diff | null;
       }
 
-      export interface StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaErc1155DiffSchema {
-        asset: StarknetAPI.StarknetErc1155Details;
+      export namespace StarknetAccountSingleAssetDiffSchemaTypeErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DiffSchema {
+        export interface Asset {
+          /**
+           * Address of the token's contract
+           */
+          address: string;
+
+          /**
+           * token's name
+           */
+          name: string;
+
+          /**
+           * token's symbol
+           */
+          symbol: string;
+
+          /**
+           * URL of the asset's logo
+           */
+          logo_url?: string | null;
+
+          /**
+           * Type of the asset (`ERC721`)
+           */
+          type?: 'ERC721';
+        }
+      }
+
+      export interface StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DiffSchema {
+        asset: StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DiffSchema.Asset;
 
         /**
          * Details of the incoming transfer
@@ -299,6 +413,35 @@ export namespace TransactionScanResponse {
          * Details of the outgoing transfer
          */
         out?: StarknetAPI.StarknetErc1155Diff | null;
+      }
+
+      export namespace StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DiffSchema {
+        export interface Asset {
+          /**
+           * Address of the token's contract
+           */
+          address: string;
+
+          /**
+           * token's name
+           */
+          name: string;
+
+          /**
+           * token's symbol
+           */
+          symbol: string;
+
+          /**
+           * URL of the asset's logo
+           */
+          logo_url?: string | null;
+
+          /**
+           * Type of the asset (`ERC1155`)
+           */
+          type?: 'ERC1155';
+        }
       }
     }
 
@@ -314,46 +457,8 @@ export namespace TransactionScanResponse {
       description?: string | null;
     }
 
-    export interface StarknetAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchema {
-      asset: StarknetAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchema.Asset;
-
-      /**
-       * Details of the incoming transfer
-       */
-      in?: StarknetAPI.StarknetNativeDiff | null;
-
-      /**
-       * Details of the outgoing transfer
-       */
-      out?: StarknetAPI.StarknetNativeDiff | null;
-    }
-
-    export namespace StarknetAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchema {
-      export interface Asset {
-        /**
-         * Decimals of the asset
-         */
-        decimals?: 18;
-
-        /**
-         * Name of the asset
-         */
-        name?: 'STRK';
-
-        /**
-         * Symbol of the asset
-         */
-        symbol?: 'STRK';
-
-        /**
-         * Type of the asset (`NATIVE`)
-         */
-        type?: 'NATIVE';
-      }
-    }
-
-    export interface StarknetAccountSingleAssetDiffSchemaTypeErc20DetailsSchemaErc20DiffSchema {
-      asset: StarknetAPI.StarknetErc20Details;
+    export interface StarknetAccountSingleAssetDiffSchemaTypeErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DiffSchema {
+      asset: StarknetAccountSingleAssetDiffSchemaTypeErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DiffSchema.Asset;
 
       /**
        * Details of the incoming transfer
@@ -366,8 +471,42 @@ export namespace TransactionScanResponse {
       out?: StarknetAPI.StarknetErc20Diff | null;
     }
 
-    export interface StarknetAccountSingleAssetDiffSchemaTypeErc721DetailsSchemaErc721DiffSchema {
-      asset: StarknetAPI.StarknetErc721Details;
+    export namespace StarknetAccountSingleAssetDiffSchemaTypeErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DiffSchema {
+      export interface Asset {
+        /**
+         * Address of the token's contract
+         */
+        address: string;
+
+        /**
+         * token's decimals
+         */
+        decimals: number;
+
+        /**
+         * token's name
+         */
+        name: string;
+
+        /**
+         * token's symbol
+         */
+        symbol: string;
+
+        /**
+         * URL of the asset's logo
+         */
+        logo_url?: string | null;
+
+        /**
+         * Type of the asset (`ERC20`)
+         */
+        type?: 'ERC20';
+      }
+    }
+
+    export interface StarknetAccountSingleAssetDiffSchemaTypeErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DiffSchema {
+      asset: StarknetAccountSingleAssetDiffSchemaTypeErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DiffSchema.Asset;
 
       /**
        * Details of the incoming transfer
@@ -380,8 +519,37 @@ export namespace TransactionScanResponse {
       out?: StarknetAPI.StarknetErc721Diff | null;
     }
 
-    export interface StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaErc1155DiffSchema {
-      asset: StarknetAPI.StarknetErc1155Details;
+    export namespace StarknetAccountSingleAssetDiffSchemaTypeErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DiffSchema {
+      export interface Asset {
+        /**
+         * Address of the token's contract
+         */
+        address: string;
+
+        /**
+         * token's name
+         */
+        name: string;
+
+        /**
+         * token's symbol
+         */
+        symbol: string;
+
+        /**
+         * URL of the asset's logo
+         */
+        logo_url?: string | null;
+
+        /**
+         * Type of the asset (`ERC721`)
+         */
+        type?: 'ERC721';
+      }
+    }
+
+    export interface StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DiffSchema {
+      asset: StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DiffSchema.Asset;
 
       /**
        * Details of the incoming transfer
@@ -394,24 +562,85 @@ export namespace TransactionScanResponse {
       out?: StarknetAPI.StarknetErc1155Diff | null;
     }
 
-    export interface StarknetAddressAssetExposureSchemaErc20DetailsSchemaErc20ExposureSchema {
-      asset: StarknetAPI.StarknetErc20Details;
+    export namespace StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DiffSchema {
+      export interface Asset {
+        /**
+         * Address of the token's contract
+         */
+        address: string;
+
+        /**
+         * token's name
+         */
+        name: string;
+
+        /**
+         * token's symbol
+         */
+        symbol: string;
+
+        /**
+         * URL of the asset's logo
+         */
+        logo_url?: string | null;
+
+        /**
+         * Type of the asset (`ERC1155`)
+         */
+        type?: 'ERC1155';
+      }
+    }
+
+    export interface StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20ExposureSchema {
+      asset: StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20ExposureSchema.Asset;
 
       /**
        * Mapping between the spender address and the exposure of the asset
        */
       spenders?: Record<
         string,
-        StarknetAddressAssetExposureSchemaErc20DetailsSchemaErc20ExposureSchema.Spenders
+        StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20ExposureSchema.Spenders
       >;
     }
 
-    export namespace StarknetAddressAssetExposureSchemaErc20DetailsSchemaErc20ExposureSchema {
+    export namespace StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20ExposureSchema {
+      export interface Asset {
+        /**
+         * Address of the token's contract
+         */
+        address: string;
+
+        /**
+         * token's decimals
+         */
+        decimals: number;
+
+        /**
+         * token's name
+         */
+        name: string;
+
+        /**
+         * token's symbol
+         */
+        symbol: string;
+
+        /**
+         * URL of the asset's logo
+         */
+        logo_url?: string | null;
+
+        /**
+         * Type of the asset (`ERC20`)
+         */
+        type?: 'ERC20';
+      }
+
       export interface Spenders {
         /**
          * Approval value of the ERC20 token
          */
-        approval: number;
+        approval: string;
 
         exposure: Array<StarknetAPI.StarknetErc20Diff>;
 
@@ -427,19 +656,46 @@ export namespace TransactionScanResponse {
       }
     }
 
-    export interface StarknetAddressAssetExposureSchemaErc721DetailsSchemaErc721ExposureSchema {
-      asset: StarknetAPI.StarknetErc721Details;
+    export interface StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721ExposureSchema {
+      asset: StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721ExposureSchema.Asset;
 
       /**
        * Mapping between the spender address and the exposure of the asset
        */
       spenders?: Record<
         string,
-        StarknetAddressAssetExposureSchemaErc721DetailsSchemaErc721ExposureSchema.Spenders
+        StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721ExposureSchema.Spenders
       >;
     }
 
-    export namespace StarknetAddressAssetExposureSchemaErc721DetailsSchemaErc721ExposureSchema {
+    export namespace StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721ExposureSchema {
+      export interface Asset {
+        /**
+         * Address of the token's contract
+         */
+        address: string;
+
+        /**
+         * token's name
+         */
+        name: string;
+
+        /**
+         * token's symbol
+         */
+        symbol: string;
+
+        /**
+         * URL of the asset's logo
+         */
+        logo_url?: string | null;
+
+        /**
+         * Type of the asset (`ERC721`)
+         */
+        type?: 'ERC721';
+      }
+
       export interface Spenders {
         exposure: Array<StarknetAPI.StarknetErc721Diff>;
 
@@ -455,19 +711,46 @@ export namespace TransactionScanResponse {
       }
     }
 
-    export interface StarknetAddressAssetExposureSchemaErc1155DetailsSchemaErc1155ExposureSchema {
-      asset: StarknetAPI.StarknetErc1155Details;
+    export interface StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155ExposureSchema {
+      asset: StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155ExposureSchema.Asset;
 
       /**
        * Mapping between the spender address and the exposure of the asset
        */
       spenders?: Record<
         string,
-        StarknetAddressAssetExposureSchemaErc1155DetailsSchemaErc1155ExposureSchema.Spenders
+        StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155ExposureSchema.Spenders
       >;
     }
 
-    export namespace StarknetAddressAssetExposureSchemaErc1155DetailsSchemaErc1155ExposureSchema {
+    export namespace StarknetAddressAssetExposureSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155ExposureSchema {
+      export interface Asset {
+        /**
+         * Address of the token's contract
+         */
+        address: string;
+
+        /**
+         * token's name
+         */
+        name: string;
+
+        /**
+         * token's symbol
+         */
+        symbol: string;
+
+        /**
+         * URL of the asset's logo
+         */
+        logo_url?: string | null;
+
+        /**
+         * Type of the asset (`ERC1155`)
+         */
+        type?: 'ERC1155';
+      }
+
       export interface Spenders {
         exposure: Array<StarknetAPI.StarknetErc1155Diff>;
 
@@ -493,7 +776,7 @@ export namespace TransactionScanResponse {
     status: 'Error';
   }
 
-  export interface StarknetValidationResultSchema {
+  export interface StarknetValidationResultSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchema {
     /**
      * A textual classification that can be presented to the user explaining the
      * reason.
@@ -508,7 +791,7 @@ export namespace TransactionScanResponse {
     /**
      * A list of features about this transaction explaining the validation
      */
-    features: Array<StarknetValidationResultSchema.Feature>;
+    features: Array<StarknetValidationResultSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchema.Feature>;
 
     /**
      * A textual description about the reasons the transaction was flagged with
@@ -524,7 +807,7 @@ export namespace TransactionScanResponse {
     status: 'Success';
   }
 
-  export namespace StarknetValidationResultSchema {
+  export namespace StarknetValidationResultSchemaTypeAnnotatedIntSkipValidationPlainSerializerGetPydanticSchema {
     export interface Feature {
       /**
        * Address the feature refers to
@@ -577,10 +860,16 @@ export interface TransactionScanParams {
     | TransactionScanParams.StarknetDeployAccountV3TransactionSchema;
 
   /**
+   * Optional block number or tag context for the simulation
+   */
+  block_number?: string | null;
+
+  /**
    * List of options to include in the response
    *
-   * - `simulation`: Include simulation output in the response
-   * - `validation`: Include security validation of the transaction in the response
+   * - `Options.validation`: Include Options.validation output in the response
+   *
+   * - `Options.simulation`: Include Options.simulation output in the response
    */
   options?: Array<'validation' | 'simulation'>;
 }

@@ -273,7 +273,7 @@ export interface Erc20Exposure {
    * the amount that was asked in the approval request for this spender from the
    * current address and asset
    */
-  approval: number;
+  approval: string;
 
   exposure: Array<Erc20Diff>;
 
@@ -526,7 +526,8 @@ export type TokenScanSupportedChain =
   | 'blast'
   | 'zksync'
   | 'scroll'
-  | 'degen';
+  | 'degen'
+  | 'bitcoin';
 
 export interface TransactionScanFeature {
   /**
@@ -634,6 +635,7 @@ export type TransactionScanSupportedChain =
   | 'degen'
   | 'avalanche-fuji'
   | 'immutable-zkevm'
+  | 'immutable-zkevm-testnet'
   | 'gnosis'
   | 'worldchain';
 
