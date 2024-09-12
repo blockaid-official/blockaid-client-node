@@ -1,5 +1,37 @@
 # Changelog
 
+## 0.26.0 (2024-09-12)
+
+Full Changelog: [v0.25.0...v0.26.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.25.0...v0.26.0)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#242](https://github.com/blockaid-official/blockaid-client-node/issues/242)) ([922248c](https://github.com/blockaid-official/blockaid-client-node/commit/922248c64c1b31fb4bf837190593c721cf05721a))
+* **api:** OpenAPI spec update via Stainless API ([#245](https://github.com/blockaid-official/blockaid-client-node/issues/245)) ([e5bae2f](https://github.com/blockaid-official/blockaid-client-node/commit/e5bae2fae7305769e6cec349b915d6576bf84f1e))
+* **api:** OpenAPI spec update via Stainless API ([#246](https://github.com/blockaid-official/blockaid-client-node/issues/246)) ([98816a0](https://github.com/blockaid-official/blockaid-client-node/commit/98816a042c0fb8ccc8ff0bbfc74a73a82b62818e))
+* **api:** OpenAPI spec update via Stainless API ([#248](https://github.com/blockaid-official/blockaid-client-node/issues/248)) ([2aab321](https://github.com/blockaid-official/blockaid-client-node/commit/2aab321c9275131140fd83846b8c1bf8c3dc660a))
+* **api:** OpenAPI spec update via Stainless API ([#256](https://github.com/blockaid-official/blockaid-client-node/issues/256)) ([2fa0c63](https://github.com/blockaid-official/blockaid-client-node/commit/2fa0c63ab516fa73316c552d10424ee70db942aa))
+* **api:** OpenAPI spec update via Stainless API ([#261](https://github.com/blockaid-official/blockaid-client-node/issues/261)) ([b5ed130](https://github.com/blockaid-official/blockaid-client-node/commit/b5ed130827b2a08e37d233185a19529fa4375042))
+
+
+### Bug Fixes
+
+* **client:** correct File construction from node-fetch Responses ([#244](https://github.com/blockaid-official/blockaid-client-node/issues/244)) ([1785ebf](https://github.com/blockaid-official/blockaid-client-node/commit/1785ebf0c192172db1f77ae61c7746c4d68376f5))
+* **errors:** pass message through to APIConnectionError ([#254](https://github.com/blockaid-official/blockaid-client-node/issues/254)) ([f785f53](https://github.com/blockaid-official/blockaid-client-node/commit/f785f5394a5917db0822bbcd43454eb2eefe3ec2))
+* **errors:** pass message through to APIConnectionError ([#259](https://github.com/blockaid-official/blockaid-client-node/issues/259)) ([e5904f0](https://github.com/blockaid-official/blockaid-client-node/commit/e5904f098f9a5c82348d3db680e6136dac31e4c7))
+* **uploads:** avoid making redundant memory copies ([#251](https://github.com/blockaid-official/blockaid-client-node/issues/251)) ([8d73c25](https://github.com/blockaid-official/blockaid-client-node/commit/8d73c25281042ecc087f3f845ff29f9296ab2eec))
+
+
+### Chores
+
+* better object fallback behaviour for casting errors ([#255](https://github.com/blockaid-official/blockaid-client-node/issues/255)) ([f1e5a10](https://github.com/blockaid-official/blockaid-client-node/commit/f1e5a10672acf16bd2f4580c1a945e07655895b2))
+* better object fallback behaviour for casting errors ([#260](https://github.com/blockaid-official/blockaid-client-node/issues/260)) ([0b79ea3](https://github.com/blockaid-official/blockaid-client-node/commit/0b79ea32a1ff0fb6587131b817bc1ee137ecd34f))
+* **internal:** codegen related update ([#252](https://github.com/blockaid-official/blockaid-client-node/issues/252)) ([bc00dce](https://github.com/blockaid-official/blockaid-client-node/commit/bc00dced8522b301e37523812f7783de262ee931))
+* **internal:** codegen related update ([#253](https://github.com/blockaid-official/blockaid-client-node/issues/253)) ([b56587a](https://github.com/blockaid-official/blockaid-client-node/commit/b56587a1ab78278e37ea00070e81a734f53b97a6))
+* **internal:** codegen related update ([#257](https://github.com/blockaid-official/blockaid-client-node/issues/257)) ([5f37e23](https://github.com/blockaid-official/blockaid-client-node/commit/5f37e2307816bb164e5cea7f224ff26e011d4450))
+* **internal:** codegen related update ([#258](https://github.com/blockaid-official/blockaid-client-node/issues/258)) ([d7c64c3](https://github.com/blockaid-official/blockaid-client-node/commit/d7c64c33362d42a352fd4cc4b7b64be0ab8c7e11))
+* **internal:** dependency updates ([#247](https://github.com/blockaid-official/blockaid-client-node/issues/247)) ([7778143](https://github.com/blockaid-official/blockaid-client-node/commit/7778143ec32ad729237c022271b0b43993f8e94e))
+
 ## 0.25.0 (2024-09-01)
 
 Full Changelog: [v0.24.0...v0.25.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.24.0...v0.25.0)
