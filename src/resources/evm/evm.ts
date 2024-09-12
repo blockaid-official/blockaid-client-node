@@ -484,6 +484,7 @@ export type TransactionScanSupportedChain =
   | 'degen'
   | 'avalanche-fuji'
   | 'immutable-zkevm'
+  | 'immutable-zkevm-testnet'
   | 'gnosis'
   | 'worldchain';
 
