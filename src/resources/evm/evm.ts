@@ -46,6 +46,11 @@ export interface AssetDiff {
     | NativeAssetDetails;
 
   /**
+   * An enumeration.
+   */
+  asset_type: 'ERC20' | 'ERC1155' | 'ERC721' | 'NONERC' | 'NATIVE';
+
+  /**
    * amount of the asset that was transferred to the address in this transaction
    */
   in: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
@@ -583,6 +588,11 @@ export namespace TransactionSimulation {
         | EvmAPI.Erc721TokenDetails
         | EvmAPI.NonercTokenDetails
         | EvmAPI.NativeAssetDetails;
+
+      /**
+       * An enumeration.
+       */
+      asset_type: 'ERC20' | 'ERC1155' | 'ERC721' | 'NONERC' | 'NATIVE';
 
       /**
        * amount of the asset that was transferred to the address in this transaction
