@@ -93,6 +93,11 @@ export interface Erc20AssetDiff {
   asset: Erc20TokenDetails;
 
   /**
+   * An enumeration.
+   */
+  asset_type: 'ERC20';
+
+  /**
    * amount of the asset that was transferred to the address in this transaction
    */
   in: Array<Erc20Diff>;
@@ -108,6 +113,11 @@ export interface Erc1155AssetDiff {
    * description of the asset for the current diff
    */
   asset: Erc1155TokenDetails;
+
+  /**
+   * An enumeration.
+   */
+  asset_type: 'ERC1155';
 
   /**
    * amount of the asset that was transferred to the address in this transaction
@@ -127,6 +137,11 @@ export interface Erc721AssetDiff {
   asset: Erc721TokenDetails;
 
   /**
+   * An enumeration.
+   */
+  asset_type: 'ERC721';
+
+  /**
    * amount of the asset that was transferred to the address in this transaction
    */
   in: Array<Erc721Diff>;
@@ -144,6 +159,11 @@ export interface NativeAssetDiff {
   asset: NativeAssetDetails;
 
   /**
+   * An enumeration.
+   */
+  asset_type: 'NATIVE';
+
+  /**
    * amount of the asset that was transferred to the address in this transaction
    */
   in: Array<NativeDiff>;
@@ -159,6 +179,11 @@ export interface NonercAssetDiff {
    * description of the asset for the current diff
    */
   asset: NonercTokenDetails;
+
+  /**
+   * An enumeration.
+   */
+  asset_type: 'NONERC';
 
   /**
    * amount of the asset that was transferred to the address in this transaction
