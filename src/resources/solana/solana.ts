@@ -445,6 +445,11 @@ export interface ProgramAccountDetailsSchema {
 
 export interface ResponseSchema {
   /**
+   * Unique identifier of the request
+   */
+  request_id: string;
+
+  /**
    * An enumeration.
    */
   status: 'SUCCESS' | 'ERROR';
