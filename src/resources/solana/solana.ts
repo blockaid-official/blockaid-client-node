@@ -142,6 +142,11 @@ export interface CnftDiffSchema {
   asset: CnftDetailsSchema;
 
   /**
+   * Type of the asset involved in the transfer
+   */
+  asset_type: string;
+
+  /**
    * Incoming transfers of the asset
    */
   in?: AssetTransferDetailsSchema | null;
@@ -244,6 +249,11 @@ export interface DelegatedAssetDetailsSchema {
   asset: SplFungibleTokenDetailsSchema | SplNonFungibleTokenDetailsSchema | CnftDetailsSchema;
 
   /**
+   * Type of the asset involved in the delegation
+   */
+  asset_type: string;
+
+  /**
    * The delegate's address
    */
   delegate: string;
@@ -330,6 +340,11 @@ export interface NativeSolDiffSchema {
   asset: NativeSolDetailsSchema;
 
   /**
+   * Type of the asset involved in the transfer
+   */
+  asset_type: string;
+
+  /**
    * Incoming transfers of the asset
    */
   in?: AssetTransferDetailsSchema | null;
@@ -339,6 +354,11 @@ export interface NativeSolDiffSchema {
 
 export interface NativeSolOwnershipDiffSchema {
   asset: NativeSolDetailsSchema;
+
+  /**
+   * Type of the asset involved in the transfer
+   */
+  asset_type: string;
 
   /**
    * The owner post the transaction
@@ -496,6 +516,11 @@ export interface SplFungibleTokenDiffSchema {
   asset: SplFungibleTokenDetailsSchema;
 
   /**
+   * Type of the asset involved in the transfer
+   */
+  asset_type: string;
+
+  /**
    * Incoming transfers of the asset
    */
   in?: AssetTransferDetailsSchema | null;
@@ -524,6 +549,11 @@ export interface SplNonFungibleTokenDiffSchema {
   asset: SplNonFungibleTokenDetailsSchema;
 
   /**
+   * Type of the asset involved in the transfer
+   */
+  asset_type: string;
+
+  /**
    * Incoming transfers of the asset
    */
   in?: AssetTransferDetailsSchema | null;
@@ -533,6 +563,11 @@ export interface SplNonFungibleTokenDiffSchema {
 
 export interface SplTokenOwnershipDiffSchema {
   asset: SplFungibleTokenDetailsSchema | SplNonFungibleTokenDetailsSchema;
+
+  /**
+   * Type of the asset involved in the transfer
+   */
+  asset_type: string;
 
   /**
    * The owner post the transaction
@@ -570,6 +605,11 @@ export interface StakedSolAssetDetailsSchema {
 }
 
 export interface StakedSolWithdrawAuthorityDiffSchema {
+  /**
+   * Type of the asset involved in the transfer
+   */
+  asset_type: string;
+
   /**
    * The owner post the transaction
    */
