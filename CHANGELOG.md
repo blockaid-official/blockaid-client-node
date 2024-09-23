@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.27.1 (2024-09-23)
+
+Full Changelog: [v0.26.0...v0.27.1](https://github.com/blockaid-official/blockaid-client-node/compare/v0.26.0...v0.27.1)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#263](https://github.com/blockaid-official/blockaid-client-node/issues/263)) ([bcce784](https://github.com/blockaid-official/blockaid-client-node/commit/bcce7845d78564be66ea2e09ebe5dbb5832098dc))
+* **api:** OpenAPI spec update via Stainless API ([#268](https://github.com/blockaid-official/blockaid-client-node/issues/268)) ([911e251](https://github.com/blockaid-official/blockaid-client-node/commit/911e2513d4c66f6d611a191232f06798dfff109e))
+* **api:** OpenAPI spec update via Stainless API ([#271](https://github.com/blockaid-official/blockaid-client-node/issues/271)) ([75e0bd2](https://github.com/blockaid-official/blockaid-client-node/commit/75e0bd2b60ad65552953119190532307e21e3f7f))
+* **api:** OpenAPI spec update via Stainless API ([#272](https://github.com/blockaid-official/blockaid-client-node/issues/272)) ([9110c9b](https://github.com/blockaid-official/blockaid-client-node/commit/9110c9b363570b4b838fa97d05e5b621bfba2d63))
+* **client:** send retry count header ([#273](https://github.com/blockaid-official/blockaid-client-node/issues/273)) ([81edc2f](https://github.com/blockaid-official/blockaid-client-node/commit/81edc2f4248e2f7ed7608acfa7dbc07d2f9611b6))
+
+
+### Bug Fixes
+
+* starknet test ([2a4b0a6](https://github.com/blockaid-official/blockaid-client-node/commit/2a4b0a6223d6ac954fa6cb7b2c481a07d89a181c))
+* **types:** remove leftover polyfill usage ([#270](https://github.com/blockaid-official/blockaid-client-node/issues/270)) ([50fbd5d](https://github.com/blockaid-official/blockaid-client-node/commit/50fbd5d44d16ddecd8cf29466d329cd5638f3900))
+
+
+### Chores
+
+* **internal:** add dev dependency ([#269](https://github.com/blockaid-official/blockaid-client-node/issues/269)) ([2b77dff](https://github.com/blockaid-official/blockaid-client-node/commit/2b77dff06d18c82fe2ecd278df32a7d287a92dec))
+
+
+### Documentation
+
+* update CONTRIBUTING.md ([#265](https://github.com/blockaid-official/blockaid-client-node/issues/265)) ([544f8f9](https://github.com/blockaid-official/blockaid-client-node/commit/544f8f9fcf070cdebc4856a5ca7679bd1d8a8116))
+
 ## 0.26.0 (2024-09-12)
 
 Full Changelog: [v0.25.0...v0.26.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.25.0...v0.26.0)
