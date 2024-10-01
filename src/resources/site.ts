@@ -141,14 +141,14 @@ export namespace SiteScanParams {
   }
 
   export interface MultipleWalletRequestMetadata {
-    type: 'wallet';
-
     /**
      * List of all account addresses in different chains based on the CAIPs standard
      * (https://github.com/ChainAgnostic/CAIPs). Ethereum mainnet example:
      * eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb
      */
-    account_addresses?: Array<string>;
+    account_addresses: Array<string>;
+
+    type: 'wallet';
 
     walletconnect_description?: string;
 
