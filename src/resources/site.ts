@@ -119,7 +119,10 @@ export namespace SiteReportParams {
 export interface SiteScanParams {
   url: string;
 
-  metadata?: SiteScanParams.CatalogRequestMetadata | SiteScanParams.WalletRequestMetadata;
+  metadata?:
+    | SiteScanParams.CatalogRequestMetadata
+    | SiteScanParams.WalletRequestMetadata
+    | SiteScanParams.MultipleWalletRequestMetadata;
 }
 
 export namespace SiteScanParams {
@@ -130,6 +133,14 @@ export namespace SiteScanParams {
   export interface WalletRequestMetadata {
     account_address: string;
 
+    type: 'wallet';
+
+    walletconnect_description?: string;
+
+    walletconnect_name?: string;
+  }
+
+  export interface MultipleWalletRequestMetadata {
     type: 'wallet';
 
     /**
