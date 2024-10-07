@@ -492,7 +492,8 @@ export type TransactionScanSupportedChain =
   | 'immutable-zkevm-testnet'
   | 'gnosis'
   | 'worldchain'
-  | 'soneium-minato';
+  | 'soneium-minato'
+  | 'ronin';
 
 export interface TransactionSimulation {
   /**
