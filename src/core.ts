@@ -36,7 +36,9 @@ type APIResponseProps = {
   controller: AbortController;
 };
 
-async function defaultParseResponse<T>(props: APIResponseProps): Promise<T> {
+type AddHeaders<T> = T extends null ? null : T & { headers?: Headers };
+
+async function defaultParseResponseData<T>(props: APIResponseProps): Promise<T> {
   const { response } = props;
   // fetch refuses to read the body when the status code is 204.
   if (response.status === 204) {
@@ -65,16 +67,21 @@ async function defaultParseResponse<T>(props: APIResponseProps): Promise<T> {
   return text as unknown as T;
 }
 
+async function defaultParseResponse<T>(props: APIResponseProps): Promise<AddHeaders<T>> {
+  const parsed = await defaultParseResponseData<T>(props);
+  return { ...parsed, headers: props.response.headers } as AddHeaders<T>;
+}
+
 /**
  * A subclass of `Promise` providing additional helper methods
  * for interacting with the SDK.
  */
-export class APIPromise<T> extends Promise<T> {
-  private parsedPromise: Promise<T> | undefined;
+export class APIPromise<T> extends Promise<AddHeaders<T>> {
+  private parsedPromise: Promise<AddHeaders<T>> | undefined;
 
   constructor(
     private responsePromise: Promise<APIResponseProps>,
-    private parseResponse: (props: APIResponseProps) => PromiseOrValue<T> = defaultParseResponse,
+    private parseResponse: (props: APIResponseProps) => PromiseOrValue<AddHeaders<T>> = defaultParseResponse,
   ) {
     super((resolve) => {
       // this is maybe a bit weird but this has to be a no-op to not implicitly
@@ -84,7 +91,7 @@ export class APIPromise<T> extends Promise<T> {
     });
   }
 
-  _thenUnwrap<U>(transform: (data: T) => U): APIPromise<U> {
+  _thenUnwrap<U>(transform: (data: AddHeaders<T>) => AddHeaders<U>): APIPromise<U> {
     return new APIPromise(this.responsePromise, async (props) => transform(await this.parseResponse(props)));
   }
 
@@ -117,20 +124,20 @@ export class APIPromise<T> extends Promise<T> {
    * - `import '@blockaid/client/shims/node'` (if you're running on Node)
    * - `import '@blockaid/client/shims/web'` (otherwise)
    */
-  async withResponse(): Promise<{ data: T; response: Response }> {
+  async withResponse(): Promise<{ data: AddHeaders<T>; response: Response }> {
     const [data, response] = await Promise.all([this.parse(), this.asResponse()]);
     return { data, response };
   }
 
-  private parse(): Promise<T> {
+  private parse(): Promise<AddHeaders<T>> {
     if (!this.parsedPromise) {
       this.parsedPromise = this.responsePromise.then(this.parseResponse);
     }
     return this.parsedPromise;
   }
 
-  override then<TResult1 = T, TResult2 = never>(
-    onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+  override then<TResult1 = AddHeaders<T>, TResult2 = never>(
+    onfulfilled?: ((value: AddHeaders<T>) => TResult1 | PromiseLike<TResult1>) | undefined | null,
     onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
   ): Promise<TResult1 | TResult2> {
     return this.parse().then(onfulfilled, onrejected);
@@ -138,11 +145,11 @@ export class APIPromise<T> extends Promise<T> {
 
   override catch<TResult = never>(
     onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
-  ): Promise<T | TResult> {
+  ): Promise<AddHeaders<T> | TResult> {
     return this.parse().catch(onrejected);
   }
 
-  override finally(onfinally?: (() => void) | undefined | null): Promise<T> {
+  override finally(onfinally?: (() => void) | undefined | null): Promise<AddHeaders<T>> {
     return this.parse().finally(onfinally);
   }
 }
@@ -250,7 +257,7 @@ export abstract class APIClient {
 
   getAPIList<Item, PageClass extends AbstractPage<Item> = AbstractPage<Item>>(
     path: string,
-    Page: new (...args: any[]) => PageClass,
+    Page: new (...args: any[]) => AddHeaders<PageClass>,
     opts?: RequestOptions<any>,
   ): PagePromise<PageClass, Item> {
     return this.requestAPIList(Page, { method: 'get', path, ...opts });
@@ -463,7 +470,7 @@ export abstract class APIClient {
   }
 
   requestAPIList<Item = unknown, PageClass extends AbstractPage<Item> = AbstractPage<Item>>(
-    Page: new (...args: ConstructorParameters<typeof AbstractPage>) => PageClass,
+    Page: new (...args: ConstructorParameters<typeof AbstractPage>) => AddHeaders<PageClass>,
     options: FinalRequestOptions,
   ): PagePromise<PageClass, Item> {
     const request = this.makeRequest(options, null);
@@ -641,7 +648,7 @@ export abstract class AbstractPage<Item> implements AsyncIterable<Item> {
     return this.nextPageInfo() != null;
   }
 
-  async getNextPage(): Promise<this> {
+  async getNextPage(): Promise<AddHeaders<this>> {
     const nextInfo = this.nextPageInfo();
     if (!nextInfo) {
       throw new BlockaidError(
@@ -700,7 +707,7 @@ export class PagePromise<
   constructor(
     client: APIClient,
     request: Promise<APIResponseProps>,
-    Page: new (...args: ConstructorParameters<typeof AbstractPage>) => PageClass,
+    Page: new (...args: ConstructorParameters<typeof AbstractPage>) => AddHeaders<PageClass>,
   ) {
     super(
       request,
