@@ -36,7 +36,7 @@ type APIResponseProps = {
   controller: AbortController;
 };
 
-type AddHeaders<T> = T extends null ? null : T & { headers?: Headers };
+type AddHeaders<T> = T extends null ? null : T & { headers?: Response['headers'] };
 
 async function defaultParseResponseData<T>(props: APIResponseProps): Promise<T> {
   const { response } = props;
@@ -69,7 +69,8 @@ async function defaultParseResponseData<T>(props: APIResponseProps): Promise<T> 
 
 async function defaultParseResponse<T>(props: APIResponseProps): Promise<AddHeaders<T>> {
   const parsed = await defaultParseResponseData<T>(props);
-  return { ...parsed, headers: props.response.headers } as AddHeaders<T>;
+  const headers = props.response.headers;
+  return { ...parsed, headers } as AddHeaders<T>;
 }
 
 /**
