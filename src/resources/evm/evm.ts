@@ -679,6 +679,11 @@ export namespace TransactionSimulation {
     contract_name?: string;
 
     /**
+     * Whether the address is an eoa or a contract
+     */
+    is_eoa?: boolean;
+
+    /**
      * known name tag for the address
      */
     name_tag?: string;
