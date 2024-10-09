@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.27.4 (2024-10-09)
+
+Full Changelog: [v0.27.3...v0.27.4](https://github.com/blockaid-official/blockaid-client-node/compare/v0.27.3...v0.27.4)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#284](https://github.com/blockaid-official/blockaid-client-node/issues/284)) ([238ae23](https://github.com/blockaid-official/blockaid-client-node/commit/238ae2333193ac299c7ea2d55fa8c80972ada0de))
+* **api:** OpenAPI spec update via Stainless API ([#286](https://github.com/blockaid-official/blockaid-client-node/issues/286)) ([2697398](https://github.com/blockaid-official/blockaid-client-node/commit/269739864d49364b37f8d59584e6822679602c47))
+* **api:** OpenAPI spec update via Stainless API ([#289](https://github.com/blockaid-official/blockaid-client-node/issues/289)) ([2ae9a5f](https://github.com/blockaid-official/blockaid-client-node/commit/2ae9a5ff24f3c3b15c291145dfd0e33565185b0b))
+
+
+### Chores
+
+* **internal:** codegen related update ([#287](https://github.com/blockaid-official/blockaid-client-node/issues/287)) ([b1bc6c8](https://github.com/blockaid-official/blockaid-client-node/commit/b1bc6c8c80655caf641fe334e410cce2ddcffe7b))
+* **internal:** pass props through internal parser ([#290](https://github.com/blockaid-official/blockaid-client-node/issues/290)) ([55a62f5](https://github.com/blockaid-official/blockaid-client-node/commit/55a62f53f966354c2598a95b35c38a749fc88552))
+
 ## 0.27.3 (2024-10-01)
 
 Full Changelog: [v0.27.2...v0.27.3](https://github.com/blockaid-official/blockaid-client-node/compare/v0.27.2...v0.27.3)

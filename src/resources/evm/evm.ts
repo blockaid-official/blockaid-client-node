@@ -663,7 +663,8 @@ export type TransactionScanSupportedChain =
   | 'immutable-zkevm-testnet'
   | 'gnosis'
   | 'worldchain'
-  | 'soneium-minato';
+  | 'soneium-minato'
+  | 'ronin';
 
 export interface TransactionSimulation {
   /**
@@ -820,6 +821,11 @@ export namespace TransactionSimulation {
      * contains the contract's name if the address is a verified contract
      */
     contract_name?: string;
+
+    /**
+     * Whether the address is an eoa or a contract
+     */
+    is_eoa?: boolean;
 
     /**
      * known name tag for the address
