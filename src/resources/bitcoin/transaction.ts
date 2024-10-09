@@ -18,88 +18,343 @@ export interface TransactionScanResponse {
    * Simulation result; Only present if simulation option is included in the request
    */
   simulation?:
-    | TransactionScanResponse.BitcoinSimulationSchema
+    | TransactionScanResponse.BitcoinBitcoinSimulationSchemaTypeAnnotatedStrSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeOrdinalDetailsSchemaOrdinalDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleOrdinalAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeRuneDetailsSchemaRuneDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleRunesAssetDiffEmptyModelEmptyModelAddressDetailsBaseSchemaAnnotatedStrSkipValidationPlainSerializerGetPydanticSchemaAnnotatedEmptyModelSimulationSchemaConfiguration
     | TransactionScanResponse.BitcoinSimulationErrorSchema
+    | null;
+
+  /**
+   * Validation result; Only present if validation option is included in the request
+   */
+  validation?:
+    | TransactionScanResponse.BitcoinValidationResultSchemaTypeAnnotatedStrSkipValidationPlainSerializerGetPydanticSchema
+    | TransactionScanResponse.BitcoinValidationErrorSchema
     | null;
 }
 
 export namespace TransactionScanResponse {
-  export interface BitcoinSimulationSchema {
-    /**
-     * A dictionary describing the assets differences as a result of this transaction
-     * for every involved address
-     */
-    assets_diffs: Record<string, Array<BitcoinSimulationSchema.AssetsDiff>>;
+  export interface BitcoinBitcoinSimulationSchemaTypeAnnotatedStrSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeOrdinalDetailsSchemaOrdinalDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleOrdinalAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeRuneDetailsSchemaRuneDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleRunesAssetDiffEmptyModelEmptyModelAddressDetailsBaseSchemaAnnotatedStrSkipValidationPlainSerializerGetPydanticSchemaAnnotatedEmptyModelSimulationSchemaConfiguration {
+    status: 'Success';
 
-    status?: 'Success';
+    account_summary?: null;
+
+    /**
+     * Details of addresses involved in the transaction
+     */
+    address_details?: Array<BitcoinBitcoinSimulationSchemaTypeAnnotatedStrSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeOrdinalDetailsSchemaOrdinalDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleOrdinalAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeRuneDetailsSchemaRuneDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleRunesAssetDiffEmptyModelEmptyModelAddressDetailsBaseSchemaAnnotatedStrSkipValidationPlainSerializerGetPydanticSchemaAnnotatedEmptyModelSimulationSchemaConfiguration.AddressDetail>;
+
+    /**
+     * Mapping between the address of an account to the assets diff during the
+     * transaction
+     */
+    assets_diffs?: Record<
+      string,
+      Array<
+        | BitcoinBitcoinSimulationSchemaTypeAnnotatedStrSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeOrdinalDetailsSchemaOrdinalDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleOrdinalAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeRuneDetailsSchemaRuneDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleRunesAssetDiffEmptyModelEmptyModelAddressDetailsBaseSchemaAnnotatedStrSkipValidationPlainSerializerGetPydanticSchemaAnnotatedEmptyModelSimulationSchemaConfiguration.BitcoinAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchema
+        | BitcoinBitcoinSimulationSchemaTypeAnnotatedStrSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeOrdinalDetailsSchemaOrdinalDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleOrdinalAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeRuneDetailsSchemaRuneDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleRunesAssetDiffEmptyModelEmptyModelAddressDetailsBaseSchemaAnnotatedStrSkipValidationPlainSerializerGetPydanticSchemaAnnotatedEmptyModelSimulationSchemaConfiguration.BitcoinAccountSingleAssetDiffSchemaTypeOrdinalDetailsSchemaOrdinalDiffSchema
+        | BitcoinBitcoinSimulationSchemaTypeAnnotatedStrSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeOrdinalDetailsSchemaOrdinalDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleOrdinalAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeRuneDetailsSchemaRuneDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleRunesAssetDiffEmptyModelEmptyModelAddressDetailsBaseSchemaAnnotatedStrSkipValidationPlainSerializerGetPydanticSchemaAnnotatedEmptyModelSimulationSchemaConfiguration.BitcoinAccountSingleAssetDiffSchemaTypeRuneDetailsSchemaRuneDiffSchema
+      >
+    >;
   }
 
-  export namespace BitcoinSimulationSchema {
-    export interface AssetsDiff {
+  export namespace BitcoinBitcoinSimulationSchemaTypeAnnotatedStrSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeOrdinalDetailsSchemaOrdinalDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleOrdinalAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeRuneDetailsSchemaRuneDiffSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleRunesAssetDiffEmptyModelEmptyModelAddressDetailsBaseSchemaAnnotatedStrSkipValidationPlainSerializerGetPydanticSchemaAnnotatedEmptyModelSimulationSchemaConfiguration {
+    export interface AddressDetail {
       /**
-       * Description of the asset for the current diff
+       * Encoded public key of the account
        */
-      asset: AssetsDiff.Asset;
+      account_address: string;
 
       /**
-       * The assets received by the address
+       * Description of the account
        */
-      in?: Array<AssetsDiff.In>;
-
-      /**
-       * The assets sent by the address
-       */
-      out?: Array<AssetsDiff.Out>;
+      description?: string | null;
     }
 
-    export namespace AssetsDiff {
+    export interface BitcoinAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchema {
+      asset: BitcoinAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchema.Asset;
+
       /**
-       * Description of the asset for the current diff
+       * Details of the incoming transfer
        */
+      in?: BitcoinAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchema.In | null;
+
+      /**
+       * Details of the outgoing transfer
+       */
+      out?: BitcoinAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchema.Out | null;
+    }
+
+    export namespace BitcoinAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchema {
       export interface Asset {
-        chain_name: string;
+        /**
+         * URL of the asset's logo
+         */
+        logo_url: string | null;
 
-        decimals: number;
+        /**
+         * Decimals of the asset
+         */
+        decimals?: 8;
 
-        logo_url: string;
+        /**
+         * Name of the asset
+         */
+        name?: 'Bitcoin';
 
+        /**
+         * Symbol of the asset
+         */
+        symbol?: 'BTC';
+
+        /**
+         * Type of the asset (`NATIVE`)
+         */
+        type?: 'NATIVE';
+      }
+
+      /**
+       * Details of the incoming transfer
+       */
+      export interface In {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: string;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price: string;
+
+        /**
+         * Value of the transfer
+         */
+        value: string;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+      }
+
+      /**
+       * Details of the outgoing transfer
+       */
+      export interface Out {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: string;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price: string;
+
+        /**
+         * Value of the transfer
+         */
+        value: string;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+      }
+    }
+
+    export interface BitcoinAccountSingleAssetDiffSchemaTypeOrdinalDetailsSchemaOrdinalDiffSchema {
+      asset: BitcoinAccountSingleAssetDiffSchemaTypeOrdinalDetailsSchemaOrdinalDiffSchema.Asset;
+
+      /**
+       * Details of the incoming transfer
+       */
+      in?: BitcoinAccountSingleAssetDiffSchemaTypeOrdinalDetailsSchemaOrdinalDiffSchema.In | null;
+
+      /**
+       * Details of the outgoing transfer
+       */
+      out?: BitcoinAccountSingleAssetDiffSchemaTypeOrdinalDetailsSchemaOrdinalDiffSchema.Out | null;
+    }
+
+    export namespace BitcoinAccountSingleAssetDiffSchemaTypeOrdinalDetailsSchemaOrdinalDiffSchema {
+      export interface Asset {
+        /**
+         * token's name
+         */
         name: string;
 
-        type: 'NATIVE' | 'RUNE' | 'ORDINAL';
+        /**
+         * URL of the asset's logo
+         */
+        logo_url?: string | null;
 
-        id?: string;
-
-        spaced_name?: string;
-
-        symbol?: string;
+        /**
+         * Type of the asset (`ORDINAL`)
+         */
+        type?: 'ORDINAL';
       }
 
+      /**
+       * Details of the incoming transfer
+       */
       export interface In {
-        name?: string;
+        /**
+         * Id of the ordinal
+         */
+        id: string;
 
-        raw_value?: string;
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: string;
 
-        summary?: string;
+        /**
+         * USD price of the asset
+         */
+        usd_price: string;
 
-        token_id?: string;
+        /**
+         * Value of the transfer
+         */
+        value: string;
 
-        usd_price?: string;
-
-        value?: string;
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
       }
 
+      /**
+       * Details of the outgoing transfer
+       */
       export interface Out {
-        name?: string;
+        /**
+         * Id of the ordinal
+         */
+        id: string;
 
-        raw_value?: string;
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: string;
 
-        summary?: string;
+        /**
+         * USD price of the asset
+         */
+        usd_price: string;
 
-        token_id?: string;
+        /**
+         * Value of the transfer
+         */
+        value: string;
 
-        usd_price?: string;
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+      }
+    }
 
-        value?: string;
+    export interface BitcoinAccountSingleAssetDiffSchemaTypeRuneDetailsSchemaRuneDiffSchema {
+      asset: BitcoinAccountSingleAssetDiffSchemaTypeRuneDetailsSchemaRuneDiffSchema.Asset;
+
+      /**
+       * Details of the incoming transfer
+       */
+      in?: BitcoinAccountSingleAssetDiffSchemaTypeRuneDetailsSchemaRuneDiffSchema.In | null;
+
+      /**
+       * Details of the outgoing transfer
+       */
+      out?: BitcoinAccountSingleAssetDiffSchemaTypeRuneDetailsSchemaRuneDiffSchema.Out | null;
+    }
+
+    export namespace BitcoinAccountSingleAssetDiffSchemaTypeRuneDetailsSchemaRuneDiffSchema {
+      export interface Asset {
+        /**
+         * The Rune ID
+         */
+        id: string;
+
+        /**
+         * Decimals of the asset
+         */
+        decimals: number;
+
+        /**
+         * The Rune name
+         */
+        name: string;
+
+        /**
+         * The Rune spaced name
+         */
+        spaced_name: string;
+
+        /**
+         * token's symbol
+         */
+        symbol: string;
+
+        /**
+         * URL of the asset's logo
+         */
+        logo_url?: string | null;
+
+        /**
+         * Type of the asset (`RUNE`)
+         */
+        type?: 'RUNE';
+      }
+
+      /**
+       * Details of the incoming transfer
+       */
+      export interface In {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: string;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price: string;
+
+        /**
+         * Value of the transfer
+         */
+        value: string;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+      }
+
+      /**
+       * Details of the outgoing transfer
+       */
+      export interface Out {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: string;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price: string;
+
+        /**
+         * Value of the transfer
+         */
+        value: string;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
       }
     }
   }
@@ -112,49 +367,111 @@ export namespace TransactionScanResponse {
 
     status?: 'Error';
   }
+
+  export interface BitcoinValidationResultSchemaTypeAnnotatedStrSkipValidationPlainSerializerGetPydanticSchema {
+    /**
+     * A textual classification that can be presented to the user explaining the
+     * reason.
+     */
+    classification: string;
+
+    /**
+     * A textual description about the validation result
+     */
+    description: string;
+
+    /**
+     * A list of features about this transaction explaining the validation
+     */
+    features: Array<BitcoinValidationResultSchemaTypeAnnotatedStrSkipValidationPlainSerializerGetPydanticSchema.Feature>;
+
+    /**
+     * A textual description about the reasons the transaction was flagged with
+     * result_type
+     */
+    reason: string;
+
+    /**
+     * Verdict of the validation
+     */
+    result_type: 'Benign' | 'Warning' | 'Malicious';
+
+    status: 'Success';
+  }
+
+  export namespace BitcoinValidationResultSchemaTypeAnnotatedStrSkipValidationPlainSerializerGetPydanticSchema {
+    export interface Feature {
+      /**
+       * Address the feature refers to
+       */
+      address: string;
+
+      /**
+       * Textual description
+       */
+      description: string;
+
+      feature_id: string;
+
+      /**
+       * Feature Classification
+       */
+      type: 'Benign' | 'Warning' | 'Malicious' | 'Info';
+    }
+  }
+
+  export interface BitcoinValidationErrorSchema {
+    /**
+     * Error message
+     */
+    error: string;
+
+    status: 'Error';
+  }
 }
 
 export interface TransactionScanParams {
-  /**
-   * List of options to include in the response
-   *
-   * - `simulation`: Include simulation output in the response
-   */
-  options: Array<'simulation'>;
+  account_address: string;
 
-  /**
-   * The transaction encoded as a hex string
-   */
-  transaction: string;
-
-  chain?: 'bitcoin';
+  chain: 'bitcoin';
 
   /**
    * Metadata
    */
-  metadata?:
-    | TransactionScanParams.BitcoinInAppRequestMetadata
-    | TransactionScanParams.BitcoinWalletRequestMetadata;
+  metadata:
+    | TransactionScanParams.BitcoinblockaidApplicationRunnerAppSchemasTransactionScanningAPIWalletRequestMetadata
+    | TransactionScanParams.BitcoinInAppRequestMetadata;
+
+  transaction: string;
+
+  /**
+   * List of options to include in the response
+   *
+   * - `Options.validation`: Include Options.validation output in the response
+   *
+   * - `Options.simulation`: Include Options.simulation output in the response
+   */
+  options?: Array<'validation' | 'simulation'>;
 }
 
 export namespace TransactionScanParams {
-  export interface BitcoinInAppRequestMetadata {
-    /**
-     * Metadata for in-app requests
-     */
-    type: 'in_app';
-  }
-
-  export interface BitcoinWalletRequestMetadata {
+  export interface BitcoinblockaidApplicationRunnerAppSchemasTransactionScanningAPIWalletRequestMetadata {
     /**
      * Metadata for wallet requests
      */
     type: 'wallet';
 
     /**
-     * URL of the dApp that originated the transaction
+     * URL of the dApp originating the transaction
      */
     url: string;
+  }
+
+  export interface BitcoinInAppRequestMetadata {
+    /**
+     * Metadata for in-app requests
+     */
+    type: 'in_app';
   }
 }
 
