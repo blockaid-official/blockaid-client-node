@@ -741,7 +741,7 @@ export interface TotalUsdDiffSchema {
 
 export interface TransactionErrorDetails {
   /**
-   * Advanced message of the error
+   * Human readable error
    */
   message: string;
 
@@ -749,6 +749,16 @@ export interface TransactionErrorDetails {
    * Index of the transaction in the bulk
    */
   transaction_index: number;
+
+  /**
+   * Machine readable error code
+   */
+  code?: string | null;
+
+  /**
+   * Error number
+   */
+  number?: number | null;
 
   type?: string;
 }
