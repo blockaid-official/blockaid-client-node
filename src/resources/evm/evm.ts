@@ -493,7 +493,8 @@ export type TransactionScanSupportedChain =
   | 'gnosis'
   | 'worldchain'
   | 'soneium-minato'
-  | 'ronin';
+  | 'ronin'
+  | 'apechain';
 
 export interface TransactionSimulation {
   /**
