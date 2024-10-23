@@ -241,7 +241,7 @@ export namespace CombinedValidationResult {
     /**
      * An enumeration.
      */
-    verdict: 'Benign' | 'Warning' | 'Malicious';
+    result_type: 'Benign' | 'Warning' | 'Malicious';
   }
 }
 
