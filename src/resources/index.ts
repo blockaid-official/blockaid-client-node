@@ -77,8 +77,6 @@ export { StarknetErc1155Diff, StarknetErc20Diff, StarknetErc721Diff, Starknet } 
 export {
   StellarAssetContractDetailsSchema,
   StellarAssetTransferDetailsSchema,
-  StellarTransactionScanRequest,
-  StellarTransactionScanResponse,
   Stellar,
 } from './stellar/stellar';
 export { TokenBulkScanResponse, TokenBulkScanParams, TokenBulk } from './token-bulk';
