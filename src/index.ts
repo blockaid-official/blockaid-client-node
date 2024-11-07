@@ -1,10 +1,99 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Errors from './error';
-import * as Uploads from './uploads';
 import { type Agent } from './_shims/index';
 import * as Core from './core';
+import * as Errors from './error';
+import * as Uploads from './uploads';
 import * as API from './resources/index';
+import {
+  Site,
+  SiteReportParams,
+  SiteReportResponse,
+  SiteScanHitResponse,
+  SiteScanMissResponse,
+  SiteScanParams,
+  SiteScanResponse,
+} from './resources/site';
+import {
+  Token,
+  TokenReportParams,
+  TokenReportResponse,
+  TokenScanParams,
+  TokenScanResponse,
+} from './resources/token';
+import { TokenBulk, TokenBulkScanParams, TokenBulkScanResponse } from './resources/token-bulk';
+import { Bitcoin } from './resources/bitcoin/bitcoin';
+import {
+  AddressAssetExposure,
+  AssetDiff,
+  Erc1155Diff,
+  Erc1155Exposure,
+  Erc1155TokenDetails,
+  Erc20Diff,
+  Erc20Exposure,
+  Erc20TokenDetails,
+  Erc721Diff,
+  Erc721Exposure,
+  Erc721TokenDetails,
+  Evm,
+  Metadata,
+  NativeAssetDetails,
+  NativeDiff,
+  NonercTokenDetails,
+  TokenScanSupportedChain,
+  TransactionScanFeature,
+  TransactionScanResponse,
+  TransactionScanSupportedChain,
+  TransactionSimulation,
+  TransactionSimulationError,
+  TransactionValidation,
+  TransactionValidationError,
+  UsdDiff,
+} from './resources/evm/evm';
+import {
+  APIErrorDetails,
+  AccountSummarySchema,
+  AddressScanRequestSchema,
+  AddressScanResponseSchema,
+  AssetTransferDetailsSchema,
+  CnftDetailsSchema,
+  CnftDiffSchema,
+  CnftMintAccountDetailsSchema,
+  CombinedValidationResult,
+  DelegatedAssetDetailsSchema,
+  FungibleMintAccountDetailsSchema,
+  InstructionErrorDetails,
+  NativeSolOwnershipDiffSchema,
+  NonFungibleMintAccountDetailsSchema,
+  PdaAccountSchema,
+  ProgramAccountDetailsSchema,
+  ResponseSchema,
+  Solana,
+  SplFungibleTokenDetailsSchema,
+  SplFungibleTokenDiffSchema,
+  SplNonFungibleTokenDetailsSchema,
+  SplNonFungibleTokenDiffSchema,
+  SplTokenOwnershipDiffSchema,
+  StakedSolWithdrawAuthorityDiffSchema,
+  SuccessfulSimulationResultSchema,
+  SystemAccountDetailsSchema,
+  TokenAccountDetailsSchema,
+  TotalUsdDiffSchema,
+  TransactionErrorDetails,
+  TxScanRequestSchema,
+  ValidationFeature,
+} from './resources/solana/solana';
+import {
+  Starknet,
+  StarknetErc1155Diff,
+  StarknetErc20Diff,
+  StarknetErc721Diff,
+} from './resources/starknet/starknet';
+import {
+  Stellar,
+  StellarAssetContractDetailsSchema,
+  StellarAssetTransferDetailsSchema,
+} from './resources/stellar/stellar';
 
 const environments = {
   production: 'https://api.blockaid.io',
@@ -235,7 +324,7 @@ export class Blockaid extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
-export const {
+export {
   BlockaidError,
   APIError,
   APIConnectionError,
@@ -249,103 +338,123 @@ export const {
   InternalServerError,
   PermissionDeniedError,
   UnprocessableEntityError,
-} = Errors;
+} from './error';
 
 export import toFile = Uploads.toFile;
 export import fileFromPath = Uploads.fileFromPath;
 
-export namespace Blockaid {
-  export import RequestOptions = Core.RequestOptions;
+Blockaid.Evm = Evm;
+Blockaid.Solana = Solana;
+Blockaid.Stellar = Stellar;
+Blockaid.Bitcoin = Bitcoin;
+Blockaid.Starknet = Starknet;
+Blockaid.Site = Site;
+Blockaid.Token = Token;
+Blockaid.TokenBulk = TokenBulk;
 
-  export import Evm = API.Evm;
-  export import AddressAssetExposure = API.AddressAssetExposure;
-  export import AssetDiff = API.AssetDiff;
-  export import Erc1155Diff = API.Erc1155Diff;
-  export import Erc1155Exposure = API.Erc1155Exposure;
-  export import Erc1155TokenDetails = API.Erc1155TokenDetails;
-  export import Erc20Diff = API.Erc20Diff;
-  export import Erc20Exposure = API.Erc20Exposure;
-  export import Erc20TokenDetails = API.Erc20TokenDetails;
-  export import Erc721Diff = API.Erc721Diff;
-  export import Erc721Exposure = API.Erc721Exposure;
-  export import Erc721TokenDetails = API.Erc721TokenDetails;
-  export import Metadata = API.Metadata;
-  export import NativeAssetDetails = API.NativeAssetDetails;
-  export import NativeDiff = API.NativeDiff;
-  export import NonercTokenDetails = API.NonercTokenDetails;
-  export import TokenScanSupportedChain = API.TokenScanSupportedChain;
-  export import TransactionScanFeature = API.TransactionScanFeature;
-  export import TransactionScanResponse = API.TransactionScanResponse;
-  export import TransactionScanSupportedChain = API.TransactionScanSupportedChain;
-  export import TransactionSimulation = API.TransactionSimulation;
-  export import TransactionSimulationError = API.TransactionSimulationError;
-  export import TransactionValidation = API.TransactionValidation;
-  export import TransactionValidationError = API.TransactionValidationError;
-  export import UsdDiff = API.UsdDiff;
+export declare namespace Blockaid {
+  export type RequestOptions = Core.RequestOptions;
 
-  export import Solana = API.Solana;
-  export import AccountSummarySchema = API.AccountSummarySchema;
-  export import AddressScanRequestSchema = API.AddressScanRequestSchema;
-  export import AddressScanResponseSchema = API.AddressScanResponseSchema;
-  export import APIErrorDetails = API.APIErrorDetails;
-  export import AssetTransferDetailsSchema = API.AssetTransferDetailsSchema;
-  export import CnftDetailsSchema = API.CnftDetailsSchema;
-  export import CnftDiffSchema = API.CnftDiffSchema;
-  export import CnftMintAccountDetailsSchema = API.CnftMintAccountDetailsSchema;
-  export import CombinedValidationResult = API.CombinedValidationResult;
-  export import DelegatedAssetDetailsSchema = API.DelegatedAssetDetailsSchema;
-  export import FungibleMintAccountDetailsSchema = API.FungibleMintAccountDetailsSchema;
-  export import InstructionErrorDetails = API.InstructionErrorDetails;
-  export import NativeSolDetailsSchema = API.NativeSolDetailsSchema;
-  export import NativeSolDiffSchema = API.NativeSolDiffSchema;
-  export import NativeSolOwnershipDiffSchema = API.NativeSolOwnershipDiffSchema;
-  export import NonFungibleMintAccountDetailsSchema = API.NonFungibleMintAccountDetailsSchema;
-  export import PdaAccountSchema = API.PdaAccountSchema;
-  export import ProgramAccountDetailsSchema = API.ProgramAccountDetailsSchema;
-  export import ResponseSchema = API.ResponseSchema;
-  export import SplFungibleTokenDetailsSchema = API.SplFungibleTokenDetailsSchema;
-  export import SplFungibleTokenDiffSchema = API.SplFungibleTokenDiffSchema;
-  export import SplNonFungibleTokenDetailsSchema = API.SplNonFungibleTokenDetailsSchema;
-  export import SplNonFungibleTokenDiffSchema = API.SplNonFungibleTokenDiffSchema;
-  export import SplTokenOwnershipDiffSchema = API.SplTokenOwnershipDiffSchema;
-  export import StakedSolAssetDetailsSchema = API.StakedSolAssetDetailsSchema;
-  export import StakedSolWithdrawAuthorityDiffSchema = API.StakedSolWithdrawAuthorityDiffSchema;
-  export import SuccessfulSimulationResultSchema = API.SuccessfulSimulationResultSchema;
-  export import SystemAccountDetailsSchema = API.SystemAccountDetailsSchema;
-  export import TokenAccountDetailsSchema = API.TokenAccountDetailsSchema;
-  export import TotalUsdDiffSchema = API.TotalUsdDiffSchema;
-  export import TransactionErrorDetails = API.TransactionErrorDetails;
-  export import TxScanRequestSchema = API.TxScanRequestSchema;
-  export import ValidationFeature = API.ValidationFeature;
+  export {
+    Evm as Evm,
+    type AddressAssetExposure as AddressAssetExposure,
+    type AssetDiff as AssetDiff,
+    type Erc1155Diff as Erc1155Diff,
+    type Erc1155Exposure as Erc1155Exposure,
+    type Erc1155TokenDetails as Erc1155TokenDetails,
+    type Erc20Diff as Erc20Diff,
+    type Erc20Exposure as Erc20Exposure,
+    type Erc20TokenDetails as Erc20TokenDetails,
+    type Erc721Diff as Erc721Diff,
+    type Erc721Exposure as Erc721Exposure,
+    type Erc721TokenDetails as Erc721TokenDetails,
+    type Metadata as Metadata,
+    type NativeAssetDetails as NativeAssetDetails,
+    type NativeDiff as NativeDiff,
+    type NonercTokenDetails as NonercTokenDetails,
+    type TokenScanSupportedChain as TokenScanSupportedChain,
+    type TransactionScanFeature as TransactionScanFeature,
+    type TransactionScanResponse as TransactionScanResponse,
+    type TransactionScanSupportedChain as TransactionScanSupportedChain,
+    type TransactionSimulation as TransactionSimulation,
+    type TransactionSimulationError as TransactionSimulationError,
+    type TransactionValidation as TransactionValidation,
+    type TransactionValidationError as TransactionValidationError,
+    type UsdDiff as UsdDiff,
+  };
 
-  export import Stellar = API.Stellar;
-  export import StellarAssetContractDetailsSchema = API.StellarAssetContractDetailsSchema;
-  export import StellarAssetTransferDetailsSchema = API.StellarAssetTransferDetailsSchema;
+  export {
+    Solana as Solana,
+    type AccountSummarySchema as AccountSummarySchema,
+    type AddressScanRequestSchema as AddressScanRequestSchema,
+    type AddressScanResponseSchema as AddressScanResponseSchema,
+    type APIErrorDetails as APIErrorDetails,
+    type AssetTransferDetailsSchema as AssetTransferDetailsSchema,
+    type CnftDetailsSchema as CnftDetailsSchema,
+    type CnftDiffSchema as CnftDiffSchema,
+    type CnftMintAccountDetailsSchema as CnftMintAccountDetailsSchema,
+    type CombinedValidationResult as CombinedValidationResult,
+    type DelegatedAssetDetailsSchema as DelegatedAssetDetailsSchema,
+    type FungibleMintAccountDetailsSchema as FungibleMintAccountDetailsSchema,
+    type InstructionErrorDetails as InstructionErrorDetails,
+    type NativeSolOwnershipDiffSchema as NativeSolOwnershipDiffSchema,
+    type NonFungibleMintAccountDetailsSchema as NonFungibleMintAccountDetailsSchema,
+    type PdaAccountSchema as PdaAccountSchema,
+    type ProgramAccountDetailsSchema as ProgramAccountDetailsSchema,
+    type ResponseSchema as ResponseSchema,
+    type SplFungibleTokenDetailsSchema as SplFungibleTokenDetailsSchema,
+    type SplFungibleTokenDiffSchema as SplFungibleTokenDiffSchema,
+    type SplNonFungibleTokenDetailsSchema as SplNonFungibleTokenDetailsSchema,
+    type SplNonFungibleTokenDiffSchema as SplNonFungibleTokenDiffSchema,
+    type SplTokenOwnershipDiffSchema as SplTokenOwnershipDiffSchema,
+    type StakedSolWithdrawAuthorityDiffSchema as StakedSolWithdrawAuthorityDiffSchema,
+    type SuccessfulSimulationResultSchema as SuccessfulSimulationResultSchema,
+    type SystemAccountDetailsSchema as SystemAccountDetailsSchema,
+    type TokenAccountDetailsSchema as TokenAccountDetailsSchema,
+    type TotalUsdDiffSchema as TotalUsdDiffSchema,
+    type TransactionErrorDetails as TransactionErrorDetails,
+    type TxScanRequestSchema as TxScanRequestSchema,
+    type ValidationFeature as ValidationFeature,
+  };
 
-  export import Bitcoin = API.Bitcoin;
+  export {
+    Stellar as Stellar,
+    type StellarAssetContractDetailsSchema as StellarAssetContractDetailsSchema,
+    type StellarAssetTransferDetailsSchema as StellarAssetTransferDetailsSchema,
+  };
 
-  export import Starknet = API.Starknet;
-  export import StarknetErc1155Diff = API.StarknetErc1155Diff;
-  export import StarknetErc20Diff = API.StarknetErc20Diff;
-  export import StarknetErc721Diff = API.StarknetErc721Diff;
+  export { Bitcoin as Bitcoin };
 
-  export import Site = API.Site;
-  export import SiteScanHitResponse = API.SiteScanHitResponse;
-  export import SiteScanMissResponse = API.SiteScanMissResponse;
-  export import SiteReportResponse = API.SiteReportResponse;
-  export import SiteScanResponse = API.SiteScanResponse;
-  export import SiteReportParams = API.SiteReportParams;
-  export import SiteScanParams = API.SiteScanParams;
+  export {
+    Starknet as Starknet,
+    type StarknetErc1155Diff as StarknetErc1155Diff,
+    type StarknetErc20Diff as StarknetErc20Diff,
+    type StarknetErc721Diff as StarknetErc721Diff,
+  };
 
-  export import Token = API.Token;
-  export import TokenReportResponse = API.TokenReportResponse;
-  export import TokenScanResponse = API.TokenScanResponse;
-  export import TokenReportParams = API.TokenReportParams;
-  export import TokenScanParams = API.TokenScanParams;
+  export {
+    Site as Site,
+    type SiteScanHitResponse as SiteScanHitResponse,
+    type SiteScanMissResponse as SiteScanMissResponse,
+    type SiteReportResponse as SiteReportResponse,
+    type SiteScanResponse as SiteScanResponse,
+    type SiteReportParams as SiteReportParams,
+    type SiteScanParams as SiteScanParams,
+  };
 
-  export import TokenBulk = API.TokenBulk;
-  export import TokenBulkScanResponse = API.TokenBulkScanResponse;
-  export import TokenBulkScanParams = API.TokenBulkScanParams;
+  export {
+    Token as Token,
+    type TokenReportResponse as TokenReportResponse,
+    type TokenScanResponse as TokenScanResponse,
+    type TokenReportParams as TokenReportParams,
+    type TokenScanParams as TokenScanParams,
+  };
+
+  export {
+    TokenBulk as TokenBulk,
+    type TokenBulkScanResponse as TokenBulkScanResponse,
+    type TokenBulkScanParams as TokenBulkScanParams,
+  };
 }
 
 export default Blockaid;

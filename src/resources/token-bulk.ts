@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as TokenBulkAPI from './token-bulk';
 import * as EvmAPI from './evm/evm';
 
 export class TokenBulk extends APIResource {
@@ -472,7 +471,9 @@ export namespace TokenBulkScanParams {
   }
 }
 
-export namespace TokenBulk {
-  export import TokenBulkScanResponse = TokenBulkAPI.TokenBulkScanResponse;
-  export import TokenBulkScanParams = TokenBulkAPI.TokenBulkScanParams;
+export declare namespace TokenBulk {
+  export {
+    type TokenBulkScanResponse as TokenBulkScanResponse,
+    type TokenBulkScanParams as TokenBulkScanParams,
+  };
 }

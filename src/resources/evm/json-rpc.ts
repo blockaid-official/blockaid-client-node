@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import * as JsonRpcAPI from './json-rpc';
 import * as EvmAPI from './evm';
 
 export class JsonRpc extends APIResource {
@@ -70,6 +69,6 @@ export namespace JsonRpcScanParams {
   }
 }
 
-export namespace JsonRpc {
-  export import JsonRpcScanParams = JsonRpcAPI.JsonRpcScanParams;
+export declare namespace JsonRpc {
+  export { type JsonRpcScanParams as JsonRpcScanParams };
 }

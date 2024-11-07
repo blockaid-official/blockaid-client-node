@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
-import * as StellarAPI from './stellar';
 import * as TransactionAPI from './transaction';
+import { Transaction, TransactionScanParams, TransactionScanResponse } from './transaction';
 
 export class Stellar extends APIResource {
   transaction: TransactionAPI.Transaction = new TransactionAPI.Transaction(this._client);
@@ -52,10 +52,17 @@ export interface StellarAssetTransferDetailsSchema {
   summary?: string | null;
 }
 
-export namespace Stellar {
-  export import StellarAssetContractDetailsSchema = StellarAPI.StellarAssetContractDetailsSchema;
-  export import StellarAssetTransferDetailsSchema = StellarAPI.StellarAssetTransferDetailsSchema;
-  export import Transaction = TransactionAPI.Transaction;
-  export import TransactionScanResponse = TransactionAPI.TransactionScanResponse;
-  export import TransactionScanParams = TransactionAPI.TransactionScanParams;
+Stellar.Transaction = Transaction;
+
+export declare namespace Stellar {
+  export {
+    type StellarAssetContractDetailsSchema as StellarAssetContractDetailsSchema,
+    type StellarAssetTransferDetailsSchema as StellarAssetTransferDetailsSchema,
+  };
+
+  export {
+    Transaction as Transaction,
+    type TransactionScanResponse as TransactionScanResponse,
+    type TransactionScanParams as TransactionScanParams,
+  };
 }
