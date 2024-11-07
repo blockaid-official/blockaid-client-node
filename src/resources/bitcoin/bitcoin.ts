@@ -2,13 +2,18 @@
 
 import { APIResource } from '../../resource';
 import * as TransactionAPI from './transaction';
+import { Transaction, TransactionScanParams, TransactionScanResponse } from './transaction';
 
 export class Bitcoin extends APIResource {
   transaction: TransactionAPI.Transaction = new TransactionAPI.Transaction(this._client);
 }
 
-export namespace Bitcoin {
-  export import Transaction = TransactionAPI.Transaction;
-  export import TransactionScanResponse = TransactionAPI.TransactionScanResponse;
-  export import TransactionScanParams = TransactionAPI.TransactionScanParams;
+Bitcoin.Transaction = Transaction;
+
+export declare namespace Bitcoin {
+  export {
+    Transaction as Transaction,
+    type TransactionScanResponse as TransactionScanResponse,
+    type TransactionScanParams as TransactionScanParams,
+  };
 }

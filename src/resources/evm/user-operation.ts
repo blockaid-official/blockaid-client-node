@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import * as UserOperationAPI from './user-operation';
 import * as EvmAPI from './evm';
 
 export class UserOperation extends APIResource {
@@ -132,6 +131,6 @@ export namespace UserOperationScanParams {
   }
 }
 
-export namespace UserOperation {
-  export import UserOperationScanParams = UserOperationAPI.UserOperationScanParams;
+export declare namespace UserOperation {
+  export { type UserOperationScanParams as UserOperationScanParams };
 }

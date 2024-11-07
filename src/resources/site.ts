@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as SiteAPI from './site';
 
 export class Site extends APIResource {
   /**
@@ -156,11 +155,13 @@ export namespace SiteScanParams {
   }
 }
 
-export namespace Site {
-  export import SiteScanHitResponse = SiteAPI.SiteScanHitResponse;
-  export import SiteScanMissResponse = SiteAPI.SiteScanMissResponse;
-  export import SiteReportResponse = SiteAPI.SiteReportResponse;
-  export import SiteScanResponse = SiteAPI.SiteScanResponse;
-  export import SiteReportParams = SiteAPI.SiteReportParams;
-  export import SiteScanParams = SiteAPI.SiteScanParams;
+export declare namespace Site {
+  export {
+    type SiteScanHitResponse as SiteScanHitResponse,
+    type SiteScanMissResponse as SiteScanMissResponse,
+    type SiteReportResponse as SiteReportResponse,
+    type SiteScanResponse as SiteScanResponse,
+    type SiteReportParams as SiteReportParams,
+    type SiteScanParams as SiteScanParams,
+  };
 }
