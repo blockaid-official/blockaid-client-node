@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import * as TransactionAPI from './transaction';
 import * as EvmAPI from './evm';
 
 export class Transaction extends APIResource {
@@ -204,8 +203,10 @@ export namespace TransactionScanParams {
   }
 }
 
-export namespace Transaction {
-  export import TransactionReportResponse = TransactionAPI.TransactionReportResponse;
-  export import TransactionReportParams = TransactionAPI.TransactionReportParams;
-  export import TransactionScanParams = TransactionAPI.TransactionScanParams;
+export declare namespace Transaction {
+  export {
+    type TransactionReportResponse as TransactionReportResponse,
+    type TransactionReportParams as TransactionReportParams,
+    type TransactionScanParams as TransactionScanParams,
+  };
 }

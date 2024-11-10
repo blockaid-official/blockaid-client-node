@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import * as MessageAPI from './message';
 import * as SolanaAPI from './solana';
 
 export class Message extends APIResource {
@@ -54,6 +53,6 @@ export namespace MessageScanParams {
   }
 }
 
-export namespace Message {
-  export import MessageScanParams = MessageAPI.MessageScanParams;
+export declare namespace Message {
+  export { type MessageScanParams as MessageScanParams };
 }

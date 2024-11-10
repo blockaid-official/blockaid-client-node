@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import * as TransactionBulkAPI from './transaction-bulk';
 import * as EvmAPI from './evm';
 
 export class TransactionBulk extends APIResource {
@@ -85,7 +84,9 @@ export namespace TransactionBulkScanParams {
   }
 }
 
-export namespace TransactionBulk {
-  export import TransactionBulkScanResponse = TransactionBulkAPI.TransactionBulkScanResponse;
-  export import TransactionBulkScanParams = TransactionBulkAPI.TransactionBulkScanParams;
+export declare namespace TransactionBulk {
+  export {
+    type TransactionBulkScanResponse as TransactionBulkScanResponse,
+    type TransactionBulkScanParams as TransactionBulkScanParams,
+  };
 }

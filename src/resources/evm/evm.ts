@@ -3,12 +3,33 @@
 import { APIResource } from '../../resource';
 import * as EvmAPI from './evm';
 import * as JsonRpcAPI from './json-rpc';
+import { JsonRpc, JsonRpcScanParams } from './json-rpc';
 import * as PostTransactionAPI from './post-transaction';
+import {
+  PostTransaction,
+  PostTransactionReportParams,
+  PostTransactionReportResponse,
+  PostTransactionScanParams,
+} from './post-transaction';
 import * as PostTransactionBulkAPI from './post-transaction-bulk';
+import {
+  PostTransactionBulk,
+  PostTransactionBulkScanParams,
+  PostTransactionBulkScanResponse,
+} from './post-transaction-bulk';
 import * as TransactionAPI from './transaction';
+import {
+  Transaction,
+  TransactionReportParams,
+  TransactionReportResponse,
+  TransactionScanParams,
+} from './transaction';
 import * as TransactionBulkAPI from './transaction-bulk';
+import { TransactionBulk, TransactionBulkScanParams, TransactionBulkScanResponse } from './transaction-bulk';
 import * as TransactionRawAPI from './transaction-raw';
+import { TransactionRaw, TransactionRawScanParams } from './transaction-raw';
 import * as UserOperationAPI from './user-operation';
+import { UserOperation, UserOperationScanParams } from './user-operation';
 
 export class Evm extends APIResource {
   jsonRpc: JsonRpcAPI.JsonRpc = new JsonRpcAPI.JsonRpc(this._client);
@@ -1051,53 +1072,79 @@ export interface UsdDiff {
   total: string;
 }
 
-export namespace Evm {
-  export import AddressAssetExposure = EvmAPI.AddressAssetExposure;
-  export import AssetDiff = EvmAPI.AssetDiff;
-  export import Erc1155AddressAssetExposure = EvmAPI.Erc1155AddressAssetExposure;
-  export import Erc1155Diff = EvmAPI.Erc1155Diff;
-  export import Erc1155Exposure = EvmAPI.Erc1155Exposure;
-  export import Erc1155TokenDetails = EvmAPI.Erc1155TokenDetails;
-  export import Erc20AddressAssetExposure = EvmAPI.Erc20AddressAssetExposure;
-  export import Erc20Diff = EvmAPI.Erc20Diff;
-  export import Erc20Exposure = EvmAPI.Erc20Exposure;
-  export import Erc20TokenDetails = EvmAPI.Erc20TokenDetails;
-  export import Erc721AddressAssetExposure = EvmAPI.Erc721AddressAssetExposure;
-  export import Erc721Diff = EvmAPI.Erc721Diff;
-  export import Erc721Exposure = EvmAPI.Erc721Exposure;
-  export import Erc721TokenDetails = EvmAPI.Erc721TokenDetails;
-  export import Metadata = EvmAPI.Metadata;
-  export import NativeAssetDetails = EvmAPI.NativeAssetDetails;
-  export import NativeDiff = EvmAPI.NativeDiff;
-  export import NonercAddressAssetExposure = EvmAPI.NonercAddressAssetExposure;
-  export import NonercDiff = EvmAPI.NonercDiff;
-  export import NonercExposure = EvmAPI.NonercExposure;
-  export import NonercTokenDetails = EvmAPI.NonercTokenDetails;
-  export import TokenScanSupportedChain = EvmAPI.TokenScanSupportedChain;
-  export import TransactionScanFeature = EvmAPI.TransactionScanFeature;
-  export import TransactionScanResponse = EvmAPI.TransactionScanResponse;
-  export import TransactionScanSupportedChain = EvmAPI.TransactionScanSupportedChain;
-  export import TransactionSimulationResponse = EvmAPI.TransactionSimulationResponse;
-  export import TransactionSimulation = EvmAPI.TransactionSimulation;
-  export import TransactionSimulationError = EvmAPI.TransactionSimulationError;
-  export import TransactionValidationResponse = EvmAPI.TransactionValidationResponse;
-  export import TransactionValidation = EvmAPI.TransactionValidation;
-  export import TransactionValidationError = EvmAPI.TransactionValidationError;
-  export import UsdDiff = EvmAPI.UsdDiff;
-  export import JsonRpc = JsonRpcAPI.JsonRpc;
-  export import JsonRpcScanParams = JsonRpcAPI.JsonRpcScanParams;
-  export import Transaction = TransactionAPI.Transaction;
-  export import TransactionScanParams = TransactionAPI.TransactionScanParams;
-  export import TransactionBulk = TransactionBulkAPI.TransactionBulk;
-  export import TransactionBulkScanResponse = TransactionBulkAPI.TransactionBulkScanResponse;
-  export import TransactionBulkScanParams = TransactionBulkAPI.TransactionBulkScanParams;
-  export import TransactionRaw = TransactionRawAPI.TransactionRaw;
-  export import TransactionRawScanParams = TransactionRawAPI.TransactionRawScanParams;
-  export import UserOperation = UserOperationAPI.UserOperation;
-  export import UserOperationScanParams = UserOperationAPI.UserOperationScanParams;
-  export import PostTransaction = PostTransactionAPI.PostTransaction;
-  export import PostTransactionScanParams = PostTransactionAPI.PostTransactionScanParams;
-  export import PostTransactionBulk = PostTransactionBulkAPI.PostTransactionBulk;
-  export import PostTransactionBulkScanResponse = PostTransactionBulkAPI.PostTransactionBulkScanResponse;
-  export import PostTransactionBulkScanParams = PostTransactionBulkAPI.PostTransactionBulkScanParams;
+Evm.JsonRpc = JsonRpc;
+Evm.Transaction = Transaction;
+Evm.TransactionBulk = TransactionBulk;
+Evm.TransactionRaw = TransactionRaw;
+Evm.UserOperation = UserOperation;
+Evm.PostTransaction = PostTransaction;
+Evm.PostTransactionBulk = PostTransactionBulk;
+
+export declare namespace Evm {
+  export {
+    type AddressAssetExposure as AddressAssetExposure,
+    type AssetDiff as AssetDiff,
+    type Erc1155AddressAssetExposure as Erc1155AddressAssetExposure,
+    type Erc1155Diff as Erc1155Diff,
+    type Erc1155Exposure as Erc1155Exposure,
+    type Erc1155TokenDetails as Erc1155TokenDetails,
+    type Erc20AddressAssetExposure as Erc20AddressAssetExposure,
+    type Erc20Diff as Erc20Diff,
+    type Erc20Exposure as Erc20Exposure,
+    type Erc20TokenDetails as Erc20TokenDetails,
+    type Erc721AddressAssetExposure as Erc721AddressAssetExposure,
+    type Erc721Diff as Erc721Diff,
+    type Erc721Exposure as Erc721Exposure,
+    type Erc721TokenDetails as Erc721TokenDetails,
+    type Metadata as Metadata,
+    type NativeAssetDetails as NativeAssetDetails,
+    type NativeDiff as NativeDiff,
+    type NonercAddressAssetExposure as NonercAddressAssetExposure,
+    type NonercDiff as NonercDiff,
+    type NonercExposure as NonercExposure,
+    type NonercTokenDetails as NonercTokenDetails,
+    type TokenScanSupportedChain as TokenScanSupportedChain,
+    type TransactionScanFeature as TransactionScanFeature,
+    type TransactionScanResponse as TransactionScanResponse,
+    type TransactionScanSupportedChain as TransactionScanSupportedChain,
+    type TransactionSimulationResponse as TransactionSimulationResponse,
+    type TransactionSimulation as TransactionSimulation,
+    type TransactionSimulationError as TransactionSimulationError,
+    type TransactionValidationResponse as TransactionValidationResponse,
+    type TransactionValidation as TransactionValidation,
+    type TransactionValidationError as TransactionValidationError,
+    type UsdDiff as UsdDiff,
+  };
+
+  export { JsonRpc as JsonRpc, type JsonRpcScanParams as JsonRpcScanParams };
+
+  export {
+    Transaction as Transaction,
+    type TransactionReportResponse as TransactionReportResponse,
+    type TransactionReportParams as TransactionReportParams,
+    type TransactionScanParams as TransactionScanParams,
+  };
+
+  export {
+    TransactionBulk as TransactionBulk,
+    type TransactionBulkScanResponse as TransactionBulkScanResponse,
+    type TransactionBulkScanParams as TransactionBulkScanParams,
+  };
+
+  export { TransactionRaw as TransactionRaw, type TransactionRawScanParams as TransactionRawScanParams };
+
+  export { UserOperation as UserOperation, type UserOperationScanParams as UserOperationScanParams };
+
+  export {
+    PostTransaction as PostTransaction,
+    type PostTransactionReportResponse as PostTransactionReportResponse,
+    type PostTransactionReportParams as PostTransactionReportParams,
+    type PostTransactionScanParams as PostTransactionScanParams,
+  };
+
+  export {
+    PostTransactionBulk as PostTransactionBulk,
+    type PostTransactionBulkScanResponse as PostTransactionBulkScanResponse,
+    type PostTransactionBulkScanParams as PostTransactionBulkScanParams,
+  };
 }

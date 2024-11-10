@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import * as TransactionAPI from './transaction';
 import * as StarknetAPI from './starknet';
 
 export class Transaction extends APIResource {
@@ -1028,7 +1027,9 @@ export namespace TransactionScanParams {
   }
 }
 
-export namespace Transaction {
-  export import TransactionScanResponse = TransactionAPI.TransactionScanResponse;
-  export import TransactionScanParams = TransactionAPI.TransactionScanParams;
+export declare namespace Transaction {
+  export {
+    type TransactionScanResponse as TransactionScanResponse,
+    type TransactionScanParams as TransactionScanParams,
+  };
 }
