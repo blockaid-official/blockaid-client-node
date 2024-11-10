@@ -72,6 +72,11 @@ export namespace TransactionScanResponse {
       asset: BitcoinAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchema.Asset;
 
       /**
+       * The type of the assets in this diff
+       */
+      asset_type: string;
+
+      /**
        * Details of the incoming transfer
        */
       in?: BitcoinAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaNativeDiffSchema.In | null;
@@ -165,6 +170,11 @@ export namespace TransactionScanResponse {
       asset: BitcoinAccountSingleAssetDiffSchemaTypeOrdinalDetailsSchemaOrdinalDiffSchema.Asset;
 
       /**
+       * The type of the assets in this diff
+       */
+      asset_type: string;
+
+      /**
        * Details of the incoming transfer
        */
       in?: BitcoinAccountSingleAssetDiffSchemaTypeOrdinalDetailsSchemaOrdinalDiffSchema.In | null;
@@ -256,6 +266,11 @@ export namespace TransactionScanResponse {
 
     export interface BitcoinAccountSingleAssetDiffSchemaTypeRuneDetailsSchemaRuneDiffSchema {
       asset: BitcoinAccountSingleAssetDiffSchemaTypeRuneDetailsSchemaRuneDiffSchema.Asset;
+
+      /**
+       * The type of the assets in this diff
+       */
+      asset_type: string;
 
       /**
        * Details of the incoming transfer
@@ -364,7 +379,7 @@ export namespace TransactionScanResponse {
      */
     error: string;
 
-    status?: 'Error';
+    status: 'Error';
   }
 
   export interface BitcoinValidationResultSchemaTypeAnnotatedStrSkipValidationPlainSerializerGetPydanticSchema {
@@ -439,7 +454,7 @@ export interface TransactionScanParams {
    */
   metadata:
     | TransactionScanParams.BitcoinblockaidApplicationRunnerAppSchemasTransactionScanningAPIWalletRequestMetadata
-    | TransactionScanParams.BitcoinInAppRequestMetadata;
+    | TransactionScanParams.BitcoinblockaidApplicationRunnerAppSchemasTransactionScanningAPIInAppRequestMetadata;
 
   transaction: string;
 
@@ -466,11 +481,11 @@ export namespace TransactionScanParams {
     url: string;
   }
 
-  export interface BitcoinInAppRequestMetadata {
+  export interface BitcoinblockaidApplicationRunnerAppSchemasTransactionScanningAPIInAppRequestMetadata {
     /**
      * Metadata for in-app requests
      */
-    type: 'in_app';
+    type?: 'in_app';
   }
 }
 

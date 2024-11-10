@@ -101,7 +101,7 @@ export namespace TransactionScanResponse {
       /**
        * Assets diffs of the requested account address
        */
-      assets_diffs?: Array<
+      account_assets_diffs?: Array<
         | AccountSummary.StarknetAccountSingleAssetDiffSchemaTypeErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DiffSchema
         | AccountSummary.StarknetAccountSingleAssetDiffSchemaTypeErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DiffSchema
         | AccountSummary.StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DiffSchema
@@ -313,6 +313,11 @@ export namespace TransactionScanResponse {
         asset: StarknetAccountSingleAssetDiffSchemaTypeErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DiffSchema.Asset;
 
         /**
+         * The type of the assets in this diff
+         */
+        asset_type: string;
+
+        /**
          * Details of the incoming transfer
          */
         in?: StarknetAPI.StarknetErc20Diff | null;
@@ -361,6 +366,11 @@ export namespace TransactionScanResponse {
         asset: StarknetAccountSingleAssetDiffSchemaTypeErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DiffSchema.Asset;
 
         /**
+         * The type of the assets in this diff
+         */
+        asset_type: string;
+
+        /**
          * Details of the incoming transfer
          */
         in?: StarknetAPI.StarknetErc721Diff | null;
@@ -402,6 +412,11 @@ export namespace TransactionScanResponse {
 
       export interface StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DiffSchema {
         asset: StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DiffSchema.Asset;
+
+        /**
+         * The type of the assets in this diff
+         */
+        asset_type: string;
 
         /**
          * Details of the incoming transfer
@@ -460,6 +475,11 @@ export namespace TransactionScanResponse {
       asset: StarknetAccountSingleAssetDiffSchemaTypeErc20DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc20DiffSchema.Asset;
 
       /**
+       * The type of the assets in this diff
+       */
+      asset_type: string;
+
+      /**
        * Details of the incoming transfer
        */
       in?: StarknetAPI.StarknetErc20Diff | null;
@@ -508,6 +528,11 @@ export namespace TransactionScanResponse {
       asset: StarknetAccountSingleAssetDiffSchemaTypeErc721DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc721DiffSchema.Asset;
 
       /**
+       * The type of the assets in this diff
+       */
+      asset_type: string;
+
+      /**
        * Details of the incoming transfer
        */
       in?: StarknetAPI.StarknetErc721Diff | null;
@@ -549,6 +574,11 @@ export namespace TransactionScanResponse {
 
     export interface StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DiffSchema {
       asset: StarknetAccountSingleAssetDiffSchemaTypeErc1155DetailsSchemaAnnotatedIntSkipValidationPlainSerializerGetPydanticSchemaErc1155DiffSchema.Asset;
+
+      /**
+       * The type of the assets in this diff
+       */
+      asset_type: string;
 
       /**
        * Details of the incoming transfer
@@ -890,7 +920,7 @@ export namespace TransactionScanParams {
     /**
      * Metadata for in-app requests
      */
-    type: 'in_app';
+    type?: 'in_app';
   }
 
   export interface StarknetInvokeV1TransactionSchema {
