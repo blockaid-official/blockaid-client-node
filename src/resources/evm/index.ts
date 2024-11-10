@@ -2,8 +2,6 @@
 
 export {
   Evm,
-  type AddressAssetExposure,
-  type AssetDiff,
   type Erc1155Diff,
   type Erc1155Exposure,
   type Erc1155TokenDetails,
