@@ -24,8 +24,6 @@ import {
 import { TokenBulk, TokenBulkScanParams, TokenBulkScanResponse } from './resources/token-bulk';
 import { Bitcoin } from './resources/bitcoin/bitcoin';
 import {
-  AddressAssetExposure,
-  AssetDiff,
   Erc1155Diff,
   Erc1155Exposure,
   Erc1155TokenDetails,
@@ -357,9 +355,6 @@ export declare namespace Blockaid {
 
   export {
     Evm as Evm,
-    type AddressAssetExposure as AddressAssetExposure,
-    type AssetDiff as AssetDiff,
-    type Erc1155AddressAssetExposure as Erc1155AddressAssetExposure,
     type Erc1155Diff as Erc1155Diff,
     type Erc1155Exposure as Erc1155Exposure,
     type Erc1155TokenDetails as Erc1155TokenDetails,
