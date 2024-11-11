@@ -22,10 +22,7 @@ export interface AccountSummarySchema {
    * Assets diff of the requested account address
    */
   account_assets_diff?: Array<
-    | AccountSummarySchema.NativeDiffSchema
-    | SplFungibleTokenDiffSchema
-    | SplNonFungibleTokenDiffSchema
-    | CnftDiffSchema
+    NativeDiffSchema | SplFungibleTokenDiffSchema | SplNonFungibleTokenDiffSchema | CnftDiffSchema
   >;
 
   /**
@@ -39,40 +36,6 @@ export interface AccountSummarySchema {
   account_ownerships_diff?: Array<
     NativeSolOwnershipDiffSchema | SplTokenOwnershipDiffSchema | StakedSolWithdrawAuthorityDiffSchema
   >;
-}
-
-export namespace AccountSummarySchema {
-  export interface NativeDiffSchema {
-    asset: NativeDiffSchema.Asset;
-
-    /**
-     * Type of the asset involved in the transfer
-     */
-    asset_type: string;
-
-    /**
-     * Incoming transfers of the asset
-     */
-    in?: SolanaAPI.AssetTransferDetailsSchema | null;
-
-    out?: SolanaAPI.AssetTransferDetailsSchema | null;
-  }
-
-  export namespace NativeDiffSchema {
-    export interface Asset {
-      decimals?: number;
-
-      /**
-       * Logo of the native currency
-       */
-      logo?: string | null;
-
-      /**
-       * Type of the asset (`"NativeToken"`)
-       */
-      type?: string;
-    }
-  }
 }
 
 export interface AddressScanRequestSchema {
@@ -361,8 +324,38 @@ export interface InstructionErrorDetails {
   type?: string;
 }
 
+export interface NativeDetailsSchema {
+  decimals?: number;
+
+  /**
+   * Logo of the native currency
+   */
+  logo?: string | null;
+
+  /**
+   * Type of the asset (`"NativeToken"`)
+   */
+  type?: string;
+}
+
+export interface NativeDiffSchema {
+  asset: NativeDetailsSchema;
+
+  /**
+   * Type of the asset involved in the transfer
+   */
+  asset_type: string;
+
+  /**
+   * Incoming transfers of the asset
+   */
+  in?: AssetTransferDetailsSchema | null;
+
+  out?: AssetTransferDetailsSchema | null;
+}
+
 export interface NativeSolOwnershipDiffSchema {
-  asset: NativeSolOwnershipDiffSchema.Asset;
+  asset: NativeDetailsSchema;
 
   /**
    * Type of the asset involved in the transfer
@@ -388,22 +381,6 @@ export interface NativeSolOwnershipDiffSchema {
    * The owner prior to the transaction
    */
   pre_owner?: string | null;
-}
-
-export namespace NativeSolOwnershipDiffSchema {
-  export interface Asset {
-    decimals?: number;
-
-    /**
-     * Logo of the native currency
-     */
-    logo?: string | null;
-
-    /**
-     * Type of the asset (`"NativeToken"`)
-     */
-    type?: string;
-  }
 }
 
 export interface NonFungibleMintAccountDetailsSchema {
@@ -615,6 +592,20 @@ export interface SplTokenOwnershipDiffSchema {
   pre_owner?: string | null;
 }
 
+export interface StakedAssetDetailsSchema {
+  decimals?: number;
+
+  /**
+   * Logo of the native currency
+   */
+  logo?: string | null;
+
+  /**
+   * Type of the asset (`"STAKED_NATIVE"`)
+   */
+  type?: string;
+}
+
 export interface StakedSolWithdrawAuthorityDiffSchema {
   /**
    * Type of the asset involved in the transfer
@@ -626,7 +617,7 @@ export interface StakedSolWithdrawAuthorityDiffSchema {
    */
   post_owner: string;
 
-  asset?: StakedSolWithdrawAuthorityDiffSchema.Asset;
+  asset?: StakedAssetDetailsSchema;
 
   /**
    * Incoming transfers of the asset
@@ -642,22 +633,6 @@ export interface StakedSolWithdrawAuthorityDiffSchema {
    * The owner prior to the transaction
    */
   pre_owner?: string | null;
-}
-
-export namespace StakedSolWithdrawAuthorityDiffSchema {
-  export interface Asset {
-    decimals?: number;
-
-    /**
-     * Logo of the native currency
-     */
-    logo?: string | null;
-
-    /**
-     * Type of the asset (`"STAKED_NATIVE"`)
-     */
-    type?: string;
-  }
 }
 
 export interface SuccessfulSimulationResultSchema {
@@ -684,12 +659,7 @@ export interface SuccessfulSimulationResultSchema {
    */
   assets_diff: Record<
     string,
-    Array<
-      | SuccessfulSimulationResultSchema.NativeDiffSchema
-      | SplFungibleTokenDiffSchema
-      | SplNonFungibleTokenDiffSchema
-      | CnftDiffSchema
-    >
+    Array<NativeDiffSchema | SplFungibleTokenDiffSchema | SplNonFungibleTokenDiffSchema | CnftDiffSchema>
   >;
 
   /**
@@ -704,40 +674,6 @@ export interface SuccessfulSimulationResultSchema {
    * Summary of the delegations, by account address
    */
   delegations: Record<string, Array<DelegatedAssetDetailsSchema>>;
-}
-
-export namespace SuccessfulSimulationResultSchema {
-  export interface NativeDiffSchema {
-    asset: NativeDiffSchema.Asset;
-
-    /**
-     * Type of the asset involved in the transfer
-     */
-    asset_type: string;
-
-    /**
-     * Incoming transfers of the asset
-     */
-    in?: SolanaAPI.AssetTransferDetailsSchema | null;
-
-    out?: SolanaAPI.AssetTransferDetailsSchema | null;
-  }
-
-  export namespace NativeDiffSchema {
-    export interface Asset {
-      decimals?: number;
-
-      /**
-       * Logo of the native currency
-       */
-      logo?: string | null;
-
-      /**
-       * Type of the asset (`"NativeToken"`)
-       */
-      type?: string;
-    }
-  }
 }
 
 export interface SystemAccountDetailsSchema {
@@ -908,6 +844,8 @@ export declare namespace Solana {
     type DelegatedAssetDetailsSchema as DelegatedAssetDetailsSchema,
     type FungibleMintAccountDetailsSchema as FungibleMintAccountDetailsSchema,
     type InstructionErrorDetails as InstructionErrorDetails,
+    type NativeDetailsSchema as NativeDetailsSchema,
+    type NativeDiffSchema as NativeDiffSchema,
     type NativeSolOwnershipDiffSchema as NativeSolOwnershipDiffSchema,
     type NonFungibleMintAccountDetailsSchema as NonFungibleMintAccountDetailsSchema,
     type PdaAccountSchema as PdaAccountSchema,
@@ -918,6 +856,7 @@ export declare namespace Solana {
     type SplNonFungibleTokenDetailsSchema as SplNonFungibleTokenDetailsSchema,
     type SplNonFungibleTokenDiffSchema as SplNonFungibleTokenDiffSchema,
     type SplTokenOwnershipDiffSchema as SplTokenOwnershipDiffSchema,
+    type StakedAssetDetailsSchema as StakedAssetDetailsSchema,
     type StakedSolWithdrawAuthorityDiffSchema as StakedSolWithdrawAuthorityDiffSchema,
     type SuccessfulSimulationResultSchema as SuccessfulSimulationResultSchema,
     type SystemAccountDetailsSchema as SystemAccountDetailsSchema,
