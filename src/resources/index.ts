@@ -68,17 +68,8 @@ export {
   type TxScanRequestSchema,
   type ValidationFeature,
 } from './solana/solana';
-export {
-  Starknet,
-  type StarknetErc1155Diff,
-  type StarknetErc20Diff,
-  type StarknetErc721Diff,
-} from './starknet/starknet';
-export {
-  Stellar,
-  type StellarAssetContractDetailsSchema,
-  type StellarAssetTransferDetailsSchema,
-} from './stellar/stellar';
+export { Starknet } from './starknet/starknet';
+export { Stellar } from './stellar/stellar';
 export {
   Token,
   type TokenReportResponse,

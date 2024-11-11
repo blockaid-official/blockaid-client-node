@@ -81,17 +81,8 @@ import {
   TxScanRequestSchema,
   ValidationFeature,
 } from './resources/solana/solana';
-import {
-  Starknet,
-  StarknetErc1155Diff,
-  StarknetErc20Diff,
-  StarknetErc721Diff,
-} from './resources/starknet/starknet';
-import {
-  Stellar,
-  StellarAssetContractDetailsSchema,
-  StellarAssetTransferDetailsSchema,
-} from './resources/stellar/stellar';
+import { Starknet } from './resources/starknet/starknet';
+import { Stellar } from './resources/stellar/stellar';
 
 const environments = {
   production: 'https://api.blockaid.io',
@@ -392,20 +383,11 @@ export declare namespace Blockaid {
     type ValidationFeature as ValidationFeature,
   };
 
-  export {
-    Stellar as Stellar,
-    type StellarAssetContractDetailsSchema as StellarAssetContractDetailsSchema,
-    type StellarAssetTransferDetailsSchema as StellarAssetTransferDetailsSchema,
-  };
+  export { Stellar as Stellar };
 
   export { Bitcoin as Bitcoin };
 
-  export {
-    Starknet as Starknet,
-    type StarknetErc1155Diff as StarknetErc1155Diff,
-    type StarknetErc20Diff as StarknetErc20Diff,
-    type StarknetErc721Diff as StarknetErc721Diff,
-  };
+  export { Starknet as Starknet };
 
   export {
     Site as Site,

@@ -1,8 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+export { Stellar } from './stellar';
 export {
-  Stellar,
-  type StellarAssetContractDetailsSchema,
-  type StellarAssetTransferDetailsSchema,
-} from './stellar';
-export { Transaction, type TransactionScanResponse, type TransactionScanParams } from './transaction';
+  Transaction,
+  type TransactionReportResponse,
+  type TransactionScanResponse,
+  type TransactionReportParams,
+  type TransactionScanParams,
+} from './transaction';
