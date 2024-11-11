@@ -76,7 +76,7 @@ export interface Erc1155Diff {
 }
 
 export interface Erc1155Exposure {
-  exposure: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
+  exposure: Array<Erc1155Diff>;
 
   /**
    * boolean indicates whether an is_approved_for_all function was used (missing in
@@ -146,7 +146,7 @@ export interface Erc20Exposure {
    */
   approval: string;
 
-  exposure: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
+  exposure: Array<Erc20Diff>;
 
   /**
    * the expiration time of the permit2 protocol
@@ -220,7 +220,7 @@ export interface Erc721Diff {
 }
 
 export interface Erc721Exposure {
-  exposure: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
+  exposure: Array<Erc721Diff>;
 
   /**
    * boolean indicates whether an is_approved_for_all function was used (missing in
@@ -259,6 +259,21 @@ export interface Erc721TokenDetails {
    * asset's symbol name
    */
   symbol?: string;
+}
+
+export interface NonercExposure {
+  /**
+   * the amount that was asked in the approval request for this spender from the
+   * current address and asset
+   */
+  approval: number;
+
+  exposure: Array<NonercDiff>;
+
+  /**
+   * user friendly description of the approval
+   */
+  summary?: string;
 }
 
 export interface Metadata {
@@ -342,6 +357,27 @@ export interface NonercTokenDetails {
   symbol?: string;
 }
 
+export interface NonercDiff {
+  /**
+   * value before divided by decimal, that was transferred from this address
+   */
+  raw_value: string;
+
+  /**
+   * user friendly description of the asset transfer
+   */
+  summary?: string;
+
+  /**
+   * value after divided by decimals, that was transferred from this address
+   */
+  value?: string;
+}
+
+export type TransactionSimulationResponse = TransactionSimulation | TransactionSimulationError;
+
+export type TransactionValidationResponse = TransactionValidation | TransactionValidationError;
+
 /**
  * The chain name
  */
@@ -401,9 +437,9 @@ export interface TransactionScanResponse {
     | TransactionScanResponse.TransactionScanGasEstimation
     | TransactionScanResponse.TransactionScanGasEstimationError;
 
-  simulation?: TransactionSimulation | TransactionSimulationError;
+  simulation?: TransactionSimulationResponse;
 
-  validation?: TransactionValidation | TransactionValidationError;
+  validation?: TransactionValidationResponse;
 }
 
 export namespace TransactionScanResponse {
@@ -667,29 +703,34 @@ export namespace TransactionSimulation {
        */
       in: Array<EvmAPI.Erc721Diff>;
 
+  export namespace AccountSummaryAssetsDiff {
+    /**
+     * shows the balance before making the transaction and after
+     */
+    export interface BalanceChanges {
       /**
-       * amount of the asset that was transferred from the address in this transaction
+       * balance of the account after making the transaction
        */
       out: Array<EvmAPI.Erc721Diff>;
 
       /**
-       * shows the balance before making the transaction and after
+       * balance of the account before making the transaction
        */
       balance_changes?: Erc721AddressAssetBalanceChangeDiff.BalanceChanges;
     }
 
     export namespace Erc721AddressAssetBalanceChangeDiff {
       /**
-       * shows the balance before making the transaction and after
+       * balance of the account after making the transaction
        */
-      export interface BalanceChanges {
+      export interface After {
         /**
-         * balance of the account after making the transaction
+         * value before divided by decimal, that was transferred from this address
          */
         after: EvmAPI.Erc721Diff;
 
         /**
-         * balance of the account before making the transaction
+         * usd equal of the asset that was transferred from this address
          */
         before: EvmAPI.Erc721Diff;
       }
@@ -728,12 +769,12 @@ export namespace TransactionSimulation {
        */
       export interface BalanceChanges {
         /**
-         * balance of the account after making the transaction
+         * usd equal of the asset that was transferred from this address
          */
         after: EvmAPI.Erc1155Diff;
 
         /**
-         * balance of the account before making the transaction
+         * value after divided by decimals, that was transferred from this address
          */
         before: EvmAPI.Erc1155Diff;
       }
@@ -1499,22 +1540,29 @@ export declare namespace Evm {
     type Erc1155Diff as Erc1155Diff,
     type Erc1155Exposure as Erc1155Exposure,
     type Erc1155TokenDetails as Erc1155TokenDetails,
+    type Erc20AddressAssetExposure as Erc20AddressAssetExposure,
     type Erc20Diff as Erc20Diff,
     type Erc20Exposure as Erc20Exposure,
     type Erc20TokenDetails as Erc20TokenDetails,
+    type Erc721AddressAssetExposure as Erc721AddressAssetExposure,
     type Erc721Diff as Erc721Diff,
     type Erc721Exposure as Erc721Exposure,
     type Erc721TokenDetails as Erc721TokenDetails,
     type Metadata as Metadata,
     type NativeAssetDetails as NativeAssetDetails,
     type NativeDiff as NativeDiff,
+    type NonercAddressAssetExposure as NonercAddressAssetExposure,
+    type NonercDiff as NonercDiff,
+    type NonercExposure as NonercExposure,
     type NonercTokenDetails as NonercTokenDetails,
     type TokenScanSupportedChain as TokenScanSupportedChain,
     type TransactionScanFeature as TransactionScanFeature,
     type TransactionScanResponse as TransactionScanResponse,
     type TransactionScanSupportedChain as TransactionScanSupportedChain,
+    type TransactionSimulationResponse as TransactionSimulationResponse,
     type TransactionSimulation as TransactionSimulation,
     type TransactionSimulationError as TransactionSimulationError,
+    type TransactionValidationResponse as TransactionValidationResponse,
     type TransactionValidation as TransactionValidation,
     type TransactionValidationError as TransactionValidationError,
     type UsdDiff as UsdDiff,
