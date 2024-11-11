@@ -18,7 +18,7 @@ export interface TransactionScanResponse {
    * Simulation result; Only present if simulation option is included in the request
    */
   simulation?:
-    | TransactionScanResponse.StellarSimulationResultSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeAssetContractDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleContractBackedAssetDiffUnionAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetExposureAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetExposureAccountSetOptionsOwnershipDiffSchemaAddressDetailsBaseSchemaAnnotatedEmptyModelSimulationSchemaConfiguration
+    | TransactionScanResponse.StellarSimulationResponse
     | TransactionScanResponse.StellarSimulationErrorSchema
     | null;
 
@@ -26,33 +26,30 @@ export interface TransactionScanResponse {
    * Validation result; Only present if validation option is included in the request
    */
   validation?:
-    | TransactionScanResponse.StellarValidationResultSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchema
+    | TransactionScanResponse.StellarValidationResult
     | TransactionScanResponse.StellarValidationErrorSchema
     | null;
 }
 
 export namespace TransactionScanResponse {
-  export interface StellarSimulationResultSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeAssetContractDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleContractBackedAssetDiffUnionAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetExposureAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetExposureAccountSetOptionsOwnershipDiffSchemaAddressDetailsBaseSchemaAnnotatedEmptyModelSimulationSchemaConfiguration {
+  export interface StellarSimulationResponse {
     /**
      * Summary of the actions and asset transfers that were made by the requested
      * account address
      */
-    account_summary: StellarSimulationResultSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeAssetContractDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleContractBackedAssetDiffUnionAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetExposureAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetExposureAccountSetOptionsOwnershipDiffSchemaAddressDetailsBaseSchemaAnnotatedEmptyModelSimulationSchemaConfiguration.AccountSummary;
+    account_summary: StellarSimulationResponse.AccountSummary;
 
     /**
      * Ownership diffs of the account addresses
      */
-    assets_ownership_diff: Record<
-      string,
-      Array<StellarSimulationResultSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeAssetContractDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleContractBackedAssetDiffUnionAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetExposureAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetExposureAccountSetOptionsOwnershipDiffSchemaAddressDetailsBaseSchemaAnnotatedEmptyModelSimulationSchemaConfiguration.AssetsOwnershipDiff>
-    >;
+    assets_ownership_diff: Record<string, Array<StellarSimulationResponse.AssetsOwnershipDiff>>;
 
     status: 'Success';
 
     /**
      * Details of addresses involved in the transaction
      */
-    address_details?: Array<StellarSimulationResultSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeAssetContractDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleContractBackedAssetDiffUnionAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetExposureAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetExposureAccountSetOptionsOwnershipDiffSchemaAddressDetailsBaseSchemaAnnotatedEmptyModelSimulationSchemaConfiguration.AddressDetail>;
+    address_details?: Array<StellarSimulationResponse.AddressDetail>;
 
     /**
      * Mapping between the address of an account to the assets diff during the
@@ -61,9 +58,9 @@ export namespace TransactionScanResponse {
     assets_diffs?: Record<
       string,
       Array<
-        | StellarSimulationResultSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeAssetContractDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleContractBackedAssetDiffUnionAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetExposureAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetExposureAccountSetOptionsOwnershipDiffSchemaAddressDetailsBaseSchemaAnnotatedEmptyModelSimulationSchemaConfiguration.StellarAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchema
-        | StellarSimulationResultSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeAssetContractDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleContractBackedAssetDiffUnionAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetExposureAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetExposureAccountSetOptionsOwnershipDiffSchemaAddressDetailsBaseSchemaAnnotatedEmptyModelSimulationSchemaConfiguration.StellarAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchema
-        | StellarSimulationResultSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeAssetContractDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleContractBackedAssetDiffUnionAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetExposureAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetExposureAccountSetOptionsOwnershipDiffSchemaAddressDetailsBaseSchemaAnnotatedEmptyModelSimulationSchemaConfiguration.StellarAccountSingleAssetDiffSchemaTypeAssetContractDetailsSchemaAssetTransferDetailsSchema
+        | StellarSimulationResponse.StellarLegacyAssetDiff
+        | StellarSimulationResponse.StellarNativeAssetDiff
+        | StellarSimulationResponse.StellarContractAssetDiff
       >
     >;
 
@@ -74,13 +71,13 @@ export namespace TransactionScanResponse {
     exposures?: Record<
       string,
       Array<
-        | StellarSimulationResultSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeAssetContractDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleContractBackedAssetDiffUnionAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetExposureAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetExposureAccountSetOptionsOwnershipDiffSchemaAddressDetailsBaseSchemaAnnotatedEmptyModelSimulationSchemaConfiguration.StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchema
-        | StellarSimulationResultSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeAssetContractDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleContractBackedAssetDiffUnionAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetExposureAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetExposureAccountSetOptionsOwnershipDiffSchemaAddressDetailsBaseSchemaAnnotatedEmptyModelSimulationSchemaConfiguration.StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchema
+        | StellarSimulationResponse.StellarLegacyAssetExposure
+        | StellarSimulationResponse.StellarNativeAssetExposure
       >
     >;
   }
 
-  export namespace StellarSimulationResultSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaUnionAnnotatedAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetDiffAnnotatedAccountSingleAssetDiffSchemaTypeAssetContractDetailsSchemaAssetTransferDetailsSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleContractBackedAssetDiffUnionAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleLegacyAssetExposureAnnotatedAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchemaFieldInfoAnnotationNoneTypeRequiredTrueTitleNativeAssetExposureAccountSetOptionsOwnershipDiffSchemaAddressDetailsBaseSchemaAnnotatedEmptyModelSimulationSchemaConfiguration {
+  export namespace StellarSimulationResponse {
     /**
      * Summary of the actions and asset transfers that were made by the requested
      * account address
@@ -90,8 +87,7 @@ export namespace TransactionScanResponse {
        * Exposures made by the requested account address
        */
       account_exposures: Array<
-        | AccountSummary.StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchema
-        | AccountSummary.StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchema
+        AccountSummary.StellarLegacyAssetExposure | AccountSummary.StellarNativeAssetExposure
       >;
 
       /**
@@ -108,9 +104,9 @@ export namespace TransactionScanResponse {
        * Assets diffs of the requested account address
        */
       account_assets_diffs?: Array<
-        | AccountSummary.StellarAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchema
-        | AccountSummary.StellarAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchema
-        | AccountSummary.StellarAccountSingleAssetDiffSchemaTypeAssetContractDetailsSchemaAssetTransferDetailsSchema
+        | AccountSummary.StellarLegacyAssetDiff
+        | AccountSummary.StellarNativeAssetDiff
+        | AccountSummary.StellarContractAssetDiff
       >;
 
       /**
@@ -120,19 +116,16 @@ export namespace TransactionScanResponse {
     }
 
     export namespace AccountSummary {
-      export interface StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchema {
-        asset: StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchema.Asset;
+      export interface StellarLegacyAssetExposure {
+        asset: StellarLegacyAssetExposure.Asset;
 
         /**
          * Mapping between the spender address and the exposure of the asset
          */
-        spenders?: Record<
-          string,
-          StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchema.Spenders
-        >;
+        spenders?: Record<string, StellarLegacyAssetExposure.Spenders>;
       }
 
-      export namespace StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchema {
+      export namespace StellarLegacyAssetExposure {
         export interface Asset {
           /**
            * Asset code
@@ -204,19 +197,16 @@ export namespace TransactionScanResponse {
         }
       }
 
-      export interface StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchema {
-        asset: StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchema.Asset;
+      export interface StellarNativeAssetExposure {
+        asset: StellarNativeAssetExposure.Asset;
 
         /**
          * Mapping between the spender address and the exposure of the asset
          */
-        spenders?: Record<
-          string,
-          StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchema.Spenders
-        >;
+        spenders?: Record<string, StellarNativeAssetExposure.Spenders>;
       }
 
-      export namespace StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchema {
+      export namespace StellarNativeAssetExposure {
         export interface Asset {
           /**
            * Asset code
@@ -307,8 +297,8 @@ export namespace TransactionScanResponse {
         total?: number;
       }
 
-      export interface StellarAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchema {
-        asset: StellarAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchema.Asset;
+      export interface StellarLegacyAssetDiff {
+        asset: StellarLegacyAssetDiff.Asset;
 
         /**
          * The type of the assets in this diff
@@ -326,7 +316,7 @@ export namespace TransactionScanResponse {
         out?: StellarAPI.StellarAssetTransferDetailsSchema | null;
       }
 
-      export namespace StellarAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchema {
+      export namespace StellarLegacyAssetDiff {
         export interface Asset {
           /**
            * Asset code
@@ -355,8 +345,8 @@ export namespace TransactionScanResponse {
         }
       }
 
-      export interface StellarAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchema {
-        asset: StellarAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchema.Asset;
+      export interface StellarNativeAssetDiff {
+        asset: StellarNativeAssetDiff.Asset;
 
         /**
          * The type of the assets in this diff
@@ -374,7 +364,7 @@ export namespace TransactionScanResponse {
         out?: StellarAPI.StellarAssetTransferDetailsSchema | null;
       }
 
-      export namespace StellarAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchema {
+      export namespace StellarNativeAssetDiff {
         export interface Asset {
           /**
            * Asset code
@@ -388,7 +378,7 @@ export namespace TransactionScanResponse {
         }
       }
 
-      export interface StellarAccountSingleAssetDiffSchemaTypeAssetContractDetailsSchemaAssetTransferDetailsSchema {
+      export interface StellarContractAssetDiff {
         asset: StellarAPI.StellarAssetContractDetailsSchema;
 
         /**
@@ -434,8 +424,8 @@ export namespace TransactionScanResponse {
       description?: string | null;
     }
 
-    export interface StellarAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchema {
-      asset: StellarAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchema.Asset;
+    export interface StellarLegacyAssetDiff {
+      asset: StellarLegacyAssetDiff.Asset;
 
       /**
        * The type of the assets in this diff
@@ -453,7 +443,7 @@ export namespace TransactionScanResponse {
       out?: StellarAPI.StellarAssetTransferDetailsSchema | null;
     }
 
-    export namespace StellarAccountSingleAssetDiffSchemaTypeLegacyAssetDetailsSchemaAssetTransferDetailsSchema {
+    export namespace StellarLegacyAssetDiff {
       export interface Asset {
         /**
          * Asset code
@@ -482,8 +472,8 @@ export namespace TransactionScanResponse {
       }
     }
 
-    export interface StellarAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchema {
-      asset: StellarAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchema.Asset;
+    export interface StellarNativeAssetDiff {
+      asset: StellarNativeAssetDiff.Asset;
 
       /**
        * The type of the assets in this diff
@@ -501,7 +491,7 @@ export namespace TransactionScanResponse {
       out?: StellarAPI.StellarAssetTransferDetailsSchema | null;
     }
 
-    export namespace StellarAccountSingleAssetDiffSchemaTypeNativeAssetDetailsSchemaAssetTransferDetailsSchema {
+    export namespace StellarNativeAssetDiff {
       export interface Asset {
         /**
          * Asset code
@@ -515,7 +505,7 @@ export namespace TransactionScanResponse {
       }
     }
 
-    export interface StellarAccountSingleAssetDiffSchemaTypeAssetContractDetailsSchemaAssetTransferDetailsSchema {
+    export interface StellarContractAssetDiff {
       asset: StellarAPI.StellarAssetContractDetailsSchema;
 
       /**
@@ -534,19 +524,16 @@ export namespace TransactionScanResponse {
       out?: StellarAPI.StellarAssetTransferDetailsSchema | null;
     }
 
-    export interface StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchema {
-      asset: StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchema.Asset;
+    export interface StellarLegacyAssetExposure {
+      asset: StellarLegacyAssetExposure.Asset;
 
       /**
        * Mapping between the spender address and the exposure of the asset
        */
-      spenders?: Record<
-        string,
-        StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchema.Spenders
-      >;
+      spenders?: Record<string, StellarLegacyAssetExposure.Spenders>;
     }
 
-    export namespace StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaLegacyAssetDetailsSchemaSingleAssetExposureSchema {
+    export namespace StellarLegacyAssetExposure {
       export interface Asset {
         /**
          * Asset code
@@ -618,19 +605,16 @@ export namespace TransactionScanResponse {
       }
     }
 
-    export interface StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchema {
-      asset: StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchema.Asset;
+    export interface StellarNativeAssetExposure {
+      asset: StellarNativeAssetExposure.Asset;
 
       /**
        * Mapping between the spender address and the exposure of the asset
        */
-      spenders?: Record<
-        string,
-        StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchema.Spenders
-      >;
+      spenders?: Record<string, StellarNativeAssetExposure.Spenders>;
     }
 
-    export namespace StellarAddressAssetExposureSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchemaNativeAssetDetailsSchemaSingleAssetExposureSchema {
+    export namespace StellarNativeAssetExposure {
       export interface Asset {
         /**
          * Asset code
@@ -697,7 +681,7 @@ export namespace TransactionScanResponse {
     status: 'Error';
   }
 
-  export interface StellarValidationResultSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchema {
+  export interface StellarValidationResult {
     /**
      * A textual classification that can be presented to the user explaining the
      * reason.
@@ -709,10 +693,7 @@ export namespace TransactionScanResponse {
      */
     description: string;
 
-    /**
-     * A list of features about this transaction explaining the validation
-     */
-    features: Array<StellarValidationResultSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchema.Feature>;
+    features: Array<StellarValidationResult.Feature>;
 
     /**
      * A textual description about the reasons the transaction was flagged with
@@ -728,7 +709,7 @@ export namespace TransactionScanResponse {
     status: 'Success';
   }
 
-  export namespace StellarValidationResultSchemaTypeAnnotatedUnionMuxedAccountContractAddressSkipValidationPlainSerializerGetPydanticSchema {
+  export namespace StellarValidationResult {
     export interface Feature {
       /**
        * Address the feature refers to
