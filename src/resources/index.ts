@@ -78,6 +78,7 @@ export {
   Stellar,
   type StellarAssetContractDetailsSchema,
   type StellarAssetTransferDetailsSchema,
+  type StellarTransactionScanResponse,
 } from './stellar/stellar';
 export {
   Token,
