@@ -2,6 +2,7 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
+import * as StarknetAPI from './starknet';
 
 export class Transaction extends APIResource {
   /**
@@ -126,7 +127,7 @@ export namespace TransactionScanResponse {
 
     export namespace AccountSummary {
       export interface StarknetErc20Exposure {
-        asset: StarknetErc20Exposure.Asset;
+        asset: StarknetAPI.StarknetAccountErc20Exposure;
 
         /**
          * Mapping between the spender address and the exposure of the asset
@@ -135,45 +136,13 @@ export namespace TransactionScanResponse {
       }
 
       export namespace StarknetErc20Exposure {
-        export interface Asset {
-          /**
-           * Address of the token's contract
-           */
-          address: string;
-
-          /**
-           * token's decimals
-           */
-          decimals: number;
-
-          /**
-           * token's name
-           */
-          name: string;
-
-          /**
-           * token's symbol
-           */
-          symbol: string;
-
-          /**
-           * URL of the asset's logo
-           */
-          logo_url?: string | null;
-
-          /**
-           * Type of the asset (`ERC20`)
-           */
-          type?: 'ERC20';
-        }
-
         export interface Spenders {
           /**
            * Approval value of the ERC20 token
            */
           approval: string;
 
-          exposure: Array<Spenders.Exposure>;
+          exposure: Array<StarknetAPI.StarknetErc20Diff>;
 
           /**
            * Expiration date of the approval
@@ -185,34 +154,10 @@ export namespace TransactionScanResponse {
            */
           summary?: string | null;
         }
-
-        export namespace Spenders {
-          export interface Exposure {
-            /**
-             * Raw value of the transfer
-             */
-            raw_value: number;
-
-            /**
-             * USD price of the asset
-             */
-            usd_price: string;
-
-            /**
-             * Value of the transfer
-             */
-            value: string;
-
-            /**
-             * Summarized description of the transfer
-             */
-            summary?: string | null;
-          }
-        }
       }
 
       export interface StarknetErc721Exposure {
-        asset: StarknetErc721Exposure.Asset;
+        asset: StarknetAPI.StarknetAccountErc721Exposure;
 
         /**
          * Mapping between the spender address and the exposure of the asset
@@ -221,35 +166,8 @@ export namespace TransactionScanResponse {
       }
 
       export namespace StarknetErc721Exposure {
-        export interface Asset {
-          /**
-           * Address of the token's contract
-           */
-          address: string;
-
-          /**
-           * token's name
-           */
-          name: string;
-
-          /**
-           * token's symbol
-           */
-          symbol: string;
-
-          /**
-           * URL of the asset's logo
-           */
-          logo_url?: string | null;
-
-          /**
-           * Type of the asset (`ERC721`)
-           */
-          type?: 'ERC721';
-        }
-
         export interface Spenders {
-          exposure: Array<Spenders.Exposure>;
+          exposure: Array<StarknetAPI.StarknetErc721Diff>;
 
           /**
            * Whether `setApprovalForAll` was invoked
@@ -261,29 +179,10 @@ export namespace TransactionScanResponse {
            */
           summary?: string | null;
         }
-
-        export namespace Spenders {
-          export interface Exposure {
-            /**
-             * Token ID of the transfer
-             */
-            token_id: string;
-
-            /**
-             * USD price of the asset
-             */
-            usd_price: string;
-
-            /**
-             * Summarized description of the transfer
-             */
-            summary?: string | null;
-          }
-        }
       }
 
       export interface StarknetErc1155Exposure {
-        asset: StarknetErc1155Exposure.Asset;
+        asset: StarknetAPI.StarknetAccountErc1155Exposure;
 
         /**
          * Mapping between the spender address and the exposure of the asset
@@ -292,35 +191,8 @@ export namespace TransactionScanResponse {
       }
 
       export namespace StarknetErc1155Exposure {
-        export interface Asset {
-          /**
-           * Address of the token's contract
-           */
-          address: string;
-
-          /**
-           * token's name
-           */
-          name: string;
-
-          /**
-           * token's symbol
-           */
-          symbol: string;
-
-          /**
-           * URL of the asset's logo
-           */
-          logo_url?: string | null;
-
-          /**
-           * Type of the asset (`ERC1155`)
-           */
-          type?: 'ERC1155';
-        }
-
         export interface Spenders {
-          exposure: Array<Spenders.Exposure>;
+          exposure: Array<StarknetAPI.StarknetErc1155Diff>;
 
           /**
            * Whether `setApprovalForAll` was invoked
@@ -331,30 +203,6 @@ export namespace TransactionScanResponse {
            * Summarized description of the exposure
            */
           summary?: string | null;
-        }
-
-        export namespace Spenders {
-          export interface Exposure {
-            /**
-             * Token ID of the transfer
-             */
-            token_id: string;
-
-            /**
-             * USD price of the asset
-             */
-            usd_price: string;
-
-            /**
-             * Value of the transfer
-             */
-            value: number;
-
-            /**
-             * Summarized description of the transfer
-             */
-            summary?: string | null;
-          }
         }
       }
 
@@ -379,7 +227,7 @@ export namespace TransactionScanResponse {
       }
 
       export interface StarknetErc20AssetDiff {
-        asset: StarknetErc20AssetDiff.Asset;
+        asset: StarknetAPI.StarknetAccountErc20Exposure;
 
         /**
          * The type of the assets in this diff
@@ -389,100 +237,16 @@ export namespace TransactionScanResponse {
         /**
          * Details of the incoming transfer
          */
-        in?: StarknetErc20AssetDiff.In | null;
+        in?: StarknetAPI.StarknetErc20Diff | null;
 
         /**
          * Details of the outgoing transfer
          */
-        out?: StarknetErc20AssetDiff.Out | null;
-      }
-
-      export namespace StarknetErc20AssetDiff {
-        export interface Asset {
-          /**
-           * Address of the token's contract
-           */
-          address: string;
-
-          /**
-           * token's decimals
-           */
-          decimals: number;
-
-          /**
-           * token's name
-           */
-          name: string;
-
-          /**
-           * token's symbol
-           */
-          symbol: string;
-
-          /**
-           * URL of the asset's logo
-           */
-          logo_url?: string | null;
-
-          /**
-           * Type of the asset (`ERC20`)
-           */
-          type?: 'ERC20';
-        }
-
-        /**
-         * Details of the incoming transfer
-         */
-        export interface In {
-          /**
-           * Raw value of the transfer
-           */
-          raw_value: number;
-
-          /**
-           * USD price of the asset
-           */
-          usd_price: string;
-
-          /**
-           * Value of the transfer
-           */
-          value: string;
-
-          /**
-           * Summarized description of the transfer
-           */
-          summary?: string | null;
-        }
-
-        /**
-         * Details of the outgoing transfer
-         */
-        export interface Out {
-          /**
-           * Raw value of the transfer
-           */
-          raw_value: number;
-
-          /**
-           * USD price of the asset
-           */
-          usd_price: string;
-
-          /**
-           * Value of the transfer
-           */
-          value: string;
-
-          /**
-           * Summarized description of the transfer
-           */
-          summary?: string | null;
-        }
+        out?: StarknetAPI.StarknetErc20Diff | null;
       }
 
       export interface StarknetErc721AssetDiff {
-        asset: StarknetErc721AssetDiff.Asset;
+        asset: StarknetAPI.StarknetAccountErc721Exposure;
 
         /**
          * The type of the assets in this diff
@@ -492,85 +256,16 @@ export namespace TransactionScanResponse {
         /**
          * Details of the incoming transfer
          */
-        in?: StarknetErc721AssetDiff.In | null;
+        in?: StarknetAPI.StarknetErc721Diff | null;
 
         /**
          * Details of the outgoing transfer
          */
-        out?: StarknetErc721AssetDiff.Out | null;
-      }
-
-      export namespace StarknetErc721AssetDiff {
-        export interface Asset {
-          /**
-           * Address of the token's contract
-           */
-          address: string;
-
-          /**
-           * token's name
-           */
-          name: string;
-
-          /**
-           * token's symbol
-           */
-          symbol: string;
-
-          /**
-           * URL of the asset's logo
-           */
-          logo_url?: string | null;
-
-          /**
-           * Type of the asset (`ERC721`)
-           */
-          type?: 'ERC721';
-        }
-
-        /**
-         * Details of the incoming transfer
-         */
-        export interface In {
-          /**
-           * Token ID of the transfer
-           */
-          token_id: string;
-
-          /**
-           * USD price of the asset
-           */
-          usd_price: string;
-
-          /**
-           * Summarized description of the transfer
-           */
-          summary?: string | null;
-        }
-
-        /**
-         * Details of the outgoing transfer
-         */
-        export interface Out {
-          /**
-           * Token ID of the transfer
-           */
-          token_id: string;
-
-          /**
-           * USD price of the asset
-           */
-          usd_price: string;
-
-          /**
-           * Summarized description of the transfer
-           */
-          summary?: string | null;
-        }
+        out?: StarknetAPI.StarknetErc721Diff | null;
       }
 
       export interface StarknetErc1155AssetDiff {
-        asset: StarknetErc1155AssetDiff.Asset;
+        asset: StarknetAPI.StarknetAccountErc1155Exposure;
 
         /**
          * The type of the assets in this diff
@@ -580,91 +275,12 @@ export namespace TransactionScanResponse {
         /**
          * Details of the incoming transfer
          */
-        in?: StarknetErc1155AssetDiff.In | null;
+        in?: StarknetAPI.StarknetErc1155Diff | null;
 
         /**
          * Details of the outgoing transfer
          */
-        out?: StarknetErc1155AssetDiff.Out | null;
-      }
-
-      export namespace StarknetErc1155AssetDiff {
-        export interface Asset {
-          /**
-           * Address of the token's contract
-           */
-          address: string;
-
-          /**
-           * token's name
-           */
-          name: string;
-
-          /**
-           * token's symbol
-           */
-          symbol: string;
-
-          /**
-           * URL of the asset's logo
-           */
-          logo_url?: string | null;
-
-          /**
-           * Type of the asset (`ERC1155`)
-           */
-          type?: 'ERC1155';
-        }
-
-        /**
-         * Details of the incoming transfer
-         */
-        export interface In {
-          /**
-           * Token ID of the transfer
-           */
-          token_id: string;
-
-          /**
-           * USD price of the asset
-           */
-          usd_price: string;
-
-          /**
-           * Value of the transfer
-           */
-          value: number;
-
-          /**
-           * Summarized description of the transfer
-           */
-          summary?: string | null;
-        }
-
-        /**
-         * Details of the outgoing transfer
-         */
-        export interface Out {
-          /**
-           * Token ID of the transfer
-           */
-          token_id: string;
-
-          /**
-           * USD price of the asset
-           */
-          usd_price: string;
-
-          /**
-           * Value of the transfer
-           */
-          value: number;
-
-          /**
-           * Summarized description of the transfer
-           */
-          summary?: string | null;
-        }
+        out?: StarknetAPI.StarknetErc1155Diff | null;
       }
     }
 
@@ -681,7 +297,7 @@ export namespace TransactionScanResponse {
     }
 
     export interface StarknetErc20AssetDiff {
-      asset: StarknetErc20AssetDiff.Asset;
+      asset: StarknetAPI.StarknetAccountErc20Exposure;
 
       /**
        * The type of the assets in this diff
@@ -691,100 +307,16 @@ export namespace TransactionScanResponse {
       /**
        * Details of the incoming transfer
        */
-      in?: StarknetErc20AssetDiff.In | null;
+      in?: StarknetAPI.StarknetErc20Diff | null;
 
       /**
        * Details of the outgoing transfer
        */
-      out?: StarknetErc20AssetDiff.Out | null;
-    }
-
-    export namespace StarknetErc20AssetDiff {
-      export interface Asset {
-        /**
-         * Address of the token's contract
-         */
-        address: string;
-
-        /**
-         * token's decimals
-         */
-        decimals: number;
-
-        /**
-         * token's name
-         */
-        name: string;
-
-        /**
-         * token's symbol
-         */
-        symbol: string;
-
-        /**
-         * URL of the asset's logo
-         */
-        logo_url?: string | null;
-
-        /**
-         * Type of the asset (`ERC20`)
-         */
-        type?: 'ERC20';
-      }
-
-      /**
-       * Details of the incoming transfer
-       */
-      export interface In {
-        /**
-         * Raw value of the transfer
-         */
-        raw_value: number;
-
-        /**
-         * USD price of the asset
-         */
-        usd_price: string;
-
-        /**
-         * Value of the transfer
-         */
-        value: string;
-
-        /**
-         * Summarized description of the transfer
-         */
-        summary?: string | null;
-      }
-
-      /**
-       * Details of the outgoing transfer
-       */
-      export interface Out {
-        /**
-         * Raw value of the transfer
-         */
-        raw_value: number;
-
-        /**
-         * USD price of the asset
-         */
-        usd_price: string;
-
-        /**
-         * Value of the transfer
-         */
-        value: string;
-
-        /**
-         * Summarized description of the transfer
-         */
-        summary?: string | null;
-      }
+      out?: StarknetAPI.StarknetErc20Diff | null;
     }
 
     export interface StarknetErc721AssetDiff {
-      asset: StarknetErc721AssetDiff.Asset;
+      asset: StarknetAPI.StarknetAccountErc721Exposure;
 
       /**
        * The type of the assets in this diff
@@ -794,85 +326,16 @@ export namespace TransactionScanResponse {
       /**
        * Details of the incoming transfer
        */
-      in?: StarknetErc721AssetDiff.In | null;
+      in?: StarknetAPI.StarknetErc721Diff | null;
 
       /**
        * Details of the outgoing transfer
        */
-      out?: StarknetErc721AssetDiff.Out | null;
-    }
-
-    export namespace StarknetErc721AssetDiff {
-      export interface Asset {
-        /**
-         * Address of the token's contract
-         */
-        address: string;
-
-        /**
-         * token's name
-         */
-        name: string;
-
-        /**
-         * token's symbol
-         */
-        symbol: string;
-
-        /**
-         * URL of the asset's logo
-         */
-        logo_url?: string | null;
-
-        /**
-         * Type of the asset (`ERC721`)
-         */
-        type?: 'ERC721';
-      }
-
-      /**
-       * Details of the incoming transfer
-       */
-      export interface In {
-        /**
-         * Token ID of the transfer
-         */
-        token_id: string;
-
-        /**
-         * USD price of the asset
-         */
-        usd_price: string;
-
-        /**
-         * Summarized description of the transfer
-         */
-        summary?: string | null;
-      }
-
-      /**
-       * Details of the outgoing transfer
-       */
-      export interface Out {
-        /**
-         * Token ID of the transfer
-         */
-        token_id: string;
-
-        /**
-         * USD price of the asset
-         */
-        usd_price: string;
-
-        /**
-         * Summarized description of the transfer
-         */
-        summary?: string | null;
-      }
+      out?: StarknetAPI.StarknetErc721Diff | null;
     }
 
     export interface StarknetErc1155AssetDiff {
-      asset: StarknetErc1155AssetDiff.Asset;
+      asset: StarknetAPI.StarknetAccountErc1155Exposure;
 
       /**
        * The type of the assets in this diff
@@ -882,95 +345,16 @@ export namespace TransactionScanResponse {
       /**
        * Details of the incoming transfer
        */
-      in?: StarknetErc1155AssetDiff.In | null;
+      in?: StarknetAPI.StarknetErc1155Diff | null;
 
       /**
        * Details of the outgoing transfer
        */
-      out?: StarknetErc1155AssetDiff.Out | null;
-    }
-
-    export namespace StarknetErc1155AssetDiff {
-      export interface Asset {
-        /**
-         * Address of the token's contract
-         */
-        address: string;
-
-        /**
-         * token's name
-         */
-        name: string;
-
-        /**
-         * token's symbol
-         */
-        symbol: string;
-
-        /**
-         * URL of the asset's logo
-         */
-        logo_url?: string | null;
-
-        /**
-         * Type of the asset (`ERC1155`)
-         */
-        type?: 'ERC1155';
-      }
-
-      /**
-       * Details of the incoming transfer
-       */
-      export interface In {
-        /**
-         * Token ID of the transfer
-         */
-        token_id: string;
-
-        /**
-         * USD price of the asset
-         */
-        usd_price: string;
-
-        /**
-         * Value of the transfer
-         */
-        value: number;
-
-        /**
-         * Summarized description of the transfer
-         */
-        summary?: string | null;
-      }
-
-      /**
-       * Details of the outgoing transfer
-       */
-      export interface Out {
-        /**
-         * Token ID of the transfer
-         */
-        token_id: string;
-
-        /**
-         * USD price of the asset
-         */
-        usd_price: string;
-
-        /**
-         * Value of the transfer
-         */
-        value: number;
-
-        /**
-         * Summarized description of the transfer
-         */
-        summary?: string | null;
-      }
+      out?: StarknetAPI.StarknetErc1155Diff | null;
     }
 
     export interface StarknetErc20Exposure {
-      asset: StarknetErc20Exposure.Asset;
+      asset: StarknetAPI.StarknetAccountErc20Exposure;
 
       /**
        * Mapping between the spender address and the exposure of the asset
@@ -979,45 +363,13 @@ export namespace TransactionScanResponse {
     }
 
     export namespace StarknetErc20Exposure {
-      export interface Asset {
-        /**
-         * Address of the token's contract
-         */
-        address: string;
-
-        /**
-         * token's decimals
-         */
-        decimals: number;
-
-        /**
-         * token's name
-         */
-        name: string;
-
-        /**
-         * token's symbol
-         */
-        symbol: string;
-
-        /**
-         * URL of the asset's logo
-         */
-        logo_url?: string | null;
-
-        /**
-         * Type of the asset (`ERC20`)
-         */
-        type?: 'ERC20';
-      }
-
       export interface Spenders {
         /**
          * Approval value of the ERC20 token
          */
         approval: string;
 
-        exposure: Array<Spenders.Exposure>;
+        exposure: Array<StarknetAPI.StarknetErc20Diff>;
 
         /**
          * Expiration date of the approval
@@ -1029,34 +381,10 @@ export namespace TransactionScanResponse {
          */
         summary?: string | null;
       }
-
-      export namespace Spenders {
-        export interface Exposure {
-          /**
-           * Raw value of the transfer
-           */
-          raw_value: number;
-
-          /**
-           * USD price of the asset
-           */
-          usd_price: string;
-
-          /**
-           * Value of the transfer
-           */
-          value: string;
-
-          /**
-           * Summarized description of the transfer
-           */
-          summary?: string | null;
-        }
-      }
     }
 
     export interface StarknetErc721Exposure {
-      asset: StarknetErc721Exposure.Asset;
+      asset: StarknetAPI.StarknetAccountErc721Exposure;
 
       /**
        * Mapping between the spender address and the exposure of the asset
@@ -1065,35 +393,8 @@ export namespace TransactionScanResponse {
     }
 
     export namespace StarknetErc721Exposure {
-      export interface Asset {
-        /**
-         * Address of the token's contract
-         */
-        address: string;
-
-        /**
-         * token's name
-         */
-        name: string;
-
-        /**
-         * token's symbol
-         */
-        symbol: string;
-
-        /**
-         * URL of the asset's logo
-         */
-        logo_url?: string | null;
-
-        /**
-         * Type of the asset (`ERC721`)
-         */
-        type?: 'ERC721';
-      }
-
       export interface Spenders {
-        exposure: Array<Spenders.Exposure>;
+        exposure: Array<StarknetAPI.StarknetErc721Diff>;
 
         /**
          * Whether `setApprovalForAll` was invoked
@@ -1105,29 +406,10 @@ export namespace TransactionScanResponse {
          */
         summary?: string | null;
       }
-
-      export namespace Spenders {
-        export interface Exposure {
-          /**
-           * Token ID of the transfer
-           */
-          token_id: string;
-
-          /**
-           * USD price of the asset
-           */
-          usd_price: string;
-
-          /**
-           * Summarized description of the transfer
-           */
-          summary?: string | null;
-        }
-      }
     }
 
     export interface StarknetErc1155Exposure {
-      asset: StarknetErc1155Exposure.Asset;
+      asset: StarknetAPI.StarknetAccountErc1155Exposure;
 
       /**
        * Mapping between the spender address and the exposure of the asset
@@ -1136,35 +418,8 @@ export namespace TransactionScanResponse {
     }
 
     export namespace StarknetErc1155Exposure {
-      export interface Asset {
-        /**
-         * Address of the token's contract
-         */
-        address: string;
-
-        /**
-         * token's name
-         */
-        name: string;
-
-        /**
-         * token's symbol
-         */
-        symbol: string;
-
-        /**
-         * URL of the asset's logo
-         */
-        logo_url?: string | null;
-
-        /**
-         * Type of the asset (`ERC1155`)
-         */
-        type?: 'ERC1155';
-      }
-
       export interface Spenders {
-        exposure: Array<Spenders.Exposure>;
+        exposure: Array<StarknetAPI.StarknetErc1155Diff>;
 
         /**
          * Whether `setApprovalForAll` was invoked
@@ -1175,30 +430,6 @@ export namespace TransactionScanResponse {
          * Summarized description of the exposure
          */
         summary?: string | null;
-      }
-
-      export namespace Spenders {
-        export interface Exposure {
-          /**
-           * Token ID of the transfer
-           */
-          token_id: string;
-
-          /**
-           * USD price of the asset
-           */
-          usd_price: string;
-
-          /**
-           * Value of the transfer
-           */
-          value: number;
-
-          /**
-           * Summarized description of the transfer
-           */
-          summary?: string | null;
-        }
       }
     }
   }
