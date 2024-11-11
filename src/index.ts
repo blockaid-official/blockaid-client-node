@@ -91,7 +91,6 @@ import {
   Stellar,
   StellarAssetContractDetailsSchema,
   StellarAssetTransferDetailsSchema,
-  StellarTransactionScanResponse,
 } from './resources/stellar/stellar';
 
 const environments = {
@@ -418,7 +417,6 @@ export declare namespace Blockaid {
     Stellar as Stellar,
     type StellarAssetContractDetailsSchema as StellarAssetContractDetailsSchema,
     type StellarAssetTransferDetailsSchema as StellarAssetTransferDetailsSchema,
-    type StellarTransactionScanResponse as StellarTransactionScanResponse,
   };
 
   export { Bitcoin as Bitcoin };

@@ -6,10 +6,4 @@ export {
   type StarknetErc20Diff,
   type StarknetErc721Diff,
 } from './starknet';
-export {
-  Transaction,
-  type TransactionReportResponse,
-  type TransactionScanResponse,
-  type TransactionReportParams,
-  type TransactionScanParams,
-} from './transaction';
+export { Transaction, type TransactionScanResponse, type TransactionScanParams } from './transaction';
