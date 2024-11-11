@@ -2,9 +2,18 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import * as StellarAPI from './stellar';
 
 export class Transaction extends APIResource {
+  /**
+   * Report Transaction
+   */
+  report(
+    body: TransactionReportParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TransactionReportResponse> {
+    return this._client.post('/v0/stellar/transaction/report', { body, ...options });
+  }
+
   /**
    * Scan Transaction
    */
@@ -12,6 +21,8 @@ export class Transaction extends APIResource {
     return this._client.post('/v0/stellar/transaction/scan', { body, ...options });
   }
 }
+
+export type TransactionReportResponse = number;
 
 export interface TransactionScanResponse {
   /**
@@ -308,12 +319,12 @@ export namespace TransactionScanResponse {
         /**
          * Details of the incoming transfer
          */
-        in?: StellarAPI.StellarAssetTransferDetailsSchema | null;
+        in?: StellarLegacyAssetDiff.In | null;
 
         /**
          * Details of the outgoing transfer
          */
-        out?: StellarAPI.StellarAssetTransferDetailsSchema | null;
+        out?: StellarLegacyAssetDiff.Out | null;
       }
 
       export namespace StellarLegacyAssetDiff {
@@ -343,6 +354,56 @@ export namespace TransactionScanResponse {
            */
           type?: 'ASSET';
         }
+
+        /**
+         * Details of the incoming transfer
+         */
+        export interface In {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price: string;
+
+          /**
+           * Value of the transfer
+           */
+          value: string;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+        }
+
+        /**
+         * Details of the outgoing transfer
+         */
+        export interface Out {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price: string;
+
+          /**
+           * Value of the transfer
+           */
+          value: string;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+        }
       }
 
       export interface StellarNativeAssetDiff {
@@ -356,12 +417,12 @@ export namespace TransactionScanResponse {
         /**
          * Details of the incoming transfer
          */
-        in?: StellarAPI.StellarAssetTransferDetailsSchema | null;
+        in?: StellarNativeAssetDiff.In | null;
 
         /**
          * Details of the outgoing transfer
          */
-        out?: StellarAPI.StellarAssetTransferDetailsSchema | null;
+        out?: StellarNativeAssetDiff.Out | null;
       }
 
       export namespace StellarNativeAssetDiff {
@@ -376,10 +437,60 @@ export namespace TransactionScanResponse {
            */
           type?: 'NATIVE';
         }
+
+        /**
+         * Details of the incoming transfer
+         */
+        export interface In {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price: string;
+
+          /**
+           * Value of the transfer
+           */
+          value: string;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+        }
+
+        /**
+         * Details of the outgoing transfer
+         */
+        export interface Out {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price: string;
+
+          /**
+           * Value of the transfer
+           */
+          value: string;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+        }
       }
 
       export interface StellarContractAssetDiff {
-        asset: StellarAPI.StellarAssetContractDetailsSchema;
+        asset: StellarContractAssetDiff.Asset;
 
         /**
          * The type of the assets in this diff
@@ -389,12 +500,86 @@ export namespace TransactionScanResponse {
         /**
          * Details of the incoming transfer
          */
-        in?: StellarAPI.StellarAssetTransferDetailsSchema | null;
+        in?: StellarContractAssetDiff.In | null;
 
         /**
          * Details of the outgoing transfer
          */
-        out?: StellarAPI.StellarAssetTransferDetailsSchema | null;
+        out?: StellarContractAssetDiff.Out | null;
+      }
+
+      export namespace StellarContractAssetDiff {
+        export interface Asset {
+          /**
+           * Address of the asset's contract
+           */
+          address: string;
+
+          /**
+           * Asset code
+           */
+          name: string;
+
+          /**
+           * Asset symbol
+           */
+          symbol: string;
+
+          /**
+           * Type of the asset (`CONTRACT`)
+           */
+          type?: 'CONTRACT';
+        }
+
+        /**
+         * Details of the incoming transfer
+         */
+        export interface In {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price: string;
+
+          /**
+           * Value of the transfer
+           */
+          value: string;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+        }
+
+        /**
+         * Details of the outgoing transfer
+         */
+        export interface Out {
+          /**
+           * Raw value of the transfer
+           */
+          raw_value: number;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price: string;
+
+          /**
+           * Value of the transfer
+           */
+          value: string;
+
+          /**
+           * Summarized description of the transfer
+           */
+          summary?: string | null;
+        }
       }
     }
 
@@ -435,12 +620,12 @@ export namespace TransactionScanResponse {
       /**
        * Details of the incoming transfer
        */
-      in?: StellarAPI.StellarAssetTransferDetailsSchema | null;
+      in?: StellarLegacyAssetDiff.In | null;
 
       /**
        * Details of the outgoing transfer
        */
-      out?: StellarAPI.StellarAssetTransferDetailsSchema | null;
+      out?: StellarLegacyAssetDiff.Out | null;
     }
 
     export namespace StellarLegacyAssetDiff {
@@ -470,6 +655,56 @@ export namespace TransactionScanResponse {
          */
         type?: 'ASSET';
       }
+
+      /**
+       * Details of the incoming transfer
+       */
+      export interface In {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price: string;
+
+        /**
+         * Value of the transfer
+         */
+        value: string;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+      }
+
+      /**
+       * Details of the outgoing transfer
+       */
+      export interface Out {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price: string;
+
+        /**
+         * Value of the transfer
+         */
+        value: string;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+      }
     }
 
     export interface StellarNativeAssetDiff {
@@ -483,12 +718,12 @@ export namespace TransactionScanResponse {
       /**
        * Details of the incoming transfer
        */
-      in?: StellarAPI.StellarAssetTransferDetailsSchema | null;
+      in?: StellarNativeAssetDiff.In | null;
 
       /**
        * Details of the outgoing transfer
        */
-      out?: StellarAPI.StellarAssetTransferDetailsSchema | null;
+      out?: StellarNativeAssetDiff.Out | null;
     }
 
     export namespace StellarNativeAssetDiff {
@@ -503,10 +738,60 @@ export namespace TransactionScanResponse {
          */
         type?: 'NATIVE';
       }
+
+      /**
+       * Details of the incoming transfer
+       */
+      export interface In {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price: string;
+
+        /**
+         * Value of the transfer
+         */
+        value: string;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+      }
+
+      /**
+       * Details of the outgoing transfer
+       */
+      export interface Out {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price: string;
+
+        /**
+         * Value of the transfer
+         */
+        value: string;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+      }
     }
 
     export interface StellarContractAssetDiff {
-      asset: StellarAPI.StellarAssetContractDetailsSchema;
+      asset: StellarContractAssetDiff.Asset;
 
       /**
        * The type of the assets in this diff
@@ -516,12 +801,86 @@ export namespace TransactionScanResponse {
       /**
        * Details of the incoming transfer
        */
-      in?: StellarAPI.StellarAssetTransferDetailsSchema | null;
+      in?: StellarContractAssetDiff.In | null;
 
       /**
        * Details of the outgoing transfer
        */
-      out?: StellarAPI.StellarAssetTransferDetailsSchema | null;
+      out?: StellarContractAssetDiff.Out | null;
+    }
+
+    export namespace StellarContractAssetDiff {
+      export interface Asset {
+        /**
+         * Address of the asset's contract
+         */
+        address: string;
+
+        /**
+         * Asset code
+         */
+        name: string;
+
+        /**
+         * Asset symbol
+         */
+        symbol: string;
+
+        /**
+         * Type of the asset (`CONTRACT`)
+         */
+        type?: 'CONTRACT';
+      }
+
+      /**
+       * Details of the incoming transfer
+       */
+      export interface In {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price: string;
+
+        /**
+         * Value of the transfer
+         */
+        value: string;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+      }
+
+      /**
+       * Details of the outgoing transfer
+       */
+      export interface Out {
+        /**
+         * Raw value of the transfer
+         */
+        raw_value: number;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price: string;
+
+        /**
+         * Value of the transfer
+         */
+        value: string;
+
+        /**
+         * Summarized description of the transfer
+         */
+        summary?: string | null;
+      }
     }
 
     export interface StellarLegacyAssetExposure {
@@ -740,6 +1099,78 @@ export namespace TransactionScanResponse {
   }
 }
 
+export interface TransactionReportParams {
+  details: string;
+
+  event: 'should_be_malicious' | 'should_be_benign';
+
+  report:
+    | TransactionReportParams.StellarAppealRequestID
+    | TransactionReportParams.StellarAppealTransactionDataReport;
+}
+
+export namespace TransactionReportParams {
+  export interface StellarAppealRequestID {
+    id: string;
+
+    type?: 'request_id';
+  }
+
+  export interface StellarAppealTransactionDataReport {
+    params: StellarAppealTransactionDataReport.Params;
+
+    type?: 'params';
+  }
+
+  export namespace StellarAppealTransactionDataReport {
+    export interface Params {
+      account_address: string;
+
+      /**
+       * A CAIP-2 chain ID or a Stellar network name
+       */
+      chain: 'pubnet' | 'futurenet' | 'testnet';
+
+      /**
+       * Metadata
+       */
+      metadata: Params.StellarWalletRequestMetadata | Params.StellarInAppRequestMetadata;
+
+      transaction: string;
+
+      /**
+       * List of options to include in the response
+       *
+       * - `Options.validation`: Include Options.validation output in the response
+       *
+       * - `Options.simulation`: Include Options.simulation output in the response
+       */
+      options?: Array<'validation' | 'simulation'>;
+    }
+
+    export namespace Params {
+      export interface StellarWalletRequestMetadata {
+        /**
+         * Metadata for wallet requests
+         */
+        type: 'wallet';
+
+        /**
+         * URL of the dApp originating the transaction
+         */
+        url: string;
+      }
+
+      export interface StellarInAppRequestMetadata {
+        /**
+         * Metadata for in-app requests
+         */
+        type?: 'in_app';
+      }
+    }
+  }
+}
+
 export interface TransactionScanParams {
   account_address: string;
 
@@ -790,7 +1221,9 @@ export namespace TransactionScanParams {
 
 export declare namespace Transaction {
   export {
+    type TransactionReportResponse as TransactionReportResponse,
     type TransactionScanResponse as TransactionScanResponse,
+    type TransactionReportParams as TransactionReportParams,
     type TransactionScanParams as TransactionScanParams,
   };
 }
