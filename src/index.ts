@@ -98,7 +98,6 @@ const environments = {
   client: 'https://client.blockaid.io',
 };
 type Environment = keyof typeof environments;
-
 export interface ClientOptions {
   /**
    * Authentication method to api.blockaid.io
@@ -322,25 +321,6 @@ export class Blockaid extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
-export {
-  BlockaidError,
-  APIError,
-  APIConnectionError,
-  APIConnectionTimeoutError,
-  APIUserAbortError,
-  NotFoundError,
-  ConflictError,
-  RateLimitError,
-  BadRequestError,
-  AuthenticationError,
-  InternalServerError,
-  PermissionDeniedError,
-  UnprocessableEntityError,
-} from './error';
-
-export import toFile = Uploads.toFile;
-export import fileFromPath = Uploads.fileFromPath;
-
 Blockaid.Evm = Evm;
 Blockaid.Solana = Solana;
 Blockaid.Stellar = Stellar;
@@ -349,7 +329,6 @@ Blockaid.Starknet = Starknet;
 Blockaid.Site = Site;
 Blockaid.Token = Token;
 Blockaid.TokenBulk = TokenBulk;
-
 export declare namespace Blockaid {
   export type RequestOptions = Core.RequestOptions;
 
@@ -452,5 +431,22 @@ export declare namespace Blockaid {
     type TokenBulkScanParams as TokenBulkScanParams,
   };
 }
+
+export { toFile, fileFromPath } from '@blockaid/client/uploads';
+export {
+  BlockaidError,
+  APIError,
+  APIConnectionError,
+  APIConnectionTimeoutError,
+  APIUserAbortError,
+  NotFoundError,
+  ConflictError,
+  RateLimitError,
+  BadRequestError,
+  AuthenticationError,
+  InternalServerError,
+  PermissionDeniedError,
+  UnprocessableEntityError,
+} from '@blockaid/client/error';
 
 export default Blockaid;
