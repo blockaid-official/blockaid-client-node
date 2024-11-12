@@ -1,6 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Bitcoin } from './bitcoin/bitcoin';
+export {
+  Bitcoin,
+  type BitcoinTransactionScanRequest,
+  type BitcoinTransactionScanResponse,
+} from './bitcoin/bitcoin';
 export {
   Evm,
   type Erc1155Diff,
@@ -79,6 +83,7 @@ export {
   type StarknetErc20Diff,
   type StarknetErc721Details,
   type StarknetErc721Diff,
+  type StarknetTransactionScanResponse,
 } from './starknet/starknet';
 export {
   Stellar,
