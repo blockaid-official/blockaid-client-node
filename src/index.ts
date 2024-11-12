@@ -96,6 +96,7 @@ import {
   StarknetErc20Diff,
   StarknetErc721Details,
   StarknetErc721Diff,
+  StarknetTransactionScanRequest,
   StarknetTransactionScanResponse,
 } from './resources/starknet/starknet';
 import {
@@ -436,6 +437,7 @@ export declare namespace Blockaid {
     type StarknetErc20Diff as StarknetErc20Diff,
     type StarknetErc721Details as StarknetErc721Details,
     type StarknetErc721Diff as StarknetErc721Diff,
+    type StarknetTransactionScanRequest as StarknetTransactionScanRequest,
     type StarknetTransactionScanResponse as StarknetTransactionScanResponse,
   };
 

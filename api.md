@@ -176,6 +176,7 @@ Types:
 - <code><a href="./src/resources/starknet/starknet.ts">StarknetErc20Diff</a></code>
 - <code><a href="./src/resources/starknet/starknet.ts">StarknetErc721Details</a></code>
 - <code><a href="./src/resources/starknet/starknet.ts">StarknetErc721Diff</a></code>
+- <code><a href="./src/resources/starknet/starknet.ts">StarknetTransactionScanRequest</a></code>
 - <code><a href="./src/resources/starknet/starknet.ts">StarknetTransactionScanResponse</a></code>
 
 ## Transaction

@@ -156,6 +156,196 @@ export interface StarknetErc721Diff {
   summary?: string | null;
 }
 
+export interface StarknetTransactionScanRequest {
+  account_address: string;
+
+  /**
+   * The chain name or chain ID
+   */
+  chain: 'mainnet' | 'sepolia' | 'sepolia_integration' | (string & {});
+
+  /**
+   * Metadata
+   */
+  metadata:
+    | StarknetTransactionScanRequest.StarknetWalletRequestMetadata
+    | StarknetTransactionScanRequest.StarknetInAppRequestMetadata;
+
+  transaction:
+    | StarknetTransactionScanRequest.StarknetInvokeV1TransactionSchema
+    | StarknetTransactionScanRequest.StarknetInvokeV3TransactionSchema
+    | StarknetTransactionScanRequest.StarknetDeployAccountV1TransactionSchema
+    | StarknetTransactionScanRequest.StarknetDeployAccountV3TransactionSchema;
+
+  /**
+   * Optional block number or tag context for the simulation
+   */
+  block_number?: string | null;
+
+  /**
+   * List of options to include in the response
+   *
+   * - `Options.validation`: Include Options.validation output in the response
+   *
+   * - `Options.simulation`: Include Options.simulation output in the response
+   */
+  options?: Array<'validation' | 'simulation'>;
+}
+
+export namespace StarknetTransactionScanRequest {
+  export interface StarknetWalletRequestMetadata {
+    /**
+     * Metadata for wallet requests
+     */
+    type: 'wallet';
+
+    /**
+     * URL of the dApp originating the transaction
+     */
+    url: string;
+  }
+
+  export interface StarknetInAppRequestMetadata {
+    /**
+     * Metadata for in-app requests
+     */
+    type?: 'in_app';
+  }
+
+  export interface StarknetInvokeV1TransactionSchema {
+    /**
+     * The maximum fee that the sender is willing to pay.
+     */
+    max_fee: string;
+
+    /**
+     * The nonce of the transaction.
+     */
+    nonce: string;
+
+    /**
+     * The address of the sender.
+     */
+    sender_address: string;
+
+    /**
+     * The version of the transaction.
+     */
+    version: 1;
+
+    /**
+     * The arguments that are passed to the validate and execute functions.
+     */
+    calldata?: Array<string>;
+  }
+
+  export interface StarknetInvokeV3TransactionSchema {
+    /**
+     * The arguments that are passed to the validate and execute functions.
+     */
+    calldata: Array<string>;
+
+    /**
+     * The id of the chain to which the transaction is sent.
+     */
+    chain_id: string;
+
+    /**
+     * The nonce of the transaction.
+     */
+    nonce: string;
+
+    /**
+     * The address of the sender.
+     */
+    sender_address: string;
+
+    /**
+     * The version of the transaction.
+     */
+    version: 3;
+
+    /**
+     * For future use. Currently this value is always empty.
+     */
+    account_deployment_data?: Array<string>;
+
+    /**
+     * The nonce data availability mode.
+     */
+    nonce_data_availability_mode?: 0;
+
+    /**
+     * For future use. Currently this value is always empty.
+     */
+    paymaster_data?: Array<string>;
+  }
+
+  export interface StarknetDeployAccountV1TransactionSchema {
+    /**
+     * The hash of the contract class.
+     */
+    class_hash: string;
+
+    /**
+     * The arguments that are passed to the constructor function.
+     */
+    constructor_calldata: Array<string>;
+
+    /**
+     * The salt of the contract address.
+     */
+    contract_address_salt: string;
+
+    /**
+     * The maximum fee that the sender is willing to pay.
+     */
+    max_fee: string;
+
+    /**
+     * The nonce of the transaction.
+     */
+    nonce: string;
+
+    /**
+     * The version of the transaction.
+     */
+    version: 1;
+  }
+
+  export interface StarknetDeployAccountV3TransactionSchema {
+    /**
+     * The hash of the contract class.
+     */
+    class_hash: string;
+
+    /**
+     * The arguments that are passed to the constructor function.
+     */
+    constructor_calldata: Array<string>;
+
+    /**
+     * The salt of the contract address.
+     */
+    contract_address_salt: string;
+
+    /**
+     * The maximum fee that the sender is willing to pay.
+     */
+    max_fee: string;
+
+    /**
+     * The nonce of the transaction.
+     */
+    nonce: string;
+
+    /**
+     * The version of the transaction.
+     */
+    version: 3;
+  }
+}
+
 export interface StarknetTransactionScanResponse {
   /**
    * Simulation result; Only present if simulation option is included in the request
@@ -643,6 +833,7 @@ export declare namespace Starknet {
     type StarknetErc20Diff as StarknetErc20Diff,
     type StarknetErc721Details as StarknetErc721Details,
     type StarknetErc721Diff as StarknetErc721Diff,
+    type StarknetTransactionScanRequest as StarknetTransactionScanRequest,
     type StarknetTransactionScanResponse as StarknetTransactionScanResponse,
   };
 
