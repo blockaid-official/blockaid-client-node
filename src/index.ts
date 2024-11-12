@@ -22,7 +22,11 @@ import {
   TokenScanResponse,
 } from './resources/token';
 import { TokenBulk, TokenBulkScanParams, TokenBulkScanResponse } from './resources/token-bulk';
-import { Bitcoin } from './resources/bitcoin/bitcoin';
+import {
+  Bitcoin,
+  BitcoinTransactionScanRequest,
+  BitcoinTransactionScanResponse,
+} from './resources/bitcoin/bitcoin';
 import {
   Erc1155Diff,
   Erc1155Exposure,
@@ -92,6 +96,7 @@ import {
   StarknetErc20Diff,
   StarknetErc721Details,
   StarknetErc721Diff,
+  StarknetTransactionScanResponse,
 } from './resources/starknet/starknet';
 import {
   Stellar,
@@ -417,7 +422,11 @@ export declare namespace Blockaid {
     type StellarTransactionScanResponse as StellarTransactionScanResponse,
   };
 
-  export { Bitcoin as Bitcoin };
+  export {
+    Bitcoin as Bitcoin,
+    type BitcoinTransactionScanRequest as BitcoinTransactionScanRequest,
+    type BitcoinTransactionScanResponse as BitcoinTransactionScanResponse,
+  };
 
   export {
     Starknet as Starknet,
@@ -427,6 +436,7 @@ export declare namespace Blockaid {
     type StarknetErc20Diff as StarknetErc20Diff,
     type StarknetErc721Details as StarknetErc721Details,
     type StarknetErc721Diff as StarknetErc721Diff,
+    type StarknetTransactionScanResponse as StarknetTransactionScanResponse,
   };
 
   export {
