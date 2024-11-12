@@ -61,8 +61,6 @@ import {
   DelegatedAssetDetailsSchema,
   FungibleMintAccountDetailsSchema,
   InstructionErrorDetails,
-  NativeDetailsSchema,
-  NativeDiffSchema,
   NativeSolOwnershipDiffSchema,
   NonFungibleMintAccountDetailsSchema,
   PdaAccountSchema,
@@ -74,7 +72,6 @@ import {
   SplNonFungibleTokenDetailsSchema,
   SplNonFungibleTokenDiffSchema,
   SplTokenOwnershipDiffSchema,
-  StakedAssetDetailsSchema,
   StakedSolWithdrawAuthorityDiffSchema,
   SuccessfulSimulationResultSchema,
   SystemAccountDetailsSchema,
@@ -86,22 +83,14 @@ import {
 } from './resources/solana/solana';
 import {
   Starknet,
-  StarknetAccountErc1155Exposure,
-  StarknetAccountErc20Exposure,
-  StarknetAccountErc721Exposure,
   StarknetErc1155Diff,
   StarknetErc20Diff,
   StarknetErc721Diff,
 } from './resources/starknet/starknet';
 import {
   Stellar,
-  StellarAssetContractDetails,
-  StellarAssetTransferDetails,
-  StellarLegacyAssetDetails,
-  StellarNativeAssetDetails,
-  StellarSingleAssetExposure,
-  StellarTransactionScanRequest,
-  StellarTransactionScanResponse,
+  StellarAssetContractDetailsSchema,
+  StellarAssetTransferDetailsSchema,
 } from './resources/stellar/stellar';
 
 const environments = {
@@ -383,8 +372,6 @@ export declare namespace Blockaid {
     type DelegatedAssetDetailsSchema as DelegatedAssetDetailsSchema,
     type FungibleMintAccountDetailsSchema as FungibleMintAccountDetailsSchema,
     type InstructionErrorDetails as InstructionErrorDetails,
-    type NativeDetailsSchema as NativeDetailsSchema,
-    type NativeDiffSchema as NativeDiffSchema,
     type NativeSolOwnershipDiffSchema as NativeSolOwnershipDiffSchema,
     type NonFungibleMintAccountDetailsSchema as NonFungibleMintAccountDetailsSchema,
     type PdaAccountSchema as PdaAccountSchema,
@@ -395,7 +382,6 @@ export declare namespace Blockaid {
     type SplNonFungibleTokenDetailsSchema as SplNonFungibleTokenDetailsSchema,
     type SplNonFungibleTokenDiffSchema as SplNonFungibleTokenDiffSchema,
     type SplTokenOwnershipDiffSchema as SplTokenOwnershipDiffSchema,
-    type StakedAssetDetailsSchema as StakedAssetDetailsSchema,
     type StakedSolWithdrawAuthorityDiffSchema as StakedSolWithdrawAuthorityDiffSchema,
     type SuccessfulSimulationResultSchema as SuccessfulSimulationResultSchema,
     type SystemAccountDetailsSchema as SystemAccountDetailsSchema,
@@ -408,22 +394,14 @@ export declare namespace Blockaid {
 
   export {
     Stellar as Stellar,
-    type StellarAssetContractDetails as StellarAssetContractDetails,
-    type StellarAssetTransferDetails as StellarAssetTransferDetails,
-    type StellarLegacyAssetDetails as StellarLegacyAssetDetails,
-    type StellarNativeAssetDetails as StellarNativeAssetDetails,
-    type StellarSingleAssetExposure as StellarSingleAssetExposure,
-    type StellarTransactionScanRequest as StellarTransactionScanRequest,
-    type StellarTransactionScanResponse as StellarTransactionScanResponse,
+    type StellarAssetContractDetailsSchema as StellarAssetContractDetailsSchema,
+    type StellarAssetTransferDetailsSchema as StellarAssetTransferDetailsSchema,
   };
 
   export { Bitcoin as Bitcoin };
 
   export {
     Starknet as Starknet,
-    type StarknetAccountErc1155Exposure as StarknetAccountErc1155Exposure,
-    type StarknetAccountErc20Exposure as StarknetAccountErc20Exposure,
-    type StarknetAccountErc721Exposure as StarknetAccountErc721Exposure,
     type StarknetErc1155Diff as StarknetErc1155Diff,
     type StarknetErc20Diff as StarknetErc20Diff,
     type StarknetErc721Diff as StarknetErc721Diff,

@@ -101,8 +101,6 @@ Types:
 - <code><a href="./src/resources/solana/solana.ts">DelegatedAssetDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">FungibleMintAccountDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">InstructionErrorDetails</a></code>
-- <code><a href="./src/resources/solana/solana.ts">NativeDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">NativeDiffSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">NativeSolOwnershipDiffSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">NonFungibleMintAccountDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">PdaAccountSchema</a></code>
@@ -113,7 +111,6 @@ Types:
 - <code><a href="./src/resources/solana/solana.ts">SplNonFungibleTokenDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">SplNonFungibleTokenDiffSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">SplTokenOwnershipDiffSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">StakedAssetDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">StakedSolWithdrawAuthorityDiffSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">SuccessfulSimulationResultSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">SystemAccountDetailsSchema</a></code>
@@ -139,24 +136,18 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/stellar/stellar.ts">StellarAssetContractDetails</a></code>
-- <code><a href="./src/resources/stellar/stellar.ts">StellarAssetTransferDetails</a></code>
-- <code><a href="./src/resources/stellar/stellar.ts">StellarLegacyAssetDetails</a></code>
-- <code><a href="./src/resources/stellar/stellar.ts">StellarNativeAssetDetails</a></code>
-- <code><a href="./src/resources/stellar/stellar.ts">StellarSingleAssetExposure</a></code>
-- <code><a href="./src/resources/stellar/stellar.ts">StellarTransactionScanRequest</a></code>
-- <code><a href="./src/resources/stellar/stellar.ts">StellarTransactionScanResponse</a></code>
+- <code><a href="./src/resources/stellar/stellar.ts">StellarAssetContractDetailsSchema</a></code>
+- <code><a href="./src/resources/stellar/stellar.ts">StellarAssetTransferDetailsSchema</a></code>
 
 ## Transaction
 
 Types:
 
-- <code><a href="./src/resources/stellar/transaction.ts">TransactionReportResponse</a></code>
+- <code><a href="./src/resources/stellar/transaction.ts">TransactionScanResponse</a></code>
 
 Methods:
 
-- <code title="post /v0/stellar/transaction/report">client.stellar.transaction.<a href="./src/resources/stellar/transaction.ts">report</a>({ ...params }) -> TransactionReportResponse</code>
-- <code title="post /v0/stellar/transaction/scan">client.stellar.transaction.<a href="./src/resources/stellar/transaction.ts">scan</a>({ ...params }) -> StellarTransactionScanResponse</code>
+- <code title="post /v0/stellar/transaction/scan">client.stellar.transaction.<a href="./src/resources/stellar/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
 
 # Bitcoin
 
@@ -164,21 +155,16 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/bitcoin/transaction.ts">TransactionReportResponse</a></code>
 - <code><a href="./src/resources/bitcoin/transaction.ts">TransactionScanResponse</a></code>
 
 Methods:
 
-- <code title="post /v0/bitcoin/transaction/report">client.bitcoin.transaction.<a href="./src/resources/bitcoin/transaction.ts">report</a>({ ...params }) -> TransactionReportResponse</code>
 - <code title="post /v0/bitcoin/transaction/scan">client.bitcoin.transaction.<a href="./src/resources/bitcoin/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
 
 # Starknet
 
 Types:
 
-- <code><a href="./src/resources/starknet/starknet.ts">StarknetAccountErc1155Exposure</a></code>
-- <code><a href="./src/resources/starknet/starknet.ts">StarknetAccountErc20Exposure</a></code>
-- <code><a href="./src/resources/starknet/starknet.ts">StarknetAccountErc721Exposure</a></code>
 - <code><a href="./src/resources/starknet/starknet.ts">StarknetErc1155Diff</a></code>
 - <code><a href="./src/resources/starknet/starknet.ts">StarknetErc20Diff</a></code>
 - <code><a href="./src/resources/starknet/starknet.ts">StarknetErc721Diff</a></code>
@@ -187,12 +173,10 @@ Types:
 
 Types:
 
-- <code><a href="./src/resources/starknet/transaction.ts">TransactionReportResponse</a></code>
 - <code><a href="./src/resources/starknet/transaction.ts">TransactionScanResponse</a></code>
 
 Methods:
 
-- <code title="post /v0/starknet/transaction/report">client.starknet.transaction.<a href="./src/resources/starknet/transaction.ts">report</a>({ ...params }) -> TransactionReportResponse</code>
 - <code title="post /v0/starknet/transaction/scan">client.starknet.transaction.<a href="./src/resources/starknet/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
 
 # Site

@@ -5,24 +5,12 @@ import * as Core from '../../core';
 
 export class Transaction extends APIResource {
   /**
-   * Report Transaction
-   */
-  report(
-    body: TransactionReportParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TransactionReportResponse> {
-    return this._client.post('/v0/bitcoin/transaction/report', { body, ...options });
-  }
-
-  /**
    * Scan Transaction
    */
   scan(body: TransactionScanParams, options?: Core.RequestOptions): Core.APIPromise<TransactionScanResponse> {
     return this._client.post('/v0/bitcoin/transaction/scan', { body, ...options });
   }
 }
-
-export type TransactionReportResponse = number;
 
 export interface TransactionScanResponse {
   /**
@@ -453,75 +441,6 @@ export namespace TransactionScanResponse {
   }
 }
 
-export interface TransactionReportParams {
-  details: string;
-
-  event: 'should_be_malicious' | 'should_be_benign';
-
-  report:
-    | TransactionReportParams.BitcoinAppealRequestID
-    | TransactionReportParams.BitcoinAppealTransactionDataReport;
-}
-
-export namespace TransactionReportParams {
-  export interface BitcoinAppealRequestID {
-    id: string;
-
-    type?: 'request_id';
-  }
-
-  export interface BitcoinAppealTransactionDataReport {
-    params: BitcoinAppealTransactionDataReport.Params;
-
-    type?: 'params';
-  }
-
-  export namespace BitcoinAppealTransactionDataReport {
-    export interface Params {
-      account_address: string;
-
-      chain: 'bitcoin';
-
-      /**
-       * Metadata
-       */
-      metadata: Params.BitcoinWalletRequestMetadata | Params.BitcoinInAppRequestMetadata;
-
-      transaction: string;
-
-      /**
-       * List of options to include in the response
-       *
-       * - `Options.validation`: Include Options.validation output in the response
-       *
-       * - `Options.simulation`: Include Options.simulation output in the response
-       */
-      options?: Array<'validation' | 'simulation'>;
-    }
-
-    export namespace Params {
-      export interface BitcoinWalletRequestMetadata {
-        /**
-         * Metadata for wallet requests
-         */
-        type: 'wallet';
-
-        /**
-         * URL of the dApp originating the transaction
-         */
-        url: string;
-      }
-
-      export interface BitcoinInAppRequestMetadata {
-        /**
-         * Metadata for in-app requests
-         */
-        type?: 'in_app';
-      }
-    }
-  }
-}
-
 export interface TransactionScanParams {
   account_address: string;
 
@@ -569,9 +488,7 @@ export namespace TransactionScanParams {
 
 export declare namespace Transaction {
   export {
-    type TransactionReportResponse as TransactionReportResponse,
     type TransactionScanResponse as TransactionScanResponse,
-    type TransactionReportParams as TransactionReportParams,
     type TransactionScanParams as TransactionScanParams,
   };
 }
