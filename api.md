@@ -149,13 +149,8 @@ Types:
 
 ## Transaction
 
-Types:
-
-- <code><a href="./src/resources/stellar/transaction.ts">TransactionReportResponse</a></code>
-
 Methods:
 
-- <code title="post /v0/stellar/transaction/report">client.stellar.transaction.<a href="./src/resources/stellar/transaction.ts">report</a>({ ...params }) -> TransactionReportResponse</code>
 - <code title="post /v0/stellar/transaction/scan">client.stellar.transaction.<a href="./src/resources/stellar/transaction.ts">scan</a>({ ...params }) -> StellarTransactionScanResponse</code>
 
 # Bitcoin
@@ -164,12 +159,10 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/bitcoin/transaction.ts">TransactionReportResponse</a></code>
 - <code><a href="./src/resources/bitcoin/transaction.ts">TransactionScanResponse</a></code>
 
 Methods:
 
-- <code title="post /v0/bitcoin/transaction/report">client.bitcoin.transaction.<a href="./src/resources/bitcoin/transaction.ts">report</a>({ ...params }) -> TransactionReportResponse</code>
 - <code title="post /v0/bitcoin/transaction/scan">client.bitcoin.transaction.<a href="./src/resources/bitcoin/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
 
 # Starknet
@@ -187,12 +180,10 @@ Types:
 
 Types:
 
-- <code><a href="./src/resources/starknet/transaction.ts">TransactionReportResponse</a></code>
 - <code><a href="./src/resources/starknet/transaction.ts">TransactionScanResponse</a></code>
 
 Methods:
 
-- <code title="post /v0/starknet/transaction/report">client.starknet.transaction.<a href="./src/resources/starknet/transaction.ts">report</a>({ ...params }) -> TransactionReportResponse</code>
 - <code title="post /v0/starknet/transaction/scan">client.starknet.transaction.<a href="./src/resources/starknet/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
 
 # Site

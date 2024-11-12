@@ -3,12 +3,7 @@
 import { APIResource } from '../../resource';
 import * as StellarAPI from './stellar';
 import * as TransactionAPI from './transaction';
-import {
-  Transaction,
-  TransactionReportParams,
-  TransactionReportResponse,
-  TransactionScanParams,
-} from './transaction';
+import { Transaction, TransactionScanParams } from './transaction';
 
 export class Stellar extends APIResource {
   transaction: TransactionAPI.Transaction = new TransactionAPI.Transaction(this._client);
@@ -584,10 +579,5 @@ export declare namespace Stellar {
     type StellarTransactionScanResponse as StellarTransactionScanResponse,
   };
 
-  export {
-    Transaction as Transaction,
-    type TransactionReportResponse as TransactionReportResponse,
-    type TransactionReportParams as TransactionReportParams,
-    type TransactionScanParams as TransactionScanParams,
-  };
+  export { Transaction as Transaction, type TransactionScanParams as TransactionScanParams };
 }
