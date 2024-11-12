@@ -49,8 +49,6 @@ export {
   type DelegatedAssetDetailsSchema,
   type FungibleMintAccountDetailsSchema,
   type InstructionErrorDetails,
-  type NativeDetailsSchema,
-  type NativeDiffSchema,
   type NativeSolOwnershipDiffSchema,
   type NonFungibleMintAccountDetailsSchema,
   type PdaAccountSchema,
@@ -61,7 +59,6 @@ export {
   type SplNonFungibleTokenDetailsSchema,
   type SplNonFungibleTokenDiffSchema,
   type SplTokenOwnershipDiffSchema,
-  type StakedAssetDetailsSchema,
   type StakedSolWithdrawAuthorityDiffSchema,
   type SuccessfulSimulationResultSchema,
   type SystemAccountDetailsSchema,
@@ -73,22 +70,14 @@ export {
 } from './solana/solana';
 export {
   Starknet,
-  type StarknetAccountErc1155Exposure,
-  type StarknetAccountErc20Exposure,
-  type StarknetAccountErc721Exposure,
   type StarknetErc1155Diff,
   type StarknetErc20Diff,
   type StarknetErc721Diff,
 } from './starknet/starknet';
 export {
   Stellar,
-  type StellarAssetContractDetails,
-  type StellarAssetTransferDetails,
-  type StellarLegacyAssetDetails,
-  type StellarNativeAssetDetails,
-  type StellarSingleAssetExposure,
-  type StellarTransactionScanRequest,
-  type StellarTransactionScanResponse,
+  type StellarAssetContractDetailsSchema,
+  type StellarAssetTransferDetailsSchema,
 } from './stellar/stellar';
 export {
   Token,
