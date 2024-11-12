@@ -6,12 +6,24 @@ import * as StarknetAPI from './starknet';
 
 export class Transaction extends APIResource {
   /**
+   * Report Transaction
+   */
+  report(
+    body: TransactionReportParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TransactionReportResponse> {
+    return this._client.post('/v0/starknet/transaction/report', { body, ...options });
+  }
+
+  /**
    * Scan Transactions
    */
   scan(body: TransactionScanParams, options?: Core.RequestOptions): Core.APIPromise<TransactionScanResponse> {
     return this._client.post('/v0/starknet/transaction/scan', { body, ...options });
   }
 }
+
+export type TransactionReportResponse = number;
 
 export interface TransactionScanResponse {
   /**
@@ -115,7 +127,7 @@ export namespace TransactionScanResponse {
 
     export namespace AccountSummary {
       export interface StarknetErc20Exposure {
-        asset: StarknetErc20Exposure.Asset;
+        asset: StarknetAPI.StarknetErc20Details;
 
         /**
          * Mapping between the spender address and the exposure of the asset
@@ -124,38 +136,6 @@ export namespace TransactionScanResponse {
       }
 
       export namespace StarknetErc20Exposure {
-        export interface Asset {
-          /**
-           * Address of the token's contract
-           */
-          address: string;
-
-          /**
-           * token's decimals
-           */
-          decimals: number;
-
-          /**
-           * token's name
-           */
-          name: string;
-
-          /**
-           * token's symbol
-           */
-          symbol: string;
-
-          /**
-           * URL of the asset's logo
-           */
-          logo_url?: string | null;
-
-          /**
-           * Type of the asset (`ERC20`)
-           */
-          type?: 'ERC20';
-        }
-
         export interface Spenders {
           /**
            * Approval value of the ERC20 token
@@ -177,7 +157,7 @@ export namespace TransactionScanResponse {
       }
 
       export interface StarknetErc721Exposure {
-        asset: StarknetErc721Exposure.Asset;
+        asset: StarknetAPI.StarknetErc721Details;
 
         /**
          * Mapping between the spender address and the exposure of the asset
@@ -186,33 +166,6 @@ export namespace TransactionScanResponse {
       }
 
       export namespace StarknetErc721Exposure {
-        export interface Asset {
-          /**
-           * Address of the token's contract
-           */
-          address: string;
-
-          /**
-           * token's name
-           */
-          name: string;
-
-          /**
-           * token's symbol
-           */
-          symbol: string;
-
-          /**
-           * URL of the asset's logo
-           */
-          logo_url?: string | null;
-
-          /**
-           * Type of the asset (`ERC721`)
-           */
-          type?: 'ERC721';
-        }
-
         export interface Spenders {
           exposure: Array<StarknetAPI.StarknetErc721Diff>;
 
@@ -229,7 +182,7 @@ export namespace TransactionScanResponse {
       }
 
       export interface StarknetErc1155Exposure {
-        asset: StarknetErc1155Exposure.Asset;
+        asset: StarknetAPI.StarknetErc1155Details;
 
         /**
          * Mapping between the spender address and the exposure of the asset
@@ -238,33 +191,6 @@ export namespace TransactionScanResponse {
       }
 
       export namespace StarknetErc1155Exposure {
-        export interface Asset {
-          /**
-           * Address of the token's contract
-           */
-          address: string;
-
-          /**
-           * token's name
-           */
-          name: string;
-
-          /**
-           * token's symbol
-           */
-          symbol: string;
-
-          /**
-           * URL of the asset's logo
-           */
-          logo_url?: string | null;
-
-          /**
-           * Type of the asset (`ERC1155`)
-           */
-          type?: 'ERC1155';
-        }
-
         export interface Spenders {
           exposure: Array<StarknetAPI.StarknetErc1155Diff>;
 
@@ -301,7 +227,7 @@ export namespace TransactionScanResponse {
       }
 
       export interface StarknetErc20AssetDiff {
-        asset: StarknetErc20AssetDiff.Asset;
+        asset: StarknetAPI.StarknetErc20Details;
 
         /**
          * The type of the assets in this diff
@@ -319,42 +245,8 @@ export namespace TransactionScanResponse {
         out?: StarknetAPI.StarknetErc20Diff | null;
       }
 
-      export namespace StarknetErc20AssetDiff {
-        export interface Asset {
-          /**
-           * Address of the token's contract
-           */
-          address: string;
-
-          /**
-           * token's decimals
-           */
-          decimals: number;
-
-          /**
-           * token's name
-           */
-          name: string;
-
-          /**
-           * token's symbol
-           */
-          symbol: string;
-
-          /**
-           * URL of the asset's logo
-           */
-          logo_url?: string | null;
-
-          /**
-           * Type of the asset (`ERC20`)
-           */
-          type?: 'ERC20';
-        }
-      }
-
       export interface StarknetErc721AssetDiff {
-        asset: StarknetErc721AssetDiff.Asset;
+        asset: StarknetAPI.StarknetErc721Details;
 
         /**
          * The type of the assets in this diff
@@ -372,37 +264,8 @@ export namespace TransactionScanResponse {
         out?: StarknetAPI.StarknetErc721Diff | null;
       }
 
-      export namespace StarknetErc721AssetDiff {
-        export interface Asset {
-          /**
-           * Address of the token's contract
-           */
-          address: string;
-
-          /**
-           * token's name
-           */
-          name: string;
-
-          /**
-           * token's symbol
-           */
-          symbol: string;
-
-          /**
-           * URL of the asset's logo
-           */
-          logo_url?: string | null;
-
-          /**
-           * Type of the asset (`ERC721`)
-           */
-          type?: 'ERC721';
-        }
-      }
-
       export interface StarknetErc1155AssetDiff {
-        asset: StarknetErc1155AssetDiff.Asset;
+        asset: StarknetAPI.StarknetErc1155Details;
 
         /**
          * The type of the assets in this diff
@@ -419,35 +282,6 @@ export namespace TransactionScanResponse {
          */
         out?: StarknetAPI.StarknetErc1155Diff | null;
       }
-
-      export namespace StarknetErc1155AssetDiff {
-        export interface Asset {
-          /**
-           * Address of the token's contract
-           */
-          address: string;
-
-          /**
-           * token's name
-           */
-          name: string;
-
-          /**
-           * token's symbol
-           */
-          symbol: string;
-
-          /**
-           * URL of the asset's logo
-           */
-          logo_url?: string | null;
-
-          /**
-           * Type of the asset (`ERC1155`)
-           */
-          type?: 'ERC1155';
-        }
-      }
     }
 
     export interface AddressDetail {
@@ -463,7 +297,7 @@ export namespace TransactionScanResponse {
     }
 
     export interface StarknetErc20AssetDiff {
-      asset: StarknetErc20AssetDiff.Asset;
+      asset: StarknetAPI.StarknetErc20Details;
 
       /**
        * The type of the assets in this diff
@@ -481,42 +315,8 @@ export namespace TransactionScanResponse {
       out?: StarknetAPI.StarknetErc20Diff | null;
     }
 
-    export namespace StarknetErc20AssetDiff {
-      export interface Asset {
-        /**
-         * Address of the token's contract
-         */
-        address: string;
-
-        /**
-         * token's decimals
-         */
-        decimals: number;
-
-        /**
-         * token's name
-         */
-        name: string;
-
-        /**
-         * token's symbol
-         */
-        symbol: string;
-
-        /**
-         * URL of the asset's logo
-         */
-        logo_url?: string | null;
-
-        /**
-         * Type of the asset (`ERC20`)
-         */
-        type?: 'ERC20';
-      }
-    }
-
     export interface StarknetErc721AssetDiff {
-      asset: StarknetErc721AssetDiff.Asset;
+      asset: StarknetAPI.StarknetErc721Details;
 
       /**
        * The type of the assets in this diff
@@ -534,37 +334,8 @@ export namespace TransactionScanResponse {
       out?: StarknetAPI.StarknetErc721Diff | null;
     }
 
-    export namespace StarknetErc721AssetDiff {
-      export interface Asset {
-        /**
-         * Address of the token's contract
-         */
-        address: string;
-
-        /**
-         * token's name
-         */
-        name: string;
-
-        /**
-         * token's symbol
-         */
-        symbol: string;
-
-        /**
-         * URL of the asset's logo
-         */
-        logo_url?: string | null;
-
-        /**
-         * Type of the asset (`ERC721`)
-         */
-        type?: 'ERC721';
-      }
-    }
-
     export interface StarknetErc1155AssetDiff {
-      asset: StarknetErc1155AssetDiff.Asset;
+      asset: StarknetAPI.StarknetErc1155Details;
 
       /**
        * The type of the assets in this diff
@@ -582,37 +353,8 @@ export namespace TransactionScanResponse {
       out?: StarknetAPI.StarknetErc1155Diff | null;
     }
 
-    export namespace StarknetErc1155AssetDiff {
-      export interface Asset {
-        /**
-         * Address of the token's contract
-         */
-        address: string;
-
-        /**
-         * token's name
-         */
-        name: string;
-
-        /**
-         * token's symbol
-         */
-        symbol: string;
-
-        /**
-         * URL of the asset's logo
-         */
-        logo_url?: string | null;
-
-        /**
-         * Type of the asset (`ERC1155`)
-         */
-        type?: 'ERC1155';
-      }
-    }
-
     export interface StarknetErc20Exposure {
-      asset: StarknetErc20Exposure.Asset;
+      asset: StarknetAPI.StarknetErc20Details;
 
       /**
        * Mapping between the spender address and the exposure of the asset
@@ -621,38 +363,6 @@ export namespace TransactionScanResponse {
     }
 
     export namespace StarknetErc20Exposure {
-      export interface Asset {
-        /**
-         * Address of the token's contract
-         */
-        address: string;
-
-        /**
-         * token's decimals
-         */
-        decimals: number;
-
-        /**
-         * token's name
-         */
-        name: string;
-
-        /**
-         * token's symbol
-         */
-        symbol: string;
-
-        /**
-         * URL of the asset's logo
-         */
-        logo_url?: string | null;
-
-        /**
-         * Type of the asset (`ERC20`)
-         */
-        type?: 'ERC20';
-      }
-
       export interface Spenders {
         /**
          * Approval value of the ERC20 token
@@ -674,7 +384,7 @@ export namespace TransactionScanResponse {
     }
 
     export interface StarknetErc721Exposure {
-      asset: StarknetErc721Exposure.Asset;
+      asset: StarknetAPI.StarknetErc721Details;
 
       /**
        * Mapping between the spender address and the exposure of the asset
@@ -683,33 +393,6 @@ export namespace TransactionScanResponse {
     }
 
     export namespace StarknetErc721Exposure {
-      export interface Asset {
-        /**
-         * Address of the token's contract
-         */
-        address: string;
-
-        /**
-         * token's name
-         */
-        name: string;
-
-        /**
-         * token's symbol
-         */
-        symbol: string;
-
-        /**
-         * URL of the asset's logo
-         */
-        logo_url?: string | null;
-
-        /**
-         * Type of the asset (`ERC721`)
-         */
-        type?: 'ERC721';
-      }
-
       export interface Spenders {
         exposure: Array<StarknetAPI.StarknetErc721Diff>;
 
@@ -726,7 +409,7 @@ export namespace TransactionScanResponse {
     }
 
     export interface StarknetErc1155Exposure {
-      asset: StarknetErc1155Exposure.Asset;
+      asset: StarknetAPI.StarknetErc1155Details;
 
       /**
        * Mapping between the spender address and the exposure of the asset
@@ -735,33 +418,6 @@ export namespace TransactionScanResponse {
     }
 
     export namespace StarknetErc1155Exposure {
-      export interface Asset {
-        /**
-         * Address of the token's contract
-         */
-        address: string;
-
-        /**
-         * token's name
-         */
-        name: string;
-
-        /**
-         * token's symbol
-         */
-        symbol: string;
-
-        /**
-         * URL of the asset's logo
-         */
-        logo_url?: string | null;
-
-        /**
-         * Type of the asset (`ERC1155`)
-         */
-        type?: 'ERC1155';
-      }
-
       export interface Spenders {
         exposure: Array<StarknetAPI.StarknetErc1155Diff>;
 
@@ -843,6 +499,220 @@ export namespace TransactionScanResponse {
     error: string;
 
     status: 'Error';
+  }
+}
+
+export interface TransactionReportParams {
+  details: string;
+
+  event: 'should_be_malicious' | 'should_be_benign';
+
+  report:
+    | TransactionReportParams.StarknetAppealRequestID
+    | TransactionReportParams.StarknetAppealTransactionDataReport;
+}
+
+export namespace TransactionReportParams {
+  export interface StarknetAppealRequestID {
+    id: string;
+
+    type?: 'request_id';
+  }
+
+  export interface StarknetAppealTransactionDataReport {
+    params: StarknetAppealTransactionDataReport.Params;
+
+    type?: 'params';
+  }
+
+  export namespace StarknetAppealTransactionDataReport {
+    export interface Params {
+      account_address: string;
+
+      /**
+       * The chain name or chain ID
+       */
+      chain: 'mainnet' | 'sepolia' | 'sepolia_integration' | (string & {});
+
+      /**
+       * Metadata
+       */
+      metadata: Params.StarknetWalletRequestMetadata | Params.StarknetInAppRequestMetadata;
+
+      transaction:
+        | Params.StarknetInvokeV1TransactionSchema
+        | Params.StarknetInvokeV3TransactionSchema
+        | Params.StarknetDeployAccountV1TransactionSchema
+        | Params.StarknetDeployAccountV3TransactionSchema;
+
+      /**
+       * Optional block number or tag context for the simulation
+       */
+      block_number?: string | null;
+
+      /**
+       * List of options to include in the response
+       *
+       * - `Options.validation`: Include Options.validation output in the response
+       *
+       * - `Options.simulation`: Include Options.simulation output in the response
+       */
+      options?: Array<'validation' | 'simulation'>;
+    }
+
+    export namespace Params {
+      export interface StarknetWalletRequestMetadata {
+        /**
+         * Metadata for wallet requests
+         */
+        type: 'wallet';
+
+        /**
+         * URL of the dApp originating the transaction
+         */
+        url: string;
+      }
+
+      export interface StarknetInAppRequestMetadata {
+        /**
+         * Metadata for in-app requests
+         */
+        type?: 'in_app';
+      }
+
+      export interface StarknetInvokeV1TransactionSchema {
+        /**
+         * The maximum fee that the sender is willing to pay.
+         */
+        max_fee: string;
+
+        /**
+         * The nonce of the transaction.
+         */
+        nonce: string;
+
+        /**
+         * The address of the sender.
+         */
+        sender_address: string;
+
+        /**
+         * The version of the transaction.
+         */
+        version: 1;
+
+        /**
+         * The arguments that are passed to the validate and execute functions.
+         */
+        calldata?: Array<string>;
+      }
+
+      export interface StarknetInvokeV3TransactionSchema {
+        /**
+         * The arguments that are passed to the validate and execute functions.
+         */
+        calldata: Array<string>;
+
+        /**
+         * The id of the chain to which the transaction is sent.
+         */
+        chain_id: string;
+
+        /**
+         * The nonce of the transaction.
+         */
+        nonce: string;
+
+        /**
+         * The address of the sender.
+         */
+        sender_address: string;
+
+        /**
+         * The version of the transaction.
+         */
+        version: 3;
+
+        /**
+         * For future use. Currently this value is always empty.
+         */
+        account_deployment_data?: Array<string>;
+
+        /**
+         * The nonce data availability mode.
+         */
+        nonce_data_availability_mode?: 0;
+
+        /**
+         * For future use. Currently this value is always empty.
+         */
+        paymaster_data?: Array<string>;
+      }
+
+      export interface StarknetDeployAccountV1TransactionSchema {
+        /**
+         * The hash of the contract class.
+         */
+        class_hash: string;
+
+        /**
+         * The arguments that are passed to the constructor function.
+         */
+        constructor_calldata: Array<string>;
+
+        /**
+         * The salt of the contract address.
+         */
+        contract_address_salt: string;
+
+        /**
+         * The maximum fee that the sender is willing to pay.
+         */
+        max_fee: string;
+
+        /**
+         * The nonce of the transaction.
+         */
+        nonce: string;
+
+        /**
+         * The version of the transaction.
+         */
+        version: 1;
+      }
+
+      export interface StarknetDeployAccountV3TransactionSchema {
+        /**
+         * The hash of the contract class.
+         */
+        class_hash: string;
+
+        /**
+         * The arguments that are passed to the constructor function.
+         */
+        constructor_calldata: Array<string>;
+
+        /**
+         * The salt of the contract address.
+         */
+        contract_address_salt: string;
+
+        /**
+         * The maximum fee that the sender is willing to pay.
+         */
+        max_fee: string;
+
+        /**
+         * The nonce of the transaction.
+         */
+        nonce: string;
+
+        /**
+         * The version of the transaction.
+         */
+        version: 3;
+      }
+    }
   }
 }
 
@@ -1038,7 +908,9 @@ export namespace TransactionScanParams {
 
 export declare namespace Transaction {
   export {
+    type TransactionReportResponse as TransactionReportResponse,
     type TransactionScanResponse as TransactionScanResponse,
+    type TransactionReportParams as TransactionReportParams,
     type TransactionScanParams as TransactionScanParams,
   };
 }

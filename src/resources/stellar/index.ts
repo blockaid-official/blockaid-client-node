@@ -2,7 +2,17 @@
 
 export {
   Stellar,
-  type StellarAssetContractDetailsSchema,
-  type StellarAssetTransferDetailsSchema,
+  type StellarAssetContractDetails,
+  type StellarAssetTransferDetails,
+  type StellarLegacyAssetDetails,
+  type StellarNativeAssetDetails,
+  type StellarSingleAssetExposure,
+  type StellarTransactionScanRequest,
+  type StellarTransactionScanResponse,
 } from './stellar';
-export { Transaction, type TransactionScanResponse, type TransactionScanParams } from './transaction';
+export {
+  Transaction,
+  type TransactionReportResponse,
+  type TransactionReportParams,
+  type TransactionScanParams,
+} from './transaction';
