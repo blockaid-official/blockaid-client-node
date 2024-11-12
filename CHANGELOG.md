@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.29.0 (2024-11-12)
+
+Full Changelog: [v0.28.1...v0.29.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.28.1...v0.29.0)
+
+### Features
+
+* **api:** api update ([#302](https://github.com/blockaid-official/blockaid-client-node/issues/302)) ([807fdec](https://github.com/blockaid-official/blockaid-client-node/commit/807fdecbb07a69dee0ffde87cfa163a8d7bfac1e))
+* **api:** api update ([#304](https://github.com/blockaid-official/blockaid-client-node/issues/304)) ([41acd8d](https://github.com/blockaid-official/blockaid-client-node/commit/41acd8dff941c9d348c2ae3ce2eac104d7121713))
+* **api:** api update ([#305](https://github.com/blockaid-official/blockaid-client-node/issues/305)) ([fd62a3b](https://github.com/blockaid-official/blockaid-client-node/commit/fd62a3b15e10ebae48d70359b047e39ac113f050))
+* **api:** api update ([#306](https://github.com/blockaid-official/blockaid-client-node/issues/306)) ([557a745](https://github.com/blockaid-official/blockaid-client-node/commit/557a745e5065c6fdc903540f9a3c116dffe82d39))
+* **api:** api update ([#309](https://github.com/blockaid-official/blockaid-client-node/issues/309)) ([e74673c](https://github.com/blockaid-official/blockaid-client-node/commit/e74673c33e3a6af27b9bb8150f92598f62cfc600))
+* **api:** api update ([#312](https://github.com/blockaid-official/blockaid-client-node/issues/312)) ([c16b46f](https://github.com/blockaid-official/blockaid-client-node/commit/c16b46fd4e08af73d6a0cdb012c82df0609d21a4))
+* **api:** api update ([#313](https://github.com/blockaid-official/blockaid-client-node/issues/313)) ([1a19626](https://github.com/blockaid-official/blockaid-client-node/commit/1a19626b4dbf697a8d2c802f18c1d985b737da8a))
+* **api:** api update ([#316](https://github.com/blockaid-official/blockaid-client-node/issues/316)) ([e63fddd](https://github.com/blockaid-official/blockaid-client-node/commit/e63fddda1580e67f2befea6a772e8d40e0b2576a))
+* **api:** api update ([#317](https://github.com/blockaid-official/blockaid-client-node/issues/317)) ([85b6f49](https://github.com/blockaid-official/blockaid-client-node/commit/85b6f49fca0cf0c9e81351c060bcf5e9ad4ce8d8))
+* **api:** api update ([#320](https://github.com/blockaid-official/blockaid-client-node/issues/320)) ([91468dd](https://github.com/blockaid-official/blockaid-client-node/commit/91468ddf6d495db79bfc5b772afd5a376b7b0857))
+* **api:** api update ([#321](https://github.com/blockaid-official/blockaid-client-node/issues/321)) ([066a070](https://github.com/blockaid-official/blockaid-client-node/commit/066a0706775714db4bcd98b39b1aac3b7fbf8cab))
+* **api:** manual updates ([#311](https://github.com/blockaid-official/blockaid-client-node/issues/311)) ([c10997e](https://github.com/blockaid-official/blockaid-client-node/commit/c10997ec4c8efec4e36dfe844961a1f5605b76d6))
+* **api:** manual updates ([#314](https://github.com/blockaid-official/blockaid-client-node/issues/314)) ([319bc69](https://github.com/blockaid-official/blockaid-client-node/commit/319bc69256c3b78bb85fbc5a920d268ced13e969))
+* **api:** manual updates ([#315](https://github.com/blockaid-official/blockaid-client-node/issues/315)) ([94a4e8c](https://github.com/blockaid-official/blockaid-client-node/commit/94a4e8cca931d5e292692ab7fc108545e2d4764e))
+* **api:** manual updates ([#318](https://github.com/blockaid-official/blockaid-client-node/issues/318)) ([9579ef1](https://github.com/blockaid-official/blockaid-client-node/commit/9579ef1a984c6a94c0859175761cb27ff0f72c0a))
+* **api:** manual updates ([#319](https://github.com/blockaid-official/blockaid-client-node/issues/319)) ([945e3f2](https://github.com/blockaid-official/blockaid-client-node/commit/945e3f22cb00e7739efcc0a3e533015029586cde))
+
+
+### Chores
+
+* remove custom code ([6b34d68](https://github.com/blockaid-official/blockaid-client-node/commit/6b34d682b9f6c6d47f1fc5fad6feefb893ad7a9c))
+
 ## 0.28.1 (2024-10-28)
 
 Full Changelog: [v0.28.0...v0.28.1](https://github.com/blockaid-official/blockaid-client-node/compare/v0.28.0...v0.28.1)
