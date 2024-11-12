@@ -10,9 +10,4 @@ export {
   type StellarTransactionScanRequest,
   type StellarTransactionScanResponse,
 } from './stellar';
-export {
-  Transaction,
-  type TransactionReportResponse,
-  type TransactionReportParams,
-  type TransactionScanParams,
-} from './transaction';
+export { Transaction, type TransactionScanParams } from './transaction';
