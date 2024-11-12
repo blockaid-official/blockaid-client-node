@@ -58,7 +58,7 @@ export interface BitcoinTransactionScanResponse {
    * Simulation result; Only present if simulation option is included in the request
    */
   simulation?:
-    | BitcoinTransactionScanResponse.BitcoinSimulationResponse
+    | BitcoinTransactionScanResponse.BitcoinSimulationResult
     | BitcoinTransactionScanResponse.BitcoinSimulationErrorSchema
     | null;
 
@@ -72,7 +72,7 @@ export interface BitcoinTransactionScanResponse {
 }
 
 export namespace BitcoinTransactionScanResponse {
-  export interface BitcoinSimulationResponse {
+  export interface BitcoinSimulationResult {
     status: 'Success';
 
     account_summary?: null;
@@ -80,7 +80,7 @@ export namespace BitcoinTransactionScanResponse {
     /**
      * Details of addresses involved in the transaction
      */
-    address_details?: Array<BitcoinSimulationResponse.AddressDetail>;
+    address_details?: Array<BitcoinSimulationResult.AddressDetail>;
 
     /**
      * Mapping between the address of an account to the assets diff during the
@@ -89,14 +89,14 @@ export namespace BitcoinTransactionScanResponse {
     assets_diffs?: Record<
       string,
       Array<
-        | BitcoinSimulationResponse.BitcoinNativeAssetDiff
-        | BitcoinSimulationResponse.BitcoinOrdinalAssetDiff
-        | BitcoinSimulationResponse.BitcoinRunesAssetDiff
+        | BitcoinSimulationResult.BitcoinNativeAssetDiff
+        | BitcoinSimulationResult.BitcoinOrdinalAssetDiff
+        | BitcoinSimulationResult.BitcoinRunesAssetDiff
       >
     >;
   }
 
-  export namespace BitcoinSimulationResponse {
+  export namespace BitcoinSimulationResult {
     export interface AddressDetail {
       /**
        * Encoded public key of the account

@@ -188,7 +188,7 @@ export interface StellarTransactionScanResponse {
    * Simulation result; Only present if simulation option is included in the request
    */
   simulation?:
-    | StellarTransactionScanResponse.StellarSimulationResponse
+    | StellarTransactionScanResponse.StellarSimulationResult
     | StellarTransactionScanResponse.StellarSimulationErrorSchema
     | null;
 
@@ -202,24 +202,24 @@ export interface StellarTransactionScanResponse {
 }
 
 export namespace StellarTransactionScanResponse {
-  export interface StellarSimulationResponse {
+  export interface StellarSimulationResult {
     /**
      * Summary of the actions and asset transfers that were made by the requested
      * account address
      */
-    account_summary: StellarSimulationResponse.AccountSummary;
+    account_summary: StellarSimulationResult.AccountSummary;
 
     /**
      * Ownership diffs of the account addresses
      */
-    assets_ownership_diff: Record<string, Array<StellarSimulationResponse.AssetsOwnershipDiff>>;
+    assets_ownership_diff: Record<string, Array<StellarSimulationResult.AssetsOwnershipDiff>>;
 
     status: 'Success';
 
     /**
      * Details of addresses involved in the transaction
      */
-    address_details?: Array<StellarSimulationResponse.AddressDetail>;
+    address_details?: Array<StellarSimulationResult.AddressDetail>;
 
     /**
      * Mapping between the address of an account to the assets diff during the
@@ -228,9 +228,9 @@ export namespace StellarTransactionScanResponse {
     assets_diffs?: Record<
       string,
       Array<
-        | StellarSimulationResponse.StellarLegacyAssetDiff
-        | StellarSimulationResponse.StellarNativeAssetDiff
-        | StellarSimulationResponse.StellarContractAssetDiff
+        | StellarSimulationResult.StellarLegacyAssetDiff
+        | StellarSimulationResult.StellarNativeAssetDiff
+        | StellarSimulationResult.StellarContractAssetDiff
       >
     >;
 
@@ -241,13 +241,13 @@ export namespace StellarTransactionScanResponse {
     exposures?: Record<
       string,
       Array<
-        | StellarSimulationResponse.StellarLegacyAssetExposure
-        | StellarSimulationResponse.StellarNativeAssetExposure
+        | StellarSimulationResult.StellarLegacyAssetExposure
+        | StellarSimulationResult.StellarNativeAssetExposure
       >
     >;
   }
 
-  export namespace StellarSimulationResponse {
+  export namespace StellarSimulationResult {
     /**
      * Summary of the actions and asset transfers that were made by the requested
      * account address
