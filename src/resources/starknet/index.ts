@@ -8,6 +8,7 @@ export {
   type StarknetErc20Diff,
   type StarknetErc721Details,
   type StarknetErc721Diff,
+  type StarknetTransactionScanRequest,
   type StarknetTransactionScanResponse,
 } from './starknet';
 export { Transaction, type TransactionScanParams } from './transaction';
