@@ -199,6 +199,16 @@ Methods:
 - <code title="post /v0/site/report">client.site.<a href="./src/resources/site.ts">report</a>({ ...params }) -> unknown</code>
 - <code title="post /v0/site/scan">client.site.<a href="./src/resources/site.ts">scan</a>({ ...params }) -> SiteScanResponse</code>
 
+# Scan
+
+Types:
+
+- <code><a href="./src/resources/scan.ts">ScanStatusResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/scan/status/">client.scan.<a href="./src/resources/scan.ts">status</a>({ ...params }) -> unknown</code>
+
 # Token
 
 Types:
