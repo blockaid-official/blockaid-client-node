@@ -201,14 +201,6 @@ Methods:
 
 # Scan
 
-Types:
-
-- <code><a href="./src/resources/scan.ts">ScanStatusResponse</a></code>
-
-Methods:
-
-- <code title="post /v0/scan/status/">client.scan.<a href="./src/resources/scan.ts">status</a>({ ...params }) -> unknown</code>
-
 # Token
 
 Types:
