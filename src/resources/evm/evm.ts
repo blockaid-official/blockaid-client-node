@@ -3,12 +3,33 @@
 import { APIResource } from '../../resource';
 import * as EvmAPI from './evm';
 import * as JsonRpcAPI from './json-rpc';
+import { JsonRpc, JsonRpcScanParams } from './json-rpc';
 import * as PostTransactionAPI from './post-transaction';
+import {
+  PostTransaction,
+  PostTransactionReportParams,
+  PostTransactionReportResponse,
+  PostTransactionScanParams,
+} from './post-transaction';
 import * as PostTransactionBulkAPI from './post-transaction-bulk';
+import {
+  PostTransactionBulk,
+  PostTransactionBulkScanParams,
+  PostTransactionBulkScanResponse,
+} from './post-transaction-bulk';
 import * as TransactionAPI from './transaction';
+import {
+  Transaction,
+  TransactionReportParams,
+  TransactionReportResponse,
+  TransactionScanParams,
+} from './transaction';
 import * as TransactionBulkAPI from './transaction-bulk';
+import { TransactionBulk, TransactionBulkScanParams, TransactionBulkScanResponse } from './transaction-bulk';
 import * as TransactionRawAPI from './transaction-raw';
+import { TransactionRaw, TransactionRawScanParams } from './transaction-raw';
 import * as UserOperationAPI from './user-operation';
+import { UserOperation, UserOperationScanParams } from './user-operation';
 
 export class Evm extends APIResource {
   jsonRpc: JsonRpcAPI.JsonRpc = new JsonRpcAPI.JsonRpc(this._client);
@@ -19,181 +40,6 @@ export class Evm extends APIResource {
   postTransaction: PostTransactionAPI.PostTransaction = new PostTransactionAPI.PostTransaction(this._client);
   postTransactionBulk: PostTransactionBulkAPI.PostTransactionBulk =
     new PostTransactionBulkAPI.PostTransactionBulk(this._client);
-}
-
-export type AddressAssetExposure =
-  | Erc20AddressAssetExposure
-  | Erc721AddressAssetExposure
-  | Erc1155AddressAssetExposure
-  | NonercAddressAssetExposure;
-
-export interface Erc20AddressAssetExposure {
-  /**
-   * description of the asset for the current diff
-   */
-  asset: Erc20TokenDetails;
-
-  /**
-   * dictionary of spender addresses where the exposure has changed during this
-   * transaction for the current address and asset
-   */
-  spenders: Record<string, Erc20Exposure>;
-}
-
-export interface Erc721AddressAssetExposure {
-  /**
-   * description of the asset for the current diff
-   */
-  asset: Erc721TokenDetails;
-
-  /**
-   * dictionary of spender addresses where the exposure has changed during this
-   * transaction for the current address and asset
-   */
-  spenders: Record<string, Erc721Exposure>;
-}
-
-export interface Erc1155AddressAssetExposure {
-  /**
-   * description of the asset for the current diff
-   */
-  asset: Erc1155TokenDetails;
-
-  /**
-   * dictionary of spender addresses where the exposure has changed during this
-   * transaction for the current address and asset
-   */
-  spenders: Record<string, Erc1155Exposure>;
-}
-
-export interface NonercAddressAssetExposure {
-  /**
-   * description of the asset for the current diff
-   */
-  asset: NonercTokenDetails;
-
-  /**
-   * dictionary of spender addresses where the exposure has changed during this
-   * transaction for the current address and asset
-   */
-  spenders: Record<string, NonercExposure>;
-}
-
-export type AssetDiff =
-  | Erc20AssetDiff
-  | Erc1155AssetDiff
-  | Erc721AssetDiff
-  | NativeAssetDiff
-  | NonercAssetDiff;
-
-export interface Erc20AssetDiff {
-  /**
-   * description of the asset for the current diff
-   */
-  asset: Erc20TokenDetails;
-
-  /**
-   * An enumeration.
-   */
-  asset_type: 'ERC20';
-
-  /**
-   * amount of the asset that was transferred to the address in this transaction
-   */
-  in: Array<Erc20Diff>;
-
-  /**
-   * amount of the asset that was transferred from the address in this transaction
-   */
-  out: Array<Erc20Diff>;
-}
-
-export interface Erc1155AssetDiff {
-  /**
-   * description of the asset for the current diff
-   */
-  asset: Erc1155TokenDetails;
-
-  /**
-   * An enumeration.
-   */
-  asset_type: 'ERC1155';
-
-  /**
-   * amount of the asset that was transferred to the address in this transaction
-   */
-  in: Array<Erc1155Diff>;
-
-  /**
-   * amount of the asset that was transferred from the address in this transaction
-   */
-  out: Array<Erc1155Diff>;
-}
-
-export interface Erc721AssetDiff {
-  /**
-   * description of the asset for the current diff
-   */
-  asset: Erc721TokenDetails;
-
-  /**
-   * An enumeration.
-   */
-  asset_type: 'ERC721';
-
-  /**
-   * amount of the asset that was transferred to the address in this transaction
-   */
-  in: Array<Erc721Diff>;
-
-  /**
-   * amount of the asset that was transferred from the address in this transaction
-   */
-  out: Array<Erc721Diff>;
-}
-
-export interface NativeAssetDiff {
-  /**
-   * description of the asset for the current diff
-   */
-  asset: NativeAssetDetails;
-
-  /**
-   * An enumeration.
-   */
-  asset_type: 'NATIVE';
-
-  /**
-   * amount of the asset that was transferred to the address in this transaction
-   */
-  in: Array<NativeDiff>;
-
-  /**
-   * amount of the asset that was transferred from the address in this transaction
-   */
-  out: Array<NativeDiff>;
-}
-
-export interface NonercAssetDiff {
-  /**
-   * description of the asset for the current diff
-   */
-  asset: NonercTokenDetails;
-
-  /**
-   * An enumeration.
-   */
-  asset_type: 'NONERC';
-
-  /**
-   * amount of the asset that was transferred to the address in this transaction
-   */
-  in: Array<NonercDiff>;
-
-  /**
-   * amount of the asset that was transferred from the address in this transaction
-   */
-  out: Array<NonercDiff>;
 }
 
 export interface Erc1155Diff {
@@ -230,7 +76,7 @@ export interface Erc1155Diff {
 }
 
 export interface Erc1155Exposure {
-  exposure: Array<Erc1155Diff>;
+  exposure: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
 
   /**
    * boolean indicates whether an is_approved_for_all function was used (missing in
@@ -300,7 +146,7 @@ export interface Erc20Exposure {
    */
   approval: string;
 
-  exposure: Array<Erc20Diff>;
+  exposure: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
 
   /**
    * the expiration time of the permit2 protocol
@@ -374,7 +220,7 @@ export interface Erc721Diff {
 }
 
 export interface Erc721Exposure {
-  exposure: Array<Erc721Diff>;
+  exposure: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
 
   /**
    * boolean indicates whether an is_approved_for_all function was used (missing in
@@ -413,21 +259,6 @@ export interface Erc721TokenDetails {
    * asset's symbol name
    */
   symbol?: string;
-}
-
-export interface NonercExposure {
-  /**
-   * the amount that was asked in the approval request for this spender from the
-   * current address and asset
-   */
-  approval: number;
-
-  exposure: Array<NonercDiff>;
-
-  /**
-   * user friendly description of the approval
-   */
-  summary?: string;
 }
 
 export interface Metadata {
@@ -511,27 +342,6 @@ export interface NonercTokenDetails {
   symbol?: string;
 }
 
-export interface NonercDiff {
-  /**
-   * value before divided by decimal, that was transferred from this address
-   */
-  raw_value: string;
-
-  /**
-   * user friendly description of the asset transfer
-   */
-  summary?: string;
-
-  /**
-   * value after divided by decimals, that was transferred from this address
-   */
-  value?: string;
-}
-
-export type TransactionSimulationResponse = TransactionSimulation | TransactionSimulationError;
-
-export type TransactionValidationResponse = TransactionValidation | TransactionValidationError;
-
 /**
  * The chain name
  */
@@ -591,9 +401,9 @@ export interface TransactionScanResponse {
     | TransactionScanResponse.TransactionScanGasEstimation
     | TransactionScanResponse.TransactionScanGasEstimationError;
 
-  simulation?: TransactionSimulationResponse;
+  simulation?: TransactionSimulation | TransactionSimulationError;
 
-  validation?: TransactionValidationResponse;
+  validation?: TransactionValidation | TransactionValidationError;
 }
 
 export namespace TransactionScanResponse {
@@ -665,7 +475,8 @@ export type TransactionScanSupportedChain =
   | 'worldchain'
   | 'soneium-minato'
   | 'ronin'
-  | 'apechain';
+  | 'apechain'
+  | 'zero-network';
 
 export interface TransactionSimulation {
   /**
@@ -685,14 +496,29 @@ export interface TransactionSimulation {
    * dictionary describes the assets differences as a result of this transaction for
    * every involved address
    */
-  assets_diffs: Record<string, Array<AssetDiff>>;
+  assets_diffs: Record<
+    string,
+    Array<
+      | TransactionSimulation.Erc20AddressAssetDiff
+      | TransactionSimulation.Erc721AddressAssetDiff
+      | TransactionSimulation.Erc1155AddressAssetDiff
+      | TransactionSimulation.NativeAddressAssetDiff
+    >
+  >;
 
   /**
    * dictionary describes the exposure differences as a result of this transaction
    * for every involved address (as a result of any approval / setApproval / permit
    * function)
    */
-  exposures: Record<string, Array<AddressAssetExposure>>;
+  exposures: Record<
+    string,
+    Array<
+      | TransactionSimulation.Erc20AddressExposure
+      | TransactionSimulation.Erc721AddressExposure
+      | TransactionSimulation.Erc1155AddressExposure
+    >
+  >;
 
   /**
    * A string indicating if the simulation was successful or not.
@@ -715,7 +541,14 @@ export interface TransactionSimulation {
    * Describes the state differences as a result of this transaction for every
    * involved address
    */
-  contract_management?: Record<string, Array<TransactionSimulation.ContractManagement>>;
+  contract_management?: Record<
+    string,
+    Array<
+      | TransactionSimulation.ProxyUpgradeManagement
+      | TransactionSimulation.OwnershipChangeManagement
+      | TransactionSimulation.ModulesChangeManagement
+    >
+  >;
 
   /**
    * The parameters of the transaction that was simulated.
@@ -733,12 +566,21 @@ export namespace TransactionSimulation {
     /**
      * All assets diffs related to the account address
      */
-    assets_diffs: Array<AccountSummaryAssetsDiff>;
+    assets_diffs: Array<
+      | AccountSummary.Erc20AddressAssetBalanceChangeDiff
+      | AccountSummary.Erc721AddressAssetBalanceChangeDiff
+      | AccountSummary.Erc1155AddressAssetBalanceChangeDiff
+      | AccountSummary.NativeAddressAssetBalanceChangeDiff
+    >;
 
     /**
      * All assets exposures related to the account address
      */
-    exposures: Array<EvmAPI.AddressAssetExposure>;
+    exposures: Array<
+      | AccountSummary.Erc20AddressExposure
+      | AccountSummary.Erc721AddressExposure
+      | AccountSummary.Erc1155AddressExposure
+    >;
 
     /**
      * Total usd diff related to the account address
@@ -749,71 +591,472 @@ export namespace TransactionSimulation {
      * Total usd exposure related to the account address
      */
     total_usd_exposure: Record<string, string>;
+
+    /**
+     * All assets traces related to the account address
+     */
+    traces: Array<
+      | AccountSummary.Erc20AssetTrace
+      | AccountSummary.Erc721AssetTrace
+      | AccountSummary.Erc1155AssetTrace
+      | AccountSummary.NativeAssetTrace
+      | AccountSummary.Erc20ExposureTrace
+      | AccountSummary.Erc721ExposureTrace
+      | AccountSummary.Erc1155ExposureTrace
+    >;
   }
 
-  export type AccountSummaryAssetsDiff = AssetDiff & {
-    /**
-     * shows the balance before making the transaction and after
-     */
-    balance_changes?: AccountSummaryAssetsDiff.BalanceChanges;
-  };
-
-  export namespace AccountSummaryAssetsDiff {
-    /**
-     * shows the balance before making the transaction and after
-     */
-    export interface BalanceChanges {
+  export namespace AccountSummary {
+    export interface Erc20AddressAssetBalanceChangeDiff {
       /**
-       * balance of the account after making the transaction
+       * description of the asset for the current diff
        */
-      after: BalanceChanges.After;
+      asset: EvmAPI.Erc20TokenDetails | EvmAPI.NonercTokenDetails;
 
       /**
-       * balance of the account before making the transaction
+       * type of the asset for the current diff
        */
-      before: BalanceChanges.Before;
+      asset_type: 'ERC20';
+
+      /**
+       * amount of the asset that was transferred to the address in this transaction
+       */
+      in: Array<EvmAPI.Erc20Diff>;
+
+      /**
+       * amount of the asset that was transferred from the address in this transaction
+       */
+      out: Array<EvmAPI.Erc20Diff>;
+
+      /**
+       * shows the balance before making the transaction and after
+       */
+      balance_changes?: Erc20AddressAssetBalanceChangeDiff.BalanceChanges;
     }
 
-    export namespace BalanceChanges {
+    export namespace Erc20AddressAssetBalanceChangeDiff {
       /**
-       * balance of the account after making the transaction
+       * shows the balance before making the transaction and after
        */
-      export interface After {
+      export interface BalanceChanges {
         /**
-         * value before divided by decimal, that was transferred from this address
+         * balance of the account after making the transaction
          */
+        after: EvmAPI.Erc20Diff;
+
+        /**
+         * balance of the account before making the transaction
+         */
+        before: EvmAPI.Erc20Diff;
+      }
+    }
+
+    export interface Erc721AddressAssetBalanceChangeDiff {
+      /**
+       * description of the asset for the current diff
+       */
+      asset: EvmAPI.Erc721TokenDetails | EvmAPI.NonercTokenDetails;
+
+      /**
+       * type of the asset for the current diff
+       */
+      asset_type: 'ERC721';
+
+      /**
+       * amount of the asset that was transferred to the address in this transaction
+       */
+      in: Array<EvmAPI.Erc721Diff>;
+
+      /**
+       * amount of the asset that was transferred from the address in this transaction
+       */
+      out: Array<EvmAPI.Erc721Diff>;
+
+      /**
+       * shows the balance before making the transaction and after
+       */
+      balance_changes?: Erc721AddressAssetBalanceChangeDiff.BalanceChanges;
+    }
+
+    export namespace Erc721AddressAssetBalanceChangeDiff {
+      /**
+       * shows the balance before making the transaction and after
+       */
+      export interface BalanceChanges {
+        /**
+         * balance of the account after making the transaction
+         */
+        after: EvmAPI.Erc721Diff;
+
+        /**
+         * balance of the account before making the transaction
+         */
+        before: EvmAPI.Erc721Diff;
+      }
+    }
+
+    export interface Erc1155AddressAssetBalanceChangeDiff {
+      /**
+       * description of the asset for the current diff
+       */
+      asset: EvmAPI.Erc1155TokenDetails | EvmAPI.NonercTokenDetails;
+
+      /**
+       * type of the asset for the current diff
+       */
+      asset_type: 'ERC1155';
+
+      /**
+       * amount of the asset that was transferred to the address in this transaction
+       */
+      in: Array<EvmAPI.Erc1155Diff>;
+
+      /**
+       * amount of the asset that was transferred from the address in this transaction
+       */
+      out: Array<EvmAPI.Erc1155Diff>;
+
+      /**
+       * shows the balance before making the transaction and after
+       */
+      balance_changes?: Erc1155AddressAssetBalanceChangeDiff.BalanceChanges;
+    }
+
+    export namespace Erc1155AddressAssetBalanceChangeDiff {
+      /**
+       * shows the balance before making the transaction and after
+       */
+      export interface BalanceChanges {
+        /**
+         * balance of the account after making the transaction
+         */
+        after: EvmAPI.Erc1155Diff;
+
+        /**
+         * balance of the account before making the transaction
+         */
+        before: EvmAPI.Erc1155Diff;
+      }
+    }
+
+    export interface NativeAddressAssetBalanceChangeDiff {
+      /**
+       * description of the asset for the current diff
+       */
+      asset: EvmAPI.NativeAssetDetails;
+
+      /**
+       * type of the asset for the current diff
+       */
+      asset_type: 'NATIVE';
+
+      /**
+       * amount of the asset that was transferred to the address in this transaction
+       */
+      in: Array<EvmAPI.NativeDiff>;
+
+      /**
+       * amount of the asset that was transferred from the address in this transaction
+       */
+      out: Array<EvmAPI.NativeDiff>;
+
+      /**
+       * shows the balance before making the transaction and after
+       */
+      balance_changes?: NativeAddressAssetBalanceChangeDiff.BalanceChanges;
+    }
+
+    export namespace NativeAddressAssetBalanceChangeDiff {
+      /**
+       * shows the balance before making the transaction and after
+       */
+      export interface BalanceChanges {
+        /**
+         * balance of the account after making the transaction
+         */
+        after: EvmAPI.NativeDiff;
+
+        /**
+         * balance of the account before making the transaction
+         */
+        before: EvmAPI.NativeDiff;
+      }
+    }
+
+    export interface Erc20AddressExposure {
+      /**
+       * description of the asset for the current diff
+       */
+      asset: EvmAPI.Erc20TokenDetails | EvmAPI.NonercTokenDetails;
+
+      /**
+       * type of the asset for the current diff
+       */
+      asset_type: 'ERC20';
+
+      /**
+       * dictionary of spender addresses where the exposure has changed during this
+       * transaction for the current address and asset
+       */
+      spenders: Record<string, EvmAPI.Erc20Exposure>;
+    }
+
+    export interface Erc721AddressExposure {
+      /**
+       * description of the asset for the current diff
+       */
+      asset: EvmAPI.Erc721TokenDetails | EvmAPI.NonercTokenDetails;
+
+      /**
+       * type of the asset for the current diff
+       */
+      asset_type: 'ERC721';
+
+      /**
+       * dictionary of spender addresses where the exposure has changed during this
+       * transaction for the current address and asset
+       */
+      spenders: Record<string, EvmAPI.Erc721Exposure>;
+    }
+
+    export interface Erc1155AddressExposure {
+      /**
+       * description of the asset for the current diff
+       */
+      asset: EvmAPI.Erc1155TokenDetails | EvmAPI.NonercTokenDetails;
+
+      /**
+       * type of the asset for the current diff
+       */
+      asset_type: 'ERC1155';
+
+      /**
+       * dictionary of spender addresses where the exposure has changed during this
+       * transaction for the current address and asset
+       */
+      spenders: Record<string, EvmAPI.Erc1155Exposure>;
+    }
+
+    export interface Erc20AssetTrace {
+      /**
+       * Description of the asset in the trace
+       */
+      asset: EvmAPI.Erc20TokenDetails | EvmAPI.NonercTokenDetails;
+
+      /**
+       * The difference in value for the asset in the trace
+       */
+      diff: EvmAPI.Erc20Diff;
+
+      /**
+       * The address where the assets are moved from
+       */
+      from_address: string;
+
+      /**
+       * The address where the assets are moved to
+       */
+      to_address: string;
+
+      /**
+       * type of the trace
+       */
+      trace_type: 'AssetTrace';
+
+      /**
+       * The type of the model
+       */
+      type: 'ERC20AssetTrace';
+    }
+
+    export interface Erc721AssetTrace {
+      /**
+       * Description of the asset in the trace
+       */
+      asset: EvmAPI.Erc721TokenDetails | EvmAPI.NonercTokenDetails;
+
+      /**
+       * The difference in value for the asset in the trace
+       */
+      diff: EvmAPI.Erc721Diff;
+
+      /**
+       * The address where the assets are moved from
+       */
+      from_address: string;
+
+      /**
+       * The address where the assets are moved to
+       */
+      to_address: string;
+
+      /**
+       * type of the trace
+       */
+      trace_type: 'AssetTrace';
+
+      /**
+       * The type of the model
+       */
+      type: 'ERC721AssetTrace';
+    }
+
+    export interface Erc1155AssetTrace {
+      /**
+       * Description of the asset in the trace
+       */
+      asset: EvmAPI.Erc1155TokenDetails | EvmAPI.NonercTokenDetails;
+
+      /**
+       * The difference in value for the asset in the trace
+       */
+      diff: EvmAPI.Erc1155Diff;
+
+      /**
+       * The address where the assets are moved from
+       */
+      from_address: string;
+
+      /**
+       * The address where the assets are moved to
+       */
+      to_address: string;
+
+      /**
+       * type of the trace
+       */
+      trace_type: 'AssetTrace';
+
+      /**
+       * The type of the model
+       */
+      type: 'ERC1155AssetTrace';
+    }
+
+    export interface NativeAssetTrace {
+      /**
+       * Description of the asset in the trace
+       */
+      asset: EvmAPI.NativeAssetDetails;
+
+      /**
+       * The difference in value for the asset in the trace
+       */
+      diff: EvmAPI.NativeDiff;
+
+      /**
+       * The address where the assets are moved from
+       */
+      from_address: string;
+
+      /**
+       * The address where the assets are moved to
+       */
+      to_address: string;
+
+      /**
+       * type of the trace
+       */
+      trace_type: 'AssetTrace';
+
+      /**
+       * The type of the model
+       */
+      type: 'NativeAssetTrace';
+    }
+
+    export interface Erc20ExposureTrace {
+      exposed: Erc20ExposureTrace.Exposed;
+
+      /**
+       * The owner of the assets
+       */
+      owner: string;
+
+      /**
+       * The spender of the assets
+       */
+      spender: string;
+
+      /**
+       * type of the trace
+       */
+      trace_type: 'ExposureTrace';
+
+      /**
+       * The type of the model
+       */
+      type: 'ERC20ExposureTrace';
+    }
+
+    export namespace Erc20ExposureTrace {
+      export interface Exposed {
         raw_value: string;
 
-        /**
-         * usd equal of the asset that was transferred from this address
-         */
-        usd_price?: string;
+        usd_price?: number;
 
-        /**
-         * value after divided by decimals, that was transferred from this address
-         */
-        value?: string;
+        value?: number;
       }
+    }
+
+    export interface Erc721ExposureTrace {
+      exposed: Erc721ExposureTrace.Exposed;
 
       /**
-       * balance of the account before making the transaction
+       * The owner of the assets
        */
-      export interface Before {
-        /**
-         * value before divided by decimal, that was transferred from this address
-         */
-        raw_value: string;
+      owner: string;
 
-        /**
-         * usd equal of the asset that was transferred from this address
-         */
-        usd_price?: string;
+      /**
+       * The spender of the assets
+       */
+      spender: string;
 
-        /**
-         * value after divided by decimals, that was transferred from this address
-         */
-        value?: string;
+      /**
+       * type of the trace
+       */
+      trace_type: 'ExposureTrace';
+
+      /**
+       * The type of the model
+       */
+      type: 'ERC721ExposureTrace';
+    }
+
+    export namespace Erc721ExposureTrace {
+      export interface Exposed {
+        amount: number;
+
+        token_id: string;
+
+        is_mint?: boolean;
+
+        logo_url?: string;
+
+        usd_price?: number;
       }
+    }
+
+    export interface Erc1155ExposureTrace {
+      /**
+       * The owner of the assets
+       */
+      owner: string;
+
+      /**
+       * The spender of the assets
+       */
+      spender: string;
+
+      /**
+       * type of the trace
+       */
+      trace_type: 'ExposureTrace';
+
+      /**
+       * The type of the model
+       */
+      type: 'ERC1155ExposureTrace';
     }
   }
 
@@ -834,51 +1077,243 @@ export namespace TransactionSimulation {
     name_tag?: string;
   }
 
-  export interface ContractManagement {
+  export interface Erc20AddressAssetDiff {
+    /**
+     * description of the asset for the current diff
+     */
+    asset: EvmAPI.Erc20TokenDetails | EvmAPI.NonercTokenDetails;
+
+    /**
+     * type of the asset for the current diff
+     */
+    asset_type: 'ERC20';
+
+    /**
+     * amount of the asset that was transferred to the address in this transaction
+     */
+    in: Array<EvmAPI.Erc20Diff>;
+
+    /**
+     * amount of the asset that was transferred from the address in this transaction
+     */
+    out: Array<EvmAPI.Erc20Diff>;
+  }
+
+  export interface Erc721AddressAssetDiff {
+    /**
+     * description of the asset for the current diff
+     */
+    asset: EvmAPI.Erc721TokenDetails | EvmAPI.NonercTokenDetails;
+
+    /**
+     * type of the asset for the current diff
+     */
+    asset_type: 'ERC721';
+
+    /**
+     * amount of the asset that was transferred to the address in this transaction
+     */
+    in: Array<EvmAPI.Erc721Diff>;
+
+    /**
+     * amount of the asset that was transferred from the address in this transaction
+     */
+    out: Array<EvmAPI.Erc721Diff>;
+  }
+
+  export interface Erc1155AddressAssetDiff {
+    /**
+     * description of the asset for the current diff
+     */
+    asset: EvmAPI.Erc1155TokenDetails | EvmAPI.NonercTokenDetails;
+
+    /**
+     * type of the asset for the current diff
+     */
+    asset_type: 'ERC1155';
+
+    /**
+     * amount of the asset that was transferred to the address in this transaction
+     */
+    in: Array<EvmAPI.Erc1155Diff>;
+
+    /**
+     * amount of the asset that was transferred from the address in this transaction
+     */
+    out: Array<EvmAPI.Erc1155Diff>;
+  }
+
+  export interface NativeAddressAssetDiff {
+    /**
+     * description of the asset for the current diff
+     */
+    asset: EvmAPI.NativeAssetDetails;
+
+    /**
+     * type of the asset for the current diff
+     */
+    asset_type: 'NATIVE';
+
+    /**
+     * amount of the asset that was transferred to the address in this transaction
+     */
+    in: Array<EvmAPI.NativeDiff>;
+
+    /**
+     * amount of the asset that was transferred from the address in this transaction
+     */
+    out: Array<EvmAPI.NativeDiff>;
+  }
+
+  export interface Erc20AddressExposure {
+    /**
+     * description of the asset for the current diff
+     */
+    asset: EvmAPI.Erc20TokenDetails | EvmAPI.NonercTokenDetails;
+
+    /**
+     * type of the asset for the current diff
+     */
+    asset_type: 'ERC20';
+
+    /**
+     * dictionary of spender addresses where the exposure has changed during this
+     * transaction for the current address and asset
+     */
+    spenders: Record<string, EvmAPI.Erc20Exposure>;
+  }
+
+  export interface Erc721AddressExposure {
+    /**
+     * description of the asset for the current diff
+     */
+    asset: EvmAPI.Erc721TokenDetails | EvmAPI.NonercTokenDetails;
+
+    /**
+     * type of the asset for the current diff
+     */
+    asset_type: 'ERC721';
+
+    /**
+     * dictionary of spender addresses where the exposure has changed during this
+     * transaction for the current address and asset
+     */
+    spenders: Record<string, EvmAPI.Erc721Exposure>;
+  }
+
+  export interface Erc1155AddressExposure {
+    /**
+     * description of the asset for the current diff
+     */
+    asset: EvmAPI.Erc1155TokenDetails | EvmAPI.NonercTokenDetails;
+
+    /**
+     * type of the asset for the current diff
+     */
+    asset_type: 'ERC1155';
+
+    /**
+     * dictionary of spender addresses where the exposure has changed during this
+     * transaction for the current address and asset
+     */
+    spenders: Record<string, EvmAPI.Erc1155Exposure>;
+  }
+
+  export interface ProxyUpgradeManagement {
     /**
      * The state after the transaction
      */
-    after:
-      | ContractManagement.AddressChange
-      | ContractManagement.OwnershipChange
-      | ContractManagement.ModulesChange;
+    after: ProxyUpgradeManagement.After;
 
     /**
      * The state before the transaction
      */
-    before:
-      | ContractManagement.AddressChange
-      | ContractManagement.OwnershipChange
-      | ContractManagement.ModulesChange;
+    before: ProxyUpgradeManagement.Before;
 
     /**
-     * An enumeration.
+     * The type of the state change
      */
-    type: 'PROXY_UPGRADE' | 'OWNERSHIP_CHANGE' | 'MODULE_CHANGE';
+    type: 'PROXY_UPGRADE';
   }
 
-  export namespace ContractManagement {
-    export interface AddressChange {
+  export namespace ProxyUpgradeManagement {
+    /**
+     * The state after the transaction
+     */
+    export interface After {
       address: string;
     }
 
-    export interface OwnershipChange {
+    /**
+     * The state before the transaction
+     */
+    export interface Before {
+      address: string;
+    }
+  }
+
+  export interface OwnershipChangeManagement {
+    /**
+     * The state after the transaction
+     */
+    after: OwnershipChangeManagement.After;
+
+    /**
+     * The state before the transaction
+     */
+    before: OwnershipChangeManagement.Before;
+
+    /**
+     * The type of the state change
+     */
+    type: 'OWNERSHIP_CHANGE';
+  }
+
+  export namespace OwnershipChangeManagement {
+    /**
+     * The state after the transaction
+     */
+    export interface After {
       owners: Array<string>;
     }
 
-    export interface ModulesChange {
+    /**
+     * The state before the transaction
+     */
+    export interface Before {
+      owners: Array<string>;
+    }
+  }
+
+  export interface ModulesChangeManagement {
+    /**
+     * The state after the transaction
+     */
+    after: ModulesChangeManagement.After;
+
+    /**
+     * The state before the transaction
+     */
+    before: ModulesChangeManagement.Before;
+
+    /**
+     * The type of the state change
+     */
+    type: 'MODULE_CHANGE';
+  }
+
+  export namespace ModulesChangeManagement {
+    /**
+     * The state after the transaction
+     */
+    export interface After {
       modules: Array<string>;
     }
 
-    export interface AddressChange {
-      address: string;
-    }
-
-    export interface OwnershipChange {
-      owners: Array<string>;
-    }
-
-    export interface ModulesChange {
+    /**
+     * The state before the transaction
+     */
+    export interface Before {
       modules: Array<string>;
     }
   }
@@ -1051,53 +1486,69 @@ export interface UsdDiff {
   total: string;
 }
 
-export namespace Evm {
-  export import AddressAssetExposure = EvmAPI.AddressAssetExposure;
-  export import AssetDiff = EvmAPI.AssetDiff;
-  export import Erc1155AddressAssetExposure = EvmAPI.Erc1155AddressAssetExposure;
-  export import Erc1155Diff = EvmAPI.Erc1155Diff;
-  export import Erc1155Exposure = EvmAPI.Erc1155Exposure;
-  export import Erc1155TokenDetails = EvmAPI.Erc1155TokenDetails;
-  export import Erc20AddressAssetExposure = EvmAPI.Erc20AddressAssetExposure;
-  export import Erc20Diff = EvmAPI.Erc20Diff;
-  export import Erc20Exposure = EvmAPI.Erc20Exposure;
-  export import Erc20TokenDetails = EvmAPI.Erc20TokenDetails;
-  export import Erc721AddressAssetExposure = EvmAPI.Erc721AddressAssetExposure;
-  export import Erc721Diff = EvmAPI.Erc721Diff;
-  export import Erc721Exposure = EvmAPI.Erc721Exposure;
-  export import Erc721TokenDetails = EvmAPI.Erc721TokenDetails;
-  export import Metadata = EvmAPI.Metadata;
-  export import NativeAssetDetails = EvmAPI.NativeAssetDetails;
-  export import NativeDiff = EvmAPI.NativeDiff;
-  export import NonercAddressAssetExposure = EvmAPI.NonercAddressAssetExposure;
-  export import NonercDiff = EvmAPI.NonercDiff;
-  export import NonercExposure = EvmAPI.NonercExposure;
-  export import NonercTokenDetails = EvmAPI.NonercTokenDetails;
-  export import TokenScanSupportedChain = EvmAPI.TokenScanSupportedChain;
-  export import TransactionScanFeature = EvmAPI.TransactionScanFeature;
-  export import TransactionScanResponse = EvmAPI.TransactionScanResponse;
-  export import TransactionScanSupportedChain = EvmAPI.TransactionScanSupportedChain;
-  export import TransactionSimulationResponse = EvmAPI.TransactionSimulationResponse;
-  export import TransactionSimulation = EvmAPI.TransactionSimulation;
-  export import TransactionSimulationError = EvmAPI.TransactionSimulationError;
-  export import TransactionValidationResponse = EvmAPI.TransactionValidationResponse;
-  export import TransactionValidation = EvmAPI.TransactionValidation;
-  export import TransactionValidationError = EvmAPI.TransactionValidationError;
-  export import UsdDiff = EvmAPI.UsdDiff;
-  export import JsonRpc = JsonRpcAPI.JsonRpc;
-  export import JsonRpcScanParams = JsonRpcAPI.JsonRpcScanParams;
-  export import Transaction = TransactionAPI.Transaction;
-  export import TransactionScanParams = TransactionAPI.TransactionScanParams;
-  export import TransactionBulk = TransactionBulkAPI.TransactionBulk;
-  export import TransactionBulkScanResponse = TransactionBulkAPI.TransactionBulkScanResponse;
-  export import TransactionBulkScanParams = TransactionBulkAPI.TransactionBulkScanParams;
-  export import TransactionRaw = TransactionRawAPI.TransactionRaw;
-  export import TransactionRawScanParams = TransactionRawAPI.TransactionRawScanParams;
-  export import UserOperation = UserOperationAPI.UserOperation;
-  export import UserOperationScanParams = UserOperationAPI.UserOperationScanParams;
-  export import PostTransaction = PostTransactionAPI.PostTransaction;
-  export import PostTransactionScanParams = PostTransactionAPI.PostTransactionScanParams;
-  export import PostTransactionBulk = PostTransactionBulkAPI.PostTransactionBulk;
-  export import PostTransactionBulkScanResponse = PostTransactionBulkAPI.PostTransactionBulkScanResponse;
-  export import PostTransactionBulkScanParams = PostTransactionBulkAPI.PostTransactionBulkScanParams;
+Evm.JsonRpc = JsonRpc;
+Evm.Transaction = Transaction;
+Evm.TransactionBulk = TransactionBulk;
+Evm.TransactionRaw = TransactionRaw;
+Evm.UserOperation = UserOperation;
+Evm.PostTransaction = PostTransaction;
+Evm.PostTransactionBulk = PostTransactionBulk;
+
+export declare namespace Evm {
+  export {
+    type Erc1155Diff as Erc1155Diff,
+    type Erc1155Exposure as Erc1155Exposure,
+    type Erc1155TokenDetails as Erc1155TokenDetails,
+    type Erc20Diff as Erc20Diff,
+    type Erc20Exposure as Erc20Exposure,
+    type Erc20TokenDetails as Erc20TokenDetails,
+    type Erc721Diff as Erc721Diff,
+    type Erc721Exposure as Erc721Exposure,
+    type Erc721TokenDetails as Erc721TokenDetails,
+    type Metadata as Metadata,
+    type NativeAssetDetails as NativeAssetDetails,
+    type NativeDiff as NativeDiff,
+    type NonercTokenDetails as NonercTokenDetails,
+    type TokenScanSupportedChain as TokenScanSupportedChain,
+    type TransactionScanFeature as TransactionScanFeature,
+    type TransactionScanResponse as TransactionScanResponse,
+    type TransactionScanSupportedChain as TransactionScanSupportedChain,
+    type TransactionSimulation as TransactionSimulation,
+    type TransactionSimulationError as TransactionSimulationError,
+    type TransactionValidation as TransactionValidation,
+    type TransactionValidationError as TransactionValidationError,
+    type UsdDiff as UsdDiff,
+  };
+
+  export { JsonRpc as JsonRpc, type JsonRpcScanParams as JsonRpcScanParams };
+
+  export {
+    Transaction as Transaction,
+    type TransactionReportResponse as TransactionReportResponse,
+    type TransactionReportParams as TransactionReportParams,
+    type TransactionScanParams as TransactionScanParams,
+  };
+
+  export {
+    TransactionBulk as TransactionBulk,
+    type TransactionBulkScanResponse as TransactionBulkScanResponse,
+    type TransactionBulkScanParams as TransactionBulkScanParams,
+  };
+
+  export { TransactionRaw as TransactionRaw, type TransactionRawScanParams as TransactionRawScanParams };
+
+  export { UserOperation as UserOperation, type UserOperationScanParams as UserOperationScanParams };
+
+  export {
+    PostTransaction as PostTransaction,
+    type PostTransactionReportResponse as PostTransactionReportResponse,
+    type PostTransactionReportParams as PostTransactionReportParams,
+    type PostTransactionScanParams as PostTransactionScanParams,
+  };
+
+  export {
+    PostTransactionBulk as PostTransactionBulk,
+    type PostTransactionBulkScanResponse as PostTransactionBulkScanResponse,
+    type PostTransactionBulkScanParams as PostTransactionBulkScanParams,
+  };
 }

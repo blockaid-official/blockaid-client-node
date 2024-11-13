@@ -2,26 +2,18 @@
 
 Types:
 
-- <code><a href="./src/resources/evm/evm.ts">AddressAssetExposure</a></code>
-- <code><a href="./src/resources/evm/evm.ts">AssetDiff</a></code>
-- <code><a href="./src/resources/evm/evm.ts">Erc1155AddressAssetExposure</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155Diff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155Exposure</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155TokenDetails</a></code>
-- <code><a href="./src/resources/evm/evm.ts">Erc20AddressAssetExposure</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc20Diff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc20Exposure</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc20TokenDetails</a></code>
-- <code><a href="./src/resources/evm/evm.ts">Erc721AddressAssetExposure</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc721Diff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc721Exposure</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc721TokenDetails</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Metadata</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NativeAssetDetails</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NativeDiff</a></code>
-- <code><a href="./src/resources/evm/evm.ts">NonercAddressAssetExposure</a></code>
-- <code><a href="./src/resources/evm/evm.ts">NonercDiff</a></code>
-- <code><a href="./src/resources/evm/evm.ts">NonercExposure</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NonercTokenDetails</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TokenScanSupportedChain</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionScanFeature</a></code>
@@ -109,8 +101,8 @@ Types:
 - <code><a href="./src/resources/solana/solana.ts">DelegatedAssetDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">FungibleMintAccountDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">InstructionErrorDetails</a></code>
-- <code><a href="./src/resources/solana/solana.ts">NativeSolDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">NativeSolDiffSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">NativeDetailsSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">NativeDiffSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">NativeSolOwnershipDiffSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">NonFungibleMintAccountDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">PdaAccountSchema</a></code>
@@ -121,7 +113,7 @@ Types:
 - <code><a href="./src/resources/solana/solana.ts">SplNonFungibleTokenDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">SplNonFungibleTokenDiffSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">SplTokenOwnershipDiffSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">StakedSolAssetDetailsSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">StakedAssetDetailsSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">StakedSolWithdrawAuthorityDiffSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">SuccessfulSimulationResultSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">SystemAccountDetailsSchema</a></code>
@@ -147,8 +139,11 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/stellar/stellar.ts">StellarAssetContractDetailsSchema</a></code>
-- <code><a href="./src/resources/stellar/stellar.ts">StellarAssetTransferDetailsSchema</a></code>
+- <code><a href="./src/resources/stellar/stellar.ts">StellarAssetContractDetails</a></code>
+- <code><a href="./src/resources/stellar/stellar.ts">StellarAssetTransferDetails</a></code>
+- <code><a href="./src/resources/stellar/stellar.ts">StellarLegacyAssetDetails</a></code>
+- <code><a href="./src/resources/stellar/stellar.ts">StellarNativeAssetDetails</a></code>
+- <code><a href="./src/resources/stellar/stellar.ts">StellarSingleAssetExposure</a></code>
 - <code><a href="./src/resources/stellar/stellar.ts">StellarTransactionScanRequest</a></code>
 - <code><a href="./src/resources/stellar/stellar.ts">StellarTransactionScanResponse</a></code>
 
@@ -160,33 +155,35 @@ Methods:
 
 # Bitcoin
 
-## Transaction
-
 Types:
 
-- <code><a href="./src/resources/bitcoin/transaction.ts">TransactionScanResponse</a></code>
+- <code><a href="./src/resources/bitcoin/bitcoin.ts">BitcoinTransactionScanRequest</a></code>
+- <code><a href="./src/resources/bitcoin/bitcoin.ts">BitcoinTransactionScanResponse</a></code>
+
+## Transaction
 
 Methods:
 
-- <code title="post /v0/bitcoin/transaction/scan">client.bitcoin.transaction.<a href="./src/resources/bitcoin/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+- <code title="post /v0/bitcoin/transaction/scan">client.bitcoin.transaction.<a href="./src/resources/bitcoin/transaction.ts">scan</a>({ ...params }) -> BitcoinTransactionScanResponse</code>
 
 # Starknet
 
 Types:
 
+- <code><a href="./src/resources/starknet/starknet.ts">StarknetErc1155Details</a></code>
 - <code><a href="./src/resources/starknet/starknet.ts">StarknetErc1155Diff</a></code>
+- <code><a href="./src/resources/starknet/starknet.ts">StarknetErc20Details</a></code>
 - <code><a href="./src/resources/starknet/starknet.ts">StarknetErc20Diff</a></code>
+- <code><a href="./src/resources/starknet/starknet.ts">StarknetErc721Details</a></code>
 - <code><a href="./src/resources/starknet/starknet.ts">StarknetErc721Diff</a></code>
+- <code><a href="./src/resources/starknet/starknet.ts">StarknetTransactionScanRequest</a></code>
+- <code><a href="./src/resources/starknet/starknet.ts">StarknetTransactionScanResponse</a></code>
 
 ## Transaction
 
-Types:
-
-- <code><a href="./src/resources/starknet/transaction.ts">TransactionScanResponse</a></code>
-
 Methods:
 
-- <code title="post /v0/starknet/transaction/scan">client.starknet.transaction.<a href="./src/resources/starknet/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+- <code title="post /v0/starknet/transaction/scan">client.starknet.transaction.<a href="./src/resources/starknet/transaction.ts">scan</a>({ ...params }) -> StarknetTransactionScanResponse</code>
 
 # Site
 

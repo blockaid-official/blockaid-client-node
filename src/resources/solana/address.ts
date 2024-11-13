@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import * as AddressAPI from './address';
 import * as SolanaAPI from './solana';
 
 export class Address extends APIResource {
@@ -42,6 +41,6 @@ export namespace AddressScanParams {
   }
 }
 
-export namespace Address {
-  export import AddressScanParams = AddressAPI.AddressScanParams;
+export declare namespace Address {
+  export { type AddressScanParams as AddressScanParams };
 }

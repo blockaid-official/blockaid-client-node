@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import * as TransactionAPI from './transaction';
 import * as StellarAPI from './stellar';
 
 export class Transaction extends APIResource {
@@ -37,8 +36,9 @@ export interface TransactionScanParams {
   /**
    * List of options to include in the response
    *
-   * - `simulation`: Include simulation output in the response
-   * - `validation`: Include security validation of the transaction in the response
+   * - `Options.validation`: Include Options.validation output in the response
+   *
+   * - `Options.simulation`: Include Options.simulation output in the response
    */
   options?: Array<'validation' | 'simulation'>;
 }
@@ -60,10 +60,10 @@ export namespace TransactionScanParams {
     /**
      * Metadata for in-app requests
      */
-    type: 'in_app';
+    type?: 'in_app';
   }
 }
 
-export namespace Transaction {
-  export import TransactionScanParams = TransactionAPI.TransactionScanParams;
+export declare namespace Transaction {
+  export { type TransactionScanParams as TransactionScanParams };
 }

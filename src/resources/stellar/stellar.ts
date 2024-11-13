@@ -3,12 +3,13 @@
 import { APIResource } from '../../resource';
 import * as StellarAPI from './stellar';
 import * as TransactionAPI from './transaction';
+import { Transaction, TransactionScanParams } from './transaction';
 
 export class Stellar extends APIResource {
   transaction: TransactionAPI.Transaction = new TransactionAPI.Transaction(this._client);
 }
 
-export interface StellarAssetContractDetailsSchema {
+export interface StellarAssetContractDetails {
   /**
    * Address of the asset's contract
    */
@@ -30,26 +31,108 @@ export interface StellarAssetContractDetailsSchema {
   type?: 'CONTRACT';
 }
 
-export interface StellarAssetTransferDetailsSchema {
+export interface StellarAssetTransferDetails {
   /**
    * Raw value of the transfer
    */
   raw_value: number;
 
   /**
+   * USD price of the asset
+   */
+  usd_price: string;
+
+  /**
    * Value of the transfer
    */
-  value: number;
+  value: string;
 
   /**
    * Summarized description of the transfer
    */
   summary?: string | null;
+}
+
+export interface StellarLegacyAssetDetails {
+  /**
+   * Asset code
+   */
+  code: string;
 
   /**
-   * USD price of the asset
+   * Asset issuer address
    */
-  usd_price?: number;
+  issuer: string;
+
+  /**
+   * Organization name
+   */
+  org_name: string;
+
+  /**
+   * Organization URL
+   */
+  org_url: string;
+
+  /**
+   * Type of the asset (`ASSET`)
+   */
+  type?: 'ASSET';
+}
+
+export interface StellarNativeAssetDetails {
+  /**
+   * Asset code
+   */
+  code?: 'XLM';
+
+  /**
+   * Type of the asset (`NATIVE`)
+   */
+  type?: 'NATIVE';
+}
+
+export interface StellarSingleAssetExposure {
+  /**
+   * Approval value of the ERC20 token
+   */
+  approval: string;
+
+  exposure: Array<StellarSingleAssetExposure.Exposure>;
+
+  /**
+   * Expiration date of the approval
+   */
+  expiration?: string | null;
+
+  /**
+   * Summarized description of the exposure
+   */
+  summary?: string | null;
+}
+
+export namespace StellarSingleAssetExposure {
+  export interface Exposure {
+    /**
+     * Raw value of the transfer
+     */
+    raw_value: number;
+
+    /**
+     * USD price of the asset
+     */
+    usd_price: string;
+
+    /**
+     * Value of the transfer
+     */
+    value: string;
+
+    /**
+     * Summarized description of the transfer
+     */
+    summary?: string | null;
+  }
 }
 
 export interface StellarTransactionScanRequest {
@@ -72,8 +155,9 @@ export interface StellarTransactionScanRequest {
   /**
    * List of options to include in the response
    *
-   * - `simulation`: Include simulation output in the response
-   * - `validation`: Include security validation of the transaction in the response
+   * - `Options.validation`: Include Options.validation output in the response
+   *
+   * - `Options.simulation`: Include Options.simulation output in the response
    */
   options?: Array<'validation' | 'simulation'>;
 }
@@ -95,7 +179,7 @@ export namespace StellarTransactionScanRequest {
     /**
      * Metadata for in-app requests
      */
-    type: 'in_app';
+    type?: 'in_app';
   }
 }
 
@@ -104,7 +188,7 @@ export interface StellarTransactionScanResponse {
    * Simulation result; Only present if simulation option is included in the request
    */
   simulation?:
-    | StellarTransactionScanResponse.StellarSimulationResultSchema
+    | StellarTransactionScanResponse.StellarSimulationResult
     | StellarTransactionScanResponse.StellarSimulationErrorSchema
     | null;
 
@@ -112,46 +196,58 @@ export interface StellarTransactionScanResponse {
    * Validation result; Only present if validation option is included in the request
    */
   validation?:
-    | StellarTransactionScanResponse.StellarValidationResultSchema
+    | StellarTransactionScanResponse.StellarValidationResult
     | StellarTransactionScanResponse.StellarValidationErrorSchema
     | null;
 }
 
 export namespace StellarTransactionScanResponse {
-  export interface StellarSimulationResultSchema {
+  export interface StellarSimulationResult {
     /**
      * Summary of the actions and asset transfers that were made by the requested
      * account address
      */
-    account_summary: StellarSimulationResultSchema.AccountSummary;
+    account_summary: StellarSimulationResult.AccountSummary;
+
+    /**
+     * Ownership diffs of the account addresses
+     */
+    assets_ownership_diff: Record<string, Array<StellarSimulationResult.AssetsOwnershipDiff>>;
 
     status: 'Success';
 
     /**
      * Details of addresses involved in the transaction
      */
-    address_details?: Array<StellarSimulationResultSchema.AddressDetail>;
+    address_details?: Array<StellarSimulationResult.AddressDetail>;
 
     /**
      * Mapping between the address of an account to the assets diff during the
      * transaction
      */
-    assets_diffs?: Record<string, Array<StellarSimulationResultSchema.AssetsDiff>>;
-
-    /**
-     * Mapping between the address of an account to the ownership diff of the account
-     * during the transaction
-     */
-    assets_ownership_diff?: Record<string, Array<StellarSimulationResultSchema.AssetsOwnershipDiff>>;
+    assets_diffs?: Record<
+      string,
+      Array<
+        | StellarSimulationResult.StellarLegacyAssetDiff
+        | StellarSimulationResult.StellarNativeAssetDiff
+        | StellarSimulationResult.StellarContractAssetDiff
+      >
+    >;
 
     /**
      * Mapping between the address of an account to the exposure of the assets during
      * the transaction
      */
-    exposures?: Record<string, Array<StellarSimulationResultSchema.Exposure>>;
+    exposures?: Record<
+      string,
+      Array<
+        | StellarSimulationResult.StellarLegacyAssetExposure
+        | StellarSimulationResult.StellarNativeAssetExposure
+      >
+    >;
   }
 
-  export namespace StellarSimulationResultSchema {
+  export namespace StellarSimulationResult {
     /**
      * Summary of the actions and asset transfers that were made by the requested
      * account address
@@ -160,10 +256,12 @@ export namespace StellarTransactionScanResponse {
       /**
        * Exposures made by the requested account address
        */
-      account_exposures: Array<AccountSummary.AccountExposure>;
+      account_exposures: Array<
+        AccountSummary.StellarLegacyAssetExposure | AccountSummary.StellarNativeAssetExposure
+      >;
 
       /**
-       * Account ownerships diff of the requested account address
+       * Ownership diffs of the requested account address
        */
       account_ownerships_diff: Array<AccountSummary.AccountOwnershipsDiff>;
 
@@ -175,7 +273,11 @@ export namespace StellarTransactionScanResponse {
       /**
        * Assets diffs of the requested account address
        */
-      assets_diffs?: Array<AccountSummary.AssetsDiff>;
+      account_assets_diffs?: Array<
+        | AccountSummary.StellarLegacyAssetDiff
+        | AccountSummary.StellarNativeAssetDiff
+        | AccountSummary.StellarContractAssetDiff
+      >;
 
       /**
        * Total USD exposure for each of the spender addresses during the transaction
@@ -184,38 +286,22 @@ export namespace StellarTransactionScanResponse {
     }
 
     export namespace AccountSummary {
-      export interface AccountExposure {
-        asset: StellarAPI.StellarAssetContractDetailsSchema;
+      export interface StellarLegacyAssetExposure {
+        asset: StellarAPI.StellarLegacyAssetDetails;
 
         /**
-         * Mapping between the address of a Spender to the exposure of the asset during the
-         * transaction
+         * Mapping between the spender address and the exposure of the asset
          */
-        spenders?: Record<string, AccountExposure.Spenders>;
+        spenders?: Record<string, StellarAPI.StellarSingleAssetExposure>;
       }
 
-      export namespace AccountExposure {
-        export interface Spenders {
-          /**
-           * Raw value of the exposure
-           */
-          raw_value: number;
+      export interface StellarNativeAssetExposure {
+        asset: StellarAPI.StellarNativeAssetDetails;
 
-          /**
-           * USD value of the exposure
-           */
-          usd_price: number;
-
-          /**
-           * Value of the exposure
-           */
-          value: number;
-
-          /**
-           * Summarized description of the exposure
-           */
-          summary?: string | null;
-        }
+        /**
+         * Mapping between the spender address and the exposure of the asset
+         */
+        spenders?: Record<string, StellarAPI.StellarSingleAssetExposure>;
       }
 
       export interface AccountOwnershipsDiff {
@@ -229,7 +315,7 @@ export namespace StellarTransactionScanResponse {
          */
         pre_signers: Array<string>;
 
-        type: 'SET_OPTIONS';
+        type?: 'SET_OPTIONS';
       }
 
       /**
@@ -252,138 +338,61 @@ export namespace StellarTransactionScanResponse {
         total?: number;
       }
 
-      export interface AssetsDiff {
-        /**
-         * Asset involved in the transfer
-         */
-        asset:
-          | AssetsDiff.StellarLegacyAssetDetailsSchema
-          | AssetsDiff.StellarNativeAssetDetailsSchema
-          | StellarAPI.StellarAssetContractDetailsSchema;
+      export interface StellarLegacyAssetDiff {
+        asset: StellarAPI.StellarLegacyAssetDetails;
 
         /**
-         * Incoming transfers of the asset
+         * The type of the assets in this diff
          */
-        in?: StellarAPI.StellarAssetTransferDetailsSchema | null;
+        asset_type: string;
 
         /**
-         * Outgoing transfers of the asset
+         * Details of the incoming transfer
          */
-        out?: StellarAPI.StellarAssetTransferDetailsSchema | null;
+        in?: StellarAPI.StellarAssetTransferDetails | null;
+
+        /**
+         * Details of the outgoing transfer
+         */
+        out?: StellarAPI.StellarAssetTransferDetails | null;
       }
 
-      export namespace AssetsDiff {
-        export interface StellarLegacyAssetDetailsSchema {
-          /**
-           * Asset code
-           */
-          code: string;
-
-          /**
-           * Asset issuer address
-           */
-          issuer: string;
-
-          /**
-           * Organization name
-           */
-          org_name: string;
-
-          /**
-           * Organization URL
-           */
-          org_url: string;
-
-          /**
-           * Type of the asset (`ASSET`)
-           */
-          type?: 'ASSET';
-        }
-
-        export interface StellarNativeAssetDetailsSchema {
-          /**
-           * Asset code
-           */
-          code?: 'XLM';
-
-          /**
-           * Type of the asset (`NATIVE`)
-           */
-          type?: 'NATIVE';
-        }
-      }
-    }
-
-    export interface AddressDetail {
-      /**
-       * Encoded public key of the account
-       */
-      account_address: string;
-
-      /**
-       * Description of the account
-       */
-      description?: string | null;
-    }
-
-    export interface AssetsDiff {
-      /**
-       * Asset involved in the transfer
-       */
-      asset:
-        | AssetsDiff.StellarLegacyAssetDetailsSchema
-        | AssetsDiff.StellarNativeAssetDetailsSchema
-        | StellarAPI.StellarAssetContractDetailsSchema;
-
-      /**
-       * Incoming transfers of the asset
-       */
-      in?: StellarAPI.StellarAssetTransferDetailsSchema | null;
-
-      /**
-       * Outgoing transfers of the asset
-       */
-      out?: StellarAPI.StellarAssetTransferDetailsSchema | null;
-    }
-
-    export namespace AssetsDiff {
-      export interface StellarLegacyAssetDetailsSchema {
-        /**
-         * Asset code
-         */
-        code: string;
+      export interface StellarNativeAssetDiff {
+        asset: StellarAPI.StellarNativeAssetDetails;
 
         /**
-         * Asset issuer address
+         * The type of the assets in this diff
          */
-        issuer: string;
+        asset_type: string;
 
         /**
-         * Organization name
+         * Details of the incoming transfer
          */
-        org_name: string;
+        in?: StellarAPI.StellarAssetTransferDetails | null;
 
         /**
-         * Organization URL
+         * Details of the outgoing transfer
          */
-        org_url: string;
-
-        /**
-         * Type of the asset (`ASSET`)
-         */
-        type?: 'ASSET';
+        out?: StellarAPI.StellarAssetTransferDetails | null;
       }
 
-      export interface StellarNativeAssetDetailsSchema {
-        /**
-         * Asset code
-         */
-        code?: 'XLM';
+      export interface StellarContractAssetDiff {
+        asset: StellarAPI.StellarAssetContractDetails;
 
         /**
-         * Type of the asset (`NATIVE`)
+         * The type of the assets in this diff
          */
-        type?: 'NATIVE';
+        asset_type: string;
+
+        /**
+         * Details of the incoming transfer
+         */
+        in?: StellarAPI.StellarAssetTransferDetails | null;
+
+        /**
+         * Details of the outgoing transfer
+         */
+        out?: StellarAPI.StellarAssetTransferDetails | null;
       }
     }
 
@@ -398,41 +407,94 @@ export namespace StellarTransactionScanResponse {
        */
       pre_signers: Array<string>;
 
-      type: 'SET_OPTIONS';
+      type?: 'SET_OPTIONS';
     }
 
-    export interface Exposure {
-      asset: StellarAPI.StellarAssetContractDetailsSchema;
+    export interface AddressDetail {
+      /**
+       * Encoded public key of the account
+       */
+      account_address: unknown;
 
       /**
-       * Mapping between the address of a Spender to the exposure of the asset during the
-       * transaction
+       * Description of the account
        */
-      spenders?: Record<string, Exposure.Spenders>;
+      description?: string | null;
     }
 
-    export namespace Exposure {
-      export interface Spenders {
-        /**
-         * Raw value of the exposure
-         */
-        raw_value: number;
+    export interface StellarLegacyAssetDiff {
+      asset: StellarAPI.StellarLegacyAssetDetails;
 
-        /**
-         * USD value of the exposure
-         */
-        usd_price: number;
+      /**
+       * The type of the assets in this diff
+       */
+      asset_type: string;
 
-        /**
-         * Value of the exposure
-         */
-        value: number;
+      /**
+       * Details of the incoming transfer
+       */
+      in?: StellarAPI.StellarAssetTransferDetails | null;
 
-        /**
-         * Summarized description of the exposure
-         */
-        summary?: string | null;
-      }
+      /**
+       * Details of the outgoing transfer
+       */
+      out?: StellarAPI.StellarAssetTransferDetails | null;
+    }
+
+    export interface StellarNativeAssetDiff {
+      asset: StellarAPI.StellarNativeAssetDetails;
+
+      /**
+       * The type of the assets in this diff
+       */
+      asset_type: string;
+
+      /**
+       * Details of the incoming transfer
+       */
+      in?: StellarAPI.StellarAssetTransferDetails | null;
+
+      /**
+       * Details of the outgoing transfer
+       */
+      out?: StellarAPI.StellarAssetTransferDetails | null;
+    }
+
+    export interface StellarContractAssetDiff {
+      asset: StellarAPI.StellarAssetContractDetails;
+
+      /**
+       * The type of the assets in this diff
+       */
+      asset_type: string;
+
+      /**
+       * Details of the incoming transfer
+       */
+      in?: StellarAPI.StellarAssetTransferDetails | null;
+
+      /**
+       * Details of the outgoing transfer
+       */
+      out?: StellarAPI.StellarAssetTransferDetails | null;
+    }
+
+    export interface StellarLegacyAssetExposure {
+      asset: StellarAPI.StellarLegacyAssetDetails;
+
+      /**
+       * Mapping between the spender address and the exposure of the asset
+       */
+      spenders?: Record<string, StellarAPI.StellarSingleAssetExposure>;
+    }
+
+    export interface StellarNativeAssetExposure {
+      asset: StellarAPI.StellarNativeAssetDetails;
+
+      /**
+       * Mapping between the spender address and the exposure of the asset
+       */
+      spenders?: Record<string, StellarAPI.StellarSingleAssetExposure>;
     }
   }
 
@@ -445,7 +507,7 @@ export namespace StellarTransactionScanResponse {
     status: 'Error';
   }
 
-  export interface StellarValidationResultSchema {
+  export interface StellarValidationResult {
     /**
      * A textual classification that can be presented to the user explaining the
      * reason.
@@ -457,10 +519,7 @@ export namespace StellarTransactionScanResponse {
      */
     description: string;
 
-    /**
-     * A list of features about this transaction explaining the validation
-     */
-    features: Array<StellarValidationResultSchema.Feature>;
+    features: Array<StellarValidationResult.Feature>;
 
     /**
      * A textual description about the reasons the transaction was flagged with
@@ -476,7 +535,7 @@ export namespace StellarTransactionScanResponse {
     status: 'Success';
   }
 
-  export namespace StellarValidationResultSchema {
+  export namespace StellarValidationResult {
     export interface Feature {
       /**
        * Address the feature refers to
@@ -507,11 +566,18 @@ export namespace StellarTransactionScanResponse {
   }
 }
 
-export namespace Stellar {
-  export import StellarAssetContractDetailsSchema = StellarAPI.StellarAssetContractDetailsSchema;
-  export import StellarAssetTransferDetailsSchema = StellarAPI.StellarAssetTransferDetailsSchema;
-  export import StellarTransactionScanRequest = StellarAPI.StellarTransactionScanRequest;
-  export import StellarTransactionScanResponse = StellarAPI.StellarTransactionScanResponse;
-  export import Transaction = TransactionAPI.Transaction;
-  export import TransactionScanParams = TransactionAPI.TransactionScanParams;
+Stellar.Transaction = Transaction;
+
+export declare namespace Stellar {
+  export {
+    type StellarAssetContractDetails as StellarAssetContractDetails,
+    type StellarAssetTransferDetails as StellarAssetTransferDetails,
+    type StellarLegacyAssetDetails as StellarLegacyAssetDetails,
+    type StellarNativeAssetDetails as StellarNativeAssetDetails,
+    type StellarSingleAssetExposure as StellarSingleAssetExposure,
+    type StellarTransactionScanRequest as StellarTransactionScanRequest,
+    type StellarTransactionScanResponse as StellarTransactionScanResponse,
+  };
+
+  export { Transaction as Transaction, type TransactionScanParams as TransactionScanParams };
 }

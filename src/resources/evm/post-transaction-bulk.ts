@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import * as PostTransactionBulkAPI from './post-transaction-bulk';
 import * as EvmAPI from './evm';
 
 export class PostTransactionBulk extends APIResource {
@@ -49,7 +48,9 @@ export interface PostTransactionBulkScanParams {
   options?: Array<'validation' | 'simulation' | 'gas_estimation' | 'events'>;
 }
 
-export namespace PostTransactionBulk {
-  export import PostTransactionBulkScanResponse = PostTransactionBulkAPI.PostTransactionBulkScanResponse;
-  export import PostTransactionBulkScanParams = PostTransactionBulkAPI.PostTransactionBulkScanParams;
+export declare namespace PostTransactionBulk {
+  export {
+    type PostTransactionBulkScanResponse as PostTransactionBulkScanResponse,
+    type PostTransactionBulkScanParams as PostTransactionBulkScanParams,
+  };
 }

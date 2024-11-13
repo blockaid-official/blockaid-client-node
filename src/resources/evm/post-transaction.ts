@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import * as PostTransactionAPI from './post-transaction';
 import * as EvmAPI from './evm';
 
 export class PostTransaction extends APIResource {
@@ -109,8 +108,10 @@ export namespace PostTransactionScanParams {
   }
 }
 
-export namespace PostTransaction {
-  export import PostTransactionReportResponse = PostTransactionAPI.PostTransactionReportResponse;
-  export import PostTransactionReportParams = PostTransactionAPI.PostTransactionReportParams;
-  export import PostTransactionScanParams = PostTransactionAPI.PostTransactionScanParams;
+export declare namespace PostTransaction {
+  export {
+    type PostTransactionReportResponse as PostTransactionReportResponse,
+    type PostTransactionReportParams as PostTransactionReportParams,
+    type PostTransactionScanParams as PostTransactionScanParams,
+  };
 }

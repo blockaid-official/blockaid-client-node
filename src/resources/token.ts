@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as TokenAPI from './token';
 import * as EvmAPI from './evm/evm';
 
 export class Token extends APIResource {
@@ -523,9 +522,11 @@ export namespace TokenScanParams {
   }
 }
 
-export namespace Token {
-  export import TokenReportResponse = TokenAPI.TokenReportResponse;
-  export import TokenScanResponse = TokenAPI.TokenScanResponse;
-  export import TokenReportParams = TokenAPI.TokenReportParams;
-  export import TokenScanParams = TokenAPI.TokenScanParams;
+export declare namespace Token {
+  export {
+    type TokenReportResponse as TokenReportResponse,
+    type TokenScanResponse as TokenScanResponse,
+    type TokenReportParams as TokenReportParams,
+    type TokenScanParams as TokenScanParams,
+  };
 }

@@ -3,7 +3,9 @@
 import { APIResource } from '../../resource';
 import * as SolanaAPI from './solana';
 import * as AddressAPI from './address';
+import { Address, AddressScanParams } from './address';
 import * as MessageAPI from './message';
+import { Message, MessageScanParams } from './message';
 
 export class Solana extends APIResource {
   message: MessageAPI.Message = new MessageAPI.Message(this._client);
@@ -20,7 +22,7 @@ export interface AccountSummarySchema {
    * Assets diff of the requested account address
    */
   account_assets_diff?: Array<
-    NativeSolDiffSchema | SplFungibleTokenDiffSchema | SplNonFungibleTokenDiffSchema | CnftDiffSchema
+    NativeDiffSchema | SplFungibleTokenDiffSchema | SplNonFungibleTokenDiffSchema | CnftDiffSchema
   >;
 
   /**
@@ -322,22 +324,22 @@ export interface InstructionErrorDetails {
   type?: string;
 }
 
-export interface NativeSolDetailsSchema {
+export interface NativeDetailsSchema {
   decimals?: number;
 
   /**
-   * Logo of Sol
+   * Logo of the native currency
    */
   logo?: string | null;
 
   /**
-   * Type of the asset (`"SOL"`)
+   * Type of the asset (`"NativeToken"`)
    */
   type?: string;
 }
 
-export interface NativeSolDiffSchema {
-  asset: NativeSolDetailsSchema;
+export interface NativeDiffSchema {
+  asset: NativeDetailsSchema;
 
   /**
    * Type of the asset involved in the transfer
@@ -353,7 +355,7 @@ export interface NativeSolDiffSchema {
 }
 
 export interface NativeSolOwnershipDiffSchema {
-  asset: NativeSolDetailsSchema;
+  asset: NativeDetailsSchema;
 
   /**
    * Type of the asset involved in the transfer
@@ -590,16 +592,16 @@ export interface SplTokenOwnershipDiffSchema {
   pre_owner?: string | null;
 }
 
-export interface StakedSolAssetDetailsSchema {
+export interface StakedAssetDetailsSchema {
   decimals?: number;
 
   /**
-   * Logo of Sol
+   * Logo of the native currency
    */
   logo?: string | null;
 
   /**
-   * Type of the asset (`"STAKED_SOL"`)
+   * Type of the asset (`"STAKED_NATIVE"`)
    */
   type?: string;
 }
@@ -615,7 +617,7 @@ export interface StakedSolWithdrawAuthorityDiffSchema {
    */
   post_owner: string;
 
-  asset?: StakedSolAssetDetailsSchema;
+  asset?: StakedAssetDetailsSchema;
 
   /**
    * Incoming transfers of the asset
@@ -657,7 +659,7 @@ export interface SuccessfulSimulationResultSchema {
    */
   assets_diff: Record<
     string,
-    Array<NativeSolDiffSchema | SplFungibleTokenDiffSchema | SplNonFungibleTokenDiffSchema | CnftDiffSchema>
+    Array<NativeDiffSchema | SplFungibleTokenDiffSchema | SplNonFungibleTokenDiffSchema | CnftDiffSchema>
   >;
 
   /**
@@ -825,42 +827,47 @@ export interface ValidationFeature {
   address?: string | null;
 }
 
-export namespace Solana {
-  export import AccountSummarySchema = SolanaAPI.AccountSummarySchema;
-  export import AddressScanRequestSchema = SolanaAPI.AddressScanRequestSchema;
-  export import AddressScanResponseSchema = SolanaAPI.AddressScanResponseSchema;
-  export import APIErrorDetails = SolanaAPI.APIErrorDetails;
-  export import AssetTransferDetailsSchema = SolanaAPI.AssetTransferDetailsSchema;
-  export import CnftDetailsSchema = SolanaAPI.CnftDetailsSchema;
-  export import CnftDiffSchema = SolanaAPI.CnftDiffSchema;
-  export import CnftMintAccountDetailsSchema = SolanaAPI.CnftMintAccountDetailsSchema;
-  export import CombinedValidationResult = SolanaAPI.CombinedValidationResult;
-  export import DelegatedAssetDetailsSchema = SolanaAPI.DelegatedAssetDetailsSchema;
-  export import FungibleMintAccountDetailsSchema = SolanaAPI.FungibleMintAccountDetailsSchema;
-  export import InstructionErrorDetails = SolanaAPI.InstructionErrorDetails;
-  export import NativeSolDetailsSchema = SolanaAPI.NativeSolDetailsSchema;
-  export import NativeSolDiffSchema = SolanaAPI.NativeSolDiffSchema;
-  export import NativeSolOwnershipDiffSchema = SolanaAPI.NativeSolOwnershipDiffSchema;
-  export import NonFungibleMintAccountDetailsSchema = SolanaAPI.NonFungibleMintAccountDetailsSchema;
-  export import PdaAccountSchema = SolanaAPI.PdaAccountSchema;
-  export import ProgramAccountDetailsSchema = SolanaAPI.ProgramAccountDetailsSchema;
-  export import ResponseSchema = SolanaAPI.ResponseSchema;
-  export import SplFungibleTokenDetailsSchema = SolanaAPI.SplFungibleTokenDetailsSchema;
-  export import SplFungibleTokenDiffSchema = SolanaAPI.SplFungibleTokenDiffSchema;
-  export import SplNonFungibleTokenDetailsSchema = SolanaAPI.SplNonFungibleTokenDetailsSchema;
-  export import SplNonFungibleTokenDiffSchema = SolanaAPI.SplNonFungibleTokenDiffSchema;
-  export import SplTokenOwnershipDiffSchema = SolanaAPI.SplTokenOwnershipDiffSchema;
-  export import StakedSolAssetDetailsSchema = SolanaAPI.StakedSolAssetDetailsSchema;
-  export import StakedSolWithdrawAuthorityDiffSchema = SolanaAPI.StakedSolWithdrawAuthorityDiffSchema;
-  export import SuccessfulSimulationResultSchema = SolanaAPI.SuccessfulSimulationResultSchema;
-  export import SystemAccountDetailsSchema = SolanaAPI.SystemAccountDetailsSchema;
-  export import TokenAccountDetailsSchema = SolanaAPI.TokenAccountDetailsSchema;
-  export import TotalUsdDiffSchema = SolanaAPI.TotalUsdDiffSchema;
-  export import TransactionErrorDetails = SolanaAPI.TransactionErrorDetails;
-  export import TxScanRequestSchema = SolanaAPI.TxScanRequestSchema;
-  export import ValidationFeature = SolanaAPI.ValidationFeature;
-  export import Message = MessageAPI.Message;
-  export import MessageScanParams = MessageAPI.MessageScanParams;
-  export import Address = AddressAPI.Address;
-  export import AddressScanParams = AddressAPI.AddressScanParams;
+Solana.Message = Message;
+Solana.Address = Address;
+
+export declare namespace Solana {
+  export {
+    type AccountSummarySchema as AccountSummarySchema,
+    type AddressScanRequestSchema as AddressScanRequestSchema,
+    type AddressScanResponseSchema as AddressScanResponseSchema,
+    type APIErrorDetails as APIErrorDetails,
+    type AssetTransferDetailsSchema as AssetTransferDetailsSchema,
+    type CnftDetailsSchema as CnftDetailsSchema,
+    type CnftDiffSchema as CnftDiffSchema,
+    type CnftMintAccountDetailsSchema as CnftMintAccountDetailsSchema,
+    type CombinedValidationResult as CombinedValidationResult,
+    type DelegatedAssetDetailsSchema as DelegatedAssetDetailsSchema,
+    type FungibleMintAccountDetailsSchema as FungibleMintAccountDetailsSchema,
+    type InstructionErrorDetails as InstructionErrorDetails,
+    type NativeDetailsSchema as NativeDetailsSchema,
+    type NativeDiffSchema as NativeDiffSchema,
+    type NativeSolOwnershipDiffSchema as NativeSolOwnershipDiffSchema,
+    type NonFungibleMintAccountDetailsSchema as NonFungibleMintAccountDetailsSchema,
+    type PdaAccountSchema as PdaAccountSchema,
+    type ProgramAccountDetailsSchema as ProgramAccountDetailsSchema,
+    type ResponseSchema as ResponseSchema,
+    type SplFungibleTokenDetailsSchema as SplFungibleTokenDetailsSchema,
+    type SplFungibleTokenDiffSchema as SplFungibleTokenDiffSchema,
+    type SplNonFungibleTokenDetailsSchema as SplNonFungibleTokenDetailsSchema,
+    type SplNonFungibleTokenDiffSchema as SplNonFungibleTokenDiffSchema,
+    type SplTokenOwnershipDiffSchema as SplTokenOwnershipDiffSchema,
+    type StakedAssetDetailsSchema as StakedAssetDetailsSchema,
+    type StakedSolWithdrawAuthorityDiffSchema as StakedSolWithdrawAuthorityDiffSchema,
+    type SuccessfulSimulationResultSchema as SuccessfulSimulationResultSchema,
+    type SystemAccountDetailsSchema as SystemAccountDetailsSchema,
+    type TokenAccountDetailsSchema as TokenAccountDetailsSchema,
+    type TotalUsdDiffSchema as TotalUsdDiffSchema,
+    type TransactionErrorDetails as TransactionErrorDetails,
+    type TxScanRequestSchema as TxScanRequestSchema,
+    type ValidationFeature as ValidationFeature,
+  };
+
+  export { Message as Message, type MessageScanParams as MessageScanParams };
+
+  export { Address as Address, type AddressScanParams as AddressScanParams };
 }

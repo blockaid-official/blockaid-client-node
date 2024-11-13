@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import * as TransactionRawAPI from './transaction-raw';
 import * as EvmAPI from './evm';
 
 export class TransactionRaw extends APIResource {
@@ -54,6 +53,6 @@ export interface TransactionRawScanParams {
   options?: Array<'validation' | 'simulation' | 'gas_estimation' | 'events'>;
 }
 
-export namespace TransactionRaw {
-  export import TransactionRawScanParams = TransactionRawAPI.TransactionRawScanParams;
+export declare namespace TransactionRaw {
+  export { type TransactionRawScanParams as TransactionRawScanParams };
 }
