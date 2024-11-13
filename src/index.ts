@@ -5,7 +5,6 @@ import * as Core from './core';
 import * as Errors from './error';
 import * as Uploads from './uploads';
 import * as API from './resources/index';
-import { Scan, ScanStatusParams, ScanStatusResponse } from './resources/scan';
 import {
   Site,
   SiteReportParams,
@@ -256,7 +255,6 @@ export class Blockaid extends Core.APIClient {
   bitcoin: API.Bitcoin = new API.Bitcoin(this);
   starknet: API.Starknet = new API.Starknet(this);
   site: API.Site = new API.Site(this);
-  scan: API.Scan = new API.Scan(this);
   token: API.Token = new API.Token(this);
   tokenBulk: API.TokenBulk = new API.TokenBulk(this);
 
@@ -346,7 +344,6 @@ Blockaid.Stellar = Stellar;
 Blockaid.Bitcoin = Bitcoin;
 Blockaid.Starknet = Starknet;
 Blockaid.Site = Site;
-Blockaid.Scan = Scan;
 Blockaid.Token = Token;
 Blockaid.TokenBulk = TokenBulk;
 export declare namespace Blockaid {
@@ -452,12 +449,6 @@ export declare namespace Blockaid {
     type SiteScanResponse as SiteScanResponse,
     type SiteReportParams as SiteReportParams,
     type SiteScanParams as SiteScanParams,
-  };
-
-  export {
-    Scan as Scan,
-    type ScanStatusResponse as ScanStatusResponse,
-    type ScanStatusParams as ScanStatusParams,
   };
 
   export {
