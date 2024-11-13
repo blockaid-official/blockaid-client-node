@@ -5,7 +5,7 @@ import * as Core from './core';
 import * as Errors from './error';
 import * as Uploads from './uploads';
 import * as API from './resources/index';
-import { Scan } from './resources/scan';
+import { Scan, ScanStatusParams, ScanStatusResponse } from './resources/scan';
 import {
   Site,
   SiteReportParams,
@@ -454,7 +454,11 @@ export declare namespace Blockaid {
     type SiteScanParams as SiteScanParams,
   };
 
-  export { Scan as Scan };
+  export {
+    Scan as Scan,
+    type ScanStatusResponse as ScanStatusResponse,
+    type ScanStatusParams as ScanStatusParams,
+  };
 
   export {
     Token as Token,
