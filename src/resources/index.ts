@@ -30,7 +30,7 @@ export {
   type TransactionValidationError,
   type UsdDiff,
 } from './evm/evm';
-export { Scan, type ScanStatusResponse, type ScanStatusParams } from './scan';
+export { Scan } from './scan';
 export {
   Site,
   type SiteScanHitResponse,
