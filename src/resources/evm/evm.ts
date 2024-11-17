@@ -1401,6 +1401,113 @@ export interface TransactionSimulationError {
    * A string indicating if the simulation was successful or not.
    */
   status: 'Error';
+
+  /**
+   * Error details if the simulation failed.
+   */
+  error_details?:
+    | TransactionSimulationError.GeneralInsufficientFundsErrorDetails
+    | TransactionSimulationError.GenericErrorDetails;
+}
+
+export namespace TransactionSimulationError {
+  export interface GeneralInsufficientFundsErrorDetails {
+    /**
+     * The address of the account
+     */
+    account_address: string;
+
+    /**
+     * The asset that the account does not have enough balance for
+     */
+    asset:
+      | GeneralInsufficientFundsErrorDetails.NativeAsset
+      | GeneralInsufficientFundsErrorDetails.Erc20Asset
+      | GeneralInsufficientFundsErrorDetails.Erc721Asset
+      | GeneralInsufficientFundsErrorDetails.Erc1155Asset;
+
+    /**
+     * The type of the model
+     */
+    code: 'GENERAL_INSUFFICIENT_FUNDS';
+
+    /**
+     * The current balance of the account
+     */
+    current_balance?: number;
+
+    /**
+     * The required balance of the account
+     */
+    required_balance?: number;
+  }
+
+  export namespace GeneralInsufficientFundsErrorDetails {
+    export interface NativeAsset {
+      /**
+       * Details
+       */
+      details: EvmAPI.NativeAssetDetails;
+
+      /**
+       * The type of the model
+       */
+      type: 'NATIVE';
+    }
+
+    export interface Erc20Asset {
+      /**
+       * Details
+       */
+      details: EvmAPI.Erc20TokenDetails;
+
+      /**
+       * The type of the model
+       */
+      type: 'ERC20';
+    }
+
+    export interface Erc721Asset {
+      /**
+       * Details
+       */
+      details: EvmAPI.Erc1155TokenDetails;
+
+      /**
+       * Token Id
+       */
+      token_id: number;
+
+      /**
+       * The type of the model
+       */
+      type: 'ERC721';
+    }
+
+    export interface Erc1155Asset {
+      /**
+       * Details
+       */
+      details: EvmAPI.Erc1155TokenDetails;
+
+      /**
+       * Token Id
+       */
+      token_id: number;
+
+      /**
+       * The type of the model
+       */
+      type: 'ERC1155';
+    }
+  }
+
+  export interface GenericErrorDetails {
+    /**
+     * The error code
+     */
+    code: string;
+  }
 }
 
 export interface TransactionValidation {

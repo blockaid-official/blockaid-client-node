@@ -475,7 +475,7 @@ export declare namespace Blockaid {
   };
 }
 
-export { toFile, fileFromPath } from '@blockaid/client/uploads';
+export { toFile, fileFromPath } from './uploads';
 export {
   BlockaidError,
   APIError,
@@ -490,6 +490,6 @@ export {
   InternalServerError,
   PermissionDeniedError,
   UnprocessableEntityError,
-} from '@blockaid/client/error';
+} from './error';
 
 export default Blockaid;
