@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.31.0 (2024-11-24)
+
+Full Changelog: [v0.30.0...v0.31.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.30.0...v0.31.0)
+
+### Features
+
+* **api:** api update ([#338](https://github.com/blockaid-official/blockaid-client-node/issues/338)) ([56181b2](https://github.com/blockaid-official/blockaid-client-node/commit/56181b216a5947c08bdc3f034c7c4efc86e29e1d))
+
+
+### Chores
+
+* remove redundant word in comment ([#337](https://github.com/blockaid-official/blockaid-client-node/issues/337)) ([cb7ed3b](https://github.com/blockaid-official/blockaid-client-node/commit/cb7ed3b3c1a8e202074dac5b9170c49f2c20f794))
+
+
+### Documentation
+
+* remove suggestion to use `npm` call out ([#335](https://github.com/blockaid-official/blockaid-client-node/issues/335)) ([7e1c108](https://github.com/blockaid-official/blockaid-client-node/commit/7e1c108529ce3ae7b8ce64e1029816f19caf2a0c))
+
 ## 0.30.0 (2024-11-17)
 
 Full Changelog: [v0.29.1...v0.30.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.29.1...v0.30.0)
