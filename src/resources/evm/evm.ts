@@ -867,6 +867,11 @@ export namespace TransactionSimulation {
        * The type of the model
        */
       type: 'ERC20AssetTrace';
+
+      /**
+       * List of labels that describe the trace
+       */
+      labels?: Array<'GAS_FEE' | (string & {})>;
     }
 
     export interface Erc721AssetTrace {
@@ -899,6 +904,11 @@ export namespace TransactionSimulation {
        * The type of the model
        */
       type: 'ERC721AssetTrace';
+
+      /**
+       * List of labels that describe the trace
+       */
+      labels?: Array<'GAS_FEE' | (string & {})>;
     }
 
     export interface Erc1155AssetTrace {
@@ -931,6 +941,11 @@ export namespace TransactionSimulation {
        * The type of the model
        */
       type: 'ERC1155AssetTrace';
+
+      /**
+       * List of labels that describe the trace
+       */
+      labels?: Array<'GAS_FEE' | (string & {})>;
     }
 
     export interface NativeAssetTrace {
@@ -963,6 +978,11 @@ export namespace TransactionSimulation {
        * The type of the model
        */
       type: 'NativeAssetTrace';
+
+      /**
+       * List of labels that describe the trace
+       */
+      labels?: Array<'GAS_FEE' | (string & {})>;
     }
 
     export interface Erc20ExposureTrace {
