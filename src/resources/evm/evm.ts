@@ -476,7 +476,8 @@ export type TransactionScanSupportedChain =
   | 'soneium-minato'
   | 'ronin'
   | 'apechain'
-  | 'zero-network';
+  | 'zero-network'
+  | 'berachain';
 
 export interface TransactionSimulation {
   /**
