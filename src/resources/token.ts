@@ -439,13 +439,7 @@ export namespace TokenScanResponse {
       | 'HIDDEN_OWNER'
       | 'TRANSFER_PAUSEABLE'
       | 'OWNERSHIP_RENOUNCED'
-      | 'PROXY_CONTRACT'
-      | 'LIQUID_STAKE'
-      | 'REBASE_TOKEN'
-      | 'UNSELLABLE_TOKEN'
-      | 'CONCENTRATED_SUPPLY_DISTRIBUTION'
-      | 'INSUFFICIENT_LOCKED_LIQUIDITY'
-      | 'HONEYPOT';
+      | 'PROXY_CONTRACT';
 
     /**
      * An enumeration.
