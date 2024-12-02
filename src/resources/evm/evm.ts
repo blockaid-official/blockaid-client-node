@@ -361,8 +361,7 @@ export type TokenScanSupportedChain =
   | 'blast'
   | 'zksync'
   | 'scroll'
-  | 'degen'
-  | 'bitcoin';
+  | 'degen';
 
 export interface TransactionScanFeature {
   /**
