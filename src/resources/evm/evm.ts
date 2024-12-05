@@ -361,8 +361,7 @@ export type TokenScanSupportedChain =
   | 'blast'
   | 'zksync'
   | 'scroll'
-  | 'degen'
-  | 'bitcoin';
+  | 'degen';
 
 export interface TransactionScanFeature {
   /**
@@ -476,7 +475,8 @@ export type TransactionScanSupportedChain =
   | 'soneium-minato'
   | 'ronin'
   | 'apechain'
-  | 'zero-network';
+  | 'zero-network'
+  | 'berachain';
 
 export interface TransactionSimulation {
   /**
