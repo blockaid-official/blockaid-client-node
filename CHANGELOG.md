@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.32.0 (2024-12-10)
+
+Full Changelog: [v0.31.0...v0.32.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.31.0...v0.32.0)
+
+### Features
+
+* **api:** api update ([#342](https://github.com/blockaid-official/blockaid-client-node/issues/342)) ([a75f1d1](https://github.com/blockaid-official/blockaid-client-node/commit/a75f1d135ab529c385eb46447ad0e26120936bc7))
+* **api:** api update ([#343](https://github.com/blockaid-official/blockaid-client-node/issues/343)) ([1dd571a](https://github.com/blockaid-official/blockaid-client-node/commit/1dd571a2098dbb63d0c571bb245e18c50c7735f0))
+* **api:** api update ([#344](https://github.com/blockaid-official/blockaid-client-node/issues/344)) ([59f0069](https://github.com/blockaid-official/blockaid-client-node/commit/59f00691aeb50b76f9f270222d365cda6b43bb10))
+* **api:** api update ([#345](https://github.com/blockaid-official/blockaid-client-node/issues/345)) ([fd4108f](https://github.com/blockaid-official/blockaid-client-node/commit/fd4108f11d02980fb1803c495c1d42f1e23e02c1))
+* **api:** api update ([#346](https://github.com/blockaid-official/blockaid-client-node/issues/346)) ([390817c](https://github.com/blockaid-official/blockaid-client-node/commit/390817cc297dbc1555aeae431182dc4dc8fbb3b7))
+* **internal:** make git install file structure match npm ([#340](https://github.com/blockaid-official/blockaid-client-node/issues/340)) ([a2c39b9](https://github.com/blockaid-official/blockaid-client-node/commit/a2c39b935e8a857213e410fcb386985f4aa14b64))
+
 ## 0.31.0 (2024-11-24)
 
 Full Changelog: [v0.30.0...v0.31.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.30.0...v0.31.0)
