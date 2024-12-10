@@ -162,10 +162,6 @@ Types:
 
 ## Transaction
 
-Methods:
-
-- <code title="post /v0/bitcoin/transaction/scan">client.bitcoin.transaction.<a href="./src/resources/bitcoin/transaction.ts">scan</a>({ ...params }) -> BitcoinTransactionScanResponse</code>
-
 # Starknet
 
 Types:
