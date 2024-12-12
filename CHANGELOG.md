@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.32.1 (2024-12-12)
+
+Full Changelog: [v0.32.0...v0.32.1](https://github.com/blockaid-official/blockaid-client-node/compare/v0.32.0...v0.32.1)
+
+### Chores
+
+* **internal:** codegen related update ([#350](https://github.com/blockaid-official/blockaid-client-node/issues/350)) ([9bffe7b](https://github.com/blockaid-official/blockaid-client-node/commit/9bffe7b35a0c4966d666dad4a15f732ebb694e60))
+* **internal:** remove unnecessary getRequestClient function ([#348](https://github.com/blockaid-official/blockaid-client-node/issues/348)) ([e02da68](https://github.com/blockaid-official/blockaid-client-node/commit/e02da68a2c64b13c0e9d403e3b25deac1421d4a7))
+
 ## 0.32.0 (2024-12-10)
 
 Full Changelog: [v0.31.0...v0.32.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.31.0...v0.32.0)
