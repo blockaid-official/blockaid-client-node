@@ -476,7 +476,9 @@ export type TransactionScanSupportedChain =
   | 'ronin'
   | 'apechain'
   | 'zero-network'
-  | 'berachain';
+  | 'berachain'
+  | 'ink'
+  | 'ink-sepolia';
 
 export interface TransactionSimulation {
   /**
