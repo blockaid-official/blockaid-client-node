@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.33.1 (2024-12-18)
+
+Full Changelog: [v0.33.0...v0.33.1](https://github.com/blockaid-official/blockaid-client-node/compare/v0.33.0...v0.33.1)
+
+### Chores
+
+* **internal:** codegen related update ([#353](https://github.com/blockaid-official/blockaid-client-node/issues/353)) ([8448fc5](https://github.com/blockaid-official/blockaid-client-node/commit/8448fc57bcae560941e2ca618c5ddefbe1b0124f))
+
 ## 0.33.0 (2024-12-16)
 
 Full Changelog: [v0.32.0...v0.33.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.32.0...v0.33.0)
