@@ -3,7 +3,12 @@
 import { APIResource } from '../../resource';
 import * as StarknetAPI from './starknet';
 import * as TransactionAPI from './transaction';
-import { Transaction, TransactionScanParams } from './transaction';
+import {
+  Transaction,
+  TransactionReportParams,
+  TransactionReportResponse,
+  TransactionScanParams,
+} from './transaction';
 
 export class Starknet extends APIResource {
   transaction: TransactionAPI.Transaction = new TransactionAPI.Transaction(this._client);
@@ -837,5 +842,10 @@ export declare namespace Starknet {
     type StarknetTransactionScanResponse as StarknetTransactionScanResponse,
   };
 
-  export { Transaction as Transaction, type TransactionScanParams as TransactionScanParams };
+  export {
+    Transaction as Transaction,
+    type TransactionReportResponse as TransactionReportResponse,
+    type TransactionReportParams as TransactionReportParams,
+    type TransactionScanParams as TransactionScanParams,
+  };
 }
