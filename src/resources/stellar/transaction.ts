@@ -6,6 +6,16 @@ import * as StellarAPI from './stellar';
 
 export class Transaction extends APIResource {
   /**
+   * Report Transaction
+   */
+  report(
+    body: TransactionReportParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TransactionReportResponse> {
+    return this._client.post('/v0/stellar/transaction/report', { body, ...options });
+  }
+
+  /**
    * Scan Transaction
    */
   scan(
@@ -13,6 +23,32 @@ export class Transaction extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<StellarAPI.StellarTransactionScanResponse> {
     return this._client.post('/v0/stellar/transaction/scan', { body, ...options });
+  }
+}
+
+export type TransactionReportResponse = number;
+
+export interface TransactionReportParams {
+  details: string;
+
+  event: 'should_be_malicious' | 'should_be_benign' | 'wrong_simulation_result';
+
+  report:
+    | TransactionReportParams.StellarAppealRequestID
+    | TransactionReportParams.StellarAppealTransactionDataReport;
+}
+
+export namespace TransactionReportParams {
+  export interface StellarAppealRequestID {
+    id: string;
+
+    type?: 'request_id';
+  }
+
+  export interface StellarAppealTransactionDataReport {
+    params: StellarAPI.StellarTransactionScanRequest;
+
+    type?: 'params';
   }
 }
 
@@ -65,5 +101,9 @@ export namespace TransactionScanParams {
 }
 
 export declare namespace Transaction {
-  export { type TransactionScanParams as TransactionScanParams };
+  export {
+    type TransactionReportResponse as TransactionReportResponse,
+    type TransactionReportParams as TransactionReportParams,
+    type TransactionScanParams as TransactionScanParams,
+  };
 }
