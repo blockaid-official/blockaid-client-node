@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.34.0 (2024-12-22)
+
+Full Changelog: [v0.33.0...v0.34.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.33.0...v0.34.0)
+
+### Features
+
+* **api:** api update ([#359](https://github.com/blockaid-official/blockaid-client-node/issues/359)) ([6b0536e](https://github.com/blockaid-official/blockaid-client-node/commit/6b0536e9e91ae0244466819b49cd714018f5f015))
+
+
+### Bug Fixes
+
+* **client:** normalize method ([#357](https://github.com/blockaid-official/blockaid-client-node/issues/357)) ([a13b36e](https://github.com/blockaid-official/blockaid-client-node/commit/a13b36e2ce97ff6ce26963a2e864638ce01b7fa0))
+
+
+### Chores
+
+* **internal:** codegen related update ([#353](https://github.com/blockaid-official/blockaid-client-node/issues/353)) ([8448fc5](https://github.com/blockaid-official/blockaid-client-node/commit/8448fc57bcae560941e2ca618c5ddefbe1b0124f))
+* **internal:** codegen related update ([#355](https://github.com/blockaid-official/blockaid-client-node/issues/355)) ([3bd5b48](https://github.com/blockaid-official/blockaid-client-node/commit/3bd5b487d70a834a05bc6aac64d7c2d2bc05c957))
+* **internal:** codegen related update ([#356](https://github.com/blockaid-official/blockaid-client-node/issues/356)) ([41fc1f3](https://github.com/blockaid-official/blockaid-client-node/commit/41fc1f36c6382a21d46a6d9852da2373a150afa7))
+
+
+### Documentation
+
+* minor formatting changes ([#358](https://github.com/blockaid-official/blockaid-client-node/issues/358)) ([51f5d7d](https://github.com/blockaid-official/blockaid-client-node/commit/51f5d7d481d280590a5b4629856777f21e9eb98e))
+
 ## 0.33.0 (2024-12-16)
 
 Full Changelog: [v0.32.0...v0.33.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.32.0...v0.33.0)

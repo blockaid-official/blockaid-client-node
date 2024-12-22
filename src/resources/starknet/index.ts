@@ -11,4 +11,9 @@ export {
   type StarknetTransactionScanRequest,
   type StarknetTransactionScanResponse,
 } from './starknet';
-export { Transaction, type TransactionScanParams } from './transaction';
+export {
+  Transaction,
+  type TransactionReportResponse,
+  type TransactionReportParams,
+  type TransactionScanParams,
+} from './transaction';

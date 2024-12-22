@@ -1,11 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
-import * as TransactionAPI from './transaction';
-import { Transaction } from './transaction';
+import * as TransactionRawAPI from './transaction-raw';
+import {
+  TransactionRaw,
+  TransactionRawReportParams,
+  TransactionRawReportResponse,
+  TransactionRawScanParams,
+} from './transaction-raw';
 
 export class Bitcoin extends APIResource {
-  transaction: TransactionAPI.Transaction = new TransactionAPI.Transaction(this._client);
+  transactionRaw: TransactionRawAPI.TransactionRaw = new TransactionRawAPI.TransactionRaw(this._client);
 }
 
 export interface BitcoinTransactionScanRequest {
@@ -812,7 +817,7 @@ export namespace BitcoinTransactionScanResponse {
   }
 }
 
-Bitcoin.Transaction = Transaction;
+Bitcoin.TransactionRaw = TransactionRaw;
 
 export declare namespace Bitcoin {
   export {
@@ -820,5 +825,10 @@ export declare namespace Bitcoin {
     type BitcoinTransactionScanResponse as BitcoinTransactionScanResponse,
   };
 
-  export { Transaction as Transaction };
+  export {
+    TransactionRaw as TransactionRaw,
+    type TransactionRawReportResponse as TransactionRawReportResponse,
+    type TransactionRawReportParams as TransactionRawReportParams,
+    type TransactionRawScanParams as TransactionRawScanParams,
+  };
 }
