@@ -167,7 +167,7 @@ export interface StarknetTransactionScanRequest {
   /**
    * The chain name or chain ID
    */
-  chain: 'mainnet' | 'sepolia' | 'sepolia_integration' | (string & {});
+  chain: 'mainnet' | 'sepolia' | (string & {});
 
   /**
    * Metadata
@@ -278,7 +278,7 @@ export namespace StarknetTransactionScanRequest {
     /**
      * The nonce data availability mode.
      */
-    nonce_data_availability_mode?: 0;
+    nonce_data_availability_mode?: number;
 
     /**
      * For future use. Currently this value is always empty.
