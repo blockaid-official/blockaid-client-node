@@ -31,7 +31,7 @@ export type TransactionReportResponse = number;
 export interface TransactionReportParams {
   details: string;
 
-  event: 'should_be_malicious' | 'should_be_benign';
+  event: 'should_be_malicious' | 'should_be_benign' | 'wrong_simulation_result';
 
   report:
     | TransactionReportParams.StarknetAppealRequestID
@@ -58,7 +58,7 @@ export interface TransactionScanParams {
   /**
    * The chain name or chain ID
    */
-  chain: 'mainnet' | 'sepolia' | 'sepolia_integration' | (string & {});
+  chain: 'mainnet' | 'sepolia' | (string & {});
 
   /**
    * Metadata
@@ -169,7 +169,7 @@ export namespace TransactionScanParams {
     /**
      * The nonce data availability mode.
      */
-    nonce_data_availability_mode?: 0;
+    nonce_data_availability_mode?: number;
 
     /**
      * For future use. Currently this value is always empty.
