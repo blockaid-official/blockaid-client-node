@@ -478,7 +478,9 @@ export type TransactionScanSupportedChain =
   | 'zero-network'
   | 'berachain'
   | 'ink'
-  | 'ink-sepolia';
+  | 'ink-sepolia'
+  | 'abstract'
+  | 'soneium';
 
 export interface TransactionSimulation {
   /**
