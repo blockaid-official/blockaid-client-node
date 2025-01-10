@@ -116,6 +116,7 @@ const environments = {
   client: 'https://client.blockaid.io',
 };
 type Environment = keyof typeof environments;
+
 export interface ClientOptions {
   /**
    * Authentication method to api.blockaid.io
