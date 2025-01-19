@@ -38,6 +38,11 @@ export interface TransactionBulkScanParams {
   metadata: EvmAPI.Metadata;
 
   /**
+   * Should aggregate the results to one result
+   */
+  aggregated?: boolean;
+
+  /**
    * The relative block for the block validation. Can be "latest" or a block number.
    */
   block?: number | string;
