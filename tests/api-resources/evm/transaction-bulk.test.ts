@@ -49,6 +49,7 @@ describe('resource transactionBulk', () => {
         },
       ],
       metadata: { domain: 'https://example.com' },
+      aggregated: true,
       block: '20224477',
       options: ['validation'],
     });
