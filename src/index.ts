@@ -110,6 +110,15 @@ import {
   StellarTransactionScanRequest,
   StellarTransactionScanResponse,
 } from './resources/stellar/stellar';
+import {
+  Sui,
+  SuiAssetTransferDetailsSchema,
+  SuiNFTDetailsSchema,
+  SuiNFTDiffSchema,
+  SuiNativeAssetDetailsSchema,
+  SuiTransactionScanRequest,
+  SuiTransactionScanResponse,
+} from './resources/sui/sui';
 
 const environments = {
   production: 'https://api.blockaid.io',
@@ -256,6 +265,7 @@ export class Blockaid extends Core.APIClient {
   stellar: API.Stellar = new API.Stellar(this);
   bitcoin: API.Bitcoin = new API.Bitcoin(this);
   starknet: API.Starknet = new API.Starknet(this);
+  sui: API.Sui = new API.Sui(this);
   site: API.Site = new API.Site(this);
   scan: API.Scan = new API.Scan(this);
   token: API.Token = new API.Token(this);
@@ -346,6 +356,7 @@ Blockaid.Solana = Solana;
 Blockaid.Stellar = Stellar;
 Blockaid.Bitcoin = Bitcoin;
 Blockaid.Starknet = Starknet;
+Blockaid.Sui = Sui;
 Blockaid.Site = Site;
 Blockaid.Scan = Scan;
 Blockaid.Token = Token;
@@ -443,6 +454,16 @@ export declare namespace Blockaid {
     type StarknetErc721Diff as StarknetErc721Diff,
     type StarknetTransactionScanRequest as StarknetTransactionScanRequest,
     type StarknetTransactionScanResponse as StarknetTransactionScanResponse,
+  };
+
+  export {
+    Sui as Sui,
+    type SuiAssetTransferDetailsSchema as SuiAssetTransferDetailsSchema,
+    type SuiNativeAssetDetailsSchema as SuiNativeAssetDetailsSchema,
+    type SuiNFTDetailsSchema as SuiNFTDetailsSchema,
+    type SuiNFTDiffSchema as SuiNFTDiffSchema,
+    type SuiTransactionScanRequest as SuiTransactionScanRequest,
+    type SuiTransactionScanResponse as SuiTransactionScanResponse,
   };
 
   export {
