@@ -116,7 +116,6 @@ import {
   SuiNFTDetailsSchema,
   SuiNFTDiffSchema,
   SuiNativeAssetDetailsSchema,
-  SuiTransactionScanRequest,
   SuiTransactionScanResponse,
 } from './resources/sui/sui';
 
@@ -462,7 +461,6 @@ export declare namespace Blockaid {
     type SuiNativeAssetDetailsSchema as SuiNativeAssetDetailsSchema,
     type SuiNFTDetailsSchema as SuiNFTDetailsSchema,
     type SuiNFTDiffSchema as SuiNFTDiffSchema,
-    type SuiTransactionScanRequest as SuiTransactionScanRequest,
     type SuiTransactionScanResponse as SuiTransactionScanResponse,
   };
 

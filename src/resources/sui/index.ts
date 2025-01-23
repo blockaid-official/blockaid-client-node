@@ -6,7 +6,6 @@ export {
   type SuiNativeAssetDetailsSchema,
   type SuiNFTDetailsSchema,
   type SuiNFTDiffSchema,
-  type SuiTransactionScanRequest,
   type SuiTransactionScanResponse,
 } from './sui';
 export { Transaction, type TransactionScanParams } from './transaction';

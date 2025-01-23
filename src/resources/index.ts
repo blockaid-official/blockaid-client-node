@@ -103,7 +103,6 @@ export {
   type SuiNativeAssetDetailsSchema,
   type SuiNFTDetailsSchema,
   type SuiNFTDiffSchema,
-  type SuiTransactionScanRequest,
   type SuiTransactionScanResponse,
 } from './sui/sui';
 export {
