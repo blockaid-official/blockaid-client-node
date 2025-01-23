@@ -98,6 +98,14 @@ export {
   type StellarTransactionScanResponse,
 } from './stellar/stellar';
 export {
+  Sui,
+  type SuiAssetTransferDetailsSchema,
+  type SuiNativeAssetDetailsSchema,
+  type SuiNFTDetailsSchema,
+  type SuiNFTDiffSchema,
+  type SuiTransactionScanResponse,
+} from './sui/sui';
+export {
   Token,
   type TokenReportResponse,
   type TokenScanResponse,

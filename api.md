@@ -200,6 +200,22 @@ Methods:
 - <code title="post /v0/starknet/transaction/report">client.starknet.transaction.<a href="./src/resources/starknet/transaction.ts">report</a>({ ...params }) -> TransactionReportResponse</code>
 - <code title="post /v0/starknet/transaction/scan">client.starknet.transaction.<a href="./src/resources/starknet/transaction.ts">scan</a>({ ...params }) -> StarknetTransactionScanResponse</code>
 
+# Sui
+
+Types:
+
+- <code><a href="./src/resources/sui/sui.ts">SuiAssetTransferDetailsSchema</a></code>
+- <code><a href="./src/resources/sui/sui.ts">SuiNativeAssetDetailsSchema</a></code>
+- <code><a href="./src/resources/sui/sui.ts">SuiNFTDetailsSchema</a></code>
+- <code><a href="./src/resources/sui/sui.ts">SuiNFTDiffSchema</a></code>
+- <code><a href="./src/resources/sui/sui.ts">SuiTransactionScanResponse</a></code>
+
+## Transaction
+
+Methods:
+
+- <code title="post /v0/sui/transaction/scan">client.sui.transaction.<a href="./src/resources/sui/transaction.ts">scan</a>({ ...params }) -> SuiTransactionScanResponse</code>
+
 # Site
 
 Types:

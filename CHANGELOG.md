@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.34.2 (2025-01-23)
+
+Full Changelog: [v0.34.1...v0.34.2](https://github.com/blockaid-official/blockaid-client-node/compare/v0.34.1...v0.34.2)
+
+### Features
+
+* **api:** api update ([#365](https://github.com/blockaid-official/blockaid-client-node/issues/365)) ([7969d07](https://github.com/blockaid-official/blockaid-client-node/commit/7969d072ef2a4149f6eaf455c6841a214861856f))
+* **api:** api update ([#370](https://github.com/blockaid-official/blockaid-client-node/issues/370)) ([88cb850](https://github.com/blockaid-official/blockaid-client-node/commit/88cb850112a6f53c77e059246be7a162aafc238e))
+* **api:** api update ([#372](https://github.com/blockaid-official/blockaid-client-node/issues/372)) ([5f4d465](https://github.com/blockaid-official/blockaid-client-node/commit/5f4d46576a19f8535f8726baeb61df555185ac81))
+* **api:** api update ([#373](https://github.com/blockaid-official/blockaid-client-node/issues/373)) ([86c50e1](https://github.com/blockaid-official/blockaid-client-node/commit/86c50e1b7726aba74fef0dc12fe53443e82b903a))
+* **api:** api update ([#374](https://github.com/blockaid-official/blockaid-client-node/issues/374)) ([5ecf06f](https://github.com/blockaid-official/blockaid-client-node/commit/5ecf06f2d71d0d4ee4bd8a479e8586a5154c1c39))
+
+
+### Chores
+
+* **internal:** add test ([#371](https://github.com/blockaid-official/blockaid-client-node/issues/371)) ([0bb60f8](https://github.com/blockaid-official/blockaid-client-node/commit/0bb60f8613f47338f7fc61128bb4c51e8b22f642))
+* **internal:** change formatting ([#368](https://github.com/blockaid-official/blockaid-client-node/issues/368)) ([f98345c](https://github.com/blockaid-official/blockaid-client-node/commit/f98345cba7421b724699175fbfb6638714dcda75))
+* **internal:** codegen related update ([#367](https://github.com/blockaid-official/blockaid-client-node/issues/367)) ([0c01002](https://github.com/blockaid-official/blockaid-client-node/commit/0c01002d9cf20368486ce62331da1b7df79245f9))
+* **internal:** codegen related update ([#369](https://github.com/blockaid-official/blockaid-client-node/issues/369)) ([d61777c](https://github.com/blockaid-official/blockaid-client-node/commit/d61777cf8f536becb95602a0d91f83663b727698))
+
 ## 0.34.1 (2025-01-05)
 
 Full Changelog: [v0.34.0...v0.34.1](https://github.com/blockaid-official/blockaid-client-node/compare/v0.34.0...v0.34.1)

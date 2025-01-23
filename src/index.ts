@@ -110,12 +110,21 @@ import {
   StellarTransactionScanRequest,
   StellarTransactionScanResponse,
 } from './resources/stellar/stellar';
+import {
+  Sui,
+  SuiAssetTransferDetailsSchema,
+  SuiNFTDetailsSchema,
+  SuiNFTDiffSchema,
+  SuiNativeAssetDetailsSchema,
+  SuiTransactionScanResponse,
+} from './resources/sui/sui';
 
 const environments = {
   production: 'https://api.blockaid.io',
   client: 'https://client.blockaid.io',
 };
 type Environment = keyof typeof environments;
+
 export interface ClientOptions {
   /**
    * Authentication method to api.blockaid.io
@@ -134,7 +143,7 @@ export interface ClientOptions {
    * - `production` corresponds to `https://api.blockaid.io`
    * - `client` corresponds to `https://client.blockaid.io`
    */
-  environment?: Environment;
+  environment?: Environment | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -150,7 +159,7 @@ export interface ClientOptions {
    * Note that request timeouts are retried by default, so in a worst-case scenario you may wait
    * much longer than this timeout before the promise succeeds or fails.
    */
-  timeout?: number;
+  timeout?: number | undefined;
 
   /**
    * An HTTP agent used to manage HTTP(S) connections.
@@ -158,7 +167,7 @@ export interface ClientOptions {
    * If not provided, an agent will be constructed by default in the Node.js environment,
    * otherwise no agent is used.
    */
-  httpAgent?: Agent;
+  httpAgent?: Agent | undefined;
 
   /**
    * Specify a custom `fetch` function implementation.
@@ -174,7 +183,7 @@ export interface ClientOptions {
    *
    * @default 2
    */
-  maxRetries?: number;
+  maxRetries?: number | undefined;
 
   /**
    * Default headers to include with every request to the API.
@@ -182,7 +191,7 @@ export interface ClientOptions {
    * These can be removed in individual requests by explicitly setting the
    * header to `undefined` or `null` in request options.
    */
-  defaultHeaders?: Core.Headers;
+  defaultHeaders?: Core.Headers | undefined;
 
   /**
    * Default query parameters to include with every request to the API.
@@ -190,7 +199,7 @@ export interface ClientOptions {
    * These can be removed in individual requests by explicitly setting the
    * param to `undefined` in request options.
    */
-  defaultQuery?: Core.DefaultQuery;
+  defaultQuery?: Core.DefaultQuery | undefined;
 }
 
 /**
@@ -255,6 +264,7 @@ export class Blockaid extends Core.APIClient {
   stellar: API.Stellar = new API.Stellar(this);
   bitcoin: API.Bitcoin = new API.Bitcoin(this);
   starknet: API.Starknet = new API.Starknet(this);
+  sui: API.Sui = new API.Sui(this);
   site: API.Site = new API.Site(this);
   scan: API.Scan = new API.Scan(this);
   token: API.Token = new API.Token(this);
@@ -345,6 +355,7 @@ Blockaid.Solana = Solana;
 Blockaid.Stellar = Stellar;
 Blockaid.Bitcoin = Bitcoin;
 Blockaid.Starknet = Starknet;
+Blockaid.Sui = Sui;
 Blockaid.Site = Site;
 Blockaid.Scan = Scan;
 Blockaid.Token = Token;
@@ -442,6 +453,15 @@ export declare namespace Blockaid {
     type StarknetErc721Diff as StarknetErc721Diff,
     type StarknetTransactionScanRequest as StarknetTransactionScanRequest,
     type StarknetTransactionScanResponse as StarknetTransactionScanResponse,
+  };
+
+  export {
+    Sui as Sui,
+    type SuiAssetTransferDetailsSchema as SuiAssetTransferDetailsSchema,
+    type SuiNativeAssetDetailsSchema as SuiNativeAssetDetailsSchema,
+    type SuiNFTDetailsSchema as SuiNFTDetailsSchema,
+    type SuiNFTDiffSchema as SuiNFTDiffSchema,
+    type SuiTransactionScanResponse as SuiTransactionScanResponse,
   };
 
   export {
