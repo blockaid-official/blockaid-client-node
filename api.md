@@ -208,7 +208,6 @@ Types:
 - <code><a href="./src/resources/sui/sui.ts">SuiNativeAssetDetailsSchema</a></code>
 - <code><a href="./src/resources/sui/sui.ts">SuiNFTDetailsSchema</a></code>
 - <code><a href="./src/resources/sui/sui.ts">SuiNFTDiffSchema</a></code>
-- <code><a href="./src/resources/sui/sui.ts">SuiTransactionScanRequest</a></code>
 - <code><a href="./src/resources/sui/sui.ts">SuiTransactionScanResponse</a></code>
 
 ## Transaction
