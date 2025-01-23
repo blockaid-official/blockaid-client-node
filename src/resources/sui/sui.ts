@@ -107,51 +107,6 @@ export interface SuiNFTDiffSchema {
   usd_price?: number | null;
 }
 
-export interface SuiTransactionScanRequest {
-  account_address: string;
-
-  chain: 'mainnet' | 'testnet' | 'devnet';
-
-  /**
-   * Metadata
-   */
-  metadata:
-    | SuiTransactionScanRequest.SuiWalletRequestMetadata
-    | SuiTransactionScanRequest.SuiInAppRequestMetadata;
-
-  transaction: string;
-
-  /**
-   * List of options to include in the response
-   *
-   * - `Options.validation`: Include Options.validation output in the response
-   *
-   * - `Options.simulation`: Include Options.simulation output in the response
-   */
-  options?: Array<'validation' | 'simulation'>;
-}
-
-export namespace SuiTransactionScanRequest {
-  export interface SuiWalletRequestMetadata {
-    /**
-     * Metadata for wallet requests
-     */
-    type: 'wallet';
-
-    /**
-     * URL of the dApp originating the transaction
-     */
-    url: string;
-  }
-
-  export interface SuiInAppRequestMetadata {
-    /**
-     * Metadata for in-app requests
-     */
-    type?: 'in_app';
-  }
-}
-
 export interface SuiTransactionScanResponse {
   /**
    * Simulation result; Only present if simulation option is included in the request
@@ -521,7 +476,6 @@ export declare namespace Sui {
     type SuiNativeAssetDetailsSchema as SuiNativeAssetDetailsSchema,
     type SuiNFTDetailsSchema as SuiNFTDetailsSchema,
     type SuiNFTDiffSchema as SuiNFTDiffSchema,
-    type SuiTransactionScanRequest as SuiTransactionScanRequest,
     type SuiTransactionScanResponse as SuiTransactionScanResponse,
   };
 
