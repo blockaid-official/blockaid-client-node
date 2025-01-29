@@ -43,19 +43,19 @@ export interface StellarAssetTransferDetails {
   raw_value: number;
 
   /**
-   * USD price of the asset
-   */
-  usd_price: string;
-
-  /**
    * Value of the transfer
    */
-  value: string;
+  value: number;
 
   /**
    * Summarized description of the transfer
    */
   summary?: string | null;
+
+  /**
+   * USD price of the asset
+   */
+  usd_price?: number | null;
 }
 
 export interface StellarLegacyAssetDetails {
@@ -101,7 +101,7 @@ export interface StellarSingleAssetExposure {
   /**
    * Approval value of the ERC20 token
    */
-  approval: string;
+  approval: number;
 
   exposure: Array<StellarSingleAssetExposure.Exposure>;
 
@@ -124,11 +124,6 @@ export namespace StellarSingleAssetExposure {
     raw_value: number;
 
     /**
-     * USD price of the asset
-     */
-    usd_price: string;
-
-    /**
      * Value of the transfer
      */
     value: string;
@@ -137,6 +132,11 @@ export namespace StellarSingleAssetExposure {
      * Summarized description of the transfer
      */
     summary?: string | null;
+
+    /**
+     * USD price of the asset
+     */
+    usd_price?: number | null;
   }
 }
 

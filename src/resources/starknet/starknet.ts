@@ -48,11 +48,6 @@ export interface StarknetErc1155Diff {
   token_id: string;
 
   /**
-   * USD price of the asset
-   */
-  usd_price: string;
-
-  /**
    * Value of the transfer
    */
   value: number;
@@ -61,6 +56,11 @@ export interface StarknetErc1155Diff {
    * Summarized description of the transfer
    */
   summary?: string | null;
+
+  /**
+   * USD price of the asset
+   */
+  usd_price?: number | null;
 }
 
 export interface StarknetErc20Details {
@@ -102,11 +102,6 @@ export interface StarknetErc20Diff {
   raw_value: number;
 
   /**
-   * USD price of the asset
-   */
-  usd_price: string;
-
-  /**
    * Value of the transfer
    */
   value: string;
@@ -115,6 +110,11 @@ export interface StarknetErc20Diff {
    * Summarized description of the transfer
    */
   summary?: string | null;
+
+  /**
+   * USD price of the asset
+   */
+  usd_price?: number | null;
 }
 
 export interface StarknetErc721Details {
@@ -151,14 +151,14 @@ export interface StarknetErc721Diff {
   token_id: string;
 
   /**
-   * USD price of the asset
-   */
-  usd_price: string;
-
-  /**
    * Summarized description of the transfer
    */
   summary?: string | null;
+
+  /**
+   * USD price of the asset
+   */
+  usd_price?: number | null;
 }
 
 export interface StarknetTransactionScanRequest {
@@ -466,7 +466,7 @@ export namespace StarknetTransactionScanResponse {
           /**
            * Approval value of the ERC20 token
            */
-          approval: string;
+          approval: number;
 
           exposure: Array<StarknetAPI.StarknetErc20Diff>;
 
@@ -693,7 +693,7 @@ export namespace StarknetTransactionScanResponse {
         /**
          * Approval value of the ERC20 token
          */
-        approval: string;
+        approval: number;
 
         exposure: Array<StarknetAPI.StarknetErc20Diff>;
 
