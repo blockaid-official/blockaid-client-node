@@ -216,7 +216,7 @@ export namespace BitcoinTransactionScanResponse {
           /**
            * USD price of the asset
            */
-          usd_price?: string | null;
+          usd_price?: number | null;
         }
 
         /**
@@ -241,7 +241,7 @@ export namespace BitcoinTransactionScanResponse {
           /**
            * USD price of the asset
            */
-          usd_price?: string | null;
+          usd_price?: number | null;
         }
       }
 
@@ -309,7 +309,7 @@ export namespace BitcoinTransactionScanResponse {
           /**
            * USD price of the asset
            */
-          usd_price?: string | null;
+          usd_price?: number | null;
         }
 
         /**
@@ -329,7 +329,7 @@ export namespace BitcoinTransactionScanResponse {
           /**
            * USD price of the asset
            */
-          usd_price?: string | null;
+          usd_price?: number | null;
         }
       }
 
@@ -412,7 +412,7 @@ export namespace BitcoinTransactionScanResponse {
           /**
            * USD price of the asset
            */
-          usd_price?: string | null;
+          usd_price?: number | null;
         }
 
         /**
@@ -437,7 +437,7 @@ export namespace BitcoinTransactionScanResponse {
           /**
            * USD price of the asset
            */
-          usd_price?: string | null;
+          usd_price?: number | null;
         }
       }
     }
@@ -523,7 +523,7 @@ export namespace BitcoinTransactionScanResponse {
         /**
          * USD price of the asset
          */
-        usd_price?: string | null;
+        usd_price?: number | null;
       }
 
       /**
@@ -548,7 +548,7 @@ export namespace BitcoinTransactionScanResponse {
         /**
          * USD price of the asset
          */
-        usd_price?: string | null;
+        usd_price?: number | null;
       }
     }
 
@@ -616,7 +616,7 @@ export namespace BitcoinTransactionScanResponse {
         /**
          * USD price of the asset
          */
-        usd_price?: string | null;
+        usd_price?: number | null;
       }
 
       /**
@@ -636,7 +636,7 @@ export namespace BitcoinTransactionScanResponse {
         /**
          * USD price of the asset
          */
-        usd_price?: string | null;
+        usd_price?: number | null;
       }
     }
 
@@ -719,7 +719,7 @@ export namespace BitcoinTransactionScanResponse {
         /**
          * USD price of the asset
          */
-        usd_price?: string | null;
+        usd_price?: number | null;
       }
 
       /**
@@ -744,7 +744,7 @@ export namespace BitcoinTransactionScanResponse {
         /**
          * USD price of the asset
          */
-        usd_price?: string | null;
+        usd_price?: number | null;
       }
     }
   }
