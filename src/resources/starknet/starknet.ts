@@ -466,7 +466,7 @@ export namespace StarknetTransactionScanResponse {
           /**
            * Approval value of the ERC20 token
            */
-          approval: number;
+          approval: string;
 
           exposure: Array<StarknetAPI.StarknetErc20Diff>;
 
@@ -693,7 +693,7 @@ export namespace StarknetTransactionScanResponse {
         /**
          * Approval value of the ERC20 token
          */
-        approval: number;
+        approval: string;
 
         exposure: Array<StarknetAPI.StarknetErc20Diff>;
 
