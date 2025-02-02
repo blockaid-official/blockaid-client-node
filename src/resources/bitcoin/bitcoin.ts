@@ -204,11 +204,6 @@ export namespace BitcoinTransactionScanResponse {
           raw_value: number;
 
           /**
-           * USD price of the asset
-           */
-          usd_price: string;
-
-          /**
            * Value of the transfer
            */
           value: string;
@@ -217,6 +212,11 @@ export namespace BitcoinTransactionScanResponse {
            * Summarized description of the transfer
            */
           summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
         }
 
         /**
@@ -229,11 +229,6 @@ export namespace BitcoinTransactionScanResponse {
           raw_value: number;
 
           /**
-           * USD price of the asset
-           */
-          usd_price: string;
-
-          /**
            * Value of the transfer
            */
           value: string;
@@ -242,6 +237,11 @@ export namespace BitcoinTransactionScanResponse {
            * Summarized description of the transfer
            */
           summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
         }
       }
 
@@ -302,14 +302,14 @@ export namespace BitcoinTransactionScanResponse {
           inscription_id: string;
 
           /**
-           * USD price of the asset
-           */
-          usd_price: string;
-
-          /**
            * Summarized description of the transfer
            */
           summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
         }
 
         /**
@@ -322,14 +322,14 @@ export namespace BitcoinTransactionScanResponse {
           inscription_id: string;
 
           /**
-           * USD price of the asset
-           */
-          usd_price: string;
-
-          /**
            * Summarized description of the transfer
            */
           summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
         }
       }
 
@@ -400,11 +400,6 @@ export namespace BitcoinTransactionScanResponse {
           raw_value: number;
 
           /**
-           * USD price of the asset
-           */
-          usd_price: string;
-
-          /**
            * Value of the transfer
            */
           value: string;
@@ -413,6 +408,11 @@ export namespace BitcoinTransactionScanResponse {
            * Summarized description of the transfer
            */
           summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
         }
 
         /**
@@ -425,11 +425,6 @@ export namespace BitcoinTransactionScanResponse {
           raw_value: number;
 
           /**
-           * USD price of the asset
-           */
-          usd_price: string;
-
-          /**
            * Value of the transfer
            */
           value: string;
@@ -438,6 +433,11 @@ export namespace BitcoinTransactionScanResponse {
            * Summarized description of the transfer
            */
           summary?: string | null;
+
+          /**
+           * USD price of the asset
+           */
+          usd_price?: number | null;
         }
       }
     }
@@ -511,11 +511,6 @@ export namespace BitcoinTransactionScanResponse {
         raw_value: number;
 
         /**
-         * USD price of the asset
-         */
-        usd_price: string;
-
-        /**
          * Value of the transfer
          */
         value: string;
@@ -524,6 +519,11 @@ export namespace BitcoinTransactionScanResponse {
          * Summarized description of the transfer
          */
         summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
       }
 
       /**
@@ -536,11 +536,6 @@ export namespace BitcoinTransactionScanResponse {
         raw_value: number;
 
         /**
-         * USD price of the asset
-         */
-        usd_price: string;
-
-        /**
          * Value of the transfer
          */
         value: string;
@@ -549,6 +544,11 @@ export namespace BitcoinTransactionScanResponse {
          * Summarized description of the transfer
          */
         summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
       }
     }
 
@@ -609,14 +609,14 @@ export namespace BitcoinTransactionScanResponse {
         inscription_id: string;
 
         /**
-         * USD price of the asset
-         */
-        usd_price: string;
-
-        /**
          * Summarized description of the transfer
          */
         summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
       }
 
       /**
@@ -629,14 +629,14 @@ export namespace BitcoinTransactionScanResponse {
         inscription_id: string;
 
         /**
-         * USD price of the asset
-         */
-        usd_price: string;
-
-        /**
          * Summarized description of the transfer
          */
         summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
       }
     }
 
@@ -707,11 +707,6 @@ export namespace BitcoinTransactionScanResponse {
         raw_value: number;
 
         /**
-         * USD price of the asset
-         */
-        usd_price: string;
-
-        /**
          * Value of the transfer
          */
         value: string;
@@ -720,6 +715,11 @@ export namespace BitcoinTransactionScanResponse {
          * Summarized description of the transfer
          */
         summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
       }
 
       /**
@@ -732,11 +732,6 @@ export namespace BitcoinTransactionScanResponse {
         raw_value: number;
 
         /**
-         * USD price of the asset
-         */
-        usd_price: string;
-
-        /**
          * Value of the transfer
          */
         value: string;
@@ -745,6 +740,11 @@ export namespace BitcoinTransactionScanResponse {
          * Summarized description of the transfer
          */
         summary?: string | null;
+
+        /**
+         * USD price of the asset
+         */
+        usd_price?: number | null;
       }
     }
   }
