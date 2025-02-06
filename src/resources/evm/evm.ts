@@ -477,6 +477,7 @@ export type TransactionScanSupportedChain =
   | 'apechain'
   | 'zero-network'
   | 'berachain'
+  | 'berachain-bartio'
   | 'ink'
   | 'ink-sepolia'
   | 'abstract'
