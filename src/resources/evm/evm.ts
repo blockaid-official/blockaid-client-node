@@ -481,7 +481,8 @@ export type TransactionScanSupportedChain =
   | 'ink'
   | 'ink-sepolia'
   | 'abstract'
-  | 'soneium';
+  | 'soneium'
+  | 'unichain';
 
 export interface TransactionSimulation {
   /**
