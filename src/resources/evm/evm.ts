@@ -477,10 +477,12 @@ export type TransactionScanSupportedChain =
   | 'apechain'
   | 'zero-network'
   | 'berachain'
+  | 'berachain-bartio'
   | 'ink'
   | 'ink-sepolia'
   | 'abstract'
-  | 'soneium';
+  | 'soneium'
+  | 'unichain';
 
 export interface TransactionSimulation {
   /**
@@ -1387,6 +1389,11 @@ export namespace TransactionSimulation {
     to?: string;
 
     /**
+     * The user operation call data to be sent.
+     */
+    user_operation_calldata?: Params.UserOperationCalldata;
+
+    /**
      * The value to be sent.
      */
     value?: string;
@@ -1397,6 +1404,26 @@ export namespace TransactionSimulation {
      * The calldata to be sent.
      */
     export interface Calldata {
+      /**
+       * The function selector of the function called in the transaction
+       */
+      function_selector: string;
+
+      /**
+       * The function declaration of the function called in the transaction
+       */
+      function_declaration?: string;
+
+      /**
+       * The function signature of the function called in the transaction
+       */
+      function_signature?: string;
+    }
+
+    /**
+     * The user operation call data to be sent.
+     */
+    export interface UserOperationCalldata {
       /**
        * The function selector of the function called in the transaction
        */
