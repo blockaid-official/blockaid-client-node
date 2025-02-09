@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.36.0 (2025-02-09)
+
+Full Changelog: [v0.35.0...v0.36.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.35.0...v0.36.0)
+
+### Features
+
+* **api:** api update ([#383](https://github.com/blockaid-official/blockaid-client-node/issues/383)) ([eccebdb](https://github.com/blockaid-official/blockaid-client-node/commit/eccebdb6bacc167c751c940ee263efc4cb49fef6))
+* **api:** api update ([#384](https://github.com/blockaid-official/blockaid-client-node/issues/384)) ([44199d3](https://github.com/blockaid-official/blockaid-client-node/commit/44199d3b503e9bd8cd9be09fa824ea6a7b419f60))
+* **api:** api update ([#385](https://github.com/blockaid-official/blockaid-client-node/issues/385)) ([c06c1da](https://github.com/blockaid-official/blockaid-client-node/commit/c06c1da160f44cdda77a03b55a7f70fd670c2f97))
+* **client:** send `X-Stainless-Timeout` header ([#381](https://github.com/blockaid-official/blockaid-client-node/issues/381)) ([cdef1d9](https://github.com/blockaid-official/blockaid-client-node/commit/cdef1d9561e663c20d6e1b2b76ee40521dcdc137))
+
 ## 0.35.0 (2025-02-02)
 
 Full Changelog: [v0.34.2...v0.35.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.34.2...v0.35.0)
