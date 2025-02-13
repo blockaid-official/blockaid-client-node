@@ -361,7 +361,13 @@ export type TokenScanSupportedChain =
   | 'blast'
   | 'zksync'
   | 'scroll'
-  | 'degen';
+  | 'degen'
+  | 'abstract'
+  | 'soneium'
+  | 'ink'
+  | 'zero-network'
+  | 'berachain'
+  | 'unichain';
 
 export interface TransactionScanFeature {
   /**
