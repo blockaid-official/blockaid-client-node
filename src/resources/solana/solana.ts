@@ -317,6 +317,16 @@ export interface InstructionErrorDetails {
   transaction_index: number;
 
   /**
+   * Machine readable error code returned by the program
+   */
+  code?: string | null;
+
+  /**
+   * Error number returned by the program
+   */
+  number?: number | null;
+
+  /**
    * The program account that caused the error
    */
   program_account?: string | null;
