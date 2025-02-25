@@ -149,6 +149,11 @@ export interface Erc20Exposure {
   exposure: Array<Erc1155Diff | Erc721Diff | Erc20Diff | NativeDiff>;
 
   /**
+   * the usd price of the approval amount
+   */
+  approval_usd_price?: string;
+
+  /**
    * the expiration time of the permit2 protocol
    */
   expiration?: string;
