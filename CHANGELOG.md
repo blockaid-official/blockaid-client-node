@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.37.0 (2025-02-25)
+
+Full Changelog: [v0.36.0...v0.37.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.36.0...v0.37.0)
+
+### Features
+
+* **api:** api update ([#387](https://github.com/blockaid-official/blockaid-client-node/issues/387)) ([3ffc51d](https://github.com/blockaid-official/blockaid-client-node/commit/3ffc51db56913cb4b7060fc1a55db15c9661a363))
+* **api:** api update ([#390](https://github.com/blockaid-official/blockaid-client-node/issues/390)) ([9220036](https://github.com/blockaid-official/blockaid-client-node/commit/9220036d216b1c195c6a241516e17f83b5ee9ea7))
+* **api:** api update ([#391](https://github.com/blockaid-official/blockaid-client-node/issues/391)) ([12e5285](https://github.com/blockaid-official/blockaid-client-node/commit/12e52859cb31fad8aeee5f7b4fff61dc7a820125))
+* **api:** api update ([#393](https://github.com/blockaid-official/blockaid-client-node/issues/393)) ([54b05eb](https://github.com/blockaid-official/blockaid-client-node/commit/54b05ebeb21c62d8b64cbc280d5c8831c5b3c5ab))
+
+
+### Bug Fixes
+
+* **client:** fix export map for index exports ([#389](https://github.com/blockaid-official/blockaid-client-node/issues/389)) ([92cbdb4](https://github.com/blockaid-official/blockaid-client-node/commit/92cbdb4ab198169eaf0f626b32a2393485ba5938))
+
+
+### Chores
+
+* **internal:** fix devcontainers setup ([#392](https://github.com/blockaid-official/blockaid-client-node/issues/392)) ([ed7066a](https://github.com/blockaid-official/blockaid-client-node/commit/ed7066a9ae3748eac19bb3b0a7245d056ccfcded))
+
 ## 0.36.0 (2025-02-09)
 
 Full Changelog: [v0.35.0...v0.36.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.35.0...v0.36.0)
