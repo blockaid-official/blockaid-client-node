@@ -492,6 +492,7 @@ export type TransactionScanSupportedChain =
   | 'ink'
   | 'ink-sepolia'
   | 'abstract'
+  | 'abstract-testnet'
   | 'soneium'
   | 'unichain';
 
