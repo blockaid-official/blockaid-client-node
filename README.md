@@ -6,7 +6,7 @@ This library provides convenient access to the Blockaid REST API from server-sid
 
 The REST API documentation can be found on [docs.blockaid.io](https://docs.blockaid.io). The full API of this library can be found in [api.md](api.md).
 
-It is generated with [Stainless](https://www.stainlessapi.com/).
+It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
