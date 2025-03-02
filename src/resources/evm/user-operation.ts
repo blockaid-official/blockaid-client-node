@@ -60,7 +60,7 @@ export namespace UserOperationScanParams {
     /**
      * The operation parameters of the user operation request
      */
-    operation: Data.Operation;
+    operation: Data.UserOperationV6 | Data.UserOperationV7;
 
     /**
      * The address of the entrypoint receiving the request in hex string format
@@ -69,10 +69,7 @@ export namespace UserOperationScanParams {
   }
 
   export namespace Data {
-    /**
-     * The operation parameters of the user operation request
-     */
-    export interface Operation {
+    export interface UserOperationV6 {
       /**
        * The call data value in hex string format.
        */
@@ -127,6 +124,53 @@ export namespace UserOperationScanParams {
        * The verification gas limit value in hex string format.
        */
       verification_gas_limit?: string;
+    }
+
+    export interface UserOperationV7 {
+      /**
+       * The account gas limits value in hex string format.
+       */
+      account_gas_limits?: string;
+
+      /**
+       * The call data value in hex string format.
+       */
+      call_data?: string;
+
+      /**
+       * The gas fees value in hex string format.
+       */
+      gas_fees?: string;
+
+      /**
+       * The init code value in hex string format.
+       */
+      init_code?: string;
+
+      /**
+       * The nonce value in hex string format.
+       */
+      nonce?: string;
+
+      /**
+       * The paymaster and data value in hex string format.
+       */
+      paymaster_and_data?: string;
+
+      /**
+       * The pre verification gas value in hex string format.
+       */
+      pre_verification_gas?: string;
+
+      /**
+       * The sender address of the operation in hex string format
+       */
+      sender?: string;
+
+      /**
+       * The signature value in hex string format.
+       */
+      signature?: string;
     }
   }
 }

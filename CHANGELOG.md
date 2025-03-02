@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.38.0 (2025-03-02)
+
+Full Changelog: [v0.37.0...v0.38.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.37.0...v0.38.0)
+
+### Features
+
+* **api:** api update ([#395](https://github.com/blockaid-official/blockaid-client-node/issues/395)) ([ece7ffc](https://github.com/blockaid-official/blockaid-client-node/commit/ece7ffc78edaffdb73fd30247ad53a4b5b623b39))
+* **api:** api update ([#398](https://github.com/blockaid-official/blockaid-client-node/issues/398)) ([a48a417](https://github.com/blockaid-official/blockaid-client-node/commit/a48a41727903404955ab20be5a14c27b6657e93b))
+
+
+### Documentation
+
+* update URLs from stainlessapi.com to stainless.com ([#397](https://github.com/blockaid-official/blockaid-client-node/issues/397)) ([04963b2](https://github.com/blockaid-official/blockaid-client-node/commit/04963b2c83b2c66870ad77c3d7a97973330945dc))
+
 ## 0.37.0 (2025-02-25)
 
 Full Changelog: [v0.36.0...v0.37.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.36.0...v0.37.0)
