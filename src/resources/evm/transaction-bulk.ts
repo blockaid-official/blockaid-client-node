@@ -53,6 +53,11 @@ export interface TransactionBulkScanParams {
    * of the transaction in your response. Default is ["validation"]
    */
   options?: Array<'validation' | 'simulation' | 'gas_estimation' | 'events'>;
+
+  /**
+   * Override the state of the chain. This is useful for testing purposes.
+   */
+  state_override?: Record<string, TransactionBulkScanParams.StateOverride>;
 }
 
 export namespace TransactionBulkScanParams {
@@ -86,6 +91,40 @@ export namespace TransactionBulkScanParams {
      * The value of the transaction in Wei in hex string format
      */
     value?: string;
+  }
+
+  export interface StateOverride {
+    /**
+     * Fake balance to set for the account before executing the call.
+     */
+    balance?: string;
+
+    /**
+     * Fake EVM bytecode to inject into the account before executing the call.
+     */
+    code?: string;
+
+    /**
+     * Moves precompile to given address
+     */
+    movePrecompileToAddress?: string;
+
+    /**
+     * Fake nonce to set for the account before executing the call.
+     */
+    nonce?: string;
+
+    /**
+     * Fake key-value mapping to override all slots in the account storage before
+     * executing the call.
+     */
+    state?: Record<string, string>;
+
+    /**
+     * Fake key-value mapping to override individual slots in the account storage
+     * before executing the call.
+     */
+    stateDiff?: Record<string, string>;
   }
 }
 

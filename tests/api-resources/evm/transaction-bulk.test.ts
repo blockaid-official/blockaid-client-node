@@ -52,6 +52,16 @@ describe('resource transactionBulk', () => {
       aggregated: true,
       block: '20224477',
       options: ['validation'],
+      state_override: {
+        foo: {
+          balance: 'balance',
+          code: 'code',
+          movePrecompileToAddress: 'movePrecompileToAddress',
+          nonce: 'nonce',
+          state: { foo: 'string' },
+          stateDiff: { foo: 'string' },
+        },
+      },
     });
   });
 });
