@@ -49,6 +49,16 @@ describe('resource userOperation', () => {
       account_address: '0x77bA5AC3ca4864be26CA3112baDf07286CcC3324',
       block: '0x5c6fd5',
       options: ['validation', 'simulation'],
+      state_override: {
+        foo: {
+          balance: 'balance',
+          code: 'code',
+          movePrecompileToAddress: 'movePrecompileToAddress',
+          nonce: 'nonce',
+          state: { foo: 'string' },
+          stateDiff: { foo: 'string' },
+        },
+      },
     });
   });
 });

@@ -54,6 +54,16 @@ describe('resource postTransaction', () => {
       metadata: { domain: 'domain' },
       block: 0,
       options: ['validation', 'simulation'],
+      state_override: {
+        foo: {
+          balance: 'balance',
+          code: 'code',
+          movePrecompileToAddress: 'movePrecompileToAddress',
+          nonce: 'nonce',
+          state: { foo: 'string' },
+          stateDiff: { foo: 'string' },
+        },
+      },
     });
   });
 });

@@ -44,6 +44,16 @@ describe('resource jsonRpc', () => {
       account_address: '0x49c73c9d361c04769a452E85D343b41aC38e0EE4',
       block: '18370320',
       options: ['validation', 'simulation'],
+      state_override: {
+        foo: {
+          balance: 'balance',
+          code: 'code',
+          movePrecompileToAddress: 'movePrecompileToAddress',
+          nonce: 'nonce',
+          state: { foo: 'string' },
+          stateDiff: { foo: 'string' },
+        },
+      },
     });
   });
 });
