@@ -33,6 +33,16 @@ describe('resource transactionRaw', () => {
       metadata: { domain: 'https://app.1inch.io' },
       block: '17718858',
       options: ['validation', 'simulation'],
+      state_override: {
+        foo: {
+          balance: 'balance',
+          code: 'code',
+          movePrecompileToAddress: 'movePrecompileToAddress',
+          nonce: 'nonce',
+          state: { foo: 'string' },
+          stateDiff: { foo: 'string' },
+        },
+      },
     });
   });
 });
