@@ -2,6 +2,7 @@
 
 export {
   Evm,
+  type AccountSummary,
   type Erc1155Diff,
   type Erc1155Exposure,
   type Erc1155TokenDetails,
@@ -12,7 +13,9 @@ export {
   type Erc721Exposure,
   type Erc721TokenDetails,
   type Metadata,
+  type NativeAddressAssetBalanceChangeDiff,
   type NativeAssetDetails,
+  type NativeAssetTrace,
   type NativeDiff,
   type NonercTokenDetails,
   type TokenScanSupportedChain,

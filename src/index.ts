@@ -29,6 +29,7 @@ import {
   BitcoinTransactionScanResponse,
 } from './resources/bitcoin/bitcoin';
 import {
+  AccountSummary,
   Erc1155Diff,
   Erc1155Exposure,
   Erc1155TokenDetails,
@@ -40,7 +41,9 @@ import {
   Erc721TokenDetails,
   Evm,
   Metadata,
+  NativeAddressAssetBalanceChangeDiff,
   NativeAssetDetails,
+  NativeAssetTrace,
   NativeDiff,
   NonercTokenDetails,
   TokenScanSupportedChain,
@@ -365,6 +368,7 @@ export declare namespace Blockaid {
 
   export {
     Evm as Evm,
+    type AccountSummary as AccountSummary,
     type Erc1155Diff as Erc1155Diff,
     type Erc1155Exposure as Erc1155Exposure,
     type Erc1155TokenDetails as Erc1155TokenDetails,
@@ -375,7 +379,9 @@ export declare namespace Blockaid {
     type Erc721Exposure as Erc721Exposure,
     type Erc721TokenDetails as Erc721TokenDetails,
     type Metadata as Metadata,
+    type NativeAddressAssetBalanceChangeDiff as NativeAddressAssetBalanceChangeDiff,
     type NativeAssetDetails as NativeAssetDetails,
+    type NativeAssetTrace as NativeAssetTrace,
     type NativeDiff as NativeDiff,
     type NonercTokenDetails as NonercTokenDetails,
     type TokenScanSupportedChain as TokenScanSupportedChain,
