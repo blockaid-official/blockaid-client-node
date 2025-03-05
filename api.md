@@ -2,6 +2,7 @@
 
 Types:
 
+- <code><a href="./src/resources/evm/evm.ts">AccountSummary</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155Diff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155Exposure</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155TokenDetails</a></code>
@@ -12,7 +13,9 @@ Types:
 - <code><a href="./src/resources/evm/evm.ts">Erc721Exposure</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc721TokenDetails</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Metadata</a></code>
+- <code><a href="./src/resources/evm/evm.ts">NativeAddressAssetBalanceChangeDiff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NativeAssetDetails</a></code>
+- <code><a href="./src/resources/evm/evm.ts">NativeAssetTrace</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NativeDiff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NonercTokenDetails</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TokenScanSupportedChain</a></code>
