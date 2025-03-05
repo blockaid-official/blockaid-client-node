@@ -385,6 +385,11 @@ export namespace AccountSummary {
   }
 
   export interface Erc20ExposureTrace {
+    /**
+     * Description of the asset in the trace
+     */
+    asset: EvmAPI.Erc20TokenDetails | EvmAPI.NonercTokenDetails;
+
     exposed: Erc20ExposureTrace.Exposed;
 
     /**
@@ -419,6 +424,11 @@ export namespace AccountSummary {
   }
 
   export interface Erc721ExposureTrace {
+    /**
+     * Description of the asset in the trace
+     */
+    asset: EvmAPI.Erc721TokenDetails | EvmAPI.NonercTokenDetails;
+
     exposed: Erc721ExposureTrace.Exposed;
 
     /**
@@ -457,6 +467,11 @@ export namespace AccountSummary {
   }
 
   export interface Erc1155ExposureTrace {
+    /**
+     * Description of the asset in the trace
+     */
+    asset: EvmAPI.Erc1155TokenDetails | EvmAPI.NonercTokenDetails;
+
     /**
      * The owner of the assets
      */
