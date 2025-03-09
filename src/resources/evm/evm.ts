@@ -977,11 +977,11 @@ export namespace TransactionScanResponse {
   }
 
   export interface TransactionScanGasEstimation {
-    estimate: number;
+    estimate: string;
 
     status: 'Success';
 
-    used: number;
+    used: string;
   }
 
   export interface TransactionScanGasEstimationError {
