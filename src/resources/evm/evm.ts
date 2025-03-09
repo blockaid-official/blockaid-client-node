@@ -977,11 +977,11 @@ export namespace TransactionScanResponse {
   }
 
   export interface TransactionScanGasEstimation {
-    estimate: number;
+    estimate: string;
 
     status: 'Success';
 
-    used: number;
+    used: string;
   }
 
   export interface TransactionScanGasEstimationError {
@@ -1027,7 +1027,8 @@ export type TransactionScanSupportedChain =
   | 'abstract'
   | 'abstract-testnet'
   | 'soneium'
-  | 'unichain';
+  | 'unichain'
+  | 'sei';
 
 export interface TransactionSimulation {
   /**
