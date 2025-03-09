@@ -1027,7 +1027,8 @@ export type TransactionScanSupportedChain =
   | 'abstract'
   | 'abstract-testnet'
   | 'soneium'
-  | 'unichain';
+  | 'unichain'
+  | 'sei';
 
 export interface TransactionSimulation {
   /**
