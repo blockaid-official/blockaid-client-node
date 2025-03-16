@@ -1073,6 +1073,11 @@ export interface TransactionSimulation {
   >;
 
   /**
+   * Session keys created in this transaction per address
+   */
+  session_key: Record<string, Array<TransactionSimulation.SessionKey>>;
+
+  /**
    * A string indicating if the simulation was successful or not.
    */
   status: 'Success';
@@ -1266,6 +1271,74 @@ export namespace TransactionSimulation {
      * transaction for the current address and asset
      */
     spenders: Record<string, EvmAPI.Erc1155Exposure>;
+  }
+
+  export interface SessionKey {
+    key: string;
+
+    policies: Array<
+      SessionKey.TransferPolicy | SessionKey.CallPolicy | SessionKey.GasPolicy | SessionKey.ExpirationPolicy
+    >;
+
+    signer: string;
+  }
+
+  export namespace SessionKey {
+    export interface TransferPolicy {
+      asset_details: EvmAPI.NativeAssetDetails | EvmAPI.Erc20TokenDetails;
+
+      recipient?: string;
+
+      type?: 'TRANSFER_POLICY';
+
+      value_limit?: string;
+    }
+
+    export interface CallPolicy {
+      to_address: string;
+
+      args?: Array<CallPolicy.Arg>;
+
+      method?: string;
+
+      type?: 'CALL_POLICY';
+
+      value_limit?: string;
+    }
+
+    export namespace CallPolicy {
+      export interface Arg {
+        /**
+         * An enumeration.
+         */
+        condition:
+          | 'UNCONSTRAINED'
+          | 'EQUAL'
+          | 'GREATER'
+          | 'LESS'
+          | 'GREATER_OR_EQUAL'
+          | 'LESS_OR_EQUAL'
+          | 'NOT_EQUAL';
+
+        index: number;
+
+        value: string;
+      }
+    }
+
+    export interface GasPolicy {
+      value_limit: string;
+
+      type?: 'GAS_POLICY';
+    }
+
+    export interface ExpirationPolicy {
+      end_time?: string;
+
+      start_time?: string;
+
+      type?: 'EXPIRATION_POLICY';
+    }
   }
 
   export interface ProxyUpgradeManagement {
