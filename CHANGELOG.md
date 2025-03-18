@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.43.0 (2025-03-18)
+
+Full Changelog: [v0.42.0...v0.43.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.42.0...v0.43.0)
+
+### Features
+
+* add SKIP_BREW env var to ./scripts/bootstrap ([#413](https://github.com/blockaid-official/blockaid-client-node/issues/413)) ([50de4fd](https://github.com/blockaid-official/blockaid-client-node/commit/50de4fd0e72349b7d28c45bc1fedc68f764e5e44))
+* **api:** api update ([#418](https://github.com/blockaid-official/blockaid-client-node/issues/418)) ([50727be](https://github.com/blockaid-official/blockaid-client-node/commit/50727be22bff6f6760476b3eef2cd6e38e8a2e00))
+* **api:** api update ([#419](https://github.com/blockaid-official/blockaid-client-node/issues/419)) ([f32ebc2](https://github.com/blockaid-official/blockaid-client-node/commit/f32ebc26442b1bce0fe5de2fca1f6006f7ab4e38))
+* **client:** accept RFC6838 JSON content types ([#415](https://github.com/blockaid-official/blockaid-client-node/issues/415)) ([4f7036e](https://github.com/blockaid-official/blockaid-client-node/commit/4f7036eb29feaac38ae758ae21f657a66232bdc3))
+
+
+### Bug Fixes
+
+* **exports:** ensure resource imports don't require /index ([#417](https://github.com/blockaid-official/blockaid-client-node/issues/417)) ([feeeb2a](https://github.com/blockaid-official/blockaid-client-node/commit/feeeb2a9e6ab102c4a8812ae088ba7cffe3cc53a))
+
+
+### Chores
+
+* **internal:** remove extra empty newlines ([#416](https://github.com/blockaid-official/blockaid-client-node/issues/416)) ([7c557b1](https://github.com/blockaid-official/blockaid-client-node/commit/7c557b1e820f60094ddc86056ba2d02681014489))
+
 ## 0.42.0 (2025-03-09)
 
 Full Changelog: [v0.41.0...v0.42.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.41.0...v0.42.0)
