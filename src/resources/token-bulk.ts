@@ -121,6 +121,11 @@ export namespace TokenBulkScanResponse {
 
       top_holders?: Array<FinancialStats.TopHolder>;
 
+      /**
+       * Total reserve in USD
+       */
+      total_reserve_in_usd?: number;
+
       usd_price_per_unit?: number;
     }
 
