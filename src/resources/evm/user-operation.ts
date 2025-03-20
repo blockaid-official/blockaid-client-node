@@ -32,7 +32,7 @@ export interface UserOperationScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: UserOperationScanParams.Metadata;
+  metadata: EvmAPI.MetadataParam;
 
   /**
    * The address of the account (wallet) sending the request in hex string format
@@ -177,16 +177,6 @@ export namespace UserOperationScanParams {
        */
       signature?: string;
     }
-  }
-
-  /**
-   * Object of additional information to validate against.
-   */
-  export interface Metadata {
-    /**
-     * cross reference transaction against the domain.
-     */
-    domain: string;
   }
 
   export interface StateOverride {
