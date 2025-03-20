@@ -34,7 +34,7 @@ export interface TransactionReportParams {
   details: string;
 
   /**
-   * An enumeration.
+   * The event type of the report. Could be FALSE_POSITIVE or FALSE_NEGATIVE.
    */
   event: 'FALSE_POSITIVE' | 'FALSE_NEGATIVE';
 
@@ -129,7 +129,7 @@ export namespace TransactionReportParams {
         /**
          * cross reference transaction against the domain.
          */
-        domain: string;
+        domain?: string | null;
       }
     }
   }
@@ -224,7 +224,7 @@ export namespace TransactionScanParams {
     /**
      * cross reference transaction against the domain.
      */
-    domain: string;
+    domain?: string | null;
   }
 
   export interface StateOverride {
