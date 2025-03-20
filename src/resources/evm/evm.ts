@@ -887,18 +887,23 @@ export type TokenScanSupportedChain =
   | 'zora'
   | 'solana'
   | 'starknet'
+  | 'starknet-sepolia'
   | 'stellar'
   | 'linea'
-  | 'blast'
+  | 'degen'
   | 'zksync'
   | 'scroll'
-  | 'degen'
+  | 'blast'
+  | 'soneium-minato'
+  | 'base-sepolia'
+  | 'bitcoin'
   | 'abstract'
   | 'soneium'
   | 'ink'
   | 'zero-network'
   | 'berachain'
-  | 'unichain';
+  | 'unichain'
+  | 'ronin';
 
 export interface TransactionScanFeature {
   /**

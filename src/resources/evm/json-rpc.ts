@@ -80,7 +80,7 @@ export namespace JsonRpcScanParams {
     /**
      * cross reference transaction against the domain.
      */
-    domain: string;
+    domain?: string | null;
   }
 
   export interface StateOverride {
