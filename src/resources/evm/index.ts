@@ -12,7 +12,6 @@ export {
   type Erc721Diff,
   type Erc721Exposure,
   type Erc721TokenDetails,
-  type Metadata,
   type NativeAddressAssetBalanceChangeDiff,
   type NativeAssetDetails,
   type NativeAssetTrace,
