@@ -37,7 +37,7 @@ describe('resource transaction', () => {
       account_address: 'account_address',
       chain: 'arbitrum',
       data: { from: '0x5e1a0d484c5f0de722e82f9dca3a9d5a421d47cb' },
-      metadata: {},
+      metadata: { domain: 'https://boredapeyartclub.com' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
