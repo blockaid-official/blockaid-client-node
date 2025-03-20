@@ -129,7 +129,7 @@ export namespace TransactionReportParams {
         /**
          * cross reference transaction against the domain.
          */
-        domain?: string | null;
+        domain: string;
       }
     }
   }
@@ -224,7 +224,7 @@ export namespace TransactionScanParams {
     /**
      * cross reference transaction against the domain.
      */
-    domain?: string | null;
+    domain: string;
   }
 
   export interface StateOverride {

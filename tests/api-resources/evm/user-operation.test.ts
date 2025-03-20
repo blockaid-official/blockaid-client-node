@@ -13,7 +13,7 @@ describe('resource userOperation', () => {
     const responsePromise = client.evm.userOperation.scan({
       chain: 'arbitrum',
       data: { operation: {} },
-      metadata: {},
+      metadata: { domain: 'example.com' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
