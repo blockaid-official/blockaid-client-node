@@ -36,7 +36,7 @@ describe('resource postTransaction', () => {
     const responsePromise = client.evm.postTransaction.scan({
       chain: 'arbitrum',
       data: { tx_hash: '0xc01780dadc107754b331250b4797606949cb3d0087facc0a737122d5e973c83c' },
-      metadata: {},
+      metadata: { domain: 'domain' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
