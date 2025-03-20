@@ -84,7 +84,7 @@ export interface PostTransactionScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: PostTransactionScanParams.Metadata;
+  metadata: EvmAPI.MetadataParam;
 
   /**
    * The relative block for the block validation. Can be "latest" or a block number.
@@ -110,16 +110,6 @@ export namespace PostTransactionScanParams {
      * The transaction hash to scan
      */
     tx_hash: string;
-  }
-
-  /**
-   * Object of additional information to validate against.
-   */
-  export interface Metadata {
-    /**
-     * cross reference transaction against the domain.
-     */
-    domain: string;
   }
 
   export interface StateOverride {
