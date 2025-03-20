@@ -32,7 +32,7 @@ export interface JsonRpcScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: JsonRpcScanParams.Metadata;
+  metadata: EvmAPI.MetadataParam;
 
   /**
    * The address of the account (wallet) received the request in hex string format
@@ -71,16 +71,6 @@ export namespace JsonRpcScanParams {
      * The parameters of the JSON-RPC request in JSON format
      */
     params: Array<unknown>;
-  }
-
-  /**
-   * Object of additional information to validate against.
-   */
-  export interface Metadata {
-    /**
-     * cross reference transaction against the domain.
-     */
-    domain: string;
   }
 
   export interface StateOverride {
