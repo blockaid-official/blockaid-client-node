@@ -35,7 +35,7 @@ export interface TransactionBulkScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: EvmAPI.Metadata;
+  metadata: EvmAPI.MetadataParam;
 
   /**
    * Should aggregate the results to one result

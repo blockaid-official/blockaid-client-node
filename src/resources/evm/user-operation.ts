@@ -32,7 +32,7 @@ export interface UserOperationScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: EvmAPI.Metadata;
+  metadata: EvmAPI.MetadataParam;
 
   /**
    * The address of the account (wallet) sending the request in hex string format

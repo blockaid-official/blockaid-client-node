@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.44.0 (2025-03-22)
+
+Full Changelog: [v0.43.0...v0.44.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.43.0...v0.44.0)
+
+### Features
+
+* **api:** api update ([#424](https://github.com/blockaid-official/blockaid-client-node/issues/424)) ([60d4cc7](https://github.com/blockaid-official/blockaid-client-node/commit/60d4cc7367c5fbca79fcb8fafb05de63d8690230))
+* **api:** api update ([#425](https://github.com/blockaid-official/blockaid-client-node/issues/425)) ([b54cbc5](https://github.com/blockaid-official/blockaid-client-node/commit/b54cbc540a54b69275a78159cdaccc4a7d5c6386))
+* **api:** api update ([#426](https://github.com/blockaid-official/blockaid-client-node/issues/426)) ([0209029](https://github.com/blockaid-official/blockaid-client-node/commit/0209029a2ffdfefa33ae1607c3bda54dc91c7ba6))
+* **api:** api update ([#427](https://github.com/blockaid-official/blockaid-client-node/issues/427)) ([d0dee28](https://github.com/blockaid-official/blockaid-client-node/commit/d0dee28176ed7cd4fc5070fdf8bb6729757d7491))
+
+
+### Bug Fixes
+
+* avoid type error in certain environments ([#428](https://github.com/blockaid-official/blockaid-client-node/issues/428)) ([76cb3cc](https://github.com/blockaid-official/blockaid-client-node/commit/76cb3cc5ed78b9e25f81b274b0956a5aa18120da))
+
+
+### Chores
+
+* **exports:** cleaner resource index imports ([#421](https://github.com/blockaid-official/blockaid-client-node/issues/421)) ([5675c15](https://github.com/blockaid-official/blockaid-client-node/commit/5675c15caab213f24a01f49ecda322af5fd18aba))
+* **exports:** stop using path fallbacks ([#423](https://github.com/blockaid-official/blockaid-client-node/issues/423)) ([6004a7d](https://github.com/blockaid-official/blockaid-client-node/commit/6004a7d2fe0674ff25a2c5b0b515a567c725d202))
+
 ## 0.43.0 (2025-03-18)
 
 Full Changelog: [v0.42.0...v0.43.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.42.0...v0.43.0)

@@ -82,7 +82,7 @@ export interface SiteReportParams {
   details: string;
 
   /**
-   * An enumeration.
+   * The event type of the report. Could be FALSE_POSITIVE or FALSE_NEGATIVE.
    */
   event: 'FALSE_POSITIVE' | 'FALSE_NEGATIVE';
 

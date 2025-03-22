@@ -38,7 +38,7 @@ export interface TransactionRawScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: EvmAPI.Metadata;
+  metadata: EvmAPI.MetadataParam;
 
   /**
    * The relative block for the block validation. Can be "latest" or a block number.
