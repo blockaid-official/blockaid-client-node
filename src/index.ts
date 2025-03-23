@@ -5,24 +5,10 @@ import * as Core from './core';
 import * as Errors from './error';
 import * as Uploads from './uploads';
 import * as API from './resources/index';
-import { Scan, ScanStatusParams, ScanStatusResponse } from './resources/scan';
-import {
-  Site,
-  SiteReportParams,
-  SiteReportResponse,
-  SiteScanHitResponse,
-  SiteScanMissResponse,
-  SiteScanParams,
-  SiteScanResponse,
-} from './resources/site';
-import {
-  Token,
-  TokenReportParams,
-  TokenReportResponse,
-  TokenScanParams,
-  TokenScanResponse,
-} from './resources/token';
-import { TokenBulk, TokenBulkScanParams, TokenBulkScanResponse } from './resources/token-bulk';
+import { Scan } from './resources/scan';
+import { Site } from './resources/site';
+import { Token } from './resources/token';
+import { TokenBulk } from './resources/token-bulk';
 import {
   Bitcoin,
   BitcoinTransactionScanRequest,
@@ -46,7 +32,6 @@ import {
   NativeAssetTrace,
   NativeDiff,
   NonercTokenDetails,
-  TokenScanSupportedChain,
   TransactionScanFeature,
   TransactionScanResponse,
   TransactionScanSupportedChain,
@@ -56,42 +41,7 @@ import {
   TransactionValidationError,
   UsdDiff,
 } from './resources/evm/evm';
-import {
-  APIErrorDetails,
-  AccountSummarySchema,
-  AddressScanRequestSchema,
-  AddressScanResponseSchema,
-  AssetTransferDetailsSchema,
-  CnftDetailsSchema,
-  CnftDiffSchema,
-  CnftMintAccountDetailsSchema,
-  CombinedValidationResult,
-  DelegatedAssetDetailsSchema,
-  FungibleMintAccountDetailsSchema,
-  InstructionErrorDetails,
-  NativeDetailsSchema,
-  NativeDiffSchema,
-  NativeSolOwnershipDiffSchema,
-  NonFungibleMintAccountDetailsSchema,
-  PdaAccountSchema,
-  ProgramAccountDetailsSchema,
-  ResponseSchema,
-  Solana,
-  SplFungibleTokenDetailsSchema,
-  SplFungibleTokenDiffSchema,
-  SplNonFungibleTokenDetailsSchema,
-  SplNonFungibleTokenDiffSchema,
-  SplTokenOwnershipDiffSchema,
-  StakedAssetDetailsSchema,
-  StakedSolWithdrawAuthorityDiffSchema,
-  SuccessfulSimulationResultSchema,
-  SystemAccountDetailsSchema,
-  TokenAccountDetailsSchema,
-  TotalUsdDiffSchema,
-  TransactionErrorDetails,
-  TxScanRequestSchema,
-  ValidationFeature,
-} from './resources/solana/solana';
+import { Solana } from './resources/solana/solana';
 import {
   Starknet,
   StarknetErc1155Details,
@@ -384,7 +334,6 @@ export declare namespace Blockaid {
     type NativeAssetTrace as NativeAssetTrace,
     type NativeDiff as NativeDiff,
     type NonercTokenDetails as NonercTokenDetails,
-    type TokenScanSupportedChain as TokenScanSupportedChain,
     type TransactionScanFeature as TransactionScanFeature,
     type TransactionScanResponse as TransactionScanResponse,
     type TransactionScanSupportedChain as TransactionScanSupportedChain,
@@ -395,42 +344,7 @@ export declare namespace Blockaid {
     type UsdDiff as UsdDiff,
   };
 
-  export {
-    Solana as Solana,
-    type AccountSummarySchema as AccountSummarySchema,
-    type AddressScanRequestSchema as AddressScanRequestSchema,
-    type AddressScanResponseSchema as AddressScanResponseSchema,
-    type APIErrorDetails as APIErrorDetails,
-    type AssetTransferDetailsSchema as AssetTransferDetailsSchema,
-    type CnftDetailsSchema as CnftDetailsSchema,
-    type CnftDiffSchema as CnftDiffSchema,
-    type CnftMintAccountDetailsSchema as CnftMintAccountDetailsSchema,
-    type CombinedValidationResult as CombinedValidationResult,
-    type DelegatedAssetDetailsSchema as DelegatedAssetDetailsSchema,
-    type FungibleMintAccountDetailsSchema as FungibleMintAccountDetailsSchema,
-    type InstructionErrorDetails as InstructionErrorDetails,
-    type NativeDetailsSchema as NativeDetailsSchema,
-    type NativeDiffSchema as NativeDiffSchema,
-    type NativeSolOwnershipDiffSchema as NativeSolOwnershipDiffSchema,
-    type NonFungibleMintAccountDetailsSchema as NonFungibleMintAccountDetailsSchema,
-    type PdaAccountSchema as PdaAccountSchema,
-    type ProgramAccountDetailsSchema as ProgramAccountDetailsSchema,
-    type ResponseSchema as ResponseSchema,
-    type SplFungibleTokenDetailsSchema as SplFungibleTokenDetailsSchema,
-    type SplFungibleTokenDiffSchema as SplFungibleTokenDiffSchema,
-    type SplNonFungibleTokenDetailsSchema as SplNonFungibleTokenDetailsSchema,
-    type SplNonFungibleTokenDiffSchema as SplNonFungibleTokenDiffSchema,
-    type SplTokenOwnershipDiffSchema as SplTokenOwnershipDiffSchema,
-    type StakedAssetDetailsSchema as StakedAssetDetailsSchema,
-    type StakedSolWithdrawAuthorityDiffSchema as StakedSolWithdrawAuthorityDiffSchema,
-    type SuccessfulSimulationResultSchema as SuccessfulSimulationResultSchema,
-    type SystemAccountDetailsSchema as SystemAccountDetailsSchema,
-    type TokenAccountDetailsSchema as TokenAccountDetailsSchema,
-    type TotalUsdDiffSchema as TotalUsdDiffSchema,
-    type TransactionErrorDetails as TransactionErrorDetails,
-    type TxScanRequestSchema as TxScanRequestSchema,
-    type ValidationFeature as ValidationFeature,
-  };
+  export { Solana as Solana };
 
   export {
     Stellar as Stellar,
@@ -470,35 +384,13 @@ export declare namespace Blockaid {
     type SuiTransactionScanResponse as SuiTransactionScanResponse,
   };
 
-  export {
-    Site as Site,
-    type SiteScanHitResponse as SiteScanHitResponse,
-    type SiteScanMissResponse as SiteScanMissResponse,
-    type SiteReportResponse as SiteReportResponse,
-    type SiteScanResponse as SiteScanResponse,
-    type SiteReportParams as SiteReportParams,
-    type SiteScanParams as SiteScanParams,
-  };
+  export { Site as Site };
 
-  export {
-    Scan as Scan,
-    type ScanStatusResponse as ScanStatusResponse,
-    type ScanStatusParams as ScanStatusParams,
-  };
+  export { Scan as Scan };
 
-  export {
-    Token as Token,
-    type TokenReportResponse as TokenReportResponse,
-    type TokenScanResponse as TokenScanResponse,
-    type TokenReportParams as TokenReportParams,
-    type TokenScanParams as TokenScanParams,
-  };
+  export { Token as Token };
 
-  export {
-    TokenBulk as TokenBulk,
-    type TokenBulkScanResponse as TokenBulkScanResponse,
-    type TokenBulkScanParams as TokenBulkScanParams,
-  };
+  export { TokenBulk as TokenBulk };
 }
 
 export { toFile, fileFromPath } from './uploads';
