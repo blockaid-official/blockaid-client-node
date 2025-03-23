@@ -12,7 +12,7 @@ describe('resource scan', () => {
   test('status: only required params', async () => {
     const responsePromise = client.scan.status({
       request_id: '7f959417-76c1-4c4d-89e8-5fdedab76a8d',
-      status: 1,
+      status: 'accepted',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -26,7 +26,7 @@ describe('resource scan', () => {
   test('status: required and optional params', async () => {
     const response = await client.scan.status({
       request_id: '7f959417-76c1-4c4d-89e8-5fdedab76a8d',
-      status: 1,
+      status: 'accepted',
     });
   });
 });
