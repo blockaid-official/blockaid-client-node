@@ -23,6 +23,7 @@ export {
   type NativeAssetTrace,
   type NativeDiff,
   type NonercTokenDetails,
+  type TokenScanSupportedChain,
   type TransactionScanFeature,
   type TransactionScanResponse,
   type TransactionScanSupportedChain,
@@ -32,8 +33,16 @@ export {
   type TransactionValidationError,
   type UsdDiff,
 } from './evm/evm';
-export { Scan } from './scan';
-export { Site } from './site';
+export { Scan, type ScanStatusResponse, type ScanStatusParams } from './scan';
+export {
+  Site,
+  type SiteScanHitResponse,
+  type SiteScanMissResponse,
+  type SiteReportResponse,
+  type SiteScanResponse,
+  type SiteReportParams,
+  type SiteScanParams,
+} from './site';
 export { Solana } from './solana/solana';
 export {
   Starknet,
@@ -64,5 +73,11 @@ export {
   type SuiNFTDiffSchema,
   type SuiTransactionScanResponse,
 } from './sui/sui';
-export { Token } from './token';
-export { TokenBulk } from './token-bulk';
+export {
+  Token,
+  type TokenReportResponse,
+  type TokenScanResponse,
+  type TokenReportParams,
+  type TokenScanParams,
+} from './token';
+export { TokenBulk, type TokenBulkScanResponse, type TokenBulkScanParams } from './token-bulk';
