@@ -35,7 +35,7 @@ export interface TransactionBulkScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: TransactionBulkScanParams.Metadata;
+  metadata: EvmAPI.MetadataParam;
 
   /**
    * Should aggregate the results to one result
@@ -91,16 +91,6 @@ export namespace TransactionBulkScanParams {
      * The value of the transaction in Wei in hex string format
      */
     value?: string;
-  }
-
-  /**
-   * Object of additional information to validate against.
-   */
-  export interface Metadata {
-    /**
-     * cross reference transaction against the domain.
-     */
-    domain: string;
   }
 
   export interface StateOverride {
