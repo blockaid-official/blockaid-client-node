@@ -12,7 +12,6 @@ Types:
 - <code><a href="./src/resources/evm/evm.ts">Erc721Diff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc721Exposure</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc721TokenDetails</a></code>
-- <code><a href="./src/resources/evm/evm.ts">MetadataParam</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NativeAddressAssetBalanceChangeDiff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NativeAssetDetails</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NativeAssetTrace</a></code>
@@ -90,6 +89,11 @@ Methods:
 
 # Solana
 
+Types:
+
+- <code><a href="./src/resources/solana/solana.ts">AddressScanRequestSchema</a></code>
+- <code><a href="./src/resources/solana/solana.ts">AddressScanResponseSchema</a></code>
+
 ## Message
 
 Types:
@@ -102,13 +106,9 @@ Methods:
 
 ## Address
 
-Types:
-
-- <code><a href="./src/resources/solana/address.ts">AddressScanResponse</a></code>
-
 Methods:
 
-- <code title="post /v0/solana/address/scan">client.solana.address.<a href="./src/resources/solana/address.ts">scan</a>({ ...params }) -> AddressScanResponse</code>
+- <code title="post /v0/solana/address/scan">client.solana.address.<a href="./src/resources/solana/address.ts">scan</a>({ ...params }) -> AddressScanResponseSchema</code>
 
 # Stellar
 

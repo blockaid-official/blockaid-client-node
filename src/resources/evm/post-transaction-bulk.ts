@@ -33,7 +33,7 @@ export interface PostTransactionBulkScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: EvmAPI.MetadataParam;
+  metadata: PostTransactionBulkScanParams.Metadata;
 
   /**
    * The relative block for the block validation. Can be "latest" or a block number.
@@ -54,6 +54,16 @@ export interface PostTransactionBulkScanParams {
 }
 
 export namespace PostTransactionBulkScanParams {
+  /**
+   * Object of additional information to validate against.
+   */
+  export interface Metadata {
+    /**
+     * cross reference transaction against the domain.
+     */
+    domain: string;
+  }
+
   export interface StateOverride {
     /**
      * Fake balance to set for the account before executing the call.

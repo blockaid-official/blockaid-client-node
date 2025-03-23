@@ -17,7 +17,6 @@ export {
   type Erc721Diff,
   type Erc721Exposure,
   type Erc721TokenDetails,
-  type MetadataParam,
   type NativeAddressAssetBalanceChangeDiff,
   type NativeAssetDetails,
   type NativeAssetTrace,
@@ -43,7 +42,7 @@ export {
   type SiteReportParams,
   type SiteScanParams,
 } from './site';
-export { Solana } from './solana/solana';
+export { Solana, type AddressScanRequestSchema, type AddressScanResponseSchema } from './solana/solana';
 export {
   Starknet,
   type StarknetErc1155Details,

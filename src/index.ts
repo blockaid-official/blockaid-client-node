@@ -40,7 +40,6 @@ import {
   Erc721Exposure,
   Erc721TokenDetails,
   Evm,
-  MetadataParam,
   NativeAddressAssetBalanceChangeDiff,
   NativeAssetDetails,
   NativeAssetTrace,
@@ -56,7 +55,7 @@ import {
   TransactionValidationError,
   UsdDiff,
 } from './resources/evm/evm';
-import { Solana } from './resources/solana/solana';
+import { AddressScanRequestSchema, AddressScanResponseSchema, Solana } from './resources/solana/solana';
 import {
   Starknet,
   StarknetErc1155Details,
@@ -343,7 +342,6 @@ export declare namespace Blockaid {
     type Erc721Diff as Erc721Diff,
     type Erc721Exposure as Erc721Exposure,
     type Erc721TokenDetails as Erc721TokenDetails,
-    type MetadataParam as MetadataParam,
     type NativeAddressAssetBalanceChangeDiff as NativeAddressAssetBalanceChangeDiff,
     type NativeAssetDetails as NativeAssetDetails,
     type NativeAssetTrace as NativeAssetTrace,
@@ -360,7 +358,11 @@ export declare namespace Blockaid {
     type UsdDiff as UsdDiff,
   };
 
-  export { Solana as Solana };
+  export {
+    Solana as Solana,
+    type AddressScanRequestSchema as AddressScanRequestSchema,
+    type AddressScanResponseSchema as AddressScanResponseSchema,
+  };
 
   export {
     Stellar as Stellar,
