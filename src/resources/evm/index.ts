@@ -18,7 +18,6 @@ export {
   type NativeAssetTrace,
   type NativeDiff,
   type NonercTokenDetails,
-  type TokenScanSupportedChain,
   type TransactionScanFeature,
   type TransactionScanResponse,
   type TransactionScanSupportedChain,
