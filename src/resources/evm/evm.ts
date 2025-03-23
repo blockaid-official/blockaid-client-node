@@ -718,7 +718,7 @@ export interface Erc721TokenDetails {
   symbol?: string;
 }
 
-export interface Metadata {
+export interface MetadataParam {
   /**
    * cross reference transaction against the domain.
    */
@@ -894,18 +894,23 @@ export type TokenScanSupportedChain =
   | 'zora'
   | 'solana'
   | 'starknet'
+  | 'starknet-sepolia'
   | 'stellar'
   | 'linea'
-  | 'blast'
+  | 'degen'
   | 'zksync'
   | 'scroll'
-  | 'degen'
+  | 'blast'
+  | 'soneium-minato'
+  | 'base-sepolia'
+  | 'bitcoin'
   | 'abstract'
   | 'soneium'
   | 'ink'
   | 'zero-network'
   | 'berachain'
-  | 'unichain';
+  | 'unichain'
+  | 'ronin';
 
 export interface TransactionScanFeature {
   /**
@@ -1760,7 +1765,7 @@ export declare namespace Evm {
     type Erc721Diff as Erc721Diff,
     type Erc721Exposure as Erc721Exposure,
     type Erc721TokenDetails as Erc721TokenDetails,
-    type Metadata as Metadata,
+    type MetadataParam as MetadataParam,
     type NativeAddressAssetBalanceChangeDiff as NativeAddressAssetBalanceChangeDiff,
     type NativeAssetDetails as NativeAssetDetails,
     type NativeAssetTrace as NativeAssetTrace,

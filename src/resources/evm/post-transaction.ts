@@ -33,7 +33,7 @@ export interface PostTransactionReportParams {
   details: string;
 
   /**
-   * An enumeration.
+   * The event type of the report. Could be FALSE_POSITIVE or FALSE_NEGATIVE.
    */
   event: 'FALSE_POSITIVE' | 'FALSE_NEGATIVE';
 
@@ -84,7 +84,7 @@ export interface PostTransactionScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: EvmAPI.Metadata;
+  metadata: EvmAPI.MetadataParam;
 
   /**
    * The relative block for the block validation. Can be "latest" or a block number.

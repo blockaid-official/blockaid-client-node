@@ -68,9 +68,9 @@ export interface AddressScanResponseSchema {
   features: Array<AddressScanResponseSchema.Feature>;
 
   /**
-   * An enumeration.
+   * Verdict of Result
    */
-  result_type: 'Malicious' | 'Warning' | 'Benign';
+  result_type: 'Benign' | 'Warning' | 'Malicious' | 'Spam';
 }
 
 export namespace AddressScanResponseSchema {
