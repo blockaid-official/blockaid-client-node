@@ -718,6 +718,13 @@ export interface Erc721TokenDetails {
   symbol?: string;
 }
 
+export interface MetadataParam {
+  /**
+   * cross reference transaction against the domain.
+   */
+  domain: string;
+}
+
 export interface NativeAddressAssetBalanceChangeDiff {
   /**
    * description of the asset for the current diff
@@ -1758,6 +1765,7 @@ export declare namespace Evm {
     type Erc721Diff as Erc721Diff,
     type Erc721Exposure as Erc721Exposure,
     type Erc721TokenDetails as Erc721TokenDetails,
+    type MetadataParam as MetadataParam,
     type NativeAddressAssetBalanceChangeDiff as NativeAddressAssetBalanceChangeDiff,
     type NativeAssetDetails as NativeAssetDetails,
     type NativeAssetTrace as NativeAssetTrace,

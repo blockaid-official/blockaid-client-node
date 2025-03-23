@@ -24,7 +24,7 @@ export interface ScanStatusParams {
   /**
    * An enumeration.
    */
-  status: 1 | 2;
+  status: 'accepted' | 'rejected';
 }
 
 export declare namespace Scan {
