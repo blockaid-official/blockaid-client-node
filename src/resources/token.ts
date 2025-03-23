@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import * as EvmAPI from './evm/evm';
 
 export class Token extends APIResource {
   /**
@@ -13,7 +14,7 @@ export class Token extends APIResource {
 
   /**
    * Gets a token address and scan the token to identify any indication of malicious
-   * behaviour
+   * behavior
    */
   scan(body: TokenScanParams, options?: Core.RequestOptions): Core.APIPromise<TokenScanResponse> {
     return this._client.post('/v0/token/scan', { body, ...options });
@@ -36,29 +37,7 @@ export interface TokenScanResponse {
   /**
    * Blockchain network
    */
-  chain:
-    | 'arbitrum'
-    | 'avalanche'
-    | 'base'
-    | 'bsc'
-    | 'ethereum'
-    | 'optimism'
-    | 'polygon'
-    | 'zora'
-    | 'solana'
-    | 'starknet'
-    | 'stellar'
-    | 'linea'
-    | 'blast'
-    | 'zksync'
-    | 'scroll'
-    | 'degen'
-    | 'abstract'
-    | 'soneium'
-    | 'ink'
-    | 'zero-network'
-    | 'berachain'
-    | 'unichain';
+  chain: EvmAPI.TokenScanSupportedChain;
 
   /**
    * Fees associated with the token
@@ -79,9 +58,9 @@ export interface TokenScanResponse {
    * Metadata of the token
    */
   metadata:
-    | TokenScanResponse.TokenSolanaMetadata
-    | TokenScanResponse.TokenBitcoinMetadataToken
-    | TokenScanResponse.TokenEvmMetadataToken;
+    | TokenScanResponse.SolanaMetadata
+    | TokenScanResponse.BitcoinMetadataToken
+    | TokenScanResponse.EvmMetadataToken;
 
   /**
    * General indication
@@ -135,18 +114,40 @@ export namespace TokenScanResponse {
      * Transfer fee of the token
      */
     transfer?: number | null;
+
+    /**
+     * The maximum value that a transfer fee will cost
+     */
+    transfer_fee_max_amount?: number | null;
   }
 
   /**
    * financial stats of the token
    */
   export interface FinancialStats {
+    /**
+     * Token liquidity burned percentage
+     */
     burned_liquidity_percentage?: number | null;
 
+    /**
+     * Amount of token holders
+     */
     holders_count?: number | null;
 
+    /**
+     * Token liquidity locked percentage
+     */
     locked_liquidity_percentage?: number | null;
 
+    /**
+     * token supply
+     */
+    supply?: number | null;
+
+    /**
+     * Top token holders
+     */
     top_holders?: Array<FinancialStats.TopHolder>;
 
     /**
@@ -154,22 +155,31 @@ export namespace TokenScanResponse {
      */
     total_reserve_in_usd?: number | null;
 
+    /**
+     * token price in USD
+     */
     usd_price_per_unit?: number | null;
   }
 
   export namespace FinancialStats {
     export interface TopHolder {
+      /**
+       * Address
+       */
       address?: string | null;
 
+      /**
+       * Holding position out of total token liquidity
+       */
       holding_percentage?: number | null;
     }
   }
 
-  export interface TokenSolanaMetadata {
+  export interface SolanaMetadata {
     /**
      * Contract balance
      */
-    contract_balance?: TokenSolanaMetadata.ContractBalance | null;
+    contract_balance?: SolanaMetadata.ContractBalance | null;
 
     /**
      * Contract deploy date
@@ -182,6 +192,11 @@ export namespace TokenScanResponse {
     deployer?: string | null;
 
     /**
+     * Contract creator balance
+     */
+    deployer_balance?: SolanaMetadata.DeployerBalance | null;
+
+    /**
      * Description of the token
      */
     description?: string | null;
@@ -189,7 +204,7 @@ export namespace TokenScanResponse {
     /**
      * social links of the token
      */
-    external_links?: TokenSolanaMetadata.ExternalLinks;
+    external_links?: SolanaMetadata.ExternalLinks;
 
     /**
      * Solana token freeze authority account
@@ -200,6 +215,11 @@ export namespace TokenScanResponse {
      * URL of the token image
      */
     image_url?: string | null;
+
+    /**
+     * Malicious urls associated with the token
+     */
+    malicious_urls?: Array<string> | null;
 
     /**
      * Solana token mint authority account
@@ -219,12 +239,18 @@ export namespace TokenScanResponse {
     /**
      * Contract owner balance
      */
-    owner_balance?: TokenSolanaMetadata.OwnerBalance | null;
+    owner_balance?: SolanaMetadata.OwnerBalance | null;
 
     /**
      * Symbol of the token
      */
     symbol?: string | null;
+
+    /**
+     * Address of the token creation initiator, only set if the tokens was created by a
+     * well known token launch platform
+     */
+    token_creation_initiator?: string | null;
 
     /**
      * Type of the token
@@ -235,13 +261,27 @@ export namespace TokenScanResponse {
      * Solana token update authority account
      */
     update_authority?: string | null;
+
+    /**
+     * Urls associated with the token
+     */
+    urls?: Array<string> | null;
   }
 
-  export namespace TokenSolanaMetadata {
+  export namespace SolanaMetadata {
     /**
      * Contract balance
      */
     export interface ContractBalance {
+      amount?: number | null;
+
+      amount_wei?: string | null;
+    }
+
+    /**
+     * Contract creator balance
+     */
+    export interface DeployerBalance {
       amount?: number | null;
 
       amount_wei?: string | null;
@@ -268,7 +308,7 @@ export namespace TokenScanResponse {
     }
   }
 
-  export interface TokenBitcoinMetadataToken {
+  export interface BitcoinMetadataToken {
     /**
      * The unique ID for the Rune
      */
@@ -300,11 +340,11 @@ export namespace TokenScanResponse {
     type?: string | null;
   }
 
-  export interface TokenEvmMetadataToken {
+  export interface EvmMetadataToken {
     /**
      * Contract balance
      */
-    contract_balance?: TokenEvmMetadataToken.ContractBalance | null;
+    contract_balance?: EvmMetadataToken.ContractBalance | null;
 
     /**
      * Contract deploy date
@@ -317,6 +357,11 @@ export namespace TokenScanResponse {
     deployer?: string | null;
 
     /**
+     * Contract creator balance
+     */
+    deployer_balance?: EvmMetadataToken.DeployerBalance | null;
+
+    /**
      * Description of the token
      */
     description?: string | null;
@@ -324,12 +369,17 @@ export namespace TokenScanResponse {
     /**
      * social links of the token
      */
-    external_links?: TokenEvmMetadataToken.ExternalLinks;
+    external_links?: EvmMetadataToken.ExternalLinks;
 
     /**
      * URL of the token image
      */
     image_url?: string | null;
+
+    /**
+     * Malicious urls associated with the token
+     */
+    malicious_urls?: Array<string> | null;
 
     /**
      * Name of the token
@@ -344,7 +394,7 @@ export namespace TokenScanResponse {
     /**
      * Contract owner balance
      */
-    owner_balance?: TokenEvmMetadataToken.OwnerBalance | null;
+    owner_balance?: EvmMetadataToken.OwnerBalance | null;
 
     /**
      * Symbol of the token
@@ -352,16 +402,36 @@ export namespace TokenScanResponse {
     symbol?: string | null;
 
     /**
+     * Address of the token creation initiator, only set if the tokens was created by a
+     * well known token launch platform
+     */
+    token_creation_initiator?: string | null;
+
+    /**
      * Type of the token
      */
     type?: string | null;
+
+    /**
+     * Urls associated with the token
+     */
+    urls?: Array<string> | null;
   }
 
-  export namespace TokenEvmMetadataToken {
+  export namespace EvmMetadataToken {
     /**
      * Contract balance
      */
     export interface ContractBalance {
+      amount?: number | null;
+
+      amount_wei?: string | null;
+    }
+
+    /**
+     * Contract creator balance
+     */
+    export interface DeployerBalance {
       amount?: number | null;
 
       amount_wei?: string | null;
@@ -392,34 +462,58 @@ export namespace TokenScanResponse {
    * Trading limits of the token
    */
   export interface TradingLimits {
+    /**
+     * Max amount that can be bought at once
+     */
     max_buy?: TradingLimits.MaxBuy | null;
 
+    /**
+     * Max amount that can be held by a single address
+     */
     max_holding?: TradingLimits.MaxHolding | null;
 
+    /**
+     * Max amount that can be sold at once
+     */
     max_sell?: TradingLimits.MaxSell | null;
 
+    /**
+     * Maximum amount of the token that can be sold in a block
+     */
     sell_limit_per_block?: TradingLimits.SellLimitPerBlock | null;
   }
 
   export namespace TradingLimits {
+    /**
+     * Max amount that can be bought at once
+     */
     export interface MaxBuy {
       amount?: number | null;
 
       amount_wei?: string | null;
     }
 
+    /**
+     * Max amount that can be held by a single address
+     */
     export interface MaxHolding {
       amount?: number | null;
 
       amount_wei?: string | null;
     }
 
+    /**
+     * Max amount that can be sold at once
+     */
     export interface MaxSell {
       amount?: number | null;
 
       amount_wei?: string | null;
     }
 
+    /**
+     * Maximum amount of the token that can be sold in a block
+     */
     export interface SellLimitPerBlock {
       amount?: number | null;
 
@@ -438,6 +532,7 @@ export namespace TokenScanResponse {
      */
     feature_id:
       | 'VERIFIED_CONTRACT'
+      | 'UNVERIFIED_CONTRACT'
       | 'HIGH_TRADE_VOLUME'
       | 'MARKET_PLACE_SALES_HISTORY'
       | 'HIGH_REPUTATION_TOKEN'
@@ -449,14 +544,21 @@ export namespace TokenScanResponse {
       | 'IMPERSONATOR'
       | 'INORGANIC_VOLUME'
       | 'DYNAMIC_ANALYSIS'
+      | 'CONCENTRATED_SUPPLY_DISTRIBUTION'
+      | 'HONEYPOT'
+      | 'INSUFFICIENT_LOCKED_LIQUIDITY'
       | 'UNSTABLE_TOKEN_PRICE'
       | 'RUGPULL'
+      | 'WASH_TRADING'
       | 'CONSUMER_OVERRIDE'
       | 'INAPPROPRIATE_CONTENT'
       | 'HIGH_TRANSFER_FEE'
       | 'HIGH_BUY_FEE'
       | 'HIGH_SELL_FEE'
+      | 'UNSELLABLE_TOKEN'
       | 'IS_MINTABLE'
+      | 'REBASE_TOKEN'
+      | 'LIQUID_STAKING_TOKEN'
       | 'MODIFIABLE_TAXES'
       | 'CAN_BLACKLIST'
       | 'CAN_WHITELIST'
@@ -465,13 +567,12 @@ export namespace TokenScanResponse {
       | 'HIDDEN_OWNER'
       | 'TRANSFER_PAUSEABLE'
       | 'OWNERSHIP_RENOUNCED'
+      | 'OWNER_CAN_CHANGE_BALANCE'
       | 'PROXY_CONTRACT'
-      | 'LIQUID_STAKE'
-      | 'REBASE_TOKEN'
-      | 'UNSELLABLE_TOKEN'
-      | 'CONCENTRATED_SUPPLY_DISTRIBUTION'
-      | 'INSUFFICIENT_LOCKED_LIQUIDITY'
-      | 'HONEYPOT';
+      | 'SIMILAR_MALICIOUS_CONTRACT'
+      | 'FAKE_VOLUME'
+      | 'HIDDEN_SUPPLY_BY_KEY_HOLDER'
+      | 'FAKE_TRADE_MAKER_COUNT';
 
     /**
      * Type of the feature
@@ -494,17 +595,17 @@ export interface TokenReportParams {
   /**
    * The report parameters.
    */
-  report: TokenReportParams.TokenParamReportTokenReportParams | TokenReportParams.TokenRequestIDReport;
+  report: TokenReportParams.ParamReportTokenReportParams | TokenReportParams.RequestIDReport;
 }
 
 export namespace TokenReportParams {
-  export interface TokenParamReportTokenReportParams {
-    params: TokenParamReportTokenReportParams.Params;
+  export interface ParamReportTokenReportParams {
+    params: ParamReportTokenReportParams.Params;
 
     type: 'params';
   }
 
-  export namespace TokenParamReportTokenReportParams {
+  export namespace ParamReportTokenReportParams {
     export interface Params {
       /**
        * The address of the token to report on.
@@ -514,33 +615,11 @@ export namespace TokenReportParams {
       /**
        * The chain name
        */
-      chain:
-        | 'arbitrum'
-        | 'avalanche'
-        | 'base'
-        | 'bsc'
-        | 'ethereum'
-        | 'optimism'
-        | 'polygon'
-        | 'zora'
-        | 'solana'
-        | 'starknet'
-        | 'stellar'
-        | 'linea'
-        | 'blast'
-        | 'zksync'
-        | 'scroll'
-        | 'degen'
-        | 'abstract'
-        | 'soneium'
-        | 'ink'
-        | 'zero-network'
-        | 'berachain'
-        | 'unichain';
+      chain: EvmAPI.TokenScanSupportedChain;
     }
   }
 
-  export interface TokenRequestIDReport {
+  export interface RequestIDReport {
     request_id: string;
 
     type: 'request_id';
@@ -556,29 +635,7 @@ export interface TokenScanParams {
   /**
    * The chain name
    */
-  chain:
-    | 'arbitrum'
-    | 'avalanche'
-    | 'base'
-    | 'bsc'
-    | 'ethereum'
-    | 'optimism'
-    | 'polygon'
-    | 'zora'
-    | 'solana'
-    | 'starknet'
-    | 'stellar'
-    | 'linea'
-    | 'blast'
-    | 'zksync'
-    | 'scroll'
-    | 'degen'
-    | 'abstract'
-    | 'soneium'
-    | 'ink'
-    | 'zero-network'
-    | 'berachain'
-    | 'unichain';
+  chain: EvmAPI.TokenScanSupportedChain;
 
   /**
    * Object of additional information to validate against.
