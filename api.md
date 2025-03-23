@@ -18,6 +18,7 @@ Types:
 - <code><a href="./src/resources/evm/evm.ts">NativeAssetTrace</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NativeDiff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NonercTokenDetails</a></code>
+- <code><a href="./src/resources/evm/evm.ts">TokenScanSupportedChain</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionScanFeature</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionScanResponse</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionScanSupportedChain</a></code>
@@ -100,6 +101,14 @@ Methods:
 - <code title="post /v0/solana/message/scan">client.solana.message.<a href="./src/resources/solana/message.ts">scan</a>({ ...params }) -> MessageScanResponse</code>
 
 ## Address
+
+Types:
+
+- <code><a href="./src/resources/solana/address.ts">AddressScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/solana/address/scan">client.solana.address.<a href="./src/resources/solana/address.ts">scan</a>({ ...params }) -> AddressScanResponse</code>
 
 # Stellar
 
@@ -184,8 +193,46 @@ Methods:
 
 # Site
 
+Types:
+
+- <code><a href="./src/resources/site.ts">SiteScanHitResponse</a></code>
+- <code><a href="./src/resources/site.ts">SiteScanMissResponse</a></code>
+- <code><a href="./src/resources/site.ts">SiteReportResponse</a></code>
+- <code><a href="./src/resources/site.ts">SiteScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/site/report">client.site.<a href="./src/resources/site.ts">report</a>({ ...params }) -> unknown</code>
+- <code title="post /v0/site/scan">client.site.<a href="./src/resources/site.ts">scan</a>({ ...params }) -> SiteScanResponse</code>
+
 # Scan
+
+Types:
+
+- <code><a href="./src/resources/scan.ts">ScanStatusResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/scan/status/">client.scan.<a href="./src/resources/scan.ts">status</a>({ ...params }) -> unknown</code>
 
 # Token
 
+Types:
+
+- <code><a href="./src/resources/token.ts">TokenReportResponse</a></code>
+- <code><a href="./src/resources/token.ts">TokenScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/token/report">client.token.<a href="./src/resources/token.ts">report</a>({ ...params }) -> unknown</code>
+- <code title="post /v0/token/scan">client.token.<a href="./src/resources/token.ts">scan</a>({ ...params }) -> TokenScanResponse</code>
+
 # TokenBulk
+
+Types:
+
+- <code><a href="./src/resources/token-bulk.ts">TokenBulkScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/token-bulk/scan">client.tokenBulk.<a href="./src/resources/token-bulk.ts">scan</a>({ ...params }) -> TokenBulkScanResponse</code>

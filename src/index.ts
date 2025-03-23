@@ -5,10 +5,24 @@ import * as Core from './core';
 import * as Errors from './error';
 import * as Uploads from './uploads';
 import * as API from './resources/index';
-import { Scan } from './resources/scan';
-import { Site } from './resources/site';
-import { Token } from './resources/token';
-import { TokenBulk } from './resources/token-bulk';
+import { Scan, ScanStatusParams, ScanStatusResponse } from './resources/scan';
+import {
+  Site,
+  SiteReportParams,
+  SiteReportResponse,
+  SiteScanHitResponse,
+  SiteScanMissResponse,
+  SiteScanParams,
+  SiteScanResponse,
+} from './resources/site';
+import {
+  Token,
+  TokenReportParams,
+  TokenReportResponse,
+  TokenScanParams,
+  TokenScanResponse,
+} from './resources/token';
+import { TokenBulk, TokenBulkScanParams, TokenBulkScanResponse } from './resources/token-bulk';
 import {
   Bitcoin,
   BitcoinTransactionScanRequest,
@@ -32,6 +46,7 @@ import {
   NativeAssetTrace,
   NativeDiff,
   NonercTokenDetails,
+  TokenScanSupportedChain,
   TransactionScanFeature,
   TransactionScanResponse,
   TransactionScanSupportedChain,
@@ -334,6 +349,7 @@ export declare namespace Blockaid {
     type NativeAssetTrace as NativeAssetTrace,
     type NativeDiff as NativeDiff,
     type NonercTokenDetails as NonercTokenDetails,
+    type TokenScanSupportedChain as TokenScanSupportedChain,
     type TransactionScanFeature as TransactionScanFeature,
     type TransactionScanResponse as TransactionScanResponse,
     type TransactionScanSupportedChain as TransactionScanSupportedChain,
@@ -384,13 +400,35 @@ export declare namespace Blockaid {
     type SuiTransactionScanResponse as SuiTransactionScanResponse,
   };
 
-  export { Site as Site };
+  export {
+    Site as Site,
+    type SiteScanHitResponse as SiteScanHitResponse,
+    type SiteScanMissResponse as SiteScanMissResponse,
+    type SiteReportResponse as SiteReportResponse,
+    type SiteScanResponse as SiteScanResponse,
+    type SiteReportParams as SiteReportParams,
+    type SiteScanParams as SiteScanParams,
+  };
 
-  export { Scan as Scan };
+  export {
+    Scan as Scan,
+    type ScanStatusResponse as ScanStatusResponse,
+    type ScanStatusParams as ScanStatusParams,
+  };
 
-  export { Token as Token };
+  export {
+    Token as Token,
+    type TokenReportResponse as TokenReportResponse,
+    type TokenScanResponse as TokenScanResponse,
+    type TokenReportParams as TokenReportParams,
+    type TokenScanParams as TokenScanParams,
+  };
 
-  export { TokenBulk as TokenBulk };
+  export {
+    TokenBulk as TokenBulk,
+    type TokenBulkScanResponse as TokenBulkScanResponse,
+    type TokenBulkScanParams as TokenBulkScanParams,
+  };
 }
 
 export { toFile, fileFromPath } from './uploads';

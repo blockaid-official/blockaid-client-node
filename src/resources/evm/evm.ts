@@ -880,6 +880,33 @@ export interface NonercTokenDetails {
   symbol?: string;
 }
 
+/**
+ * The chain name
+ */
+export type TokenScanSupportedChain =
+  | 'arbitrum'
+  | 'avalanche'
+  | 'base'
+  | 'bsc'
+  | 'ethereum'
+  | 'optimism'
+  | 'polygon'
+  | 'zora'
+  | 'solana'
+  | 'starknet'
+  | 'stellar'
+  | 'linea'
+  | 'blast'
+  | 'zksync'
+  | 'scroll'
+  | 'degen'
+  | 'abstract'
+  | 'soneium'
+  | 'ink'
+  | 'zero-network'
+  | 'berachain'
+  | 'unichain';
+
 export interface TransactionScanFeature {
   /**
    * Textual description
@@ -1739,6 +1766,7 @@ export declare namespace Evm {
     type NativeAssetTrace as NativeAssetTrace,
     type NativeDiff as NativeDiff,
     type NonercTokenDetails as NonercTokenDetails,
+    type TokenScanSupportedChain as TokenScanSupportedChain,
     type TransactionScanFeature as TransactionScanFeature,
     type TransactionScanResponse as TransactionScanResponse,
     type TransactionScanSupportedChain as TransactionScanSupportedChain,
