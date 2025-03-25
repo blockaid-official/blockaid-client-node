@@ -236,3 +236,18 @@ Types:
 Methods:
 
 - <code title="post /v0/token-bulk/scan">client.tokenBulk.<a href="./src/resources/token-bulk.ts">scan</a>({ ...params }) -> TokenBulkScanResponse</code>
+
+# TokenWebhooks
+
+Types:
+
+- <code><a href="./src/resources/token-webhooks.ts">TokenWebhookCreateResponse</a></code>
+- <code><a href="./src/resources/token-webhooks.ts">TokenWebhookGetResponse</a></code>
+- <code><a href="./src/resources/token-webhooks.ts">TokenWebhookGetAllResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/token/hooks/{chain}">client.tokenWebhooks.<a href="./src/resources/token-webhooks.ts">create</a>(chain, { ...params }) -> TokenWebhookCreateResponse</code>
+- <code title="delete /v0/token/hooks/{chain}">client.tokenWebhooks.<a href="./src/resources/token-webhooks.ts">delete</a>(chain) -> void</code>
+- <code title="get /v0/token/hooks/{chain}">client.tokenWebhooks.<a href="./src/resources/token-webhooks.ts">get</a>(chain) -> TokenWebhookGetResponse</code>
+- <code title="get /v0/token/hooks/">client.tokenWebhooks.<a href="./src/resources/token-webhooks.ts">getAll</a>() -> TokenWebhookGetAllResponse</code>
