@@ -105,23 +105,26 @@ export namespace MessageScanResponse {
    */
   export interface Result {
     /**
-     * Simulation result; Only present if simulation option is included in the request
+     * Transaction Simulation Result
      */
-    simulation?: Result.SolanaSimulationResultSchema | Result.SolanaSimulationErrorSchema | null;
+    simulation: Result.Simulation | null;
 
     /**
-     * Validation result; Only present if validation option is included in the request
+     * Transaction Validation Result
      */
-    validation?: Result.SolanaValidationResult | Result.SolanaValidationErrorSchema | null;
+    validation: Result.Validation | null;
   }
 
   export namespace Result {
-    export interface SolanaSimulationResultSchema {
+    /**
+     * Transaction Simulation Result
+     */
+    export interface Simulation {
       /**
        * Summary of the actions and asset transfers that were made by the requested
        * account address
        */
-      account_summary: SolanaSimulationResultSchema.AccountSummary;
+      account_summary: Simulation.AccountSummary;
 
       /**
        * Ownership diffs of the account addresses
@@ -129,10 +132,10 @@ export namespace MessageScanResponse {
       assets_ownership_diff: Record<
         string,
         Array<
-          | SolanaSimulationResultSchema.SolanaNativeSolOwnershipDiff
-          | SolanaSimulationResultSchema.SolanaStakedSolOwnershipDiff
-          | SolanaSimulationResultSchema.SolanaFungibleSolOwnershipDiff
-          | SolanaSimulationResultSchema.SolanaNonFungibleSolOwnershipDiff
+          | Simulation.SolanaNativeSolOwnershipDiff
+          | Simulation.SolanaStakedSolOwnershipDiff
+          | Simulation.SolanaFungibleSolOwnershipDiff
+          | Simulation.SolanaNonFungibleSolOwnershipDiff
         >
       >;
 
@@ -140,13 +143,13 @@ export namespace MessageScanResponse {
        * Details of addresses involved in the transaction
        */
       accounts_details?: Array<
-        | SolanaSimulationResultSchema.SolanaPdaAccountSchema
-        | SolanaSimulationResultSchema.SolanaSystemAccountDetailsSchema
-        | SolanaSimulationResultSchema.SolanaProgramAccountDetailsSchema
-        | SolanaSimulationResultSchema.SolanaTokenAccountDetailsSchema
-        | SolanaSimulationResultSchema.SolanaFungibleMintAccountDetailsSchema
-        | SolanaSimulationResultSchema.SolanaNonFungibleMintAccountDetailsSchema
-        | SolanaSimulationResultSchema.SolanaCnftMintAccountDetailsSchema
+        | Simulation.SolanaPdaAccountSchema
+        | Simulation.SolanaSystemAccountDetailsSchema
+        | Simulation.SolanaProgramAccountDetailsSchema
+        | Simulation.SolanaTokenAccountDetailsSchema
+        | Simulation.SolanaFungibleMintAccountDetailsSchema
+        | Simulation.SolanaNonFungibleMintAccountDetailsSchema
+        | Simulation.SolanaCnftMintAccountDetailsSchema
       >;
 
       /**
@@ -156,10 +159,10 @@ export namespace MessageScanResponse {
       assets_diff?: Record<
         string,
         Array<
-          | SolanaSimulationResultSchema.SolanaNativeAssetDiff
-          | SolanaSimulationResultSchema.SolanaSplFungibleAssetDiff
-          | SolanaSimulationResultSchema.SolanaSplNonFungibleAssetDiff
-          | SolanaSimulationResultSchema.SolanaCnftAssetDiff
+          | Simulation.SolanaNativeAssetDiff
+          | Simulation.SolanaSplFungibleAssetDiff
+          | Simulation.SolanaSplNonFungibleAssetDiff
+          | Simulation.SolanaCnftAssetDiff
         >
       >;
 
@@ -170,14 +173,14 @@ export namespace MessageScanResponse {
       delegations?: Record<
         string,
         Array<
-          | SolanaSimulationResultSchema.SolanaCnftDelegation
-          | SolanaSimulationResultSchema.SolanaFungibleSplTokenDelegation
-          | SolanaSimulationResultSchema.SolanaNonFungibleSplTokenDelegation
+          | Simulation.SolanaCnftDelegation
+          | Simulation.SolanaFungibleSplTokenDelegation
+          | Simulation.SolanaNonFungibleSplTokenDelegation
         >
       >;
     }
 
-    export namespace SolanaSimulationResultSchema {
+    export namespace Simulation {
       /**
        * Summary of the actions and asset transfers that were made by the requested
        * account address
@@ -2366,28 +2369,20 @@ export namespace MessageScanResponse {
       }
     }
 
-    export interface SolanaSimulationErrorSchema {
+    /**
+     * Transaction Validation Result
+     */
+    export interface Validation {
       /**
-       * Error message
+       * A list of features explaining what is happening in the transaction in different
+       * levels of severity
        */
-      error: string;
-
-      status: 'Error';
-    }
-
-    export interface SolanaValidationResult {
-      /**
-       * A textual classification that can be presented to the user explaining the
-       * reason.
-       */
-      classification: string;
+      extended_features: Array<Validation.ExtendedFeature>;
 
       /**
-       * A textual description about the validation result
+       * A list of features about this transaction explaining the validation
        */
-      description: string;
-
-      features: Array<SolanaValidationResult.Feature>;
+      features: Array<string>;
 
       /**
        * A textual description about the reasons the transaction was flagged with
@@ -2399,16 +2394,14 @@ export namespace MessageScanResponse {
        * Verdict of the validation
        */
       result_type: 'Benign' | 'Warning' | 'Malicious';
-
-      status: 'Success';
     }
 
-    export namespace SolanaValidationResult {
-      export interface Feature {
+    export namespace Validation {
+      export interface ExtendedFeature {
         /**
          * Address the feature refers to
          */
-        address: string;
+        address: string | null;
 
         /**
          * Textual description
@@ -2423,19 +2416,46 @@ export namespace MessageScanResponse {
         type: 'Benign' | 'Warning' | 'Malicious' | 'Info';
       }
     }
-
-    export interface SolanaValidationErrorSchema {
-      /**
-       * Error message
-       */
-      error: string;
-
-      status: 'Error';
-    }
   }
 }
 
-export type MessageScanParams = unknown;
+export interface MessageScanParams {
+  account_address: string;
+
+  metadata: MessageScanParams.Metadata;
+
+  /**
+   * Transactions to scan
+   */
+  transactions: Array<string>;
+
+  chain?: string;
+
+  encoding?: 'base58' | 'base64';
+
+  /**
+   * The RPC method used by the dApp to propose the transaction
+   */
+  method?: string;
+
+  /**
+   * List of options to include in the response
+   *
+   * - `Options.validation`: Include Options.validation output in the response
+   *
+   * - `Options.simulation`: Include Options.simulation output in the response
+   */
+  options?: Array<'validation' | 'simulation'>;
+}
+
+export namespace MessageScanParams {
+  export interface Metadata {
+    /**
+     * URL of the dApp that originated the transaction
+     */
+    url?: string | null;
+  }
+}
 
 export declare namespace Message {
   export { type MessageScanResponse as MessageScanResponse, type MessageScanParams as MessageScanParams };
