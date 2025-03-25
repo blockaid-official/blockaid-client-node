@@ -81,3 +81,10 @@ export {
   type TokenScanParams,
 } from './token';
 export { TokenBulk, type TokenBulkScanResponse, type TokenBulkScanParams } from './token-bulk';
+export {
+  TokenWebhooks,
+  type TokenWebhookCreateResponse,
+  type TokenWebhookGetResponse,
+  type TokenWebhookGetAllResponse,
+  type TokenWebhookCreateParams,
+} from './token-webhooks';
