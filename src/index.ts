@@ -24,6 +24,13 @@ import {
 } from './resources/token';
 import { TokenBulk, TokenBulkScanParams, TokenBulkScanResponse } from './resources/token-bulk';
 import {
+  TokenWebhookCreateParams,
+  TokenWebhookCreateResponse,
+  TokenWebhookGetAllResponse,
+  TokenWebhookGetResponse,
+  TokenWebhooks,
+} from './resources/token-webhooks';
+import {
   Bitcoin,
   BitcoinTransactionScanRequest,
   BitcoinTransactionScanResponse,
@@ -237,6 +244,7 @@ export class Blockaid extends Core.APIClient {
   scan: API.Scan = new API.Scan(this);
   token: API.Token = new API.Token(this);
   tokenBulk: API.TokenBulk = new API.TokenBulk(this);
+  tokenWebhooks: API.TokenWebhooks = new API.TokenWebhooks(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -328,6 +336,7 @@ Blockaid.Site = Site;
 Blockaid.Scan = Scan;
 Blockaid.Token = Token;
 Blockaid.TokenBulk = TokenBulk;
+Blockaid.TokenWebhooks = TokenWebhooks;
 export declare namespace Blockaid {
   export type RequestOptions = Core.RequestOptions;
 
@@ -428,6 +437,14 @@ export declare namespace Blockaid {
     TokenBulk as TokenBulk,
     type TokenBulkScanResponse as TokenBulkScanResponse,
     type TokenBulkScanParams as TokenBulkScanParams,
+  };
+
+  export {
+    TokenWebhooks as TokenWebhooks,
+    type TokenWebhookCreateResponse as TokenWebhookCreateResponse,
+    type TokenWebhookGetResponse as TokenWebhookGetResponse,
+    type TokenWebhookGetAllResponse as TokenWebhookGetAllResponse,
+    type TokenWebhookCreateParams as TokenWebhookCreateParams,
   };
 }
 

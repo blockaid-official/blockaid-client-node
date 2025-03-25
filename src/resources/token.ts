@@ -187,6 +187,11 @@ export namespace TokenScanResponse {
     creation_timestamp?: string | null;
 
     /**
+     * Decimals of the token
+     */
+    decimals?: number | null;
+
+    /**
      * Address of the deployer of the fungible token
      */
     deployer?: string | null;
@@ -315,6 +320,11 @@ export namespace TokenScanResponse {
     id?: string | null;
 
     /**
+     * Decimals of the token
+     */
+    decimals?: number | null;
+
+    /**
      * The formatted name of the rune, with spacers
      */
     formatted_name?: string | null;
@@ -350,6 +360,11 @@ export namespace TokenScanResponse {
      * Contract deploy date
      */
     creation_timestamp?: string | null;
+
+    /**
+     * Decimals of the token
+     */
+    decimals?: number | null;
 
     /**
      * Address of the deployer of the fungible token
