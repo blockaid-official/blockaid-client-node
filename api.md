@@ -92,45 +92,18 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/solana/solana.ts">AccountSummarySchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">AddressScanRequestSchema</a></code>
 - <code><a href="./src/resources/solana/solana.ts">AddressScanResponseSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">APIErrorDetails</a></code>
-- <code><a href="./src/resources/solana/solana.ts">AssetTransferDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">CnftDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">CnftDiffSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">CnftMintAccountDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">CombinedValidationResult</a></code>
-- <code><a href="./src/resources/solana/solana.ts">DelegatedAssetDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">FungibleMintAccountDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">InstructionErrorDetails</a></code>
-- <code><a href="./src/resources/solana/solana.ts">NativeDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">NativeDiffSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">NativeSolOwnershipDiffSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">NonFungibleMintAccountDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">PdaAccountSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">ProgramAccountDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">ResponseSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">SplFungibleTokenDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">SplFungibleTokenDiffSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">SplNonFungibleTokenDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">SplNonFungibleTokenDiffSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">SplTokenOwnershipDiffSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">StakedAssetDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">StakedSolWithdrawAuthorityDiffSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">SuccessfulSimulationResultSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">SystemAccountDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">TokenAccountDetailsSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">TotalUsdDiffSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">TransactionErrorDetails</a></code>
-- <code><a href="./src/resources/solana/solana.ts">TxScanRequestSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">ValidationFeature</a></code>
 
 ## Message
 
+Types:
+
+- <code><a href="./src/resources/solana/message.ts">MessageScanResponse</a></code>
+
 Methods:
 
-- <code title="post /v0/solana/message/scan">client.solana.message.<a href="./src/resources/solana/message.ts">scan</a>({ ...params }) -> ResponseSchema</code>
+- <code title="post /v0/solana/message/scan">client.solana.message.<a href="./src/resources/solana/message.ts">scan</a>({ ...params }) -> MessageScanResponse</code>
 
 ## Address
 
