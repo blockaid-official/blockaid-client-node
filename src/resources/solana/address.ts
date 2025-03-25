@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import * as SolanaAPI from './solana';
 
 export class Address extends APIResource {
   /**
@@ -10,11 +9,39 @@ export class Address extends APIResource {
    * this address is malicious as well as textual reasons of why the address was
    * flagged that way.
    */
-  scan(
-    body: AddressScanParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SolanaAPI.AddressScanResponseSchema> {
+  scan(body: AddressScanParams, options?: Core.RequestOptions): Core.APIPromise<AddressScanResponse> {
     return this._client.post('/v0/solana/address/scan', { body, ...options });
+  }
+}
+
+export interface AddressScanResponse {
+  /**
+   * Features about the result
+   */
+  features: Array<AddressScanResponse.Feature>;
+
+  /**
+   * Verdict of Result
+   */
+  result_type: 'Benign' | 'Warning' | 'Malicious' | 'Spam';
+}
+
+export namespace AddressScanResponse {
+  export interface Feature {
+    /**
+     * Description of the feature
+     */
+    description: string;
+
+    /**
+     * ID of the feature
+     */
+    feature_id: string;
+
+    /**
+     * An enumeration.
+     */
+    type: 'Malicious' | 'Warning' | 'Benign' | 'Info';
   }
 }
 
@@ -42,5 +69,5 @@ export namespace AddressScanParams {
 }
 
 export declare namespace Address {
-  export { type AddressScanParams as AddressScanParams };
+  export { type AddressScanResponse as AddressScanResponse, type AddressScanParams as AddressScanParams };
 }
