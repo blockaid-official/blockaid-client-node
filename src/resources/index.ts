@@ -43,7 +43,7 @@ export {
   type SiteReportParams,
   type SiteScanParams,
 } from './site';
-export { Solana, type AddressScanRequestSchema, type AddressScanResponseSchema } from './solana/solana';
+export { Solana } from './solana/solana';
 export {
   Starknet,
   type StarknetErc1155Details,

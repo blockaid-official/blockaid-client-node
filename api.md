@@ -90,11 +90,6 @@ Methods:
 
 # Solana
 
-Types:
-
-- <code><a href="./src/resources/solana/solana.ts">AddressScanRequestSchema</a></code>
-- <code><a href="./src/resources/solana/solana.ts">AddressScanResponseSchema</a></code>
-
 ## Message
 
 Types:
@@ -107,9 +102,13 @@ Methods:
 
 ## Address
 
+Types:
+
+- <code><a href="./src/resources/solana/address.ts">AddressScanResponse</a></code>
+
 Methods:
 
-- <code title="post /v0/solana/address/scan">client.solana.address.<a href="./src/resources/solana/address.ts">scan</a>({ ...params }) -> AddressScanResponseSchema</code>
+- <code title="post /v0/solana/address/scan">client.solana.address.<a href="./src/resources/solana/address.ts">scan</a>({ ...params }) -> AddressScanResponse</code>
 
 # Stellar
 

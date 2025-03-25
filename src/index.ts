@@ -56,7 +56,7 @@ import {
   TransactionValidationError,
   UsdDiff,
 } from './resources/evm/evm';
-import { AddressScanRequestSchema, AddressScanResponseSchema, Solana } from './resources/solana/solana';
+import { Solana } from './resources/solana/solana';
 import {
   Starknet,
   StarknetErc1155Details,
@@ -360,11 +360,7 @@ export declare namespace Blockaid {
     type UsdDiff as UsdDiff,
   };
 
-  export {
-    Solana as Solana,
-    type AddressScanRequestSchema as AddressScanRequestSchema,
-    type AddressScanResponseSchema as AddressScanResponseSchema,
-  };
+  export { Solana as Solana };
 
   export {
     Stellar as Stellar,
