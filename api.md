@@ -251,3 +251,15 @@ Methods:
 - <code title="delete /v0/token/hooks/{chain}">client.tokenWebhooks.<a href="./src/resources/token-webhooks.ts">delete</a>(chain) -> void</code>
 - <code title="get /v0/token/hooks/{chain}">client.tokenWebhooks.<a href="./src/resources/token-webhooks.ts">get</a>(chain) -> TokenWebhookGetResponse</code>
 - <code title="get /v0/token/hooks/">client.tokenWebhooks.<a href="./src/resources/token-webhooks.ts">getAll</a>() -> TokenWebhookGetAllResponse</code>
+
+# TokenSnapshot
+
+Types:
+
+- <code><a href="./src/resources/token-snapshot.ts">TokenSnapshotDiffResponse</a></code>
+- <code><a href="./src/resources/token-snapshot.ts">TokenSnapshotFullResponse</a></code>
+
+Methods:
+
+- <code title="get /v0/token/snapshot/diff">client.tokenSnapshot.<a href="./src/resources/token-snapshot.ts">diff</a>({ ...params }) -> TokenSnapshotDiffResponse</code>
+- <code title="get /v0/token/snapshot/full">client.tokenSnapshot.<a href="./src/resources/token-snapshot.ts">full</a>({ ...params }) -> TokenSnapshotFullResponse</code>

@@ -82,6 +82,13 @@ export {
 } from './token';
 export { TokenBulk, type TokenBulkScanResponse, type TokenBulkScanParams } from './token-bulk';
 export {
+  TokenSnapshot,
+  type TokenSnapshotDiffResponse,
+  type TokenSnapshotFullResponse,
+  type TokenSnapshotDiffParams,
+  type TokenSnapshotFullParams,
+} from './token-snapshot';
+export {
   TokenWebhooks,
   type TokenWebhookCreateResponse,
   type TokenWebhookGetResponse,
