@@ -24,6 +24,13 @@ import {
 } from './resources/token';
 import { TokenBulk, TokenBulkScanParams, TokenBulkScanResponse } from './resources/token-bulk';
 import {
+  TokenWebhookCreateParams,
+  TokenWebhookCreateResponse,
+  TokenWebhookGetAllResponse,
+  TokenWebhookGetResponse,
+  TokenWebhooks,
+} from './resources/token-webhooks';
+import {
   Bitcoin,
   BitcoinTransactionScanRequest,
   BitcoinTransactionScanResponse,
@@ -56,42 +63,7 @@ import {
   TransactionValidationError,
   UsdDiff,
 } from './resources/evm/evm';
-import {
-  APIErrorDetails,
-  AccountSummarySchema,
-  AddressScanRequestSchema,
-  AddressScanResponseSchema,
-  AssetTransferDetailsSchema,
-  CnftDetailsSchema,
-  CnftDiffSchema,
-  CnftMintAccountDetailsSchema,
-  CombinedValidationResult,
-  DelegatedAssetDetailsSchema,
-  FungibleMintAccountDetailsSchema,
-  InstructionErrorDetails,
-  NativeDetailsSchema,
-  NativeDiffSchema,
-  NativeSolOwnershipDiffSchema,
-  NonFungibleMintAccountDetailsSchema,
-  PdaAccountSchema,
-  ProgramAccountDetailsSchema,
-  ResponseSchema,
-  Solana,
-  SplFungibleTokenDetailsSchema,
-  SplFungibleTokenDiffSchema,
-  SplNonFungibleTokenDetailsSchema,
-  SplNonFungibleTokenDiffSchema,
-  SplTokenOwnershipDiffSchema,
-  StakedAssetDetailsSchema,
-  StakedSolWithdrawAuthorityDiffSchema,
-  SuccessfulSimulationResultSchema,
-  SystemAccountDetailsSchema,
-  TokenAccountDetailsSchema,
-  TotalUsdDiffSchema,
-  TransactionErrorDetails,
-  TxScanRequestSchema,
-  ValidationFeature,
-} from './resources/solana/solana';
+import { Solana } from './resources/solana/solana';
 import {
   Starknet,
   StarknetErc1155Details,
@@ -272,6 +244,7 @@ export class Blockaid extends Core.APIClient {
   scan: API.Scan = new API.Scan(this);
   token: API.Token = new API.Token(this);
   tokenBulk: API.TokenBulk = new API.TokenBulk(this);
+  tokenWebhooks: API.TokenWebhooks = new API.TokenWebhooks(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -363,6 +336,7 @@ Blockaid.Site = Site;
 Blockaid.Scan = Scan;
 Blockaid.Token = Token;
 Blockaid.TokenBulk = TokenBulk;
+Blockaid.TokenWebhooks = TokenWebhooks;
 export declare namespace Blockaid {
   export type RequestOptions = Core.RequestOptions;
 
@@ -395,42 +369,7 @@ export declare namespace Blockaid {
     type UsdDiff as UsdDiff,
   };
 
-  export {
-    Solana as Solana,
-    type AccountSummarySchema as AccountSummarySchema,
-    type AddressScanRequestSchema as AddressScanRequestSchema,
-    type AddressScanResponseSchema as AddressScanResponseSchema,
-    type APIErrorDetails as APIErrorDetails,
-    type AssetTransferDetailsSchema as AssetTransferDetailsSchema,
-    type CnftDetailsSchema as CnftDetailsSchema,
-    type CnftDiffSchema as CnftDiffSchema,
-    type CnftMintAccountDetailsSchema as CnftMintAccountDetailsSchema,
-    type CombinedValidationResult as CombinedValidationResult,
-    type DelegatedAssetDetailsSchema as DelegatedAssetDetailsSchema,
-    type FungibleMintAccountDetailsSchema as FungibleMintAccountDetailsSchema,
-    type InstructionErrorDetails as InstructionErrorDetails,
-    type NativeDetailsSchema as NativeDetailsSchema,
-    type NativeDiffSchema as NativeDiffSchema,
-    type NativeSolOwnershipDiffSchema as NativeSolOwnershipDiffSchema,
-    type NonFungibleMintAccountDetailsSchema as NonFungibleMintAccountDetailsSchema,
-    type PdaAccountSchema as PdaAccountSchema,
-    type ProgramAccountDetailsSchema as ProgramAccountDetailsSchema,
-    type ResponseSchema as ResponseSchema,
-    type SplFungibleTokenDetailsSchema as SplFungibleTokenDetailsSchema,
-    type SplFungibleTokenDiffSchema as SplFungibleTokenDiffSchema,
-    type SplNonFungibleTokenDetailsSchema as SplNonFungibleTokenDetailsSchema,
-    type SplNonFungibleTokenDiffSchema as SplNonFungibleTokenDiffSchema,
-    type SplTokenOwnershipDiffSchema as SplTokenOwnershipDiffSchema,
-    type StakedAssetDetailsSchema as StakedAssetDetailsSchema,
-    type StakedSolWithdrawAuthorityDiffSchema as StakedSolWithdrawAuthorityDiffSchema,
-    type SuccessfulSimulationResultSchema as SuccessfulSimulationResultSchema,
-    type SystemAccountDetailsSchema as SystemAccountDetailsSchema,
-    type TokenAccountDetailsSchema as TokenAccountDetailsSchema,
-    type TotalUsdDiffSchema as TotalUsdDiffSchema,
-    type TransactionErrorDetails as TransactionErrorDetails,
-    type TxScanRequestSchema as TxScanRequestSchema,
-    type ValidationFeature as ValidationFeature,
-  };
+  export { Solana as Solana };
 
   export {
     Stellar as Stellar,
@@ -498,6 +437,14 @@ export declare namespace Blockaid {
     TokenBulk as TokenBulk,
     type TokenBulkScanResponse as TokenBulkScanResponse,
     type TokenBulkScanParams as TokenBulkScanParams,
+  };
+
+  export {
+    TokenWebhooks as TokenWebhooks,
+    type TokenWebhookCreateResponse as TokenWebhookCreateResponse,
+    type TokenWebhookGetResponse as TokenWebhookGetResponse,
+    type TokenWebhookGetAllResponse as TokenWebhookGetAllResponse,
+    type TokenWebhookCreateParams as TokenWebhookCreateParams,
   };
 }
 
