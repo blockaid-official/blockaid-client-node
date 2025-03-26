@@ -24,6 +24,13 @@ import {
 } from './resources/token';
 import { TokenBulk, TokenBulkScanParams, TokenBulkScanResponse } from './resources/token-bulk';
 import {
+  TokenSnapshot,
+  TokenSnapshotDiffParams,
+  TokenSnapshotDiffResponse,
+  TokenSnapshotFullParams,
+  TokenSnapshotFullResponse,
+} from './resources/token-snapshot';
+import {
   TokenWebhookCreateParams,
   TokenWebhookCreateResponse,
   TokenWebhookGetAllResponse,
@@ -245,6 +252,7 @@ export class Blockaid extends Core.APIClient {
   token: API.Token = new API.Token(this);
   tokenBulk: API.TokenBulk = new API.TokenBulk(this);
   tokenWebhooks: API.TokenWebhooks = new API.TokenWebhooks(this);
+  tokenSnapshot: API.TokenSnapshot = new API.TokenSnapshot(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -337,6 +345,7 @@ Blockaid.Scan = Scan;
 Blockaid.Token = Token;
 Blockaid.TokenBulk = TokenBulk;
 Blockaid.TokenWebhooks = TokenWebhooks;
+Blockaid.TokenSnapshot = TokenSnapshot;
 export declare namespace Blockaid {
   export type RequestOptions = Core.RequestOptions;
 
@@ -445,6 +454,14 @@ export declare namespace Blockaid {
     type TokenWebhookGetResponse as TokenWebhookGetResponse,
     type TokenWebhookGetAllResponse as TokenWebhookGetAllResponse,
     type TokenWebhookCreateParams as TokenWebhookCreateParams,
+  };
+
+  export {
+    TokenSnapshot as TokenSnapshot,
+    type TokenSnapshotDiffResponse as TokenSnapshotDiffResponse,
+    type TokenSnapshotFullResponse as TokenSnapshotFullResponse,
+    type TokenSnapshotDiffParams as TokenSnapshotDiffParams,
+    type TokenSnapshotFullParams as TokenSnapshotFullParams,
   };
 }
 
