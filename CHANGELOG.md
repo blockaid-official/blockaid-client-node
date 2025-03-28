@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.48.1 (2025-03-28)
+
+Full Changelog: [v0.48.0...v0.48.1](https://github.com/blockaid-official/blockaid-client-node/compare/v0.48.0...v0.48.1)
+
+### Bug Fixes
+
+* **internal:** work around https://github.com/vercel/next.js/issues/76881 ([#444](https://github.com/blockaid-official/blockaid-client-node/issues/444)) ([11ed9f8](https://github.com/blockaid-official/blockaid-client-node/commit/11ed9f8b0452ad94ef2e404471d289e19f9e5a1d))
+
 ## 0.48.0 (2025-03-26)
 
 Full Changelog: [v0.47.0...v0.48.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.47.0...v0.48.0)
