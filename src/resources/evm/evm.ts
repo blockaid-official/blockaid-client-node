@@ -1033,7 +1033,8 @@ export type TransactionScanSupportedChain =
   | 'abstract-testnet'
   | 'soneium'
   | 'unichain'
-  | 'sei';
+  | 'sei'
+  | 'flow-evm';
 
 export interface TransactionSimulation {
   /**
