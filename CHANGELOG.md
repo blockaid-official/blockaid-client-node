@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.49.1 (2025-04-05)
+
+Full Changelog: [v0.49.0...v0.49.1](https://github.com/blockaid-official/blockaid-client-node/compare/v0.49.0...v0.49.1)
+
+### Bug Fixes
+
+* **api:** improve type resolution when importing as a package ([#451](https://github.com/blockaid-official/blockaid-client-node/issues/451)) ([7faeb54](https://github.com/blockaid-official/blockaid-client-node/commit/7faeb54de5593a08e810caecb9e7edba1e03348c))
+* **client:** send `X-Stainless-Timeout` in seconds ([#448](https://github.com/blockaid-official/blockaid-client-node/issues/448)) ([7579906](https://github.com/blockaid-official/blockaid-client-node/commit/7579906f9800c0aa63c0d4aeb0f522fba6a88f5b))
+* **mcp:** remove unused tools.ts ([#452](https://github.com/blockaid-official/blockaid-client-node/issues/452)) ([2844b17](https://github.com/blockaid-official/blockaid-client-node/commit/2844b175bc28dbfd8e099473ceb7dfece1265a3d))
+
+
+### Chores
+
+* **internal:** add aliases for Record and Array ([#450](https://github.com/blockaid-official/blockaid-client-node/issues/450)) ([ef10a8b](https://github.com/blockaid-official/blockaid-client-node/commit/ef10a8b50b538234e1300f45f26f5dd20a84bbb0))
+
 ## 0.49.0 (2025-04-03)
 
 Full Changelog: [v0.48.0...v0.49.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.48.0...v0.49.0)
