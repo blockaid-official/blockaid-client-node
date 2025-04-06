@@ -2,6 +2,8 @@
 
 import { APIResource } from '../../resource';
 import * as StellarAPI from './stellar';
+import * as AddressAPI from './address';
+import { Address, AddressScanParams, AddressScanResponse } from './address';
 import * as TransactionAPI from './transaction';
 import {
   Transaction,
@@ -12,6 +14,7 @@ import {
 
 export class Stellar extends APIResource {
   transaction: TransactionAPI.Transaction = new TransactionAPI.Transaction(this._client);
+  address: AddressAPI.Address = new AddressAPI.Address(this._client);
 }
 
 export interface StellarAssetContractDetails {
@@ -572,6 +575,7 @@ export namespace StellarTransactionScanResponse {
 }
 
 Stellar.Transaction = Transaction;
+Stellar.Address = Address;
 
 export declare namespace Stellar {
   export {
@@ -589,5 +593,11 @@ export declare namespace Stellar {
     type TransactionReportResponse as TransactionReportResponse,
     type TransactionReportParams as TransactionReportParams,
     type TransactionScanParams as TransactionScanParams,
+  };
+
+  export {
+    Address as Address,
+    type AddressScanResponse as AddressScanResponse,
+    type AddressScanParams as AddressScanParams,
   };
 }

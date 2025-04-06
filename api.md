@@ -133,6 +133,16 @@ Methods:
 - <code title="post /v0/stellar/transaction/report">client.stellar.transaction.<a href="./src/resources/stellar/transaction.ts">report</a>({ ...params }) -> TransactionReportResponse</code>
 - <code title="post /v0/stellar/transaction/scan">client.stellar.transaction.<a href="./src/resources/stellar/transaction.ts">scan</a>({ ...params }) -> StellarTransactionScanResponse</code>
 
+## Address
+
+Types:
+
+- <code><a href="./src/resources/stellar/address.ts">AddressScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/stellar/address/scan">client.stellar.address.<a href="./src/resources/stellar/address.ts">scan</a>({ ...params }) -> AddressScanResponse</code>
+
 # Bitcoin
 
 Types:
