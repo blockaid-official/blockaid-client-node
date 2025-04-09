@@ -98,7 +98,7 @@ describe('resource transaction', () => {
         paymaster_data: [],
       },
       block_number: '0xa12e3',
-      options: ['validation', 'simulation'],
+      options: ['simulation', 'validation'],
     });
   });
 });

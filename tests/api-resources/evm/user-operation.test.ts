@@ -11,7 +11,7 @@ const client = new Blockaid({
 describe('resource userOperation', () => {
   test('scan: only required params', async () => {
     const responsePromise = client.evm.userOperation.scan({
-      chain: 'arbitrum',
+      chain: 'base-sepolia',
       data: { operation: {} },
       metadata: { domain: 'example.com' },
     });
@@ -26,7 +26,7 @@ describe('resource userOperation', () => {
 
   test('scan: required and optional params', async () => {
     const response = await client.evm.userOperation.scan({
-      chain: 'arbitrum',
+      chain: 'base-sepolia',
       data: {
         operation: {
           call_data:
@@ -48,7 +48,7 @@ describe('resource userOperation', () => {
       metadata: { domain: 'example.com' },
       account_address: '0x77bA5AC3ca4864be26CA3112baDf07286CcC3324',
       block: '0x5c6fd5',
-      options: ['validation', 'simulation'],
+      options: ['simulation', 'validation'],
       state_override: {
         foo: {
           balance: 'balance',

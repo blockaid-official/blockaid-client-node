@@ -12,7 +12,7 @@ describe('resource postTransaction', () => {
   test('report: only required params', async () => {
     const responsePromise = client.evm.postTransaction.report({
       details: 'Details about the report',
-      event: 'FALSE_POSITIVE',
+      event: 'FALSE_NEGATIVE',
       report: { request_id: '11111111-1111-1111-1111-111111111111', type: 'request_id' },
     });
     const rawResponse = await responsePromise.asResponse();
@@ -27,14 +27,14 @@ describe('resource postTransaction', () => {
   test('report: required and optional params', async () => {
     const response = await client.evm.postTransaction.report({
       details: 'Details about the report',
-      event: 'FALSE_POSITIVE',
+      event: 'FALSE_NEGATIVE',
       report: { request_id: '11111111-1111-1111-1111-111111111111', type: 'request_id' },
     });
   });
 
   test('scan: only required params', async () => {
     const responsePromise = client.evm.postTransaction.scan({
-      chain: 'arbitrum',
+      chain: 'ethereum',
       data: { tx_hash: '0xc01780dadc107754b331250b4797606949cb3d0087facc0a737122d5e973c83c' },
       metadata: { domain: 'domain' },
     });
@@ -49,7 +49,7 @@ describe('resource postTransaction', () => {
 
   test('scan: required and optional params', async () => {
     const response = await client.evm.postTransaction.scan({
-      chain: 'arbitrum',
+      chain: 'ethereum',
       data: { tx_hash: '0xc01780dadc107754b331250b4797606949cb3d0087facc0a737122d5e973c83c' },
       metadata: { domain: 'domain' },
       block: 0,
