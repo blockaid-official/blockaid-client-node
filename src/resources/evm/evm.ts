@@ -910,7 +910,8 @@ export type TokenScanSupportedChain =
   | 'zero-network'
   | 'berachain'
   | 'unichain'
-  | 'ronin';
+  | 'ronin'
+  | 'sui';
 
 export interface TransactionScanFeature {
   /**

@@ -36,7 +36,7 @@ describe('resource message', () => {
       chain: 'mainnet',
       encoding: 'base58',
       method: 'signAndSendTransaction',
-      options: ['validation', 'simulation'],
+      options: ['simulation', 'validation'],
     });
   });
 });

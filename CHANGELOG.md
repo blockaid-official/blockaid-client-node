@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.50.0 (2025-04-10)
+
+Full Changelog: [v0.49.0...v0.50.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.49.0...v0.50.0)
+
+### Features
+
+* **api:** api update ([#453](https://github.com/blockaid-official/blockaid-client-node/issues/453)) ([8a91899](https://github.com/blockaid-official/blockaid-client-node/commit/8a91899750cb0059e01693b9955d6f4fd002edbd))
+* **api:** api update ([#454](https://github.com/blockaid-official/blockaid-client-node/issues/454)) ([19eacc4](https://github.com/blockaid-official/blockaid-client-node/commit/19eacc4849c0371ca82ba1219b3b6cf3810a11b6))
+
+
+### Bug Fixes
+
+* **api:** improve type resolution when importing as a package ([#451](https://github.com/blockaid-official/blockaid-client-node/issues/451)) ([7faeb54](https://github.com/blockaid-official/blockaid-client-node/commit/7faeb54de5593a08e810caecb9e7edba1e03348c))
+* **client:** send `X-Stainless-Timeout` in seconds ([#448](https://github.com/blockaid-official/blockaid-client-node/issues/448)) ([7579906](https://github.com/blockaid-official/blockaid-client-node/commit/7579906f9800c0aa63c0d4aeb0f522fba6a88f5b))
+* **client:** send all configured auth headers ([#455](https://github.com/blockaid-official/blockaid-client-node/issues/455)) ([7455d5b](https://github.com/blockaid-official/blockaid-client-node/commit/7455d5bd1f7b79424fa4c1ec6d15fdd0a7d42d6b))
+* **mcp:** remove unused tools.ts ([#452](https://github.com/blockaid-official/blockaid-client-node/issues/452)) ([2844b17](https://github.com/blockaid-official/blockaid-client-node/commit/2844b175bc28dbfd8e099473ceb7dfece1265a3d))
+
+
+### Chores
+
+* **internal:** add aliases for Record and Array ([#450](https://github.com/blockaid-official/blockaid-client-node/issues/450)) ([ef10a8b](https://github.com/blockaid-official/blockaid-client-node/commit/ef10a8b50b538234e1300f45f26f5dd20a84bbb0))
+* **internal:** reduce CI branch coverage ([7708cca](https://github.com/blockaid-official/blockaid-client-node/commit/7708ccab3f4dffc00179d61d16aa5db7f0d5d882))
+* **internal:** upload builds and expand CI branch coverage ([877209d](https://github.com/blockaid-official/blockaid-client-node/commit/877209d4b28973a522cd7f894e7d0bbb2f51386e))
+* **tests:** improve enum examples ([#456](https://github.com/blockaid-official/blockaid-client-node/issues/456)) ([099790a](https://github.com/blockaid-official/blockaid-client-node/commit/099790ade32e91f422f64d06ab09ceb508728d4c))
+
 ## 0.49.0 (2025-04-03)
 
 Full Changelog: [v0.48.0...v0.49.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.48.0...v0.49.0)
