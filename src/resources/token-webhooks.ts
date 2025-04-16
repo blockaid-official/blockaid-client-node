@@ -97,8 +97,7 @@ export interface TokenWebhookCreateResponse {
   url: string;
 
   /**
-   * Optional shared secret key (32 characacters), used to calculate the HMAC
-   * signature
+   * Optional shared secret key (32 characters), used to calculate the HMAC signature
    */
   shared_secret_key?: string | null;
 }
@@ -118,8 +117,7 @@ export interface TokenWebhookGetResponse {
   url: string;
 
   /**
-   * Optional shared secret key (32 characacters), used to calculate the HMAC
-   * signature
+   * Optional shared secret key (32 characters), used to calculate the HMAC signature
    */
   shared_secret_key?: string | null;
 }
@@ -142,8 +140,7 @@ export namespace TokenWebhookGetAllResponse {
     url: string;
 
     /**
-     * Optional shared secret key (32 characacters), used to calculate the HMAC
-     * signature
+     * Optional shared secret key (32 characters), used to calculate the HMAC signature
      */
     shared_secret_key?: string | null;
   }
@@ -153,8 +150,7 @@ export interface TokenWebhookCreateParams {
   url: string;
 
   /**
-   * Optional shared secret key (32 characacters), used to calculate the HMAC
-   * signature
+   * Optional shared secret key (32 characters), used to calculate the HMAC signature
    */
   shared_secret_key?: string | null;
 }
