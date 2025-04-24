@@ -1547,6 +1547,11 @@ export namespace TransactionSimulation {
 
 export interface TransactionSimulationError {
   /**
+   * A string explaining why the transaction failed
+   */
+  description: string;
+
+  /**
    * An error message if the simulation failed.
    */
   error: string;
@@ -1561,6 +1566,7 @@ export interface TransactionSimulationError {
    */
   error_details?:
     | TransactionSimulationError.GeneralInsufficientFundsErrorDetails
+    | TransactionSimulationError.GeneralInvalidAddressErrorDetails
     | TransactionSimulationError.GenericErrorDetails;
 }
 
@@ -1654,6 +1660,18 @@ export namespace TransactionSimulationError {
        */
       type: 'ERC1155';
     }
+  }
+
+  export interface GeneralInvalidAddressErrorDetails {
+    /**
+     * The address that is invalid
+     */
+    address: string;
+
+    /**
+     * The type of the model
+     */
+    code: 'GENERAL_INVALID_ADDRESS';
   }
 
   export interface GenericErrorDetails {
