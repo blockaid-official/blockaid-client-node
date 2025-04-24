@@ -21,7 +21,10 @@ describe('resource tokenWebhooks', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.tokenWebhooks.create('arbitrum', { url: 'https://example.com' });
+    const response = await client.tokenWebhooks.create('arbitrum', {
+      url: 'https://example.com',
+      shared_secret_key: 'shared_secret_key',
+    });
   });
 
   test('delete', async () => {

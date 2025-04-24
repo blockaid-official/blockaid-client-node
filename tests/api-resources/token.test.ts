@@ -35,7 +35,7 @@ describe('resource token', () => {
   test('scan: only required params', async () => {
     const responsePromise = client.token.scan({
       address: '0x66587563e933bbf3974b89156b47bb82b921eb35',
-      chain: 'arbitrum',
+      chain: 'ethereum',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -49,7 +49,7 @@ describe('resource token', () => {
   test('scan: required and optional params', async () => {
     const response = await client.token.scan({
       address: '0x66587563e933bbf3974b89156b47bb82b921eb35',
-      chain: 'arbitrum',
+      chain: 'ethereum',
       metadata: { domain: 'domain' },
     });
   });

@@ -35,7 +35,7 @@ describe('resource transaction', () => {
   test('scan: only required params', async () => {
     const responsePromise = client.evm.transaction.scan({
       account_address: 'account_address',
-      chain: 'arbitrum',
+      chain: 'ethereum',
       data: { from: '0x5e1a0d484c5f0de722e82f9dca3a9d5a421d47cb' },
       metadata: { domain: 'https://boredapeyartclub.com' },
     });
@@ -51,7 +51,7 @@ describe('resource transaction', () => {
   test('scan: required and optional params', async () => {
     const response = await client.evm.transaction.scan({
       account_address: 'account_address',
-      chain: 'arbitrum',
+      chain: 'ethereum',
       data: {
         from: '0x5e1a0d484c5f0de722e82f9dca3a9d5a421d47cb',
         data: '0x',
@@ -62,7 +62,7 @@ describe('resource transaction', () => {
       },
       metadata: { domain: 'https://boredapeyartclub.com' },
       block: 0,
-      options: ['validation', 'simulation'],
+      options: ['simulation', 'validation'],
       state_override: {
         foo: {
           balance: 'balance',

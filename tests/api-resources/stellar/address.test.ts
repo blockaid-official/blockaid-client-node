@@ -8,12 +8,9 @@ const client = new Blockaid({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource tokenBulk', () => {
+describe('resource address', () => {
   test('scan: only required params', async () => {
-    const responsePromise = client.tokenBulk.scan({
-      chain: 'ethereum',
-      tokens: ['0x66587563e933bbf3974b89156b47bb82b921eb35', '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d'],
-    });
+    const responsePromise = client.stellar.address.scan({ address: 'address' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,10 +21,6 @@ describe('resource tokenBulk', () => {
   });
 
   test('scan: required and optional params', async () => {
-    const response = await client.tokenBulk.scan({
-      chain: 'ethereum',
-      tokens: ['0x66587563e933bbf3974b89156b47bb82b921eb35', '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d'],
-      metadata: { domain: 'domain' },
-    });
+    const response = await client.stellar.address.scan({ address: 'address' });
   });
 });
