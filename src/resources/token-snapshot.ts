@@ -1231,6 +1231,16 @@ export interface TokenSnapshotDiffParams {
   chain: EvmAPI.TokenScanSupportedChain;
 
   /**
+   * Cursor to start from, if not provided, the first page will be returned
+   */
+  cursor?: string | null;
+
+  /**
+   * Number of tokens to return in a page
+   */
+  size?: number;
+
+  /**
    * Timeframe in minutes
    */
   timeframe?: number;
@@ -1241,6 +1251,16 @@ export interface TokenSnapshotFullParams {
    * The chain name
    */
   chain: EvmAPI.TokenScanSupportedChain;
+
+  /**
+   * Cursor to start from, if not provided, the first page will be returned
+   */
+  cursor?: string | null;
+
+  /**
+   * Number of tokens to return in a page
+   */
+  size?: number;
 }
 
 export declare namespace TokenSnapshot {

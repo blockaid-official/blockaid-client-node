@@ -54,6 +54,17 @@ describe('resource transaction', () => {
       chain: 'ethereum',
       data: {
         from: '0x5e1a0d484c5f0de722e82f9dca3a9d5a421d47cb',
+        authorization_list: [
+          {
+            address: 'address',
+            chainId: 'chainId',
+            eoa: 'eoa',
+            nonce: 'nonce',
+            r: 'r',
+            s: 's',
+            yParity: 'yParity',
+          },
+        ],
         data: '0x',
         gas: 'gas',
         gas_price: 'gas_price',
