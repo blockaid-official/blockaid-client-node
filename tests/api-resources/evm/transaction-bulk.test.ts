@@ -33,6 +33,17 @@ describe('resource transactionBulk', () => {
       data: [
         {
           from: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+          authorization_list: [
+            {
+              address: 'address',
+              chainId: 'chainId',
+              eoa: 'eoa',
+              nonce: 'nonce',
+              r: 'r',
+              s: 's',
+              yParity: 'yParity',
+            },
+          ],
           data: '0x',
           gas: 'gas',
           gas_price: 'gas_price',
@@ -41,6 +52,17 @@ describe('resource transactionBulk', () => {
         },
         {
           from: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+          authorization_list: [
+            {
+              address: 'address',
+              chainId: 'chainId',
+              eoa: 'eoa',
+              nonce: 'nonce',
+              r: 'r',
+              s: 's',
+              yParity: 'yParity',
+            },
+          ],
           data: '0x',
           gas: 'gas',
           gas_price: 'gas_price',

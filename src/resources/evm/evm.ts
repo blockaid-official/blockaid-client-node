@@ -1111,6 +1111,7 @@ export interface TransactionSimulation {
       | TransactionSimulation.ProxyUpgradeManagement
       | TransactionSimulation.OwnershipChangeManagement
       | TransactionSimulation.ModulesChangeManagement
+      | TransactionSimulation.SetCodeAccountManagement
     >
   >;
 
@@ -1445,6 +1446,18 @@ export namespace TransactionSimulation {
     export interface Before {
       modules: Array<string>;
     }
+  }
+
+  export interface SetCodeAccountManagement {
+    /**
+     * The delegated address
+     */
+    delegated_address: string;
+
+    /**
+     * The type of the state change
+     */
+    type: 'SET_CODE_ACCOUNT';
   }
 
   /**

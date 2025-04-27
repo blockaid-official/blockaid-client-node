@@ -85,6 +85,11 @@ export namespace TransactionReportParams {
         from: string;
 
         /**
+         * The authorization list
+         */
+        authorization_list?: Array<Transaction.AuthorizationList>;
+
+        /**
          * The encoded call data of the transaction in hex string format
          */
         data?: string;
@@ -108,6 +113,32 @@ export namespace TransactionReportParams {
          * The value of the transaction in Wei in hex string format
          */
         value?: string;
+      }
+
+      export namespace Transaction {
+        export interface AuthorizationList {
+          /**
+           * The delegation designation address
+           */
+          address: string;
+
+          chainId?: string;
+
+          /**
+           * The authority address of the delegation, should be provided when the signature
+           * (r,s,yParity) is not provided in order to simulate the transaction with the
+           * correct delegation
+           */
+          eoa?: string;
+
+          nonce?: string;
+
+          r?: string;
+
+          s?: string;
+
+          yParity?: string;
+        }
       }
 
       export interface JsonRpc {
@@ -182,6 +213,11 @@ export namespace TransactionScanParams {
     from: string;
 
     /**
+     * The authorization list
+     */
+    authorization_list?: Array<Data.AuthorizationList>;
+
+    /**
      * The encoded call data of the transaction in hex string format
      */
     data?: string;
@@ -205,6 +241,32 @@ export namespace TransactionScanParams {
      * The value of the transaction in Wei in hex string format
      */
     value?: string;
+  }
+
+  export namespace Data {
+    export interface AuthorizationList {
+      /**
+       * The delegation designation address
+       */
+      address: string;
+
+      chainId?: string;
+
+      /**
+       * The authority address of the delegation, should be provided when the signature
+       * (r,s,yParity) is not provided in order to simulate the transaction with the
+       * correct delegation
+       */
+      eoa?: string;
+
+      nonce?: string;
+
+      r?: string;
+
+      s?: string;
+
+      yParity?: string;
+    }
   }
 
   export interface StateOverride {
