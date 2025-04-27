@@ -21,7 +21,12 @@ describe('resource tokenSnapshot', () => {
   });
 
   test('diff: required and optional params', async () => {
-    const response = await client.tokenSnapshot.diff({ chain: 'arbitrum', timeframe: 1 });
+    const response = await client.tokenSnapshot.diff({
+      chain: 'arbitrum',
+      cursor: 'cursor',
+      size: 1,
+      timeframe: 1,
+    });
   });
 
   test('full: only required params', async () => {
@@ -36,6 +41,6 @@ describe('resource tokenSnapshot', () => {
   });
 
   test('full: required and optional params', async () => {
-    const response = await client.tokenSnapshot.full({ chain: 'arbitrum' });
+    const response = await client.tokenSnapshot.full({ chain: 'arbitrum', cursor: 'cursor', size: 1 });
   });
 });
