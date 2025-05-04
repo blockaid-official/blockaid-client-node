@@ -117,10 +117,7 @@ export interface WithdrawalScanParams {
 
   event_time: string;
 
-  onchain_transaction:
-    | WithdrawalScanParams.RoutersExchangeProtectionModelsRequestEvmOnchainTransaction
-    | WithdrawalScanParams.RoutersExchangeProtectionModelsRequestBitcoinOnchainTransaction
-    | WithdrawalScanParams.RoutersExchangeProtectionModelsRequestStellarOnchainTransaction;
+  onchain_transaction: WithdrawalScanParams.OnchainTransaction;
 
   withdrawal_id: string;
 
@@ -138,35 +135,15 @@ export namespace WithdrawalScanParams {
     created?: string;
   }
 
-  export interface RoutersExchangeProtectionModelsRequestEvmOnchainTransaction {
+  export interface OnchainTransaction {
     amount: number;
 
-    asset: 'ETH' | 'POL';
+    asset: string;
 
     /**
      * An enumeration.
      */
-    chain: 'ethereum' | 'base' | 'arbitrum' | 'optimism' | 'polygon';
-
-    to_address: string;
-  }
-
-  export interface RoutersExchangeProtectionModelsRequestBitcoinOnchainTransaction {
-    amount: number;
-
-    asset: 'BTC';
-
-    chain: 'bitcoin';
-
-    to_address: string;
-  }
-
-  export interface RoutersExchangeProtectionModelsRequestStellarOnchainTransaction {
-    amount: number;
-
-    asset: 'XLM';
-
-    chain: 'stellar';
+    chain: 'ethereum' | 'base' | 'arbitrum' | 'optimism' | 'polygon' | 'bitcoin' | 'solana';
 
     to_address: string;
   }
