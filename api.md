@@ -273,3 +273,15 @@ Methods:
 
 - <code title="get /v0/token/snapshot/diff">client.tokenSnapshot.<a href="./src/resources/token-snapshot.ts">diff</a>({ ...params }) -> TokenSnapshotDiffResponse</code>
 - <code title="get /v0/token/snapshot/full">client.tokenSnapshot.<a href="./src/resources/token-snapshot.ts">full</a>({ ...params }) -> TokenSnapshotFullResponse</code>
+
+# ExchangeProtection
+
+## Withdrawal
+
+Types:
+
+- <code><a href="./src/resources/exchange-protection/withdrawal.ts">WithdrawalScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/exchange/withdrawal/scan">client.exchangeProtection.withdrawal.<a href="./src/resources/exchange-protection/withdrawal.ts">scan</a>({ ...params }) -> WithdrawalScanResponse</code>

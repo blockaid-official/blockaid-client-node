@@ -70,6 +70,7 @@ import {
   TransactionValidationError,
   UsdDiff,
 } from './resources/evm/evm';
+import { ExchangeProtection } from './resources/exchange-protection/exchange-protection';
 import { Solana } from './resources/solana/solana';
 import {
   Starknet,
@@ -253,6 +254,7 @@ export class Blockaid extends Core.APIClient {
   tokenBulk: API.TokenBulk = new API.TokenBulk(this);
   tokenWebhooks: API.TokenWebhooks = new API.TokenWebhooks(this);
   tokenSnapshot: API.TokenSnapshot = new API.TokenSnapshot(this);
+  exchangeProtection: API.ExchangeProtection = new API.ExchangeProtection(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -339,6 +341,7 @@ Blockaid.Token = Token;
 Blockaid.TokenBulk = TokenBulk;
 Blockaid.TokenWebhooks = TokenWebhooks;
 Blockaid.TokenSnapshot = TokenSnapshot;
+Blockaid.ExchangeProtection = ExchangeProtection;
 export declare namespace Blockaid {
   export type RequestOptions = Core.RequestOptions;
 
@@ -456,6 +459,8 @@ export declare namespace Blockaid {
     type TokenSnapshotDiffParams as TokenSnapshotDiffParams,
     type TokenSnapshotFullParams as TokenSnapshotFullParams,
   };
+
+  export { ExchangeProtection as ExchangeProtection };
 }
 
 export { toFile, fileFromPath } from './uploads';
