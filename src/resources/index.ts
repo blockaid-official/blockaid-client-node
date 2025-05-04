@@ -33,6 +33,7 @@ export {
   type TransactionValidationError,
   type UsdDiff,
 } from './evm/evm';
+export { ExchangeProtection } from './exchange-protection/exchange-protection';
 export { Scan, type ScanStatusResponse, type ScanStatusParams } from './scan';
 export {
   Site,

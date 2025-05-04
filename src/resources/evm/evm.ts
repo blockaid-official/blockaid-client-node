@@ -429,8 +429,6 @@ export namespace AccountSummary {
      */
     asset: EvmAPI.Erc721TokenDetails | EvmAPI.NonercTokenDetails;
 
-    exposed: Erc721ExposureTrace.Exposed;
-
     /**
      * The owner of the assets
      */
@@ -450,6 +448,8 @@ export namespace AccountSummary {
      * The type of the model
      */
     type: 'ERC721ExposureTrace';
+
+    exposed?: Erc721ExposureTrace.Exposed;
   }
 
   export namespace Erc721ExposureTrace {
