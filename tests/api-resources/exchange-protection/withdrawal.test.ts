@@ -13,7 +13,7 @@ describe('resource withdrawal', () => {
     const responsePromise = client.exchangeProtection.withdrawal.scan({
       account: { account_id: 'account_id', user_country_code: 'user_country_code' },
       event_time: '2019-12-27T18:11:19.117Z',
-      onchain_transaction: { amount: 1, asset: 'ETH', chain: 'ethereum', to_address: 'to_address' },
+      onchain_transaction: { amount: 1, asset: 'asset', chain: 'ethereum', to_address: 'to_address' },
       withdrawal_id: 'withdrawal_id',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -34,7 +34,7 @@ describe('resource withdrawal', () => {
         created: '2019-12-27T18:11:19.117Z',
       },
       event_time: '2019-12-27T18:11:19.117Z',
-      onchain_transaction: { amount: 1, asset: 'ETH', chain: 'ethereum', to_address: 'to_address' },
+      onchain_transaction: { amount: 1, asset: 'asset', chain: 'ethereum', to_address: 'to_address' },
       withdrawal_id: 'withdrawal_id',
       connection_metadata: { customer_ip: 'customer_ip', user_agent: 'user_agent' },
     });
