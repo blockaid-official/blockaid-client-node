@@ -63,10 +63,6 @@ export namespace WithdrawalScanResponse {
 
       export namespace Address {
         export interface Label {
-          date_added: string;
-
-          is_public: boolean;
-
           label: string;
 
           origin: string;
@@ -75,10 +71,6 @@ export namespace WithdrawalScanResponse {
            * An enumeration.
            */
           severity: 'low' | 'medium' | 'high' | 'severe';
-
-          chains?: Array<string>;
-
-          reporting_organization?: string;
         }
       }
 
@@ -90,10 +82,6 @@ export namespace WithdrawalScanResponse {
 
       export namespace URL {
         export interface Label {
-          date_added: string;
-
-          is_public: boolean;
-
           label: string;
 
           origin: string;
@@ -102,10 +90,6 @@ export namespace WithdrawalScanResponse {
            * An enumeration.
            */
           severity: 'low' | 'medium' | 'high' | 'severe';
-
-          chains?: Array<string>;
-
-          reporting_organization?: string;
         }
       }
     }
