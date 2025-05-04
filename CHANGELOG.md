@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.52.0 (2025-05-04)
+
+Full Changelog: [v0.51.0...v0.52.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.51.0...v0.52.0)
+
+### Features
+
+* **api:** api update ([e69b48d](https://github.com/blockaid-official/blockaid-client-node/commit/e69b48dcfcc6ac75239eec67fb8e9f62fe274f0f))
+* **api:** api update ([582ba84](https://github.com/blockaid-official/blockaid-client-node/commit/582ba84dbd594e5bbf954ad6f0da0af925f7634a))
+* **api:** api update ([a73c8d0](https://github.com/blockaid-official/blockaid-client-node/commit/a73c8d017ca50908f8693a37c38b9eb09bfd0fe3))
+* **api:** api update ([f8a494d](https://github.com/blockaid-official/blockaid-client-node/commit/f8a494d3b84d0f33822ae61548cdf27e9ffb38d7))
+* **api:** api update ([e49bab5](https://github.com/blockaid-official/blockaid-client-node/commit/e49bab5f4dd58e3876866d8676a2fd63ecd4be45))
+* **api:** api update ([d3a0917](https://github.com/blockaid-official/blockaid-client-node/commit/d3a0917bed7d2f789c8f14d035eba2948dd023fe))
+
+
+### Documentation
+
+* **readme:** fix typo ([7c62816](https://github.com/blockaid-official/blockaid-client-node/commit/7c62816605cdc1c46b20232d4b5c41e2dfefc994))
+
 ## 0.51.0 (2025-04-27)
 
 Full Changelog: [v0.50.0...v0.51.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.50.0...v0.51.0)
