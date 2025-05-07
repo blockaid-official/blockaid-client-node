@@ -7,6 +7,18 @@ import * as EvmAPI from './evm/evm';
 export class Token extends APIResource {
   /**
    * Report for misclassification of a token.
+   *
+   * @example
+   * ```ts
+   * const response = await client.token.report({
+   *   details: 'Details about the report',
+   *   event: 'CONFIRMED',
+   *   report: {
+   *     type: 'request_id',
+   *     request_id: '11111111-1111-1111-1111-111111111111',
+   *   },
+   * });
+   * ```
    */
   report(body: TokenReportParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
     return this._client.post('/v0/token/report', { body, ...options });
@@ -15,6 +27,14 @@ export class Token extends APIResource {
   /**
    * Gets a token address and scan the token to identify any indication of malicious
    * behavior
+   *
+   * @example
+   * ```ts
+   * const response = await client.token.scan({
+   *   address: '0x66587563e933bbf3974b89156b47bb82b921eb35',
+   *   chain: 'ethereum',
+   * });
+   * ```
    */
   scan(body: TokenScanParams, options?: Core.RequestOptions): Core.APIPromise<TokenScanResponse> {
     return this._client.post('/v0/token/scan', { body, ...options });

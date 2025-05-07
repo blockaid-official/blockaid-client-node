@@ -7,6 +7,20 @@ import * as SuiAPI from './sui';
 export class Transaction extends APIResource {
   /**
    * Scan Transaction
+   *
+   * @example
+   * ```ts
+   * const suiTransactionScanResponse =
+   *   await client.sui.transaction.scan({
+   *     account_address:
+   *       '0x45e90b3ea2e1920c43d92d224630d6a865c1b58a7b4e770c2ac156eab30eb491',
+   *     chain: 'mainnet',
+   *     metadata: { type: 'wallet', url: 'localhost' },
+   *     transaction:
+   *       'AAACAAgA4fUFAAAAAAAgHvls2mKzo/48s/fPdWP8xKtE4BhIjR2O8gMaZ6bI1+sCAgABAQAAAQECAAABAQBF6Qs+ouGSDEPZLSJGMNaoZcG1intOdwwqwVbqsw60kQFySkLceU6uis9QxxK4CDYqttqK3ilc9/yEcCgxdaeA0cl/xhwAAAAAIEuXU9TpAtIJmbPVFpxdc70+RWUqlSrfyIUKT9q1Au0ERekLPqLhkgxD2S0iRjDWqGXBtYp7TncMKsFW6rMOtJHuAgAAAAAAACAKNQAAAAAAAA==',
+   *     options: ['simulation'],
+   *   });
+   * ```
    */
   scan(
     body: TransactionScanParams,
