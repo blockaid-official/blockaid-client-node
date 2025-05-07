@@ -6,6 +6,18 @@ import * as Core from '../core';
 export class Site extends APIResource {
   /**
    * Report for misclassification of a site.
+   *
+   * @example
+   * ```ts
+   * const response = await client.site.report({
+   *   details: 'Details about the report',
+   *   event: 'FALSE_POSITIVE',
+   *   report: {
+   *     type: 'request_id',
+   *     request_id: '11111111-1111-1111-1111-111111111111',
+   *   },
+   * });
+   * ```
    */
   report(body: SiteReportParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
     return this._client.post('/v0/site/report', { body, ...options });
@@ -13,6 +25,13 @@ export class Site extends APIResource {
 
   /**
    * Scan Site
+   *
+   * @example
+   * ```ts
+   * const response = await client.site.scan({
+   *   url: 'https://app.uniswap.org',
+   * });
+   * ```
    */
   scan(body: SiteScanParams, options?: Core.RequestOptions): Core.APIPromise<SiteScanResponse> {
     return this._client.post('/v0/site/scan', { body, ...options });

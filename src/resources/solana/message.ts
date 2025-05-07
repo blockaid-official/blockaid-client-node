@@ -6,6 +6,22 @@ import * as Core from '../../core';
 export class Message extends APIResource {
   /**
    * Scan a message
+   *
+   * @example
+   * ```ts
+   * const response = await client.solana.message.scan({
+   *   account_address:
+   *     '86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY',
+   *   metadata: { url: 'https://example.com' },
+   *   transactions: [
+   *     'vxBNpvao9QJmLKXUThbbjRnxm3ufu4Wku97kHd5a67FDjSqeHwcPrBKTjAHp4ECr61eWwoxvUEVTuuWX65P9bCNDJrTJpX64vjdtpHA8cogA4C92Ubj813wUUA8Ey4Bvcrdj5c1bSTrGZVzb8QmCKyzMu9kMiSWpFtaFrNN8zb9grr81N3R3njrFgxCxNSjboFtomLyZ3iUQBaBkRF1DyzGyc1r1kd8FnptaDWteNCXJHUYFeH8wBDwZJzNZfz71CiugXhxBTJSAqSNC8JEWm7kmCqwjUqLd23L2x2s',
+   *   ],
+   *   chain: 'mainnet',
+   *   encoding: 'base58',
+   *   method: 'signAndSendTransaction',
+   *   options: ['simulation', 'validation'],
+   * });
+   * ```
    */
   scan(body: MessageScanParams, options?: Core.RequestOptions): Core.APIPromise<MessageScanResponse> {
     return this._client.post('/v0/solana/message/scan', { body, ...options });

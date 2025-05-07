@@ -8,6 +8,17 @@ export class TokenBulk extends APIResource {
   /**
    * Gets a list of token addresses and scan the tokens to identify any indication of
    * malicious behaviour
+   *
+   * @example
+   * ```ts
+   * const response = await client.tokenBulk.scan({
+   *   chain: 'ethereum',
+   *   tokens: [
+   *     '0x66587563e933bbf3974b89156b47bb82b921eb35',
+   *     '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d',
+   *   ],
+   * });
+   * ```
    */
   scan(body: TokenBulkScanParams, options?: Core.RequestOptions): Core.APIPromise<TokenBulkScanResponse> {
     return this._client.post('/v0/token-bulk/scan', { body, ...options });
