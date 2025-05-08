@@ -10,6 +10,31 @@ export class TransactionBulk extends APIResource {
    * after executing the transactions synchronously, along with a suggested course of
    * action and textual explanations highlighting the reasons for flagging the bulk
    * in that manner.
+   *
+   * @example
+   * ```ts
+   * const transactionScanResponses =
+   *   await client.evm.transactionBulk.scan({
+   *     chain: 'ethereum',
+   *     data: [
+   *       {
+   *         data: '0x',
+   *         value: '0x100000000000',
+   *         to: '0xA4e5961B58DBE487639929643dCB1Dc3848dAF5E',
+   *         from: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+   *       },
+   *       {
+   *         data: '0x',
+   *         value: '0xdeadbeef',
+   *         to: '0x0D524a5B52737C0a02880d5E84F7D20b8d66bfba',
+   *         from: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+   *       },
+   *     ],
+   *     metadata: { domain: 'https://example.com' },
+   *     block: '20224477',
+   *     options: ['validation'],
+   *   });
+   * ```
    */
   scan(
     body: TransactionBulkScanParams,

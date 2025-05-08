@@ -7,6 +7,15 @@ import * as StellarAPI from './stellar';
 export class Transaction extends APIResource {
   /**
    * Report Transaction
+   *
+   * @example
+   * ```ts
+   * const response = await client.stellar.transaction.report({
+   *   details: 'details',
+   *   event: 'should_be_malicious',
+   *   report: { id: 'id' },
+   * });
+   * ```
    */
   report(
     body: TransactionReportParams,
@@ -17,6 +26,20 @@ export class Transaction extends APIResource {
 
   /**
    * Scan Transaction
+   *
+   * @example
+   * ```ts
+   * const stellarTransactionScanResponse =
+   *   await client.stellar.transaction.scan({
+   *     account_address:
+   *       'GDPMFLKUGASUTWBN2XGYYKD27QGHCYH4BUFUTER4L23INYQ4JHDWFOIE',
+   *     chain: 'pubnet',
+   *     metadata: { type: 'wallet', url: 'localhost' },
+   *     transaction:
+   *       'AAAAAgAAAADewq1UMCVJ2C3VzYwoevwMcWD8DQtJkjxetobiHEnHYgAAAAEAAAAAAAAAAgAAAAAAAAAAAAAAAQAAAAEAAAAA3sKtVDAlSdgt1c2MKHr8DHFg/A0LSZI8XraG4hxJx2IAAAABAAAAACI40RTBOFEE7uT5mZkoq30mbvxLPJpMUm9cIFHgK9SRAAAAAAAAAAAAmJaAAAAAAAAAAAA=',
+   *     options: ['validation', 'simulation'],
+   *   });
+   * ```
    */
   scan(
     body: TransactionScanParams,

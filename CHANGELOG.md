@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.54.0 (2025-05-08)
+
+Full Changelog: [v0.53.0...v0.54.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.53.0...v0.54.0)
+
+### Features
+
+* **api:** api update ([bea47e7](https://github.com/blockaid-official/blockaid-client-node/commit/bea47e74e99f2fcfb2e6e0ecdbc4692fb116aed4))
+
+
+### Chores
+
+* **ci:** bump node version for release workflows ([0f3adb5](https://github.com/blockaid-official/blockaid-client-node/commit/0f3adb5bf9c1a0c2d58ec223b9b39920fd7794a8))
+
+
+### Documentation
+
+* add examples to tsdocs ([d132f41](https://github.com/blockaid-official/blockaid-client-node/commit/d132f41a41a8ce386787c1c648eee92417b55982))
+
 ## 0.53.0 (2025-05-04)
 
 Full Changelog: [v0.52.0...v0.53.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.52.0...v0.53.0)

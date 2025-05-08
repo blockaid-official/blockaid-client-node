@@ -8,6 +8,15 @@ export class Address extends APIResource {
    * Gets an address and returns a full security assessment indicating weather or not
    * this address is malicious as well as textual reasons of why the address was
    * flagged that way.
+   *
+   * @example
+   * ```ts
+   * const response = await client.solana.address.scan({
+   *   address: '2ojv9BAiHUrvsm9gxDe7fJSzbNZSJcxZvf8dqmWGHG8S',
+   *   metadata: { url: 'https://example.com' },
+   *   chain: 'mainnet',
+   * });
+   * ```
    */
   scan(body: AddressScanParams, options?: Core.RequestOptions): Core.APIPromise<AddressScanResponse> {
     return this._client.post('/v0/solana/address/scan', { body, ...options });

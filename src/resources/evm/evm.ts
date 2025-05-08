@@ -933,6 +933,11 @@ export interface TransactionScanFeature {
    * Address the feature refers to
    */
   address?: string;
+
+  /**
+   * Metadata related to the feature
+   */
+  metadata?: unknown;
 }
 
 export interface TransactionScanResponse {
