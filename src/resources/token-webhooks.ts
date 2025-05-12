@@ -153,6 +153,11 @@ export interface TokenWebhookCreateParams {
    * Optional shared secret key (32 characters), used to calculate the HMAC signature
    */
   shared_secret_key?: string | null;
+
+  /**
+   * Optional list of up to 100000 token addresses to filter webhook updates
+   */
+  token_addresses?: Array<string> | null;
 }
 
 export declare namespace TokenWebhooks {
