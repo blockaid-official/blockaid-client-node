@@ -911,7 +911,8 @@ export type TokenScanSupportedChain =
   | 'berachain'
   | 'unichain'
   | 'ronin'
-  | 'sui';
+  | 'sui'
+  | 'hedera';
 
 export interface TransactionScanFeature {
   /**
