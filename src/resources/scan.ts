@@ -7,6 +7,14 @@ export class Scan extends APIResource {
   /**
    * Report whether the end-user accepted the Blockaid classification on the entity
    * being scanned.
+   *
+   * @example
+   * ```ts
+   * const response = await client.scan.status({
+   *   request_id: '7f959417-76c1-4c4d-89e8-5fdedab76a8d',
+   *   status: 'accepted',
+   * });
+   * ```
    */
   status(body: ScanStatusParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
     return this._client.post('/v0/scan/status/', { body, ...options });

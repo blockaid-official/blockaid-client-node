@@ -24,6 +24,7 @@ describe('resource tokenWebhooks', () => {
     const response = await client.tokenWebhooks.create('arbitrum', {
       url: 'https://example.com',
       shared_secret_key: 'shared_secret_key',
+      token_addresses: ['string'],
     });
   });
 

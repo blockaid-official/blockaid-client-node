@@ -6,6 +6,13 @@ import * as Core from '../../core';
 export class Address extends APIResource {
   /**
    * Scan Address
+   *
+   * @example
+   * ```ts
+   * const response = await client.stellar.address.scan({
+   *   address: 'address',
+   * });
+   * ```
    */
   scan(body: AddressScanParams, options?: Core.RequestOptions): Core.APIPromise<AddressScanResponse> {
     return this._client.post('/v0/stellar/address/scan', { body, ...options });
