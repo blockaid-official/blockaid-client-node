@@ -1,134 +1,51 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import * as Core from '../../core';
 import * as SuiAPI from './sui';
-import * as PostTransactionAPI from './post-transaction';
-import { PostTransaction, PostTransactionScanParams, PostTransactionScanResponse } from './post-transaction';
-import * as TransactionAPI from './transaction';
-import { Transaction, TransactionScanParams } from './transaction';
 
-export class Sui extends APIResource {
-  transaction: TransactionAPI.Transaction = new TransactionAPI.Transaction(this._client);
-  postTransaction: PostTransactionAPI.PostTransaction = new PostTransactionAPI.PostTransaction(this._client);
+export class PostTransaction extends APIResource {
+  /**
+   * Scan Post Transaction
+   *
+   * @example
+   * ```ts
+   * const response = await client.sui.postTransaction.scan({
+   *   chain: 'mainnet',
+   *   data: { tx_hash: 'tx_hash' },
+   *   metadata: {},
+   * });
+   * ```
+   */
+  scan(
+    body: PostTransactionScanParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<PostTransactionScanResponse> {
+    return this._client.post('/v0/sui/post-transaction/scan', { body, ...options });
+  }
 }
 
-export interface SuiAssetTransferDetailsSchema {
-  /**
-   * Raw value of the transfer
-   */
-  raw_value: number;
+export interface PostTransactionScanResponse {
+  account_address: string;
 
-  /**
-   * Value of the transfer
-   */
-  value: string;
-
-  /**
-   * Summarized description of the transfer
-   */
-  summary?: string | null;
-
-  /**
-   * USD price of the asset
-   */
-  usd_price?: number | null;
-}
-
-export interface SuiNativeAssetDetailsSchema {
-  /**
-   * Decimals of the asset
-   */
-  decimals?: 9;
-
-  /**
-   * URL of the asset's logo
-   */
-  logo_url?: 'https://imagedelivery.net/cBNDGgkrsEA-b_ixIp9SkQ/sui.svg/public';
-
-  /**
-   * Name of the asset
-   */
-  name?: 'Sui';
-
-  /**
-   * Symbol of the asset
-   */
-  symbol?: 'SUI';
-
-  /**
-   * Type of the asset (`NATIVE`)
-   */
-  type?: 'NATIVE';
-}
-
-export interface SuiNFTDetailsSchema {
-  /**
-   * The NFT ID
-   */
-  id: string;
-
-  /**
-   * The NFT's description
-   */
-  description: string;
-
-  /**
-   * NFT's display name
-   */
-  name: string;
-
-  /**
-   * The NFT's collection ID
-   */
-  nft_type: string;
-
-  /**
-   * Type of the asset (`NFT`)
-   */
-  type?: 'NFT';
-
-  /**
-   * URL of the nft's image
-   */
-  url?: string | null;
-}
-
-export interface SuiNFTDiffSchema {
-  /**
-   * NFT ID of the transfer
-   */
-  id: string;
-
-  /**
-   * Summarized description of the transfer
-   */
-  summary?: string | null;
-
-  /**
-   * USD price of the asset
-   */
-  usd_price?: number | null;
-}
-
-export interface SuiTransactionScanResponse {
   /**
    * Simulation result; Only present if simulation option is included in the request
    */
   simulation?:
-    | SuiTransactionScanResponse.SuiSimulationResult
-    | SuiTransactionScanResponse.SuiSimulationErrorSchema
+    | PostTransactionScanResponse.SuiSimulationResult
+    | PostTransactionScanResponse.SuiSimulationErrorSchema
     | null;
 
   /**
    * Validation result; Only present if validation option is included in the request
    */
   validation?:
-    | SuiTransactionScanResponse.SuiValidationResult
-    | SuiTransactionScanResponse.SuiValidationErrorSchema
+    | PostTransactionScanResponse.SuiValidationResult
+    | PostTransactionScanResponse.SuiValidationErrorSchema
     | null;
 }
 
-export namespace SuiTransactionScanResponse {
+export namespace PostTransactionScanResponse {
   export interface SuiSimulationResult {
     /**
      * Summary of the actions and asset transfers that were made by the requested
@@ -461,22 +378,43 @@ export namespace SuiTransactionScanResponse {
   }
 }
 
-Sui.Transaction = Transaction;
-Sui.PostTransaction = PostTransaction;
+export interface PostTransactionScanParams {
+  chain: 'mainnet' | 'testnet' | 'devnet';
 
-export declare namespace Sui {
+  data: PostTransactionScanParams.Data;
+
+  metadata: PostTransactionScanParams.Metadata;
+
+  /**
+   * List of options to include in the response
+   *
+   * - `Options.validation`: Include Options.validation output in the response
+   *
+   * - `Options.simulation`: Include Options.simulation output in the response
+   */
+  options?: Array<'validation' | 'simulation'>;
+}
+
+export namespace PostTransactionScanParams {
+  export interface Data {
+    tx_hash: string;
+  }
+
+  export interface Metadata {
+    /**
+     * cross reference transaction against the domain.
+     */
+    domain?: string | null;
+
+    /**
+     * whether the transaction is initiated by a dapp. Default is false.
+     */
+    non_dapp?: boolean | null;
+  }
+}
+
+export declare namespace PostTransaction {
   export {
-    type SuiAssetTransferDetailsSchema as SuiAssetTransferDetailsSchema,
-    type SuiNativeAssetDetailsSchema as SuiNativeAssetDetailsSchema,
-    type SuiNFTDetailsSchema as SuiNFTDetailsSchema,
-    type SuiNFTDiffSchema as SuiNFTDiffSchema,
-    type SuiTransactionScanResponse as SuiTransactionScanResponse,
-  };
-
-  export { Transaction as Transaction, type TransactionScanParams as TransactionScanParams };
-
-  export {
-    PostTransaction as PostTransaction,
     type PostTransactionScanResponse as PostTransactionScanResponse,
     type PostTransactionScanParams as PostTransactionScanParams,
   };
