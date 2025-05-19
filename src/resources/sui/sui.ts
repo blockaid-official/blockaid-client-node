@@ -2,14 +2,11 @@
 
 import { APIResource } from '../../resource';
 import * as SuiAPI from './sui';
-import * as PostTransactionAPI from './post-transaction';
-import { PostTransaction, PostTransactionScanParams, PostTransactionScanResponse } from './post-transaction';
 import * as TransactionAPI from './transaction';
 import { Transaction, TransactionScanParams } from './transaction';
 
 export class Sui extends APIResource {
   transaction: TransactionAPI.Transaction = new TransactionAPI.Transaction(this._client);
-  postTransaction: PostTransactionAPI.PostTransaction = new PostTransactionAPI.PostTransaction(this._client);
 }
 
 export interface SuiAssetTransferDetailsSchema {
@@ -36,14 +33,14 @@ export interface SuiAssetTransferDetailsSchema {
 
 export interface SuiNativeAssetDetailsSchema {
   /**
+   * URL of the asset's logo
+   */
+  logo_url: string | null;
+
+  /**
    * Decimals of the asset
    */
   decimals?: 9;
-
-  /**
-   * URL of the asset's logo
-   */
-  logo_url?: 'https://imagedelivery.net/cBNDGgkrsEA-b_ixIp9SkQ/sui.svg/public';
 
   /**
    * Name of the asset
@@ -141,7 +138,7 @@ export namespace SuiTransactionScanResponse {
     /**
      * Details of addresses involved in the transaction
      */
-    address_details?: Array<unknown>;
+    address_details?: Array<SuiSimulationResult.AddressDetail>;
 
     /**
      * Mapping between the address of an account to the assets diff during the
@@ -257,42 +254,53 @@ export namespace SuiTransactionScanResponse {
       export namespace SuiCoinsAssetDiff {
         export interface Asset {
           /**
-           * Token's package address
+           * The Coin ID
            */
-          address: string;
+          id: string;
 
           /**
-           * Token's decimal precision
+           * Decimals of the asset
            */
           decimals: number;
 
           /**
-           * Token's name
+           * The Coin description
+           */
+          description: string;
+
+          /**
+           * The Coin name
            */
           name: string;
 
           /**
-           * Token's symbol (abbreviation)
+           * The Coin's symbol
            */
           symbol: string;
 
-          creation_timestamp?: string | null;
-
           /**
-           * URL of the token's logo
+           * URL of the asset's logo
            */
           logo_url?: string | null;
 
-          scam?: boolean | null;
-
           /**
-           * Type of the asset (`Coin`)
+           * Type of the asset (`COIN`)
            */
-          type?: 'fungible';
-
-          verified?: boolean | null;
+          type?: 'COIN';
         }
       }
+    }
+
+    export interface AddressDetail {
+      /**
+       * Encoded public key of the account
+       */
+      account_address: string;
+
+      /**
+       * Description of the account
+       */
+      description?: string | null;
     }
 
     export interface SuiNativeAssetDiff {
@@ -355,40 +363,39 @@ export namespace SuiTransactionScanResponse {
     export namespace SuiCoinsAssetDiff {
       export interface Asset {
         /**
-         * Token's package address
+         * The Coin ID
          */
-        address: string;
+        id: string;
 
         /**
-         * Token's decimal precision
+         * Decimals of the asset
          */
         decimals: number;
 
         /**
-         * Token's name
+         * The Coin description
+         */
+        description: string;
+
+        /**
+         * The Coin name
          */
         name: string;
 
         /**
-         * Token's symbol (abbreviation)
+         * The Coin's symbol
          */
         symbol: string;
 
-        creation_timestamp?: string | null;
-
         /**
-         * URL of the token's logo
+         * URL of the asset's logo
          */
         logo_url?: string | null;
 
-        scam?: boolean | null;
-
         /**
-         * Type of the asset (`Coin`)
+         * Type of the asset (`COIN`)
          */
-        type?: 'fungible';
-
-        verified?: boolean | null;
+        type?: 'COIN';
       }
     }
   }
@@ -462,7 +469,6 @@ export namespace SuiTransactionScanResponse {
 }
 
 Sui.Transaction = Transaction;
-Sui.PostTransaction = PostTransaction;
 
 export declare namespace Sui {
   export {
@@ -474,10 +480,4 @@ export declare namespace Sui {
   };
 
   export { Transaction as Transaction, type TransactionScanParams as TransactionScanParams };
-
-  export {
-    PostTransaction as PostTransaction,
-    type PostTransactionScanResponse as PostTransactionScanResponse,
-    type PostTransactionScanParams as PostTransactionScanParams,
-  };
 }
