@@ -12,8 +12,11 @@ export class PostTransaction extends APIResource {
    * ```ts
    * const response = await client.sui.postTransaction.scan({
    *   chain: 'mainnet',
-   *   data: { tx_hash: 'tx_hash' },
-   *   metadata: {},
+   *   data: {
+   *     tx_hash: 'ErYbAPYewZsbngVAagfeDrvZkHsBWniLGFvwjoGhw33B',
+   *   },
+   *   metadata: { non_dapp: true, domain: 'valid.com' },
+   *   options: ['simulation'],
    * });
    * ```
    */

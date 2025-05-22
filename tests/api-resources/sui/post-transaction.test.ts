@@ -12,7 +12,7 @@ describe('resource postTransaction', () => {
   test('scan: only required params', async () => {
     const responsePromise = client.sui.postTransaction.scan({
       chain: 'mainnet',
-      data: { tx_hash: 'tx_hash' },
+      data: { tx_hash: 'ErYbAPYewZsbngVAagfeDrvZkHsBWniLGFvwjoGhw33B' },
       metadata: {},
     });
     const rawResponse = await responsePromise.asResponse();
@@ -27,9 +27,9 @@ describe('resource postTransaction', () => {
   test('scan: required and optional params', async () => {
     const response = await client.sui.postTransaction.scan({
       chain: 'mainnet',
-      data: { tx_hash: 'tx_hash' },
-      metadata: { domain: 'domain', non_dapp: true },
-      options: ['validation'],
+      data: { tx_hash: 'ErYbAPYewZsbngVAagfeDrvZkHsBWniLGFvwjoGhw33B' },
+      metadata: { domain: 'valid.com', non_dapp: true },
+      options: ['simulation'],
     });
   });
 });
