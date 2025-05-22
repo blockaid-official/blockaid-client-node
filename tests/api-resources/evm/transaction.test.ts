@@ -72,7 +72,7 @@ describe('resource transaction', () => {
         value: '0x1000000000000000',
       },
       metadata: { domain: 'https://boredapeyartclub.com' },
-      block: 0,
+      block: '21211118',
       options: ['simulation', 'validation'],
       state_override: {
         foo: {
