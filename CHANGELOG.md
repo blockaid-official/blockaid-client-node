@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.55.0 (2025-05-25)
+
+Full Changelog: [v0.53.0...v0.55.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.53.0...v0.55.0)
+
+### Features
+
+* **api:** api update ([9a8b7d6](https://github.com/blockaid-official/blockaid-client-node/commit/9a8b7d69804197f238050edb5c7bde61ac8c507f))
+* **api:** api update ([4742ee1](https://github.com/blockaid-official/blockaid-client-node/commit/4742ee1ccbc3a2d842044a1294bfa2899bc492e5))
+* **api:** api update ([c3405dc](https://github.com/blockaid-official/blockaid-client-node/commit/c3405dc904269e7a8bb20e6641eb5a663887cda8))
+* **api:** api update ([32ce354](https://github.com/blockaid-official/blockaid-client-node/commit/32ce354498fcb5ef6c24bbe12a5570261d2d8dc2))
+* **api:** api update ([d65096d](https://github.com/blockaid-official/blockaid-client-node/commit/d65096dc9e184ea72f77baa5c06e5f758760fe05))
+* **api:** api update ([53302ee](https://github.com/blockaid-official/blockaid-client-node/commit/53302ee9dd4d52c3ed4cda751447067a0e394537))
+* **api:** api update ([f26062e](https://github.com/blockaid-official/blockaid-client-node/commit/f26062e4e9fb61d51f0c68c7f3b8bc55d2ad90bf))
+* **api:** api update ([c349b4c](https://github.com/blockaid-official/blockaid-client-node/commit/c349b4c973851691cf7f1d60c5a89aeb4ea75e43))
+* **api:** api update ([bea47e7](https://github.com/blockaid-official/blockaid-client-node/commit/bea47e74e99f2fcfb2e6e0ecdbc4692fb116aed4))
+
+
+### Chores
+
+* **ci:** bump node version for release workflows ([0f3adb5](https://github.com/blockaid-official/blockaid-client-node/commit/0f3adb5bf9c1a0c2d58ec223b9b39920fd7794a8))
+* **docs:** grammar improvements ([70d2968](https://github.com/blockaid-official/blockaid-client-node/commit/70d29689769f9d19c0a844d9534acadb8d1e56ce))
+
+
+### Documentation
+
+* add examples to tsdocs ([d132f41](https://github.com/blockaid-official/blockaid-client-node/commit/d132f41a41a8ce386787c1c648eee92417b55982))
+
 ## 0.53.0 (2025-05-04)
 
 Full Changelog: [v0.52.0...v0.53.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.52.0...v0.53.0)
