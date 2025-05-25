@@ -8,6 +8,20 @@ export class PostTransactionBulk extends APIResource {
   /**
    * Scan transactions that were already executed on chain, returns validation with
    * features indicating address poisoning entites and malicious operators.
+   *
+   * @example
+   * ```ts
+   * const transactionScanResponses =
+   *   await client.evm.postTransactionBulk.scan({
+   *     chain: 'ethereum',
+   *     data: [
+   *       '0x11c865addc39f1e1c4f0f6c9a84533c501e3705a6397988af942b2103d5e87a2',
+   *       '0x50a109a2c2dd396e49710613dcf652728656055d90f80094f10c3ddd05150d2e',
+   *     ],
+   *     metadata: { non_dapp: true },
+   *     options: ['validation', 'simulation'],
+   *   });
+   * ```
    */
   scan(
     body: PostTransactionBulkScanParams,

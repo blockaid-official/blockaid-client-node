@@ -7,6 +7,18 @@ import * as EvmAPI from './evm';
 export class PostTransaction extends APIResource {
   /**
    * Report for misclassification of an EVM post transaction.
+   *
+   * @example
+   * ```ts
+   * const response = await client.evm.postTransaction.report({
+   *   details: 'Details about the report',
+   *   event: 'FALSE_NEGATIVE',
+   *   report: {
+   *     type: 'request_id',
+   *     request_id: '11111111-1111-1111-1111-111111111111',
+   *   },
+   * });
+   * ```
    */
   report(body: PostTransactionReportParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
     return this._client.post('/v0/evm/post-transaction/report', { body, ...options });
@@ -15,6 +27,20 @@ export class PostTransaction extends APIResource {
   /**
    * Scan a transaction that was already executed on chain, returns validation with
    * features indicating address poisoning entites and malicious operators.
+   *
+   * @example
+   * ```ts
+   * const transactionScanResponse =
+   *   await client.evm.postTransaction.scan({
+   *     chain: 'ethereum',
+   *     data: {
+   *       tx_hash:
+   *         '0xc01780dadc107754b331250b4797606949cb3d0087facc0a737122d5e973c83c',
+   *     },
+   *     metadata: { non_dapp: true },
+   *     options: ['validation', 'simulation'],
+   *   });
+   * ```
    */
   scan(
     body: PostTransactionScanParams,

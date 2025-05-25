@@ -9,30 +9,32 @@ export class Address extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.stellar.address.scan({
-   *   address: 'address',
+   * const response = await client.sui.address.scan({
+   *   address: {},
+   *   chain: 'mainnet',
    * });
    * ```
    */
   scan(body: AddressScanParams, options?: Core.RequestOptions): Core.APIPromise<AddressScanResponse> {
-    return this._client.post('/v0/stellar/address/scan', { body, ...options });
+    return this._client.post('/v0/sui/address/scan', { body, ...options });
   }
 }
 
 export interface AddressScanResponse {
-  address: string;
+  /**
+   * Verdict of the validation
+   */
+  result_type: 'Benign' | 'Warning' | 'Malicious';
 
-  chain: string;
-
-  features: Array<AddressScanResponse.Feature>;
-
-  result_type: string;
+  /**
+   * A list of textual features about this transaction that can be presented to the
+   * user.
+   */
+  features?: Array<AddressScanResponse.Feature>;
 }
 
 export namespace AddressScanResponse {
   export interface Feature {
-    address: string;
-
     description: string;
 
     feature_id: string;
@@ -42,7 +44,9 @@ export namespace AddressScanResponse {
 }
 
 export interface AddressScanParams {
-  address: string;
+  address: unknown;
+
+  chain: 'mainnet' | 'testnet' | 'devnet';
 }
 
 export declare namespace Address {

@@ -7,6 +7,18 @@ import * as EvmAPI from './evm';
 export class Transaction extends APIResource {
   /**
    * Report for misclassification of a transaction.
+   *
+   * @example
+   * ```ts
+   * const response = await client.evm.transaction.report({
+   *   details: 'Details about the report',
+   *   event: 'FALSE_POSITIVE',
+   *   report: {
+   *     type: 'request_id',
+   *     request_id: '11111111-1111-1111-1111-111111111111',
+   *   },
+   * });
+   * ```
    */
   report(body: TransactionReportParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
     return this._client.post('/v0/evm/transaction/report', { body, ...options });
@@ -16,6 +28,24 @@ export class Transaction extends APIResource {
    * Gets a transaction and returns a full simulation indicating what will happen in
    * the transaction together with a recommended action and some textual reasons of
    * why the transaction was flagged that way.
+   *
+   * @example
+   * ```ts
+   * const transactionScanResponse =
+   *   await client.evm.transaction.scan({
+   *     account_address: 'account_address',
+   *     chain: 'ethereum',
+   *     data: {
+   *       from: '0x5e1a0d484c5f0de722e82f9dca3a9d5a421d47cb',
+   *       to: '0x0d524a5b52737c0a02880d5e84f7d20b8d66bfba',
+   *       data: '0x',
+   *       value: '0x1000000000000000',
+   *     },
+   *     metadata: { domain: 'https://boredapeyartclub.com' },
+   *     block: '21211118',
+   *     options: ['simulation', 'validation'],
+   *   });
+   * ```
    */
   scan(
     body: TransactionScanParams,

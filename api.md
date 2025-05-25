@@ -201,6 +201,26 @@ Methods:
 
 - <code title="post /v0/sui/transaction/scan">client.sui.transaction.<a href="./src/resources/sui/transaction.ts">scan</a>({ ...params }) -> SuiTransactionScanResponse</code>
 
+## PostTransaction
+
+Types:
+
+- <code><a href="./src/resources/sui/post-transaction.ts">PostTransactionScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/sui/post-transaction/scan">client.sui.postTransaction.<a href="./src/resources/sui/post-transaction.ts">scan</a>({ ...params }) -> PostTransactionScanResponse</code>
+
+## Address
+
+Types:
+
+- <code><a href="./src/resources/sui/address.ts">AddressScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/sui/address/scan">client.sui.address.<a href="./src/resources/sui/address.ts">scan</a>({ ...params }) -> AddressScanResponse</code>
+
 # Site
 
 Types:
