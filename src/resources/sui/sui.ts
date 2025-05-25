@@ -2,6 +2,8 @@
 
 import { APIResource } from '../../resource';
 import * as SuiAPI from './sui';
+import * as AddressAPI from './address';
+import { Address, AddressScanParams, AddressScanResponse } from './address';
 import * as PostTransactionAPI from './post-transaction';
 import { PostTransaction, PostTransactionScanParams, PostTransactionScanResponse } from './post-transaction';
 import * as TransactionAPI from './transaction';
@@ -10,6 +12,7 @@ import { Transaction, TransactionScanParams } from './transaction';
 export class Sui extends APIResource {
   transaction: TransactionAPI.Transaction = new TransactionAPI.Transaction(this._client);
   postTransaction: PostTransactionAPI.PostTransaction = new PostTransactionAPI.PostTransaction(this._client);
+  address: AddressAPI.Address = new AddressAPI.Address(this._client);
 }
 
 export interface SuiAssetTransferDetailsSchema {
@@ -475,6 +478,7 @@ export namespace SuiTransactionScanResponse {
 
 Sui.Transaction = Transaction;
 Sui.PostTransaction = PostTransaction;
+Sui.Address = Address;
 
 export declare namespace Sui {
   export {
@@ -491,5 +495,11 @@ export declare namespace Sui {
     PostTransaction as PostTransaction,
     type PostTransactionScanResponse as PostTransactionScanResponse,
     type PostTransactionScanParams as PostTransactionScanParams,
+  };
+
+  export {
+    Address as Address,
+    type AddressScanResponse as AddressScanResponse,
+    type AddressScanParams as AddressScanParams,
   };
 }
