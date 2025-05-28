@@ -1716,7 +1716,7 @@ export namespace MessageScanResponse {
          */
         description?: string | null;
 
-        type?: 'TOKEN_ACCOUNT' | 'TOKEN_2022_ACCOUNT';
+        type?: 'TOKEN_ACCOUNT';
       }
 
       export interface SolanaFungibleMintAccountDetailsSchema {
@@ -1747,7 +1747,7 @@ export namespace MessageScanResponse {
          */
         description?: string | null;
 
-        type?: 'FUNGIBLE_MINT_ACCOUNT' | 'FUNGIBLE_MINT_ACCOUNT_2022';
+        type?: 'FUNGIBLE_MINT_ACCOUNT';
       }
 
       export interface SolanaNonFungibleMintAccountDetailsSchema {
@@ -1783,7 +1783,7 @@ export namespace MessageScanResponse {
          */
         description?: string | null;
 
-        type?: 'NON_FUNGIBLE_MINT_ACCOUNT' | 'NON_FUNGIBLE_MINT_ACCOUNT_2022';
+        type?: 'NON_FUNGIBLE_MINT_ACCOUNT';
       }
 
       export interface SolanaCnftMintAccountDetailsSchema {

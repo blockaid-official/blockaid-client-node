@@ -12,7 +12,7 @@ describe('resource address', () => {
   test('scan: only required params', async () => {
     const responsePromise = client.solana.address.scan({
       address: '2ojv9BAiHUrvsm9gxDe7fJSzbNZSJcxZvf8dqmWGHG8S',
-      metadata: { url: 'https://example.com' },
+      metadata: {},
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
