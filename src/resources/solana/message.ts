@@ -5,7 +5,7 @@ import * as Core from '../../core';
 
 export class Message extends APIResource {
   /**
-   * Scan a message
+   * Scan Message
    *
    * @example
    * ```ts
