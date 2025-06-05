@@ -5,9 +5,7 @@ import * as Core from '../../core';
 
 export class Address extends APIResource {
   /**
-   * Gets an address and returns a full security assessment indicating weather or not
-   * this address is malicious as well as textual reasons of why the address was
-   * flagged that way.
+   * Scan Address
    *
    * @example
    * ```ts
@@ -32,48 +30,44 @@ export interface AddressScanResponse {
   /**
    * Verdict of Result
    */
-  result_type: 'Benign' | 'Warning' | 'Malicious' | 'Spam';
+  result_type: 'Benign' | 'Warning' | 'Malicious';
 }
 
 export namespace AddressScanResponse {
   export interface Feature {
     /**
-     * Description of the feature
+     * Address the feature refers to
+     */
+    address: string | null;
+
+    /**
+     * Textual description
      */
     description: string;
 
-    /**
-     * ID of the feature
-     */
     feature_id: string;
 
     /**
-     * An enumeration.
+     * Feature Classification
      */
-    type: 'Malicious' | 'Warning' | 'Benign' | 'Info';
+    type: 'Benign' | 'Warning' | 'Malicious' | 'Info';
   }
 }
 
 export interface AddressScanParams {
-  /**
-   * Encoded public key
-   */
   address: string;
 
   metadata: AddressScanParams.Metadata;
 
-  /**
-   * Chain to scan the transaction on
-   */
   chain?: string;
 }
 
 export namespace AddressScanParams {
   export interface Metadata {
     /**
-     * URL of the dApp related to the address
+     * URL of the dApp that originated the transaction
      */
-    url: string;
+    url?: string | null;
   }
 }
 

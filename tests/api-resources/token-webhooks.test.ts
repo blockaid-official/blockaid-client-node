@@ -10,7 +10,7 @@ const client = new Blockaid({
 
 describe('resource tokenWebhooks', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.tokenWebhooks.create('arbitrum', { url: 'https://example.com' });
+    const responsePromise = client.tokenWebhooks.create('arbitrum', { url: 'https://example.com/' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,9 +22,12 @@ describe('resource tokenWebhooks', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.tokenWebhooks.create('arbitrum', {
-      url: 'https://example.com',
-      shared_secret_key: 'shared_secret_key',
-      token_addresses: ['string'],
+      url: 'https://example.com/',
+      filter: {
+        filter_type: 'token_address',
+        token_addresses: ['0x1234567890abcdef1234567890abcdef12345678'],
+      },
+      shared_secret_key: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     });
   });
 
