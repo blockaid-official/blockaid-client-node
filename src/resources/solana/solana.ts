@@ -2,7 +2,7 @@
 
 import { APIResource } from '../../resource';
 import * as AddressAPI from './address';
-import { Address } from './address';
+import { Address, AddressScanParams, AddressScanResponse } from './address';
 import * as MessageAPI from './message';
 import { Message, MessageScanParams, MessageScanResponse } from './message';
 
@@ -21,5 +21,9 @@ export declare namespace Solana {
     type MessageScanParams as MessageScanParams,
   };
 
-  export { Address as Address };
+  export {
+    Address as Address,
+    type AddressScanResponse as AddressScanResponse,
+    type AddressScanParams as AddressScanParams,
+  };
 }
