@@ -102,14 +102,6 @@ Methods:
 
 ## Address
 
-Types:
-
-- <code><a href="./src/resources/solana/address.ts">AddressScanResponse</a></code>
-
-Methods:
-
-- <code title="post /v0/solana/address/scan">client.solana.address.<a href="./src/resources/solana/address.ts">scan</a>({ ...params }) -> AddressScanResponse</code>
-
 # Stellar
 
 Types:
