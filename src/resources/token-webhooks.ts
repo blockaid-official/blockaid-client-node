@@ -42,6 +42,23 @@ export class TokenWebhooks extends APIResource {
    * - The same token will have multiple scan results over time
    * - Ensure that your system properly handles state overrides to reflect the most
    *   up-to-date token status.
+   *
+   * @example
+   * ```ts
+   * const tokenWebhook = await client.tokenWebhooks.create(
+   *   'arbitrum',
+   *   {
+   *     url: 'https://example.com/',
+   *     filter: {
+   *       filter_type: 'token_address',
+   *       token_addresses: [
+   *         '0x1234567890abcdef1234567890abcdef12345678',
+   *       ],
+   *     },
+   *     shared_secret_key: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+   *   },
+   * );
+   * ```
    */
   create(
     chain: EvmAPI.TokenScanSupportedChain,
@@ -56,6 +73,11 @@ export class TokenWebhooks extends APIResource {
    *
    * This will immediately stop sending token scan updates to the webhook URL.
    * Returns a 204 status code on successful deletion.
+   *
+   * @example
+   * ```ts
+   * await client.tokenWebhooks.delete('arbitrum');
+   * ```
    */
   delete(chain: EvmAPI.TokenScanSupportedChain, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/v0/token/hooks/${chain}`, {
@@ -66,6 +88,13 @@ export class TokenWebhooks extends APIResource {
 
   /**
    * Get information about an existing webhook for a given chain
+   *
+   * @example
+   * ```ts
+   * const tokenWebhook = await client.tokenWebhooks.get(
+   *   'arbitrum',
+   * );
+   * ```
    */
   get(
     chain: EvmAPI.TokenScanSupportedChain,
@@ -76,6 +105,11 @@ export class TokenWebhooks extends APIResource {
 
   /**
    * List all active webhook subscriptions across all chains
+   *
+   * @example
+   * ```ts
+   * const response = await client.tokenWebhooks.getAll();
+   * ```
    */
   getAll(options?: Core.RequestOptions): Core.APIPromise<TokenWebhookGetAllResponse> {
     return this._client.get('/v0/token/hooks/', options);
@@ -150,14 +184,31 @@ export interface TokenWebhookCreateParams {
   url: string;
 
   /**
+   * Filter for webhook updates
+   */
+  filter?: TokenWebhookCreateParams.Filter | null;
+
+  /**
    * Optional shared secret key (32 characters), used to calculate the HMAC signature
    */
   shared_secret_key?: string | null;
+}
 
+export namespace TokenWebhookCreateParams {
   /**
-   * Optional list of up to 100000 token addresses to filter webhook updates
+   * Filter for webhook updates
    */
-  token_addresses?: Array<string> | null;
+  export interface Filter {
+    /**
+     * Type of filter applied to the webhook updates
+     */
+    filter_type: 'token_address';
+
+    /**
+     * List of up to 100000 token addresses to filter webhook updates
+     */
+    token_addresses: Array<string>;
+  }
 }
 
 export declare namespace TokenWebhooks {
