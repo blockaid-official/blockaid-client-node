@@ -5,6 +5,7 @@ export {
   type BitcoinTransactionScanRequest,
   type BitcoinTransactionScanResponse,
 } from './bitcoin/bitcoin';
+export { ChainAgnostic } from './chain-agnostic/chain-agnostic';
 export {
   Evm,
   type AccountSummary,
@@ -17,7 +18,6 @@ export {
   type Erc721Diff,
   type Erc721Exposure,
   type Erc721TokenDetails,
-  type MetadataParam,
   type NativeAddressAssetBalanceChangeDiff,
   type NativeAssetDetails,
   type NativeAssetTrace,

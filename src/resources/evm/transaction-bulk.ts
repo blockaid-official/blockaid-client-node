@@ -60,7 +60,7 @@ export interface TransactionBulkScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: EvmAPI.MetadataParam;
+  metadata: TransactionBulkScanParams.Metadata;
 
   /**
    * Should aggregate the results to one result
@@ -147,6 +147,16 @@ export namespace TransactionBulkScanParams {
 
       yParity?: string;
     }
+  }
+
+  /**
+   * Object of additional information to validate against.
+   */
+  export interface Metadata {
+    /**
+     * cross reference transaction against the domain.
+     */
+    domain: string;
   }
 
   export interface StateOverride {
