@@ -2,7 +2,7 @@
 
 import type { Blockaid } from './index';
 
-export class APIResource {
+export abstract class APIResource {
   protected _client: Blockaid;
 
   constructor(client: Blockaid) {

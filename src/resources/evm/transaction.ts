@@ -104,7 +104,7 @@ export namespace TransactionReportParams {
       /**
        * Object of additional information to validate against.
        */
-      metadata: EvmAPI.MetadataParam;
+      metadata: Params.Metadata;
     }
 
     export namespace Params {
@@ -182,6 +182,16 @@ export namespace TransactionReportParams {
          */
         params: Array<unknown>;
       }
+
+      /**
+       * Object of additional information to validate against.
+       */
+      export interface Metadata {
+        /**
+         * cross reference transaction against the domain.
+         */
+        domain: string;
+      }
     }
   }
 
@@ -212,7 +222,7 @@ export interface TransactionScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: EvmAPI.MetadataParam;
+  metadata: TransactionScanParams.Metadata;
 
   /**
    * The relative block for the block validation. Can be "latest" or a block number.
@@ -297,6 +307,16 @@ export namespace TransactionScanParams {
 
       yParity?: string;
     }
+  }
+
+  /**
+   * Object of additional information to validate against.
+   */
+  export interface Metadata {
+    /**
+     * cross reference transaction against the domain.
+     */
+    domain: string;
   }
 
   export interface StateOverride {
