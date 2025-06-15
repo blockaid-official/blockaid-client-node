@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.57.0 (2025-06-15)
+
+Full Changelog: [v0.56.0...v0.57.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.56.0...v0.57.0)
+
+### Features
+
+* **api:** api update ([2334fbc](https://github.com/blockaid-official/blockaid-client-node/commit/2334fbcf0bcd3c2e66f6a4508c5a1b3385dd3d83))
+* **api:** api update ([0fde0f9](https://github.com/blockaid-official/blockaid-client-node/commit/0fde0f9784f0bf0b96146539cae3bd83e7015a9e))
+
+
+### Bug Fixes
+
+* publish script — handle NPM errors correctly ([1929785](https://github.com/blockaid-official/blockaid-client-node/commit/192978543ff8b692625a51d2b7c0fd3f8e62cac7))
+
+
+### Chores
+
+* **internal:** make base APIResource abstract ([831d44a](https://github.com/blockaid-official/blockaid-client-node/commit/831d44ad1e907da9cc7e4caa522154402612743d))
+
 ## 0.56.0 (2025-06-08)
 
 Full Changelog: [v0.55.0...v0.56.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.55.0...v0.56.0)
