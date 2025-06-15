@@ -54,6 +54,7 @@ describe('resource postTransaction', () => {
       metadata: { domain: 'domain' },
       block: 0,
       options: ['validation', 'simulation'],
+      simulate_with_estimated_gas: true,
       state_override: {
         foo: {
           balance: 'balance',
