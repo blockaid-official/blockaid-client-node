@@ -74,6 +74,7 @@ describe('resource transaction', () => {
       metadata: { domain: 'https://boredapeyartclub.com' },
       block: '21211118',
       options: ['simulation', 'validation'],
+      simulate_with_estimated_gas: true,
       state_override: {
         foo: {
           balance: 'balance',

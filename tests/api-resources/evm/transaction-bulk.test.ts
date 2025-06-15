@@ -74,6 +74,7 @@ describe('resource transactionBulk', () => {
       aggregated: true,
       block: '20224477',
       options: ['validation'],
+      simulate_with_estimated_gas: true,
       state_override: {
         foo: {
           balance: 'balance',

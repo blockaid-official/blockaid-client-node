@@ -5,9 +5,9 @@ import * as Core from '../../core';
 
 export class Transaction extends APIResource {
   /**
-   * Gets a transaction and returns a full security assessment indicating weather or
-   * not this transaction is malicious as well as textual reasons of why the
-   * transaction was flagged that way.
+   * Gets a transaction and returns a full security assessment indicating whether or
+   * not the transaction is malicious, along with textual reasons explaining why it
+   * was flagged as such.
    */
   scan(body: TransactionScanParams, options?: Core.RequestOptions): Core.APIPromise<TransactionScanResponse> {
     return this._client.post('/v0/transaction/scan', { body, ...options });

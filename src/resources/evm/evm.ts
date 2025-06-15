@@ -1115,6 +1115,7 @@ export interface TransactionSimulation {
       | TransactionSimulation.OwnershipChangeManagement
       | TransactionSimulation.ModulesChangeManagement
       | TransactionSimulation.SetCodeAccountManagement
+      | TransactionSimulation.ContractCreation
     >
   >;
 
@@ -1461,6 +1462,18 @@ export namespace TransactionSimulation {
      * The type of the state change
      */
     type: 'SET_CODE_ACCOUNT';
+  }
+
+  export interface ContractCreation {
+    /**
+     * The direct creator address of the new contract
+     */
+    deployer: string;
+
+    /**
+     * The type of the state change
+     */
+    type: 'CONTRACT_CREATION';
   }
 
   /**

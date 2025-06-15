@@ -80,6 +80,12 @@ export interface TransactionBulkScanParams {
   options?: Array<'validation' | 'simulation' | 'gas_estimation' | 'events'>;
 
   /**
+   * Simulate transactions using gas estimation result. This requires
+   * "gas_estimation" option to be enabled.
+   */
+  simulate_with_estimated_gas?: boolean;
+
+  /**
    * Override the state of the chain. This is useful for testing purposes.
    */
   state_override?: Record<string, TransactionBulkScanParams.StateOverride>;
