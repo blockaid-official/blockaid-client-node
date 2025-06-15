@@ -110,7 +110,7 @@ export interface PostTransactionScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: EvmAPI.MetadataParam;
+  metadata: PostTransactionScanParams.Metadata;
 
   /**
    * The relative block for the block validation. Can be "latest" or a block number.
@@ -118,11 +118,18 @@ export interface PostTransactionScanParams {
   block?: number | string;
 
   /**
-   * list of one or both of options for the desired output. "simulation" - include
+   * List of one or more of options for the desired output. "simulation" - include
    * simulation output in your response. "validation" - include security validation
-   * of the transaction in your response. Default is ["validation"]
+   * of the transaction in your response. "gas_estimation" - include gas estimation
+   * result in your response. Default is ["validation"]
    */
   options?: Array<'validation' | 'simulation' | 'gas_estimation' | 'events'>;
+
+  /**
+   * Simulate transactions using gas estimation result. This requires
+   * "gas_estimation" option to be enabled.
+   */
+  simulate_with_estimated_gas?: boolean;
 
   /**
    * Override the state of the chain. This is useful for testing purposes.
@@ -136,6 +143,16 @@ export namespace PostTransactionScanParams {
      * The transaction hash to scan
      */
     tx_hash: string;
+  }
+
+  /**
+   * Object of additional information to validate against.
+   */
+  export interface Metadata {
+    /**
+     * cross reference transaction against the domain.
+     */
+    domain: string;
   }
 
   export interface StateOverride {

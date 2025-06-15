@@ -60,7 +60,7 @@ export interface TransactionBulkScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: EvmAPI.MetadataParam;
+  metadata: TransactionBulkScanParams.Metadata;
 
   /**
    * Should aggregate the results to one result
@@ -78,6 +78,12 @@ export interface TransactionBulkScanParams {
    * of the transaction in your response. Default is ["validation"]
    */
   options?: Array<'validation' | 'simulation' | 'gas_estimation' | 'events'>;
+
+  /**
+   * Simulate transactions using gas estimation result. This requires
+   * "gas_estimation" option to be enabled.
+   */
+  simulate_with_estimated_gas?: boolean;
 
   /**
    * Override the state of the chain. This is useful for testing purposes.
@@ -147,6 +153,16 @@ export namespace TransactionBulkScanParams {
 
       yParity?: string;
     }
+  }
+
+  /**
+   * Object of additional information to validate against.
+   */
+  export interface Metadata {
+    /**
+     * cross reference transaction against the domain.
+     */
+    domain: string;
   }
 
   export interface StateOverride {

@@ -33,6 +33,7 @@ describe('resource transactionRaw', () => {
       metadata: { domain: 'https://app.1inch.io' },
       block: '17718858',
       options: ['simulation', 'validation'],
+      simulate_with_estimated_gas: true,
       state_override: {
         foo: {
           balance: 'balance',

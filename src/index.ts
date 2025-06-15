@@ -42,6 +42,7 @@ import {
   BitcoinTransactionScanRequest,
   BitcoinTransactionScanResponse,
 } from './resources/bitcoin/bitcoin';
+import { ChainAgnostic } from './resources/chain-agnostic/chain-agnostic';
 import {
   AccountSummary,
   Erc1155Diff,
@@ -54,7 +55,6 @@ import {
   Erc721Exposure,
   Erc721TokenDetails,
   Evm,
-  MetadataParam,
   NativeAddressAssetBalanceChangeDiff,
   NativeAssetDetails,
   NativeAssetTrace,
@@ -255,6 +255,7 @@ export class Blockaid extends Core.APIClient {
   tokenWebhooks: API.TokenWebhooks = new API.TokenWebhooks(this);
   tokenSnapshot: API.TokenSnapshot = new API.TokenSnapshot(this);
   exchangeProtection: API.ExchangeProtection = new API.ExchangeProtection(this);
+  chainAgnostic: API.ChainAgnostic = new API.ChainAgnostic(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -342,6 +343,7 @@ Blockaid.TokenBulk = TokenBulk;
 Blockaid.TokenWebhooks = TokenWebhooks;
 Blockaid.TokenSnapshot = TokenSnapshot;
 Blockaid.ExchangeProtection = ExchangeProtection;
+Blockaid.ChainAgnostic = ChainAgnostic;
 export declare namespace Blockaid {
   export type RequestOptions = Core.RequestOptions;
 
@@ -357,7 +359,6 @@ export declare namespace Blockaid {
     type Erc721Diff as Erc721Diff,
     type Erc721Exposure as Erc721Exposure,
     type Erc721TokenDetails as Erc721TokenDetails,
-    type MetadataParam as MetadataParam,
     type NativeAddressAssetBalanceChangeDiff as NativeAddressAssetBalanceChangeDiff,
     type NativeAssetDetails as NativeAssetDetails,
     type NativeAssetTrace as NativeAssetTrace,
@@ -461,6 +462,8 @@ export declare namespace Blockaid {
   };
 
   export { ExchangeProtection as ExchangeProtection };
+
+  export { ChainAgnostic as ChainAgnostic };
 }
 
 export { toFile, fileFromPath } from './uploads';

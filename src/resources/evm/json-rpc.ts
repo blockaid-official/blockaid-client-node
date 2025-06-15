@@ -60,7 +60,7 @@ export interface JsonRpcScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: EvmAPI.MetadataParam;
+  metadata: JsonRpcScanParams.Metadata;
 
   /**
    * The address of the account (wallet) received the request in hex string format
@@ -73,11 +73,18 @@ export interface JsonRpcScanParams {
   block?: number | string;
 
   /**
-   * list of one or both of options for the desired output. "simulation" - include
+   * List of one or more of options for the desired output. "simulation" - include
    * simulation output in your response. "validation" - include security validation
-   * of the transaction in your response. Default is ["validation"]
+   * of the transaction in your response. "gas_estimation" - include gas estimation
+   * result in your response. Default is ["validation"]
    */
   options?: Array<'validation' | 'simulation' | 'gas_estimation' | 'events'>;
+
+  /**
+   * Simulate transactions using gas estimation result. This requires
+   * "gas_estimation" option to be enabled.
+   */
+  simulate_with_estimated_gas?: boolean;
 
   /**
    * Override the state of the chain. This is useful for testing purposes.
@@ -99,6 +106,16 @@ export namespace JsonRpcScanParams {
      * The parameters of the JSON-RPC request in JSON format
      */
     params: Array<unknown>;
+  }
+
+  /**
+   * Object of additional information to validate against.
+   */
+  export interface Metadata {
+    /**
+     * cross reference transaction against the domain.
+     */
+    domain: string;
   }
 
   export interface StateOverride {

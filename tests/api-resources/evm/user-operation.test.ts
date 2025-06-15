@@ -49,6 +49,7 @@ describe('resource userOperation', () => {
       account_address: '0x77bA5AC3ca4864be26CA3112baDf07286CcC3324',
       block: '0x5c6fd5',
       options: ['simulation', 'validation'],
+      simulate_with_estimated_gas: true,
       state_override: {
         foo: {
           balance: 'balance',
