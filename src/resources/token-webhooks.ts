@@ -197,26 +197,26 @@ export interface TokenWebhookCreateParams {
 export namespace TokenWebhookCreateParams {
   export interface TokenAddressFilter {
     /**
-     * Type of filter applied to the webhook updates
-     */
-    filter_type: 'token_address';
-
-    /**
      * List of up to 100000 token addresses to filter webhook updates
      */
     token_addresses: Array<string>;
+
+    /**
+     * Type of filter applied to the webhook updates
+     */
+    filter_type?: 'token_address';
   }
 
   export interface TokenTypeFilter {
     /**
-     * Type of filter applied to the webhook updates
-     */
-    filter_type: 'token_type';
-
-    /**
      * Type of token to filter
      */
     token_type: 'Fungible' | 'NonFungible';
+
+    /**
+     * Type of filter applied to the webhook updates
+     */
+    filter_type?: 'token_type';
   }
 }
 
