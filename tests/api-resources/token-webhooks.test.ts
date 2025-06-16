@@ -24,8 +24,8 @@ describe('resource tokenWebhooks', () => {
     const response = await client.tokenWebhooks.create('arbitrum', {
       url: 'https://example.com/',
       filter: {
-        filter_type: 'token_address',
         token_addresses: ['0x1234567890abcdef1234567890abcdef12345678'],
+        filter_type: 'token_address',
       },
       shared_secret_key: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     });
