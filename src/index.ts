@@ -230,6 +230,7 @@ export class Blockaid extends Core.APIClient {
 
     super({
       baseURL: options.baseURL || environments[options.environment || 'production'],
+      baseURLOverridden: baseURL ? baseURL !== environments[options.environment || 'production'] : false,
       timeout: options.timeout ?? 60000 /* 1 minute */,
       httpAgent: options.httpAgent,
       maxRetries: options.maxRetries,
@@ -256,6 +257,13 @@ export class Blockaid extends Core.APIClient {
   tokenSnapshot: API.TokenSnapshot = new API.TokenSnapshot(this);
   exchangeProtection: API.ExchangeProtection = new API.ExchangeProtection(this);
   chainAgnostic: API.ChainAgnostic = new API.ChainAgnostic(this);
+
+  /**
+   * Check whether the base URL is set to its default.
+   */
+  #baseURLOverridden(): boolean {
+    return this.baseURL !== environments[this._options.environment || 'production'];
+  }
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
