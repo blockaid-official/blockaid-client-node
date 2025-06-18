@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.58.0 (2025-06-18)
+
+Full Changelog: [v0.57.0...v0.58.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.57.0...v0.58.0)
+
+### Features
+
+* **api:** api update ([06cc547](https://github.com/blockaid-official/blockaid-client-node/commit/06cc5470a1b89a801cac576f1851cad41a51de00))
+* **api:** api update ([d0e656d](https://github.com/blockaid-official/blockaid-client-node/commit/d0e656d835e825c7264ef52d86ad963135bfdc6a))
+* **api:** api update ([537efaa](https://github.com/blockaid-official/blockaid-client-node/commit/537efaa3e5a5f82c348758d68c9596a378d1abbb))
+* **client:** add support for endpoint-specific base URLs ([b5ec1b6](https://github.com/blockaid-official/blockaid-client-node/commit/b5ec1b61f9c209c86dc24efd77e93062d95940f7))
+
+
+### Chores
+
+* **ci:** enable for pull requests ([d398d06](https://github.com/blockaid-official/blockaid-client-node/commit/d398d0625cf3c95020babf5d7b427aa23b750688))
+
 ## 0.57.0 (2025-06-15)
 
 Full Changelog: [v0.56.0...v0.57.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.56.0...v0.57.0)
