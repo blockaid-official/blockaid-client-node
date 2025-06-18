@@ -45,6 +45,8 @@ import {
 import { ChainAgnostic } from './resources/chain-agnostic/chain-agnostic';
 import {
   AccountSummary,
+  AddressReportParams,
+  AddressValidation,
   Erc1155Diff,
   Erc1155Exposure,
   Erc1155TokenDetails,
@@ -69,6 +71,8 @@ import {
   TransactionValidation,
   TransactionValidationError,
   UsdDiff,
+  ValidateAddress,
+  ValidateBulkAddresses,
 } from './resources/evm/evm';
 import { ExchangeProtection } from './resources/exchange-protection/exchange-protection';
 import { Solana } from './resources/solana/solana';
@@ -230,6 +234,7 @@ export class Blockaid extends Core.APIClient {
 
     super({
       baseURL: options.baseURL || environments[options.environment || 'production'],
+      baseURLOverridden: baseURL ? baseURL !== environments[options.environment || 'production'] : false,
       timeout: options.timeout ?? 60000 /* 1 minute */,
       httpAgent: options.httpAgent,
       maxRetries: options.maxRetries,
@@ -256,6 +261,13 @@ export class Blockaid extends Core.APIClient {
   tokenSnapshot: API.TokenSnapshot = new API.TokenSnapshot(this);
   exchangeProtection: API.ExchangeProtection = new API.ExchangeProtection(this);
   chainAgnostic: API.ChainAgnostic = new API.ChainAgnostic(this);
+
+  /**
+   * Check whether the base URL is set to its default.
+   */
+  #baseURLOverridden(): boolean {
+    return this.baseURL !== environments[this._options.environment || 'production'];
+  }
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -350,6 +362,8 @@ export declare namespace Blockaid {
   export {
     Evm as Evm,
     type AccountSummary as AccountSummary,
+    type AddressReportParams as AddressReportParams,
+    type AddressValidation as AddressValidation,
     type Erc1155Diff as Erc1155Diff,
     type Erc1155Exposure as Erc1155Exposure,
     type Erc1155TokenDetails as Erc1155TokenDetails,
@@ -373,6 +387,8 @@ export declare namespace Blockaid {
     type TransactionValidation as TransactionValidation,
     type TransactionValidationError as TransactionValidationError,
     type UsdDiff as UsdDiff,
+    type ValidateAddress as ValidateAddress,
+    type ValidateBulkAddresses as ValidateBulkAddresses,
   };
 
   export { Solana as Solana };

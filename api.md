@@ -3,6 +3,8 @@
 Types:
 
 - <code><a href="./src/resources/evm/evm.ts">AccountSummary</a></code>
+- <code><a href="./src/resources/evm/evm.ts">AddressReportParams</a></code>
+- <code><a href="./src/resources/evm/evm.ts">AddressValidation</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155Diff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155Exposure</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155TokenDetails</a></code>
@@ -26,6 +28,8 @@ Types:
 - <code><a href="./src/resources/evm/evm.ts">TransactionValidation</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionValidationError</a></code>
 - <code><a href="./src/resources/evm/evm.ts">UsdDiff</a></code>
+- <code><a href="./src/resources/evm/evm.ts">ValidateAddress</a></code>
+- <code><a href="./src/resources/evm/evm.ts">ValidateBulkAddresses</a></code>
 
 ## JsonRpc
 
@@ -86,6 +90,27 @@ Types:
 Methods:
 
 - <code title="post /v0/evm/post-transaction-bulk/scan">client.evm.postTransactionBulk.<a href="./src/resources/evm/post-transaction-bulk.ts">scan</a>({ ...params }) -> PostTransactionBulkScanResponse</code>
+
+## Address
+
+Types:
+
+- <code><a href="./src/resources/evm/address.ts">AddressReportResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/evm/address/report">client.evm.address.<a href="./src/resources/evm/address.ts">report</a>({ ...params }) -> unknown</code>
+- <code title="post /v0/evm/address/scan">client.evm.address.<a href="./src/resources/evm/address.ts">scan</a>({ ...params }) -> AddressValidation</code>
+
+## AddressBulk
+
+Types:
+
+- <code><a href="./src/resources/evm/address-bulk.ts">AddressBulkScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/evm/address-bulk/scan">client.evm.addressBulk.<a href="./src/resources/evm/address-bulk.ts">scan</a>({ ...params }) -> AddressBulkScanResponse</code>
 
 # Solana
 

@@ -186,7 +186,7 @@ export interface TokenWebhookCreateParams {
   /**
    * Filter for webhook updates
    */
-  filter?: TokenWebhookCreateParams.Filter | null;
+  filter?: TokenWebhookCreateParams.TokenAddressFilter | TokenWebhookCreateParams.TokenTypeFilter | null;
 
   /**
    * Optional shared secret key (32 characters), used to calculate the HMAC signature
@@ -195,19 +195,28 @@ export interface TokenWebhookCreateParams {
 }
 
 export namespace TokenWebhookCreateParams {
-  /**
-   * Filter for webhook updates
-   */
-  export interface Filter {
-    /**
-     * Type of filter applied to the webhook updates
-     */
-    filter_type: 'token_address';
-
+  export interface TokenAddressFilter {
     /**
      * List of up to 100000 token addresses to filter webhook updates
      */
     token_addresses: Array<string>;
+
+    /**
+     * Type of filter applied to the webhook updates
+     */
+    filter_type?: 'token_address';
+  }
+
+  export interface TokenTypeFilter {
+    /**
+     * Type of token to filter
+     */
+    token_type: 'Fungible' | 'NonFungible';
+
+    /**
+     * Type of filter applied to the webhook updates
+     */
+    filter_type?: 'token_type';
   }
 }
 
