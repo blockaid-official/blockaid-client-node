@@ -9,6 +9,8 @@ export { ChainAgnostic } from './chain-agnostic/chain-agnostic';
 export {
   Evm,
   type AccountSummary,
+  type AddressReportParams,
+  type AddressValidation,
   type Erc1155Diff,
   type Erc1155Exposure,
   type Erc1155TokenDetails,
@@ -32,6 +34,8 @@ export {
   type TransactionValidation,
   type TransactionValidationError,
   type UsdDiff,
+  type ValidateAddress,
+  type ValidateBulkAddresses,
 } from './evm/evm';
 export { ExchangeProtection } from './exchange-protection/exchange-protection';
 export { Scan, type ScanStatusResponse, type ScanStatusParams } from './scan';

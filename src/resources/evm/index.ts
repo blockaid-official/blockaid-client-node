@@ -1,8 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+export { Address, type AddressReportResponse, type AddressScanParams } from './address';
+export { AddressBulk, type AddressBulkScanResponse, type AddressBulkScanParams } from './address-bulk';
 export {
   Evm,
   type AccountSummary,
+  type AddressReportParams,
+  type AddressValidation,
   type Erc1155Diff,
   type Erc1155Exposure,
   type Erc1155TokenDetails,
@@ -26,6 +30,8 @@ export {
   type TransactionValidation,
   type TransactionValidationError,
   type UsdDiff,
+  type ValidateAddress,
+  type ValidateBulkAddresses,
 } from './evm';
 export { JsonRpc, type JsonRpcScanParams } from './json-rpc';
 export {

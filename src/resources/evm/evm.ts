@@ -2,6 +2,10 @@
 
 import { APIResource } from '../../resource';
 import * as EvmAPI from './evm';
+import * as AddressAPI from './address';
+import { Address, AddressReportResponse, AddressScanParams } from './address';
+import * as AddressBulkAPI from './address-bulk';
+import { AddressBulk, AddressBulkScanParams, AddressBulkScanResponse } from './address-bulk';
 import * as JsonRpcAPI from './json-rpc';
 import { JsonRpc, JsonRpcScanParams } from './json-rpc';
 import * as PostTransactionAPI from './post-transaction';
@@ -40,6 +44,8 @@ export class Evm extends APIResource {
   postTransaction: PostTransactionAPI.PostTransaction = new PostTransactionAPI.PostTransaction(this._client);
   postTransactionBulk: PostTransactionBulkAPI.PostTransactionBulk =
     new PostTransactionBulkAPI.PostTransactionBulk(this._client);
+  address: AddressAPI.Address = new AddressAPI.Address(this._client);
+  addressBulk: AddressBulkAPI.AddressBulk = new AddressBulkAPI.AddressBulk(this._client);
 }
 
 export interface AccountSummary {
@@ -491,6 +497,141 @@ export namespace AccountSummary {
      * The type of the model
      */
     type: 'ERC1155ExposureTrace';
+  }
+}
+
+export interface AddressReportParams {
+  /**
+   * The address to report on.
+   */
+  address: string;
+
+  /**
+   * The chain name
+   */
+  chain:
+    | 'arbitrum'
+    | 'avalanche'
+    | 'base'
+    | 'base-sepolia'
+    | 'lordchain'
+    | 'lordchain-testnet'
+    | 'metacade'
+    | 'metacade-testnet'
+    | 'bsc'
+    | 'ethereum'
+    | 'optimism'
+    | 'polygon'
+    | 'zksync'
+    | 'zksync-sepolia'
+    | 'zora'
+    | 'linea'
+    | 'blast'
+    | 'scroll'
+    | 'ethereum-sepolia'
+    | 'degen'
+    | 'avalanche-fuji'
+    | 'immutable-zkevm'
+    | 'immutable-zkevm-testnet'
+    | 'gnosis'
+    | 'worldchain'
+    | 'soneium-minato'
+    | 'ronin'
+    | 'apechain'
+    | 'zero-network'
+    | 'berachain'
+    | 'berachain-bartio'
+    | 'ink'
+    | 'ink-sepolia'
+    | 'abstract'
+    | 'abstract-testnet'
+    | 'soneium'
+    | 'unichain'
+    | 'sei'
+    | 'flow-evm';
+
+  /**
+   * The domain you came accross this address.
+   */
+  domain: string;
+}
+
+export interface AddressValidation {
+  /**
+   * An enumeration.
+   */
+  result_type: 'Malicious' | 'Warning' | 'Benign' | 'Error';
+
+  /**
+   * An error message if the validation failed.
+   */
+  error?: string;
+
+  /**
+   * A list of textual features about this transaction that can be presented to the
+   * user.
+   */
+  features?: Array<string> | Array<AddressValidation.UnionMember1>;
+}
+
+export namespace AddressValidation {
+  export interface UnionMember1 {
+    /**
+     * Description of the feature
+     */
+    description: string;
+
+    /**
+     * Feature identifier
+     */
+    feature_id:
+      | 'VERIFIED_CONTRACT'
+      | 'UNVERIFIED_CONTRACT'
+      | 'HIGH_TRADE_VOLUME'
+      | 'MARKET_PLACE_SALES_HISTORY'
+      | 'HIGH_REPUTATION_TOKEN'
+      | 'ONCHAIN_ACTIVITY_VALIDATOR'
+      | 'STATIC_CODE_SIGNATURE'
+      | 'KNOWN_MALICIOUS'
+      | 'METADATA'
+      | 'AIRDROP_PATTERN'
+      | 'IMPERSONATOR'
+      | 'INORGANIC_VOLUME'
+      | 'DYNAMIC_ANALYSIS'
+      | 'CONCENTRATED_SUPPLY_DISTRIBUTION'
+      | 'HONEYPOT'
+      | 'INSUFFICIENT_LOCKED_LIQUIDITY'
+      | 'UNSTABLE_TOKEN_PRICE'
+      | 'RUGPULL'
+      | 'WASH_TRADING'
+      | 'CONSUMER_OVERRIDE'
+      | 'INAPPROPRIATE_CONTENT'
+      | 'HIGH_TRANSFER_FEE'
+      | 'HIGH_BUY_FEE'
+      | 'HIGH_SELL_FEE'
+      | 'UNSELLABLE_TOKEN'
+      | 'IS_MINTABLE'
+      | 'REBASE_TOKEN'
+      | 'LIQUID_STAKING_TOKEN'
+      | 'MODIFIABLE_TAXES'
+      | 'CAN_BLACKLIST'
+      | 'CAN_WHITELIST'
+      | 'HAS_TRADING_COOLDOWN'
+      | 'EXTERNAL_FUNCTIONS'
+      | 'HIDDEN_OWNER'
+      | 'TRANSFER_PAUSEABLE'
+      | 'OWNERSHIP_RENOUNCED'
+      | 'OWNER_CAN_CHANGE_BALANCE'
+      | 'PROXY_CONTRACT'
+      | 'SIMILAR_MALICIOUS_CONTRACT'
+      | 'FAKE_VOLUME'
+      | 'HIDDEN_SUPPLY_BY_KEY_HOLDER'
+      | 'FAKE_TRADE_MAKER_COUNT';
+
+    /**
+     * Type of the feature
+     */
+    type: 'Benign' | 'Info' | 'Warning' | 'Malicious';
   }
 }
 
@@ -1794,6 +1935,64 @@ export interface UsdDiff {
   total: string;
 }
 
+export interface ValidateAddress {
+  /**
+   * The address to validate.
+   */
+  address: string;
+
+  /**
+   * The chain name
+   */
+  chain: TransactionScanSupportedChain;
+
+  /**
+   * Object of additional information to validate against.
+   */
+  metadata: ValidateAddress.Metadata;
+}
+
+export namespace ValidateAddress {
+  /**
+   * Object of additional information to validate against.
+   */
+  export interface Metadata {
+    /**
+     * cross reference transaction against the domain.
+     */
+    domain: string;
+  }
+}
+
+export interface ValidateBulkAddresses {
+  /**
+   * List of addresses to validate.
+   */
+  addresses: Array<string>;
+
+  /**
+   * The chain name
+   */
+  chain: TransactionScanSupportedChain;
+
+  /**
+   * Object of additional information to validate against.
+   */
+  metadata: ValidateBulkAddresses.Metadata;
+}
+
+export namespace ValidateBulkAddresses {
+  /**
+   * Object of additional information to validate against.
+   */
+  export interface Metadata {
+    /**
+     * cross reference transaction against the domain.
+     */
+    domain: string;
+  }
+}
+
 Evm.JsonRpc = JsonRpc;
 Evm.Transaction = Transaction;
 Evm.TransactionBulk = TransactionBulk;
@@ -1801,10 +2000,14 @@ Evm.TransactionRaw = TransactionRaw;
 Evm.UserOperation = UserOperation;
 Evm.PostTransaction = PostTransaction;
 Evm.PostTransactionBulk = PostTransactionBulk;
+Evm.Address = Address;
+Evm.AddressBulk = AddressBulk;
 
 export declare namespace Evm {
   export {
     type AccountSummary as AccountSummary,
+    type AddressReportParams as AddressReportParams,
+    type AddressValidation as AddressValidation,
     type Erc1155Diff as Erc1155Diff,
     type Erc1155Exposure as Erc1155Exposure,
     type Erc1155TokenDetails as Erc1155TokenDetails,
@@ -1828,6 +2031,8 @@ export declare namespace Evm {
     type TransactionValidation as TransactionValidation,
     type TransactionValidationError as TransactionValidationError,
     type UsdDiff as UsdDiff,
+    type ValidateAddress as ValidateAddress,
+    type ValidateBulkAddresses as ValidateBulkAddresses,
   };
 
   export { JsonRpc as JsonRpc, type JsonRpcScanParams as JsonRpcScanParams };
@@ -1860,5 +2065,17 @@ export declare namespace Evm {
     PostTransactionBulk as PostTransactionBulk,
     type PostTransactionBulkScanResponse as PostTransactionBulkScanResponse,
     type PostTransactionBulkScanParams as PostTransactionBulkScanParams,
+  };
+
+  export {
+    Address as Address,
+    type AddressReportResponse as AddressReportResponse,
+    type AddressScanParams as AddressScanParams,
+  };
+
+  export {
+    AddressBulk as AddressBulk,
+    type AddressBulkScanResponse as AddressBulkScanResponse,
+    type AddressBulkScanParams as AddressBulkScanParams,
   };
 }
