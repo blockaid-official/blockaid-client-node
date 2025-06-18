@@ -45,6 +45,8 @@ import {
 import { ChainAgnostic } from './resources/chain-agnostic/chain-agnostic';
 import {
   AccountSummary,
+  AddressReportParams,
+  AddressValidation,
   Erc1155Diff,
   Erc1155Exposure,
   Erc1155TokenDetails,
@@ -69,6 +71,8 @@ import {
   TransactionValidation,
   TransactionValidationError,
   UsdDiff,
+  ValidateAddress,
+  ValidateBulkAddresses,
 } from './resources/evm/evm';
 import { ExchangeProtection } from './resources/exchange-protection/exchange-protection';
 import { Solana } from './resources/solana/solana';
@@ -358,6 +362,8 @@ export declare namespace Blockaid {
   export {
     Evm as Evm,
     type AccountSummary as AccountSummary,
+    type AddressReportParams as AddressReportParams,
+    type AddressValidation as AddressValidation,
     type Erc1155Diff as Erc1155Diff,
     type Erc1155Exposure as Erc1155Exposure,
     type Erc1155TokenDetails as Erc1155TokenDetails,
@@ -381,6 +387,8 @@ export declare namespace Blockaid {
     type TransactionValidation as TransactionValidation,
     type TransactionValidationError as TransactionValidationError,
     type UsdDiff as UsdDiff,
+    type ValidateAddress as ValidateAddress,
+    type ValidateBulkAddresses as ValidateBulkAddresses,
   };
 
   export { Solana as Solana };
