@@ -41,4 +41,48 @@ describe('resource addressBulk', () => {
       metadata: { domain: 'www.example.xyz' },
     });
   });
+
+  test('scanExtended: only required params', async () => {
+    const responsePromise = client.evm.addressBulk.scanExtended({
+      addresses: [
+        '0xb85492afC686d5CA405E3CD4f50b05D358c75Ede',
+        '0x4838B106FCe9647Bdf1E7877BF73cE8B0BAD5f97',
+        '0x1f9090aaE28b8a3dCeaDf281B0F12828e676c326',
+        '0xD6E4aA932147A3FE5311dA1b67D9e73da06F9cEf',
+      ],
+      chain: 'arbitrum',
+      metadata: {
+        account: { account_id: 'account_id', user_country_code: 'user_country_code' },
+        connection_metadata: { customer_ip: 'customer_ip', user_agent: 'user_agent' },
+      },
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('scanExtended: required and optional params', async () => {
+    const response = await client.evm.addressBulk.scanExtended({
+      addresses: [
+        '0xb85492afC686d5CA405E3CD4f50b05D358c75Ede',
+        '0x4838B106FCe9647Bdf1E7877BF73cE8B0BAD5f97',
+        '0x1f9090aaE28b8a3dCeaDf281B0F12828e676c326',
+        '0xD6E4aA932147A3FE5311dA1b67D9e73da06F9cEf',
+      ],
+      chain: 'arbitrum',
+      metadata: {
+        account: {
+          account_id: 'account_id',
+          user_country_code: 'user_country_code',
+          age_in_years: 1,
+          created: '2019-12-27T18:11:19.117Z',
+        },
+        connection_metadata: { customer_ip: 'customer_ip', user_agent: 'user_agent' },
+      },
+    });
+  });
 });

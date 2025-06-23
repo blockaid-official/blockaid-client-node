@@ -5,7 +5,12 @@ import * as EvmAPI from './evm';
 import * as AddressAPI from './address';
 import { Address, AddressReportResponse, AddressScanParams } from './address';
 import * as AddressBulkAPI from './address-bulk';
-import { AddressBulk, AddressBulkScanParams, AddressBulkScanResponse } from './address-bulk';
+import {
+  AddressBulk,
+  AddressBulkScanExtendedParams,
+  AddressBulkScanParams,
+  AddressBulkScanResponse,
+} from './address-bulk';
 import * as JsonRpcAPI from './json-rpc';
 import { JsonRpc, JsonRpcScanParams } from './json-rpc';
 import * as PostTransactionAPI from './post-transaction';
@@ -1993,6 +1998,75 @@ export namespace ValidateBulkAddresses {
   }
 }
 
+export interface ValidateBulkExtendedAddressesRequest {
+  /**
+   * List of addresses to validate.
+   */
+  addresses: Array<string>;
+
+  /**
+   * The chain name
+   */
+  chain: TransactionScanSupportedChain;
+
+  /**
+   * Object of additional information to validate against.
+   */
+  metadata: ValidateBulkExtendedAddressesRequest.Metadata;
+}
+
+export namespace ValidateBulkExtendedAddressesRequest {
+  /**
+   * Object of additional information to validate against.
+   */
+  export interface Metadata {
+    account: Metadata.Account;
+
+    connection_metadata: Metadata.ConnectionMetadata;
+  }
+
+  export namespace Metadata {
+    export interface Account {
+      account_id: string;
+
+      user_country_code: string;
+
+      age_in_years?: number;
+
+      created?: string;
+    }
+
+    export interface ConnectionMetadata {
+      customer_ip: string;
+
+      user_agent: string;
+    }
+  }
+}
+
+export interface ValidateBulkExtendedAddressesResponse {
+  results: Array<ValidateBulkExtendedAddressesResponse.Result>;
+}
+
+export namespace ValidateBulkExtendedAddressesResponse {
+  export interface Result {
+    /**
+     * Address to validate.
+     */
+    address: string;
+
+    /**
+     * Label of the address.
+     */
+    label: string;
+
+    /**
+     * An enumeration.
+     */
+    validation: 'Malicious' | 'Warning' | 'Benign' | 'Error';
+  }
+}
+
 Evm.JsonRpc = JsonRpc;
 Evm.Transaction = Transaction;
 Evm.TransactionBulk = TransactionBulk;
@@ -2033,6 +2107,8 @@ export declare namespace Evm {
     type UsdDiff as UsdDiff,
     type ValidateAddress as ValidateAddress,
     type ValidateBulkAddresses as ValidateBulkAddresses,
+    type ValidateBulkExtendedAddressesRequest as ValidateBulkExtendedAddressesRequest,
+    type ValidateBulkExtendedAddressesResponse as ValidateBulkExtendedAddressesResponse,
   };
 
   export { JsonRpc as JsonRpc, type JsonRpcScanParams as JsonRpcScanParams };
@@ -2077,5 +2153,6 @@ export declare namespace Evm {
     AddressBulk as AddressBulk,
     type AddressBulkScanResponse as AddressBulkScanResponse,
     type AddressBulkScanParams as AddressBulkScanParams,
+    type AddressBulkScanExtendedParams as AddressBulkScanExtendedParams,
   };
 }
