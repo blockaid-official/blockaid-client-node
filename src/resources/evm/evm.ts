@@ -1739,7 +1739,8 @@ export interface TransactionSimulationError {
   error_details?:
     | TransactionSimulationError.GeneralInsufficientFundsErrorDetails
     | TransactionSimulationError.GeneralInvalidAddressErrorDetails
-    | TransactionSimulationError.GenericErrorDetails;
+    | TransactionSimulationError.GenericErrorDetails
+    | TransactionSimulationError.UnsupportedEip712MessageErrorDetails;
 }
 
 export namespace TransactionSimulationError {
@@ -1851,6 +1852,23 @@ export namespace TransactionSimulationError {
      * The error code
      */
     code: string;
+  }
+
+  export interface UnsupportedEip712MessageErrorDetails {
+    /**
+     * The type of the model
+     */
+    code: 'UNSUPPORTED_EIP712_MESSAGE';
+
+    /**
+     * The domain name that is unsupported
+     */
+    domain_name: string;
+
+    /**
+     * The message type that is unsupported
+     */
+    message_type: string;
   }
 }
 
