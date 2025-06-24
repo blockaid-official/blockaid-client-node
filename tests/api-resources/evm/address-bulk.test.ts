@@ -17,7 +17,7 @@ describe('resource addressBulk', () => {
         '0x1f9090aaE28b8a3dCeaDf281B0F12828e676c326',
         '0xD6E4aA932147A3FE5311dA1b67D9e73da06F9cEf',
       ],
-      chain: 'arbitrum',
+      chain: 'ethereum',
       metadata: { domain: 'www.example.xyz' },
     });
     const rawResponse = await responsePromise.asResponse();
@@ -37,7 +37,7 @@ describe('resource addressBulk', () => {
         '0x1f9090aaE28b8a3dCeaDf281B0F12828e676c326',
         '0xD6E4aA932147A3FE5311dA1b67D9e73da06F9cEf',
       ],
-      chain: 'arbitrum',
+      chain: 'ethereum',
       metadata: { domain: 'www.example.xyz' },
     });
   });
@@ -50,10 +50,13 @@ describe('resource addressBulk', () => {
         '0x1f9090aaE28b8a3dCeaDf281B0F12828e676c326',
         '0xD6E4aA932147A3FE5311dA1b67D9e73da06F9cEf',
       ],
-      chain: 'arbitrum',
+      chain: 'ethereum',
       metadata: {
-        account: { account_id: 'account_id', user_country_code: 'user_country_code' },
-        connection_metadata: { customer_ip: 'customer_ip', user_agent: 'user_agent' },
+        account: { account_id: 'user123', user_country_code: 'US' },
+        connection: {
+          ip_address: '192.168.1.1',
+          user_agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        },
       },
     });
     const rawResponse = await responsePromise.asResponse();
@@ -73,15 +76,18 @@ describe('resource addressBulk', () => {
         '0x1f9090aaE28b8a3dCeaDf281B0F12828e676c326',
         '0xD6E4aA932147A3FE5311dA1b67D9e73da06F9cEf',
       ],
-      chain: 'arbitrum',
+      chain: 'ethereum',
       metadata: {
         account: {
-          account_id: 'account_id',
-          user_country_code: 'user_country_code',
-          age_in_years: 1,
-          created: '2019-12-27T18:11:19.117Z',
+          account_id: 'user123',
+          user_country_code: 'US',
+          age_in_years: 3,
+          created: '2021-01-01T00:00:00Z',
         },
-        connection_metadata: { customer_ip: 'customer_ip', user_agent: 'user_agent' },
+        connection: {
+          ip_address: '192.168.1.1',
+          user_agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        },
       },
     });
   });

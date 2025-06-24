@@ -17,7 +17,7 @@ export class AddressBulk extends APIResource {
    *     '0x1f9090aaE28b8a3dCeaDf281B0F12828e676c326',
    *     '0xD6E4aA932147A3FE5311dA1b67D9e73da06F9cEf',
    *   ],
-   *   chain: 'arbitrum',
+   *   chain: 'ethereum',
    *   metadata: { domain: 'www.example.xyz' },
    * });
    * ```
@@ -40,8 +40,20 @@ export class AddressBulk extends APIResource {
    *       '0x1f9090aaE28b8a3dCeaDf281B0F12828e676c326',
    *       '0xD6E4aA932147A3FE5311dA1b67D9e73da06F9cEf',
    *     ],
-   *     chain: 'arbitrum',
-   *     metadata: { domain: 'www.example.xyz' },
+   *     chain: 'ethereum',
+   *     metadata: {
+   *       account: {
+   *         account_id: 'user123',
+   *         created: '2021-01-01T00:00:00Z',
+   *         age_in_years: 3,
+   *         user_country_code: 'US',
+   *       },
+   *       connection: {
+   *         user_agent:
+   *           'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+   *         ip_address: '192.168.1.1',
+   *       },
+   *     },
    *   });
    * ```
    */
@@ -108,7 +120,7 @@ export namespace AddressBulkScanExtendedParams {
   export interface Metadata {
     account: Metadata.Account;
 
-    connection_metadata: Metadata.ConnectionMetadata;
+    connection: Metadata.Connection;
   }
 
   export namespace Metadata {
@@ -122,8 +134,8 @@ export namespace AddressBulkScanExtendedParams {
       created?: string;
     }
 
-    export interface ConnectionMetadata {
-      customer_ip: string;
+    export interface Connection {
+      ip_address: string;
 
       user_agent: string;
     }
