@@ -53,7 +53,7 @@ export class AddressBulk extends APIResource {
   }
 }
 
-export type AddressBulkScanResponse = Record<string, 'Malicious' | 'Warning' | 'Benign' | 'Error'>;
+export type AddressBulkScanResponse = { [key: string]: 'Malicious' | 'Warning' | 'Benign' | 'Error' };
 
 export interface AddressBulkScanParams {
   /**

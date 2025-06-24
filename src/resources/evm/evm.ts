@@ -81,7 +81,7 @@ export interface AccountSummary {
   /**
    * Total usd exposure related to the account address
    */
-  total_usd_exposure: Record<string, string>;
+  total_usd_exposure: { [key: string]: string };
 
   /**
    * All assets traces related to the account address
@@ -245,7 +245,7 @@ export namespace AccountSummary {
      * dictionary of spender addresses where the exposure has changed during this
      * transaction for the current address and asset
      */
-    spenders: Record<string, EvmAPI.Erc20Exposure>;
+    spenders: { [key: string]: EvmAPI.Erc20Exposure };
   }
 
   export interface Erc721AddressExposure {
@@ -263,7 +263,7 @@ export namespace AccountSummary {
      * dictionary of spender addresses where the exposure has changed during this
      * transaction for the current address and asset
      */
-    spenders: Record<string, EvmAPI.Erc721Exposure>;
+    spenders: { [key: string]: EvmAPI.Erc721Exposure };
   }
 
   export interface Erc1155AddressExposure {
@@ -281,7 +281,7 @@ export namespace AccountSummary {
      * dictionary of spender addresses where the exposure has changed during this
      * transaction for the current address and asset
      */
-    spenders: Record<string, EvmAPI.Erc1155Exposure>;
+    spenders: { [key: string]: EvmAPI.Erc1155Exposure };
   }
 
   export interface Erc20AssetTrace {
@@ -1198,40 +1198,38 @@ export interface TransactionSimulation {
    * a dictionary including additional information about each relevant address in the
    * transaction.
    */
-  address_details: Record<string, TransactionSimulation.AddressDetails>;
+  address_details: { [key: string]: TransactionSimulation.AddressDetails };
 
   /**
    * dictionary describes the assets differences as a result of this transaction for
    * every involved address
    */
-  assets_diffs: Record<
-    string,
-    Array<
+  assets_diffs: {
+    [key: string]: Array<
       | TransactionSimulation.Erc20AddressAssetDiff
       | TransactionSimulation.Erc721AddressAssetDiff
       | TransactionSimulation.Erc1155AddressAssetDiff
       | TransactionSimulation.NativeAddressAssetDiff
-    >
-  >;
+    >;
+  };
 
   /**
    * dictionary describes the exposure differences as a result of this transaction
    * for every involved address (as a result of any approval / setApproval / permit
    * function)
    */
-  exposures: Record<
-    string,
-    Array<
+  exposures: {
+    [key: string]: Array<
       | TransactionSimulation.Erc20AddressExposure
       | TransactionSimulation.Erc721AddressExposure
       | TransactionSimulation.Erc1155AddressExposure
-    >
-  >;
+    >;
+  };
 
   /**
    * Session keys created in this transaction per address
    */
-  session_key: Record<string, Array<TransactionSimulation.SessionKey>>;
+  session_key: { [key: string]: Array<TransactionSimulation.SessionKey> };
 
   /**
    * A string indicating if the simulation was successful or not.
@@ -1242,28 +1240,27 @@ export interface TransactionSimulation {
    * dictionary represents the usd value each address gained / lost during this
    * transaction
    */
-  total_usd_diff: Record<string, UsdDiff>;
+  total_usd_diff: { [key: string]: UsdDiff };
 
   /**
    * a dictionary representing the usd value each address is exposed to, split by
    * spenders
    */
-  total_usd_exposure: Record<string, Record<string, string>>;
+  total_usd_exposure: { [key: string]: { [key: string]: string } };
 
   /**
    * Describes the state differences as a result of this transaction for every
    * involved address
    */
-  contract_management?: Record<
-    string,
-    Array<
+  contract_management?: {
+    [key: string]: Array<
       | TransactionSimulation.ProxyUpgradeManagement
       | TransactionSimulation.OwnershipChangeManagement
       | TransactionSimulation.ModulesChangeManagement
       | TransactionSimulation.SetCodeAccountManagement
       | TransactionSimulation.ContractCreation
-    >
-  >;
+    >;
+  };
 
   /**
    * The parameters of the transaction that was simulated.
@@ -1392,7 +1389,7 @@ export namespace TransactionSimulation {
      * dictionary of spender addresses where the exposure has changed during this
      * transaction for the current address and asset
      */
-    spenders: Record<string, EvmAPI.Erc20Exposure>;
+    spenders: { [key: string]: EvmAPI.Erc20Exposure };
   }
 
   export interface Erc721AddressExposure {
@@ -1410,7 +1407,7 @@ export namespace TransactionSimulation {
      * dictionary of spender addresses where the exposure has changed during this
      * transaction for the current address and asset
      */
-    spenders: Record<string, EvmAPI.Erc721Exposure>;
+    spenders: { [key: string]: EvmAPI.Erc721Exposure };
   }
 
   export interface Erc1155AddressExposure {
@@ -1428,7 +1425,7 @@ export namespace TransactionSimulation {
      * dictionary of spender addresses where the exposure has changed during this
      * transaction for the current address and asset
      */
-    spenders: Record<string, EvmAPI.Erc1155Exposure>;
+    spenders: { [key: string]: EvmAPI.Erc1155Exposure };
   }
 
   export interface SessionKey {
