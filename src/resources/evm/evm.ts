@@ -2019,7 +2019,7 @@ export namespace ValidateBulkExtendedAddressesRequest {
   export interface Metadata {
     account: Metadata.Account;
 
-    connection_metadata: Metadata.ConnectionMetadata;
+    connection: Metadata.Connection;
   }
 
   export namespace Metadata {
@@ -2033,8 +2033,8 @@ export namespace ValidateBulkExtendedAddressesRequest {
       created?: string;
     }
 
-    export interface ConnectionMetadata {
-      customer_ip: string;
+    export interface Connection {
+      ip_address: string;
 
       user_agent: string;
     }
@@ -2058,9 +2058,87 @@ export namespace ValidateBulkExtendedAddressesResponse {
     label: string;
 
     /**
-     * An enumeration.
+     * Validation result.
      */
-    validation: 'Malicious' | 'Warning' | 'Benign' | 'Error';
+    validation: Result.Validation;
+  }
+
+  export namespace Result {
+    /**
+     * Validation result.
+     */
+    export interface Validation {
+      /**
+       * An enumeration.
+       */
+      result_type: 'Malicious' | 'Warning' | 'Benign' | 'Error';
+
+      /**
+       * A list of textual features about this address that can be presented to the user.
+       */
+      features?: Array<Validation.Feature>;
+    }
+
+    export namespace Validation {
+      export interface Feature {
+        /**
+         * Description of the feature
+         */
+        description: string;
+
+        /**
+         * Feature identifier
+         */
+        feature_id:
+          | 'VERIFIED_CONTRACT'
+          | 'UNVERIFIED_CONTRACT'
+          | 'HIGH_TRADE_VOLUME'
+          | 'MARKET_PLACE_SALES_HISTORY'
+          | 'HIGH_REPUTATION_TOKEN'
+          | 'ONCHAIN_ACTIVITY_VALIDATOR'
+          | 'STATIC_CODE_SIGNATURE'
+          | 'KNOWN_MALICIOUS'
+          | 'METADATA'
+          | 'AIRDROP_PATTERN'
+          | 'IMPERSONATOR'
+          | 'INORGANIC_VOLUME'
+          | 'DYNAMIC_ANALYSIS'
+          | 'CONCENTRATED_SUPPLY_DISTRIBUTION'
+          | 'HONEYPOT'
+          | 'INSUFFICIENT_LOCKED_LIQUIDITY'
+          | 'UNSTABLE_TOKEN_PRICE'
+          | 'RUGPULL'
+          | 'WASH_TRADING'
+          | 'CONSUMER_OVERRIDE'
+          | 'INAPPROPRIATE_CONTENT'
+          | 'HIGH_TRANSFER_FEE'
+          | 'HIGH_BUY_FEE'
+          | 'HIGH_SELL_FEE'
+          | 'UNSELLABLE_TOKEN'
+          | 'IS_MINTABLE'
+          | 'REBASE_TOKEN'
+          | 'LIQUID_STAKING_TOKEN'
+          | 'MODIFIABLE_TAXES'
+          | 'CAN_BLACKLIST'
+          | 'CAN_WHITELIST'
+          | 'HAS_TRADING_COOLDOWN'
+          | 'EXTERNAL_FUNCTIONS'
+          | 'HIDDEN_OWNER'
+          | 'TRANSFER_PAUSEABLE'
+          | 'OWNERSHIP_RENOUNCED'
+          | 'OWNER_CAN_CHANGE_BALANCE'
+          | 'PROXY_CONTRACT'
+          | 'SIMILAR_MALICIOUS_CONTRACT'
+          | 'FAKE_VOLUME'
+          | 'HIDDEN_SUPPLY_BY_KEY_HOLDER'
+          | 'FAKE_TRADE_MAKER_COUNT';
+
+        /**
+         * Type of the feature
+         */
+        type: 'Benign' | 'Info' | 'Warning' | 'Malicious';
+      }
+    }
   }
 }
 
