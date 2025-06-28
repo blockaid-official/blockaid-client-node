@@ -26,7 +26,7 @@ export class TokenBulk extends APIResource {
 }
 
 export interface TokenBulkScanResponse {
-  results: Record<string, TokenBulkScanResponse.Results>;
+  results: { [key: string]: TokenBulkScanResponse.Results };
 }
 
 export namespace TokenBulkScanResponse {
@@ -39,7 +39,7 @@ export namespace TokenBulkScanResponse {
     /**
      * Dictionary of detected attacks found during the scan
      */
-    attack_types: Record<string, Results.AttackTypes>;
+    attack_types: { [key: string]: Results.AttackTypes };
 
     /**
      * Blockchain network

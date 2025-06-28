@@ -67,14 +67,13 @@ export namespace PostTransactionScanResponse {
      * Mapping between the address of an account to the assets diff during the
      * transaction
      */
-    assets_diffs?: Record<
-      string,
-      Array<
+    assets_diffs?: {
+      [key: string]: Array<
         | SuiSimulationResult.SuiNativeAssetDiff
         | SuiSimulationResult.SuiNFTAssetDiff
         | SuiSimulationResult.SuiCoinsAssetDiff
-      >
-    >;
+      >;
+    };
   }
 
   export namespace SuiSimulationResult {

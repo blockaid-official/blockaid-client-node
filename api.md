@@ -30,6 +30,8 @@ Types:
 - <code><a href="./src/resources/evm/evm.ts">UsdDiff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">ValidateAddress</a></code>
 - <code><a href="./src/resources/evm/evm.ts">ValidateBulkAddresses</a></code>
+- <code><a href="./src/resources/evm/evm.ts">ValidateBulkExtendedAddressesRequest</a></code>
+- <code><a href="./src/resources/evm/evm.ts">ValidateBulkExtendedAddressesResponse</a></code>
 
 ## JsonRpc
 
@@ -111,6 +113,7 @@ Types:
 Methods:
 
 - <code title="post /v0/evm/address-bulk/scan">client.evm.addressBulk.<a href="./src/resources/evm/address-bulk.ts">scan</a>({ ...params }) -> AddressBulkScanResponse</code>
+- <code title="post /v0/evm/address-bulk/scan-extended">client.evm.addressBulk.<a href="./src/resources/evm/address-bulk.ts">scanExtended</a>({ ...params }) -> ValidateBulkExtendedAddressesResponse</code>
 
 # Solana
 

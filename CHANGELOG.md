@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.59.0 (2025-06-28)
+
+Full Changelog: [v0.58.0...v0.59.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.58.0...v0.59.0)
+
+### Features
+
+* **api:** api update ([ff92f1d](https://github.com/blockaid-official/blockaid-client-node/commit/ff92f1dc57668c697a9e193914919ff77151dd49))
+* **api:** api update ([297fa80](https://github.com/blockaid-official/blockaid-client-node/commit/297fa80f50a47126bbdc3c2e7abacd1464a1733e))
+* **api:** api update ([bb791b4](https://github.com/blockaid-official/blockaid-client-node/commit/bb791b44cf823970e8f42361b914662a9d9534cf))
+
+
+### Bug Fixes
+
+* **ci:** release-doctor — report correct token name ([471c50b](https://github.com/blockaid-official/blockaid-client-node/commit/471c50b76fc5fdf029a1df8d538bc4c6e507dd7c))
+
+
+### Chores
+
+* **ci:** only run for pushes and fork pull requests ([d6797fb](https://github.com/blockaid-official/blockaid-client-node/commit/d6797fbc8a676d156b47cd2b6e286f4b1de0898d))
+
+
+### Refactors
+
+* **types:** replace Record with mapped types ([3e21105](https://github.com/blockaid-official/blockaid-client-node/commit/3e21105238986c5df34b79d469efd70eb76a5804))
+
 ## 0.58.0 (2025-06-18)
 
 Full Changelog: [v0.57.0...v0.58.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.57.0...v0.58.0)

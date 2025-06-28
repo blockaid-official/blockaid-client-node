@@ -39,7 +39,7 @@ export class Site extends APIResource {
 }
 
 export interface SiteScanHitResponse {
-  attack_types: Record<string, SiteScanHitResponse.AttackTypes>;
+  attack_types: { [key: string]: SiteScanHitResponse.AttackTypes };
 
   contract_read: SiteScanHitResponse.ContractRead;
 
@@ -76,13 +76,13 @@ export namespace SiteScanHitResponse {
   export interface ContractRead {
     contract_addresses: Array<string>;
 
-    functions: Record<string, Array<string>>;
+    functions: { [key: string]: Array<string> };
   }
 
   export interface ContractWrite {
     contract_addresses: Array<string>;
 
-    functions: Record<string, Array<string>>;
+    functions: { [key: string]: Array<string> };
   }
 }
 

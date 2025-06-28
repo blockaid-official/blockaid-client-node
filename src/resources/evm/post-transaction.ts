@@ -134,7 +134,7 @@ export interface PostTransactionScanParams {
   /**
    * Override the state of the chain. This is useful for testing purposes.
    */
-  state_override?: Record<string, PostTransactionScanParams.StateOverride>;
+  state_override?: { [key: string]: PostTransactionScanParams.StateOverride };
 }
 
 export namespace PostTransactionScanParams {
@@ -180,13 +180,13 @@ export namespace PostTransactionScanParams {
      * Fake key-value mapping to override all slots in the account storage before
      * executing the call.
      */
-    state?: Record<string, string>;
+    state?: { [key: string]: string };
 
     /**
      * Fake key-value mapping to override individual slots in the account storage
      * before executing the call.
      */
-    stateDiff?: Record<string, string>;
+    stateDiff?: { [key: string]: string };
   }
 }
 

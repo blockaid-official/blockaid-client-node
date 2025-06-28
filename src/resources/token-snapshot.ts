@@ -71,7 +71,7 @@ export namespace TokenSnapshotDiffResponse {
     /**
      * Dictionary of detected attacks found during the scan
      */
-    attack_types: Record<string, Item.AttackTypes>;
+    attack_types: { [key: string]: Item.AttackTypes };
 
     /**
      * Blockchain network
@@ -662,7 +662,7 @@ export namespace TokenSnapshotFullResponse {
     /**
      * Dictionary of detected attacks found during the scan
      */
-    attack_types: Record<string, Item.AttackTypes>;
+    attack_types: { [key: string]: Item.AttackTypes };
 
     /**
      * Blockchain network

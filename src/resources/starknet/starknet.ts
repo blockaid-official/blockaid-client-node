@@ -388,14 +388,13 @@ export namespace StarknetTransactionScanResponse {
      * Mapping between the address of an account to the assets diff during the
      * transaction
      */
-    assets_diffs?: Record<
-      string,
-      Array<
+    assets_diffs?: {
+      [key: string]: Array<
         | StarknetStarknetSimulationResultSchema.StarknetErc20AssetDiff
         | StarknetStarknetSimulationResultSchema.StarknetErc721AssetDiff
         | StarknetStarknetSimulationResultSchema.StarknetErc1155AssetDiff
-      >
-    >;
+      >;
+    };
 
     /**
      * Optional block number or tag context for the simulation
@@ -406,14 +405,13 @@ export namespace StarknetTransactionScanResponse {
      * Mapping between the address of an account to the exposure of the assets during
      * the transaction
      */
-    exposures?: Record<
-      string,
-      Array<
+    exposures?: {
+      [key: string]: Array<
         | StarknetStarknetSimulationResultSchema.StarknetErc20Exposure
         | StarknetStarknetSimulationResultSchema.StarknetErc721Exposure
         | StarknetStarknetSimulationResultSchema.StarknetErc1155Exposure
-      >
-    >;
+      >;
+    };
   }
 
   export namespace StarknetStarknetSimulationResultSchema {
@@ -448,7 +446,7 @@ export namespace StarknetTransactionScanResponse {
       /**
        * Total USD exposure for each of the spender addresses during the transaction
        */
-      total_usd_exposure?: Record<string, number>;
+      total_usd_exposure?: { [key: string]: number };
     }
 
     export namespace AccountSummary {
@@ -458,7 +456,7 @@ export namespace StarknetTransactionScanResponse {
         /**
          * Mapping between the spender address and the exposure of the asset
          */
-        spenders?: Record<string, StarknetErc20Exposure.Spenders>;
+        spenders?: { [key: string]: StarknetErc20Exposure.Spenders };
       }
 
       export namespace StarknetErc20Exposure {
@@ -488,7 +486,7 @@ export namespace StarknetTransactionScanResponse {
         /**
          * Mapping between the spender address and the exposure of the asset
          */
-        spenders?: Record<string, StarknetErc721Exposure.Spenders>;
+        spenders?: { [key: string]: StarknetErc721Exposure.Spenders };
       }
 
       export namespace StarknetErc721Exposure {
@@ -513,7 +511,7 @@ export namespace StarknetTransactionScanResponse {
         /**
          * Mapping between the spender address and the exposure of the asset
          */
-        spenders?: Record<string, StarknetErc1155Exposure.Spenders>;
+        spenders?: { [key: string]: StarknetErc1155Exposure.Spenders };
       }
 
       export namespace StarknetErc1155Exposure {
@@ -685,7 +683,7 @@ export namespace StarknetTransactionScanResponse {
       /**
        * Mapping between the spender address and the exposure of the asset
        */
-      spenders?: Record<string, StarknetErc20Exposure.Spenders>;
+      spenders?: { [key: string]: StarknetErc20Exposure.Spenders };
     }
 
     export namespace StarknetErc20Exposure {
@@ -715,7 +713,7 @@ export namespace StarknetTransactionScanResponse {
       /**
        * Mapping between the spender address and the exposure of the asset
        */
-      spenders?: Record<string, StarknetErc721Exposure.Spenders>;
+      spenders?: { [key: string]: StarknetErc721Exposure.Spenders };
     }
 
     export namespace StarknetErc721Exposure {
@@ -740,7 +738,7 @@ export namespace StarknetTransactionScanResponse {
       /**
        * Mapping between the spender address and the exposure of the asset
        */
-      spenders?: Record<string, StarknetErc1155Exposure.Spenders>;
+      spenders?: { [key: string]: StarknetErc1155Exposure.Spenders };
     }
 
     export namespace StarknetErc1155Exposure {

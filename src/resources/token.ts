@@ -52,7 +52,7 @@ export interface TokenScanResponse {
   /**
    * Dictionary of detected attacks found during the scan
    */
-  attack_types: Record<string, TokenScanResponse.AttackTypes>;
+  attack_types: { [key: string]: TokenScanResponse.AttackTypes };
 
   /**
    * Blockchain network

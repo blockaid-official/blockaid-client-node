@@ -73,6 +73,8 @@ import {
   UsdDiff,
   ValidateAddress,
   ValidateBulkAddresses,
+  ValidateBulkExtendedAddressesRequest,
+  ValidateBulkExtendedAddressesResponse,
 } from './resources/evm/evm';
 import { ExchangeProtection } from './resources/exchange-protection/exchange-protection';
 import { Solana } from './resources/solana/solana';
@@ -389,6 +391,8 @@ export declare namespace Blockaid {
     type UsdDiff as UsdDiff,
     type ValidateAddress as ValidateAddress,
     type ValidateBulkAddresses as ValidateBulkAddresses,
+    type ValidateBulkExtendedAddressesRequest as ValidateBulkExtendedAddressesRequest,
+    type ValidateBulkExtendedAddressesResponse as ValidateBulkExtendedAddressesResponse,
   };
 
   export { Solana as Solana };
