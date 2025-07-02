@@ -112,11 +112,11 @@ export namespace WithdrawalScanParams {
   export interface Account {
     account_id: string;
 
-    user_country_code: string;
+    account_creation_timestamp?: string;
 
-    age_in_years?: number;
+    user_age?: number;
 
-    created?: string;
+    user_country_code?: string;
   }
 
   export interface OnchainTransaction {
