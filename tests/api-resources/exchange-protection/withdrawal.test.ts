@@ -11,7 +11,7 @@ const client = new Blockaid({
 describe('resource withdrawal', () => {
   test('scan: only required params', async () => {
     const responsePromise = client.exchangeProtection.withdrawal.scan({
-      account: { account_id: 'account_id', user_country_code: 'user_country_code' },
+      account: { account_id: 'account_id' },
       event_time: '2019-12-27T18:11:19.117Z',
       onchain_transaction: { amount: 1, asset: 'asset', chain: 'ethereum', to_address: 'to_address' },
       withdrawal_id: 'withdrawal_id',
@@ -29,9 +29,9 @@ describe('resource withdrawal', () => {
     const response = await client.exchangeProtection.withdrawal.scan({
       account: {
         account_id: 'account_id',
+        account_creation_timestamp: '2019-12-27T18:11:19.117Z',
+        user_age: 1,
         user_country_code: 'user_country_code',
-        age_in_years: 1,
-        created: '2019-12-27T18:11:19.117Z',
       },
       event_time: '2019-12-27T18:11:19.117Z',
       onchain_transaction: { amount: 1, asset: 'asset', chain: 'ethereum', to_address: 'to_address' },

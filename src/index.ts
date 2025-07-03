@@ -73,6 +73,8 @@ import {
   UsdDiff,
   ValidateAddress,
   ValidateBulkAddresses,
+  ValidateBulkExtendedAddressesRequest,
+  ValidateBulkExtendedAddressesResponse,
 } from './resources/evm/evm';
 import { ExchangeProtection } from './resources/exchange-protection/exchange-protection';
 import { Solana } from './resources/solana/solana';
@@ -145,6 +147,8 @@ export interface ClientOptions {
    *
    * Note that request timeouts are retried by default, so in a worst-case scenario you may wait
    * much longer than this timeout before the promise succeeds or fails.
+   *
+   * @unit milliseconds
    */
   timeout?: number | undefined;
 
@@ -389,6 +393,8 @@ export declare namespace Blockaid {
     type UsdDiff as UsdDiff,
     type ValidateAddress as ValidateAddress,
     type ValidateBulkAddresses as ValidateBulkAddresses,
+    type ValidateBulkExtendedAddressesRequest as ValidateBulkExtendedAddressesRequest,
+    type ValidateBulkExtendedAddressesResponse as ValidateBulkExtendedAddressesResponse,
   };
 
   export { Solana as Solana };

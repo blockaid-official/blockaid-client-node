@@ -36,6 +36,8 @@ export {
   type UsdDiff,
   type ValidateAddress,
   type ValidateBulkAddresses,
+  type ValidateBulkExtendedAddressesRequest,
+  type ValidateBulkExtendedAddressesResponse,
 } from './evm/evm';
 export { ExchangeProtection } from './exchange-protection/exchange-protection';
 export { Scan, type ScanStatusResponse, type ScanStatusParams } from './scan';

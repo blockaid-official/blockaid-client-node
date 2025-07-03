@@ -95,14 +95,13 @@ export namespace BitcoinTransactionScanResponse {
      * Mapping between the address of an account to the assets diff during the
      * transaction
      */
-    assets_diffs?: Record<
-      string,
-      Array<
+    assets_diffs?: {
+      [key: string]: Array<
         | BitcoinSimulationResult.BitcoinNativeAssetDiff
         | BitcoinSimulationResult.BitcoinInscriptionAssetDiff
         | BitcoinSimulationResult.BitcoinRunesAssetDiff
-      >
-    >;
+      >;
+    };
   }
 
   export namespace BitcoinSimulationResult {
