@@ -8,6 +8,27 @@ export class Transaction extends APIResource {
    * Gets a transaction and returns a full security assessment indicating whether or
    * not the transaction is malicious, along with textual reasons explaining why it
    * was flagged as such.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.chainAgnostic.transaction.scan({
+   *     data: {
+   *       chain: 'bitcoin',
+   *       asset: { symbol: 'BTC' },
+   *       to: 'bc1qanrfutwqh854g74lqrygr55jkgf99em4lpfm80',
+   *       amount: 1,
+   *     },
+   *     metadata: {
+   *       account: { account_id: '1' },
+   *       connection: {
+   *         user_agent: '1',
+   *         ip_address: '1.1.1.1',
+   *       },
+   *     },
+   *     options: ['validation'],
+   *   });
+   * ```
    */
   scan(body: TransactionScanParams, options?: Core.RequestOptions): Core.APIPromise<TransactionScanResponse> {
     return this._client.post('/v0/transaction/scan', { body, ...options });
