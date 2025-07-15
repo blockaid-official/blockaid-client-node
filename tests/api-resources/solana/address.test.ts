@@ -12,7 +12,6 @@ describe('resource address', () => {
   test('scan: only required params', async () => {
     const responsePromise = client.solana.address.scan({
       address: '2ojv9BAiHUrvsm9gxDe7fJSzbNZSJcxZvf8dqmWGHG8S',
-      metadata: {},
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -26,7 +25,6 @@ describe('resource address', () => {
   test('scan: required and optional params', async () => {
     const response = await client.solana.address.scan({
       address: '2ojv9BAiHUrvsm9gxDe7fJSzbNZSJcxZvf8dqmWGHG8S',
-      metadata: { url: 'https://example.com' },
       chain: 'mainnet',
     });
   });

@@ -2406,7 +2406,7 @@ export namespace MessageScanResponse {
       /**
        * Verdict of the validation
        */
-      result_type: 'Benign' | 'Warning' | 'Malicious';
+      result_type: 'Benign' | 'Warning' | 'Malicious' | 'Error';
     }
 
     export namespace Validation {
