@@ -1261,6 +1261,12 @@ export interface TokenSnapshotFullParams {
    * Number of tokens to return in a page
    */
   size?: number;
+
+  /**
+   * Filter tokens by type. Allowed values are "Fungible" or "NonFungible". If not
+   * provided, all types will be included.
+   */
+  token_type?: 'Fungible' | 'NonFungible' | null;
 }
 
 export declare namespace TokenSnapshot {

@@ -41,6 +41,11 @@ describe('resource tokenSnapshot', () => {
   });
 
   test('full: required and optional params', async () => {
-    const response = await client.tokenSnapshot.full({ chain: 'arbitrum', cursor: 'cursor', size: 1 });
+    const response = await client.tokenSnapshot.full({
+      chain: 'arbitrum',
+      cursor: 'cursor',
+      size: 1,
+      token_type: 'Fungible',
+    });
   });
 });
