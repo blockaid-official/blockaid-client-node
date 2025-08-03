@@ -1767,12 +1767,12 @@ export namespace TransactionSimulationError {
     /**
      * The current balance of the account
      */
-    current_balance?: number;
+    current_balance?: string;
 
     /**
      * The required balance of the account
      */
-    required_balance?: number;
+    required_balance?: string;
   }
 
   export namespace GeneralInsufficientFundsErrorDetails {
