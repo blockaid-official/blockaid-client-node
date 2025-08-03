@@ -11,7 +11,12 @@ const client = new Blockaid({
 describe('resource transaction', () => {
   test('scan: only required params', async () => {
     const responsePromise = client.chainAgnostic.transaction.scan({
-      data: { amount: 1, asset: { address: 'address' }, chain: 'ethereum', to: 'to' },
+      data: {
+        amount: 1,
+        asset: { symbol: 'BTC' },
+        chain: 'bitcoin',
+        to: 'bc1qanrfutwqh854g74lqrygr55jkgf99em4lpfm80',
+      },
       metadata: {},
       options: ['validation'],
     });
@@ -26,15 +31,21 @@ describe('resource transaction', () => {
 
   test('scan: required and optional params', async () => {
     const response = await client.chainAgnostic.transaction.scan({
-      data: { amount: 1, asset: { address: 'address' }, chain: 'ethereum', to: 'to', from: 'from' },
+      data: {
+        amount: 1,
+        asset: { symbol: 'BTC' },
+        chain: 'bitcoin',
+        to: 'bc1qanrfutwqh854g74lqrygr55jkgf99em4lpfm80',
+        from: 'from',
+      },
       metadata: {
         account: {
-          account_id: 'account_id',
+          account_id: '1',
           account_creation_timestamp: '2019-12-27T18:11:19.117Z',
           user_age: 1,
           user_country_code: 'user_country_code',
         },
-        connection: { ip_address: 'ip_address', user_agent: 'user_agent' },
+        connection: { ip_address: '1.1.1.1', user_agent: '1' },
       },
       options: ['validation'],
     });

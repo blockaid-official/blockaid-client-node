@@ -145,15 +145,14 @@ export namespace MessageScanResponse {
       /**
        * Ownership diffs of the account addresses
        */
-      assets_ownership_diff: Record<
-        string,
-        Array<
+      assets_ownership_diff: {
+        [key: string]: Array<
           | Simulation.SolanaNativeSolOwnershipDiff
           | Simulation.SolanaStakedSolOwnershipDiff
           | Simulation.SolanaFungibleSolOwnershipDiff
           | Simulation.SolanaNonFungibleSolOwnershipDiff
-        >
-      >;
+        >;
+      };
 
       /**
        * Details of addresses involved in the transaction
@@ -172,28 +171,26 @@ export namespace MessageScanResponse {
        * Mapping between the address of an account to the assets diff during the
        * transaction
        */
-      assets_diff?: Record<
-        string,
-        Array<
+      assets_diff?: {
+        [key: string]: Array<
           | Simulation.SolanaNativeAssetDiff
           | Simulation.SolanaSplFungibleAssetDiff
           | Simulation.SolanaSplNonFungibleAssetDiff
           | Simulation.SolanaCnftAssetDiff
-        >
-      >;
+        >;
+      };
 
       /**
        * Mapping between the address of an account to the exposure of the assets during
        * the transaction
        */
-      delegations?: Record<
-        string,
-        Array<
+      delegations?: {
+        [key: string]: Array<
           | Simulation.SolanaCnftDelegation
           | Simulation.SolanaFungibleSplTokenDelegation
           | Simulation.SolanaNonFungibleSplTokenDelegation
-        >
-      >;
+        >;
+      };
     }
 
     export namespace Simulation {
@@ -239,7 +236,7 @@ export namespace MessageScanResponse {
         /**
          * Total USD exposure for each of the spender addresses during the transaction
          */
-        total_usd_exposure?: Record<string, number>;
+        total_usd_exposure?: { [key: string]: number };
       }
 
       export namespace AccountSummary {
@@ -2409,7 +2406,7 @@ export namespace MessageScanResponse {
       /**
        * Verdict of the validation
        */
-      result_type: 'Benign' | 'Warning' | 'Malicious';
+      result_type: 'Benign' | 'Warning' | 'Malicious' | 'Error';
     }
 
     export namespace Validation {

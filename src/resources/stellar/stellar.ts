@@ -220,7 +220,7 @@ export namespace StellarTransactionScanResponse {
     /**
      * Ownership diffs of the account addresses
      */
-    assets_ownership_diff: Record<string, Array<StellarSimulationResult.AssetsOwnershipDiff>>;
+    assets_ownership_diff: { [key: string]: Array<StellarSimulationResult.AssetsOwnershipDiff> };
 
     status: 'Success';
 
@@ -233,26 +233,24 @@ export namespace StellarTransactionScanResponse {
      * Mapping between the address of an account to the assets diff during the
      * transaction
      */
-    assets_diffs?: Record<
-      string,
-      Array<
+    assets_diffs?: {
+      [key: string]: Array<
         | StellarSimulationResult.StellarLegacyAssetDiff
         | StellarSimulationResult.StellarNativeAssetDiff
         | StellarSimulationResult.StellarContractAssetDiff
-      >
-    >;
+      >;
+    };
 
     /**
      * Mapping between the address of an account to the exposure of the assets during
      * the transaction
      */
-    exposures?: Record<
-      string,
-      Array<
+    exposures?: {
+      [key: string]: Array<
         | StellarSimulationResult.StellarLegacyAssetExposure
         | StellarSimulationResult.StellarNativeAssetExposure
-      >
-    >;
+      >;
+    };
   }
 
   export namespace StellarSimulationResult {
@@ -290,7 +288,7 @@ export namespace StellarTransactionScanResponse {
       /**
        * Total USD exposure for each of the spender addresses during the transaction
        */
-      total_usd_exposure?: Record<string, number>;
+      total_usd_exposure?: { [key: string]: number };
     }
 
     export namespace AccountSummary {
@@ -300,7 +298,7 @@ export namespace StellarTransactionScanResponse {
         /**
          * Mapping between the spender address and the exposure of the asset
          */
-        spenders?: Record<string, StellarAPI.StellarSingleAssetExposure>;
+        spenders?: { [key: string]: StellarAPI.StellarSingleAssetExposure };
       }
 
       export interface StellarNativeAssetExposure {
@@ -309,7 +307,7 @@ export namespace StellarTransactionScanResponse {
         /**
          * Mapping between the spender address and the exposure of the asset
          */
-        spenders?: Record<string, StellarAPI.StellarSingleAssetExposure>;
+        spenders?: { [key: string]: StellarAPI.StellarSingleAssetExposure };
       }
 
       export interface AccountOwnershipsDiff {
@@ -493,7 +491,7 @@ export namespace StellarTransactionScanResponse {
       /**
        * Mapping between the spender address and the exposure of the asset
        */
-      spenders?: Record<string, StellarAPI.StellarSingleAssetExposure>;
+      spenders?: { [key: string]: StellarAPI.StellarSingleAssetExposure };
     }
 
     export interface StellarNativeAssetExposure {
@@ -502,7 +500,7 @@ export namespace StellarTransactionScanResponse {
       /**
        * Mapping between the spender address and the exposure of the asset
        */
-      spenders?: Record<string, StellarAPI.StellarSingleAssetExposure>;
+      spenders?: { [key: string]: StellarAPI.StellarSingleAssetExposure };
     }
   }
 

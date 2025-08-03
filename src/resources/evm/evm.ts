@@ -5,7 +5,12 @@ import * as EvmAPI from './evm';
 import * as AddressAPI from './address';
 import { Address, AddressReportResponse, AddressScanParams } from './address';
 import * as AddressBulkAPI from './address-bulk';
-import { AddressBulk, AddressBulkScanParams, AddressBulkScanResponse } from './address-bulk';
+import {
+  AddressBulk,
+  AddressBulkScanExtendedParams,
+  AddressBulkScanParams,
+  AddressBulkScanResponse,
+} from './address-bulk';
 import * as JsonRpcAPI from './json-rpc';
 import { JsonRpc, JsonRpcScanParams } from './json-rpc';
 import * as PostTransactionAPI from './post-transaction';
@@ -76,7 +81,7 @@ export interface AccountSummary {
   /**
    * Total usd exposure related to the account address
    */
-  total_usd_exposure: Record<string, string>;
+  total_usd_exposure: { [key: string]: string };
 
   /**
    * All assets traces related to the account address
@@ -240,7 +245,7 @@ export namespace AccountSummary {
      * dictionary of spender addresses where the exposure has changed during this
      * transaction for the current address and asset
      */
-    spenders: Record<string, EvmAPI.Erc20Exposure>;
+    spenders: { [key: string]: EvmAPI.Erc20Exposure };
   }
 
   export interface Erc721AddressExposure {
@@ -258,7 +263,7 @@ export namespace AccountSummary {
      * dictionary of spender addresses where the exposure has changed during this
      * transaction for the current address and asset
      */
-    spenders: Record<string, EvmAPI.Erc721Exposure>;
+    spenders: { [key: string]: EvmAPI.Erc721Exposure };
   }
 
   export interface Erc1155AddressExposure {
@@ -276,7 +281,7 @@ export namespace AccountSummary {
      * dictionary of spender addresses where the exposure has changed during this
      * transaction for the current address and asset
      */
-    spenders: Record<string, EvmAPI.Erc1155Exposure>;
+    spenders: { [key: string]: EvmAPI.Erc1155Exposure };
   }
 
   export interface Erc20AssetTrace {
@@ -1193,40 +1198,38 @@ export interface TransactionSimulation {
    * a dictionary including additional information about each relevant address in the
    * transaction.
    */
-  address_details: Record<string, TransactionSimulation.AddressDetails>;
+  address_details: { [key: string]: TransactionSimulation.AddressDetails };
 
   /**
    * dictionary describes the assets differences as a result of this transaction for
    * every involved address
    */
-  assets_diffs: Record<
-    string,
-    Array<
+  assets_diffs: {
+    [key: string]: Array<
       | TransactionSimulation.Erc20AddressAssetDiff
       | TransactionSimulation.Erc721AddressAssetDiff
       | TransactionSimulation.Erc1155AddressAssetDiff
       | TransactionSimulation.NativeAddressAssetDiff
-    >
-  >;
+    >;
+  };
 
   /**
    * dictionary describes the exposure differences as a result of this transaction
    * for every involved address (as a result of any approval / setApproval / permit
    * function)
    */
-  exposures: Record<
-    string,
-    Array<
+  exposures: {
+    [key: string]: Array<
       | TransactionSimulation.Erc20AddressExposure
       | TransactionSimulation.Erc721AddressExposure
       | TransactionSimulation.Erc1155AddressExposure
-    >
-  >;
+    >;
+  };
 
   /**
    * Session keys created in this transaction per address
    */
-  session_key: Record<string, Array<TransactionSimulation.SessionKey>>;
+  session_key: { [key: string]: Array<TransactionSimulation.SessionKey> };
 
   /**
    * A string indicating if the simulation was successful or not.
@@ -1237,28 +1240,27 @@ export interface TransactionSimulation {
    * dictionary represents the usd value each address gained / lost during this
    * transaction
    */
-  total_usd_diff: Record<string, UsdDiff>;
+  total_usd_diff: { [key: string]: UsdDiff };
 
   /**
    * a dictionary representing the usd value each address is exposed to, split by
    * spenders
    */
-  total_usd_exposure: Record<string, Record<string, string>>;
+  total_usd_exposure: { [key: string]: { [key: string]: string } };
 
   /**
    * Describes the state differences as a result of this transaction for every
    * involved address
    */
-  contract_management?: Record<
-    string,
-    Array<
+  contract_management?: {
+    [key: string]: Array<
       | TransactionSimulation.ProxyUpgradeManagement
       | TransactionSimulation.OwnershipChangeManagement
       | TransactionSimulation.ModulesChangeManagement
       | TransactionSimulation.SetCodeAccountManagement
       | TransactionSimulation.ContractCreation
-    >
-  >;
+    >;
+  };
 
   /**
    * The parameters of the transaction that was simulated.
@@ -1387,7 +1389,7 @@ export namespace TransactionSimulation {
      * dictionary of spender addresses where the exposure has changed during this
      * transaction for the current address and asset
      */
-    spenders: Record<string, EvmAPI.Erc20Exposure>;
+    spenders: { [key: string]: EvmAPI.Erc20Exposure };
   }
 
   export interface Erc721AddressExposure {
@@ -1405,7 +1407,7 @@ export namespace TransactionSimulation {
      * dictionary of spender addresses where the exposure has changed during this
      * transaction for the current address and asset
      */
-    spenders: Record<string, EvmAPI.Erc721Exposure>;
+    spenders: { [key: string]: EvmAPI.Erc721Exposure };
   }
 
   export interface Erc1155AddressExposure {
@@ -1423,7 +1425,7 @@ export namespace TransactionSimulation {
      * dictionary of spender addresses where the exposure has changed during this
      * transaction for the current address and asset
      */
-    spenders: Record<string, EvmAPI.Erc1155Exposure>;
+    spenders: { [key: string]: EvmAPI.Erc1155Exposure };
   }
 
   export interface SessionKey {
@@ -1737,7 +1739,8 @@ export interface TransactionSimulationError {
   error_details?:
     | TransactionSimulationError.GeneralInsufficientFundsErrorDetails
     | TransactionSimulationError.GeneralInvalidAddressErrorDetails
-    | TransactionSimulationError.GenericErrorDetails;
+    | TransactionSimulationError.GenericErrorDetails
+    | TransactionSimulationError.UnsupportedEip712MessageErrorDetails;
 }
 
 export namespace TransactionSimulationError {
@@ -1764,12 +1767,12 @@ export namespace TransactionSimulationError {
     /**
      * The current balance of the account
      */
-    current_balance?: number;
+    current_balance?: string;
 
     /**
      * The required balance of the account
      */
-    required_balance?: number;
+    required_balance?: string;
   }
 
   export namespace GeneralInsufficientFundsErrorDetails {
@@ -1849,6 +1852,23 @@ export namespace TransactionSimulationError {
      * The error code
      */
     code: string;
+  }
+
+  export interface UnsupportedEip712MessageErrorDetails {
+    /**
+     * The type of the model
+     */
+    code: 'UNSUPPORTED_EIP712_MESSAGE';
+
+    /**
+     * The domain name that is unsupported
+     */
+    domain_name: string;
+
+    /**
+     * The message type that is unsupported
+     */
+    message_type: string;
   }
 }
 
@@ -1993,6 +2013,153 @@ export namespace ValidateBulkAddresses {
   }
 }
 
+export interface ValidateBulkExtendedAddressesRequest {
+  /**
+   * List of addresses to validate.
+   */
+  addresses: Array<string>;
+
+  /**
+   * The chain name
+   */
+  chain: TransactionScanSupportedChain;
+
+  /**
+   * Object of additional information to validate against.
+   */
+  metadata: ValidateBulkExtendedAddressesRequest.Metadata;
+}
+
+export namespace ValidateBulkExtendedAddressesRequest {
+  /**
+   * Object of additional information to validate against.
+   */
+  export interface Metadata {
+    account: Metadata.Account;
+
+    connection: Metadata.Connection;
+  }
+
+  export namespace Metadata {
+    export interface Account {
+      account_id: string;
+
+      user_country_code: string;
+
+      age_in_years?: number;
+
+      created?: string;
+    }
+
+    export interface Connection {
+      ip_address: string;
+
+      user_agent: string;
+    }
+  }
+}
+
+export interface ValidateBulkExtendedAddressesResponse {
+  results: Array<ValidateBulkExtendedAddressesResponse.Result>;
+}
+
+export namespace ValidateBulkExtendedAddressesResponse {
+  export interface Result {
+    /**
+     * Address to validate.
+     */
+    address: string;
+
+    /**
+     * Label of the address.
+     */
+    label: string;
+
+    /**
+     * Validation result.
+     */
+    validation: Result.Validation;
+  }
+
+  export namespace Result {
+    /**
+     * Validation result.
+     */
+    export interface Validation {
+      /**
+       * An enumeration.
+       */
+      result_type: 'Malicious' | 'Warning' | 'Benign' | 'Error';
+
+      /**
+       * A list of textual features about this address that can be presented to the user.
+       */
+      features?: Array<Validation.Feature>;
+    }
+
+    export namespace Validation {
+      export interface Feature {
+        /**
+         * Description of the feature
+         */
+        description: string;
+
+        /**
+         * Feature identifier
+         */
+        feature_id:
+          | 'VERIFIED_CONTRACT'
+          | 'UNVERIFIED_CONTRACT'
+          | 'HIGH_TRADE_VOLUME'
+          | 'MARKET_PLACE_SALES_HISTORY'
+          | 'HIGH_REPUTATION_TOKEN'
+          | 'ONCHAIN_ACTIVITY_VALIDATOR'
+          | 'STATIC_CODE_SIGNATURE'
+          | 'KNOWN_MALICIOUS'
+          | 'METADATA'
+          | 'AIRDROP_PATTERN'
+          | 'IMPERSONATOR'
+          | 'INORGANIC_VOLUME'
+          | 'DYNAMIC_ANALYSIS'
+          | 'CONCENTRATED_SUPPLY_DISTRIBUTION'
+          | 'HONEYPOT'
+          | 'INSUFFICIENT_LOCKED_LIQUIDITY'
+          | 'UNSTABLE_TOKEN_PRICE'
+          | 'RUGPULL'
+          | 'WASH_TRADING'
+          | 'CONSUMER_OVERRIDE'
+          | 'INAPPROPRIATE_CONTENT'
+          | 'HIGH_TRANSFER_FEE'
+          | 'HIGH_BUY_FEE'
+          | 'HIGH_SELL_FEE'
+          | 'UNSELLABLE_TOKEN'
+          | 'IS_MINTABLE'
+          | 'REBASE_TOKEN'
+          | 'LIQUID_STAKING_TOKEN'
+          | 'MODIFIABLE_TAXES'
+          | 'CAN_BLACKLIST'
+          | 'CAN_WHITELIST'
+          | 'HAS_TRADING_COOLDOWN'
+          | 'EXTERNAL_FUNCTIONS'
+          | 'HIDDEN_OWNER'
+          | 'TRANSFER_PAUSEABLE'
+          | 'OWNERSHIP_RENOUNCED'
+          | 'OWNER_CAN_CHANGE_BALANCE'
+          | 'PROXY_CONTRACT'
+          | 'SIMILAR_MALICIOUS_CONTRACT'
+          | 'FAKE_VOLUME'
+          | 'HIDDEN_SUPPLY_BY_KEY_HOLDER'
+          | 'FAKE_TRADE_MAKER_COUNT';
+
+        /**
+         * Type of the feature
+         */
+        type: 'Benign' | 'Info' | 'Warning' | 'Malicious';
+      }
+    }
+  }
+}
+
 Evm.JsonRpc = JsonRpc;
 Evm.Transaction = Transaction;
 Evm.TransactionBulk = TransactionBulk;
@@ -2033,6 +2200,8 @@ export declare namespace Evm {
     type UsdDiff as UsdDiff,
     type ValidateAddress as ValidateAddress,
     type ValidateBulkAddresses as ValidateBulkAddresses,
+    type ValidateBulkExtendedAddressesRequest as ValidateBulkExtendedAddressesRequest,
+    type ValidateBulkExtendedAddressesResponse as ValidateBulkExtendedAddressesResponse,
   };
 
   export { JsonRpc as JsonRpc, type JsonRpcScanParams as JsonRpcScanParams };
@@ -2077,5 +2246,6 @@ export declare namespace Evm {
     AddressBulk as AddressBulk,
     type AddressBulkScanResponse as AddressBulkScanResponse,
     type AddressBulkScanParams as AddressBulkScanParams,
+    type AddressBulkScanExtendedParams as AddressBulkScanExtendedParams,
   };
 }

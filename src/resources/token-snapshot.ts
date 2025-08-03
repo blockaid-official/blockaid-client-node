@@ -71,7 +71,7 @@ export namespace TokenSnapshotDiffResponse {
     /**
      * Dictionary of detected attacks found during the scan
      */
-    attack_types: Record<string, Item.AttackTypes>;
+    attack_types: { [key: string]: Item.AttackTypes };
 
     /**
      * Blockchain network
@@ -662,7 +662,7 @@ export namespace TokenSnapshotFullResponse {
     /**
      * Dictionary of detected attacks found during the scan
      */
-    attack_types: Record<string, Item.AttackTypes>;
+    attack_types: { [key: string]: Item.AttackTypes };
 
     /**
      * Blockchain network
@@ -1261,6 +1261,12 @@ export interface TokenSnapshotFullParams {
    * Number of tokens to return in a page
    */
   size?: number;
+
+  /**
+   * Filter tokens by type. Allowed values are "Fungible" or "NonFungible". If not
+   * provided, all types will be included.
+   */
+  token_type?: 'Fungible' | 'NonFungible' | null;
 }
 
 export declare namespace TokenSnapshot {

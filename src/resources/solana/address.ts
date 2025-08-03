@@ -11,7 +11,6 @@ export class Address extends APIResource {
    * ```ts
    * const response = await client.solana.address.scan({
    *   address: '2ojv9BAiHUrvsm9gxDe7fJSzbNZSJcxZvf8dqmWGHG8S',
-   *   metadata: { url: 'https://example.com' },
    *   chain: 'mainnet',
    * });
    * ```
@@ -23,33 +22,23 @@ export class Address extends APIResource {
 
 export interface AddressScanResponse {
   /**
-   * Features about the result
+   * Verdict of the validation
    */
-  features: Array<AddressScanResponse.Feature>;
+  result_type: 'Benign' | 'Warning' | 'Malicious' | 'Error';
 
   /**
-   * Verdict of Result
+   * A list of textual features about this transaction that can be presented to the
+   * user.
    */
-  result_type: 'Benign' | 'Warning' | 'Malicious';
+  features?: Array<AddressScanResponse.Feature>;
 }
 
 export namespace AddressScanResponse {
   export interface Feature {
-    /**
-     * Address the feature refers to
-     */
-    address: string | null;
-
-    /**
-     * Textual description
-     */
     description: string;
 
     feature_id: string;
 
-    /**
-     * Feature Classification
-     */
     type: 'Benign' | 'Warning' | 'Malicious' | 'Info';
   }
 }
@@ -57,18 +46,7 @@ export namespace AddressScanResponse {
 export interface AddressScanParams {
   address: string;
 
-  metadata: AddressScanParams.Metadata;
-
   chain?: string;
-}
-
-export namespace AddressScanParams {
-  export interface Metadata {
-    /**
-     * URL of the dApp that originated the transaction
-     */
-    url?: string | null;
-  }
 }
 
 export declare namespace Address {
