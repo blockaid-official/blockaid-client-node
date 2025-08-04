@@ -63,7 +63,8 @@ export interface JsonRpcScanParams {
   metadata: JsonRpcScanParams.Metadata;
 
   /**
-   * The address of the account (wallet) received the request in hex string format
+   * The address of the account (wallet) that received the request, in hex string
+   * format
    */
   account_address?: string;
 
