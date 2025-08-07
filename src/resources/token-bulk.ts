@@ -135,6 +135,12 @@ export namespace TokenBulkScanResponse {
       burned_liquidity_percentage?: number | null;
 
       /**
+       * Percentage of token's supply held by sniper bots (0.0 to 100.0). Currently
+       * available for Solana only.
+       */
+      dev_holding_percentage?: number | null;
+
+      /**
        * Amount of token holders
        */
       holders_count?: number | null;
@@ -143,6 +149,12 @@ export namespace TokenBulkScanResponse {
        * Token liquidity locked percentage
        */
       locked_liquidity_percentage?: number | null;
+
+      /**
+       * Percentage of token's supply held in known developer wallets (0.0 to 100.0).
+       * Currently available for Solana only.
+       */
+      snipers_holding_percentage?: number | null;
 
       /**
        * token supply
