@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.59.0 (2025-08-10)
+
+Full Changelog: [v0.58.0...v0.59.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.58.0...v0.59.0)
+
+### Features
+
+* **api:** api update ([23991d3](https://github.com/blockaid-official/blockaid-client-node/commit/23991d3ae063b4138a3f47be164ec5dd10dad3fe))
+* **api:** api update ([54b581a](https://github.com/blockaid-official/blockaid-client-node/commit/54b581aeb8100bea378c402b492d6f5400542bf2))
+* **api:** api update ([56b414e](https://github.com/blockaid-official/blockaid-client-node/commit/56b414e78cb163492fc390a9cfc90c3233cef58b))
+* **api:** api update ([6cb1b7d](https://github.com/blockaid-official/blockaid-client-node/commit/6cb1b7d5ed650c2f9c77271af3f94a27f768c2ba))
+* **api:** api update ([eb6b8f1](https://github.com/blockaid-official/blockaid-client-node/commit/eb6b8f1db9facc27829f083cb568b021f48c3a6f))
+
+
+### Chores
+
+* **internal:** move publish config ([08e7210](https://github.com/blockaid-official/blockaid-client-node/commit/08e7210cfa9e19b78a63f2eadca84366516b93dc))
+* **internal:** update comment in script ([65c906d](https://github.com/blockaid-official/blockaid-client-node/commit/65c906df0f7892b757f725ac794000aadb325aac))
+* update @stainless-api/prism-cli to v5.15.0 ([bcf6e06](https://github.com/blockaid-official/blockaid-client-node/commit/bcf6e06ee01d1f1d57ed7b40860a3e72325a26f8))
+
 ## 0.58.0 (2025-06-18)
 
 Full Changelog: [v0.57.0...v0.58.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.57.0...v0.58.0)
