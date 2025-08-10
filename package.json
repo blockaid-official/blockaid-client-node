@@ -1,6 +1,6 @@
 {
   "name": "@blockaid/client",
-  "version": "0.58.0",
+  "version": "0.59.0",
   "description": "The official TypeScript library for the Blockaid API",
   "author": "Blockaid <feedback@blockaid.io>",
   "types": "dist/index.d.ts",
@@ -13,6 +13,9 @@
     "**/*"
   ],
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "./scripts/test",
     "build": "./scripts/build",

@@ -173,14 +173,26 @@ export namespace TransactionReportParams {
 
       export interface JsonRpc {
         /**
-         * The method of the JSON-RPC request
+         * An enumeration.
          */
-        method: string;
+        method:
+          | 'eth_sendTransaction'
+          | 'eth_sendRawTransaction'
+          | 'eth_signTransaction'
+          | 'eth_signTypedData'
+          | 'eth_signTypedData_v1'
+          | 'eth_signTypedData_v2'
+          | 'eth_signTypedData_v3'
+          | 'eth_signTypedData_v4'
+          | 'eth_sendUserOperation'
+          | 'personal_sign'
+          | 'eth_sign'
+          | 'wallet_sendCalls';
 
         /**
          * The parameters of the JSON-RPC request in JSON format
          */
-        params: Array<unknown>;
+        params: Array<unknown | string>;
       }
 
       /**
