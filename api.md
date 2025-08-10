@@ -344,3 +344,14 @@ Types:
 Methods:
 
 - <code title="post /v0/transaction/scan">client.chainAgnostic.transaction.<a href="./src/resources/chain-agnostic/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+
+# Enrichment
+
+Types:
+
+- <code><a href="./src/resources/enrichment.ts">EnrichmentReportAccount</a></code>
+- <code><a href="./src/resources/enrichment.ts">EnrichmentReportAddress</a></code>
+- <code><a href="./src/resources/enrichment.ts">EnrichmentReportAddresses</a></code>
+- <code><a href="./src/resources/enrichment.ts">EnrichmentReportMetadata</a></code>
+- <code><a href="./src/resources/enrichment.ts">EnrichmentReportSource</a></code>
+- <code><a href="./src/resources/enrichment.ts">EnrichmentRequest</a></code>
