@@ -7,6 +7,15 @@ export {
 } from './bitcoin/bitcoin';
 export { ChainAgnostic } from './chain-agnostic/chain-agnostic';
 export {
+  Enrichment,
+  type EnrichmentReportAccount,
+  type EnrichmentReportAddress,
+  type EnrichmentReportAddresses,
+  type EnrichmentReportMetadata,
+  type EnrichmentReportSource,
+  type EnrichmentRequest,
+} from './enrichment';
+export {
   Evm,
   type AccountSummary,
   type AddressReportParams,

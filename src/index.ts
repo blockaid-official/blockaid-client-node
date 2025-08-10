@@ -5,6 +5,15 @@ import * as Core from './core';
 import * as Errors from './error';
 import * as Uploads from './uploads';
 import * as API from './resources/index';
+import {
+  Enrichment,
+  EnrichmentReportAccount,
+  EnrichmentReportAddress,
+  EnrichmentReportAddresses,
+  EnrichmentReportMetadata,
+  EnrichmentReportSource,
+  EnrichmentRequest,
+} from './resources/enrichment';
 import { Scan, ScanStatusParams, ScanStatusResponse } from './resources/scan';
 import {
   Site,
@@ -265,6 +274,7 @@ export class Blockaid extends Core.APIClient {
   tokenSnapshot: API.TokenSnapshot = new API.TokenSnapshot(this);
   exchangeProtection: API.ExchangeProtection = new API.ExchangeProtection(this);
   chainAgnostic: API.ChainAgnostic = new API.ChainAgnostic(this);
+  enrichment: API.Enrichment = new API.Enrichment(this);
 
   /**
    * Check whether the base URL is set to its default.
@@ -360,6 +370,7 @@ Blockaid.TokenWebhooks = TokenWebhooks;
 Blockaid.TokenSnapshot = TokenSnapshot;
 Blockaid.ExchangeProtection = ExchangeProtection;
 Blockaid.ChainAgnostic = ChainAgnostic;
+Blockaid.Enrichment = Enrichment;
 export declare namespace Blockaid {
   export type RequestOptions = Core.RequestOptions;
 
@@ -486,6 +497,16 @@ export declare namespace Blockaid {
   export { ExchangeProtection as ExchangeProtection };
 
   export { ChainAgnostic as ChainAgnostic };
+
+  export {
+    Enrichment as Enrichment,
+    type EnrichmentReportAccount as EnrichmentReportAccount,
+    type EnrichmentReportAddress as EnrichmentReportAddress,
+    type EnrichmentReportAddresses as EnrichmentReportAddresses,
+    type EnrichmentReportMetadata as EnrichmentReportMetadata,
+    type EnrichmentReportSource as EnrichmentReportSource,
+    type EnrichmentRequest as EnrichmentRequest,
+  };
 }
 
 export { toFile, fileFromPath } from './uploads';
