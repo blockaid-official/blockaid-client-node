@@ -112,7 +112,8 @@ export namespace JsonRpcScanParams {
       | 'eth_signTypedData_v4'
       | 'eth_sendUserOperation'
       | 'personal_sign'
-      | 'eth_sign';
+      | 'eth_sign'
+      | 'wallet_sendCalls';
 
     /**
      * The parameters of the JSON-RPC request in JSON format
