@@ -25,7 +25,9 @@ export class Transaction extends APIResource {
   }
 
   /**
-   * Scan Transaction
+   * Gets a transaction and returns a full simulation indicating what will happen in
+   * the transaction together with a recommended action and some textual reasons of
+   * why the transaction was flagged that way.
    *
    * @example
    * ```ts
