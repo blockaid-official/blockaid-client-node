@@ -10,7 +10,7 @@ const client = new Blockaid({
 
 describe('resource address', () => {
   test('scan: only required params', async () => {
-    const responsePromise = client.sui.address.scan({ address: {}, chain: 'mainnet' });
+    const responsePromise = client.sui.address.scan({ address: '0x2', chain: 'mainnet' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,6 +21,6 @@ describe('resource address', () => {
   });
 
   test('scan: required and optional params', async () => {
-    const response = await client.sui.address.scan({ address: {}, chain: 'mainnet' });
+    const response = await client.sui.address.scan({ address: '0x2', chain: 'mainnet' });
   });
 });

@@ -281,11 +281,18 @@ export namespace SuiTransactionScanResponse {
           creation_timestamp?: string | null;
 
           /**
+           * Address of the token's deployer
+           */
+          deployer?: string | null;
+
+          /**
            * URL of the token's logo
            */
           logo_url?: string | null;
 
           scam?: boolean | null;
+
+          total_supply?: number | null;
 
           /**
            * Type of the asset (`Coin`)
@@ -391,11 +398,18 @@ export namespace SuiTransactionScanResponse {
         creation_timestamp?: string | null;
 
         /**
+         * Address of the token's deployer
+         */
+        deployer?: string | null;
+
+        /**
          * URL of the token's logo
          */
         logo_url?: string | null;
 
         scam?: boolean | null;
+
+        total_supply?: number | null;
 
         /**
          * Type of the asset (`Coin`)
@@ -439,7 +453,7 @@ export namespace SuiTransactionScanResponse {
     /**
      * Verdict of the validation
      */
-    result_type: 'Benign' | 'Warning' | 'Malicious';
+    result_type: 'Benign' | 'Warning' | 'Malicious' | 'Error';
 
     status: 'Success';
   }
