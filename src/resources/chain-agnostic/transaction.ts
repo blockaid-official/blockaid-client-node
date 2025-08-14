@@ -276,7 +276,7 @@ export namespace TransactionScanParams {
       /**
        * User agent string from the client's browser or application
        */
-      user_agent: string;
+      user_agent?: string;
     }
   }
 }
