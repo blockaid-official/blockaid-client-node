@@ -2,7 +2,7 @@
 
 import { APIResource } from '../../resource';
 import * as WithdrawalAPI from './withdrawal';
-import { Withdrawal, WithdrawalScanParams, WithdrawalScanResponse } from './withdrawal';
+import { Withdrawal } from './withdrawal';
 
 export class ExchangeProtection extends APIResource {
   withdrawal: WithdrawalAPI.Withdrawal = new WithdrawalAPI.Withdrawal(this._client);
@@ -11,9 +11,5 @@ export class ExchangeProtection extends APIResource {
 ExchangeProtection.Withdrawal = Withdrawal;
 
 export declare namespace ExchangeProtection {
-  export {
-    Withdrawal as Withdrawal,
-    type WithdrawalScanResponse as WithdrawalScanResponse,
-    type WithdrawalScanParams as WithdrawalScanParams,
-  };
+  export { Withdrawal as Withdrawal };
 }

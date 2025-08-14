@@ -325,14 +325,6 @@ Methods:
 
 ## Withdrawal
 
-Types:
-
-- <code><a href="./src/resources/exchange-protection/withdrawal.ts">WithdrawalScanResponse</a></code>
-
-Methods:
-
-- <code title="post /v0/exchange/withdrawal/scan">client.exchangeProtection.withdrawal.<a href="./src/resources/exchange-protection/withdrawal.ts">scan</a>({ ...params }) -> WithdrawalScanResponse</code>
-
 # ChainAgnostic
 
 ## Transaction
