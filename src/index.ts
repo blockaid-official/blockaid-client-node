@@ -371,6 +371,7 @@ Blockaid.TokenSnapshot = TokenSnapshot;
 Blockaid.ExchangeProtection = ExchangeProtection;
 Blockaid.ChainAgnostic = ChainAgnostic;
 Blockaid.Enrichment = Enrichment;
+
 export declare namespace Blockaid {
   export type RequestOptions = Core.RequestOptions;
 
