@@ -170,12 +170,12 @@ export namespace TransactionReportParams {
           nonce?: string;
 
           /**
-           * The r value as hex string (excluding leading 0 digits)
+           * The r value as hex string
            */
           r?: string;
 
           /**
-           * The s value as hex string (excluding leading 0 digits)
+           * The s value as hex string
            */
           s?: string;
 
@@ -342,12 +342,12 @@ export namespace TransactionScanParams {
       nonce?: string;
 
       /**
-       * The r value as hex string (excluding leading 0 digits)
+       * The r value as hex string
        */
       r?: string;
 
       /**
-       * The s value as hex string (excluding leading 0 digits)
+       * The s value as hex string
        */
       s?: string;
 
