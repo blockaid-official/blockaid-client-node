@@ -640,6 +640,18 @@ export namespace AddressValidation {
   }
 }
 
+export interface Balance {
+  /**
+   * The raw value of the balance in hex string format
+   */
+  raw_value: string;
+
+  /**
+   * The value of the balance in decimal string format
+   */
+  value?: string;
+}
+
 export interface Erc1155Diff {
   /**
    * Indicates whether the token ID represents an arbitrary token from a collection,
@@ -862,6 +874,28 @@ export interface Erc721TokenDetails {
    * asset's symbol name
    */
   symbol?: string;
+}
+
+export interface MissingBalance {
+  /**
+   * The asset that is missing balance
+   */
+  asset: Erc20TokenDetails | NativeAssetDetails;
+
+  /**
+   * The account address's current balance of the asset
+   */
+  current_balance: Balance;
+
+  /**
+   * The account address's missing balance of the asset
+   */
+  missing_balance: Balance;
+
+  /**
+   * The required balance of the asset for this action
+   */
+  required_balance: Balance;
 }
 
 export interface NativeAddressAssetBalanceChangeDiff {
@@ -1263,9 +1297,19 @@ export interface TransactionSimulation {
   };
 
   /**
+   * Missing balances in the transaction
+   */
+  missing_balances?: Array<MissingBalance>;
+
+  /**
    * The parameters of the transaction that was simulated.
    */
   params?: TransactionSimulation.Params;
+
+  /**
+   * The number of times the simulation ran until success
+   */
+  simulation_run_count?: number;
 }
 
 export namespace TransactionSimulation {
@@ -2175,6 +2219,7 @@ export declare namespace Evm {
     type AccountSummary as AccountSummary,
     type AddressReportParams as AddressReportParams,
     type AddressValidation as AddressValidation,
+    type Balance as Balance,
     type Erc1155Diff as Erc1155Diff,
     type Erc1155Exposure as Erc1155Exposure,
     type Erc1155TokenDetails as Erc1155TokenDetails,
@@ -2184,6 +2229,7 @@ export declare namespace Evm {
     type Erc721Diff as Erc721Diff,
     type Erc721Exposure as Erc721Exposure,
     type Erc721TokenDetails as Erc721TokenDetails,
+    type MissingBalance as MissingBalance,
     type NativeAddressAssetBalanceChangeDiff as NativeAddressAssetBalanceChangeDiff,
     type NativeAssetDetails as NativeAssetDetails,
     type NativeAssetTrace as NativeAssetTrace,

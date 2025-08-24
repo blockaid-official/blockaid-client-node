@@ -86,6 +86,12 @@ export interface UserOperationScanParams {
   options?: Array<'validation' | 'simulation' | 'gas_estimation' | 'events'>;
 
   /**
+   * For simulations, determine whether to calculate missing balances in user
+   * operations.
+   */
+  should_calculate_missing_balance?: boolean;
+
+  /**
    * Simulate transactions using gas estimation result. This requires
    * "gas_estimation" option to be enabled.
    */
