@@ -5,6 +5,7 @@ Types:
 - <code><a href="./src/resources/evm/evm.ts">AccountSummary</a></code>
 - <code><a href="./src/resources/evm/evm.ts">AddressReportParams</a></code>
 - <code><a href="./src/resources/evm/evm.ts">AddressValidation</a></code>
+- <code><a href="./src/resources/evm/evm.ts">Balance</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155Diff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155Exposure</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc1155TokenDetails</a></code>
@@ -14,6 +15,7 @@ Types:
 - <code><a href="./src/resources/evm/evm.ts">Erc721Diff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc721Exposure</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc721TokenDetails</a></code>
+- <code><a href="./src/resources/evm/evm.ts">MissingBalance</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NativeAddressAssetBalanceChangeDiff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NativeAssetDetails</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NativeAssetTrace</a></code>
@@ -324,14 +326,6 @@ Methods:
 # ExchangeProtection
 
 ## Withdrawal
-
-Types:
-
-- <code><a href="./src/resources/exchange-protection/withdrawal.ts">WithdrawalScanResponse</a></code>
-
-Methods:
-
-- <code title="post /v0/exchange/withdrawal/scan">client.exchangeProtection.withdrawal.<a href="./src/resources/exchange-protection/withdrawal.ts">scan</a>({ ...params }) -> WithdrawalScanResponse</code>
 
 # ChainAgnostic
 

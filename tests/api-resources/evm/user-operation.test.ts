@@ -32,6 +32,15 @@ describe('resource userOperation', () => {
           call_data:
             '0x51945447000000000000000000000000aeed57a826a998f9388ce2fd6cdb0b6aa75e3d190000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000044095ea7b300000000000000000000000050a9266605ba303b659ff105919205570f2af971000000000000000000000000000000000000000000000000000000000000006400000000000000000000000000000000000000000000000000000000',
           call_gas_limit: '0x3c38',
+          eip7702_auth: {
+            address: 'address',
+            chainId: 'chainId',
+            eoa: 'eoa',
+            nonce: 'nonce',
+            r: 'r',
+            s: 's',
+            yParity: 'yParity',
+          },
           init_code: '0x',
           max_fee_per_gas: '0x218fe7',
           max_priority_fee_per_gas: '0xf4240',
@@ -49,6 +58,7 @@ describe('resource userOperation', () => {
       account_address: '0x77bA5AC3ca4864be26CA3112baDf07286CcC3324',
       block: '0x5c6fd5',
       options: ['simulation', 'validation'],
+      should_calculate_missing_balance: true,
       simulate_with_estimated_gas: true,
       state_override: {
         foo: {

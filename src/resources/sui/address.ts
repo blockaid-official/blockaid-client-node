@@ -5,12 +5,14 @@ import * as Core from '../../core';
 
 export class Address extends APIResource {
   /**
-   * Scan Address
+   * Gets an address and returns a full security assessment indicating weather or not
+   * this address is malicious as well as textual reasons of why the address was
+   * flagged that way.
    *
    * @example
    * ```ts
    * const response = await client.sui.address.scan({
-   *   address: {},
+   *   address: '0x2',
    *   chain: 'mainnet',
    * });
    * ```
@@ -24,7 +26,7 @@ export interface AddressScanResponse {
   /**
    * Verdict of the validation
    */
-  result_type: 'Benign' | 'Warning' | 'Malicious';
+  result_type: 'Benign' | 'Spam' | 'Warning' | 'Malicious' | 'Error';
 
   /**
    * A list of textual features about this transaction that can be presented to the
@@ -44,7 +46,7 @@ export namespace AddressScanResponse {
 }
 
 export interface AddressScanParams {
-  address: unknown;
+  address: string;
 
   chain: 'mainnet' | 'testnet' | 'devnet';
 }

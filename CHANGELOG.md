@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.60.0 (2025-08-24)
+
+Full Changelog: [v0.59.0...v0.60.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.59.0...v0.60.0)
+
+### Features
+
+* **api:** api update ([2ceccb0](https://github.com/blockaid-official/blockaid-client-node/commit/2ceccb0ed9c372c700228d88f57c76e25cf6934c))
+* **api:** api update ([7c9d948](https://github.com/blockaid-official/blockaid-client-node/commit/7c9d948cc0e4eb06dff9b0b6154c93f3fc7d8312))
+* **api:** api update ([bbd03c0](https://github.com/blockaid-official/blockaid-client-node/commit/bbd03c0590f9cffd84fc3950f41044dcef8d7421))
+* **api:** api update ([c0f84aa](https://github.com/blockaid-official/blockaid-client-node/commit/c0f84aaa01cac234f9210e88182fcae9f26179e8))
+* **api:** api update ([1e73540](https://github.com/blockaid-official/blockaid-client-node/commit/1e73540fb3514867b915ddd8cf26702a0aa6479e))
+* **api:** api update ([36cc78b](https://github.com/blockaid-official/blockaid-client-node/commit/36cc78b0f18531522accbbcd53ed12849b3114d0))
+
+
+### Chores
+
+* **deps:** update dependency node-fetch to v2.6.13 ([51c7988](https://github.com/blockaid-official/blockaid-client-node/commit/51c798812ddcf60bae8375f11d6b44942304d82f))
+* **internal:** formatting change ([1331ece](https://github.com/blockaid-official/blockaid-client-node/commit/1331ecebc4815f66fdb21d69b221db7e81e89782))
+* update CI script ([7a152c2](https://github.com/blockaid-official/blockaid-client-node/commit/7a152c20869532533206d762f1b8e0b6e593074e))
+
 ## 0.59.0 (2025-08-10)
 
 Full Changelog: [v0.58.0...v0.59.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.58.0...v0.59.0)

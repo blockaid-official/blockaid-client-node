@@ -136,6 +136,9 @@ export namespace TransactionBulkScanParams {
        */
       address: string;
 
+      /**
+       * The chain ID as hex string
+       */
       chainId?: string;
 
       /**
@@ -145,12 +148,24 @@ export namespace TransactionBulkScanParams {
        */
       eoa?: string;
 
+      /**
+       * The nonce value as hex string
+       */
       nonce?: string;
 
+      /**
+       * The r value as hex string
+       */
       r?: string;
 
+      /**
+       * The s value as hex string
+       */
       s?: string;
 
+      /**
+       * The yParity value as hex string
+       */
       yParity?: string;
     }
   }

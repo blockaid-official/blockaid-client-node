@@ -6,7 +6,8 @@ import * as SuiAPI from './sui';
 
 export class PostTransaction extends APIResource {
   /**
-   * Scan Post Transaction
+   * Scan a transaction that was already executed on chain, returns validation with
+   * features indicating address poisoning entities and malicious operators.
    *
    * @example
    * ```ts
@@ -35,7 +36,7 @@ export interface PostTransactionScanResponse {
    * Simulation result; Only present if simulation option is included in the request
    */
   simulation?:
-    | PostTransactionScanResponse.SuiSimulationResult
+    | PostTransactionScanResponse.SuiPostTransactionSimulationResult
     | PostTransactionScanResponse.SuiSimulationErrorSchema
     | null;
 
@@ -49,19 +50,21 @@ export interface PostTransactionScanResponse {
 }
 
 export namespace PostTransactionScanResponse {
-  export interface SuiSimulationResult {
+  export interface SuiPostTransactionSimulationResult {
     /**
      * Summary of the actions and asset transfers that were made by the requested
      * account address
      */
-    account_summary: SuiSimulationResult.AccountSummary;
+    account_summary: SuiPostTransactionSimulationResult.AccountSummary;
+
+    params: SuiPostTransactionSimulationResult.Params;
 
     status: 'Success';
 
     /**
      * Details of addresses involved in the transaction
      */
-    address_details?: Array<SuiSimulationResult.AddressDetail>;
+    address_details?: Array<SuiPostTransactionSimulationResult.AddressDetail>;
 
     /**
      * Mapping between the address of an account to the assets diff during the
@@ -69,14 +72,14 @@ export namespace PostTransactionScanResponse {
      */
     assets_diffs?: {
       [key: string]: Array<
-        | SuiSimulationResult.SuiNativeAssetDiff
-        | SuiSimulationResult.SuiNFTAssetDiff
-        | SuiSimulationResult.SuiCoinsAssetDiff
+        | SuiPostTransactionSimulationResult.SuiNativeAssetDiff
+        | SuiPostTransactionSimulationResult.SuiNFTAssetDiff
+        | SuiPostTransactionSimulationResult.SuiCoinsAssetDiff
       >;
     };
   }
 
-  export namespace SuiSimulationResult {
+  export namespace SuiPostTransactionSimulationResult {
     /**
      * Summary of the actions and asset transfers that were made by the requested
      * account address
@@ -198,11 +201,18 @@ export namespace PostTransactionScanResponse {
           creation_timestamp?: string | null;
 
           /**
+           * Address of the token's deployer
+           */
+          deployer?: string | null;
+
+          /**
            * URL of the token's logo
            */
           logo_url?: string | null;
 
           scam?: boolean | null;
+
+          total_supply?: number | null;
 
           /**
            * Type of the asset (`Coin`)
@@ -212,6 +222,18 @@ export namespace PostTransactionScanResponse {
           verified?: boolean | null;
         }
       }
+    }
+
+    export interface Params {
+      block_tag: string;
+
+      chain: string;
+
+      from: string;
+
+      value: string;
+
+      [k: string]: unknown;
     }
 
     export interface AddressDetail {
@@ -308,11 +330,18 @@ export namespace PostTransactionScanResponse {
         creation_timestamp?: string | null;
 
         /**
+         * Address of the token's deployer
+         */
+        deployer?: string | null;
+
+        /**
          * URL of the token's logo
          */
         logo_url?: string | null;
 
         scam?: boolean | null;
+
+        total_supply?: number | null;
 
         /**
          * Type of the asset (`Coin`)
@@ -356,7 +385,7 @@ export namespace PostTransactionScanResponse {
     /**
      * Verdict of the validation
      */
-    result_type: 'Benign' | 'Warning' | 'Malicious';
+    result_type: 'Benign' | 'Warning' | 'Malicious' | 'Error';
 
     status: 'Success';
   }
