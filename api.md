@@ -22,6 +22,7 @@ Types:
 - <code><a href="./src/resources/evm/evm.ts">NativeDiff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NonercTokenDetails</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TokenScanSupportedChain</a></code>
+- <code><a href="./src/resources/evm/evm.ts">TransactionAction</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionScanFeature</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionScanResponse</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionScanSupportedChain</a></code>
