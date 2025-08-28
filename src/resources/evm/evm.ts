@@ -1087,6 +1087,20 @@ export type TokenScanSupportedChain =
   | 'sui'
   | 'hedera';
 
+/**
+ * An enumeration.
+ */
+export type TransactionAction =
+  | 'mint'
+  | 'stake'
+  | 'swap'
+  | 'native_transfer'
+  | 'token_transfer'
+  | 'approval'
+  | 'set_code_account'
+  | 'proxy_upgrade'
+  | 'ownership_change';
+
 export interface TransactionScanFeature {
   /**
    * Textual description
@@ -1281,6 +1295,11 @@ export interface TransactionSimulation {
    * spenders
    */
   total_usd_exposure: { [key: string]: { [key: string]: string } };
+
+  /**
+   * Describes the nature of the transaction and what happened as part of it
+   */
+  transaction_actions: Array<TransactionAction | (string & {})>;
 
   /**
    * Describes the state differences as a result of this transaction for every
@@ -2236,6 +2255,7 @@ export declare namespace Evm {
     type NativeDiff as NativeDiff,
     type NonercTokenDetails as NonercTokenDetails,
     type TokenScanSupportedChain as TokenScanSupportedChain,
+    type TransactionAction as TransactionAction,
     type TransactionScanFeature as TransactionScanFeature,
     type TransactionScanResponse as TransactionScanResponse,
     type TransactionScanSupportedChain as TransactionScanSupportedChain,

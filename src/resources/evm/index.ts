@@ -29,6 +29,7 @@ export {
   type NativeDiff,
   type NonercTokenDetails,
   type TokenScanSupportedChain,
+  type TransactionAction,
   type TransactionScanFeature,
   type TransactionScanResponse,
   type TransactionScanSupportedChain,
