@@ -146,9 +146,9 @@ export namespace TokenScanResponse {
    */
   export interface FinancialStats {
     /**
-     * Percentage of token currently held by bundler's wallets that bought in the exact
-     * same Solana slot, at any point in the token's life-cycle. Currently available
-     * for Solana only.
+     * Percentage of token currently held by bundlers - wallets that bought in the
+     * exact same Solana slot, at any point in the token's life-cycle. Currently
+     * available for Solana only.
      */
     bundlers_holding_percentage?: number | null;
 
