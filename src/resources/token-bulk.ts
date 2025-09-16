@@ -130,13 +130,19 @@ export namespace TokenBulkScanResponse {
      */
     export interface FinancialStats {
       /**
+       * Percentage of token currently held by bundler's wallets that bought in the exact
+       * same Solana slot, at any point in the token's life-cycle. Currently available
+       * for Solana only.
+       */
+      bundlers_holding_percentage?: number | null;
+
+      /**
        * Token liquidity burned percentage
        */
       burned_liquidity_percentage?: number | null;
 
       /**
-       * Percentage of token's supply held by sniper bots (0.0 to 100.0). Currently
-       * available for Solana only.
+       * Percentage of token's supply held in known developer wallets (0.0 to 100.0)
        */
       dev_holding_percentage?: number | null;
 
@@ -146,12 +152,18 @@ export namespace TokenBulkScanResponse {
       holders_count?: number | null;
 
       /**
+       * Percentage of token's supply _currently_ held by sniper bots (0.0 to 100.0).
+       * Currently available for Solana only.
+       */
+      initial_snipers_holding_percentage?: number | null;
+
+      /**
        * Token liquidity locked percentage
        */
       locked_liquidity_percentage?: number | null;
 
       /**
-       * Percentage of token's supply held in known developer wallets (0.0 to 100.0).
+       * Percentage of token's supply _initially_ held by sniper bots (0.0 to 100.0).
        * Currently available for Solana only.
        */
       snipers_holding_percentage?: number | null;
