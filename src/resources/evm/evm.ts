@@ -553,7 +553,8 @@ export interface AddressReportParams {
     | 'soneium'
     | 'unichain'
     | 'sei'
-    | 'flow-evm';
+    | 'flow-evm'
+    | 'hyperevm';
 
   /**
    * The domain you came accross this address.
@@ -1233,7 +1234,8 @@ export type TransactionScanSupportedChain =
   | 'soneium'
   | 'unichain'
   | 'sei'
-  | 'flow-evm';
+  | 'flow-evm'
+  | 'hyperevm';
 
 export interface TransactionSimulation {
   /**
