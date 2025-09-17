@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.62.0 (2025-09-17)
+
+Full Changelog: [v0.61.0...v0.62.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.61.0...v0.62.0)
+
+### Features
+
+* **api:** api update ([1f680ae](https://github.com/blockaid-official/blockaid-client-node/commit/1f680ae9ae0b45590ac7b8190ce8828678921f1f))
+* **api:** api update ([892d369](https://github.com/blockaid-official/blockaid-client-node/commit/892d369d6e6a35e8ca2848eae00b580b9726bee3))
+* **api:** api update ([1ea7a11](https://github.com/blockaid-official/blockaid-client-node/commit/1ea7a118e5a2abb7c96dc352cc6ec2f4c2b4fcc6))
+* **api:** api update ([f9694a5](https://github.com/blockaid-official/blockaid-client-node/commit/f9694a56d178a9f137b0258a25e2149d0de7d970))
+
+
+### Bug Fixes
+
+* coerce nullable values to undefined ([1a34c30](https://github.com/blockaid-official/blockaid-client-node/commit/1a34c30abe35c34c7fa0611e8cc511e42a680fff))
+
+
+### Chores
+
+* ci build action ([eacd543](https://github.com/blockaid-official/blockaid-client-node/commit/eacd5433d3d8e4a30321451a752530f2c735cca4))
+
 ## 0.61.0 (2025-08-28)
 
 Full Changelog: [v0.60.0...v0.61.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.60.0...v0.61.0)
