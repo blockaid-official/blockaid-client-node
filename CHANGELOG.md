@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.62.1 (2025-09-20)
+
+Full Changelog: [v0.62.0...v0.62.1](https://github.com/blockaid-official/blockaid-client-node/compare/v0.62.0...v0.62.1)
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([daf5b07](https://github.com/blockaid-official/blockaid-client-node/commit/daf5b077cd313e9b19da5895ec8c2c13e871bcb3))
+
 ## 0.62.0 (2025-09-17)
 
 Full Changelog: [v0.61.0...v0.62.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.61.0...v0.62.0)
