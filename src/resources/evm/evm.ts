@@ -554,7 +554,9 @@ export interface AddressReportParams {
     | 'unichain'
     | 'sei'
     | 'flow-evm'
-    | 'hyperevm';
+    | 'hyperevm'
+    | 'katana'
+    | 'plume';
 
   /**
    * The domain you came accross this address.
@@ -1235,7 +1237,9 @@ export type TransactionScanSupportedChain =
   | 'unichain'
   | 'sei'
   | 'flow-evm'
-  | 'hyperevm';
+  | 'hyperevm'
+  | 'katana'
+  | 'plume';
 
 export interface TransactionSimulation {
   /**
