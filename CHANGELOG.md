@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.63.0 (2025-09-28)
+
+Full Changelog: [v0.62.0...v0.63.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.62.0...v0.63.0)
+
+### Features
+
+* **api:** api update ([2e322a0](https://github.com/blockaid-official/blockaid-client-node/commit/2e322a0da5e8e65697fa6126b7dec467c46ae8a2))
+* **api:** api update ([4557c95](https://github.com/blockaid-official/blockaid-client-node/commit/4557c958c4e5b06c17261c262d5b204045a44c54))
+
+
+### Performance Improvements
+
+* faster formatting ([ee7bca3](https://github.com/blockaid-official/blockaid-client-node/commit/ee7bca3b2b80f3fe271deb5b5f6d5ae8e83080b4))
+
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([daf5b07](https://github.com/blockaid-official/blockaid-client-node/commit/daf5b077cd313e9b19da5895ec8c2c13e871bcb3))
+* **internal:** codegen related update ([be49118](https://github.com/blockaid-official/blockaid-client-node/commit/be491183df0d75b8eb44a5853286fe68a205af23))
+* **internal:** fix incremental formatting in some cases ([37ba04c](https://github.com/blockaid-official/blockaid-client-node/commit/37ba04c2fb72c69896cd04b48201b88e25b6a191))
+* **internal:** ignore .eslintcache ([dd108d0](https://github.com/blockaid-official/blockaid-client-node/commit/dd108d0806a2502787df07bde22431c8bb41c891))
+* **internal:** remove deprecated `compilerOptions.baseUrl` from tsconfig.json ([6809629](https://github.com/blockaid-official/blockaid-client-node/commit/680962927c4861ca369e2f18390bddd6cb53bc47))
+
 ## 0.62.0 (2025-09-17)
 
 Full Changelog: [v0.61.0...v0.62.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.61.0...v0.62.0)
