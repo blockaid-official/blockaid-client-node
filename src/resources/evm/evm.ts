@@ -1149,6 +1149,11 @@ export interface TransactionScanResponse {
 
   simulation?: TransactionSimulation | TransactionSimulationError;
 
+  user_operation_gas_estimation?:
+    | TransactionScanResponse.UserOperationV6GasEstimation
+    | TransactionScanResponse.UserOperationV7GasEstimation
+    | TransactionScanResponse.TransactionScanGasEstimationError;
+
   validation?: TransactionValidation | TransactionValidationError;
 }
 
@@ -1185,6 +1190,34 @@ export namespace TransactionScanResponse {
     status: 'Success';
 
     used: string;
+  }
+
+  export interface TransactionScanGasEstimationError {
+    error: string;
+
+    status: 'Error';
+  }
+
+  export interface UserOperationV6GasEstimation {
+    call_gas_estimate: string;
+
+    pre_verification_gas_estimate: string;
+
+    status: 'Success';
+
+    verification_gas_estimate: string;
+  }
+
+  export interface UserOperationV7GasEstimation {
+    call_gas_estimate: string;
+
+    paymaster_verification_gas_estimate: string;
+
+    pre_verification_gas_estimate: string;
+
+    status: 'Success';
+
+    verification_gas_estimate: string;
   }
 
   export interface TransactionScanGasEstimationError {
