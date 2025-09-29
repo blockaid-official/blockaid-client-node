@@ -193,7 +193,51 @@ export namespace TransactionScanParams {
     /**
      * The chain name
      */
-    chain: 'ethereum' | 'base' | 'arbitrum' | 'optimism' | 'polygon' | 'solana' | 'stellar' | 'bitcoin';
+    chain:
+      | 'arbitrum'
+      | 'avalanche'
+      | 'base'
+      | 'base-sepolia'
+      | 'bsc'
+      | 'ethereum'
+      | 'ethereum-sepolia'
+      | 'optimism'
+      | 'polygon'
+      | 'zksync'
+      | 'zksync-sepolia'
+      | 'zora'
+      | 'linea'
+      | 'blast'
+      | 'scroll'
+      | 'avalanche-fuji'
+      | 'degen'
+      | 'immutable-zkevm'
+      | 'immutable-zkevm-testnet'
+      | 'gnosis'
+      | 'worldchain'
+      | 'soneium-minato'
+      | 'ronin'
+      | 'apechain'
+      | 'zero-network'
+      | 'berachain'
+      | 'ink-sepolia'
+      | 'ink'
+      | 'abstract'
+      | 'abstract-testnet'
+      | 'metacade'
+      | 'metacade-testnet'
+      | 'soneium'
+      | 'unichain'
+      | 'lordchain-testnet'
+      | 'lordchain'
+      | 'sei'
+      | 'flow-evm'
+      | 'hyperevm'
+      | 'katana'
+      | 'plume'
+      | 'solana'
+      | 'stellar'
+      | 'bitcoin';
 
     /**
      * Destination address or identifier for the transaction
