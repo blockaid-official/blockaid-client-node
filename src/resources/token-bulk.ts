@@ -158,6 +158,13 @@ export namespace TokenBulkScanResponse {
       initial_snipers_holding_percentage?: number | null;
 
       /**
+       * Percentage of supply that is currently held by insiders - defined as wallets
+       * exhibiting early acquisition behaviors typically associated with insider
+       * activity.
+       */
+      insiders_holding_percentage?: number | null;
+
+      /**
        * Token liquidity locked percentage
        */
       locked_liquidity_percentage?: number | null;
