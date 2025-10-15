@@ -22,6 +22,8 @@ export {
   type Erc721Diff,
   type Erc721Exposure,
   type Erc721TokenDetails,
+  type MetadataNonDappParam,
+  type MetadataParam,
   type MissingBalance,
   type NativeAddressAssetBalanceChangeDiff,
   type NativeAssetDetails,

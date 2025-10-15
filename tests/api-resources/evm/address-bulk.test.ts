@@ -18,7 +18,7 @@ describe('resource addressBulk', () => {
         '0xD6E4aA932147A3FE5311dA1b67D9e73da06F9cEf',
       ],
       chain: 'ethereum',
-      metadata: { domain: 'www.example.xyz' },
+      metadata: {},
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -38,7 +38,7 @@ describe('resource addressBulk', () => {
         '0xD6E4aA932147A3FE5311dA1b67D9e73da06F9cEf',
       ],
       chain: 'ethereum',
-      metadata: { domain: 'www.example.xyz' },
+      metadata: { non_dapp: true },
     });
   });
 

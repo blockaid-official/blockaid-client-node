@@ -879,6 +879,67 @@ export interface Erc721TokenDetails {
   symbol?: string;
 }
 
+export interface MetadataNonDappParam {
+  /**
+   * Indicates that the transaction was not initiated by a dapp.
+   */
+  non_dapp?: true;
+}
+
+export interface MetadataParam {
+  /**
+   * Account information associated with the request
+   */
+  account?: MetadataParam.Account;
+
+  /**
+   * Connection metadata including user agent and IP information
+   */
+  connection?: MetadataParam.Connection;
+}
+
+export namespace MetadataParam {
+  /**
+   * Account information associated with the request
+   */
+  export interface Account {
+    /**
+     * Unique identifier for the account
+     */
+    account_id: string;
+
+    /**
+     * Timestamp when the account was created
+     */
+    account_creation_timestamp?: string;
+
+    /**
+     * Age of the user in years
+     */
+    user_age?: number;
+
+    /**
+     * ISO country code of the user's location
+     */
+    user_country_code?: string;
+  }
+
+  /**
+   * Connection metadata including user agent and IP information
+   */
+  export interface Connection {
+    /**
+     * IP address of the customer making the request
+     */
+    ip_address: string;
+
+    /**
+     * User agent string from the client's browser or application
+     */
+    user_agent?: string;
+  }
+}
+
 export interface MissingBalance {
   /**
    * The asset that is missing balance
@@ -2072,14 +2133,11 @@ export interface ValidateAddress {
   /**
    * Object of additional information to validate against.
    */
-  metadata: ValidateAddress.Metadata;
+  metadata: MetadataNonDappParam | ValidateAddress.MetadataDapp;
 }
 
 export namespace ValidateAddress {
-  /**
-   * Object of additional information to validate against.
-   */
-  export interface Metadata {
+  export interface MetadataDapp {
     /**
      * cross reference transaction against the domain.
      */
@@ -2101,14 +2159,11 @@ export interface ValidateBulkAddresses {
   /**
    * Object of additional information to validate against.
    */
-  metadata: ValidateBulkAddresses.Metadata;
+  metadata: MetadataNonDappParam | ValidateBulkAddresses.MetadataDapp;
 }
 
 export namespace ValidateBulkAddresses {
-  /**
-   * Object of additional information to validate against.
-   */
-  export interface Metadata {
+  export interface MetadataDapp {
     /**
      * cross reference transaction against the domain.
      */
@@ -2288,6 +2343,8 @@ export declare namespace Evm {
     type Erc721Diff as Erc721Diff,
     type Erc721Exposure as Erc721Exposure,
     type Erc721TokenDetails as Erc721TokenDetails,
+    type MetadataNonDappParam as MetadataNonDappParam,
+    type MetadataParam as MetadataParam,
     type MissingBalance as MissingBalance,
     type NativeAddressAssetBalanceChangeDiff as NativeAddressAssetBalanceChangeDiff,
     type NativeAssetDetails as NativeAssetDetails,

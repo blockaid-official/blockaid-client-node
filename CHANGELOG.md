@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.65.0 (2025-10-15)
+
+Full Changelog: [v0.64.0...v0.65.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.64.0...v0.65.0)
+
+### Features
+
+* **api:** api update ([9addcb0](https://github.com/blockaid-official/blockaid-client-node/commit/9addcb0a1b7c7f0bdd8202ce95f86c137bd660f4))
+* **api:** api update ([10c742e](https://github.com/blockaid-official/blockaid-client-node/commit/10c742e3ad50085b6f8cdd5b5c8543a0f709d6e4))
+
+
+### Chores
+
+* **internal:** remove .eslintcache ([1ec108c](https://github.com/blockaid-official/blockaid-client-node/commit/1ec108cf8d339761bef06c1b5dc333d47c240e3d))
+* **internal:** use npm pack for build uploads ([8c9cf70](https://github.com/blockaid-official/blockaid-client-node/commit/8c9cf70a823b6c11e14f52ffc520e762e1f4422e))
+
 ## 0.64.0 (2025-09-29)
 
 Full Changelog: [v0.63.0...v0.64.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.63.0...v0.64.0)
