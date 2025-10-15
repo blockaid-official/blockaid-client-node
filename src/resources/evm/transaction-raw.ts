@@ -52,7 +52,7 @@ export interface TransactionRawScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: TransactionRawScanParams.Metadata;
+  metadata: EvmAPI.MetadataNonDappParam | TransactionRawScanParams.MetadataDapp;
 
   /**
    * The relative block for the block validation. Can be "latest" or a block number.
@@ -80,10 +80,7 @@ export interface TransactionRawScanParams {
 }
 
 export namespace TransactionRawScanParams {
-  /**
-   * Object of additional information to validate against.
-   */
-  export interface Metadata {
+  export interface MetadataDapp {
     /**
      * cross reference transaction against the domain.
      */

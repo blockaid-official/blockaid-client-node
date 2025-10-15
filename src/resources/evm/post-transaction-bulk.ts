@@ -47,7 +47,7 @@ export interface PostTransactionBulkScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: PostTransactionBulkScanParams.Metadata;
+  metadata: EvmAPI.MetadataNonDappParam | PostTransactionBulkScanParams.MetadataDapp;
 
   /**
    * The relative block for the block validation. Can be "latest" or a block number.
@@ -74,10 +74,7 @@ export interface PostTransactionBulkScanParams {
 }
 
 export namespace PostTransactionBulkScanParams {
-  /**
-   * Object of additional information to validate against.
-   */
-  export interface Metadata {
+  export interface MetadataDapp {
     /**
      * cross reference transaction against the domain.
      */

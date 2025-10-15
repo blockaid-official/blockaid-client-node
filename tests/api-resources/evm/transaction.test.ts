@@ -37,7 +37,7 @@ describe('resource transaction', () => {
       account_address: 'account_address',
       chain: 'ethereum',
       data: { from: '0x5e1a0d484c5f0de722e82f9dca3a9d5a421d47cb' },
-      metadata: { domain: 'https://boredapeyartclub.com' },
+      metadata: {},
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -71,7 +71,7 @@ describe('resource transaction', () => {
         to: '0x0d524a5b52737c0a02880d5e84f7d20b8d66bfba',
         value: '0x1000000000000000',
       },
-      metadata: { domain: 'https://boredapeyartclub.com' },
+      metadata: { non_dapp: true },
       block: '21211118',
       options: ['simulation', 'validation'],
       simulate_with_estimated_gas: true,

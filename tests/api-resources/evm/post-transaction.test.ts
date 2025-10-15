@@ -36,7 +36,7 @@ describe('resource postTransaction', () => {
     const responsePromise = client.evm.postTransaction.scan({
       chain: 'ethereum',
       data: { tx_hash: '0xc01780dadc107754b331250b4797606949cb3d0087facc0a737122d5e973c83c' },
-      metadata: { domain: 'domain' },
+      metadata: {},
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -51,7 +51,7 @@ describe('resource postTransaction', () => {
     const response = await client.evm.postTransaction.scan({
       chain: 'ethereum',
       data: { tx_hash: '0xc01780dadc107754b331250b4797606949cb3d0087facc0a737122d5e973c83c' },
-      metadata: { domain: 'domain' },
+      metadata: { non_dapp: true },
       block: 0,
       options: ['validation', 'simulation'],
       simulate_with_estimated_gas: true,

@@ -60,7 +60,7 @@ export interface JsonRpcScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: JsonRpcScanParams.Metadata;
+  metadata: EvmAPI.MetadataNonDappParam | JsonRpcScanParams.MetadataDapp;
 
   /**
    * The address of the account (wallet) that received the request, in hex string
@@ -121,10 +121,7 @@ export namespace JsonRpcScanParams {
     params: Array<unknown | string>;
   }
 
-  /**
-   * Object of additional information to validate against.
-   */
-  export interface Metadata {
+  export interface MetadataDapp {
     /**
      * cross reference transaction against the domain.
      */

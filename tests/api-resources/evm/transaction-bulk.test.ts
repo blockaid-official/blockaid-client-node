@@ -16,7 +16,7 @@ describe('resource transactionBulk', () => {
         { from: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' },
         { from: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' },
       ],
-      metadata: { domain: 'https://example.com' },
+      metadata: {},
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -70,7 +70,7 @@ describe('resource transactionBulk', () => {
           value: '0xdeadbeef',
         },
       ],
-      metadata: { domain: 'https://example.com' },
+      metadata: { non_dapp: true },
       aggregated: true,
       block: '20224477',
       options: ['validation'],

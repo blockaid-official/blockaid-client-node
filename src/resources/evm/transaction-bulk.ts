@@ -60,7 +60,7 @@ export interface TransactionBulkScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: TransactionBulkScanParams.Metadata;
+  metadata: EvmAPI.MetadataNonDappParam | TransactionBulkScanParams.MetadataDapp;
 
   /**
    * Should aggregate the results to one result
@@ -170,10 +170,7 @@ export namespace TransactionBulkScanParams {
     }
   }
 
-  /**
-   * Object of additional information to validate against.
-   */
-  export interface Metadata {
+  export interface MetadataDapp {
     /**
      * cross reference transaction against the domain.
      */
