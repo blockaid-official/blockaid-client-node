@@ -90,14 +90,11 @@ export interface AddressScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: AddressScanParams.Metadata;
+  metadata: EvmAPI.MetadataNonDappParam | AddressScanParams.MetadataDapp;
 }
 
 export namespace AddressScanParams {
-  /**
-   * Object of additional information to validate against.
-   */
-  export interface Metadata {
+  export interface MetadataDapp {
     /**
      * cross reference transaction against the domain.
      */

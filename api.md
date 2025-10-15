@@ -15,6 +15,8 @@ Types:
 - <code><a href="./src/resources/evm/evm.ts">Erc721Diff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc721Exposure</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Erc721TokenDetails</a></code>
+- <code><a href="./src/resources/evm/evm.ts">MetadataNonDappParam</a></code>
+- <code><a href="./src/resources/evm/evm.ts">MetadataParam</a></code>
 - <code><a href="./src/resources/evm/evm.ts">MissingBalance</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NativeAddressAssetBalanceChangeDiff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">NativeAssetDetails</a></code>

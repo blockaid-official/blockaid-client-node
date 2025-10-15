@@ -81,14 +81,11 @@ export interface AddressBulkScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: AddressBulkScanParams.Metadata;
+  metadata: EvmAPI.MetadataNonDappParam | AddressBulkScanParams.MetadataDapp;
 }
 
 export namespace AddressBulkScanParams {
-  /**
-   * Object of additional information to validate against.
-   */
-  export interface Metadata {
+  export interface MetadataDapp {
     /**
      * cross reference transaction against the domain.
      */

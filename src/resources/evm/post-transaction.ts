@@ -110,7 +110,7 @@ export interface PostTransactionScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: PostTransactionScanParams.Metadata;
+  metadata: EvmAPI.MetadataNonDappParam | PostTransactionScanParams.MetadataDapp;
 
   /**
    * The relative block for the block validation. Can be "latest" or a block number.
@@ -145,10 +145,7 @@ export namespace PostTransactionScanParams {
     tx_hash: string;
   }
 
-  /**
-   * Object of additional information to validate against.
-   */
-  export interface Metadata {
+  export interface MetadataDapp {
     /**
      * cross reference transaction against the domain.
      */
