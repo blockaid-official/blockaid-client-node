@@ -284,12 +284,6 @@ export namespace TokenSnapshotDiffResponse {
       freeze_authority?: string | null;
 
       /**
-       * Contains metadata about the governance model and structure associated with the
-       * token
-       */
-      governance?: SolanaMetadata.Governance | null;
-
-      /**
        * URL of the token image
        */
       image_url?: string | null;
@@ -318,6 +312,11 @@ export namespace TokenSnapshotDiffResponse {
        * Contract owner balance
        */
       owner_balance?: SolanaMetadata.OwnerBalance | null;
+
+      /**
+       * Solana token permanent delegate account
+       */
+      permanent_delegate?: string | null;
 
       /**
        * Symbol of the token
@@ -377,17 +376,6 @@ export namespace TokenSnapshotDiffResponse {
       }
 
       /**
-       * Contains metadata about the governance model and structure associated with the
-       * token
-       */
-      export interface Governance {
-        /**
-         * Solana token permanent delegate account
-         */
-        permanent_delegate?: string | null;
-      }
-
-      /**
        * Contract owner balance
        */
       export interface OwnerBalance {
@@ -414,12 +402,6 @@ export namespace TokenSnapshotDiffResponse {
       formatted_name?: string | null;
 
       /**
-       * Contains metadata about the governance model and structure associated with the
-       * token
-       */
-      governance?: BitcoinMetadataToken.Governance | null;
-
-      /**
        * Name of the token
        */
       name?: string | null;
@@ -438,19 +420,6 @@ export namespace TokenSnapshotDiffResponse {
        * Type of the token
        */
       type?: string | null;
-    }
-
-    export namespace BitcoinMetadataToken {
-      /**
-       * Contains metadata about the governance model and structure associated with the
-       * token
-       */
-      export interface Governance {
-        /**
-         * Solana token permanent delegate account
-         */
-        permanent_delegate?: string | null;
-      }
     }
 
     export interface EvmMetadataToken {
@@ -488,12 +457,6 @@ export namespace TokenSnapshotDiffResponse {
        * social links of the token
        */
       external_links?: EvmMetadataToken.ExternalLinks;
-
-      /**
-       * Contains metadata about the governance model and structure associated with the
-       * token
-       */
-      governance?: EvmMetadataToken.Governance | null;
 
       /**
        * URL of the token image
@@ -570,17 +533,6 @@ export namespace TokenSnapshotDiffResponse {
         telegram_channel_id?: string | null;
 
         twitter_page?: string | null;
-      }
-
-      /**
-       * Contains metadata about the governance model and structure associated with the
-       * token
-       */
-      export interface Governance {
-        /**
-         * Solana token permanent delegate account
-         */
-        permanent_delegate?: string | null;
       }
 
       /**
@@ -959,12 +911,6 @@ export namespace TokenSnapshotFullResponse {
       freeze_authority?: string | null;
 
       /**
-       * Contains metadata about the governance model and structure associated with the
-       * token
-       */
-      governance?: SolanaMetadata.Governance | null;
-
-      /**
        * URL of the token image
        */
       image_url?: string | null;
@@ -993,6 +939,11 @@ export namespace TokenSnapshotFullResponse {
        * Contract owner balance
        */
       owner_balance?: SolanaMetadata.OwnerBalance | null;
+
+      /**
+       * Solana token permanent delegate account
+       */
+      permanent_delegate?: string | null;
 
       /**
        * Symbol of the token
@@ -1052,17 +1003,6 @@ export namespace TokenSnapshotFullResponse {
       }
 
       /**
-       * Contains metadata about the governance model and structure associated with the
-       * token
-       */
-      export interface Governance {
-        /**
-         * Solana token permanent delegate account
-         */
-        permanent_delegate?: string | null;
-      }
-
-      /**
        * Contract owner balance
        */
       export interface OwnerBalance {
@@ -1089,12 +1029,6 @@ export namespace TokenSnapshotFullResponse {
       formatted_name?: string | null;
 
       /**
-       * Contains metadata about the governance model and structure associated with the
-       * token
-       */
-      governance?: BitcoinMetadataToken.Governance | null;
-
-      /**
        * Name of the token
        */
       name?: string | null;
@@ -1113,19 +1047,6 @@ export namespace TokenSnapshotFullResponse {
        * Type of the token
        */
       type?: string | null;
-    }
-
-    export namespace BitcoinMetadataToken {
-      /**
-       * Contains metadata about the governance model and structure associated with the
-       * token
-       */
-      export interface Governance {
-        /**
-         * Solana token permanent delegate account
-         */
-        permanent_delegate?: string | null;
-      }
     }
 
     export interface EvmMetadataToken {
@@ -1163,12 +1084,6 @@ export namespace TokenSnapshotFullResponse {
        * social links of the token
        */
       external_links?: EvmMetadataToken.ExternalLinks;
-
-      /**
-       * Contains metadata about the governance model and structure associated with the
-       * token
-       */
-      governance?: EvmMetadataToken.Governance | null;
 
       /**
        * URL of the token image
@@ -1245,17 +1160,6 @@ export namespace TokenSnapshotFullResponse {
         telegram_channel_id?: string | null;
 
         twitter_page?: string | null;
-      }
-
-      /**
-       * Contains metadata about the governance model and structure associated with the
-       * token
-       */
-      export interface Governance {
-        /**
-         * Solana token permanent delegate account
-         */
-        permanent_delegate?: string | null;
       }
 
       /**
