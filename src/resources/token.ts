@@ -268,12 +268,6 @@ export namespace TokenScanResponse {
     freeze_authority?: string | null;
 
     /**
-     * Contains metadata about the governance model and structure associated with the
-     * token
-     */
-    governance?: SolanaMetadata.Governance | null;
-
-    /**
      * URL of the token image
      */
     image_url?: string | null;
@@ -302,6 +296,11 @@ export namespace TokenScanResponse {
      * Contract owner balance
      */
     owner_balance?: SolanaMetadata.OwnerBalance | null;
+
+    /**
+     * Solana token permanent delegate account
+     */
+    permanent_delegate?: string | null;
 
     /**
      * Symbol of the token
@@ -361,17 +360,6 @@ export namespace TokenScanResponse {
     }
 
     /**
-     * Contains metadata about the governance model and structure associated with the
-     * token
-     */
-    export interface Governance {
-      /**
-       * Solana token permanent delegate account
-       */
-      permanent_delegate?: string | null;
-    }
-
-    /**
      * Contract owner balance
      */
     export interface OwnerBalance {
@@ -398,12 +386,6 @@ export namespace TokenScanResponse {
     formatted_name?: string | null;
 
     /**
-     * Contains metadata about the governance model and structure associated with the
-     * token
-     */
-    governance?: BitcoinMetadataToken.Governance | null;
-
-    /**
      * Name of the token
      */
     name?: string | null;
@@ -422,19 +404,6 @@ export namespace TokenScanResponse {
      * Type of the token
      */
     type?: string | null;
-  }
-
-  export namespace BitcoinMetadataToken {
-    /**
-     * Contains metadata about the governance model and structure associated with the
-     * token
-     */
-    export interface Governance {
-      /**
-       * Solana token permanent delegate account
-       */
-      permanent_delegate?: string | null;
-    }
   }
 
   export interface EvmMetadataToken {
@@ -472,12 +441,6 @@ export namespace TokenScanResponse {
      * social links of the token
      */
     external_links?: EvmMetadataToken.ExternalLinks;
-
-    /**
-     * Contains metadata about the governance model and structure associated with the
-     * token
-     */
-    governance?: EvmMetadataToken.Governance | null;
 
     /**
      * URL of the token image
@@ -554,17 +517,6 @@ export namespace TokenScanResponse {
       telegram_channel_id?: string | null;
 
       twitter_page?: string | null;
-    }
-
-    /**
-     * Contains metadata about the governance model and structure associated with the
-     * token
-     */
-    export interface Governance {
-      /**
-       * Solana token permanent delegate account
-       */
-      permanent_delegate?: string | null;
     }
 
     /**
