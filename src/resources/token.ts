@@ -298,6 +298,11 @@ export namespace TokenScanResponse {
     owner_balance?: SolanaMetadata.OwnerBalance | null;
 
     /**
+     * Solana token permanent delegate account
+     */
+    permanent_delegate?: string | null;
+
+    /**
      * Symbol of the token
      */
     symbol?: string | null;

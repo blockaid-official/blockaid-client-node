@@ -314,6 +314,11 @@ export namespace TokenSnapshotDiffResponse {
       owner_balance?: SolanaMetadata.OwnerBalance | null;
 
       /**
+       * Solana token permanent delegate account
+       */
+      permanent_delegate?: string | null;
+
+      /**
        * Symbol of the token
        */
       symbol?: string | null;
@@ -934,6 +939,11 @@ export namespace TokenSnapshotFullResponse {
        * Contract owner balance
        */
       owner_balance?: SolanaMetadata.OwnerBalance | null;
+
+      /**
+       * Solana token permanent delegate account
+       */
+      permanent_delegate?: string | null;
 
       /**
        * Symbol of the token

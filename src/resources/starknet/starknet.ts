@@ -167,7 +167,7 @@ export interface StarknetTransactionScanRequest {
   /**
    * The chain name or chain ID
    */
-  chain: 'mainnet' | 'sepolia' | (string & {});
+  chain: 'mainnet' | (string & {});
 
   /**
    * Metadata
@@ -790,7 +790,7 @@ export namespace StarknetTransactionScanResponse {
     /**
      * Verdict of the validation
      */
-    result_type: 'Benign' | 'Warning' | 'Malicious';
+    result_type: 'Benign' | 'Warning' | 'Malicious' | 'Error';
 
     status: 'Success';
   }
