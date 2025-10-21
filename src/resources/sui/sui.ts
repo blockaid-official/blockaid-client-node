@@ -46,7 +46,7 @@ export interface SuiNativeAssetDetailsSchema {
   /**
    * URL of the asset's logo
    */
-  logo_url?: 'https://imagedelivery.net/cBNDGgkrsEA-b_ixIp9SkQ/sui.svg/public';
+  logo_url?: string;
 
   /**
    * Name of the asset
