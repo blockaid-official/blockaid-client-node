@@ -5,7 +5,7 @@ import * as Core from '../../core';
 
 export class Address extends APIResource {
   /**
-   * Gets an address and returns a full security assessment indicating weather or not
+   * Gets an address and returns a full security assessment indicating whether or not
    * this address is malicious as well as textual reasons of why the address was
    * flagged that way.
    *
@@ -48,7 +48,13 @@ export namespace AddressScanResponse {
 export interface AddressScanParams {
   address: string;
 
-  chain?: string;
+  chain?:
+    | 'mainnet'
+    | 'eclipse_mainnet'
+    | 'sonic_mainnet'
+    | '5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp'
+    | 'EtWTRABZaYq6iMfeYKouRu166VU2xqa1'
+    | 'EAQLJCV2mh23BsK2P9oYpV5CHVLDNHTxY';
 }
 
 export declare namespace Address {

@@ -36,7 +36,7 @@ export interface MessageScanResponse {
   /**
    * Unique identifier of the request
    */
-  request_id: string;
+  request_id: string | null;
 
   status: 'SUCCESS' | 'ERROR';
 
@@ -49,9 +49,9 @@ export interface MessageScanResponse {
    * Error details
    */
   error_details?:
-    | MessageScanResponse.SolanaAPIErrorDetails
-    | MessageScanResponse.SolanaTransactionErrorDetails
-    | MessageScanResponse.SolanaInstructionErrorDetails
+    | MessageScanResponse.SolanamodulesTransactionScanningControllersSchemasErrorAPIErrorDetails
+    | MessageScanResponse.SolanamodulesTransactionScanningControllersSchemasErrorTransactionErrorDetails
+    | MessageScanResponse.SolanamodulesTransactionScanningControllersSchemasErrorInstructionErrorDetails
     | null;
 
   /**
@@ -61,39 +61,38 @@ export interface MessageScanResponse {
 }
 
 export namespace MessageScanResponse {
-  export interface SolanaAPIErrorDetails {
+  export interface SolanamodulesTransactionScanningControllersSchemasErrorAPIErrorDetails {
     /**
      * Advanced message of the error
      */
-    message: string;
+    message?: string;
 
     type?: 'ApiError';
+
+    [k: string]: unknown;
   }
 
-  export interface SolanaTransactionErrorDetails {
-    /**
-     * Advanced message of the error
-     */
-    message: string;
-
+  export interface SolanamodulesTransactionScanningControllersSchemasErrorTransactionErrorDetails {
     /**
      * Index of the transaction in the bulk
      */
     transaction_index: number;
 
+    /**
+     * Advanced message of the error
+     */
+    message?: string;
+
     type?: 'TransactionError';
+
+    [k: string]: unknown;
   }
 
-  export interface SolanaInstructionErrorDetails {
+  export interface SolanamodulesTransactionScanningControllersSchemasErrorInstructionErrorDetails {
     /**
      * Index of the instruction in the transaction
      */
     instruction_index: number;
-
-    /**
-     * Human readable error
-     */
-    message: string;
 
     /**
      * Index of the transaction in the bulk
@@ -106,6 +105,11 @@ export namespace MessageScanResponse {
     code?: string | null;
 
     /**
+     * Human readable error
+     */
+    message?: string;
+
+    /**
      * Error number
      */
     number?: number | null;
@@ -116,6 +120,8 @@ export namespace MessageScanResponse {
     program_account?: string | null;
 
     type?: 'InstructionError';
+
+    [k: string]: unknown;
   }
 
   /**
@@ -193,6 +199,20 @@ export namespace MessageScanResponse {
           | Simulation.SolanaNonFungibleSplTokenDelegation
         >;
       };
+
+      transaction_actions?: Array<
+        | 'native_wrap'
+        | 'native_transfer'
+        | 'token_transfer'
+        | 'swap'
+        | 'mint'
+        | 'stake'
+        | 'approval'
+        | 'proxy_upgrade'
+        | 'ownership_change'
+        | 'set_code_account'
+        | (string & {})
+      > | null;
     }
 
     export namespace Simulation {
@@ -2444,7 +2464,16 @@ export interface MessageScanParams {
    */
   transactions: Array<string>;
 
-  chain?: string;
+  chain?:
+    | 'mainnet'
+    | 'testnet'
+    | 'devnet'
+    | 'eclipse_mainnet'
+    | 'eclipse_devnet'
+    | 'sonic_mainnet'
+    | '5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp'
+    | 'EtWTRABZaYq6iMfeYKouRu166VU2xqa1'
+    | 'EAQLJCV2mh23BsK2P9oYpV5CHVLDNHTxY';
 
   encoding?: 'base58' | 'base64';
 
