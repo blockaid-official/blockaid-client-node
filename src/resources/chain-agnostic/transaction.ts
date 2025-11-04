@@ -238,7 +238,9 @@ export namespace TransactionScanParams {
       | 'plume'
       | 'solana'
       | 'stellar'
-      | 'bitcoin';
+      | 'bitcoin'
+      | 'xlayer'
+      | 'monad-testnet';
 
     /**
      * Destination address or identifier for the transaction

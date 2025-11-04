@@ -556,7 +556,9 @@ export interface AddressReportParams {
     | 'flow-evm'
     | 'hyperevm'
     | 'katana'
-    | 'plume';
+    | 'plume'
+    | 'xlayer'
+    | 'monad-testnet';
 
   /**
    * The domain you came accross this address.
@@ -1333,7 +1335,9 @@ export type TransactionScanSupportedChain =
   | 'flow-evm'
   | 'hyperevm'
   | 'katana'
-  | 'plume';
+  | 'plume'
+  | 'xlayer'
+  | 'monad-testnet';
 
 export interface TransactionSimulation {
   /**
