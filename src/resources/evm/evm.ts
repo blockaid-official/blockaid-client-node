@@ -558,6 +558,7 @@ export interface AddressReportParams {
     | 'katana'
     | 'plume'
     | 'xlayer'
+    | 'monad'
     | 'monad-testnet';
 
   /**
@@ -1337,6 +1338,7 @@ export type TransactionScanSupportedChain =
   | 'katana'
   | 'plume'
   | 'xlayer'
+  | 'monad'
   | 'monad-testnet';
 
 export interface TransactionSimulation {
