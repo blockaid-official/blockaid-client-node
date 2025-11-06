@@ -240,6 +240,7 @@ export namespace TransactionScanParams {
       | 'stellar'
       | 'bitcoin'
       | 'xlayer'
+      | 'monad'
       | 'monad-testnet';
 
     /**
