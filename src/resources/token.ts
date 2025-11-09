@@ -12,7 +12,7 @@ export class Token extends APIResource {
    * ```ts
    * const response = await client.token.report({
    *   details: 'Details about the report',
-   *   event: 'CONFIRMED',
+   *   event: 'FALSE_POSITIVE',
    *   report: {
    *     type: 'request_id',
    *     request_id: '11111111-1111-1111-1111-111111111111',

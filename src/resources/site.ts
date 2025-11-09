@@ -5,7 +5,7 @@ import * as Core from '../core';
 
 export class Site extends APIResource {
   /**
-   * Report for misclassification of a site.
+   * Report a misclassification of a site.
    *
    * @example
    * ```ts

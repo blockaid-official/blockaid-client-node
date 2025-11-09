@@ -6,7 +6,7 @@ import * as EvmAPI from './evm';
 
 export class Address extends APIResource {
   /**
-   * Report for misclassification of an EVM address.
+   * Report a misclassification of an EVM address.
    *
    * @example
    * ```ts
@@ -59,14 +59,79 @@ export interface AddressReportParams {
   /**
    * The report parameters.
    */
-  report: AddressReportParams.ParamReportAddressReportParams | AddressReportParams.RequestIDReport;
+  report: AddressReportParams.ParamReportEvmAddressReportParams | AddressReportParams.RequestIDReport;
 }
 
 export namespace AddressReportParams {
-  export interface ParamReportAddressReportParams {
-    params: EvmAPI.AddressReportParams;
+  export interface ParamReportEvmAddressReportParams {
+    params: ParamReportEvmAddressReportParams.Params;
 
     type: 'params';
+  }
+
+  export namespace ParamReportEvmAddressReportParams {
+    export interface Params {
+      /**
+       * The address to report on.
+       */
+      address: string;
+
+      /**
+       * The chain name
+       */
+      chain:
+        | 'arbitrum'
+        | 'avalanche'
+        | 'base'
+        | 'base-sepolia'
+        | 'lordchain'
+        | 'lordchain-testnet'
+        | 'metacade'
+        | 'metacade-testnet'
+        | 'bsc'
+        | 'ethereum'
+        | 'optimism'
+        | 'polygon'
+        | 'zksync'
+        | 'zksync-sepolia'
+        | 'zora'
+        | 'linea'
+        | 'blast'
+        | 'scroll'
+        | 'ethereum-sepolia'
+        | 'degen'
+        | 'avalanche-fuji'
+        | 'immutable-zkevm'
+        | 'immutable-zkevm-testnet'
+        | 'gnosis'
+        | 'worldchain'
+        | 'soneium-minato'
+        | 'ronin'
+        | 'apechain'
+        | 'zero-network'
+        | 'berachain'
+        | 'berachain-bartio'
+        | 'ink'
+        | 'ink-sepolia'
+        | 'abstract'
+        | 'abstract-testnet'
+        | 'soneium'
+        | 'unichain'
+        | 'sei'
+        | 'flow-evm'
+        | 'hyperevm'
+        | 'katana'
+        | 'plume'
+        | 'xlayer'
+        | 'monad'
+        | 'monad-testnet'
+        | 'hedera';
+
+      /**
+       * The domain related to this address.
+       */
+      domain: string;
+    }
   }
 
   export interface RequestIDReport {

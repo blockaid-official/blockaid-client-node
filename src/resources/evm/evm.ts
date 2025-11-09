@@ -559,10 +559,18 @@ export interface AddressReportParams {
     | 'plume'
     | 'xlayer'
     | 'monad'
-    | 'monad-testnet';
+    | 'monad-testnet'
+    | 'hedera'
+    | 'solana'
+    | 'eclipse'
+    | 'sonic'
+    | 'starknet'
+    | 'sui'
+    | 'bitcoin'
+    | 'stellar';
 
   /**
-   * The domain you came accross this address.
+   * The domain related to this address.
    */
   domain: string;
 }
