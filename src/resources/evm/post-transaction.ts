@@ -6,7 +6,7 @@ import * as EvmAPI from './evm';
 
 export class PostTransaction extends APIResource {
   /**
-   * Report for misclassification of an EVM post transaction.
+   * Report a misclassification of an EVM post transaction.
    *
    * @example
    * ```ts

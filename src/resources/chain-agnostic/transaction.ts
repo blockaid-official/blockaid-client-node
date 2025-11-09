@@ -241,7 +241,12 @@ export namespace TransactionScanParams {
       | 'bitcoin'
       | 'xlayer'
       | 'monad'
-      | 'monad-testnet';
+      | 'monad-testnet'
+      | 'eclipse'
+      | 'sonic'
+      | 'starknet'
+      | 'sui'
+      | 'hedera';
 
     /**
      * Destination address or identifier for the transaction
