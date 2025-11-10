@@ -17,7 +17,58 @@ export interface EnrichmentReportAccount {
 export interface EnrichmentReportAddress {
   address: string;
 
-  chain: string;
+  /**
+   * An enumeration.
+   */
+  chain:
+    | 'arbitrum'
+    | 'avalanche'
+    | 'base'
+    | 'base-sepolia'
+    | 'bsc'
+    | 'ethereum'
+    | 'ethereum-sepolia'
+    | 'optimism'
+    | 'polygon'
+    | 'zksync'
+    | 'zksync-sepolia'
+    | 'zora'
+    | 'linea'
+    | 'blast'
+    | 'scroll'
+    | 'avalanche-fuji'
+    | 'degen'
+    | 'immutable-zkevm'
+    | 'immutable-zkevm-testnet'
+    | 'gnosis'
+    | 'worldchain'
+    | 'soneium-minato'
+    | 'ronin'
+    | 'apechain'
+    | 'zero-network'
+    | 'berachain'
+    | 'unknown'
+    | 'ink-sepolia'
+    | 'ink'
+    | 'abstract'
+    | 'abstract-testnet'
+    | 'metacade'
+    | 'metacade-testnet'
+    | 'soneium'
+    | 'unichain'
+    | 'lordchain-testnet'
+    | 'lordchain'
+    | 'sei'
+    | 'flow-evm'
+    | 'hyperevm'
+    | 'katana'
+    | 'plume'
+    | 'solana'
+    | 'stellar'
+    | 'bitcoin'
+    | 'xlayer'
+    | 'monad'
+    | 'monad-testnet';
 }
 
 export interface EnrichmentReportAddresses {
