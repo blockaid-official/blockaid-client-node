@@ -76,7 +76,9 @@ export interface PostTransactionBulkScanParams {
 export namespace PostTransactionBulkScanParams {
   export interface MetadataDapp {
     /**
-     * cross reference transaction against the domain.
+     * The full URL of the DApp or website that initiated the transaction, for
+     * cross-reference. Must use the https or http scheme and contain a valid hostname.
+     * Cannot contain JSON, braces, or other embedded data structures.
      */
     domain: string;
   }
