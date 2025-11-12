@@ -591,6 +591,11 @@ export interface AddressValidation {
    * user.
    */
   features?: Array<string> | Array<AddressValidation.UnionMember1>;
+
+  /**
+   * Risk profiling result
+   */
+  risk_profiling?: AddressValidation.RiskProfiling;
 }
 
 export namespace AddressValidation {
@@ -651,6 +656,69 @@ export namespace AddressValidation {
      * Type of the feature
      */
     type: 'Benign' | 'Info' | 'Warning' | 'Malicious';
+  }
+
+  /**
+   * Risk profiling result
+   */
+  export interface RiskProfiling {
+    /**
+     * The address to validate.
+     */
+    address: string;
+
+    risk_summary: RiskProfiling.RiskSummary;
+
+    /**
+     * List of individual exposures
+     */
+    exposures?: Array<RiskProfiling.Exposure>;
+
+    /**
+     * Entity name
+     */
+    name?: string;
+  }
+
+  export namespace RiskProfiling {
+    export interface RiskSummary {
+      /**
+       * The type of validation result
+       */
+      risk_level: 'Malicious' | 'Warning' | 'Benign' | 'High-Risk';
+
+      /**
+       * Total malicious exposure in USD
+       */
+      total_malicious_exposure: number;
+
+      /**
+       * Total USD value
+       */
+      total_usd: number;
+    }
+
+    export interface Exposure {
+      /**
+       * Exposure amount in USD
+       */
+      amount_usd: number;
+
+      /**
+       * Exposure category (e.g., Sanctioned, Fraud, Drainer)
+       */
+      category: string;
+
+      /**
+       * The percentage of the address’s total balance that is currently exposed.
+       */
+      percentage: number;
+
+      /**
+       * The type of validation result
+       */
+      risk_level: 'Malicious' | 'Warning' | 'Benign' | 'High-Risk';
+    }
   }
 }
 
