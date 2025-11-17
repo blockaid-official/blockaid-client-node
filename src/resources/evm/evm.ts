@@ -1161,7 +1161,8 @@ export type TokenScanSupportedChain =
   | 'ronin'
   | 'sui'
   | 'hedera'
-  | 'hyperevm';
+  | 'hyperevm'
+  | 'xlayer';
 
 /**
  * An enumeration.
