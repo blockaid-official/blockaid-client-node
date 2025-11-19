@@ -1348,7 +1348,8 @@ export type TransactionScanSupportedChain =
   | 'plume'
   | 'xlayer'
   | 'monad'
-  | 'monad-testnet';
+  | 'monad-testnet'
+  | 'tron';
 
 export interface TransactionSimulation {
   /**
