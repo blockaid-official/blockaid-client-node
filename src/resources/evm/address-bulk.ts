@@ -81,11 +81,20 @@ export interface AddressBulkScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: EvmAPI.MetadataNonDappParam | AddressBulkScanParams.MetadataDapp;
+  metadata:
+    | AddressBulkScanParams.RoutersEvmModelsMetadataNonDapp
+    | AddressBulkScanParams.RoutersEvmModelsMetadataDapp;
 }
 
 export namespace AddressBulkScanParams {
-  export interface MetadataDapp {
+  export interface RoutersEvmModelsMetadataNonDapp {
+    /**
+     * Indicates that the transaction was not initiated by a dapp.
+     */
+    non_dapp?: true;
+  }
+
+  export interface RoutersEvmModelsMetadataDapp {
     /**
      * The full URL of the DApp or website that initiated the transaction, for
      * cross-reference. Must use the https or http scheme and contain a valid hostname.

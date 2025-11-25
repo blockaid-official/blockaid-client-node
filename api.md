@@ -2,37 +2,11 @@
 
 Types:
 
-- <code><a href="./src/resources/evm/evm.ts">AccountSummary</a></code>
 - <code><a href="./src/resources/evm/evm.ts">AddressReportParams</a></code>
 - <code><a href="./src/resources/evm/evm.ts">AddressValidation</a></code>
-- <code><a href="./src/resources/evm/evm.ts">Balance</a></code>
-- <code><a href="./src/resources/evm/evm.ts">Erc1155Diff</a></code>
-- <code><a href="./src/resources/evm/evm.ts">Erc1155Exposure</a></code>
-- <code><a href="./src/resources/evm/evm.ts">Erc1155TokenDetails</a></code>
-- <code><a href="./src/resources/evm/evm.ts">Erc20Diff</a></code>
-- <code><a href="./src/resources/evm/evm.ts">Erc20Exposure</a></code>
-- <code><a href="./src/resources/evm/evm.ts">Erc20TokenDetails</a></code>
-- <code><a href="./src/resources/evm/evm.ts">Erc721Diff</a></code>
-- <code><a href="./src/resources/evm/evm.ts">Erc721Exposure</a></code>
-- <code><a href="./src/resources/evm/evm.ts">Erc721TokenDetails</a></code>
-- <code><a href="./src/resources/evm/evm.ts">MetadataNonDappParam</a></code>
 - <code><a href="./src/resources/evm/evm.ts">MetadataParam</a></code>
-- <code><a href="./src/resources/evm/evm.ts">MissingBalance</a></code>
-- <code><a href="./src/resources/evm/evm.ts">NativeAddressAssetBalanceChangeDiff</a></code>
-- <code><a href="./src/resources/evm/evm.ts">NativeAssetDetails</a></code>
-- <code><a href="./src/resources/evm/evm.ts">NativeAssetTrace</a></code>
-- <code><a href="./src/resources/evm/evm.ts">NativeDiff</a></code>
-- <code><a href="./src/resources/evm/evm.ts">NonercTokenDetails</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TokenScanSupportedChain</a></code>
-- <code><a href="./src/resources/evm/evm.ts">TransactionAction</a></code>
-- <code><a href="./src/resources/evm/evm.ts">TransactionScanFeature</a></code>
-- <code><a href="./src/resources/evm/evm.ts">TransactionScanResponse</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionScanSupportedChain</a></code>
-- <code><a href="./src/resources/evm/evm.ts">TransactionSimulation</a></code>
-- <code><a href="./src/resources/evm/evm.ts">TransactionSimulationError</a></code>
-- <code><a href="./src/resources/evm/evm.ts">TransactionValidation</a></code>
-- <code><a href="./src/resources/evm/evm.ts">TransactionValidationError</a></code>
-- <code><a href="./src/resources/evm/evm.ts">UsdDiff</a></code>
 - <code><a href="./src/resources/evm/evm.ts">ValidateAddress</a></code>
 - <code><a href="./src/resources/evm/evm.ts">ValidateBulkAddresses</a></code>
 - <code><a href="./src/resources/evm/evm.ts">ValidateBulkExtendedAddressesRequest</a></code>
@@ -40,15 +14,20 @@ Types:
 
 ## JsonRpc
 
+Types:
+
+- <code><a href="./src/resources/evm/json-rpc.ts">JsonRpcScanResponse</a></code>
+
 Methods:
 
-- <code title="post /v0/evm/json-rpc/scan">client.evm.jsonRpc.<a href="./src/resources/evm/json-rpc.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+- <code title="post /v0/evm/json-rpc/scan">client.evm.jsonRpc.<a href="./src/resources/evm/json-rpc.ts">scan</a>({ ...params }) -> JsonRpcScanResponse</code>
 
 ## Transaction
 
 Types:
 
 - <code><a href="./src/resources/evm/transaction.ts">TransactionReportResponse</a></code>
+- <code><a href="./src/resources/evm/transaction.ts">TransactionScanResponse</a></code>
 
 Methods:
 
@@ -67,26 +46,35 @@ Methods:
 
 ## TransactionRaw
 
+Types:
+
+- <code><a href="./src/resources/evm/transaction-raw.ts">TransactionRawScanResponse</a></code>
+
 Methods:
 
-- <code title="post /v0/evm/transaction-raw/scan">client.evm.transactionRaw.<a href="./src/resources/evm/transaction-raw.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+- <code title="post /v0/evm/transaction-raw/scan">client.evm.transactionRaw.<a href="./src/resources/evm/transaction-raw.ts">scan</a>({ ...params }) -> TransactionRawScanResponse</code>
 
 ## UserOperation
 
+Types:
+
+- <code><a href="./src/resources/evm/user-operation.ts">UserOperationScanResponse</a></code>
+
 Methods:
 
-- <code title="post /v0/evm/user-operation/scan">client.evm.userOperation.<a href="./src/resources/evm/user-operation.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+- <code title="post /v0/evm/user-operation/scan">client.evm.userOperation.<a href="./src/resources/evm/user-operation.ts">scan</a>({ ...params }) -> UserOperationScanResponse</code>
 
 ## PostTransaction
 
 Types:
 
 - <code><a href="./src/resources/evm/post-transaction.ts">PostTransactionReportResponse</a></code>
+- <code><a href="./src/resources/evm/post-transaction.ts">PostTransactionScanResponse</a></code>
 
 Methods:
 
 - <code title="post /v0/evm/post-transaction/report">client.evm.postTransaction.<a href="./src/resources/evm/post-transaction.ts">report</a>({ ...params }) -> unknown</code>
-- <code title="post /v0/evm/post-transaction/scan">client.evm.postTransaction.<a href="./src/resources/evm/post-transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+- <code title="post /v0/evm/post-transaction/scan">client.evm.postTransaction.<a href="./src/resources/evm/post-transaction.ts">scan</a>({ ...params }) -> PostTransactionScanResponse</code>
 
 ## PostTransactionBulk
 
