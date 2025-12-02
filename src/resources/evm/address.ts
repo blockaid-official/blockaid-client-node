@@ -125,7 +125,8 @@ export namespace AddressReportParams {
         | 'xlayer'
         | 'monad'
         | 'monad-testnet'
-        | 'hedera';
+        | 'hedera'
+        | 'tempo-testnet';
 
       /**
        * The domain related to this address.

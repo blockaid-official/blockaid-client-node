@@ -246,7 +246,8 @@ export namespace TransactionScanParams {
       | 'sonic'
       | 'starknet'
       | 'sui'
-      | 'hedera';
+      | 'hedera'
+      | 'tempo-testnet';
 
     /**
      * Destination address or identifier for the transaction

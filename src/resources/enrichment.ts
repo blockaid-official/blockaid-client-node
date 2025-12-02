@@ -68,7 +68,8 @@ export interface EnrichmentReportAddress {
     | 'bitcoin'
     | 'xlayer'
     | 'monad'
-    | 'monad-testnet';
+    | 'monad-testnet'
+    | 'tempo-testnet';
 }
 
 export interface EnrichmentReportAddresses {

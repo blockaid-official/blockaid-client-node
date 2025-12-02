@@ -110,6 +110,7 @@ export interface AddressReportParams {
     | 'monad'
     | 'monad-testnet'
     | 'hedera'
+    | 'tempo-testnet'
     | 'solana'
     | 'eclipse'
     | 'sonic'
@@ -342,7 +343,8 @@ export type TransactionScanSupportedChain =
   | 'plume'
   | 'xlayer'
   | 'monad'
-  | 'monad-testnet';
+  | 'monad-testnet'
+  | 'tempo-testnet';
 
 export interface ValidateAddress {
   /**
