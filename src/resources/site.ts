@@ -30,6 +30,7 @@ export class Site extends APIResource {
    * ```ts
    * const response = await client.site.scan({
    *   url: 'https://app.uniswap.org',
+   *   metadata: { type: 'catalog' },
    * });
    * ```
    */
