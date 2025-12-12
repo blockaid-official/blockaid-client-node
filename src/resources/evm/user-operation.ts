@@ -33,7 +33,7 @@ export class UserOperation extends APIResource {
    *     entrypoint:
    *       '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789',
    *   },
-   *   metadata: { domain: 'example.com' },
+   *   metadata: {},
    *   account_address:
    *     '0x77bA5AC3ca4864be26CA3112baDf07286CcC3324',
    *   block: '0x5c6fd5',

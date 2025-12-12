@@ -34,7 +34,7 @@ export class Address extends APIResource {
    * const addressValidation = await client.evm.address.scan({
    *   address: '0x946D45c866AFD5b8F436d40E551D8E50A5B84230',
    *   chain: 'ethereum',
-   *   metadata: { domain: 'https://example.com' },
+   *   metadata: {},
    * });
    * ```
    */
