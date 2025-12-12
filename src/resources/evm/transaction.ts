@@ -40,7 +40,7 @@ export class Transaction extends APIResource {
    *     data: '0x',
    *     value: '0x1000000000000000',
    *   },
-   *   metadata: { domain: 'https://boredapeyartclub.com' },
+   *   metadata: {},
    *   block: '21211118',
    *   options: ['simulation', 'validation'],
    * });
