@@ -13,7 +13,7 @@ describe('resource address', () => {
     const responsePromise = client.evm.address.report({
       details: 'Details about the report',
       event: 'FALSE_NEGATIVE',
-      report: { request_id: '11111111-1111-1111-1111-111111111111', type: 'request_id' },
+      report: { request_id: '6c3cf6c1-a80d-4927-91b9-03d841ea61fe', type: 'request_id' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,7 +28,7 @@ describe('resource address', () => {
     const response = await client.evm.address.report({
       details: 'Details about the report',
       event: 'FALSE_NEGATIVE',
-      report: { request_id: '11111111-1111-1111-1111-111111111111', type: 'request_id' },
+      report: { request_id: '6c3cf6c1-a80d-4927-91b9-03d841ea61fe', type: 'request_id' },
     });
   });
 
