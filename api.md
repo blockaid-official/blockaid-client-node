@@ -130,6 +130,18 @@ Methods:
 
 - <code title="post /v0/solana/address/scan">client.solana.address.<a href="./src/resources/solana/address.ts">scan</a>({ ...params }) -> AddressScanResponse</code>
 
+# Hedera
+
+## Address
+
+Types:
+
+- <code><a href="./src/resources/hedera/address.ts">AddressScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/hedera/address/scan">client.hedera.address.<a href="./src/resources/hedera/address.ts">scan</a>({ ...params }) -> AddressScanResponse</code>
+
 # Stellar
 
 Types:

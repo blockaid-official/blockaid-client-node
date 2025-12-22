@@ -65,6 +65,7 @@ import {
   ValidateBulkExtendedAddressesResponse,
 } from './resources/evm/evm';
 import { ExchangeProtection } from './resources/exchange-protection/exchange-protection';
+import { Hedera } from './resources/hedera/hedera';
 import { Solana } from './resources/solana/solana';
 import {
   Starknet,
@@ -241,6 +242,7 @@ export class Blockaid extends Core.APIClient {
 
   evm: API.Evm = new API.Evm(this);
   solana: API.Solana = new API.Solana(this);
+  hedera: API.Hedera = new API.Hedera(this);
   stellar: API.Stellar = new API.Stellar(this);
   bitcoin: API.Bitcoin = new API.Bitcoin(this);
   starknet: API.Starknet = new API.Starknet(this);
@@ -337,6 +339,7 @@ export class Blockaid extends Core.APIClient {
 
 Blockaid.Evm = Evm;
 Blockaid.Solana = Solana;
+Blockaid.Hedera = Hedera;
 Blockaid.Stellar = Stellar;
 Blockaid.Bitcoin = Bitcoin;
 Blockaid.Starknet = Starknet;
@@ -368,6 +371,8 @@ export declare namespace Blockaid {
   };
 
   export { Solana as Solana };
+
+  export { Hedera as Hedera };
 
   export {
     Stellar as Stellar,
