@@ -102,7 +102,7 @@ export interface TransactionScanParams {
   /**
    * The chain name or chain ID
    */
-  chain: 'mainnet' | 'sepolia' | (string & {});
+  chain: 'mainnet' | (string & {});
 
   /**
    * Metadata

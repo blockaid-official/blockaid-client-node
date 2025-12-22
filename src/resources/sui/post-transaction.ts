@@ -422,7 +422,7 @@ export namespace PostTransactionScanResponse {
 }
 
 export interface PostTransactionScanParams {
-  chain: 'mainnet' | 'testnet' | 'devnet';
+  chain: 'mainnet';
 
   data: PostTransactionScanParams.Data;
 

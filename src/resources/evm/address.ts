@@ -6,7 +6,7 @@ import * as EvmAPI from './evm';
 
 export class Address extends APIResource {
   /**
-   * Report for misclassification of an EVM address.
+   * Report a misclassification of an EVM address.
    *
    * @example
    * ```ts
@@ -15,7 +15,7 @@ export class Address extends APIResource {
    *   event: 'FALSE_NEGATIVE',
    *   report: {
    *     type: 'request_id',
-   *     request_id: '11111111-1111-1111-1111-111111111111',
+   *     request_id: '6c3cf6c1-a80d-4927-91b9-03d841ea61fe',
    *   },
    * });
    * ```
@@ -34,7 +34,7 @@ export class Address extends APIResource {
    * const addressValidation = await client.evm.address.scan({
    *   address: '0x946D45c866AFD5b8F436d40E551D8E50A5B84230',
    *   chain: 'ethereum',
-   *   metadata: { domain: 'https://example.com' },
+   *   metadata: {},
    * });
    * ```
    */
@@ -52,26 +52,102 @@ export interface AddressReportParams {
   details: string;
 
   /**
-   * The event type of the report. Could be FALSE_POSITIVE or FALSE_NEGATIVE.
+   * The event type of the report. Could be `FALSE_POSITIVE` or `FALSE_NEGATIVE`.
    */
   event: 'FALSE_POSITIVE' | 'FALSE_NEGATIVE';
 
   /**
-   * The report parameters.
+   * Parameters identifying the address to report, provided either as address details
+   * (address, domain, and chain) or as a request ID from a previous scan.
    */
-  report: AddressReportParams.ParamReportAddressReportParams | AddressReportParams.RequestIDReport;
+  report: AddressReportParams.ParamReportEvmAddressReportParams | AddressReportParams.RequestIDReport;
 }
 
 export namespace AddressReportParams {
-  export interface ParamReportAddressReportParams {
-    params: EvmAPI.AddressReportParams;
+  export interface ParamReportEvmAddressReportParams {
+    params: ParamReportEvmAddressReportParams.Params;
 
     type: 'params';
   }
 
+  export namespace ParamReportEvmAddressReportParams {
+    export interface Params {
+      /**
+       * The address to report on.
+       */
+      address: string;
+
+      /**
+       * The chain name
+       */
+      chain:
+        | 'arbitrum'
+        | 'avalanche'
+        | 'base'
+        | 'base-sepolia'
+        | 'lordchain'
+        | 'lordchain-testnet'
+        | 'metacade'
+        | 'metacade-testnet'
+        | 'bsc'
+        | 'ethereum'
+        | 'optimism'
+        | 'polygon'
+        | 'zksync'
+        | 'zksync-sepolia'
+        | 'zora'
+        | 'linea'
+        | 'blast'
+        | 'scroll'
+        | 'ethereum-sepolia'
+        | 'degen'
+        | 'avalanche-fuji'
+        | 'immutable-zkevm'
+        | 'immutable-zkevm-testnet'
+        | 'gnosis'
+        | 'worldchain'
+        | 'soneium-minato'
+        | 'ronin'
+        | 'apechain'
+        | 'zero-network'
+        | 'berachain'
+        | 'berachain-bartio'
+        | 'ink'
+        | 'ink-sepolia'
+        | 'abstract'
+        | 'abstract-testnet'
+        | 'soneium'
+        | 'unichain'
+        | 'sei'
+        | 'flow-evm'
+        | 'hyperevm'
+        | 'katana'
+        | 'plume'
+        | 'xlayer'
+        | 'monad'
+        | 'monad-testnet'
+        | 'hedera'
+        | 'tempo-testnet';
+
+      /**
+       * The domain related to this address.
+       */
+      domain: string;
+    }
+  }
+
   export interface RequestIDReport {
+    /**
+     * The request ID of a previous request. This can be found in the value of the
+     * `x-request-id` field in the headers of the response of the previous request. For
+     * instance: `6c3cf6c1-a80d-4927-91b9-03d841ea61fe`.
+     */
     request_id: string;
 
+    /**
+     * The type identifier indicating that a request ID from a previous scan is being
+     * used.
+     */
     type: 'request_id';
   }
 }
@@ -90,13 +166,24 @@ export interface AddressScanParams {
   /**
    * Object of additional information to validate against.
    */
-  metadata: EvmAPI.MetadataNonDappParam | AddressScanParams.MetadataDapp;
+  metadata:
+    | AddressScanParams.RoutersEvmModelsMetadataNonDapp
+    | AddressScanParams.RoutersEvmModelsMetadataDapp;
 }
 
 export namespace AddressScanParams {
-  export interface MetadataDapp {
+  export interface RoutersEvmModelsMetadataNonDapp {
     /**
-     * cross reference transaction against the domain.
+     * Indicates that the transaction was not initiated by a dapp.
+     */
+    non_dapp?: true;
+  }
+
+  export interface RoutersEvmModelsMetadataDapp {
+    /**
+     * The full URL of the DApp or website that initiated the transaction, for
+     * cross-reference. Must use the https or http scheme and contain a valid hostname.
+     * Cannot contain JSON, braces, or other embedded data structures.
      */
     domain: string;
   }

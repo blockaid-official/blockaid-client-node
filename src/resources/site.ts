@@ -5,7 +5,7 @@ import * as Core from '../core';
 
 export class Site extends APIResource {
   /**
-   * Report for misclassification of a site.
+   * Report a misclassification of a site.
    *
    * @example
    * ```ts
@@ -30,6 +30,7 @@ export class Site extends APIResource {
    * ```ts
    * const response = await client.site.scan({
    *   url: 'https://app.uniswap.org',
+   *   metadata: { type: 'catalog' },
    * });
    * ```
    */
@@ -101,12 +102,13 @@ export interface SiteReportParams {
   details: string;
 
   /**
-   * The event type of the report. Could be FALSE_POSITIVE or FALSE_NEGATIVE.
+   * The event type of the report. Could be `FALSE_POSITIVE` or `FALSE_NEGATIVE`.
    */
   event: 'FALSE_POSITIVE' | 'FALSE_NEGATIVE';
 
   /**
-   * The report parameters.
+   * Parameters identifying the site to report, provided either as site details (url)
+   * or as a request ID from a previous scan.
    */
   report: SiteReportParams.ParamReportSiteReportParams | SiteReportParams.RequestIDReport;
 }
@@ -128,8 +130,17 @@ export namespace SiteReportParams {
   }
 
   export interface RequestIDReport {
+    /**
+     * The request ID of a previous request. This can be found in the value of the
+     * `x-request-id` field in the headers of the response of the previous request. For
+     * instance: `6c3cf6c1-a80d-4927-91b9-03d841ea61fe`.
+     */
     request_id: string;
 
+    /**
+     * The type identifier indicating that a request ID from a previous scan is being
+     * used.
+     */
     type: 'request_id';
   }
 }

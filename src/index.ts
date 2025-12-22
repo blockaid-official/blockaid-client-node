@@ -53,44 +53,19 @@ import {
 } from './resources/bitcoin/bitcoin';
 import { ChainAgnostic } from './resources/chain-agnostic/chain-agnostic';
 import {
-  AccountSummary,
   AddressReportParams,
   AddressValidation,
-  Balance,
-  Erc1155Diff,
-  Erc1155Exposure,
-  Erc1155TokenDetails,
-  Erc20Diff,
-  Erc20Exposure,
-  Erc20TokenDetails,
-  Erc721Diff,
-  Erc721Exposure,
-  Erc721TokenDetails,
   Evm,
-  MetadataNonDappParam,
   MetadataParam,
-  MissingBalance,
-  NativeAddressAssetBalanceChangeDiff,
-  NativeAssetDetails,
-  NativeAssetTrace,
-  NativeDiff,
-  NonercTokenDetails,
   TokenScanSupportedChain,
-  TransactionAction,
-  TransactionScanFeature,
-  TransactionScanResponse,
   TransactionScanSupportedChain,
-  TransactionSimulation,
-  TransactionSimulationError,
-  TransactionValidation,
-  TransactionValidationError,
-  UsdDiff,
   ValidateAddress,
   ValidateBulkAddresses,
   ValidateBulkExtendedAddressesRequest,
   ValidateBulkExtendedAddressesResponse,
 } from './resources/evm/evm';
 import { ExchangeProtection } from './resources/exchange-protection/exchange-protection';
+import { Hedera } from './resources/hedera/hedera';
 import { Solana } from './resources/solana/solana';
 import {
   Starknet,
@@ -267,6 +242,7 @@ export class Blockaid extends Core.APIClient {
 
   evm: API.Evm = new API.Evm(this);
   solana: API.Solana = new API.Solana(this);
+  hedera: API.Hedera = new API.Hedera(this);
   stellar: API.Stellar = new API.Stellar(this);
   bitcoin: API.Bitcoin = new API.Bitcoin(this);
   starknet: API.Starknet = new API.Starknet(this);
@@ -363,6 +339,7 @@ export class Blockaid extends Core.APIClient {
 
 Blockaid.Evm = Evm;
 Blockaid.Solana = Solana;
+Blockaid.Hedera = Hedera;
 Blockaid.Stellar = Stellar;
 Blockaid.Bitcoin = Bitcoin;
 Blockaid.Starknet = Starknet;
@@ -382,37 +359,11 @@ export declare namespace Blockaid {
 
   export {
     Evm as Evm,
-    type AccountSummary as AccountSummary,
     type AddressReportParams as AddressReportParams,
     type AddressValidation as AddressValidation,
-    type Balance as Balance,
-    type Erc1155Diff as Erc1155Diff,
-    type Erc1155Exposure as Erc1155Exposure,
-    type Erc1155TokenDetails as Erc1155TokenDetails,
-    type Erc20Diff as Erc20Diff,
-    type Erc20Exposure as Erc20Exposure,
-    type Erc20TokenDetails as Erc20TokenDetails,
-    type Erc721Diff as Erc721Diff,
-    type Erc721Exposure as Erc721Exposure,
-    type Erc721TokenDetails as Erc721TokenDetails,
-    type MetadataNonDappParam as MetadataNonDappParam,
     type MetadataParam as MetadataParam,
-    type MissingBalance as MissingBalance,
-    type NativeAddressAssetBalanceChangeDiff as NativeAddressAssetBalanceChangeDiff,
-    type NativeAssetDetails as NativeAssetDetails,
-    type NativeAssetTrace as NativeAssetTrace,
-    type NativeDiff as NativeDiff,
-    type NonercTokenDetails as NonercTokenDetails,
     type TokenScanSupportedChain as TokenScanSupportedChain,
-    type TransactionAction as TransactionAction,
-    type TransactionScanFeature as TransactionScanFeature,
-    type TransactionScanResponse as TransactionScanResponse,
     type TransactionScanSupportedChain as TransactionScanSupportedChain,
-    type TransactionSimulation as TransactionSimulation,
-    type TransactionSimulationError as TransactionSimulationError,
-    type TransactionValidation as TransactionValidation,
-    type TransactionValidationError as TransactionValidationError,
-    type UsdDiff as UsdDiff,
     type ValidateAddress as ValidateAddress,
     type ValidateBulkAddresses as ValidateBulkAddresses,
     type ValidateBulkExtendedAddressesRequest as ValidateBulkExtendedAddressesRequest,
@@ -420,6 +371,8 @@ export declare namespace Blockaid {
   };
 
   export { Solana as Solana };
+
+  export { Hedera as Hedera };
 
   export {
     Stellar as Stellar,

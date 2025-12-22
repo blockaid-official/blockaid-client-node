@@ -27,7 +27,7 @@ const client = new Blockaid({
   environment: 'client', // defaults to 'production'
 });
 
-const transactionScanResponse = await client.evm.jsonRpc.scan({
+const response = await client.evm.jsonRpc.scan({
   chain: 'ethereum',
   data: {
     method: 'eth_signTypedData_v4',
@@ -39,7 +39,7 @@ const transactionScanResponse = await client.evm.jsonRpc.scan({
   metadata: {},
 });
 
-console.log(transactionScanResponse.validation);
+console.log(response.validation);
 ```
 
 ### Request & Response types
@@ -66,7 +66,7 @@ const params: Blockaid.Evm.JsonRpcScanParams = {
   },
   metadata: {},
 };
-const transactionScanResponse: Blockaid.TransactionScanResponse = await client.evm.jsonRpc.scan(params);
+const response: Blockaid.Evm.JsonRpcScanResponse = await client.evm.jsonRpc.scan(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -79,7 +79,7 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const transactionScanResponse = await client.evm.jsonRpc
+const response = await client.evm.jsonRpc
   .scan({
     chain: 'ethereum',
     data: {
@@ -185,7 +185,7 @@ const response = await client.evm.jsonRpc
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: transactionScanResponse, response: raw } = await client.evm.jsonRpc
+const { data: response, response: raw } = await client.evm.jsonRpc
   .scan({
     chain: 'ethereum',
     data: {
@@ -199,7 +199,7 @@ const { data: transactionScanResponse, response: raw } = await client.evm.jsonRp
   })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(transactionScanResponse.validation);
+console.log(response.validation);
 ```
 
 ### Making custom/undocumented requests

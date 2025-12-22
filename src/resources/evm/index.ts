@@ -9,46 +9,21 @@ export {
 } from './address-bulk';
 export {
   Evm,
-  type AccountSummary,
   type AddressReportParams,
   type AddressValidation,
-  type Balance,
-  type Erc1155Diff,
-  type Erc1155Exposure,
-  type Erc1155TokenDetails,
-  type Erc20Diff,
-  type Erc20Exposure,
-  type Erc20TokenDetails,
-  type Erc721Diff,
-  type Erc721Exposure,
-  type Erc721TokenDetails,
-  type MetadataNonDappParam,
   type MetadataParam,
-  type MissingBalance,
-  type NativeAddressAssetBalanceChangeDiff,
-  type NativeAssetDetails,
-  type NativeAssetTrace,
-  type NativeDiff,
-  type NonercTokenDetails,
   type TokenScanSupportedChain,
-  type TransactionAction,
-  type TransactionScanFeature,
-  type TransactionScanResponse,
   type TransactionScanSupportedChain,
-  type TransactionSimulation,
-  type TransactionSimulationError,
-  type TransactionValidation,
-  type TransactionValidationError,
-  type UsdDiff,
   type ValidateAddress,
   type ValidateBulkAddresses,
   type ValidateBulkExtendedAddressesRequest,
   type ValidateBulkExtendedAddressesResponse,
 } from './evm';
-export { JsonRpc, type JsonRpcScanParams } from './json-rpc';
+export { JsonRpc, type JsonRpcScanResponse, type JsonRpcScanParams } from './json-rpc';
 export {
   PostTransaction,
   type PostTransactionReportResponse,
+  type PostTransactionScanResponse,
   type PostTransactionReportParams,
   type PostTransactionScanParams,
 } from './post-transaction';
@@ -60,6 +35,7 @@ export {
 export {
   Transaction,
   type TransactionReportResponse,
+  type TransactionScanResponse,
   type TransactionReportParams,
   type TransactionScanParams,
 } from './transaction';
@@ -68,5 +44,13 @@ export {
   type TransactionBulkScanResponse,
   type TransactionBulkScanParams,
 } from './transaction-bulk';
-export { TransactionRaw, type TransactionRawScanParams } from './transaction-raw';
-export { UserOperation, type UserOperationScanParams } from './user-operation';
+export {
+  TransactionRaw,
+  type TransactionRawScanResponse,
+  type TransactionRawScanParams,
+} from './transaction-raw';
+export {
+  UserOperation,
+  type UserOperationScanResponse,
+  type UserOperationScanParams,
+} from './user-operation';

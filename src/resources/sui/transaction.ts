@@ -33,9 +33,9 @@ export class Transaction extends APIResource {
 }
 
 export interface TransactionScanParams {
-  account_address: unknown;
+  account_address: string;
 
-  chain: 'mainnet' | 'testnet' | 'devnet';
+  chain: 'mainnet';
 
   /**
    * Metadata
