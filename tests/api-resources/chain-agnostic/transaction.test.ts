@@ -37,6 +37,7 @@ describe('resource transaction', () => {
         chain: 'bitcoin',
         to: 'bc1qanrfutwqh854g74lqrygr55jkgf99em4lpfm80',
         from: 'from',
+        transaction_action: 'withdrawal',
       },
       metadata: {
         account: {

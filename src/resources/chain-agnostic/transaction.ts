@@ -16,6 +16,7 @@ export class Transaction extends APIResource {
    *   await client.chainAgnostic.transaction.scan({
    *     data: {
    *       chain: 'bitcoin',
+   *       transaction_action: 'withdrawal',
    *       asset: { symbol: 'BTC' },
    *       to: 'bc1qanrfutwqh854g74lqrygr55jkgf99em4lpfm80',
    *       amount: 1,
@@ -258,6 +259,11 @@ export namespace TransactionScanParams {
      * Source address or identifier for the transaction
      */
     from?: string;
+
+    /**
+     * Action the transaction is making
+     */
+    transaction_action?: 'deposit' | 'withdrawal';
   }
 
   export namespace Data {
