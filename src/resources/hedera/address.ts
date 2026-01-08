@@ -67,10 +67,9 @@ export interface AddressScanParams {
   address: string;
 
   /**
-   * The Hedera network on which the address exists. Possible values are `mainnet` or
-   * `testnet`.
+   * The chain the transaction runs on.
    */
-  chain: 'mainnet' | 'testnet';
+  chain: 'mainnet';
 }
 
 export declare namespace Address {
