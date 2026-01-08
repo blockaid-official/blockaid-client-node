@@ -132,6 +132,16 @@ Methods:
 
 # Hedera
 
+## Transaction
+
+Types:
+
+- <code><a href="./src/resources/hedera/transaction.ts">TransactionScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/hedera/transaction/scan">client.hedera.transaction.<a href="./src/resources/hedera/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
+
 ## Address
 
 Types:
