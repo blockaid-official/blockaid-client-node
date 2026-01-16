@@ -60,7 +60,7 @@ export namespace TransactionScanResponse {
     description: string;
 
     /**
-     * The type of validation result
+     * The type of validation result.
      */
     result_type: 'Malicious' | 'Warning' | 'Benign' | 'High-Risk';
 
@@ -98,7 +98,7 @@ export namespace TransactionScanResponse {
       feature_id: string;
 
       /**
-       * The type of feature detected in the scan
+       * The type of feature detected in the scan.
        */
       type: 'Malicious' | 'Warning' | 'Benign' | 'High-Risk' | 'Info';
 
@@ -120,7 +120,7 @@ export namespace TransactionScanResponse {
       feature_id: string;
 
       /**
-       * The type of feature detected in the scan
+       * The type of feature detected in the scan.
        */
       type: 'Malicious' | 'Warning' | 'Benign' | 'High-Risk' | 'Info';
 
@@ -147,7 +147,7 @@ export namespace TransactionScanResponse {
       feature_id: string;
 
       /**
-       * The type of feature detected in the scan
+       * The type of feature detected in the scan.
        */
       type: 'Malicious' | 'Warning' | 'Benign' | 'High-Risk' | 'Info';
 

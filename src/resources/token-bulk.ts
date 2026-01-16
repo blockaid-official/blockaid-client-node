@@ -594,6 +594,11 @@ export namespace TokenBulkScanResponse {
         | 'ONCHAIN_ACTIVITY_VALIDATOR'
         | 'STATIC_CODE_SIGNATURE'
         | 'KNOWN_MALICIOUS'
+        | 'IS_EOA'
+        | 'IS_CONTRACT'
+        | 'ERC20_CONTRACT'
+        | 'TRUSTED_CONTRACT'
+        | 'BENIGN_CREATOR'
         | 'METADATA'
         | 'AIRDROP_PATTERN'
         | 'IMPERSONATOR'
@@ -649,14 +654,16 @@ export interface TokenBulkScanParams {
   tokens: Array<string>;
 
   /**
-   * Object of additional information to validate against.
+   * Optional token metadata context (e.g., source/integration hints) used to enrich
+   * results.
    */
   metadata?: TokenBulkScanParams.Metadata;
 }
 
 export namespace TokenBulkScanParams {
   /**
-   * Object of additional information to validate against.
+   * Optional token metadata context (e.g., source/integration hints) used to enrich
+   * results.
    */
   export interface Metadata {
     /**

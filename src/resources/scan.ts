@@ -30,7 +30,7 @@ export interface ScanStatusParams {
   request_id: string;
 
   /**
-   * An enumeration.
+   * Status of a scan-status lookup request.
    */
   status: 'accepted' | 'rejected';
 }

@@ -127,24 +127,24 @@ export interface AddressReportParams {
 
 export interface AddressValidation {
   /**
-   * An enumeration.
+   * Overall validation outcome for the scan.
    */
   result_type: 'Malicious' | 'Warning' | 'Benign' | 'Error';
 
   /**
-   * An error message if the validation failed.
+   * An error message returned when `result_type` is `Error`.
    */
   error?: string;
 
   /**
-   * A list of textual features about this transaction that can be presented to the
-   * user.
+   * A list of features explaining the scan result (each feature includes a type,
+   * feature_id, and description).
    */
-  features?: Array<string> | Array<AddressValidation.UnionMember1>;
+  features?: Array<AddressValidation.UnionMember0> | Array<string>;
 }
 
 export namespace AddressValidation {
-  export interface UnionMember1 {
+  export interface UnionMember0 {
     /**
      * Description of the feature
      */
@@ -162,6 +162,11 @@ export namespace AddressValidation {
       | 'ONCHAIN_ACTIVITY_VALIDATOR'
       | 'STATIC_CODE_SIGNATURE'
       | 'KNOWN_MALICIOUS'
+      | 'IS_EOA'
+      | 'IS_CONTRACT'
+      | 'ERC20_CONTRACT'
+      | 'TRUSTED_CONTRACT'
+      | 'BENIGN_CREATOR'
       | 'METADATA'
       | 'AIRDROP_PATTERN'
       | 'IMPERSONATOR'
@@ -222,12 +227,12 @@ export namespace MetadataParam {
    */
   export interface Account {
     /**
-     * Unique identifier for the account
+     * Unique identifier for the account.
      */
     account_id: string;
 
     /**
-     * Timestamp when the account was created
+     * Timestamp when the account was created.
      */
     account_creation_timestamp?: string;
 
@@ -237,7 +242,7 @@ export namespace MetadataParam {
     user_age?: number;
 
     /**
-     * ISO country code of the user's location
+     * ISO country code of the user's location.
      */
     user_country_code?: string;
   }
@@ -247,12 +252,12 @@ export namespace MetadataParam {
    */
   export interface Connection {
     /**
-     * IP address of the customer making the request
+     * IP address of the customer making the request.
      */
     ip_address: string;
 
     /**
-     * User agent string from the client's browser or application
+     * User agent string from the client's browser or application.
      */
     user_agent?: string;
   }
@@ -358,7 +363,8 @@ export interface ValidateAddress {
   chain: TransactionScanSupportedChain;
 
   /**
-   * Object of additional information to validate against.
+   * Additional context for the scan (e.g., dapp URL/domain, integration source).
+   * Used to enrich results and reduce false positives/negatives.
    */
   metadata: ValidateAddress.RoutersEvmModelsMetadataNonDapp | ValidateAddress.RoutersEvmModelsMetadataDapp;
 }
@@ -393,7 +399,8 @@ export interface ValidateBulkAddresses {
   chain: TransactionScanSupportedChain;
 
   /**
-   * Object of additional information to validate against.
+   * Additional context for the scan (e.g., dapp URL/domain, integration source).
+   * Used to enrich results and reduce false positives/negatives.
    */
   metadata:
     | ValidateBulkAddresses.RoutersEvmModelsMetadataNonDapp
@@ -430,14 +437,16 @@ export interface ValidateBulkExtendedAddressesRequest {
   chain: TransactionScanSupportedChain;
 
   /**
-   * Object of additional information to validate against.
+   * Additional context for the scan (e.g., integration source, user/account
+   * details). Used to enrich results and reduce false positives/negatives.
    */
   metadata: ValidateBulkExtendedAddressesRequest.Metadata;
 }
 
 export namespace ValidateBulkExtendedAddressesRequest {
   /**
-   * Object of additional information to validate against.
+   * Additional context for the scan (e.g., integration source, user/account
+   * details). Used to enrich results and reduce false positives/negatives.
    */
   export interface Metadata {
     account: Metadata.Account;
@@ -492,7 +501,7 @@ export namespace ValidateBulkExtendedAddressesResponse {
      */
     export interface Validation {
       /**
-       * An enumeration.
+       * Overall validation outcome for the scan.
        */
       result_type: 'Malicious' | 'Warning' | 'Benign' | 'Error';
 
@@ -521,6 +530,11 @@ export namespace ValidateBulkExtendedAddressesResponse {
           | 'ONCHAIN_ACTIVITY_VALIDATOR'
           | 'STATIC_CODE_SIGNATURE'
           | 'KNOWN_MALICIOUS'
+          | 'IS_EOA'
+          | 'IS_CONTRACT'
+          | 'ERC20_CONTRACT'
+          | 'TRUSTED_CONTRACT'
+          | 'BENIGN_CREATOR'
           | 'METADATA'
           | 'AIRDROP_PATTERN'
           | 'IMPERSONATOR'
