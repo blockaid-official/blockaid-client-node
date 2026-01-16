@@ -3753,7 +3753,8 @@ export namespace TransactionScanResponse {
       export namespace RoutersEvmSessionKeysCallPolicy {
         export interface Arg {
           /**
-           * An enumeration.
+           * Comparison operator used to evaluate an argument/value against a policy
+           * constraint.
            */
           condition:
             | 'UNCONSTRAINED'
@@ -4463,7 +4464,7 @@ export namespace TransactionScanResponse {
     features: Array<RoutersEvmResponseTransactionValidation.Feature>;
 
     /**
-     * An enumeration.
+     * Result type returned when validation succeeds.
      */
     result_type: 'Benign' | 'Warning' | 'Malicious';
 
@@ -4504,7 +4505,7 @@ export namespace TransactionScanResponse {
       feature_id: string;
 
       /**
-       * An enumeration.
+       * Security result of a transaction scan feature.
        */
       type: 'Malicious' | 'Warning' | 'Benign' | 'Info';
 
@@ -4573,7 +4574,7 @@ export namespace TransactionScanResponse {
       feature_id: string;
 
       /**
-       * An enumeration.
+       * Security result of a transaction scan feature.
        */
       type: 'Malicious' | 'Warning' | 'Benign' | 'Info';
 
@@ -4637,7 +4638,8 @@ export namespace TransactionReportParams {
       data: Params.RoutersEvmTransactionModelsTransaction | Params.JsonRpc;
 
       /**
-       * Object of additional information to validate against.
+       * Additional context for the scan (e.g., dapp URL/domain, integration source).
+       * Used to enrich results and reduce false positives/negatives.
        */
       metadata: Params.RoutersEvmModelsMetadataNonDapp | Params.RoutersEvmModelsMetadataDapp;
     }
@@ -4723,7 +4725,7 @@ export namespace TransactionReportParams {
 
       export interface JsonRpc {
         /**
-         * An enumeration.
+         * Supported JSON-RPC methods that can be scanned.
          */
         method:
           | 'eth_sendTransaction'
@@ -4797,7 +4799,8 @@ export interface TransactionScanParams {
   data: TransactionScanParams.Data;
 
   /**
-   * Object of additional information to validate against.
+   * Additional context for the scan (e.g., dapp URL/domain, integration source).
+   * Used to enrich results and reduce false positives/negatives.
    */
   metadata:
     | TransactionScanParams.RoutersEvmModelsMetadataNonDapp

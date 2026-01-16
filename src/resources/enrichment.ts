@@ -18,7 +18,7 @@ export interface EnrichmentReportAddress {
   address: string;
 
   /**
-   * An enumeration.
+   * Supported chain identifiers.
    */
   chain:
     | 'arbitrum'
@@ -81,7 +81,7 @@ export interface EnrichmentReportAddresses {
   fraud_urls?: Array<string>;
 
   /**
-   * An enumeration.
+   * Source of an enrichment report.
    */
   source?: EnrichmentReportSource;
 }
@@ -91,7 +91,7 @@ export interface EnrichmentReportMetadata {
 }
 
 /**
- * An enumeration.
+ * Source of an enrichment report.
  */
 export type EnrichmentReportSource = 'user_report' | 'internal_system_report' | 'manual_report';
 

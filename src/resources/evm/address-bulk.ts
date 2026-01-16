@@ -79,7 +79,8 @@ export interface AddressBulkScanParams {
   chain: EvmAPI.TransactionScanSupportedChain;
 
   /**
-   * Object of additional information to validate against.
+   * Additional context for the scan (e.g., dapp URL/domain, integration source).
+   * Used to enrich results and reduce false positives/negatives.
    */
   metadata:
     | AddressBulkScanParams.RoutersEvmModelsMetadataNonDapp
@@ -116,14 +117,16 @@ export interface AddressBulkScanExtendedParams {
   chain: EvmAPI.TransactionScanSupportedChain;
 
   /**
-   * Object of additional information to validate against.
+   * Additional context for the scan (e.g., integration source, user/account
+   * details). Used to enrich results and reduce false positives/negatives.
    */
   metadata: AddressBulkScanExtendedParams.Metadata;
 }
 
 export namespace AddressBulkScanExtendedParams {
   /**
-   * Object of additional information to validate against.
+   * Additional context for the scan (e.g., integration source, user/account
+   * details). Used to enrich results and reduce false positives/negatives.
    */
   export interface Metadata {
     account: Metadata.Account;
