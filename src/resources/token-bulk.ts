@@ -27,6 +27,11 @@ export class TokenBulk extends APIResource {
 
 export interface TokenBulkScanResponse {
   results: { [key: string]: TokenBulkScanResponse.Results };
+
+  /**
+   * Errors encountered during bulk scanning, keyed by token address
+   */
+  errors?: { [key: string]: TokenBulkScanResponse.Errors };
 }
 
 export namespace TokenBulkScanResponse {
@@ -639,6 +644,13 @@ export namespace TokenBulkScanResponse {
        */
       type: 'Benign' | 'Info' | 'Warning' | 'Malicious';
     }
+  }
+
+  export interface Errors {
+    /**
+     * Error message describing why the scan failed for this token
+     */
+    message: string;
   }
 }
 
