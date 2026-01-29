@@ -298,7 +298,8 @@ export type TokenScanSupportedChain =
   | 'hedera'
   | 'hyperevm'
   | 'xlayer'
-  | 'monad';
+  | 'monad'
+  | 'tron';
 
 /**
  * The chain name
