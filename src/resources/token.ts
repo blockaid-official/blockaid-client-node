@@ -728,6 +728,11 @@ export interface TokenScanParams {
    * results.
    */
   metadata?: TokenScanParams.Metadata;
+
+  /**
+   * Token ID for ERC721 or ERC1155
+   */
+  token_id?: number | null;
 }
 
 export namespace TokenScanParams {
