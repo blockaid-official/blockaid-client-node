@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.67.0 (2026-02-04)
+
+Full Changelog: [v0.66.0...v0.67.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.66.0...v0.67.0)
+
+### Features
+
+* **api:** api update ([f20d03e](https://github.com/blockaid-official/blockaid-client-node/commit/f20d03e7e1b25e7aa2a59059aba1ed3b228785eb))
+* **api:** api update ([9749745](https://github.com/blockaid-official/blockaid-client-node/commit/9749745cff506ae7aff8afda9996e47980269fd4))
+* **api:** api update ([5b8e50b](https://github.com/blockaid-official/blockaid-client-node/commit/5b8e50bd907437ee4c70ab7527d0883bc57caa27))
+* **api:** api update ([e0a5245](https://github.com/blockaid-official/blockaid-client-node/commit/e0a5245d4fda99aac27a9a044522e78f1f0556e1))
+* **api:** api update ([5b9fe4d](https://github.com/blockaid-official/blockaid-client-node/commit/5b9fe4d3d3a79d223ca2162999061f2283ff0b77))
+* **api:** api update ([5cbfd89](https://github.com/blockaid-official/blockaid-client-node/commit/5cbfd89a5568a3e56a2e4d8759e4e178125d4707))
+* **api:** api update ([cf5c592](https://github.com/blockaid-official/blockaid-client-node/commit/cf5c592cc16e451d0bd329ccf5a487910a91bf7c))
+* **api:** api update ([0b9450b](https://github.com/blockaid-official/blockaid-client-node/commit/0b9450ba14200fd92c809ecbe2ba006ed2f47df6))
+* **api:** api update ([9013a6d](https://github.com/blockaid-official/blockaid-client-node/commit/9013a6da58eb1d689689ba5ceaabf0ae6fd4a146))
+* **api:** api update ([d9e0915](https://github.com/blockaid-official/blockaid-client-node/commit/d9e0915977dbf57db6d895d50ce497af23e1b128))
+* **api:** api update ([552062d](https://github.com/blockaid-official/blockaid-client-node/commit/552062d38b371e8e40b5248f86141cb7bd2d35ad))
+
+
+### Chores
+
+* break long lines in snippets into multiline ([fd95b40](https://github.com/blockaid-official/blockaid-client-node/commit/fd95b404bfcfe3bd78c726fcabb0bf97a0cb83f3))
+* **ci:** upgrade `actions/github-script` ([3ee5407](https://github.com/blockaid-official/blockaid-client-node/commit/3ee5407b66155402bac9931d95067512dd32dda6))
+* **client:** do not parse responses with empty content-length ([e059188](https://github.com/blockaid-official/blockaid-client-node/commit/e059188370a37809777ecdc2ee8d47e902613425))
+* **internal:** update `actions/checkout` version ([913b4f5](https://github.com/blockaid-official/blockaid-client-node/commit/913b4f51955f3bcc0ae9ec3ec59d368391000499))
+* **internal:** upgrade babel, qs, js-yaml ([9222f7c](https://github.com/blockaid-official/blockaid-client-node/commit/9222f7cc88823406450e9ef8f9148be4586cd213))
+
 ## 0.66.0 (2025-12-22)
 
 Full Changelog: [v0.65.0...v0.66.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.65.0...v0.66.0)
