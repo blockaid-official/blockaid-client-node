@@ -730,7 +730,7 @@ export interface TokenScanParams {
   metadata?: TokenScanParams.Metadata;
 
   /**
-   * Token ID for ERC721 or ERC1155
+   * The ID of the specific NFT within an ERC-721 or ERC-1155 collection.
    */
   token_id?: number | null;
 }
