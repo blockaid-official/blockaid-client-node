@@ -66,8 +66,8 @@ export namespace TransactionBulkScanResponse {
       | TransactionBulkScanResponseItem.RoutersEvmResponseTransactionSimulationError;
 
     user_operation_gas_estimation?:
-      | TransactionBulkScanResponseItem.RoutersEvmModelsUserOperationV6GasEstimation
-      | TransactionBulkScanResponseItem.RoutersEvmModelsUserOperationV7GasEstimation
+      | EvmAPI.UserOperationV6GasEstimation
+      | EvmAPI.UserOperationV7GasEstimation
       | TransactionBulkScanResponseItem.RoutersEvmModelsTransactionScanGasEstimationError;
 
     validation?:
@@ -4422,28 +4422,6 @@ export namespace TransactionBulkScanResponse {
       }
     }
 
-    export interface RoutersEvmModelsUserOperationV6GasEstimation {
-      call_gas_estimate: string;
-
-      pre_verification_gas_estimate: string;
-
-      status: 'Success';
-
-      verification_gas_estimate: string;
-    }
-
-    export interface RoutersEvmModelsUserOperationV7GasEstimation {
-      call_gas_estimate: string;
-
-      paymaster_verification_gas_estimate: string;
-
-      pre_verification_gas_estimate: string;
-
-      status: 'Success';
-
-      verification_gas_estimate: string;
-    }
-
     export interface RoutersEvmModelsTransactionScanGasEstimationError {
       error: string;
 
@@ -4643,7 +4621,7 @@ export namespace TransactionBulkScanParams {
     /**
      * The authorization list
      */
-    authorization_list?: Array<Data.AuthorizationList>;
+    authorization_list?: Array<EvmAPI.Authorization>;
 
     /**
      * The encoded call data of the transaction in hex string format
@@ -4669,47 +4647,6 @@ export namespace TransactionBulkScanParams {
      * The value of the transaction in Wei in hex string format
      */
     value?: string;
-  }
-
-  export namespace Data {
-    export interface AuthorizationList {
-      /**
-       * The delegation designation address
-       */
-      address: string;
-
-      /**
-       * The chain ID as hex string
-       */
-      chainId?: string;
-
-      /**
-       * The authority address of the delegation, should be provided when the signature
-       * (r,s,yParity) is not provided in order to simulate the transaction with the
-       * correct delegation
-       */
-      eoa?: string;
-
-      /**
-       * The nonce value as hex string
-       */
-      nonce?: string;
-
-      /**
-       * The r value as hex string
-       */
-      r?: string;
-
-      /**
-       * The s value as hex string
-       */
-      s?: string;
-
-      /**
-       * The yParity value as hex string
-       */
-      yParity?: string;
-    }
   }
 
   export interface RoutersEvmModelsMetadataNonDapp {

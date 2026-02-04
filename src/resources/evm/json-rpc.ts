@@ -54,8 +54,8 @@ export interface JsonRpcScanResponse {
     | JsonRpcScanResponse.RoutersEvmResponseTransactionSimulationError;
 
   user_operation_gas_estimation?:
-    | JsonRpcScanResponse.RoutersEvmModelsUserOperationV6GasEstimation
-    | JsonRpcScanResponse.RoutersEvmModelsUserOperationV7GasEstimation
+    | EvmAPI.UserOperationV6GasEstimation
+    | EvmAPI.UserOperationV7GasEstimation
     | JsonRpcScanResponse.RoutersEvmModelsTransactionScanGasEstimationError;
 
   validation?:
@@ -4408,28 +4408,6 @@ export namespace JsonRpcScanResponse {
        */
       message_type: string;
     }
-  }
-
-  export interface RoutersEvmModelsUserOperationV6GasEstimation {
-    call_gas_estimate: string;
-
-    pre_verification_gas_estimate: string;
-
-    status: 'Success';
-
-    verification_gas_estimate: string;
-  }
-
-  export interface RoutersEvmModelsUserOperationV7GasEstimation {
-    call_gas_estimate: string;
-
-    paymaster_verification_gas_estimate: string;
-
-    pre_verification_gas_estimate: string;
-
-    status: 'Success';
-
-    verification_gas_estimate: string;
   }
 
   export interface RoutersEvmModelsTransactionScanGasEstimationError {
