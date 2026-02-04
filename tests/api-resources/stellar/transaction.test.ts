@@ -36,7 +36,7 @@ describe('resource transaction', () => {
     const responsePromise = client.stellar.transaction.scan({
       account_address: 'GDPMFLKUGASUTWBN2XGYYKD27QGHCYH4BUFUTER4L23INYQ4JHDWFOIE',
       chain: 'pubnet',
-      metadata: { type: 'wallet', url: 'localhost' },
+      metadata: { type: 'wallet', url: 'https://example.com' },
       transaction:
         'AAAAAgAAAADewq1UMCVJ2C3VzYwoevwMcWD8DQtJkjxetobiHEnHYgAAAAEAAAAAAAAAAgAAAAAAAAAAAAAAAQAAAAEAAAAA3sKtVDAlSdgt1c2MKHr8DHFg/A0LSZI8XraG4hxJx2IAAAABAAAAACI40RTBOFEE7uT5mZkoq30mbvxLPJpMUm9cIFHgK9SRAAAAAAAAAAAAmJaAAAAAAAAAAAA=',
     });
@@ -53,7 +53,7 @@ describe('resource transaction', () => {
     const response = await client.stellar.transaction.scan({
       account_address: 'GDPMFLKUGASUTWBN2XGYYKD27QGHCYH4BUFUTER4L23INYQ4JHDWFOIE',
       chain: 'pubnet',
-      metadata: { type: 'wallet', url: 'localhost' },
+      metadata: { type: 'wallet', url: 'https://example.com' },
       transaction:
         'AAAAAgAAAADewq1UMCVJ2C3VzYwoevwMcWD8DQtJkjxetobiHEnHYgAAAAEAAAAAAAAAAgAAAAAAAAAAAAAAAQAAAAEAAAAA3sKtVDAlSdgt1c2MKHr8DHFg/A0LSZI8XraG4hxJx2IAAAABAAAAACI40RTBOFEE7uT5mZkoq30mbvxLPJpMUm9cIFHgK9SRAAAAAAAAAAAAmJaAAAAAAAAAAAA=',
       options: ['validation', 'simulation'],

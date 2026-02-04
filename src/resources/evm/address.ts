@@ -164,7 +164,8 @@ export interface AddressScanParams {
   chain: EvmAPI.TransactionScanSupportedChain;
 
   /**
-   * Object of additional information to validate against.
+   * Additional context for the scan (e.g., dapp URL/domain, integration source).
+   * Used to enrich results and reduce false positives/negatives.
    */
   metadata:
     | AddressScanParams.RoutersEvmModelsMetadataNonDapp

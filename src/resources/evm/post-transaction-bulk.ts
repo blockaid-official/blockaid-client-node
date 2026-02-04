@@ -54,8 +54,8 @@ export namespace PostTransactionBulkScanResponse {
       | PostTransactionBulkScanResponseItem.RoutersEvmResponseTransactionSimulationError;
 
     user_operation_gas_estimation?:
-      | PostTransactionBulkScanResponseItem.RoutersEvmModelsUserOperationV6GasEstimation
-      | PostTransactionBulkScanResponseItem.RoutersEvmModelsUserOperationV7GasEstimation
+      | EvmAPI.UserOperationV6GasEstimation
+      | EvmAPI.UserOperationV7GasEstimation
       | PostTransactionBulkScanResponseItem.RoutersEvmModelsTransactionScanGasEstimationError;
 
     validation?:
@@ -3734,7 +3734,8 @@ export namespace PostTransactionBulkScanResponse {
         export namespace RoutersEvmSessionKeysCallPolicy {
           export interface Arg {
             /**
-             * An enumeration.
+             * Comparison operator used to evaluate an argument/value against a policy
+             * constraint.
              */
             condition:
               | 'UNCONSTRAINED'
@@ -4409,28 +4410,6 @@ export namespace PostTransactionBulkScanResponse {
       }
     }
 
-    export interface RoutersEvmModelsUserOperationV6GasEstimation {
-      call_gas_estimate: string;
-
-      pre_verification_gas_estimate: string;
-
-      status: 'Success';
-
-      verification_gas_estimate: string;
-    }
-
-    export interface RoutersEvmModelsUserOperationV7GasEstimation {
-      call_gas_estimate: string;
-
-      paymaster_verification_gas_estimate: string;
-
-      pre_verification_gas_estimate: string;
-
-      status: 'Success';
-
-      verification_gas_estimate: string;
-    }
-
     export interface RoutersEvmModelsTransactionScanGasEstimationError {
       error: string;
 
@@ -4444,7 +4423,7 @@ export namespace PostTransactionBulkScanResponse {
       features: Array<RoutersEvmResponseTransactionValidation.Feature>;
 
       /**
-       * An enumeration.
+       * Result type returned when validation succeeds.
        */
       result_type: 'Benign' | 'Warning' | 'Malicious';
 
@@ -4485,7 +4464,7 @@ export namespace PostTransactionBulkScanResponse {
         feature_id: string;
 
         /**
-         * An enumeration.
+         * Security result of a transaction scan feature.
          */
         type: 'Malicious' | 'Warning' | 'Benign' | 'Info';
 
@@ -4554,7 +4533,7 @@ export namespace PostTransactionBulkScanResponse {
         feature_id: string;
 
         /**
-         * An enumeration.
+         * Security result of a transaction scan feature.
          */
         type: 'Malicious' | 'Warning' | 'Benign' | 'Info';
 
@@ -4584,7 +4563,8 @@ export interface PostTransactionBulkScanParams {
   data: Array<string>;
 
   /**
-   * Object of additional information to validate against.
+   * Additional context for the scan (e.g., dapp URL/domain, integration source).
+   * Used to enrich results and reduce false positives/negatives.
    */
   metadata:
     | PostTransactionBulkScanParams.RoutersEvmModelsMetadataNonDapp

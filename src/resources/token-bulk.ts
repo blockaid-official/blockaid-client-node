@@ -27,6 +27,11 @@ export class TokenBulk extends APIResource {
 
 export interface TokenBulkScanResponse {
   results: { [key: string]: TokenBulkScanResponse.Results };
+
+  /**
+   * Errors encountered during bulk scanning, keyed by token address
+   */
+  errors?: { [key: string]: TokenBulkScanResponse.Errors };
 }
 
 export namespace TokenBulkScanResponse {
@@ -594,6 +599,11 @@ export namespace TokenBulkScanResponse {
         | 'ONCHAIN_ACTIVITY_VALIDATOR'
         | 'STATIC_CODE_SIGNATURE'
         | 'KNOWN_MALICIOUS'
+        | 'IS_EOA'
+        | 'IS_CONTRACT'
+        | 'ERC20_CONTRACT'
+        | 'TRUSTED_CONTRACT'
+        | 'BENIGN_CREATOR'
         | 'METADATA'
         | 'AIRDROP_PATTERN'
         | 'IMPERSONATOR'
@@ -635,6 +645,13 @@ export namespace TokenBulkScanResponse {
       type: 'Benign' | 'Info' | 'Warning' | 'Malicious';
     }
   }
+
+  export interface Errors {
+    /**
+     * Error message describing why the scan failed for this token
+     */
+    message: string;
+  }
 }
 
 export interface TokenBulkScanParams {
@@ -649,14 +666,16 @@ export interface TokenBulkScanParams {
   tokens: Array<string>;
 
   /**
-   * Object of additional information to validate against.
+   * Optional token metadata context (e.g., source/integration hints) used to enrich
+   * results.
    */
   metadata?: TokenBulkScanParams.Metadata;
 }
 
 export namespace TokenBulkScanParams {
   /**
-   * Object of additional information to validate against.
+   * Optional token metadata context (e.g., source/integration hints) used to enrich
+   * results.
    */
   export interface Metadata {
     /**

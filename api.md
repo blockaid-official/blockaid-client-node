@@ -4,9 +4,16 @@ Types:
 
 - <code><a href="./src/resources/evm/evm.ts">AddressReportParams</a></code>
 - <code><a href="./src/resources/evm/evm.ts">AddressValidation</a></code>
+- <code><a href="./src/resources/evm/evm.ts">Authorization</a></code>
 - <code><a href="./src/resources/evm/evm.ts">MetadataParam</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TokenScanSupportedChain</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionScanSupportedChain</a></code>
+- <code><a href="./src/resources/evm/evm.ts">UserOperationData</a></code>
+- <code><a href="./src/resources/evm/evm.ts">UserOperationRequest</a></code>
+- <code><a href="./src/resources/evm/evm.ts">UserOperationV6</a></code>
+- <code><a href="./src/resources/evm/evm.ts">UserOperationV6GasEstimation</a></code>
+- <code><a href="./src/resources/evm/evm.ts">UserOperationV7</a></code>
+- <code><a href="./src/resources/evm/evm.ts">UserOperationV7GasEstimation</a></code>
 - <code><a href="./src/resources/evm/evm.ts">ValidateAddress</a></code>
 - <code><a href="./src/resources/evm/evm.ts">ValidateBulkAddresses</a></code>
 - <code><a href="./src/resources/evm/evm.ts">ValidateBulkExtendedAddressesRequest</a></code>
@@ -131,6 +138,16 @@ Methods:
 - <code title="post /v0/solana/address/scan">client.solana.address.<a href="./src/resources/solana/address.ts">scan</a>({ ...params }) -> AddressScanResponse</code>
 
 # Hedera
+
+## Transaction
+
+Types:
+
+- <code><a href="./src/resources/hedera/transaction.ts">TransactionScanResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/hedera/transaction/scan">client.hedera.transaction.<a href="./src/resources/hedera/transaction.ts">scan</a>({ ...params }) -> TransactionScanResponse</code>
 
 ## Address
 

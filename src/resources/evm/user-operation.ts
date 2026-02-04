@@ -69,8 +69,8 @@ export interface UserOperationScanResponse {
     | UserOperationScanResponse.RoutersEvmResponseTransactionSimulationError;
 
   user_operation_gas_estimation?:
-    | UserOperationScanResponse.RoutersEvmModelsUserOperationV6GasEstimation
-    | UserOperationScanResponse.RoutersEvmModelsUserOperationV7GasEstimation
+    | EvmAPI.UserOperationV6GasEstimation
+    | EvmAPI.UserOperationV7GasEstimation
     | UserOperationScanResponse.RoutersEvmModelsTransactionScanGasEstimationError;
 
   validation?:
@@ -3749,7 +3749,8 @@ export namespace UserOperationScanResponse {
       export namespace RoutersEvmSessionKeysCallPolicy {
         export interface Arg {
           /**
-           * An enumeration.
+           * Comparison operator used to evaluate an argument/value against a policy
+           * constraint.
            */
           condition:
             | 'UNCONSTRAINED'
@@ -4424,28 +4425,6 @@ export namespace UserOperationScanResponse {
     }
   }
 
-  export interface RoutersEvmModelsUserOperationV6GasEstimation {
-    call_gas_estimate: string;
-
-    pre_verification_gas_estimate: string;
-
-    status: 'Success';
-
-    verification_gas_estimate: string;
-  }
-
-  export interface RoutersEvmModelsUserOperationV7GasEstimation {
-    call_gas_estimate: string;
-
-    paymaster_verification_gas_estimate: string;
-
-    pre_verification_gas_estimate: string;
-
-    status: 'Success';
-
-    verification_gas_estimate: string;
-  }
-
   export interface RoutersEvmModelsTransactionScanGasEstimationError {
     error: string;
 
@@ -4459,7 +4438,7 @@ export namespace UserOperationScanResponse {
     features: Array<RoutersEvmResponseTransactionValidation.Feature>;
 
     /**
-     * An enumeration.
+     * Result type returned when validation succeeds.
      */
     result_type: 'Benign' | 'Warning' | 'Malicious';
 
@@ -4500,7 +4479,7 @@ export namespace UserOperationScanResponse {
       feature_id: string;
 
       /**
-       * An enumeration.
+       * Security result of a transaction scan feature.
        */
       type: 'Malicious' | 'Warning' | 'Benign' | 'Info';
 
@@ -4569,7 +4548,7 @@ export namespace UserOperationScanResponse {
       feature_id: string;
 
       /**
-       * An enumeration.
+       * Security result of a transaction scan feature.
        */
       type: 'Malicious' | 'Warning' | 'Benign' | 'Info';
 
@@ -4595,10 +4574,11 @@ export interface UserOperationScanParams {
   /**
    * The user operation request that was received by the wallet
    */
-  data: UserOperationScanParams.Data;
+  data: EvmAPI.UserOperationData;
 
   /**
-   * Object of additional information to validate against.
+   * Additional context for the scan (e.g., dapp URL/domain, integration source).
+   * Used to enrich results and reduce false positives/negatives.
    */
   metadata:
     | UserOperationScanParams.RoutersEvmModelsMetadataNonDapp
@@ -4641,225 +4621,6 @@ export interface UserOperationScanParams {
 }
 
 export namespace UserOperationScanParams {
-  /**
-   * The user operation request that was received by the wallet
-   */
-  export interface Data {
-    /**
-     * The operation parameters of the user operation request
-     */
-    operation: Data.UserOperationV6 | Data.UserOperationV7;
-
-    /**
-     * The address of the entrypoint receiving the request in hex string format
-     */
-    entrypoint?: string;
-  }
-
-  export namespace Data {
-    export interface UserOperationV6 {
-      /**
-       * The call data value in hex string format.
-       */
-      call_data?: string;
-
-      /**
-       * The call gas limit value in hex string format.
-       */
-      call_gas_limit?: string;
-
-      /**
-       * The EIP-7702 authorization tuple for the user operation (optional)
-       */
-      eip7702_auth?: UserOperationV6.Eip7702Auth;
-
-      /**
-       * The init code value in hex string format.
-       */
-      init_code?: string;
-
-      /**
-       * The max fee per gas value in hex string format.
-       */
-      max_fee_per_gas?: string;
-
-      /**
-       * The max priority fee per gas value in hex string format.
-       */
-      max_priority_fee_per_gas?: string;
-
-      /**
-       * The nonce value in hex string format.
-       */
-      nonce?: string;
-
-      /**
-       * The paymaster and data value in hex string format.
-       */
-      paymaster_and_data?: string;
-
-      /**
-       * The pre verification gas value in hex string format.
-       */
-      pre_verification_gas?: string;
-
-      /**
-       * The sender address of the operation in hex string format
-       */
-      sender?: string;
-
-      /**
-       * The signature value in hex string format.
-       */
-      signature?: string;
-
-      /**
-       * The verification gas limit value in hex string format.
-       */
-      verification_gas_limit?: string;
-    }
-
-    export namespace UserOperationV6 {
-      /**
-       * The EIP-7702 authorization tuple for the user operation (optional)
-       */
-      export interface Eip7702Auth {
-        /**
-         * The delegation designation address
-         */
-        address: string;
-
-        /**
-         * The chain ID as hex string
-         */
-        chainId?: string;
-
-        /**
-         * The authority address of the delegation, should be provided when the signature
-         * (r,s,yParity) is not provided in order to simulate the transaction with the
-         * correct delegation
-         */
-        eoa?: string;
-
-        /**
-         * The nonce value as hex string
-         */
-        nonce?: string;
-
-        /**
-         * The r value as hex string
-         */
-        r?: string;
-
-        /**
-         * The s value as hex string
-         */
-        s?: string;
-
-        /**
-         * The yParity value as hex string
-         */
-        yParity?: string;
-      }
-    }
-
-    export interface UserOperationV7 {
-      /**
-       * The account gas limits value in hex string format.
-       */
-      account_gas_limits?: string;
-
-      /**
-       * The call data value in hex string format.
-       */
-      call_data?: string;
-
-      /**
-       * The EIP-7702 authorization tuple for the user operation (optional)
-       */
-      eip7702_auth?: UserOperationV7.Eip7702Auth;
-
-      /**
-       * The gas fees value in hex string format.
-       */
-      gas_fees?: string;
-
-      /**
-       * The init code value in hex string format.
-       */
-      init_code?: string;
-
-      /**
-       * The nonce value in hex string format.
-       */
-      nonce?: string;
-
-      /**
-       * The paymaster and data value in hex string format.
-       */
-      paymaster_and_data?: string;
-
-      /**
-       * The pre verification gas value in hex string format.
-       */
-      pre_verification_gas?: string;
-
-      /**
-       * The sender address of the operation in hex string format
-       */
-      sender?: string;
-
-      /**
-       * The signature value in hex string format.
-       */
-      signature?: string;
-    }
-
-    export namespace UserOperationV7 {
-      /**
-       * The EIP-7702 authorization tuple for the user operation (optional)
-       */
-      export interface Eip7702Auth {
-        /**
-         * The delegation designation address
-         */
-        address: string;
-
-        /**
-         * The chain ID as hex string
-         */
-        chainId?: string;
-
-        /**
-         * The authority address of the delegation, should be provided when the signature
-         * (r,s,yParity) is not provided in order to simulate the transaction with the
-         * correct delegation
-         */
-        eoa?: string;
-
-        /**
-         * The nonce value as hex string
-         */
-        nonce?: string;
-
-        /**
-         * The r value as hex string
-         */
-        r?: string;
-
-        /**
-         * The s value as hex string
-         */
-        s?: string;
-
-        /**
-         * The yParity value as hex string
-         */
-        yParity?: string;
-      }
-    }
-  }
-
   export interface RoutersEvmModelsMetadataNonDapp {
     /**
      * Indicates that the transaction was not initiated by a dapp.

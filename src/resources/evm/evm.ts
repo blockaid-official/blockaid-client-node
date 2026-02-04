@@ -127,24 +127,24 @@ export interface AddressReportParams {
 
 export interface AddressValidation {
   /**
-   * An enumeration.
+   * Overall validation outcome for the scan.
    */
   result_type: 'Malicious' | 'Warning' | 'Benign' | 'Error';
 
   /**
-   * An error message if the validation failed.
+   * An error message returned when `result_type` is `Error`.
    */
   error?: string;
 
   /**
-   * A list of textual features about this transaction that can be presented to the
-   * user.
+   * A list of features explaining the scan result (each feature includes a type,
+   * feature_id, and description).
    */
-  features?: Array<string> | Array<AddressValidation.UnionMember1>;
+  features?: Array<AddressValidation.UnionMember0> | Array<string>;
 }
 
 export namespace AddressValidation {
-  export interface UnionMember1 {
+  export interface UnionMember0 {
     /**
      * Description of the feature
      */
@@ -162,6 +162,11 @@ export namespace AddressValidation {
       | 'ONCHAIN_ACTIVITY_VALIDATOR'
       | 'STATIC_CODE_SIGNATURE'
       | 'KNOWN_MALICIOUS'
+      | 'IS_EOA'
+      | 'IS_CONTRACT'
+      | 'ERC20_CONTRACT'
+      | 'TRUSTED_CONTRACT'
+      | 'BENIGN_CREATOR'
       | 'METADATA'
       | 'AIRDROP_PATTERN'
       | 'IMPERSONATOR'
@@ -204,6 +209,45 @@ export namespace AddressValidation {
   }
 }
 
+export interface Authorization {
+  /**
+   * The delegation designation address
+   */
+  address: string;
+
+  /**
+   * The chain ID as hex string
+   */
+  chainId?: string;
+
+  /**
+   * The authority address of the delegation, should be provided when the signature
+   * (r,s,yParity) is not provided in order to simulate the transaction with the
+   * correct delegation
+   */
+  eoa?: string;
+
+  /**
+   * The nonce value as hex string
+   */
+  nonce?: string;
+
+  /**
+   * The r value as hex string
+   */
+  r?: string;
+
+  /**
+   * The s value as hex string
+   */
+  s?: string;
+
+  /**
+   * The yParity value as hex string
+   */
+  yParity?: string;
+}
+
 export interface MetadataParam {
   /**
    * Account information associated with the request
@@ -222,12 +266,12 @@ export namespace MetadataParam {
    */
   export interface Account {
     /**
-     * Unique identifier for the account
+     * Unique identifier for the account.
      */
     account_id: string;
 
     /**
-     * Timestamp when the account was created
+     * Timestamp when the account was created.
      */
     account_creation_timestamp?: string;
 
@@ -237,7 +281,7 @@ export namespace MetadataParam {
     user_age?: number;
 
     /**
-     * ISO country code of the user's location
+     * ISO country code of the user's location.
      */
     user_country_code?: string;
   }
@@ -247,12 +291,12 @@ export namespace MetadataParam {
    */
   export interface Connection {
     /**
-     * IP address of the customer making the request
+     * IP address of the customer making the request.
      */
     ip_address: string;
 
     /**
-     * User agent string from the client's browser or application
+     * User agent string from the client's browser or application.
      */
     user_agent?: string;
   }
@@ -293,7 +337,8 @@ export type TokenScanSupportedChain =
   | 'hedera'
   | 'hyperevm'
   | 'xlayer'
-  | 'monad';
+  | 'monad'
+  | 'tron';
 
 /**
  * The chain name
@@ -346,6 +391,261 @@ export type TransactionScanSupportedChain =
   | 'monad-testnet'
   | 'tempo-testnet';
 
+export interface UserOperationData {
+  /**
+   * The operation parameters of the user operation request
+   */
+  operation: UserOperationV6 | UserOperationV7;
+
+  /**
+   * The address of the entrypoint receiving the request in hex string format
+   */
+  entrypoint?: string;
+}
+
+export interface UserOperationRequest {
+  /**
+   * The chain name or chain ID
+   */
+  chain: TransactionScanSupportedChain | (string & {});
+
+  /**
+   * The user operation request that was received by the wallet
+   */
+  data: UserOperationData;
+
+  /**
+   * Additional context for the scan (e.g., dapp URL/domain, integration source).
+   * Used to enrich results and reduce false positives/negatives.
+   */
+  metadata:
+    | UserOperationRequest.RoutersEvmModelsMetadataNonDapp
+    | UserOperationRequest.RoutersEvmModelsMetadataDapp;
+
+  /**
+   * The address of the account (wallet) sending the request in hex string format
+   */
+  account_address?: string;
+
+  /**
+   * The relative block for the block validation. Can be "latest" or a block number.
+   */
+  block?: number | string;
+
+  /**
+   * List of one or more of options for the desired output. "simulation" - include
+   * simulation output in your response. "validation" - include security validation
+   * of the transaction in your response. "gas_estimation" - include gas estimation
+   * result in your response. Default is ["validation"]
+   */
+  options?: Array<'validation' | 'simulation' | 'gas_estimation' | 'events'>;
+
+  /**
+   * For simulations, determine whether to calculate missing balances in user
+   * operations.
+   */
+  should_calculate_missing_balance?: boolean;
+
+  /**
+   * Simulate transactions using gas estimation result. This requires
+   * "gas_estimation" option to be enabled.
+   */
+  simulate_with_estimated_gas?: boolean;
+
+  /**
+   * Override the state of the chain. This is useful for testing purposes.
+   */
+  state_override?: { [key: string]: UserOperationRequest.StateOverride };
+}
+
+export namespace UserOperationRequest {
+  export interface RoutersEvmModelsMetadataNonDapp {
+    /**
+     * Indicates that the transaction was not initiated by a dapp.
+     */
+    non_dapp?: true;
+  }
+
+  export interface RoutersEvmModelsMetadataDapp {
+    /**
+     * The full URL of the DApp or website that initiated the transaction, for
+     * cross-reference. Must use the https or http scheme and contain a valid hostname.
+     * Cannot contain JSON, braces, or other embedded data structures.
+     */
+    domain: string;
+  }
+
+  export interface StateOverride {
+    /**
+     * Fake balance to set for the account before executing the call.
+     */
+    balance?: string;
+
+    /**
+     * Fake EVM bytecode to inject into the account before executing the call.
+     */
+    code?: string;
+
+    /**
+     * Moves precompile to given address
+     */
+    movePrecompileToAddress?: string;
+
+    /**
+     * Fake nonce to set for the account before executing the call.
+     */
+    nonce?: string;
+
+    /**
+     * Fake key-value mapping to override all slots in the account storage before
+     * executing the call.
+     */
+    state?: { [key: string]: string };
+
+    /**
+     * Fake key-value mapping to override individual slots in the account storage
+     * before executing the call.
+     */
+    stateDiff?: { [key: string]: string };
+  }
+}
+
+export interface UserOperationV6 {
+  /**
+   * The call data value in hex string format.
+   */
+  call_data?: string;
+
+  /**
+   * The call gas limit value in hex string format.
+   */
+  call_gas_limit?: string;
+
+  /**
+   * The EIP-7702 authorization tuple for the user operation (optional)
+   */
+  eip7702_auth?: Authorization;
+
+  /**
+   * The init code value in hex string format.
+   */
+  init_code?: string;
+
+  /**
+   * The max fee per gas value in hex string format.
+   */
+  max_fee_per_gas?: string;
+
+  /**
+   * The max priority fee per gas value in hex string format.
+   */
+  max_priority_fee_per_gas?: string;
+
+  /**
+   * The nonce value in hex string format.
+   */
+  nonce?: string;
+
+  /**
+   * The paymaster and data value in hex string format.
+   */
+  paymaster_and_data?: string;
+
+  /**
+   * The pre verification gas value in hex string format.
+   */
+  pre_verification_gas?: string;
+
+  /**
+   * The sender address of the operation in hex string format
+   */
+  sender?: string;
+
+  /**
+   * The signature value in hex string format.
+   */
+  signature?: string;
+
+  /**
+   * The verification gas limit value in hex string format.
+   */
+  verification_gas_limit?: string;
+}
+
+export interface UserOperationV6GasEstimation {
+  call_gas_estimate: string;
+
+  pre_verification_gas_estimate: string;
+
+  status: 'Success';
+
+  verification_gas_estimate: string;
+}
+
+export interface UserOperationV7 {
+  /**
+   * The account gas limits value in hex string format.
+   */
+  account_gas_limits?: string;
+
+  /**
+   * The call data value in hex string format.
+   */
+  call_data?: string;
+
+  /**
+   * The EIP-7702 authorization tuple for the user operation (optional)
+   */
+  eip7702_auth?: Authorization;
+
+  /**
+   * The gas fees value in hex string format.
+   */
+  gas_fees?: string;
+
+  /**
+   * The init code value in hex string format.
+   */
+  init_code?: string;
+
+  /**
+   * The nonce value in hex string format.
+   */
+  nonce?: string;
+
+  /**
+   * The paymaster and data value in hex string format.
+   */
+  paymaster_and_data?: string;
+
+  /**
+   * The pre verification gas value in hex string format.
+   */
+  pre_verification_gas?: string;
+
+  /**
+   * The sender address of the operation in hex string format
+   */
+  sender?: string;
+
+  /**
+   * The signature value in hex string format.
+   */
+  signature?: string;
+}
+
+export interface UserOperationV7GasEstimation {
+  call_gas_estimate: string;
+
+  paymaster_verification_gas_estimate: string;
+
+  pre_verification_gas_estimate: string;
+
+  status: 'Success';
+
+  verification_gas_estimate: string;
+}
+
 export interface ValidateAddress {
   /**
    * The address to validate.
@@ -358,7 +658,8 @@ export interface ValidateAddress {
   chain: TransactionScanSupportedChain;
 
   /**
-   * Object of additional information to validate against.
+   * Additional context for the scan (e.g., dapp URL/domain, integration source).
+   * Used to enrich results and reduce false positives/negatives.
    */
   metadata: ValidateAddress.RoutersEvmModelsMetadataNonDapp | ValidateAddress.RoutersEvmModelsMetadataDapp;
 }
@@ -393,7 +694,8 @@ export interface ValidateBulkAddresses {
   chain: TransactionScanSupportedChain;
 
   /**
-   * Object of additional information to validate against.
+   * Additional context for the scan (e.g., dapp URL/domain, integration source).
+   * Used to enrich results and reduce false positives/negatives.
    */
   metadata:
     | ValidateBulkAddresses.RoutersEvmModelsMetadataNonDapp
@@ -430,14 +732,16 @@ export interface ValidateBulkExtendedAddressesRequest {
   chain: TransactionScanSupportedChain;
 
   /**
-   * Object of additional information to validate against.
+   * Additional context for the scan (e.g., integration source, user/account
+   * details). Used to enrich results and reduce false positives/negatives.
    */
   metadata: ValidateBulkExtendedAddressesRequest.Metadata;
 }
 
 export namespace ValidateBulkExtendedAddressesRequest {
   /**
-   * Object of additional information to validate against.
+   * Additional context for the scan (e.g., integration source, user/account
+   * details). Used to enrich results and reduce false positives/negatives.
    */
   export interface Metadata {
     account: Metadata.Account;
@@ -492,7 +796,7 @@ export namespace ValidateBulkExtendedAddressesResponse {
      */
     export interface Validation {
       /**
-       * An enumeration.
+       * Overall validation outcome for the scan.
        */
       result_type: 'Malicious' | 'Warning' | 'Benign' | 'Error';
 
@@ -521,6 +825,11 @@ export namespace ValidateBulkExtendedAddressesResponse {
           | 'ONCHAIN_ACTIVITY_VALIDATOR'
           | 'STATIC_CODE_SIGNATURE'
           | 'KNOWN_MALICIOUS'
+          | 'IS_EOA'
+          | 'IS_CONTRACT'
+          | 'ERC20_CONTRACT'
+          | 'TRUSTED_CONTRACT'
+          | 'BENIGN_CREATOR'
           | 'METADATA'
           | 'AIRDROP_PATTERN'
           | 'IMPERSONATOR'
@@ -579,9 +888,16 @@ export declare namespace Evm {
   export {
     type AddressReportParams as AddressReportParams,
     type AddressValidation as AddressValidation,
+    type Authorization as Authorization,
     type MetadataParam as MetadataParam,
     type TokenScanSupportedChain as TokenScanSupportedChain,
     type TransactionScanSupportedChain as TransactionScanSupportedChain,
+    type UserOperationData as UserOperationData,
+    type UserOperationRequest as UserOperationRequest,
+    type UserOperationV6 as UserOperationV6,
+    type UserOperationV6GasEstimation as UserOperationV6GasEstimation,
+    type UserOperationV7 as UserOperationV7,
+    type UserOperationV7GasEstimation as UserOperationV7GasEstimation,
     type ValidateAddress as ValidateAddress,
     type ValidateBulkAddresses as ValidateBulkAddresses,
     type ValidateBulkExtendedAddressesRequest as ValidateBulkExtendedAddressesRequest,

@@ -610,6 +610,11 @@ export namespace TokenScanResponse {
       | 'ONCHAIN_ACTIVITY_VALIDATOR'
       | 'STATIC_CODE_SIGNATURE'
       | 'KNOWN_MALICIOUS'
+      | 'IS_EOA'
+      | 'IS_CONTRACT'
+      | 'ERC20_CONTRACT'
+      | 'TRUSTED_CONTRACT'
+      | 'BENIGN_CREATOR'
       | 'METADATA'
       | 'AIRDROP_PATTERN'
       | 'IMPERSONATOR'
@@ -719,14 +724,21 @@ export interface TokenScanParams {
   chain: EvmAPI.TokenScanSupportedChain;
 
   /**
-   * Object of additional information to validate against.
+   * Optional token metadata context (e.g., source/integration hints) used to enrich
+   * results.
    */
   metadata?: TokenScanParams.Metadata;
+
+  /**
+   * The ID of the specific NFT within an ERC-721 or ERC-1155 collection.
+   */
+  token_id?: number | null;
 }
 
 export namespace TokenScanParams {
   /**
-   * Object of additional information to validate against.
+   * Optional token metadata context (e.g., source/integration hints) used to enrich
+   * results.
    */
   export interface Metadata {
     /**

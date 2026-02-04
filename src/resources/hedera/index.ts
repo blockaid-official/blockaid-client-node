@@ -2,3 +2,4 @@
 
 export { Address, type AddressScanResponse, type AddressScanParams } from './address';
 export { Hedera } from './hedera';
+export { Transaction, type TransactionScanResponse, type TransactionScanParams } from './transaction';

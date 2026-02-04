@@ -73,8 +73,8 @@ export interface TransactionScanResponse {
     | TransactionScanResponse.RoutersEvmResponseTransactionSimulationError;
 
   user_operation_gas_estimation?:
-    | TransactionScanResponse.RoutersEvmModelsUserOperationV6GasEstimation
-    | TransactionScanResponse.RoutersEvmModelsUserOperationV7GasEstimation
+    | EvmAPI.UserOperationV6GasEstimation
+    | EvmAPI.UserOperationV7GasEstimation
     | TransactionScanResponse.RoutersEvmModelsTransactionScanGasEstimationError;
 
   validation?:
@@ -3753,7 +3753,8 @@ export namespace TransactionScanResponse {
       export namespace RoutersEvmSessionKeysCallPolicy {
         export interface Arg {
           /**
-           * An enumeration.
+           * Comparison operator used to evaluate an argument/value against a policy
+           * constraint.
            */
           condition:
             | 'UNCONSTRAINED'
@@ -4428,28 +4429,6 @@ export namespace TransactionScanResponse {
     }
   }
 
-  export interface RoutersEvmModelsUserOperationV6GasEstimation {
-    call_gas_estimate: string;
-
-    pre_verification_gas_estimate: string;
-
-    status: 'Success';
-
-    verification_gas_estimate: string;
-  }
-
-  export interface RoutersEvmModelsUserOperationV7GasEstimation {
-    call_gas_estimate: string;
-
-    paymaster_verification_gas_estimate: string;
-
-    pre_verification_gas_estimate: string;
-
-    status: 'Success';
-
-    verification_gas_estimate: string;
-  }
-
   export interface RoutersEvmModelsTransactionScanGasEstimationError {
     error: string;
 
@@ -4463,7 +4442,7 @@ export namespace TransactionScanResponse {
     features: Array<RoutersEvmResponseTransactionValidation.Feature>;
 
     /**
-     * An enumeration.
+     * Result type returned when validation succeeds.
      */
     result_type: 'Benign' | 'Warning' | 'Malicious';
 
@@ -4504,7 +4483,7 @@ export namespace TransactionScanResponse {
       feature_id: string;
 
       /**
-       * An enumeration.
+       * Security result of a transaction scan feature.
        */
       type: 'Malicious' | 'Warning' | 'Benign' | 'Info';
 
@@ -4573,7 +4552,7 @@ export namespace TransactionScanResponse {
       feature_id: string;
 
       /**
-       * An enumeration.
+       * Security result of a transaction scan feature.
        */
       type: 'Malicious' | 'Warning' | 'Benign' | 'Info';
 
@@ -4637,7 +4616,8 @@ export namespace TransactionReportParams {
       data: Params.RoutersEvmTransactionModelsTransaction | Params.JsonRpc;
 
       /**
-       * Object of additional information to validate against.
+       * Additional context for the scan (e.g., dapp URL/domain, integration source).
+       * Used to enrich results and reduce false positives/negatives.
        */
       metadata: Params.RoutersEvmModelsMetadataNonDapp | Params.RoutersEvmModelsMetadataDapp;
     }
@@ -4652,7 +4632,7 @@ export namespace TransactionReportParams {
         /**
          * The authorization list
          */
-        authorization_list?: Array<RoutersEvmTransactionModelsTransaction.AuthorizationList>;
+        authorization_list?: Array<EvmAPI.Authorization>;
 
         /**
          * The encoded call data of the transaction in hex string format
@@ -4680,50 +4660,9 @@ export namespace TransactionReportParams {
         value?: string;
       }
 
-      export namespace RoutersEvmTransactionModelsTransaction {
-        export interface AuthorizationList {
-          /**
-           * The delegation designation address
-           */
-          address: string;
-
-          /**
-           * The chain ID as hex string
-           */
-          chainId?: string;
-
-          /**
-           * The authority address of the delegation, should be provided when the signature
-           * (r,s,yParity) is not provided in order to simulate the transaction with the
-           * correct delegation
-           */
-          eoa?: string;
-
-          /**
-           * The nonce value as hex string
-           */
-          nonce?: string;
-
-          /**
-           * The r value as hex string
-           */
-          r?: string;
-
-          /**
-           * The s value as hex string
-           */
-          s?: string;
-
-          /**
-           * The yParity value as hex string
-           */
-          yParity?: string;
-        }
-      }
-
       export interface JsonRpc {
         /**
-         * An enumeration.
+         * Supported JSON-RPC methods that can be scanned.
          */
         method:
           | 'eth_sendTransaction'
@@ -4797,7 +4736,8 @@ export interface TransactionScanParams {
   data: TransactionScanParams.Data;
 
   /**
-   * Object of additional information to validate against.
+   * Additional context for the scan (e.g., dapp URL/domain, integration source).
+   * Used to enrich results and reduce false positives/negatives.
    */
   metadata:
     | TransactionScanParams.RoutersEvmModelsMetadataNonDapp
@@ -4841,7 +4781,7 @@ export namespace TransactionScanParams {
     /**
      * The authorization list
      */
-    authorization_list?: Array<Data.AuthorizationList>;
+    authorization_list?: Array<EvmAPI.Authorization>;
 
     /**
      * The encoded call data of the transaction in hex string format
@@ -4867,47 +4807,6 @@ export namespace TransactionScanParams {
      * The value of the transaction in Wei in hex string format
      */
     value?: string;
-  }
-
-  export namespace Data {
-    export interface AuthorizationList {
-      /**
-       * The delegation designation address
-       */
-      address: string;
-
-      /**
-       * The chain ID as hex string
-       */
-      chainId?: string;
-
-      /**
-       * The authority address of the delegation, should be provided when the signature
-       * (r,s,yParity) is not provided in order to simulate the transaction with the
-       * correct delegation
-       */
-      eoa?: string;
-
-      /**
-       * The nonce value as hex string
-       */
-      nonce?: string;
-
-      /**
-       * The r value as hex string
-       */
-      r?: string;
-
-      /**
-       * The s value as hex string
-       */
-      s?: string;
-
-      /**
-       * The yParity value as hex string
-       */
-      yParity?: string;
-    }
   }
 
   export interface RoutersEvmModelsMetadataNonDapp {

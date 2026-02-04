@@ -195,7 +195,11 @@ describe('instantiate client', () => {
         `"Ambiguous URL; The \`baseURL\` option (or BLOCKAID_BASE_URL env var) and the \`environment\` option are given. If you want to use the environment you must pass baseURL: null"`,
       );
 
-      const client = new Blockaid({ apiKey: 'My API Key', baseURL: null, environment: 'production' });
+      const client = new Blockaid({
+        apiKey: 'My API Key',
+        baseURL: null,
+        environment: 'production',
+      });
       expect(client.baseURL).toEqual('https://api.blockaid.io');
     });
 
@@ -289,7 +293,11 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Blockaid({ apiKey: 'My API Key', timeout: 10, fetch: testFetch });
+    const client = new Blockaid({
+      apiKey: 'My API Key',
+      timeout: 10,
+      fetch: testFetch,
+    });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -319,7 +327,11 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Blockaid({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+    const client = new Blockaid({
+      apiKey: 'My API Key',
+      fetch: testFetch,
+      maxRetries: 4,
+    });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
 
@@ -343,7 +355,11 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new Blockaid({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+    const client = new Blockaid({
+      apiKey: 'My API Key',
+      fetch: testFetch,
+      maxRetries: 4,
+    });
 
     expect(
       await client.request({
@@ -405,7 +421,11 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new Blockaid({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+    const client = new Blockaid({
+      apiKey: 'My API Key',
+      fetch: testFetch,
+      maxRetries: 4,
+    });
 
     expect(
       await client.request({

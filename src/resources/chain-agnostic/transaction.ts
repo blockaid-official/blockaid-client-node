@@ -16,6 +16,7 @@ export class Transaction extends APIResource {
    *   await client.chainAgnostic.transaction.scan({
    *     data: {
    *       chain: 'bitcoin',
+   *       transaction_action: 'withdrawal',
    *       asset: { symbol: 'BTC' },
    *       to: 'bc1qanrfutwqh854g74lqrygr55jkgf99em4lpfm80',
    *       amount: 1,
@@ -59,7 +60,7 @@ export namespace TransactionScanResponse {
     description: string;
 
     /**
-     * The type of validation result
+     * The type of validation result.
      */
     result_type: 'Malicious' | 'Warning' | 'Benign' | 'High-Risk';
 
@@ -97,7 +98,7 @@ export namespace TransactionScanResponse {
       feature_id: string;
 
       /**
-       * The type of feature detected in the scan
+       * The type of feature detected in the scan.
        */
       type: 'Malicious' | 'Warning' | 'Benign' | 'High-Risk' | 'Info';
 
@@ -119,7 +120,7 @@ export namespace TransactionScanResponse {
       feature_id: string;
 
       /**
-       * The type of feature detected in the scan
+       * The type of feature detected in the scan.
        */
       type: 'Malicious' | 'Warning' | 'Benign' | 'High-Risk' | 'Info';
 
@@ -146,7 +147,7 @@ export namespace TransactionScanResponse {
       feature_id: string;
 
       /**
-       * The type of feature detected in the scan
+       * The type of feature detected in the scan.
        */
       type: 'Malicious' | 'Warning' | 'Benign' | 'High-Risk' | 'Info';
 
@@ -237,17 +238,11 @@ export namespace TransactionScanParams {
       | 'katana'
       | 'plume'
       | 'solana'
-      | 'stellar'
       | 'bitcoin'
       | 'xlayer'
       | 'monad'
       | 'monad-testnet'
-      | 'eclipse'
-      | 'sonic'
-      | 'starknet'
-      | 'sui'
-      | 'hedera'
-      | 'tempo-testnet';
+      | 'tron';
 
     /**
      * Destination address or identifier for the transaction
@@ -258,6 +253,11 @@ export namespace TransactionScanParams {
      * Source address or identifier for the transaction
      */
     from?: string;
+
+    /**
+     * Action the transaction is making
+     */
+    transaction_action?: 'deposit' | 'withdrawal';
   }
 
   export namespace Data {
