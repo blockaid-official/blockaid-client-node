@@ -4,9 +4,16 @@ Types:
 
 - <code><a href="./src/resources/evm/evm.ts">AddressReportParams</a></code>
 - <code><a href="./src/resources/evm/evm.ts">AddressValidation</a></code>
+- <code><a href="./src/resources/evm/evm.ts">Authorization</a></code>
 - <code><a href="./src/resources/evm/evm.ts">MetadataParam</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TokenScanSupportedChain</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionScanSupportedChain</a></code>
+- <code><a href="./src/resources/evm/evm.ts">UserOperationData</a></code>
+- <code><a href="./src/resources/evm/evm.ts">UserOperationRequest</a></code>
+- <code><a href="./src/resources/evm/evm.ts">UserOperationV6</a></code>
+- <code><a href="./src/resources/evm/evm.ts">UserOperationV6GasEstimation</a></code>
+- <code><a href="./src/resources/evm/evm.ts">UserOperationV7</a></code>
+- <code><a href="./src/resources/evm/evm.ts">UserOperationV7GasEstimation</a></code>
 - <code><a href="./src/resources/evm/evm.ts">ValidateAddress</a></code>
 - <code><a href="./src/resources/evm/evm.ts">ValidateBulkAddresses</a></code>
 - <code><a href="./src/resources/evm/evm.ts">ValidateBulkExtendedAddressesRequest</a></code>
