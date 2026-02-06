@@ -278,7 +278,7 @@ export namespace StarknetTransactionScanRequest {
     /**
      * The nonce data availability mode.
      */
-    nonce_data_availability_mode?: number;
+    nonce_data_availability_mode?: 0;
 
     /**
      * For future use. Currently this value is always empty.
