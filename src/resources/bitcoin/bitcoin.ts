@@ -18,9 +18,6 @@ export interface BitcoinTransactionScanRequest {
 
   chain: 'bitcoin';
 
-  /**
-   * Metadata
-   */
   metadata:
     | BitcoinTransactionScanRequest.BitcoinWalletRequestMetadata
     | BitcoinTransactionScanRequest.BitcoinInAppRequestMetadata;

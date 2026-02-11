@@ -187,6 +187,12 @@ export namespace AddressScanParams {
      * Cannot contain JSON, braces, or other embedded data structures.
      */
     domain: string;
+
+    /**
+     * Indicates that the transaction was not initiated by a dapp. Use false when the
+     * transaction is from a dapp.
+     */
+    non_dapp?: boolean;
   }
 }
 

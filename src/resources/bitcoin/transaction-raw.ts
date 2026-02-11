@@ -6,7 +6,9 @@ import * as BitcoinAPI from './bitcoin';
 
 export class TransactionRaw extends APIResource {
   /**
-   * Report Transaction
+   * Submit an appeal or false-positive report for a Bitcoin transaction scan. Use
+   * when you believe a scan result was incorrect (e.g. should_be_benign,
+   * should_be_malicious, wrong_simulation_result).
    */
   report(
     body: TransactionRawReportParams,
@@ -16,7 +18,9 @@ export class TransactionRaw extends APIResource {
   }
 
   /**
-   * Scan Transaction
+   * Scan a raw Bitcoin transaction for security risks before signing. Returns a
+   * validation verdict (Benign, Warning, or Malicious) and, when requested, a
+   * simulation of asset changes.
    */
   scan(
     body: TransactionRawScanParams,
@@ -57,9 +61,6 @@ export interface TransactionRawScanParams {
 
   chain: 'bitcoin';
 
-  /**
-   * Metadata
-   */
   metadata:
     | TransactionRawScanParams.BitcoinWalletRequestMetadata
     | TransactionRawScanParams.BitcoinInAppRequestMetadata;
