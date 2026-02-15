@@ -127,7 +127,8 @@ export namespace AddressReportParams {
         | 'monad'
         | 'monad-testnet'
         | 'hedera'
-        | 'tempo-testnet';
+        | 'tempo-testnet'
+        | 'kite-ai';
 
       /**
        * The domain related to this address.
