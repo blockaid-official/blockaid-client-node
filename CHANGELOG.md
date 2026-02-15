@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.68.0 (2026-02-15)
+
+Full Changelog: [v0.67.0...v0.68.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.67.0...v0.68.0)
+
+### Features
+
+* **api:** api update ([b87f517](https://github.com/blockaid-official/blockaid-client-node/commit/b87f517715258c9f2bcbda2aa01a4b7a4ea4c1d2))
+* **api:** api update ([7e519a2](https://github.com/blockaid-official/blockaid-client-node/commit/7e519a218f992563be3bfc139fe61efdadb3c673))
+* **api:** api update ([865cfda](https://github.com/blockaid-official/blockaid-client-node/commit/865cfdaef00288918b720db80c71fd9c76d63bfe))
+
+
+### Bug Fixes
+
+* **types:** correctly define false enum ([dddbcca](https://github.com/blockaid-official/blockaid-client-node/commit/dddbcca68f62df8c25ca59b32bcadc12f070a577))
+
 ## 0.67.0 (2026-02-04)
 
 Full Changelog: [v0.66.0...v0.67.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.66.0...v0.67.0)
