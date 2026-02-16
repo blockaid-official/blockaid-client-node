@@ -6,42 +6,8 @@ import * as EvmAPI from './evm/evm';
 
 export class TokenWebhooks extends APIResource {
   /**
-   * Create a new webhook for a given chain. The webhook will receive real-time token
-   * scan updates.
-   *
-   * ## Webhook Endpoint Requirements
-   *
-   * To ensure proper functionality, your webhook endpoint must meet the following
-   * requirements:
-   *
-   * ### ✅ Response Criteria
-   *
-   * - Must return an **HTTP 200 OK** status code upon successful receipt.
-   * - Must respond within **1 second**.
-   * - If the endpoint is unreachable for more than **1 hour**, the webhook will be
-   *   **automatically disabled**.
-   *
-   * ### 🔄 Synchronization Process
-   *
-   * 1. **Subscribe to the webhook** to start receiving updates.
-   * 2. **Receive real-time updates** for new token scans
-   *
-   * ### Webhook Request Format
-   *
-   * The webhook will send `POST` requests containing an array of token scan results:
-   *
-   * ```json
-   * List[TokenValidationResponse]
-   * ```
-   *
-   * For detailed response structure, see the
-   * [Token Scan Response Reference](https://docs.blockaid.io/reference/token-scan-response-reference).
-   *
-   * ### Note
-   *
-   * - The same token will have multiple scan results over time
-   * - Ensure that your system properly handles state overrides to reflect the most
-   *   up-to-date token status.
+   * Creates a webhook subscription for a chain to receive real-time token scan
+   * updates.
    *
    * @example
    * ```ts
@@ -69,10 +35,8 @@ export class TokenWebhooks extends APIResource {
   }
 
   /**
-   * Delete an existing webhook subscription for a given chain.
-   *
-   * This will immediately stop sending token scan updates to the webhook URL.
-   * Returns a 204 status code on successful deletion.
+   * Deletes the webhook subscription for a chain and stops further token scan
+   * updates.
    *
    * @example
    * ```ts

@@ -289,7 +289,7 @@ export namespace MessageScanResponse {
              */
             symbol: string;
 
-            decimals?: number;
+            decimals?: 0;
 
             /**
              * URL of the asset's logo
@@ -412,7 +412,7 @@ export namespace MessageScanResponse {
              */
             symbol: string;
 
-            decimals?: number;
+            decimals?: 0;
 
             /**
              * URL of the asset's logo
@@ -791,7 +791,7 @@ export namespace MessageScanResponse {
              */
             symbol: string;
 
-            decimals?: number;
+            decimals?: 0;
 
             /**
              * URL of the asset's logo
@@ -1093,7 +1093,7 @@ export namespace MessageScanResponse {
              */
             symbol: string;
 
-            decimals?: number;
+            decimals?: 0;
 
             /**
              * URL of the asset's logo
@@ -1190,7 +1190,7 @@ export namespace MessageScanResponse {
              */
             symbol: string;
 
-            decimals?: number;
+            decimals?: 0;
 
             /**
              * URL of the asset's logo
@@ -1598,7 +1598,7 @@ export namespace MessageScanResponse {
            */
           symbol: string;
 
-          decimals?: number;
+          decimals?: 0;
 
           /**
            * URL of the asset's logo
@@ -2062,7 +2062,7 @@ export namespace MessageScanResponse {
            */
           symbol: string;
 
-          decimals?: number;
+          decimals?: 0;
 
           /**
            * URL of the asset's logo
@@ -2159,7 +2159,7 @@ export namespace MessageScanResponse {
            */
           symbol: string;
 
-          decimals?: number;
+          decimals?: 0;
 
           /**
            * URL of the asset's logo
@@ -2247,7 +2247,7 @@ export namespace MessageScanResponse {
            */
           symbol: string;
 
-          decimals?: number;
+          decimals?: 0;
 
           /**
            * URL of the asset's logo
@@ -2370,7 +2370,7 @@ export namespace MessageScanResponse {
            */
           symbol: string;
 
-          decimals?: number;
+          decimals?: 0;
 
           /**
            * URL of the asset's logo

@@ -111,6 +111,7 @@ export interface AddressReportParams {
     | 'monad-testnet'
     | 'hedera'
     | 'tempo-testnet'
+    | 'kite-ai'
     | 'solana'
     | 'eclipse'
     | 'sonic'
@@ -389,7 +390,8 @@ export type TransactionScanSupportedChain =
   | 'xlayer'
   | 'monad'
   | 'monad-testnet'
-  | 'tempo-testnet';
+  | 'tempo-testnet'
+  | 'kite-ai';
 
 export interface UserOperationData {
   /**
@@ -473,6 +475,12 @@ export namespace UserOperationRequest {
      * Cannot contain JSON, braces, or other embedded data structures.
      */
     domain: string;
+
+    /**
+     * Indicates that the transaction was not initiated by a dapp. Use false when the
+     * transaction is from a dapp.
+     */
+    non_dapp?: boolean;
   }
 
   export interface StateOverride {
@@ -679,6 +687,12 @@ export namespace ValidateAddress {
      * Cannot contain JSON, braces, or other embedded data structures.
      */
     domain: string;
+
+    /**
+     * Indicates that the transaction was not initiated by a dapp. Use false when the
+     * transaction is from a dapp.
+     */
+    non_dapp?: boolean;
   }
 }
 
@@ -717,6 +731,12 @@ export namespace ValidateBulkAddresses {
      * Cannot contain JSON, braces, or other embedded data structures.
      */
     domain: string;
+
+    /**
+     * Indicates that the transaction was not initiated by a dapp. Use false when the
+     * transaction is from a dapp.
+     */
+    non_dapp?: boolean;
   }
 }
 
