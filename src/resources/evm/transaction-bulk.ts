@@ -6,10 +6,8 @@ import * as EvmAPI from './evm';
 
 export class TransactionBulk extends APIResource {
   /**
-   * Gets a bulk of transactions and returns a simulation showcasing the outcome
-   * after executing the transactions synchronously, along with a suggested course of
-   * action and textual explanations highlighting the reasons for flagging the bulk
-   * in that manner.
+   * Get a risk recommendation with plain-language reasons for a bulk of
+   * transactions.
    *
    * @example
    * ```ts

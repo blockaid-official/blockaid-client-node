@@ -5,9 +5,7 @@ import * as Core from '../../core';
 
 export class Transaction extends APIResource {
   /**
-   * Gets a transaction and returns a full simulation indicating what will happen in
-   * the transaction together with a recommended action and some textual reasons of
-   * why the transaction was flagged that way.
+   * Get a risk recommendation with plain-language reasons for a Hedera transaction.
    *
    * @example
    * ```ts
