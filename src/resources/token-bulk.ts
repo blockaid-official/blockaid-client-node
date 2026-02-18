@@ -650,7 +650,7 @@ export namespace TokenBulkScanResponse {
     /**
      * Error message describing why the scan failed for this token
      */
-    message: string;
+    message: 'PENDING_SCAN_RESULT' | 'NOT_A_TOKEN';
   }
 }
 
