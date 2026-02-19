@@ -4188,6 +4188,8 @@ export namespace TransactionScanResponse {
        */
       code: 'GENERAL_INSUFFICIENT_FUNDS';
 
+      category?: 'REVERT';
+
       /**
        * The current balance of the account
        */
@@ -4400,9 +4402,13 @@ export namespace TransactionScanResponse {
        * The type of the model
        */
       code: 'GENERAL_INVALID_ADDRESS';
+
+      category?: 'INVALID_INPUT';
     }
 
     export interface RoutersEvmResponseGenericErrorDetails {
+      category: string;
+
       /**
        * The error code
        */
@@ -4424,6 +4430,8 @@ export namespace TransactionScanResponse {
        * The message type that is unsupported
        */
       message_type: string;
+
+      category?: 'INVALID_INPUT';
     }
   }
 
