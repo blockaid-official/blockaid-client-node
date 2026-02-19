@@ -62,6 +62,8 @@ export interface MessageScanResponse {
 
 export namespace MessageScanResponse {
   export interface SolanamodulesTransactionScanningControllersSchemasErrorAPIErrorDetails {
+    category?: 'NODE_ERROR';
+
     /**
      * Advanced message of the error
      */
@@ -77,6 +79,8 @@ export namespace MessageScanResponse {
      * Index of the transaction in the bulk
      */
     transaction_index: number;
+
+    category?: 'REVERT';
 
     /**
      * Advanced message of the error
@@ -98,6 +102,8 @@ export namespace MessageScanResponse {
      * Index of the transaction in the bulk
      */
     transaction_index: number;
+
+    category?: 'REVERT';
 
     /**
      * Machine readable error code
