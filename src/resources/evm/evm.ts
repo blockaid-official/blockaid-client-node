@@ -385,6 +385,7 @@ export type TransactionScanSupportedChain =
   | 'sei'
   | 'flow-evm'
   | 'hyperevm'
+  | 'megaeth'
   | 'katana'
   | 'plume'
   | 'xlayer'
