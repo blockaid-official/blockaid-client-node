@@ -235,6 +235,7 @@ export namespace TransactionScanParams {
       | 'sei'
       | 'flow-evm'
       | 'hyperevm'
+      | 'megaeth'
       | 'katana'
       | 'plume'
       | 'solana'
