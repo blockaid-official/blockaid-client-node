@@ -4631,7 +4631,7 @@ export namespace JsonRpcScanParams {
     /**
      * The parameters of the JSON-RPC request in JSON format
      */
-    params: Array<unknown | string>;
+    params: Array<unknown>;
   }
 
   export interface RoutersEvmModelsMetadataNonDapp {
