@@ -1,4 +1,4 @@
 configured_endpoints: 40
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/new%2Fblockaid-ab287ef866ab6ac6d5efbeefe619afe843234f4fb09efb037d54510f209498db.yml
-openapi_spec_hash: a038d2914d050df537cf42d66e61c146
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/new%2Fblockaid-bb17b753cac2db739d420f3700812b7852005714d324dac3d11a816def5bb03f.yml
+openapi_spec_hash: 8fe5754849f8796422917bb925f1b305
 config_hash: 9cea2866594ef379fc9121a45b6673ed
