@@ -4687,7 +4687,7 @@ export namespace TransactionReportParams {
         /**
          * The parameters of the JSON-RPC request in JSON format
          */
-        params: Array<unknown>;
+        params: Array<unknown | string>;
       }
 
       export interface RoutersEvmModelsMetadataNonDapp {
