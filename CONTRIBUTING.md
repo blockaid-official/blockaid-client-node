@@ -60,7 +60,7 @@ $ yarn link @blockaid/client
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global @blockaid/client
+$ pnpm link --global @blockaid/client
 ```
 
 ## Running tests
