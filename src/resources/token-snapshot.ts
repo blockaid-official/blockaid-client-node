@@ -289,6 +289,11 @@ export namespace TokenSnapshotDiffResponse {
       image_url?: string | null;
 
       /**
+       * List of tokens that this token is impersonating, if detected as an impersonator
+       */
+      impersonation_targets?: Array<SolanaMetadata.ImpersonationTarget> | null;
+
+      /**
        * Malicious urls associated with the token
        */
       malicious_urls?: Array<string> | null;
@@ -373,6 +378,33 @@ export namespace TokenSnapshotDiffResponse {
         telegram_channel_id?: string | null;
 
         twitter_page?: string | null;
+      }
+
+      export interface ImpersonationTarget {
+        /**
+         * Address of the token being impersonated
+         */
+        address: string;
+
+        /**
+         * Blockchain network of the target token
+         */
+        chain: string;
+
+        /**
+         * Name of the token being impersonated
+         */
+        name?: string | null;
+
+        /**
+         * Source of the impersonation match
+         */
+        source?: 'TOP_TOKEN' | 'USER_DEFINED' | null;
+
+        /**
+         * Symbol of the token being impersonated
+         */
+        symbol?: string | null;
       }
 
       /**
@@ -464,6 +496,11 @@ export namespace TokenSnapshotDiffResponse {
       image_url?: string | null;
 
       /**
+       * List of tokens that this token is impersonating, if detected as an impersonator
+       */
+      impersonation_targets?: Array<EvmMetadataToken.ImpersonationTarget> | null;
+
+      /**
        * Malicious urls associated with the token
        */
       malicious_urls?: Array<string> | null;
@@ -533,6 +570,33 @@ export namespace TokenSnapshotDiffResponse {
         telegram_channel_id?: string | null;
 
         twitter_page?: string | null;
+      }
+
+      export interface ImpersonationTarget {
+        /**
+         * Address of the token being impersonated
+         */
+        address: string;
+
+        /**
+         * Blockchain network of the target token
+         */
+        chain: string;
+
+        /**
+         * Name of the token being impersonated
+         */
+        name?: string | null;
+
+        /**
+         * Source of the impersonation match
+         */
+        source?: 'TOP_TOKEN' | 'USER_DEFINED' | null;
+
+        /**
+         * Symbol of the token being impersonated
+         */
+        symbol?: string | null;
       }
 
       /**
@@ -921,6 +985,11 @@ export namespace TokenSnapshotFullResponse {
       image_url?: string | null;
 
       /**
+       * List of tokens that this token is impersonating, if detected as an impersonator
+       */
+      impersonation_targets?: Array<SolanaMetadata.ImpersonationTarget> | null;
+
+      /**
        * Malicious urls associated with the token
        */
       malicious_urls?: Array<string> | null;
@@ -1005,6 +1074,33 @@ export namespace TokenSnapshotFullResponse {
         telegram_channel_id?: string | null;
 
         twitter_page?: string | null;
+      }
+
+      export interface ImpersonationTarget {
+        /**
+         * Address of the token being impersonated
+         */
+        address: string;
+
+        /**
+         * Blockchain network of the target token
+         */
+        chain: string;
+
+        /**
+         * Name of the token being impersonated
+         */
+        name?: string | null;
+
+        /**
+         * Source of the impersonation match
+         */
+        source?: 'TOP_TOKEN' | 'USER_DEFINED' | null;
+
+        /**
+         * Symbol of the token being impersonated
+         */
+        symbol?: string | null;
       }
 
       /**
@@ -1096,6 +1192,11 @@ export namespace TokenSnapshotFullResponse {
       image_url?: string | null;
 
       /**
+       * List of tokens that this token is impersonating, if detected as an impersonator
+       */
+      impersonation_targets?: Array<EvmMetadataToken.ImpersonationTarget> | null;
+
+      /**
        * Malicious urls associated with the token
        */
       malicious_urls?: Array<string> | null;
@@ -1165,6 +1266,33 @@ export namespace TokenSnapshotFullResponse {
         telegram_channel_id?: string | null;
 
         twitter_page?: string | null;
+      }
+
+      export interface ImpersonationTarget {
+        /**
+         * Address of the token being impersonated
+         */
+        address: string;
+
+        /**
+         * Blockchain network of the target token
+         */
+        chain: string;
+
+        /**
+         * Name of the token being impersonated
+         */
+        name?: string | null;
+
+        /**
+         * Source of the impersonation match
+         */
+        source?: 'TOP_TOKEN' | 'USER_DEFINED' | null;
+
+        /**
+         * Symbol of the token being impersonated
+         */
+        symbol?: string | null;
       }
 
       /**
