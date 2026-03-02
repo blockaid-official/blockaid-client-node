@@ -298,6 +298,11 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/token.ts">FinancialStats</a></code>
+- <code><a href="./src/resources/token.ts">MarketType</a></code>
+- <code><a href="./src/resources/token.ts">TokenMarket</a></code>
+- <code><a href="./src/resources/token.ts">TopHolder</a></code>
+- <code><a href="./src/resources/token.ts">TopHolderLabel</a></code>
 - <code><a href="./src/resources/token.ts">TokenReportResponse</a></code>
 - <code><a href="./src/resources/token.ts">TokenScanResponse</a></code>
 
