@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.69.0 (2026-03-02)
+
+Full Changelog: [v0.68.0...v0.69.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.68.0...v0.69.0)
+
+### Features
+
+* **api:** api update ([38e064e](https://github.com/blockaid-official/blockaid-client-node/commit/38e064e3df9fbbed494974eec2de1493b5a995f3))
+* **api:** api update ([aabc99b](https://github.com/blockaid-official/blockaid-client-node/commit/aabc99bdd0e3b4b578aa965636b144c8479b421d))
+* **api:** api update ([d9d267f](https://github.com/blockaid-official/blockaid-client-node/commit/d9d267f70e54a1d628cd63983a44cf31205f4e0d))
+* **api:** api update ([f9e19eb](https://github.com/blockaid-official/blockaid-client-node/commit/f9e19eb11134cb84288e0697697465648ebe3d2e))
+* **api:** api update ([283dba8](https://github.com/blockaid-official/blockaid-client-node/commit/283dba8796f4f6c2146a71a7e5bac094e022e712))
+* **api:** api update ([1b6d410](https://github.com/blockaid-official/blockaid-client-node/commit/1b6d410bc3e2a90db079d20f165d6b49f43e6ba3))
+* **api:** api update ([67d0979](https://github.com/blockaid-official/blockaid-client-node/commit/67d0979a4751701aae0f7688abf95f23edf6b499))
+* **api:** api update ([088e49f](https://github.com/blockaid-official/blockaid-client-node/commit/088e49f136e87a1856f6514dc2139a5199d4c7a4))
+* **api:** api update ([75e5ef0](https://github.com/blockaid-official/blockaid-client-node/commit/75e5ef0417fb0e2dbcc042fed8b9d8b567b2d3e3))
+* **api:** api update ([7b3dbe9](https://github.com/blockaid-official/blockaid-client-node/commit/7b3dbe9729f0556660aa9c638421bd8dfd845139))
+
+
+### Bug Fixes
+
+* **docs/contributing:** correct pnpm link command ([198c06d](https://github.com/blockaid-official/blockaid-client-node/commit/198c06d917e517106a2dbb22a1c51c86eab43278))
+
+
+### Chores
+
+* **internal:** move stringifyQuery implementation to internal function ([cdac30e](https://github.com/blockaid-official/blockaid-client-node/commit/cdac30e854ca9a3c9c62549c8ef0a9e7c7df4106))
+* update mock server docs ([0a5f1b2](https://github.com/blockaid-official/blockaid-client-node/commit/0a5f1b2fa0a2999d2c9669158145e82c2e187a90))
+
 ## 0.68.0 (2026-02-15)
 
 Full Changelog: [v0.67.0...v0.68.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.67.0...v0.68.0)

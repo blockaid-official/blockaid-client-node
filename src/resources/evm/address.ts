@@ -25,9 +25,7 @@ export class Address extends APIResource {
   }
 
   /**
-   * Gets an address and returns a full security assessment indicating weather or not
-   * this address is malicious as well as textual reasons of why the address was
-   * flagged that way.
+   * Get a risk recommendation with plain-language reasons for an address.
    *
    * @example
    * ```ts

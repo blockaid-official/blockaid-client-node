@@ -6,10 +6,8 @@ import * as EvmAPI from './evm';
 
 export class TransactionBulk extends APIResource {
   /**
-   * Gets a bulk of transactions and returns a simulation showcasing the outcome
-   * after executing the transactions synchronously, along with a suggested course of
-   * action and textual explanations highlighting the reasons for flagging the bulk
-   * in that manner.
+   * Get a risk recommendation with plain-language reasons for a bulk of
+   * transactions.
    *
    * @example
    * ```ts
@@ -4183,6 +4181,8 @@ export namespace TransactionBulkScanResponse {
          */
         code: 'GENERAL_INSUFFICIENT_FUNDS';
 
+        category?: 'REVERT';
+
         /**
          * The current balance of the account
          */
@@ -4395,9 +4395,13 @@ export namespace TransactionBulkScanResponse {
          * The type of the model
          */
         code: 'GENERAL_INVALID_ADDRESS';
+
+        category?: 'INVALID_INPUT';
       }
 
       export interface RoutersEvmResponseGenericErrorDetails {
+        category: string;
+
         /**
          * The error code
          */
@@ -4419,6 +4423,8 @@ export namespace TransactionBulkScanResponse {
          * The message type that is unsupported
          */
         message_type: string;
+
+        category?: 'INVALID_INPUT';
       }
     }
 

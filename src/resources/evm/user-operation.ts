@@ -6,9 +6,7 @@ import * as EvmAPI from './evm';
 
 export class UserOperation extends APIResource {
   /**
-   * Gets a user operation request and returns a full simulation indicating what will
-   * happen in the transaction together with a recommended action and some textual
-   * reasons of why the transaction was flagged that way.
+   * Get a risk recommendation with plain-language reasons for a user operation.
    *
    * @example
    * ```ts
@@ -4186,6 +4184,8 @@ export namespace UserOperationScanResponse {
        */
       code: 'GENERAL_INSUFFICIENT_FUNDS';
 
+      category?: 'REVERT';
+
       /**
        * The current balance of the account
        */
@@ -4398,9 +4398,13 @@ export namespace UserOperationScanResponse {
        * The type of the model
        */
       code: 'GENERAL_INVALID_ADDRESS';
+
+      category?: 'INVALID_INPUT';
     }
 
     export interface RoutersEvmResponseGenericErrorDetails {
+      category: string;
+
       /**
        * The error code
        */
@@ -4422,6 +4426,8 @@ export namespace UserOperationScanResponse {
        * The message type that is unsupported
        */
       message_type: string;
+
+      category?: 'INVALID_INPUT';
     }
   }
 

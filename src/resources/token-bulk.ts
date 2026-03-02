@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import * as TokenAPI from './token';
 import * as EvmAPI from './evm/evm';
 
 export class TokenBulk extends APIResource {
@@ -59,7 +60,7 @@ export namespace TokenBulkScanResponse {
     /**
      * financial stats of the token
      */
-    financial_stats: Results.FinancialStats;
+    financial_stats: TokenAPI.FinancialStats;
 
     /**
      * Score between 0 to 1 (double)
@@ -130,91 +131,6 @@ export namespace TokenBulkScanResponse {
       transfer_fee_max_amount?: number | null;
     }
 
-    /**
-     * financial stats of the token
-     */
-    export interface FinancialStats {
-      /**
-       * Percentage of token currently held by bundlers - wallets that bought in the
-       * exact same Solana slot, at any point in the token's life-cycle. Currently
-       * available for Solana only.
-       */
-      bundlers_holding_percentage?: number | null;
-
-      /**
-       * Token liquidity burned percentage
-       */
-      burned_liquidity_percentage?: number | null;
-
-      /**
-       * Percentage of token's supply held in known developer wallets (0.0 to 100.0)
-       */
-      dev_holding_percentage?: number | null;
-
-      /**
-       * Amount of token holders
-       */
-      holders_count?: number | null;
-
-      /**
-       * Percentage of token's supply _currently_ held by sniper bots (0.0 to 100.0).
-       * Currently available for Solana only.
-       */
-      initial_snipers_holding_percentage?: number | null;
-
-      /**
-       * Percentage of supply that is currently held by insiders - defined as wallets
-       * exhibiting early acquisition behaviors typically associated with insider
-       * activity.
-       */
-      insiders_holding_percentage?: number | null;
-
-      /**
-       * Token liquidity locked percentage
-       */
-      locked_liquidity_percentage?: number | null;
-
-      /**
-       * Percentage of token's supply _initially_ held by sniper bots (0.0 to 100.0).
-       * Currently available for Solana only.
-       */
-      snipers_holding_percentage?: number | null;
-
-      /**
-       * token supply
-       */
-      supply?: number | null;
-
-      /**
-       * Top token holders
-       */
-      top_holders?: Array<FinancialStats.TopHolder>;
-
-      /**
-       * Total reserve in USD
-       */
-      total_reserve_in_usd?: number | null;
-
-      /**
-       * token price in USD
-       */
-      usd_price_per_unit?: number | null;
-    }
-
-    export namespace FinancialStats {
-      export interface TopHolder {
-        /**
-         * Address
-         */
-        address?: string | null;
-
-        /**
-         * Holding position out of total token liquidity
-         */
-        holding_percentage?: number | null;
-      }
-    }
-
     export interface SolanaMetadata {
       /**
        * Contract balance
@@ -260,6 +176,11 @@ export namespace TokenBulkScanResponse {
        * URL of the token image
        */
       image_url?: string | null;
+
+      /**
+       * List of tokens that this token is impersonating, if detected as an impersonator
+       */
+      impersonation_targets?: Array<SolanaMetadata.ImpersonationTarget> | null;
 
       /**
        * Malicious urls associated with the token
@@ -346,6 +267,33 @@ export namespace TokenBulkScanResponse {
         telegram_channel_id?: string | null;
 
         twitter_page?: string | null;
+      }
+
+      export interface ImpersonationTarget {
+        /**
+         * Address of the token being impersonated
+         */
+        address: string;
+
+        /**
+         * Blockchain network of the target token
+         */
+        chain: string;
+
+        /**
+         * Name of the token being impersonated
+         */
+        name?: string | null;
+
+        /**
+         * Source of the impersonation match
+         */
+        source?: 'TOP_TOKEN' | 'USER_DEFINED' | null;
+
+        /**
+         * Symbol of the token being impersonated
+         */
+        symbol?: string | null;
       }
 
       /**
@@ -437,6 +385,11 @@ export namespace TokenBulkScanResponse {
       image_url?: string | null;
 
       /**
+       * List of tokens that this token is impersonating, if detected as an impersonator
+       */
+      impersonation_targets?: Array<EvmMetadataToken.ImpersonationTarget> | null;
+
+      /**
        * Malicious urls associated with the token
        */
       malicious_urls?: Array<string> | null;
@@ -506,6 +459,33 @@ export namespace TokenBulkScanResponse {
         telegram_channel_id?: string | null;
 
         twitter_page?: string | null;
+      }
+
+      export interface ImpersonationTarget {
+        /**
+         * Address of the token being impersonated
+         */
+        address: string;
+
+        /**
+         * Blockchain network of the target token
+         */
+        chain: string;
+
+        /**
+         * Name of the token being impersonated
+         */
+        name?: string | null;
+
+        /**
+         * Source of the impersonation match
+         */
+        source?: 'TOP_TOKEN' | 'USER_DEFINED' | null;
+
+        /**
+         * Symbol of the token being impersonated
+         */
+        symbol?: string | null;
       }
 
       /**
@@ -635,6 +615,11 @@ export namespace TokenBulkScanResponse {
         | 'OWNER_CAN_CHANGE_BALANCE'
         | 'PROXY_CONTRACT'
         | 'SIMILAR_MALICIOUS_CONTRACT'
+        | 'IMPERSONATOR_SENSITIVE_ASSET'
+        | 'IMPERSONATOR_HIGH_CONFIDENCE'
+        | 'IMPERSONATOR_MEDIUM_CONFIDENCE'
+        | 'IMPERSONATOR_LOW_CONFIDENCE'
+        | 'IMPERSONATION_PROTECTED'
         | 'FAKE_VOLUME'
         | 'HIDDEN_SUPPLY_BY_KEY_HOLDER'
         | 'FAKE_TRADE_MAKER_COUNT';
@@ -650,7 +635,7 @@ export namespace TokenBulkScanResponse {
     /**
      * Error message describing why the scan failed for this token
      */
-    message: string;
+    message: 'PENDING_SCAN_RESULT' | 'NOT_A_TOKEN';
   }
 }
 

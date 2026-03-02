@@ -25,11 +25,16 @@ import {
   SiteScanResponse,
 } from './resources/site';
 import {
+  FinancialStats,
+  MarketType,
   Token,
+  TokenMarket,
   TokenReportParams,
   TokenReportResponse,
   TokenScanParams,
   TokenScanResponse,
+  TopHolder,
+  TopHolderLabel,
 } from './resources/token';
 import { TokenBulk, TokenBulkScanParams, TokenBulkScanResponse } from './resources/token-bulk';
 import {
@@ -444,6 +449,11 @@ export declare namespace Blockaid {
 
   export {
     Token as Token,
+    type FinancialStats as FinancialStats,
+    type MarketType as MarketType,
+    type TokenMarket as TokenMarket,
+    type TopHolder as TopHolder,
+    type TopHolderLabel as TopHolderLabel,
     type TokenReportResponse as TokenReportResponse,
     type TokenScanResponse as TokenScanResponse,
     type TokenReportParams as TokenReportParams,
