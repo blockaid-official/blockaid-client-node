@@ -41,6 +41,115 @@ export class Token extends APIResource {
   }
 }
 
+export interface FinancialStats {
+  /**
+   * Percentage of token currently held by bundlers - wallets that bought in the
+   * exact same Solana slot, at any point in the token's life-cycle. Currently
+   * available for Solana only.
+   */
+  bundlers_holding_percentage?: number | null;
+
+  /**
+   * Token liquidity burned percentage
+   */
+  burned_liquidity_percentage?: number | null;
+
+  /**
+   * Percentage of token's supply held in known developer wallets (0.0 to 100.0)
+   */
+  dev_holding_percentage?: number | null;
+
+  /**
+   * Amount of token holders
+   */
+  holders_count?: number | null;
+
+  /**
+   * Percentage of token's supply _currently_ held by sniper bots (0.0 to 100.0).
+   * Currently available for Solana only.
+   */
+  initial_snipers_holding_percentage?: number | null;
+
+  /**
+   * Percentage of supply that is currently held by insiders - defined as wallets
+   * exhibiting early acquisition behaviors typically associated with insider
+   * activity.
+   */
+  insiders_holding_percentage?: number | null;
+
+  /**
+   * Token liquidity locked percentage
+   */
+  locked_liquidity_percentage?: number | null;
+
+  /**
+   * Token markets/pools
+   */
+  markets?: Array<TokenMarket>;
+
+  /**
+   * Percentage of token's supply _initially_ held by sniper bots (0.0 to 100.0).
+   * Currently available for Solana only.
+   */
+  snipers_holding_percentage?: number | null;
+
+  /**
+   * token supply
+   */
+  supply?: number | null;
+
+  /**
+   * Top token holders
+   */
+  top_holders?: Array<TopHolder>;
+
+  /**
+   * Total reserve in USD
+   */
+  total_reserve_in_usd?: number | null;
+
+  /**
+   * token price in USD
+   */
+  usd_price_per_unit?: number | null;
+}
+
+export type MarketType = 'BONDING_CURVE' | 'AMM' | 'UNKNOWN';
+
+export interface TokenMarket {
+  address: string;
+
+  base_token: string;
+
+  market_name: string;
+
+  market_type: MarketType;
+
+  pair_name: string;
+
+  quote_token: string;
+
+  reserve_in_usd: number;
+}
+
+export interface TopHolder {
+  /**
+   * Address
+   */
+  address?: string | null;
+
+  /**
+   * Holding position out of total token liquidity
+   */
+  holding_percentage?: number | null;
+
+  label?: TopHolderLabel | null;
+
+  name?: string | null;
+}
+
+export type TopHolderLabel = 'market' | 'locker' | 'wallet' | 'contract' | 'program';
+
 export type TokenReportResponse = unknown;
 
 export interface TokenScanResponse {
@@ -67,7 +176,7 @@ export interface TokenScanResponse {
   /**
    * financial stats of the token
    */
-  financial_stats: TokenScanResponse.FinancialStats;
+  financial_stats: FinancialStats;
 
   /**
    * Score between 0 to 1 (double)
@@ -139,91 +248,6 @@ export namespace TokenScanResponse {
      * The maximum value that a transfer fee will cost
      */
     transfer_fee_max_amount?: number | null;
-  }
-
-  /**
-   * financial stats of the token
-   */
-  export interface FinancialStats {
-    /**
-     * Percentage of token currently held by bundlers - wallets that bought in the
-     * exact same Solana slot, at any point in the token's life-cycle. Currently
-     * available for Solana only.
-     */
-    bundlers_holding_percentage?: number | null;
-
-    /**
-     * Token liquidity burned percentage
-     */
-    burned_liquidity_percentage?: number | null;
-
-    /**
-     * Percentage of token's supply held in known developer wallets (0.0 to 100.0)
-     */
-    dev_holding_percentage?: number | null;
-
-    /**
-     * Amount of token holders
-     */
-    holders_count?: number | null;
-
-    /**
-     * Percentage of token's supply _currently_ held by sniper bots (0.0 to 100.0).
-     * Currently available for Solana only.
-     */
-    initial_snipers_holding_percentage?: number | null;
-
-    /**
-     * Percentage of supply that is currently held by insiders - defined as wallets
-     * exhibiting early acquisition behaviors typically associated with insider
-     * activity.
-     */
-    insiders_holding_percentage?: number | null;
-
-    /**
-     * Token liquidity locked percentage
-     */
-    locked_liquidity_percentage?: number | null;
-
-    /**
-     * Percentage of token's supply _initially_ held by sniper bots (0.0 to 100.0).
-     * Currently available for Solana only.
-     */
-    snipers_holding_percentage?: number | null;
-
-    /**
-     * token supply
-     */
-    supply?: number | null;
-
-    /**
-     * Top token holders
-     */
-    top_holders?: Array<FinancialStats.TopHolder>;
-
-    /**
-     * Total reserve in USD
-     */
-    total_reserve_in_usd?: number | null;
-
-    /**
-     * token price in USD
-     */
-    usd_price_per_unit?: number | null;
-  }
-
-  export namespace FinancialStats {
-    export interface TopHolder {
-      /**
-       * Address
-       */
-      address?: string | null;
-
-      /**
-       * Holding position out of total token liquidity
-       */
-      holding_percentage?: number | null;
-    }
   }
 
   export interface SolanaMetadata {
@@ -814,6 +838,11 @@ export namespace TokenScanParams {
 
 export declare namespace Token {
   export {
+    type FinancialStats as FinancialStats,
+    type MarketType as MarketType,
+    type TokenMarket as TokenMarket,
+    type TopHolder as TopHolder,
+    type TopHolderLabel as TopHolderLabel,
     type TokenReportResponse as TokenReportResponse,
     type TokenScanResponse as TokenScanResponse,
     type TokenReportParams as TokenReportParams,

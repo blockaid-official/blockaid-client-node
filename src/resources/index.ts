@@ -78,6 +78,11 @@ export {
 } from './sui/sui';
 export {
   Token,
+  type FinancialStats,
+  type MarketType,
+  type TokenMarket,
+  type TopHolder,
+  type TopHolderLabel,
   type TokenReportResponse,
   type TokenScanResponse,
   type TokenReportParams,
