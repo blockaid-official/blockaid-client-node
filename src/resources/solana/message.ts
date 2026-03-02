@@ -2415,6 +2415,17 @@ export namespace MessageScanResponse {
      */
     export interface Validation {
       /**
+       * A textual classification that can be presented to the user explaining the
+       * reason.
+       */
+      classification: string;
+
+      /**
+       * A textual description about the validation result
+       */
+      description: string;
+
+      /**
        * A list of features explaining what is happening in the transaction in different
        * levels of severity
        */
