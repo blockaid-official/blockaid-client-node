@@ -180,7 +180,8 @@ export interface StarknetTransactionScanRequest {
     | StarknetTransactionScanRequest.StarknetInvokeV1TransactionSchema
     | StarknetTransactionScanRequest.StarknetInvokeV3TransactionSchema
     | StarknetTransactionScanRequest.StarknetDeployAccountV1TransactionSchema
-    | StarknetTransactionScanRequest.StarknetDeployAccountV3TransactionSchema;
+    | StarknetTransactionScanRequest.StarknetDeployAccountV3TransactionSchema
+    | StarknetTransactionScanRequest.StarknetOutsideExecutionSchema;
 
   /**
    * Optional block number or tag context for the simulation
@@ -348,6 +349,52 @@ export namespace StarknetTransactionScanRequest {
      * The version of the transaction.
      */
     version: 3;
+  }
+
+  export interface StarknetOutsideExecutionSchema {
+    /**
+     * The address allowed to execute, or 0 for ANY_CALLER
+     */
+    caller: string;
+
+    /**
+     * The calls to execute on the user's account.
+     */
+    calls: Array<StarknetOutsideExecutionSchema.Call>;
+
+    /**
+     * Unix timestamp. The message cannot be executed before this time.
+     */
+    execute_after: string;
+
+    /**
+     * Unix timestamp. The message cannot be executed after this time.
+     */
+    execute_before: string;
+
+    /**
+     * Replay-protection nonce, scoped to the outside execution context
+     */
+    nonce: string;
+  }
+
+  export namespace StarknetOutsideExecutionSchema {
+    export interface Call {
+      /**
+       * The selector of the function to call.
+       */
+      selector: string;
+
+      /**
+       * The address of the contract to call.
+       */
+      to: string;
+
+      /**
+       * The calldata to pass to the function.
+       */
+      calldata?: Array<string>;
+    }
   }
 }
 
