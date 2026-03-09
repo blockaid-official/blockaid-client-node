@@ -33,10 +33,20 @@ export class TransactionRaw extends APIResource {
 export type TransactionRawReportResponse = number;
 
 export interface TransactionRawReportParams {
+  /**
+   * Free-text explanation or context for the report.
+   */
   details: string;
 
+  /**
+   * Type of appeal: what you believe was wrong with the scan result.
+   */
   event: 'should_be_malicious' | 'should_be_benign' | 'wrong_simulation_result';
 
+  /**
+   * Either a prior scan request ID or the full transaction parameters being
+   * reported.
+   */
   report:
     | TransactionRawReportParams.BitcoinAppealRequestID
     | TransactionRawReportParams.BitcoinAppealTransactionDataReport;
@@ -44,14 +54,26 @@ export interface TransactionRawReportParams {
 
 export namespace TransactionRawReportParams {
   export interface BitcoinAppealRequestID {
+    /**
+     * Request ID from a previous transaction scan response.
+     */
     id: string;
 
+    /**
+     * Discriminator; use "request_id" when referencing a prior scan.
+     */
     type?: 'request_id';
   }
 
   export interface BitcoinAppealTransactionDataReport {
+    /**
+     * Full transaction scan request (same shape as the scan endpoint).
+     */
     params: BitcoinAPI.BitcoinTransactionScanRequest;
 
+    /**
+     * Discriminator; use "params" when supplying full transaction data.
+     */
     type?: 'params';
   }
 }

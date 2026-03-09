@@ -99,20 +99,20 @@ export namespace BitcoinTransactionScanResponse {
   export interface BitcoinSimulationResult {
     /**
      * Summary of the actions and asset transfers that were made by the requested
-     * account address
+     * account address.
      */
     account_summary: BitcoinSimulationResult.AccountSummary;
 
     status: 'Success';
 
     /**
-     * Details of addresses involved in the transaction
+     * Details of addresses involved in the transaction.
      */
     address_details?: Array<BitcoinSimulationResult.AddressDetail>;
 
     /**
-     * Mapping between the address of an account to the assets diff during the
-     * transaction
+     * Per-account list of asset balance changes (native, inscriptions, runes) for the
+     * simulated transaction.
      */
     assets_diffs?: {
       [key: string]: Array<
@@ -126,16 +126,17 @@ export namespace BitcoinTransactionScanResponse {
   export namespace BitcoinSimulationResult {
     /**
      * Summary of the actions and asset transfers that were made by the requested
-     * account address
+     * account address.
      */
     export interface AccountSummary {
       /**
-       * Total USD diff for the requested account address
+       * Net change in USD value (incoming minus outgoing) for the requested account.
        */
       total_usd_diff: AccountSummary.TotalUsdDiff;
 
       /**
-       * Assets diffs of the requested account address
+       * Per-asset balance changes (native BTC, inscriptions, runes) for the requested
+       * account.
        */
       account_assets_diffs?: Array<
         | AccountSummary.BitcoinNativeAssetDiff
@@ -146,21 +147,21 @@ export namespace BitcoinTransactionScanResponse {
 
     export namespace AccountSummary {
       /**
-       * Total USD diff for the requested account address
+       * Net change in USD value (incoming minus outgoing) for the requested account.
        */
       export interface TotalUsdDiff {
         /**
-         * Total incoming USD transfers
+         * Total incoming USD transfers.
          */
         in: number;
 
         /**
-         * Total outgoing USD transfers
+         * Total outgoing USD transfers.
          */
         out: number;
 
         /**
-         * Total USD transfers
+         * Total USD transfers.
          */
         total?: number;
       }
@@ -169,17 +170,17 @@ export namespace BitcoinTransactionScanResponse {
         asset: BitcoinNativeAssetDiff.Asset;
 
         /**
-         * The type of the assets in this diff
+         * Asset category for this balance change (e.g. NATIVE, RUNE, INSCRIPTION).
          */
         asset_type: string;
 
         /**
-         * Details of the incoming transfer
+         * Details of the incoming transfer.
          */
         in?: BitcoinNativeAssetDiff.In | null;
 
         /**
-         * Details of the outgoing transfer
+         * Details of the outgoing transfer.
          */
         out?: BitcoinNativeAssetDiff.Out | null;
       }
@@ -187,77 +188,77 @@ export namespace BitcoinTransactionScanResponse {
       export namespace BitcoinNativeAssetDiff {
         export interface Asset {
           /**
-           * URL of the asset's logo
+           * URL of the asset's logo.
            */
           logo_url: string | null;
 
           /**
-           * Decimals of the asset
+           * Number of decimal places used to represent fractional units (e.g. 8 for BTC).
            */
           decimals?: 8;
 
           /**
-           * Name of the asset
+           * Name of the asset.
            */
           name?: 'Bitcoin';
 
           /**
-           * Symbol of the asset
+           * Symbol of the asset.
            */
           symbol?: 'BTC';
 
           /**
-           * Type of the asset (`NATIVE`)
+           * Type of the asset (`NATIVE`).
            */
           type?: 'NATIVE';
         }
 
         /**
-         * Details of the incoming transfer
+         * Details of the incoming transfer.
          */
         export interface In {
           /**
-           * Raw value of the transfer
+           * Raw value of the transfer.
            */
           raw_value: number;
 
           /**
-           * Value of the transfer
+           * Value of the transfer.
            */
           value: string;
 
           /**
-           * Summarized description of the transfer
+           * Summarized description of the transfer.
            */
           summary?: string | null;
 
           /**
-           * USD price of the asset
+           * USD price of the asset.
            */
           usd_price?: number | null;
         }
 
         /**
-         * Details of the outgoing transfer
+         * Details of the outgoing transfer.
          */
         export interface Out {
           /**
-           * Raw value of the transfer
+           * Raw value of the transfer.
            */
           raw_value: number;
 
           /**
-           * Value of the transfer
+           * Value of the transfer.
            */
           value: string;
 
           /**
-           * Summarized description of the transfer
+           * Summarized description of the transfer.
            */
           summary?: string | null;
 
           /**
-           * USD price of the asset
+           * USD price of the asset.
            */
           usd_price?: number | null;
         }
@@ -267,17 +268,17 @@ export namespace BitcoinTransactionScanResponse {
         asset: BitcoinInscriptionAssetDiff.Asset;
 
         /**
-         * The type of the assets in this diff
+         * Asset category for this balance change (e.g. NATIVE, RUNE, INSCRIPTION).
          */
         asset_type: string;
 
         /**
-         * Details of the incoming transfer
+         * Details of the incoming transfer.
          */
         in?: BitcoinInscriptionAssetDiff.In | null;
 
         /**
-         * Details of the outgoing transfer
+         * Details of the outgoing transfer.
          */
         out?: BitcoinInscriptionAssetDiff.Out | null;
       }
@@ -285,67 +286,67 @@ export namespace BitcoinTransactionScanResponse {
       export namespace BitcoinInscriptionAssetDiff {
         export interface Asset {
           /**
-           * The Inscription ID
+           * The Inscription ID.
            */
           id: string;
 
           /**
-           * Inscription's display name
+           * Inscription's display name.
            */
           name: string;
 
           /**
-           * The Inscription sat
+           * The Inscription sat.
            */
           sat: number;
 
           /**
-           * URL of the asset's logo
+           * URL of the asset's logo.
            */
           logo_url?: string | null;
 
           /**
-           * Type of the asset (`INSCRIPTION`)
+           * Type of the asset (`INSCRIPTION`).
            */
           type?: 'INSCRIPTION';
         }
 
         /**
-         * Details of the incoming transfer
+         * Details of the incoming transfer.
          */
         export interface In {
           /**
-           * Inscription ID of the transfer
+           * Inscription ID of the transfer.
            */
           inscription_id: string;
 
           /**
-           * Summarized description of the transfer
+           * Summarized description of the transfer.
            */
           summary?: string | null;
 
           /**
-           * USD price of the asset
+           * USD price of the asset.
            */
           usd_price?: number | null;
         }
 
         /**
-         * Details of the outgoing transfer
+         * Details of the outgoing transfer.
          */
         export interface Out {
           /**
-           * Inscription ID of the transfer
+           * Inscription ID of the transfer.
            */
           inscription_id: string;
 
           /**
-           * Summarized description of the transfer
+           * Summarized description of the transfer.
            */
           summary?: string | null;
 
           /**
-           * USD price of the asset
+           * USD price of the asset.
            */
           usd_price?: number | null;
         }
@@ -355,17 +356,17 @@ export namespace BitcoinTransactionScanResponse {
         asset: BitcoinRunesAssetDiff.Asset;
 
         /**
-         * The type of the assets in this diff
+         * Asset category for this balance change (e.g. NATIVE, RUNE, INSCRIPTION).
          */
         asset_type: string;
 
         /**
-         * Details of the incoming transfer
+         * Details of the incoming transfer.
          */
         in?: BitcoinRunesAssetDiff.In | null;
 
         /**
-         * Details of the outgoing transfer
+         * Details of the outgoing transfer.
          */
         out?: BitcoinRunesAssetDiff.Out | null;
       }
@@ -373,87 +374,87 @@ export namespace BitcoinTransactionScanResponse {
       export namespace BitcoinRunesAssetDiff {
         export interface Asset {
           /**
-           * The Rune ID
+           * The Rune ID.
            */
           id: string;
 
           /**
-           * Decimals of the asset
+           * Number of decimal places used to represent fractional units.
            */
           decimals: number;
 
           /**
-           * The Rune name
+           * The Rune name.
            */
           name: string;
 
           /**
-           * The Rune spaced name
+           * The Rune spaced name.
            */
           spaced_name: string;
 
           /**
-           * The Rune's symbol
+           * The Rune's symbol.
            */
           symbol: string;
 
           /**
-           * URL of the asset's logo
+           * URL of the asset's logo.
            */
           logo_url?: string | null;
 
           /**
-           * Type of the asset (`RUNE`)
+           * Type of the asset (`RUNE`).
            */
           type?: 'RUNE';
         }
 
         /**
-         * Details of the incoming transfer
+         * Details of the incoming transfer.
          */
         export interface In {
           /**
-           * Raw value of the transfer
+           * Raw value of the transfer.
            */
           raw_value: number;
 
           /**
-           * Value of the transfer
+           * Value of the transfer.
            */
           value: string;
 
           /**
-           * Summarized description of the transfer
+           * Summarized description of the transfer.
            */
           summary?: string | null;
 
           /**
-           * USD price of the asset
+           * USD price of the asset.
            */
           usd_price?: number | null;
         }
 
         /**
-         * Details of the outgoing transfer
+         * Details of the outgoing transfer.
          */
         export interface Out {
           /**
-           * Raw value of the transfer
+           * Raw value of the transfer.
            */
           raw_value: number;
 
           /**
-           * Value of the transfer
+           * Value of the transfer.
            */
           value: string;
 
           /**
-           * Summarized description of the transfer
+           * Summarized description of the transfer.
            */
           summary?: string | null;
 
           /**
-           * USD price of the asset
+           * USD price of the asset.
            */
           usd_price?: number | null;
         }
@@ -476,17 +477,17 @@ export namespace BitcoinTransactionScanResponse {
       asset: BitcoinNativeAssetDiff.Asset;
 
       /**
-       * The type of the assets in this diff
+       * Asset category for this balance change (e.g. NATIVE, RUNE, INSCRIPTION).
        */
       asset_type: string;
 
       /**
-       * Details of the incoming transfer
+       * Details of the incoming transfer.
        */
       in?: BitcoinNativeAssetDiff.In | null;
 
       /**
-       * Details of the outgoing transfer
+       * Details of the outgoing transfer.
        */
       out?: BitcoinNativeAssetDiff.Out | null;
     }
@@ -494,77 +495,77 @@ export namespace BitcoinTransactionScanResponse {
     export namespace BitcoinNativeAssetDiff {
       export interface Asset {
         /**
-         * URL of the asset's logo
+         * URL of the asset's logo.
          */
         logo_url: string | null;
 
         /**
-         * Decimals of the asset
+         * Number of decimal places used to represent fractional units (e.g. 8 for BTC).
          */
         decimals?: 8;
 
         /**
-         * Name of the asset
+         * Name of the asset.
          */
         name?: 'Bitcoin';
 
         /**
-         * Symbol of the asset
+         * Symbol of the asset.
          */
         symbol?: 'BTC';
 
         /**
-         * Type of the asset (`NATIVE`)
+         * Type of the asset (`NATIVE`).
          */
         type?: 'NATIVE';
       }
 
       /**
-       * Details of the incoming transfer
+       * Details of the incoming transfer.
        */
       export interface In {
         /**
-         * Raw value of the transfer
+         * Raw value of the transfer.
          */
         raw_value: number;
 
         /**
-         * Value of the transfer
+         * Value of the transfer.
          */
         value: string;
 
         /**
-         * Summarized description of the transfer
+         * Summarized description of the transfer.
          */
         summary?: string | null;
 
         /**
-         * USD price of the asset
+         * USD price of the asset.
          */
         usd_price?: number | null;
       }
 
       /**
-       * Details of the outgoing transfer
+       * Details of the outgoing transfer.
        */
       export interface Out {
         /**
-         * Raw value of the transfer
+         * Raw value of the transfer.
          */
         raw_value: number;
 
         /**
-         * Value of the transfer
+         * Value of the transfer.
          */
         value: string;
 
         /**
-         * Summarized description of the transfer
+         * Summarized description of the transfer.
          */
         summary?: string | null;
 
         /**
-         * USD price of the asset
+         * USD price of the asset.
          */
         usd_price?: number | null;
       }
@@ -574,17 +575,17 @@ export namespace BitcoinTransactionScanResponse {
       asset: BitcoinInscriptionAssetDiff.Asset;
 
       /**
-       * The type of the assets in this diff
+       * Asset category for this balance change (e.g. NATIVE, RUNE, INSCRIPTION).
        */
       asset_type: string;
 
       /**
-       * Details of the incoming transfer
+       * Details of the incoming transfer.
        */
       in?: BitcoinInscriptionAssetDiff.In | null;
 
       /**
-       * Details of the outgoing transfer
+       * Details of the outgoing transfer.
        */
       out?: BitcoinInscriptionAssetDiff.Out | null;
     }
@@ -592,67 +593,67 @@ export namespace BitcoinTransactionScanResponse {
     export namespace BitcoinInscriptionAssetDiff {
       export interface Asset {
         /**
-         * The Inscription ID
+         * The Inscription ID.
          */
         id: string;
 
         /**
-         * Inscription's display name
+         * Inscription's display name.
          */
         name: string;
 
         /**
-         * The Inscription sat
+         * The Inscription sat.
          */
         sat: number;
 
         /**
-         * URL of the asset's logo
+         * URL of the asset's logo.
          */
         logo_url?: string | null;
 
         /**
-         * Type of the asset (`INSCRIPTION`)
+         * Type of the asset (`INSCRIPTION`).
          */
         type?: 'INSCRIPTION';
       }
 
       /**
-       * Details of the incoming transfer
+       * Details of the incoming transfer.
        */
       export interface In {
         /**
-         * Inscription ID of the transfer
+         * Inscription ID of the transfer.
          */
         inscription_id: string;
 
         /**
-         * Summarized description of the transfer
+         * Summarized description of the transfer.
          */
         summary?: string | null;
 
         /**
-         * USD price of the asset
+         * USD price of the asset.
          */
         usd_price?: number | null;
       }
 
       /**
-       * Details of the outgoing transfer
+       * Details of the outgoing transfer.
        */
       export interface Out {
         /**
-         * Inscription ID of the transfer
+         * Inscription ID of the transfer.
          */
         inscription_id: string;
 
         /**
-         * Summarized description of the transfer
+         * Summarized description of the transfer.
          */
         summary?: string | null;
 
         /**
-         * USD price of the asset
+         * USD price of the asset.
          */
         usd_price?: number | null;
       }
@@ -662,17 +663,17 @@ export namespace BitcoinTransactionScanResponse {
       asset: BitcoinRunesAssetDiff.Asset;
 
       /**
-       * The type of the assets in this diff
+       * Asset category for this balance change (e.g. NATIVE, RUNE, INSCRIPTION).
        */
       asset_type: string;
 
       /**
-       * Details of the incoming transfer
+       * Details of the incoming transfer.
        */
       in?: BitcoinRunesAssetDiff.In | null;
 
       /**
-       * Details of the outgoing transfer
+       * Details of the outgoing transfer.
        */
       out?: BitcoinRunesAssetDiff.Out | null;
     }
@@ -680,87 +681,87 @@ export namespace BitcoinTransactionScanResponse {
     export namespace BitcoinRunesAssetDiff {
       export interface Asset {
         /**
-         * The Rune ID
+         * The Rune ID.
          */
         id: string;
 
         /**
-         * Decimals of the asset
+         * Number of decimal places used to represent fractional units.
          */
         decimals: number;
 
         /**
-         * The Rune name
+         * The Rune name.
          */
         name: string;
 
         /**
-         * The Rune spaced name
+         * The Rune spaced name.
          */
         spaced_name: string;
 
         /**
-         * The Rune's symbol
+         * The Rune's symbol.
          */
         symbol: string;
 
         /**
-         * URL of the asset's logo
+         * URL of the asset's logo.
          */
         logo_url?: string | null;
 
         /**
-         * Type of the asset (`RUNE`)
+         * Type of the asset (`RUNE`).
          */
         type?: 'RUNE';
       }
 
       /**
-       * Details of the incoming transfer
+       * Details of the incoming transfer.
        */
       export interface In {
         /**
-         * Raw value of the transfer
+         * Raw value of the transfer.
          */
         raw_value: number;
 
         /**
-         * Value of the transfer
+         * Value of the transfer.
          */
         value: string;
 
         /**
-         * Summarized description of the transfer
+         * Summarized description of the transfer.
          */
         summary?: string | null;
 
         /**
-         * USD price of the asset
+         * USD price of the asset.
          */
         usd_price?: number | null;
       }
 
       /**
-       * Details of the outgoing transfer
+       * Details of the outgoing transfer.
        */
       export interface Out {
         /**
-         * Raw value of the transfer
+         * Raw value of the transfer.
          */
         raw_value: number;
 
         /**
-         * Value of the transfer
+         * Value of the transfer.
          */
         value: string;
 
         /**
-         * Summarized description of the transfer
+         * Summarized description of the transfer.
          */
         summary?: string | null;
 
         /**
-         * USD price of the asset
+         * USD price of the asset.
          */
         usd_price?: number | null;
       }
@@ -784,20 +785,24 @@ export namespace BitcoinTransactionScanResponse {
     classification: string;
 
     /**
-     * A textual description about the validation result
+     * A textual description about the validation result.
      */
     description: string;
 
+    /**
+     * List of validation findings (addresses and classifications) that contributed to
+     * the verdict.
+     */
     features: Array<BitcoinValidationResult.Feature>;
 
     /**
-     * A textual description about the reasons the transaction was flagged with
-     * result_type
+     * Human-readable explanation of why the transaction received the given
+     * `result_type` verdict.
      */
     reason: string;
 
     /**
-     * Verdict of the validation
+     * Verdict of the validation.
      */
     result_type: 'Benign' | 'Warning' | 'Malicious';
 
@@ -807,19 +812,22 @@ export namespace BitcoinTransactionScanResponse {
   export namespace BitcoinValidationResult {
     export interface Feature {
       /**
-       * Address the feature refers to
+       * Bitcoin address that this finding is associated with.
        */
       address: string;
 
       /**
-       * Textual description
+       * Human-readable explanation of this finding.
        */
       description: string;
 
+      /**
+       * Unique identifier for this type of finding.
+       */
       feature_id: string;
 
       /**
-       * Feature Classification
+       * Severity or category of this finding (e.g. Benign, Warning, Malicious, Info).
        */
       type: 'Benign' | 'Warning' | 'Malicious' | 'Info';
     }
