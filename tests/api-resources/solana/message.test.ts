@@ -35,6 +35,7 @@ describe('resource message', () => {
       ],
       chain: 'mainnet',
       encoding: 'base58',
+      execution_mode: 'standard',
       method: 'signAndSendTransaction',
       options: ['simulation', 'validation'],
     });
