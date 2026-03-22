@@ -2495,6 +2495,15 @@ export interface MessageScanParams {
   encoding?: 'base58' | 'base64';
 
   /**
+   * The execution mode for the transaction(s). Use `jito_bundle` when the
+   * transactions are intended to be submitted as a Jito bundle. In bundle mode,
+   * simulation uses pre/post account state diffs instead of instruction-level
+   * parsing, and validation allows the `account_address` to appear in any (not
+   * necessarily all) of the bundle's transactions.
+   */
+  execution_mode?: 'standard' | 'jito_bundle';
+
+  /**
    * The RPC method used by the dApp to propose the transaction
    */
   method?: string;
