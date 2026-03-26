@@ -125,6 +125,7 @@ export namespace AddressReportParams {
         | 'monad'
         | 'monad-testnet'
         | 'hedera'
+        | 'tempo'
         | 'tempo-testnet'
         | 'kite-ai';
 
