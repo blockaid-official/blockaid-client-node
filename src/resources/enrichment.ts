@@ -69,6 +69,7 @@ export interface EnrichmentReportAddress {
     | 'xlayer'
     | 'monad'
     | 'monad-testnet'
+    | 'tempo'
     | 'tempo-testnet'
     | 'kite-ai';
 }

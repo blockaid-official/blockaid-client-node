@@ -110,6 +110,7 @@ export interface AddressReportParams {
     | 'monad'
     | 'monad-testnet'
     | 'hedera'
+    | 'tempo'
     | 'tempo-testnet'
     | 'kite-ai'
     | 'solana'
@@ -396,6 +397,7 @@ export type TransactionScanSupportedChain =
   | 'xlayer'
   | 'monad'
   | 'monad-testnet'
+  | 'tempo'
   | 'tempo-testnet'
   | 'kite-ai';
 
