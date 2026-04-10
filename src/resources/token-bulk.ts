@@ -622,7 +622,25 @@ export namespace TokenBulkScanResponse {
         | 'IMPERSONATION_PROTECTED'
         | 'FAKE_VOLUME'
         | 'HIDDEN_SUPPLY_BY_KEY_HOLDER'
-        | 'FAKE_TRADE_MAKER_COUNT';
+        | 'FAKE_TRADE_MAKER_COUNT'
+        | 'TRANSFER_FROM_REVERTS'
+        | 'OFFENSIVE_TOKEN_METADATA'
+        | 'LISTED_ON_CENTRALIZED_EXCHANGE'
+        | 'SANCTIONED_CREATOR'
+        | 'SPAM_TEXT'
+        | 'BONDING_CURVE_TOKEN'
+        | 'HEAVILY_SNIPED'
+        | 'SOLANA_TOKEN_2022'
+        | 'POST_DUMP'
+        | 'DEX_PAID'
+        | 'LOW_REPUTATION_CREATOR'
+        | 'SNIPE_AT_MINT'
+        | 'TRANSFER_HOOK_ENABLED'
+        | 'CONFIDENTIAL_TRANSFERS_ENABLED'
+        | 'NON_TRANSERABLE'
+        | 'TOKEN_BACKDOOR'
+        | 'CREATED_VIA_LAUNCHPAD'
+        | 'COMPROMISED_TOKEN';
 
       /**
        * Type of the feature
