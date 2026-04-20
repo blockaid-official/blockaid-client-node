@@ -759,7 +759,8 @@ export namespace TokenScanResponse {
       | 'NON_TRANSERABLE'
       | 'TOKEN_BACKDOOR'
       | 'CREATED_VIA_LAUNCHPAD'
-      | 'COMPROMISED_TOKEN';
+      | 'COMPROMISED_TOKEN'
+      | 'LONG_FUND_TRAIL';
 
     /**
      * Type of the feature
