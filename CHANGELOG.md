@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.71.0 (2026-04-20)
+
+Full Changelog: [v0.70.0...v0.71.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.70.0...v0.71.0)
+
+### Features
+
+* **api:** api update ([04d7e81](https://github.com/blockaid-official/blockaid-client-node/commit/04d7e81c0dbc2925576f3d2f100562efa6bbbd3c))
+* **api:** api update ([d2fa122](https://github.com/blockaid-official/blockaid-client-node/commit/d2fa12247b6d09356efe2b06f5ea2fab25ed6ad2))
+* **api:** api update ([741d5fa](https://github.com/blockaid-official/blockaid-client-node/commit/741d5fa8a5a80250a77412db65aef9d5e2c441a4))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([081a598](https://github.com/blockaid-official/blockaid-client-node/commit/081a59859268f8e22b741bd553ab05565e24ffb2))
+* **internal:** codegen related update ([4872458](https://github.com/blockaid-official/blockaid-client-node/commit/487245845c784f60346b4b471bc8ba936c4f86ee))
+* **internal:** update gitignore ([bfca227](https://github.com/blockaid-official/blockaid-client-node/commit/bfca22701d8d63d8e1b19f13d1403711909f0272))
+* **internal:** update multipart form array serialization ([a6fa9ca](https://github.com/blockaid-official/blockaid-client-node/commit/a6fa9caaee0065c727057fdf6bd9ca696fadfd06))
+* **tests:** bump steady to v0.19.6 ([dc831f6](https://github.com/blockaid-official/blockaid-client-node/commit/dc831f65d6b4cd9c6c87fcc6b665adb6de68b322))
+* **tests:** bump steady to v0.19.7 ([c1e310f](https://github.com/blockaid-official/blockaid-client-node/commit/c1e310fd90569cab5e084e805cb1490f5b1a23fd))
+* **tests:** bump steady to v0.20.1 ([6466d2f](https://github.com/blockaid-official/blockaid-client-node/commit/6466d2f8aeacc2cc6df2b261600a9829ebe7b9cc))
+* **tests:** bump steady to v0.20.2 ([d79cd7a](https://github.com/blockaid-official/blockaid-client-node/commit/d79cd7a8d25c3561f3ff0ce473a30b540e698146))
+* **tests:** bump steady to v0.22.1 ([6a5c1ab](https://github.com/blockaid-official/blockaid-client-node/commit/6a5c1ab3a7ccc8468564fdd7eee13b6c5791b3cc))
+
 ## 0.70.0 (2026-03-21)
 
 Full Changelog: [v0.69.0...v0.70.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.69.0...v0.70.0)
