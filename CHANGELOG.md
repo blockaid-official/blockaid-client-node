@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.71.1 (2026-04-23)
+
+Full Changelog: [v0.71.0...v0.71.1](https://github.com/blockaid-official/blockaid-client-node/compare/v0.71.0...v0.71.1)
+
+### Chores
+
+* **internal:** more robust bootstrap script ([b9900c6](https://github.com/blockaid-official/blockaid-client-node/commit/b9900c68bf267ded2d419804d2414b6e9d4ee50f))
+
 ## 0.71.0 (2026-04-20)
 
 Full Changelog: [v0.70.0...v0.71.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.70.0...v0.71.0)
