@@ -970,6 +970,35 @@ export namespace TransactionScanResponse {
     error: string;
 
     status: 'Error';
+
+    /**
+     * Error details if the simulation failed.
+     */
+    error_details?:
+      | HederaSimulationErrorSchema.HederaGenericErrorDetails
+      | HederaSimulationErrorSchema.HederaUnsupportedTransactionTypeErrorDetails;
+  }
+
+  export namespace HederaSimulationErrorSchema {
+    export interface HederaGenericErrorDetails {
+      category: string;
+
+      /**
+       * The error code
+       */
+      code: string;
+    }
+
+    export interface HederaUnsupportedTransactionTypeErrorDetails {
+      category: 'INVALID_INPUT';
+
+      code: 'UNSUPPORTED_TRANSACTION_TYPE';
+
+      /**
+       * The unsupported transaction type
+       */
+      transaction_type: string;
+    }
   }
 
   export interface HederaValidationResult {
