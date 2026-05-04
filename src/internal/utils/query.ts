@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { BlockaidError } from '../../error';
+import { BlockaidError } from '../../core/error';
 
 /**
  * Basic re-implementation of `qs.stringify` for primitive types.

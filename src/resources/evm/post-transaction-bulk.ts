@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as EvmAPI from './evm';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
 export class PostTransactionBulk extends APIResource {
   /**
@@ -24,8 +25,8 @@ export class PostTransactionBulk extends APIResource {
    */
   scan(
     body: PostTransactionBulkScanParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PostTransactionBulkScanResponse> {
+    options?: RequestOptions,
+  ): APIPromise<PostTransactionBulkScanResponse> {
     return this._client.post('/v0/evm/post-transaction-bulk/scan', { body, ...options });
   }
 }

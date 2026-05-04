@@ -1,7 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 export class Site extends APIResource {
   /**
@@ -19,7 +20,7 @@ export class Site extends APIResource {
    * });
    * ```
    */
-  report(body: SiteReportParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+  report(body: SiteReportParams, options?: RequestOptions): APIPromise<unknown> {
     return this._client.post('/v0/site/report', { body, ...options });
   }
 
@@ -34,7 +35,7 @@ export class Site extends APIResource {
    * });
    * ```
    */
-  scan(body: SiteScanParams, options?: Core.RequestOptions): Core.APIPromise<SiteScanResponse> {
+  scan(body: SiteScanParams, options?: RequestOptions): APIPromise<SiteScanResponse> {
     return this._client.post('/v0/site/scan', { body, ...options });
   }
 }

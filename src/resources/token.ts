@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as EvmAPI from './evm/evm';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 export class Token extends APIResource {
   /**
@@ -20,7 +21,7 @@ export class Token extends APIResource {
    * });
    * ```
    */
-  report(body: TokenReportParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+  report(body: TokenReportParams, options?: RequestOptions): APIPromise<unknown> {
     return this._client.post('/v0/token/report', { body, ...options });
   }
 
@@ -36,7 +37,7 @@ export class Token extends APIResource {
    * });
    * ```
    */
-  scan(body: TokenScanParams, options?: Core.RequestOptions): Core.APIPromise<TokenScanResponse> {
+  scan(body: TokenScanParams, options?: RequestOptions): APIPromise<TokenScanResponse> {
     return this._client.post('/v0/token/scan', { body, ...options });
   }
 }

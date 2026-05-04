@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as EvmAPI from './evm';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
 export class JsonRpc extends APIResource {
   /**
@@ -27,7 +28,7 @@ export class JsonRpc extends APIResource {
    * });
    * ```
    */
-  scan(body: JsonRpcScanParams, options?: Core.RequestOptions): Core.APIPromise<JsonRpcScanResponse> {
+  scan(body: JsonRpcScanParams, options?: RequestOptions): APIPromise<JsonRpcScanResponse> {
     return this._client.post('/v0/evm/json-rpc/scan', { body, ...options });
   }
 }

@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as EvmAPI from './evm';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
 export class UserOperation extends APIResource {
   /**
@@ -39,10 +40,7 @@ export class UserOperation extends APIResource {
    * });
    * ```
    */
-  scan(
-    body: UserOperationScanParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<UserOperationScanResponse> {
+  scan(body: UserOperationScanParams, options?: RequestOptions): APIPromise<UserOperationScanResponse> {
     return this._client.post('/v0/evm/user-operation/scan', { body, ...options });
   }
 }

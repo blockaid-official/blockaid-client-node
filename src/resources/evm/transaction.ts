@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as EvmAPI from './evm';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Transaction extends APIResource {
   /**
@@ -20,7 +21,7 @@ export class Transaction extends APIResource {
    * });
    * ```
    */
-  report(body: TransactionReportParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+  report(body: TransactionReportParams, options?: RequestOptions): APIPromise<unknown> {
     return this._client.post('/v0/evm/transaction/report', { body, ...options });
   }
 
@@ -44,7 +45,7 @@ export class Transaction extends APIResource {
    * });
    * ```
    */
-  scan(body: TransactionScanParams, options?: Core.RequestOptions): Core.APIPromise<TransactionScanResponse> {
+  scan(body: TransactionScanParams, options?: RequestOptions): APIPromise<TransactionScanResponse> {
     return this._client.post('/v0/evm/transaction/scan', { body, ...options });
   }
 }

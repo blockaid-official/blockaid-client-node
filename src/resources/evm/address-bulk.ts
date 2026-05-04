@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as EvmAPI from './evm';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
 export class AddressBulk extends APIResource {
   /**
@@ -22,7 +23,7 @@ export class AddressBulk extends APIResource {
    * });
    * ```
    */
-  scan(body: AddressBulkScanParams, options?: Core.RequestOptions): Core.APIPromise<AddressBulkScanResponse> {
+  scan(body: AddressBulkScanParams, options?: RequestOptions): APIPromise<AddressBulkScanResponse> {
     return this._client.post('/v0/evm/address-bulk/scan', { body, ...options });
   }
 
@@ -59,8 +60,8 @@ export class AddressBulk extends APIResource {
    */
   scanExtended(
     body: AddressBulkScanExtendedParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EvmAPI.ValidateBulkExtendedAddressesResponse> {
+    options?: RequestOptions,
+  ): APIPromise<EvmAPI.ValidateBulkExtendedAddressesResponse> {
     return this._client.post('/v0/evm/address-bulk/scan-extended', { body, ...options });
   }
 }

@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as BitcoinAPI from './bitcoin';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
 export class TransactionRaw extends APIResource {
   /**
@@ -12,8 +13,8 @@ export class TransactionRaw extends APIResource {
    */
   report(
     body: TransactionRawReportParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TransactionRawReportResponse> {
+    options?: RequestOptions,
+  ): APIPromise<TransactionRawReportResponse> {
     return this._client.post('/v0/bitcoin/transaction/report', { body, ...options });
   }
 
@@ -24,8 +25,8 @@ export class TransactionRaw extends APIResource {
    */
   scan(
     body: TransactionRawScanParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<BitcoinAPI.BitcoinTransactionScanResponse> {
+    options?: RequestOptions,
+  ): APIPromise<BitcoinAPI.BitcoinTransactionScanResponse> {
     return this._client.post('/v0/bitcoin/transaction-raw/scan', { body, ...options });
   }
 }
