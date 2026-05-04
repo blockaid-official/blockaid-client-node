@@ -1,7 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 export class Scan extends APIResource {
   /**
@@ -16,7 +17,7 @@ export class Scan extends APIResource {
    * });
    * ```
    */
-  status(body: ScanStatusParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+  status(body: ScanStatusParams, options?: RequestOptions): APIPromise<unknown> {
     return this._client.post('/v0/scan/status/', { body, ...options });
   }
 }

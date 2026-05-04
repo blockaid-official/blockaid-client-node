@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as EvmAPI from './evm';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
 export class TransactionRaw extends APIResource {
   /**
@@ -21,10 +22,7 @@ export class TransactionRaw extends APIResource {
    * });
    * ```
    */
-  scan(
-    body: TransactionRawScanParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TransactionRawScanResponse> {
+  scan(body: TransactionRawScanParams, options?: RequestOptions): APIPromise<TransactionRawScanResponse> {
     return this._client.post('/v0/evm/transaction-raw/scan', { body, ...options });
   }
 }

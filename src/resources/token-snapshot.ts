@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as TokenAPI from './token';
 import * as EvmAPI from './evm/evm';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 export class TokenSnapshot extends APIResource {
   /**
@@ -17,10 +18,7 @@ export class TokenSnapshot extends APIResource {
    * retrieve the complete data set, iterate through all pages using the cursors
    * provided in the response
    */
-  diff(
-    query: TokenSnapshotDiffParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TokenSnapshotDiffResponse> {
+  diff(query: TokenSnapshotDiffParams, options?: RequestOptions): APIPromise<TokenSnapshotDiffResponse> {
     return this._client.get('/v0/token/snapshot/diff', { query, ...options });
   }
 
@@ -35,10 +33,7 @@ export class TokenSnapshot extends APIResource {
    * To retrieve the complete data set, iterate through all pages using the cursors
    * provided in the response
    */
-  full(
-    query: TokenSnapshotFullParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TokenSnapshotFullResponse> {
+  full(query: TokenSnapshotFullParams, options?: RequestOptions): APIPromise<TokenSnapshotFullResponse> {
     return this._client.get('/v0/token/snapshot/full', { query, ...options });
   }
 }

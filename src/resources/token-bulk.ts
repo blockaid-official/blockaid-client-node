@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as TokenAPI from './token';
 import * as EvmAPI from './evm/evm';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 export class TokenBulk extends APIResource {
   /**
@@ -21,7 +22,7 @@ export class TokenBulk extends APIResource {
    * });
    * ```
    */
-  scan(body: TokenBulkScanParams, options?: Core.RequestOptions): Core.APIPromise<TokenBulkScanResponse> {
+  scan(body: TokenBulkScanParams, options?: RequestOptions): APIPromise<TokenBulkScanResponse> {
     return this._client.post('/v0/token-bulk/scan', { body, ...options });
   }
 }

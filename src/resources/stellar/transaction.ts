@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as StellarAPI from './stellar';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Transaction extends APIResource {
   /**
@@ -17,10 +18,7 @@ export class Transaction extends APIResource {
    * });
    * ```
    */
-  report(
-    body: TransactionReportParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TransactionReportResponse> {
+  report(body: TransactionReportParams, options?: RequestOptions): APIPromise<TransactionReportResponse> {
     return this._client.post('/v0/stellar/transaction/report', { body, ...options });
   }
 
@@ -48,8 +46,8 @@ export class Transaction extends APIResource {
    */
   scan(
     body: TransactionScanParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<StellarAPI.StellarTransactionScanResponse> {
+    options?: RequestOptions,
+  ): APIPromise<StellarAPI.StellarTransactionScanResponse> {
     return this._client.post('/v0/stellar/transaction/scan', { body, ...options });
   }
 }

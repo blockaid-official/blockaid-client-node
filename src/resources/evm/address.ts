@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as EvmAPI from './evm';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Address extends APIResource {
   /**
@@ -20,7 +21,7 @@ export class Address extends APIResource {
    * });
    * ```
    */
-  report(body: AddressReportParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+  report(body: AddressReportParams, options?: RequestOptions): APIPromise<unknown> {
     return this._client.post('/v0/evm/address/report', { body, ...options });
   }
 
@@ -36,7 +37,7 @@ export class Address extends APIResource {
    * });
    * ```
    */
-  scan(body: AddressScanParams, options?: Core.RequestOptions): Core.APIPromise<EvmAPI.AddressValidation> {
+  scan(body: AddressScanParams, options?: RequestOptions): APIPromise<EvmAPI.AddressValidation> {
     return this._client.post('/v0/evm/address/scan', { body, ...options });
   }
 }

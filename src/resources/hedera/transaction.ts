@@ -1,7 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Transaction extends APIResource {
   /**
@@ -19,7 +20,7 @@ export class Transaction extends APIResource {
    * });
    * ```
    */
-  scan(body: TransactionScanParams, options?: Core.RequestOptions): Core.APIPromise<TransactionScanResponse> {
+  scan(body: TransactionScanParams, options?: RequestOptions): APIPromise<TransactionScanResponse> {
     return this._client.post('/v0/hedera/transaction/scan', { body, ...options });
   }
 }
@@ -970,6 +971,35 @@ export namespace TransactionScanResponse {
     error: string;
 
     status: 'Error';
+
+    /**
+     * Error details if the simulation failed.
+     */
+    error_details?:
+      | HederaSimulationErrorSchema.HederaGenericErrorDetails
+      | HederaSimulationErrorSchema.HederaUnsupportedTransactionTypeErrorDetails;
+  }
+
+  export namespace HederaSimulationErrorSchema {
+    export interface HederaGenericErrorDetails {
+      category: string;
+
+      /**
+       * The error code
+       */
+      code: string;
+    }
+
+    export interface HederaUnsupportedTransactionTypeErrorDetails {
+      category: 'INVALID_INPUT';
+
+      code: 'UNSUPPORTED_TRANSACTION_TYPE';
+
+      /**
+       * The unsupported transaction type
+       */
+      transaction_type: string;
+    }
   }
 
   export interface HederaValidationResult {

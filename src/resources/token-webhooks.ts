@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as EvmAPI from './evm/evm';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class TokenWebhooks extends APIResource {
   /**
@@ -29,9 +32,9 @@ export class TokenWebhooks extends APIResource {
   create(
     chain: EvmAPI.TokenScanSupportedChain,
     body: TokenWebhookCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TokenWebhookCreateResponse> {
-    return this._client.post(`/v0/token/hooks/${chain}`, { body, ...options });
+    options?: RequestOptions,
+  ): APIPromise<TokenWebhookCreateResponse> {
+    return this._client.post(path`/v0/token/hooks/${chain}`, { body, ...options });
   }
 
   /**
@@ -43,10 +46,10 @@ export class TokenWebhooks extends APIResource {
    * await client.tokenWebhooks.delete('arbitrum');
    * ```
    */
-  delete(chain: EvmAPI.TokenScanSupportedChain, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/v0/token/hooks/${chain}`, {
+  delete(chain: EvmAPI.TokenScanSupportedChain, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v0/token/hooks/${chain}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -60,11 +63,8 @@ export class TokenWebhooks extends APIResource {
    * );
    * ```
    */
-  get(
-    chain: EvmAPI.TokenScanSupportedChain,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TokenWebhookGetResponse> {
-    return this._client.get(`/v0/token/hooks/${chain}`, options);
+  get(chain: EvmAPI.TokenScanSupportedChain, options?: RequestOptions): APIPromise<TokenWebhookGetResponse> {
+    return this._client.get(path`/v0/token/hooks/${chain}`, options);
   }
 
   /**
@@ -75,7 +75,7 @@ export class TokenWebhooks extends APIResource {
    * const response = await client.tokenWebhooks.getAll();
    * ```
    */
-  getAll(options?: Core.RequestOptions): Core.APIPromise<TokenWebhookGetAllResponse> {
+  getAll(options?: RequestOptions): APIPromise<TokenWebhookGetAllResponse> {
     return this._client.get('/v0/token/hooks/', options);
   }
 }
