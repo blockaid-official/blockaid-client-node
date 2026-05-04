@@ -1,6 +1,6 @@
 {
   "pkg": "@blockaid/client",
-  "githubRepo": "https://github.com/stainless-sdks/blockaid-typescript",
+  "githubRepo": "https://github.com/blockaid-official/blockaid-client-node",
   "clientClass": "Blockaid",
   "methods": []
 }
