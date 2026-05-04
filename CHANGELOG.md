@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.72.0 (2026-05-04)
+
+Full Changelog: [v0.71.0...v0.72.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.71.0...v0.72.0)
+
+### Features
+
+* **api:** api update ([d67d7f7](https://github.com/blockaid-official/blockaid-client-node/commit/d67d7f70badb297c6dff190e2911562b66987380))
+* support setting headers via env ([71ed436](https://github.com/blockaid-official/blockaid-client-node/commit/71ed4362a0cfd2e0bf4bc9f157b269d5a44985a2))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([b9900c6](https://github.com/blockaid-official/blockaid-client-node/commit/b9900c68bf267ded2d419804d2414b6e9d4ee50f))
+
 ## 0.71.0 (2026-04-20)
 
 Full Changelog: [v0.70.0...v0.71.0](https://github.com/blockaid-official/blockaid-client-node/compare/v0.70.0...v0.71.0)
