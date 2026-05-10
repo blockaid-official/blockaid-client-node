@@ -2522,9 +2522,61 @@ export interface MessageScanParams {
 export namespace MessageScanParams {
   export interface Metadata {
     /**
+     * Account information associated with the request
+     */
+    account?: Metadata.Account;
+
+    /**
+     * Connection metadata including user agent and IP information
+     */
+    connection?: Metadata.Connection;
+
+    /**
      * URL of the dApp that originated the transaction
      */
     url?: string | null;
+  }
+
+  export namespace Metadata {
+    /**
+     * Account information associated with the request
+     */
+    export interface Account {
+      /**
+       * Unique identifier for the account.
+       */
+      account_id: string;
+
+      /**
+       * Timestamp when the account was created.
+       */
+      account_creation_timestamp?: string;
+
+      /**
+       * Age of the user in years
+       */
+      user_age?: number;
+
+      /**
+       * ISO country code of the user's location.
+       */
+      user_country_code?: string;
+    }
+
+    /**
+     * Connection metadata including user agent and IP information
+     */
+    export interface Connection {
+      /**
+       * IP address of the customer making the request.
+       */
+      ip_address: string;
+
+      /**
+       * User agent string from the client's browser or application.
+       */
+      user_agent?: string;
+    }
   }
 }
 

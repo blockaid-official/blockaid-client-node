@@ -28,7 +28,16 @@ describe('resource message', () => {
   test('scan: required and optional params', async () => {
     const response = await client.solana.message.scan({
       account_address: '86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY',
-      metadata: { url: 'https://example.com' },
+      metadata: {
+        account: {
+          account_id: 'account_id',
+          account_creation_timestamp: '2019-12-27T18:11:19.117Z',
+          user_age: 1,
+          user_country_code: 'user_country_code',
+        },
+        connection: { ip_address: 'ip_address', user_agent: 'user_agent' },
+        url: 'https://example.com',
+      },
       transactions: [
         'vxBNpvao9QJmLKXUThbbjRnxm3ufu4Wku97kHd5a67FDjSqeHwcPrBKTjAHp4ECr61eWwoxvUEVTuuWX65P9bCNDJrTJpX64vjdtpHA8cogA4C92Ubj813wUUA8Ey4Bvcrdj5c1bSTrGZVzb8QmCKyzMu9kMiSWpFtaFrNN8zb9grr81N3R3njrFgxCxNSjboFtomLyZ3iUQBaBkRF1DyzGyc1r1kd8FnptaDWteNCXJHUYFeH8wBDwZJzNZfz71CiugXhxBTJSAqSNC8JEWm7kmCqwjUqLd23L2x2s',
       ],
