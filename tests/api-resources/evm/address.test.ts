@@ -50,7 +50,16 @@ describe('resource address', () => {
     const response = await client.evm.address.scan({
       address: '0x946D45c866AFD5b8F436d40E551D8E50A5B84230',
       chain: 'ethereum',
-      metadata: { non_dapp: true },
+      metadata: {
+        account: {
+          account_id: 'account_id',
+          account_creation_timestamp: '2019-12-27T18:11:19.117Z',
+          user_age: 1,
+          user_country_code: 'user_country_code',
+        },
+        connection: { ip_address: 'ip_address', user_agent: 'user_agent' },
+        non_dapp: true,
+      },
     });
   });
 });

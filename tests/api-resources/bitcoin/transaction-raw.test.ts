@@ -51,7 +51,17 @@ describe('resource transactionRaw', () => {
     const response = await client.bitcoin.transactionRaw.scan({
       account_address: 'account_address',
       chain: 'bitcoin',
-      metadata: { type: 'wallet', url: 'url' },
+      metadata: {
+        type: 'wallet',
+        url: 'url',
+        account: {
+          account_id: 'account_id',
+          account_creation_timestamp: '2019-12-27T18:11:19.117Z',
+          user_age: 1,
+          user_country_code: 'user_country_code',
+        },
+        connection: { ip_address: 'ip_address', user_agent: 'user_agent' },
+      },
       transaction: 'transaction',
       options: ['validation'],
     });

@@ -29,7 +29,17 @@ describe('resource transaction', () => {
     const response = await client.hedera.transaction.scan({
       account_address: '0.0.9352077',
       chain: 'mainnet',
-      metadata: { type: 'wallet', url: 'https://example.com' },
+      metadata: {
+        type: 'wallet',
+        url: 'https://example.com',
+        account: {
+          account_id: 'account_id',
+          account_creation_timestamp: '2019-12-27T18:11:19.117Z',
+          user_age: 1,
+          user_country_code: 'user_country_code',
+        },
+        connection: { ip_address: 'ip_address', user_agent: 'user_agent' },
+      },
       transaction:
         'KmEKXQoVCgwIjvztygYQn6yo3QISBRiawrcDEgIYBhiAwtcvIgIIeDIVSEJBUiB0cmFuc2ZlciBleGFtcGxlciAKHgoNCgUYjee6BBD/p9a5BwoNCgUYha/rARCAqNa5BxIA',
       options: ['simulation'],
