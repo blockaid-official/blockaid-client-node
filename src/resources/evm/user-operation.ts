@@ -190,6 +190,7 @@ export namespace UserOperationScanResponse {
       | 'set_code_account'
       | 'proxy_upgrade'
       | 'ownership_change'
+      | 'bridge'
       | (string & {})
     >;
 
@@ -206,6 +207,12 @@ export namespace UserOperationScanResponse {
         | RoutersEvmResponseTransactionSimulation.RoutersEvmResponseContractCreation
       >;
     };
+
+    /**
+     * Cross-chain asset diffs per address, showing asset movements across different
+     * chains (e.g. bridge transactions)
+     */
+    cross_chain_asset_diffs?: Array<RoutersEvmResponseTransactionSimulation.CrossChainAssetDiff> | null;
 
     /**
      * Missing balances in the transaction
@@ -270,6 +277,7 @@ export namespace UserOperationScanResponse {
         | AccountSummary.RoutersEvmResponseErc20ExposureTrace
         | AccountSummary.RoutersEvmResponseErc721ExposureTrace
         | AccountSummary.RoutersEvmResponseErc1155ExposureTrace
+        | AccountSummary.RoutersEvmResponseBridgeAssetTrace
       >;
     }
 
@@ -2495,6 +2503,434 @@ export namespace UserOperationScanResponse {
           symbol?: string;
         }
       }
+
+      /**
+       * Trace of a cross-chain bridge asset transfer, showing source and destination
+       * asset movements
+       */
+      export interface RoutersEvmResponseBridgeAssetTrace {
+        /**
+         * The type of the trace
+         */
+        type: 'BridgeAssetTrace';
+
+        /**
+         * The type of bridge protocol (e.g. hyperliquid, hyperliquid_l1_transfer)
+         */
+        bridge_type?: string | null;
+
+        /**
+         * The destination asset diffs of the bridge transaction
+         */
+        destinations?: Array<RoutersEvmResponseBridgeAssetTrace.Destination> | null;
+
+        /**
+         * Human-readable name for the bridge (e.g. Hyperliquid Bridge)
+         */
+        display_name?: string | null;
+
+        /**
+         * URL to the bridge protocol logo
+         */
+        logo_url?: string | null;
+
+        /**
+         * An asset diff with chain context, used in cross-chain bridge traces
+         */
+        source?: RoutersEvmResponseBridgeAssetTrace.Source | null;
+      }
+
+      export namespace RoutersEvmResponseBridgeAssetTrace {
+        /**
+         * An asset diff with chain context, used in cross-chain bridge traces
+         */
+        export interface Destination {
+          /**
+           * The address involved in the asset diff
+           */
+          address: string;
+
+          /**
+           * Details of the asset involved in the diff
+           */
+          asset:
+            | Destination.RoutersEvmTokenDetailsErc20TokenDetails
+            | Destination.RoutersEvmTokenDetailsErc721TokenDetails
+            | Destination.RoutersEvmTokenDetailsErc1155TokenDetails
+            | Destination.RoutersEvmTokenDetailsNonercTokenDetails
+            | Destination.RoutersEvmTokenDetailsNativeAssetDetails;
+
+          /**
+           * The chain identifier where the asset exists
+           */
+          chain: string;
+
+          /**
+           * The asset value change
+           */
+          diff: Destination.Diff;
+
+          /**
+           * The type of the asset (e.g. ERC20, NATIVE, FUNGIBLE)
+           */
+          asset_type?: string | null;
+        }
+
+        export namespace Destination {
+          export interface RoutersEvmTokenDetailsErc20TokenDetails {
+            /**
+             * address of the token
+             */
+            address: string;
+
+            /**
+             * asset's decimals
+             */
+            decimals: number;
+
+            /**
+             * asset type.
+             */
+            type: 'ERC20';
+
+            /**
+             * url of the token logo
+             */
+            logo_url?: string;
+
+            /**
+             * string represents the name of the asset
+             */
+            name?: string;
+
+            /**
+             * asset's symbol name
+             */
+            symbol?: string;
+          }
+
+          export interface RoutersEvmTokenDetailsErc721TokenDetails {
+            /**
+             * address of the token
+             */
+            address: string;
+
+            /**
+             * asset type.
+             */
+            type: 'ERC721';
+
+            /**
+             * url of the token logo
+             */
+            logo_url?: string;
+
+            /**
+             * string represents the name of the asset
+             */
+            name?: string;
+
+            /**
+             * asset's symbol name
+             */
+            symbol?: string;
+          }
+
+          export interface RoutersEvmTokenDetailsErc1155TokenDetails {
+            /**
+             * address of the token
+             */
+            address: string;
+
+            /**
+             * asset type.
+             */
+            type: 'ERC1155';
+
+            /**
+             * url of the token logo
+             */
+            logo_url?: string;
+
+            /**
+             * string represents the name of the asset
+             */
+            name?: string;
+
+            /**
+             * asset's symbol name
+             */
+            symbol?: string;
+          }
+
+          export interface RoutersEvmTokenDetailsNonercTokenDetails {
+            /**
+             * address of the token
+             */
+            address: string;
+
+            /**
+             * asset type.
+             */
+            type: 'NONERC';
+
+            /**
+             * url of the token logo
+             */
+            logo_url?: string;
+
+            /**
+             * string represents the name of the asset
+             */
+            name?: string;
+
+            /**
+             * asset's symbol name
+             */
+            symbol?: string;
+          }
+
+          export interface RoutersEvmTokenDetailsNativeAssetDetails {
+            chain_id: number;
+
+            chain_name: string;
+
+            decimals: number;
+
+            logo_url: string;
+
+            /**
+             * asset type.
+             */
+            type: 'NATIVE';
+
+            /**
+             * string represents the name of the asset
+             */
+            name?: string;
+
+            /**
+             * asset's symbol name
+             */
+            symbol?: string;
+          }
+
+          /**
+           * The asset value change
+           */
+          export interface Diff {
+            /**
+             * The raw value of the asset transfer before dividing by decimals
+             */
+            raw_value: string;
+
+            /**
+             * The USD equivalent value of the asset transfer
+             */
+            usd_price?: string;
+
+            /**
+             * The value of the asset transfer after dividing by decimals
+             */
+            value?: string;
+          }
+        }
+
+        /**
+         * An asset diff with chain context, used in cross-chain bridge traces
+         */
+        export interface Source {
+          /**
+           * The address involved in the asset diff
+           */
+          address: string;
+
+          /**
+           * Details of the asset involved in the diff
+           */
+          asset:
+            | Source.RoutersEvmTokenDetailsErc20TokenDetails
+            | Source.RoutersEvmTokenDetailsErc721TokenDetails
+            | Source.RoutersEvmTokenDetailsErc1155TokenDetails
+            | Source.RoutersEvmTokenDetailsNonercTokenDetails
+            | Source.RoutersEvmTokenDetailsNativeAssetDetails;
+
+          /**
+           * The chain identifier where the asset exists
+           */
+          chain: string;
+
+          /**
+           * The asset value change
+           */
+          diff: Source.Diff;
+
+          /**
+           * The type of the asset (e.g. ERC20, NATIVE, FUNGIBLE)
+           */
+          asset_type?: string | null;
+        }
+
+        export namespace Source {
+          export interface RoutersEvmTokenDetailsErc20TokenDetails {
+            /**
+             * address of the token
+             */
+            address: string;
+
+            /**
+             * asset's decimals
+             */
+            decimals: number;
+
+            /**
+             * asset type.
+             */
+            type: 'ERC20';
+
+            /**
+             * url of the token logo
+             */
+            logo_url?: string;
+
+            /**
+             * string represents the name of the asset
+             */
+            name?: string;
+
+            /**
+             * asset's symbol name
+             */
+            symbol?: string;
+          }
+
+          export interface RoutersEvmTokenDetailsErc721TokenDetails {
+            /**
+             * address of the token
+             */
+            address: string;
+
+            /**
+             * asset type.
+             */
+            type: 'ERC721';
+
+            /**
+             * url of the token logo
+             */
+            logo_url?: string;
+
+            /**
+             * string represents the name of the asset
+             */
+            name?: string;
+
+            /**
+             * asset's symbol name
+             */
+            symbol?: string;
+          }
+
+          export interface RoutersEvmTokenDetailsErc1155TokenDetails {
+            /**
+             * address of the token
+             */
+            address: string;
+
+            /**
+             * asset type.
+             */
+            type: 'ERC1155';
+
+            /**
+             * url of the token logo
+             */
+            logo_url?: string;
+
+            /**
+             * string represents the name of the asset
+             */
+            name?: string;
+
+            /**
+             * asset's symbol name
+             */
+            symbol?: string;
+          }
+
+          export interface RoutersEvmTokenDetailsNonercTokenDetails {
+            /**
+             * address of the token
+             */
+            address: string;
+
+            /**
+             * asset type.
+             */
+            type: 'NONERC';
+
+            /**
+             * url of the token logo
+             */
+            logo_url?: string;
+
+            /**
+             * string represents the name of the asset
+             */
+            name?: string;
+
+            /**
+             * asset's symbol name
+             */
+            symbol?: string;
+          }
+
+          export interface RoutersEvmTokenDetailsNativeAssetDetails {
+            chain_id: number;
+
+            chain_name: string;
+
+            decimals: number;
+
+            logo_url: string;
+
+            /**
+             * asset type.
+             */
+            type: 'NATIVE';
+
+            /**
+             * string represents the name of the asset
+             */
+            name?: string;
+
+            /**
+             * asset's symbol name
+             */
+            symbol?: string;
+          }
+
+          /**
+           * The asset value change
+           */
+          export interface Diff {
+            /**
+             * The raw value of the asset transfer before dividing by decimals
+             */
+            raw_value: string;
+
+            /**
+             * The USD equivalent value of the asset transfer
+             */
+            usd_price?: string;
+
+            /**
+             * The value of the asset transfer after dividing by decimals
+             */
+            value?: string;
+          }
+        }
+      }
     }
 
     export interface AddressDetails {
@@ -3907,6 +4343,242 @@ export namespace UserOperationScanResponse {
        * The type of the state change
        */
       type: 'CONTRACT_CREATION';
+    }
+
+    /**
+     * Cross-chain asset diffs for a specific address
+     */
+    export interface CrossChainAssetDiff {
+      /**
+       * The address for which cross-chain asset diffs are reported
+       */
+      address: string;
+
+      /**
+       * List of cross-chain asset diffs for this address
+       */
+      obj: Array<CrossChainAssetDiff.Obj>;
+    }
+
+    export namespace CrossChainAssetDiff {
+      /**
+       * An asset diff on a specific chain, with in/out value changes
+       */
+      export interface Obj {
+        /**
+         * Details of the asset involved in the diff
+         */
+        asset:
+          | Obj.RoutersEvmTokenDetailsErc20TokenDetails
+          | Obj.RoutersEvmTokenDetailsErc721TokenDetails
+          | Obj.RoutersEvmTokenDetailsErc1155TokenDetails
+          | Obj.RoutersEvmTokenDetailsNonercTokenDetails
+          | Obj.RoutersEvmTokenDetailsNativeAssetDetails;
+
+        /**
+         * The type of the asset (e.g. ERC20, NATIVE, FUNGIBLE)
+         */
+        asset_type: string;
+
+        /**
+         * The chain identifier where the asset exists
+         */
+        chain: string;
+
+        /**
+         * Asset value changes received on this chain
+         */
+        in: Array<Obj.In>;
+
+        /**
+         * Asset value changes sent from this chain
+         */
+        out: Array<Obj.Out>;
+      }
+
+      export namespace Obj {
+        export interface RoutersEvmTokenDetailsErc20TokenDetails {
+          /**
+           * address of the token
+           */
+          address: string;
+
+          /**
+           * asset's decimals
+           */
+          decimals: number;
+
+          /**
+           * asset type.
+           */
+          type: 'ERC20';
+
+          /**
+           * url of the token logo
+           */
+          logo_url?: string;
+
+          /**
+           * string represents the name of the asset
+           */
+          name?: string;
+
+          /**
+           * asset's symbol name
+           */
+          symbol?: string;
+        }
+
+        export interface RoutersEvmTokenDetailsErc721TokenDetails {
+          /**
+           * address of the token
+           */
+          address: string;
+
+          /**
+           * asset type.
+           */
+          type: 'ERC721';
+
+          /**
+           * url of the token logo
+           */
+          logo_url?: string;
+
+          /**
+           * string represents the name of the asset
+           */
+          name?: string;
+
+          /**
+           * asset's symbol name
+           */
+          symbol?: string;
+        }
+
+        export interface RoutersEvmTokenDetailsErc1155TokenDetails {
+          /**
+           * address of the token
+           */
+          address: string;
+
+          /**
+           * asset type.
+           */
+          type: 'ERC1155';
+
+          /**
+           * url of the token logo
+           */
+          logo_url?: string;
+
+          /**
+           * string represents the name of the asset
+           */
+          name?: string;
+
+          /**
+           * asset's symbol name
+           */
+          symbol?: string;
+        }
+
+        export interface RoutersEvmTokenDetailsNonercTokenDetails {
+          /**
+           * address of the token
+           */
+          address: string;
+
+          /**
+           * asset type.
+           */
+          type: 'NONERC';
+
+          /**
+           * url of the token logo
+           */
+          logo_url?: string;
+
+          /**
+           * string represents the name of the asset
+           */
+          name?: string;
+
+          /**
+           * asset's symbol name
+           */
+          symbol?: string;
+        }
+
+        export interface RoutersEvmTokenDetailsNativeAssetDetails {
+          chain_id: number;
+
+          chain_name: string;
+
+          decimals: number;
+
+          logo_url: string;
+
+          /**
+           * asset type.
+           */
+          type: 'NATIVE';
+
+          /**
+           * string represents the name of the asset
+           */
+          name?: string;
+
+          /**
+           * asset's symbol name
+           */
+          symbol?: string;
+        }
+
+        export interface In {
+          /**
+           * value before divided by decimal, that was transferred from this address
+           */
+          raw_value: string;
+
+          /**
+           * user friendly description of the asset transfer
+           */
+          summary?: string;
+
+          /**
+           * usd equal of the asset that was transferred from this address
+           */
+          usd_price?: string;
+
+          /**
+           * value after divided by decimals, that was transferred from this address
+           */
+          value?: string;
+        }
+
+        export interface Out {
+          /**
+           * value before divided by decimal, that was transferred from this address
+           */
+          raw_value: string;
+
+          /**
+           * user friendly description of the asset transfer
+           */
+          summary?: string;
+
+          /**
+           * usd equal of the asset that was transferred from this address
+           */
+          usd_price?: string;
+
+          /**
+           * value after divided by decimals, that was transferred from this address
+           */
+          value?: string;
+        }
+      }
     }
 
     export interface MissingBalance {
