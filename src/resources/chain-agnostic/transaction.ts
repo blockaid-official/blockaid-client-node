@@ -244,7 +244,10 @@ export namespace TransactionScanParams {
       | 'xlayer'
       | 'monad'
       | 'monad-testnet'
-      | 'tron';
+      | 'tron'
+      | 'kaia'
+      | 'plasma'
+      | 'mantle';
 
     /**
      * Destination address or identifier for the transaction

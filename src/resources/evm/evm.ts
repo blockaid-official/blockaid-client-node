@@ -119,7 +119,10 @@ export interface AddressReportParams {
     | 'starknet'
     | 'sui'
     | 'bitcoin'
-    | 'stellar';
+    | 'stellar'
+    | 'kaia'
+    | 'plasma'
+    | 'mantle';
 
   /**
    * The domain related to this address.
@@ -421,7 +424,10 @@ export type TransactionScanSupportedChain =
   | 'monad-testnet'
   | 'tempo'
   | 'tempo-testnet'
-  | 'kite-ai';
+  | 'kite-ai'
+  | 'kaia'
+  | 'plasma'
+  | 'mantle';
 
 export interface UserOperationData {
   /**

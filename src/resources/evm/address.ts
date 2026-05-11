@@ -128,7 +128,10 @@ export namespace AddressReportParams {
         | 'hedera'
         | 'tempo'
         | 'tempo-testnet'
-        | 'kite-ai';
+        | 'kite-ai'
+        | 'kaia'
+        | 'plasma'
+        | 'mantle';
 
       /**
        * The domain related to this address.
