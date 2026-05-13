@@ -39,7 +39,16 @@ describe('resource jsonRpc', () => {
           '{"domain":{"chainId":1,"name":"Aave interest bearing WETH","version":"1","verifyingContract":"0x030ba81f1c18d280636f32af80b9aad02cf0854e"},"message":{"owner":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4","spender":"0xa74cbd5b80f73b5950768c8dc467f1c6307c00fd","value":"115792089237316195423570985008687907853269984665640564039457584007913129639935","nonce":"0","deadline":"1988064000","holder":"0x49c73c9d361c04769a452E85D343b41aC38e0EE4"},"primaryType":"Permit","types":{"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}],"Permit":[{"name":"owner","type":"address"},{"name":"spender","type":"address"},{"name":"value","type":"uint256"},{"name":"nonce","type":"uint256"},{"name":"deadline","type":"uint256"}]}}',
         ],
       },
-      metadata: { non_dapp: true },
+      metadata: {
+        account: {
+          account_id: 'account_id',
+          account_creation_timestamp: '2019-12-27T18:11:19.117Z',
+          user_age: 1,
+          user_country_code: 'user_country_code',
+        },
+        connection: { ip_address: 'ip_address', user_agent: 'user_agent' },
+        non_dapp: true,
+      },
       account_address: '0x49c73c9d361c04769a452E85D343b41aC38e0EE4',
       block: '18370320',
       options: ['simulation', 'validation'],

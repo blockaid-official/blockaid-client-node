@@ -36,7 +36,13 @@ export {
 } from './evm/evm';
 export { ExchangeProtection } from './exchange-protection/exchange-protection';
 export { Hedera } from './hedera/hedera';
-export { Scan, type ScanStatusResponse, type ScanStatusParams } from './scan';
+export {
+  Scan,
+  type ScanReportResponse,
+  type ScanStatusResponse,
+  type ScanReportParams,
+  type ScanStatusParams,
+} from './scan';
 export {
   Site,
   type SiteScanHitResponse,

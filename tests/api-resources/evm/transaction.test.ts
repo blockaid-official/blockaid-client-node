@@ -70,7 +70,16 @@ describe('resource transaction', () => {
         to: '0x0d524a5b52737c0a02880d5e84f7d20b8d66bfba',
         value: '0x1000000000000000',
       },
-      metadata: { non_dapp: true },
+      metadata: {
+        account: {
+          account_id: 'account_id',
+          account_creation_timestamp: '2019-12-27T18:11:19.117Z',
+          user_age: 1,
+          user_country_code: 'user_country_code',
+        },
+        connection: { ip_address: 'ip_address', user_agent: 'user_agent' },
+        non_dapp: true,
+      },
       block: '21211118',
       options: ['simulation', 'validation'],
       simulate_with_estimated_gas: true,

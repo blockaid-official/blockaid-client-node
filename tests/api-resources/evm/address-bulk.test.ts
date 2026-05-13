@@ -37,7 +37,16 @@ describe('resource addressBulk', () => {
         '0xD6E4aA932147A3FE5311dA1b67D9e73da06F9cEf',
       ],
       chain: 'ethereum',
-      metadata: { non_dapp: true },
+      metadata: {
+        account: {
+          account_id: 'account_id',
+          account_creation_timestamp: '2019-12-27T18:11:19.117Z',
+          user_age: 1,
+          user_country_code: 'user_country_code',
+        },
+        connection: { ip_address: 'ip_address', user_agent: 'user_agent' },
+        non_dapp: true,
+      },
     });
   });
 

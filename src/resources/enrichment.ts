@@ -71,7 +71,10 @@ export interface EnrichmentReportAddress {
     | 'monad-testnet'
     | 'tempo'
     | 'tempo-testnet'
-    | 'kite-ai';
+    | 'kite-ai'
+    | 'kaia'
+    | 'plasma'
+    | 'mantle';
 }
 
 export interface EnrichmentReportAddresses {
