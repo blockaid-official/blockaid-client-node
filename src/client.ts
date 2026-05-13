@@ -29,7 +29,13 @@ import {
   EnrichmentReportSource,
   EnrichmentRequest,
 } from './resources/enrichment';
-import { Scan, ScanStatusParams, ScanStatusResponse } from './resources/scan';
+import {
+  Scan,
+  ScanReportParams,
+  ScanReportResponse,
+  ScanStatusParams,
+  ScanStatusResponse,
+} from './resources/scan';
 import {
   Site,
   SiteReportParams,
@@ -1003,7 +1009,9 @@ export declare namespace Blockaid {
 
   export {
     Scan as Scan,
+    type ScanReportResponse as ScanReportResponse,
     type ScanStatusResponse as ScanStatusResponse,
+    type ScanReportParams as ScanReportParams,
     type ScanStatusParams as ScanStatusParams,
   };
 
