@@ -33,7 +33,7 @@ export class Scan extends APIResource {
    * ```
    */
   report(body: ScanReportParams, options?: RequestOptions): APIPromise<unknown> {
-    return this._client.post('/v0/scan/report/', { body, ...options });
+    return this._client.post('/v0/scan/report', { body, ...options });
   }
 
   /**
