@@ -113,6 +113,7 @@ export interface AddressReportParams {
     | 'tempo'
     | 'tempo-testnet'
     | 'kite-ai'
+    | 'kaia'
     | 'solana'
     | 'eclipse'
     | 'sonic'
@@ -120,7 +121,6 @@ export interface AddressReportParams {
     | 'sui'
     | 'bitcoin'
     | 'stellar'
-    | 'kaia'
     | 'plasma'
     | 'mantle';
 
@@ -370,6 +370,7 @@ export type TokenScanSupportedChain =
   | 'megaeth'
   | 'tempo'
   | 'sei'
+  | 'kaia'
   | 'tron';
 
 /**
