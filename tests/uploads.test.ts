@@ -1,7 +1,6 @@
 import fs from 'fs';
 import type { ResponseLike } from '@blockaid/client/internal/to-file';
 import { toFile } from '@blockaid/client/core/uploads';
-import { File } from 'node:buffer';
 
 class MyClass {
   name: string = 'foo';
