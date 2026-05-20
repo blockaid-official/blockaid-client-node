@@ -136,6 +136,11 @@ export namespace MessageScanResponse {
    */
   export interface Result {
     /**
+     * Transaction Gas Estimation
+     */
+    gas_estimation: Result.GasEstimation | null;
+
+    /**
      * Transaction Simulation Result
      */
     simulation: Result.Simulation | null;
@@ -147,6 +152,41 @@ export namespace MessageScanResponse {
   }
 
   export namespace Result {
+    /**
+     * Transaction Gas Estimation
+     */
+    export interface GasEstimation {
+      /**
+       * Base transaction fee in lamports
+       */
+      network_fee: string;
+
+      /**
+       * Prioritization fee in lamports
+       */
+      priority_fee: string;
+
+      /**
+       * Total fee in lamports
+       */
+      total: string;
+
+      /**
+       * Rent deposit fees for newly created accounts
+       */
+      account_rent_fees?: Array<GasEstimation.AccountRentFee>;
+    }
+
+    export namespace GasEstimation {
+      export interface AccountRentFee {
+        account_address: string;
+
+        account_type: string;
+
+        lamports: string;
+      }
+    }
+
     /**
      * Transaction Simulation Result
      */
@@ -1677,6 +1717,8 @@ export namespace MessageScanResponse {
          */
         owner: string;
 
+        was_created: boolean;
+
         was_written_to: boolean;
 
         /**
@@ -1693,6 +1735,8 @@ export namespace MessageScanResponse {
          */
         account_address: string;
 
+        was_created: boolean;
+
         was_written_to: boolean;
 
         /**
@@ -1708,6 +1752,8 @@ export namespace MessageScanResponse {
          * Encoded public key of the account
          */
         account_address: string;
+
+        was_created: boolean;
 
         was_written_to: boolean;
 
@@ -1734,6 +1780,8 @@ export namespace MessageScanResponse {
          * Encoded public key of the owner
          */
         owner_address: string;
+
+        was_created: boolean;
 
         was_written_to: boolean;
 
@@ -1765,6 +1813,8 @@ export namespace MessageScanResponse {
          * Symbol of the mint
          */
         symbol: string;
+
+        was_created: boolean;
 
         was_written_to: boolean;
 
@@ -1802,6 +1852,8 @@ export namespace MessageScanResponse {
          */
         uri: string;
 
+        was_created: boolean;
+
         was_written_to: boolean;
 
         /**
@@ -1837,6 +1889,8 @@ export namespace MessageScanResponse {
          * URI of the mint
          */
         uri: string;
+
+        was_created: boolean;
 
         was_written_to: boolean;
 
@@ -2515,8 +2569,10 @@ export interface MessageScanParams {
    * - `Options.validation`: Include Options.validation output in the response
    *
    * - `Options.simulation`: Include Options.simulation output in the response
+   *
+   * - `Options.gas_estimation`: Include gas estimation output in the response
    */
-  options?: Array<'validation' | 'simulation'>;
+  options?: Array<'validation' | 'simulation' | 'gas_estimation'>;
 }
 
 export namespace MessageScanParams {
