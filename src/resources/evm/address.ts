@@ -108,7 +108,6 @@ export namespace AddressReportParams {
         | 'soneium-minato'
         | 'ronin'
         | 'apechain'
-        | 'zero-network'
         | 'berachain'
         | 'berachain-bartio'
         | 'ink'

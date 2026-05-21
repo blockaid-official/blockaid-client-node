@@ -221,7 +221,6 @@ export namespace TransactionScanParams {
       | 'soneium-minato'
       | 'ronin'
       | 'apechain'
-      | 'zero-network'
       | 'berachain'
       | 'ink-sepolia'
       | 'ink'
