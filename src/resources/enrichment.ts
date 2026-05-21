@@ -45,7 +45,6 @@ export interface EnrichmentReportAddress {
     | 'soneium-minato'
     | 'ronin'
     | 'apechain'
-    | 'zero-network'
     | 'berachain'
     | 'unknown'
     | 'ink-sepolia'
