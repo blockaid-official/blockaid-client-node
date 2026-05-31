@@ -38,8 +38,6 @@ export interface EnrichmentReportAddress {
     | 'scroll'
     | 'avalanche-fuji'
     | 'degen'
-    | 'immutable-zkevm'
-    | 'immutable-zkevm-testnet'
     | 'gnosis'
     | 'worldchain'
     | 'soneium-minato'

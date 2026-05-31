@@ -101,8 +101,6 @@ export namespace AddressReportParams {
         | 'ethereum-sepolia'
         | 'degen'
         | 'avalanche-fuji'
-        | 'immutable-zkevm'
-        | 'immutable-zkevm-testnet'
         | 'gnosis'
         | 'worldchain'
         | 'soneium-minato'
