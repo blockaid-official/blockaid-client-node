@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.3.0 (2026-06-01)
+
+Full Changelog: [v1.2.0...v1.3.0](https://github.com/blockaid-official/blockaid-client-node/compare/v1.2.0...v1.3.0)
+
+### Features
+
+* **api:** api update ([3751329](https://github.com/blockaid-official/blockaid-client-node/commit/37513298a4df468b498e54adbe1629aa1b183d2b))
+* **api:** api update ([e474df9](https://github.com/blockaid-official/blockaid-client-node/commit/e474df962607aab428e2b2c0b2cadb85f1282d53))
+* **api:** api update ([3b45f54](https://github.com/blockaid-official/blockaid-client-node/commit/3b45f5414ab469cd2e04e4bcacd2df4f9436af50))
+* **api:** api update ([1759abb](https://github.com/blockaid-official/blockaid-client-node/commit/1759abb235e01d4606509ad47165a1d22af8b35a))
+* **api:** api update ([7c8b16d](https://github.com/blockaid-official/blockaid-client-node/commit/7c8b16d329bc9a213eb30168a36ae228dcb6f21f))
+
+
+### Bug Fixes
+
+* **typescript:** upgrade tsc-multi so that it works with Node 26 ([71d6bc2](https://github.com/blockaid-official/blockaid-client-node/commit/71d6bc246fc4d2feedec065e402ecb3c0b2dbabb))
+
+
+### Chores
+
+* **tests:** remove redundant File import ([6fc6638](https://github.com/blockaid-official/blockaid-client-node/commit/6fc663833ca10b2ca89dd317f0effae35998684c))
+
 ## 1.2.0 (2026-05-14)
 
 Full Changelog: [v1.1.0...v1.2.0](https://github.com/blockaid-official/blockaid-client-node/compare/v1.1.0...v1.2.0)

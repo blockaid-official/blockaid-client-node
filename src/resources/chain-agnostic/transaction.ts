@@ -43,6 +43,12 @@ export interface TransactionScanResponse {
    * Complete validation result containing all scan details and findings
    */
   validation: TransactionScanResponse.Validation;
+
+  /**
+   * Deep-link URL to the Blockaid platform address overview page for the scanned
+   * `to` address. Null if no URL is available for the given chain.
+   */
+  platform_url?: string | null;
 }
 
 export namespace TransactionScanResponse {
@@ -214,14 +220,11 @@ export namespace TransactionScanParams {
       | 'scroll'
       | 'avalanche-fuji'
       | 'degen'
-      | 'immutable-zkevm'
-      | 'immutable-zkevm-testnet'
       | 'gnosis'
       | 'worldchain'
       | 'soneium-minato'
       | 'ronin'
       | 'apechain'
-      | 'zero-network'
       | 'berachain'
       | 'ink-sepolia'
       | 'ink'
