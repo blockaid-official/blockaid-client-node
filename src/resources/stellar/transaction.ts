@@ -116,9 +116,21 @@ export namespace TransactionScanParams {
      * URL of the dApp originating the transaction
      */
     url: string;
+
+    /**
+     * Indicates that the transaction was not initiated by a dapp. Use false when the
+     * transaction is from a dapp.
+     */
+    non_dapp?: boolean | null;
   }
 
   export interface StellarInAppRequestMetadata {
+    /**
+     * Indicates that the transaction was not initiated by a dapp. Use false when the
+     * transaction is from a dapp.
+     */
+    non_dapp?: boolean | null;
+
     /**
      * Metadata for in-app requests
      */
