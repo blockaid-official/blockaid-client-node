@@ -2588,6 +2588,12 @@ export namespace MessageScanParams {
     connection?: Metadata.Connection;
 
     /**
+     * Indicates that the transaction was not initiated by a dapp. Use false when the
+     * transaction is from a dapp.
+     */
+    non_dapp?: boolean | null;
+
+    /**
      * URL of the dApp that originated the transaction
      */
     url?: string | null;

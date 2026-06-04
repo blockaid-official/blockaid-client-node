@@ -1119,6 +1119,12 @@ export namespace TransactionScanParams {
      * Connection metadata including user agent and IP information
      */
     connection?: HederaWalletRequestMetadata.Connection;
+
+    /**
+     * Indicates that the transaction was not initiated by a dapp. Use false when the
+     * transaction is from a dapp.
+     */
+    non_dapp?: boolean | null;
   }
 
   export namespace HederaWalletRequestMetadata {
@@ -1173,6 +1179,12 @@ export namespace TransactionScanParams {
      * Connection metadata including user agent and IP information
      */
     connection?: HederaInAppRequestMetadata.Connection;
+
+    /**
+     * Indicates that the transaction was not initiated by a dapp. Use false when the
+     * transaction is from a dapp.
+     */
+    non_dapp?: boolean | null;
 
     /**
      * Metadata for in-app requests

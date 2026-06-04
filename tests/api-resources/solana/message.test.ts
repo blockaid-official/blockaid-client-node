@@ -36,6 +36,7 @@ describe('resource message', () => {
           user_country_code: 'user_country_code',
         },
         connection: { ip_address: 'ip_address', user_agent: 'user_agent' },
+        non_dapp: true,
         url: 'https://example.com',
       },
       transactions: [

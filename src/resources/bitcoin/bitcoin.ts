@@ -76,6 +76,12 @@ export namespace BitcoinTransactionScanRequest {
      * Connection metadata including user agent and IP information
      */
     connection?: BitcoinWalletRequestMetadata.Connection;
+
+    /**
+     * Indicates that the transaction was not initiated by a dapp. Use false when the
+     * transaction is from a dapp.
+     */
+    non_dapp?: boolean | null;
   }
 
   export namespace BitcoinWalletRequestMetadata {
@@ -130,6 +136,12 @@ export namespace BitcoinTransactionScanRequest {
      * Connection metadata including user agent and IP information
      */
     connection?: BitcoinInAppRequestMetadata.Connection;
+
+    /**
+     * Indicates that the transaction was not initiated by a dapp. Use false when the
+     * transaction is from a dapp.
+     */
+    non_dapp?: boolean | null;
 
     /**
      * Identifies the request as coming from your own app (e.g. in-app send, swap, or
