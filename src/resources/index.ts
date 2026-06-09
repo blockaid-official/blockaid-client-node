@@ -36,6 +36,7 @@ export {
 } from './evm/evm';
 export { ExchangeProtection } from './exchange-protection/exchange-protection';
 export { Hedera } from './hedera/hedera';
+export { Organization } from './organization/organization';
 export {
   Scan,
   type ScanReportResponse,

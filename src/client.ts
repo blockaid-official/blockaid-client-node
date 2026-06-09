@@ -108,6 +108,7 @@ import {
 } from './resources/evm/evm';
 import { ExchangeProtection } from './resources/exchange-protection/exchange-protection';
 import { Hedera } from './resources/hedera/hedera';
+import { Organization } from './resources/organization/organization';
 import { Solana } from './resources/solana/solana';
 import {
   Starknet,
@@ -913,6 +914,7 @@ export class Blockaid {
   exchangeProtection: API.ExchangeProtection = new API.ExchangeProtection(this);
   chainAgnostic: API.ChainAgnostic = new API.ChainAgnostic(this);
   enrichment: API.Enrichment = new API.Enrichment(this);
+  organization: API.Organization = new API.Organization(this);
 }
 
 Blockaid.Evm = Evm;
@@ -931,6 +933,7 @@ Blockaid.TokenSnapshot = TokenSnapshot;
 Blockaid.ExchangeProtection = ExchangeProtection;
 Blockaid.ChainAgnostic = ChainAgnostic;
 Blockaid.Enrichment = Enrichment;
+Blockaid.Organization = Organization;
 
 export declare namespace Blockaid {
   export type RequestOptions = Opts.RequestOptions;
@@ -1063,4 +1066,6 @@ export declare namespace Blockaid {
     type EnrichmentReportSource as EnrichmentReportSource,
     type EnrichmentRequest as EnrichmentRequest,
   };
+
+  export { Organization as Organization };
 }
