@@ -448,7 +448,8 @@ export namespace PostTransactionScanParams {
     domain?: string | null;
 
     /**
-     * whether the transaction is initiated by a dapp. Default is false.
+     * Indicates that the transaction was not initiated by a dapp. Use false when the
+     * transaction is from a dapp.
      */
     non_dapp?: boolean | null;
   }

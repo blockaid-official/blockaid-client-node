@@ -34,11 +34,18 @@ describe('resource transaction', () => {
         url: 'https://example.com',
         account: {
           account_id: 'account_id',
+          account_addresses: ['string'],
           account_creation_timestamp: '2019-12-27T18:11:19.117Z',
           user_age: 1,
           user_country_code: 'user_country_code',
         },
-        connection: { ip_address: 'ip_address', user_agent: 'user_agent' },
+        connection: {
+          ip_address: 'ip_address',
+          origin: 'https://example.com',
+          user_agent: 'user_agent',
+          walletconnect_description: 'walletconnect_description',
+          walletconnect_name: 'walletconnect_name',
+        },
       },
       transaction:
         'AAACAAgA4fUFAAAAAAAgHvls2mKzo/48s/fPdWP8xKtE4BhIjR2O8gMaZ6bI1+sCAgABAQAAAQECAAABAQBF6Qs+ouGSDEPZLSJGMNaoZcG1intOdwwqwVbqsw60kQFySkLceU6uis9QxxK4CDYqttqK3ilc9/yEcCgxdaeA0cl/xhwAAAAAIEuXU9TpAtIJmbPVFpxdc70+RWUqlSrfyIUKT9q1Au0ERekLPqLhkgxD2S0iRjDWqGXBtYp7TncMKsFW6rMOtJHuAgAAAAAAACAKNQAAAAAAAA==',

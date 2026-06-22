@@ -376,3 +376,19 @@ Types:
 - <code><a href="./src/resources/enrichment.ts">EnrichmentReportMetadata</a></code>
 - <code><a href="./src/resources/enrichment.ts">EnrichmentReportSource</a></code>
 - <code><a href="./src/resources/enrichment.ts">EnrichmentRequest</a></code>
+
+# Organization
+
+## RiskExposureConfiguration
+
+Types:
+
+- <code><a href="./src/resources/organization/risk-exposure-configuration.ts">OrganizationCategoryRiskView</a></code>
+- <code><a href="./src/resources/organization/risk-exposure-configuration.ts">OrganizationRiskConfigView</a></code>
+- <code><a href="./src/resources/organization/risk-exposure-configuration.ts">PatchRiskConfigRequest</a></code>
+- <code><a href="./src/resources/organization/risk-exposure-configuration.ts">VerdictThresholdView</a></code>
+
+Methods:
+
+- <code title="get /v0/platform/organization/configuration/risk-exposure">client.organization.riskExposureConfiguration.<a href="./src/resources/organization/risk-exposure-configuration.ts">retrieve</a>() -> OrganizationRiskConfigView</code>
+- <code title="patch /v0/platform/organization/configuration/risk-exposure">client.organization.riskExposureConfiguration.<a href="./src/resources/organization/risk-exposure-configuration.ts">update</a>({ ...params }) -> OrganizationRiskConfigView</code>

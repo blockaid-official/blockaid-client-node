@@ -56,11 +56,19 @@ describe('resource userOperation', () => {
       metadata: {
         account: {
           account_id: 'account_id',
+          account_addresses: ['string'],
           account_creation_timestamp: '2019-12-27T18:11:19.117Z',
           user_age: 1,
           user_country_code: 'user_country_code',
         },
-        connection: { ip_address: 'ip_address', user_agent: 'user_agent' },
+        connection: {
+          ip_address: 'ip_address',
+          origin: 'https://example.com',
+          user_agent: 'user_agent',
+          walletconnect_description: 'walletconnect_description',
+          walletconnect_name: 'walletconnect_name',
+        },
+        domain: 'example.com',
         non_dapp: true,
       },
       account_address: '0x77bA5AC3ca4864be26CA3112baDf07286CcC3324',

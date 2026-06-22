@@ -31,7 +31,7 @@ export class Site extends APIResource {
    * ```ts
    * const response = await client.site.scan({
    *   url: 'https://app.uniswap.org',
-   *   metadata: { type: 'catalog' },
+   *   metadata: {},
    * });
    * ```
    */
@@ -149,40 +149,110 @@ export namespace SiteReportParams {
 export interface SiteScanParams {
   url: string;
 
-  metadata?:
-    | SiteScanParams.CatalogRequestMetadata
-    | SiteScanParams.WalletRequestMetadata
-    | SiteScanParams.MultipleWalletRequestMetadata;
+  /**
+   * Request metadata: site catalog/wallet context, end-user account, and connection
+   * details.
+   */
+  metadata?: SiteScanParams.Metadata;
 }
 
 export namespace SiteScanParams {
-  export interface CatalogRequestMetadata {
-    type: 'catalog';
-  }
-
-  export interface WalletRequestMetadata {
-    account_address: string;
-
-    type: 'wallet';
-
-    walletconnect_description?: string;
-
-    walletconnect_name?: string;
-  }
-
-  export interface MultipleWalletRequestMetadata {
+  /**
+   * Request metadata: site catalog/wallet context, end-user account, and connection
+   * details.
+   */
+  export interface Metadata {
     /**
-     * List of all account addresses in different chains based on the CAIPs standard
-     * (https://github.com/ChainAgnostic/CAIPs). Ethereum mainnet example:
-     * eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb
+     * End-user account context (id, age, country, creation time, and
+     * account_addresses).
      */
-    account_addresses: Array<string>;
+    account?: Metadata.Account;
 
-    type: 'wallet';
+    /**
+     * Connection metadata including user agent, IP information, and origin.
+     */
+    connection?: Metadata.Connection;
 
-    walletconnect_description?: string;
+    /**
+     * The full URL of the DApp or website that initiated the request, for
+     * cross-reference. Must use the https or http scheme and contain a valid hostname.
+     * Cannot contain JSON, braces, or other embedded data structures.
+     */
+    domain?: string;
 
-    walletconnect_name?: string;
+    /**
+     * Set to true when the request was not initiated by a dapp. Dapp requests should
+     * provide the `domain` field.
+     */
+    non_dapp?: boolean;
+  }
+
+  export namespace Metadata {
+    /**
+     * End-user account context (id, age, country, creation time, and
+     * account_addresses).
+     */
+    export interface Account {
+      /**
+       * Unique identifier for the account.
+       */
+      account_id: string;
+
+      /**
+       * List of all account addresses in different chains based on the CAIPs standard
+       * (https://github.com/ChainAgnostic/CAIPs). Ethereum mainnet example:
+       * eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb
+       */
+      account_addresses?: Array<string>;
+
+      /**
+       * Timestamp when the account was created.
+       */
+      account_creation_timestamp?: string;
+
+      /**
+       * Age of the user in years
+       */
+      user_age?: number;
+
+      /**
+       * ISO country code of the user's location.
+       */
+      user_country_code?: string;
+    }
+
+    /**
+     * Connection metadata including user agent, IP information, and origin.
+     */
+    export interface Connection {
+      /**
+       * IP address of the customer making the request. Both IPv4 and IPv6 addresses are
+       * supported.
+       */
+      ip_address: string;
+
+      /**
+       * The full URL of the website that the request was directed to.
+       */
+      origin?: string;
+
+      /**
+       * User agent string from the client's browser or application.
+       */
+      user_agent?: string;
+
+      /**
+       * WalletConnect session description, when the request originates from a
+       * WalletConnect session.
+       */
+      walletconnect_description?: string;
+
+      /**
+       * WalletConnect session name, when the request originates from a WalletConnect
+       * session.
+       */
+      walletconnect_name?: string;
+    }
   }
 }
 

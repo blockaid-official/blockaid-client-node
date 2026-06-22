@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.4.0 (2026-06-22)
+
+Full Changelog: [v1.3.0...v1.4.0](https://github.com/blockaid-official/blockaid-client-node/compare/v1.3.0...v1.4.0)
+
+### Features
+
+* **api:** api update ([6412796](https://github.com/blockaid-official/blockaid-client-node/commit/6412796ff6e387c42893fe9a43b6f62c0458e029))
+* **api:** api update ([48b5f70](https://github.com/blockaid-official/blockaid-client-node/commit/48b5f70a070befdd9799a078036405dc957c4940))
+* **api:** api update ([2f7a9cc](https://github.com/blockaid-official/blockaid-client-node/commit/2f7a9cc47314c09ad722b70e1b24d6cbf41b85e1))
+
+
+### Bug Fixes
+
+* **client:** send content-type header for requests with an omitted optional body ([5dc66a1](https://github.com/blockaid-official/blockaid-client-node/commit/5dc66a1aead6f8ca08bf035a3675e49de61f0d3d))
+
 ## 1.3.0 (2026-06-01)
 
 Full Changelog: [v1.2.0...v1.3.0](https://github.com/blockaid-official/blockaid-client-node/compare/v1.2.0...v1.3.0)
