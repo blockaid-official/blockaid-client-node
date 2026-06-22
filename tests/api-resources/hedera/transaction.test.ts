@@ -34,11 +34,18 @@ describe('resource transaction', () => {
         url: 'https://example.com',
         account: {
           account_id: 'account_id',
+          account_addresses: ['string'],
           account_creation_timestamp: '2019-12-27T18:11:19.117Z',
           user_age: 1,
           user_country_code: 'user_country_code',
         },
-        connection: { ip_address: 'ip_address', user_agent: 'user_agent' },
+        connection: {
+          ip_address: 'ip_address',
+          origin: 'https://example.com',
+          user_agent: 'user_agent',
+          walletconnect_description: 'walletconnect_description',
+          walletconnect_name: 'walletconnect_name',
+        },
         non_dapp: true,
       },
       transaction:
