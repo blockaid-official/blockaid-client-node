@@ -161,6 +161,13 @@ export namespace TransactionRawScanParams {
       account_id: string;
 
       /**
+       * List of all account addresses in different chains based on the CAIPs standard
+       * (https://github.com/ChainAgnostic/CAIPs). Ethereum mainnet example:
+       * eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb
+       */
+      account_addresses?: Array<string>;
+
+      /**
        * Timestamp when the account was created.
        */
       account_creation_timestamp?: string;
@@ -181,14 +188,32 @@ export namespace TransactionRawScanParams {
      */
     export interface Connection {
       /**
-       * IP address of the customer making the request.
+       * IP address of the customer making the request. Both IPv4 and IPv6 addresses are
+       * supported.
        */
       ip_address: string;
+
+      /**
+       * The full URL of the website that the request was directed to.
+       */
+      origin?: string;
 
       /**
        * User agent string from the client's browser or application.
        */
       user_agent?: string;
+
+      /**
+       * WalletConnect session description, when the request originates from a
+       * WalletConnect session.
+       */
+      walletconnect_description?: string;
+
+      /**
+       * WalletConnect session name, when the request originates from a WalletConnect
+       * session.
+       */
+      walletconnect_name?: string;
     }
   }
 
@@ -227,6 +252,13 @@ export namespace TransactionRawScanParams {
       account_id: string;
 
       /**
+       * List of all account addresses in different chains based on the CAIPs standard
+       * (https://github.com/ChainAgnostic/CAIPs). Ethereum mainnet example:
+       * eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb
+       */
+      account_addresses?: Array<string>;
+
+      /**
        * Timestamp when the account was created.
        */
       account_creation_timestamp?: string;
@@ -247,14 +279,32 @@ export namespace TransactionRawScanParams {
      */
     export interface Connection {
       /**
-       * IP address of the customer making the request.
+       * IP address of the customer making the request. Both IPv4 and IPv6 addresses are
+       * supported.
        */
       ip_address: string;
+
+      /**
+       * The full URL of the website that the request was directed to.
+       */
+      origin?: string;
 
       /**
        * User agent string from the client's browser or application.
        */
       user_agent?: string;
+
+      /**
+       * WalletConnect session description, when the request originates from a
+       * WalletConnect session.
+       */
+      walletconnect_description?: string;
+
+      /**
+       * WalletConnect session name, when the request originates from a WalletConnect
+       * session.
+       */
+      walletconnect_name?: string;
     }
   }
 }

@@ -16,7 +16,7 @@ export class TransactionRaw extends APIResource {
    *     '0x362320f3a3eeeb4c4699b1b9062a84B2612bcdba',
    *   chain: 'ethereum',
    *   data: '0x02f903f8018208488405f5e100850a9a03feb38302fa6a941111111254eeb25477b68fb85ed929f73a96058280b9038862e238bb00000000000000000000000000000000000000000000000000000000000000c000000000000000000000000000000000000000000000000000000000000002e00000000000000000000000000000000000000000000000000000000000000360000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ab3e25398a24d6af080000000000000000000000000000000000000000000000000000000070db68f000000000000000000000000000000000000000000000000000000c0c2f020e4000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec70000000000000000000000006e2a43be0b1d33b726f0ca3b8de60b3482b8b050000000000000000000000000b78ed0dd769e3fbd8e2b526f6f75dcccc7e2af4f0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000773594000000000000000000000000000000000000000000000000b4b34aede8e617e060000000a4000000a4000000a4000000a400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000014000000000000000000000000000000000000000000000000000000000000000a4bf15fcd8000000000000000000000000303389f541ff2d620e42832f180a08e767b28e10000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000242cc2878d0064b6509600000000060000b78ed0dd769e3fbd8e2b526f6f75dcccc7e2af4f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000041a946fd8d5b9e873563a1411cbdf290b8310d8cdddc94da3aebf95b16a6dc0bf56d736ece63e3906527b7dcf08aa845d6a5cd4e0d99c9994f617b6faa378317f71c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e26b9977c001a0386a78e05b5ab3b4badbae843aaa6ed379b2f4353aa730c8f360141e72cba692a036ed37a00c6364685e58bc0cd9cdd1c140d6690c3c0d216c1b67e3d262e2f0f9',
-   *   metadata: {},
+   *   metadata: { domain: 'https://app.1inch.io' },
    *   block: '17718858',
    *   options: ['simulation', 'validation'],
    * });
@@ -5244,9 +5244,7 @@ export interface TransactionRawScanParams {
    * Additional context for the scan (e.g., dapp URL/domain, integration source).
    * Used to enrich results and reduce false positives/negatives.
    */
-  metadata:
-    | TransactionRawScanParams.RoutersEvmModelsMetadataNonDapp
-    | TransactionRawScanParams.RoutersEvmModelsMetadataDapp;
+  metadata: TransactionRawScanParams.Metadata;
 
   /**
    * The relative block for the block validation. Can be "latest" or a block number.
@@ -5274,99 +5272,53 @@ export interface TransactionRawScanParams {
 }
 
 export namespace TransactionRawScanParams {
-  export interface RoutersEvmModelsMetadataNonDapp {
+  /**
+   * Additional context for the scan (e.g., dapp URL/domain, integration source).
+   * Used to enrich results and reduce false positives/negatives.
+   */
+  export interface Metadata {
     /**
-     * Account information associated with the request
+     * End-user account context (id, age, country, creation time, and
+     * account_addresses).
      */
-    account?: RoutersEvmModelsMetadataNonDapp.Account;
+    account?: Metadata.Account;
 
     /**
-     * Connection metadata including user agent and IP information
+     * Connection metadata including user agent, IP information, and origin.
      */
-    connection?: RoutersEvmModelsMetadataNonDapp.Connection;
+    connection?: Metadata.Connection;
 
     /**
-     * Indicates that the transaction was not initiated by a dapp.
-     */
-    non_dapp?: true;
-  }
-
-  export namespace RoutersEvmModelsMetadataNonDapp {
-    /**
-     * Account information associated with the request
-     */
-    export interface Account {
-      /**
-       * Unique identifier for the account.
-       */
-      account_id: string;
-
-      /**
-       * Timestamp when the account was created.
-       */
-      account_creation_timestamp?: string;
-
-      /**
-       * Age of the user in years
-       */
-      user_age?: number;
-
-      /**
-       * ISO country code of the user's location.
-       */
-      user_country_code?: string;
-    }
-
-    /**
-     * Connection metadata including user agent and IP information
-     */
-    export interface Connection {
-      /**
-       * IP address of the customer making the request.
-       */
-      ip_address: string;
-
-      /**
-       * User agent string from the client's browser or application.
-       */
-      user_agent?: string;
-    }
-  }
-
-  export interface RoutersEvmModelsMetadataDapp {
-    /**
-     * The full URL of the DApp or website that initiated the transaction, for
+     * The full URL of the DApp or website that initiated the request, for
      * cross-reference. Must use the https or http scheme and contain a valid hostname.
      * Cannot contain JSON, braces, or other embedded data structures.
      */
-    domain: string;
+    domain?: string;
 
     /**
-     * Account information associated with the request
-     */
-    account?: RoutersEvmModelsMetadataDapp.Account;
-
-    /**
-     * Connection metadata including user agent and IP information
-     */
-    connection?: RoutersEvmModelsMetadataDapp.Connection;
-
-    /**
-     * Indicates that the transaction was not initiated by a dapp. Use false when the
-     * transaction is from a dapp.
+     * Set to true when the request was not initiated by a dapp. Dapp requests should
+     * provide the `domain` field.
      */
     non_dapp?: boolean;
   }
 
-  export namespace RoutersEvmModelsMetadataDapp {
+  export namespace Metadata {
     /**
-     * Account information associated with the request
+     * End-user account context (id, age, country, creation time, and
+     * account_addresses).
      */
     export interface Account {
       /**
        * Unique identifier for the account.
        */
       account_id: string;
+
+      /**
+       * List of all account addresses in different chains based on the CAIPs standard
+       * (https://github.com/ChainAgnostic/CAIPs). Ethereum mainnet example:
+       * eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb
+       */
+      account_addresses?: Array<string>;
 
       /**
        * Timestamp when the account was created.
@@ -5385,18 +5337,36 @@ export namespace TransactionRawScanParams {
     }
 
     /**
-     * Connection metadata including user agent and IP information
+     * Connection metadata including user agent, IP information, and origin.
      */
     export interface Connection {
       /**
-       * IP address of the customer making the request.
+       * IP address of the customer making the request. Both IPv4 and IPv6 addresses are
+       * supported.
        */
       ip_address: string;
+
+      /**
+       * The full URL of the website that the request was directed to.
+       */
+      origin?: string;
 
       /**
        * User agent string from the client's browser or application.
        */
       user_agent?: string;
+
+      /**
+       * WalletConnect session description, when the request originates from a
+       * WalletConnect session.
+       */
+      walletconnect_description?: string;
+
+      /**
+       * WalletConnect session name, when the request originates from a WalletConnect
+       * session.
+       */
+      walletconnect_name?: string;
     }
   }
 

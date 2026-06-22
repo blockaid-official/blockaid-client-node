@@ -31,13 +31,17 @@ describe('resource scan', () => {
       metadata: {
         account: {
           account_id: 'user-abc-123',
+          account_addresses: ['string'],
           account_creation_timestamp: '2023-01-15T00:00:00Z',
           user_age: 30,
           user_country_code: 'US',
         },
         connection: {
           ip_address: '192.168.1.1',
+          origin: 'https://example.com',
           user_agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)',
+          walletconnect_description: 'walletconnect_description',
+          walletconnect_name: 'walletconnect_name',
         },
         domain: 'https://app.uniswap.org',
       },

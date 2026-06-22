@@ -32,7 +32,7 @@ export class UserOperation extends APIResource {
    *     entrypoint:
    *       '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789',
    *   },
-   *   metadata: {},
+   *   metadata: { domain: 'example.com' },
    *   account_address:
    *     '0x77bA5AC3ca4864be26CA3112baDf07286CcC3324',
    *   block: '0x5c6fd5',
@@ -5256,9 +5256,7 @@ export interface UserOperationScanParams {
    * Additional context for the scan (e.g., dapp URL/domain, integration source).
    * Used to enrich results and reduce false positives/negatives.
    */
-  metadata:
-    | UserOperationScanParams.RoutersEvmModelsMetadataNonDapp
-    | UserOperationScanParams.RoutersEvmModelsMetadataDapp;
+  metadata: UserOperationScanParams.Metadata;
 
   /**
    * The address of the account (wallet) sending the request in hex string format
@@ -5297,99 +5295,53 @@ export interface UserOperationScanParams {
 }
 
 export namespace UserOperationScanParams {
-  export interface RoutersEvmModelsMetadataNonDapp {
+  /**
+   * Additional context for the scan (e.g., dapp URL/domain, integration source).
+   * Used to enrich results and reduce false positives/negatives.
+   */
+  export interface Metadata {
     /**
-     * Account information associated with the request
+     * End-user account context (id, age, country, creation time, and
+     * account_addresses).
      */
-    account?: RoutersEvmModelsMetadataNonDapp.Account;
+    account?: Metadata.Account;
 
     /**
-     * Connection metadata including user agent and IP information
+     * Connection metadata including user agent, IP information, and origin.
      */
-    connection?: RoutersEvmModelsMetadataNonDapp.Connection;
+    connection?: Metadata.Connection;
 
     /**
-     * Indicates that the transaction was not initiated by a dapp.
-     */
-    non_dapp?: true;
-  }
-
-  export namespace RoutersEvmModelsMetadataNonDapp {
-    /**
-     * Account information associated with the request
-     */
-    export interface Account {
-      /**
-       * Unique identifier for the account.
-       */
-      account_id: string;
-
-      /**
-       * Timestamp when the account was created.
-       */
-      account_creation_timestamp?: string;
-
-      /**
-       * Age of the user in years
-       */
-      user_age?: number;
-
-      /**
-       * ISO country code of the user's location.
-       */
-      user_country_code?: string;
-    }
-
-    /**
-     * Connection metadata including user agent and IP information
-     */
-    export interface Connection {
-      /**
-       * IP address of the customer making the request.
-       */
-      ip_address: string;
-
-      /**
-       * User agent string from the client's browser or application.
-       */
-      user_agent?: string;
-    }
-  }
-
-  export interface RoutersEvmModelsMetadataDapp {
-    /**
-     * The full URL of the DApp or website that initiated the transaction, for
+     * The full URL of the DApp or website that initiated the request, for
      * cross-reference. Must use the https or http scheme and contain a valid hostname.
      * Cannot contain JSON, braces, or other embedded data structures.
      */
-    domain: string;
+    domain?: string;
 
     /**
-     * Account information associated with the request
-     */
-    account?: RoutersEvmModelsMetadataDapp.Account;
-
-    /**
-     * Connection metadata including user agent and IP information
-     */
-    connection?: RoutersEvmModelsMetadataDapp.Connection;
-
-    /**
-     * Indicates that the transaction was not initiated by a dapp. Use false when the
-     * transaction is from a dapp.
+     * Set to true when the request was not initiated by a dapp. Dapp requests should
+     * provide the `domain` field.
      */
     non_dapp?: boolean;
   }
 
-  export namespace RoutersEvmModelsMetadataDapp {
+  export namespace Metadata {
     /**
-     * Account information associated with the request
+     * End-user account context (id, age, country, creation time, and
+     * account_addresses).
      */
     export interface Account {
       /**
        * Unique identifier for the account.
        */
       account_id: string;
+
+      /**
+       * List of all account addresses in different chains based on the CAIPs standard
+       * (https://github.com/ChainAgnostic/CAIPs). Ethereum mainnet example:
+       * eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb
+       */
+      account_addresses?: Array<string>;
 
       /**
        * Timestamp when the account was created.
@@ -5408,18 +5360,36 @@ export namespace UserOperationScanParams {
     }
 
     /**
-     * Connection metadata including user agent and IP information
+     * Connection metadata including user agent, IP information, and origin.
      */
     export interface Connection {
       /**
-       * IP address of the customer making the request.
+       * IP address of the customer making the request. Both IPv4 and IPv6 addresses are
+       * supported.
        */
       ip_address: string;
+
+      /**
+       * The full URL of the website that the request was directed to.
+       */
+      origin?: string;
 
       /**
        * User agent string from the client's browser or application.
        */
       user_agent?: string;
+
+      /**
+       * WalletConnect session description, when the request originates from a
+       * WalletConnect session.
+       */
+      walletconnect_description?: string;
+
+      /**
+       * WalletConnect session name, when the request originates from a WalletConnect
+       * session.
+       */
+      walletconnect_name?: string;
     }
   }
 
