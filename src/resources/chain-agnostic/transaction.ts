@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import * as EvmAPI from '../evm/evm';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -176,7 +175,7 @@ export interface TransactionScanParams {
    * Additional metadata about the request including account and connection
    * information
    */
-  metadata: EvmAPI.MetadataParam;
+  metadata: TransactionScanParams.Metadata;
 
   /**
    * List of options to apply during the transaction scan
@@ -281,6 +280,104 @@ export namespace TransactionScanParams {
        * The symbol of the asset
        */
       symbol: string;
+    }
+  }
+
+  /**
+   * Additional metadata about the request including account and connection
+   * information
+   */
+  export interface Metadata {
+    /**
+     * End-user account context (id, age, country, creation time, and
+     * account_addresses).
+     */
+    account?: Metadata.Account;
+
+    /**
+     * Connection metadata including user agent, IP information, and origin.
+     */
+    connection?: Metadata.Connection;
+
+    /**
+     * The full URL of the DApp or website that initiated the request, for
+     * cross-reference. Must use the https or http scheme and contain a valid hostname.
+     * Cannot contain JSON, braces, or other embedded data structures.
+     */
+    domain?: string;
+
+    /**
+     * Set to true when the request was not initiated by a dapp. Dapp requests should
+     * provide the `domain` field.
+     */
+    non_dapp?: boolean;
+  }
+
+  export namespace Metadata {
+    /**
+     * End-user account context (id, age, country, creation time, and
+     * account_addresses).
+     */
+    export interface Account {
+      /**
+       * Unique identifier for the account.
+       */
+      account_id: string;
+
+      /**
+       * List of all account addresses in different chains based on the CAIPs standard
+       * (https://github.com/ChainAgnostic/CAIPs). Ethereum mainnet example:
+       * eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb
+       */
+      account_addresses?: Array<string>;
+
+      /**
+       * Timestamp when the account was created.
+       */
+      account_creation_timestamp?: string;
+
+      /**
+       * Age of the user in years
+       */
+      user_age?: number;
+
+      /**
+       * ISO country code of the user's location.
+       */
+      user_country_code?: string;
+    }
+
+    /**
+     * Connection metadata including user agent, IP information, and origin.
+     */
+    export interface Connection {
+      /**
+       * IP address of the customer making the request. Both IPv4 and IPv6 addresses are
+       * supported.
+       */
+      ip_address: string;
+
+      /**
+       * The full URL of the website that the request was directed to.
+       */
+      origin?: string;
+
+      /**
+       * User agent string from the client's browser or application.
+       */
+      user_agent?: string;
+
+      /**
+       * WalletConnect session description, when the request originates from a
+       * WalletConnect session.
+       */
+      walletconnect_description?: string;
+
+      /**
+       * WalletConnect session name, when the request originates from a WalletConnect
+       * session.
+       */
+      walletconnect_name?: string;
     }
   }
 }
