@@ -53,6 +53,8 @@ describe('resource transaction', () => {
           walletconnect_description: 'walletconnect_description',
           walletconnect_name: 'walletconnect_name',
         },
+        domain: 'domain',
+        non_dapp: true,
       },
       options: ['validation'],
     });

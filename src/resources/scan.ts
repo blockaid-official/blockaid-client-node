@@ -69,8 +69,8 @@ export interface ScanReportParams {
   event: 'FALSE_POSITIVE' | 'FALSE_NEGATIVE';
 
   /**
-   * Client-side context attached to a report, identifying the originating dApp and
-   * end-user.
+   * Client-side context: the originating dApp domain, end-user account info, and
+   * connection details.
    */
   metadata: ScanReportParams.Metadata;
 
@@ -84,29 +84,39 @@ export interface ScanReportParams {
 
 export namespace ScanReportParams {
   /**
-   * Client-side context attached to a report, identifying the originating dApp and
-   * end-user.
+   * Client-side context: the originating dApp domain, end-user account info, and
+   * connection details.
    */
   export interface Metadata {
     /**
-     * End-user account information (ID, age, country, creation time).
+     * End-user account context (id, age, country, creation time, and
+     * account_addresses).
      */
     account?: Metadata.Account;
 
     /**
-     * Network connection details (IP address, user agent).
+     * Connection metadata including user agent, IP information, and origin.
      */
     connection?: Metadata.Connection;
 
     /**
-     * The dApp or origin URL that triggered the interaction being reported.
+     * The full URL of the DApp or website that initiated the request, for
+     * cross-reference. Must use the https or http scheme and contain a valid hostname.
+     * Cannot contain JSON, braces, or other embedded data structures.
      */
     domain?: string;
+
+    /**
+     * Set to true when the request was not initiated by a dapp. Dapp requests should
+     * provide the `domain` field.
+     */
+    non_dapp?: boolean;
   }
 
   export namespace Metadata {
     /**
-     * End-user account information (ID, age, country, creation time).
+     * End-user account context (id, age, country, creation time, and
+     * account_addresses).
      */
     export interface Account {
       /**
@@ -138,7 +148,7 @@ export namespace ScanReportParams {
     }
 
     /**
-     * Network connection details (IP address, user agent).
+     * Connection metadata including user agent, IP information, and origin.
      */
     export interface Connection {
       /**
