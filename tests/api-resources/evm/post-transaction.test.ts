@@ -81,6 +81,17 @@ describe('resource postTransaction', () => {
           stateDiff: { foo: 'string' },
         },
       },
+      transaction_hints: {
+        cross_chain_bridge: {
+          destination_address: 'destination_address',
+          destination_asset: {
+            type: 'NATIVE',
+            raw_value: 'raw_value',
+            usd_price: 'usd_price',
+          },
+          destination_chain: 'arbitrum',
+        },
+      },
     });
   });
 });

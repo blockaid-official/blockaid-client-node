@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as EvmAPI from '../evm/evm';
 import * as StellarAPI from './stellar';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
@@ -103,6 +104,12 @@ export interface TransactionScanParams {
    * - `Options.simulation`: Include Options.simulation output in the response
    */
   options?: Array<'validation' | 'simulation'>;
+
+  /**
+   * Customer-supplied hints about transaction intent that cannot be derived from
+   * on-chain simulation alone. Each key identifies the hint type.
+   */
+  transaction_hints?: TransactionScanParams.TransactionHints;
 }
 
 export namespace TransactionScanParams {
@@ -135,6 +142,111 @@ export namespace TransactionScanParams {
      * Metadata for in-app requests
      */
     type?: 'in_app';
+  }
+
+  /**
+   * Customer-supplied hints about transaction intent that cannot be derived from
+   * on-chain simulation alone. Each key identifies the hint type.
+   */
+  export interface TransactionHints {
+    /**
+     * Customer-supplied context for a cross-chain bridge deposit where the protocol
+     * does not emit the destination on-chain.
+     */
+    cross_chain_bridge?: TransactionHints.CrossChainBridge;
+  }
+
+  export namespace TransactionHints {
+    /**
+     * Customer-supplied context for a cross-chain bridge deposit where the protocol
+     * does not emit the destination on-chain.
+     */
+    export interface CrossChainBridge {
+      /**
+       * The intended recipient address on the destination chain. Required when the
+       * bridge protocol does not emit this on-chain (e.g. Relay, some Across deposit
+       * routes).
+       */
+      destination_address?: string;
+
+      /**
+       * The asset the recipient will receive on the destination chain.
+       */
+      destination_asset?:
+        | CrossChainBridge.CrossChainBridgeNativeAsset
+        | CrossChainBridge.CrossChainBridgeFungibleAsset
+        | CrossChainBridge.CrossChainBridgeNonFungibleAsset;
+
+      /**
+       * The destination chain for the bridged assets.
+       */
+      destination_chain?: EvmAPI.TransactionScanSupportedChain | (string & {});
+    }
+
+    export namespace CrossChainBridge {
+      export interface CrossChainBridgeNativeAsset {
+        /**
+         * Type of the asset (`NATIVE`)
+         */
+        type: 'NATIVE';
+
+        /**
+         * Amount to be received in the asset's smallest unit (before decimal division),
+         * e.g. wei for ETH.
+         */
+        raw_value?: string;
+
+        /**
+         * Approximate USD value of the received amount at time of the request.
+         */
+        usd_price?: string;
+      }
+
+      export interface CrossChainBridgeFungibleAsset {
+        /**
+         * Token contract address on the destination chain.
+         */
+        address: string;
+
+        /**
+         * Type of the asset (`FUNGIBLE`)
+         */
+        type: 'FUNGIBLE';
+
+        /**
+         * Amount to be received in the asset's smallest unit (before decimal division),
+         * e.g. base units for ERC-20 tokens.
+         */
+        raw_value?: string;
+
+        /**
+         * Approximate USD value of the received amount at time of the request.
+         */
+        usd_price?: string;
+      }
+
+      export interface CrossChainBridgeNonFungibleAsset {
+        /**
+         * NFT collection contract address on the destination chain.
+         */
+        address: string;
+
+        /**
+         * Token ID of the specific NFT being bridged.
+         */
+        token_id: string;
+
+        /**
+         * Type of the asset (`NON_FUNGIBLE`)
+         */
+        type: 'NON_FUNGIBLE';
+
+        /**
+         * Approximate USD value of the received amount at time of the request.
+         */
+        usd_price?: string;
+      }
+    }
   }
 }
 
