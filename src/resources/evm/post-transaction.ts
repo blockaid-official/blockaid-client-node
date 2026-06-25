@@ -5308,9 +5308,6 @@ export interface PostTransactionScanParams {
    */
   chain: EvmAPI.TransactionScanSupportedChain | (string & {});
 
-  /**
-   * Post-transaction scan parameters
-   */
   data: PostTransactionScanParams.Data;
 
   /**
@@ -5351,9 +5348,6 @@ export interface PostTransactionScanParams {
 }
 
 export namespace PostTransactionScanParams {
-  /**
-   * Post-transaction scan parameters
-   */
   export interface Data {
     /**
      * The transaction hash to scan
@@ -5499,16 +5493,16 @@ export namespace PostTransactionScanParams {
    */
   export interface TransactionHints {
     /**
-     * Customer-supplied context for a cross-chain bridge deposit where the protocol
-     * does not emit the destination on-chain.
+     * Hint for cross-chain bridge deposits where the protocol negotiates the
+     * destination address off-chain and does not emit it in any on-chain event.
      */
     cross_chain_bridge?: TransactionHints.CrossChainBridge;
   }
 
   export namespace TransactionHints {
     /**
-     * Customer-supplied context for a cross-chain bridge deposit where the protocol
-     * does not emit the destination on-chain.
+     * Hint for cross-chain bridge deposits where the protocol negotiates the
+     * destination address off-chain and does not emit it in any on-chain event.
      */
     export interface CrossChainBridge {
       /**
