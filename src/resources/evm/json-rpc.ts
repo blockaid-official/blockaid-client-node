@@ -5277,8 +5277,8 @@ export interface JsonRpcScanParams {
   state_override?: { [key: string]: JsonRpcScanParams.StateOverride };
 
   /**
-   * Customer-supplied hints about transaction intent that cannot be derived from
-   * on-chain simulation alone. Each key identifies the hint type.
+   * Optional customer-supplied hints about transaction intent that cannot be
+   * inferred from on-chain simulation.
    */
   transaction_hints?: JsonRpcScanParams.TransactionHints;
 }
@@ -5444,21 +5444,21 @@ export namespace JsonRpcScanParams {
   }
 
   /**
-   * Customer-supplied hints about transaction intent that cannot be derived from
-   * on-chain simulation alone. Each key identifies the hint type.
+   * Optional customer-supplied hints about transaction intent that cannot be
+   * inferred from on-chain simulation.
    */
   export interface TransactionHints {
     /**
-     * Customer-supplied context for a cross-chain bridge deposit where the protocol
-     * does not emit the destination on-chain.
+     * Hint for cross-chain bridge deposits where the protocol negotiates the
+     * destination address off-chain and does not emit it in any on-chain event.
      */
     cross_chain_bridge?: TransactionHints.CrossChainBridge;
   }
 
   export namespace TransactionHints {
     /**
-     * Customer-supplied context for a cross-chain bridge deposit where the protocol
-     * does not emit the destination on-chain.
+     * Hint for cross-chain bridge deposits where the protocol negotiates the
+     * destination address off-chain and does not emit it in any on-chain event.
      */
     export interface CrossChainBridge {
       /**
@@ -5469,7 +5469,9 @@ export namespace JsonRpcScanParams {
       destination_address?: string;
 
       /**
-       * The asset the recipient will receive on the destination chain.
+       * Details of the asset the recipient will receive on the destination chain. May
+       * differ from the source asset (e.g. wrapped vs. native, canonical vs. bridged
+       * token).
        */
       destination_asset?:
         | CrossChainBridge.CrossChainBridgeNativeAsset
