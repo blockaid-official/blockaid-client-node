@@ -5712,16 +5712,16 @@ export namespace TransactionScanParams {
    */
   export interface TransactionHints {
     /**
-     * Hint for cross-chain bridge deposits where the protocol negotiates the
-     * destination address off-chain and does not emit it in any on-chain event.
+     * Customer-supplied context for a cross-chain bridge deposit where the protocol
+     * does not emit the destination on-chain.
      */
     cross_chain_bridge?: TransactionHints.CrossChainBridge;
   }
 
   export namespace TransactionHints {
     /**
-     * Hint for cross-chain bridge deposits where the protocol negotiates the
-     * destination address off-chain and does not emit it in any on-chain event.
+     * Customer-supplied context for a cross-chain bridge deposit where the protocol
+     * does not emit the destination on-chain.
      */
     export interface CrossChainBridge {
       /**
