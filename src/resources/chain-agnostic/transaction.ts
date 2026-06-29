@@ -249,7 +249,8 @@ export namespace TransactionScanParams {
       | 'tron'
       | 'kaia'
       | 'plasma'
-      | 'mantle';
+      | 'mantle'
+      | 'robinhood';
 
     /**
      * Destination address or identifier for the transaction

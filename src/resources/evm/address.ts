@@ -128,7 +128,8 @@ export namespace AddressReportParams {
         | 'kite-ai'
         | 'kaia'
         | 'plasma'
-        | 'mantle';
+        | 'mantle'
+        | 'robinhood';
 
       /**
        * The domain related to this address.
