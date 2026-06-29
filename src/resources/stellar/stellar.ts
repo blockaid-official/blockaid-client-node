@@ -174,7 +174,9 @@ export interface StellarTransactionScanRequest {
    * Optional customer-supplied hints about transaction intent that cannot be
    * inferred from on-chain simulation.
    */
-  transaction_hints?: StellarTransactionScanRequest.TransactionHints;
+  transaction_hints?: Array<
+    StellarTransactionScanRequest.CrossChainBridgeHint | StellarTransactionScanRequest.GenericTransactionHint
+  >;
 }
 
 export namespace StellarTransactionScanRequest {
@@ -210,110 +212,112 @@ export namespace StellarTransactionScanRequest {
   }
 
   /**
-   * Optional customer-supplied hints about transaction intent that cannot be
-   * inferred from on-chain simulation.
+   * Customer-supplied context for a cross-chain bridge deposit where the protocol
+   * does not emit the destination on-chain.
    */
-  export interface TransactionHints {
+  export interface CrossChainBridgeHint {
     /**
-     * Hint for cross-chain bridge deposits where the protocol negotiates the
-     * destination address off-chain and does not emit it in any on-chain event.
+     * Hint type discriminator (`cross_chain_bridge`).
      */
-    cross_chain_bridge?: TransactionHints.CrossChainBridge;
+    type: 'cross_chain_bridge';
+
+    /**
+     * The intended recipient address on the destination chain. Required when the
+     * bridge protocol does not emit this on-chain (e.g. Relay, some Across deposit
+     * routes).
+     */
+    destination_address?: string;
+
+    /**
+     * Details of the asset the recipient will receive on the destination chain. May
+     * differ from the source asset (e.g. wrapped vs. native, canonical vs. bridged
+     * token).
+     */
+    destination_asset?:
+      | CrossChainBridgeHint.CrossChainBridgeNativeAsset
+      | CrossChainBridgeHint.CrossChainBridgeFungibleAsset
+      | CrossChainBridgeHint.CrossChainBridgeNonFungibleAsset;
+
+    /**
+     * The destination chain for the bridged assets.
+     */
+    destination_chain?: EvmAPI.TransactionScanSupportedChain | (string & {});
   }
 
-  export namespace TransactionHints {
+  export namespace CrossChainBridgeHint {
+    export interface CrossChainBridgeNativeAsset {
+      /**
+       * Type of the asset (`NATIVE`)
+       */
+      type: 'NATIVE';
+
+      /**
+       * Amount to be received in the asset's smallest unit (before decimal division),
+       * e.g. wei for ETH.
+       */
+      raw_value?: string;
+
+      /**
+       * Approximate USD value of the received amount at time of the request.
+       */
+      usd_price?: string;
+    }
+
+    export interface CrossChainBridgeFungibleAsset {
+      /**
+       * Token contract address on the destination chain.
+       */
+      address: string;
+
+      /**
+       * Type of the asset (`FUNGIBLE`)
+       */
+      type: 'FUNGIBLE';
+
+      /**
+       * Amount to be received in the asset's smallest unit (before decimal division),
+       * e.g. base units for ERC-20 tokens.
+       */
+      raw_value?: string;
+
+      /**
+       * Approximate USD value of the received amount at time of the request.
+       */
+      usd_price?: string;
+    }
+
+    export interface CrossChainBridgeNonFungibleAsset {
+      /**
+       * NFT collection contract address on the destination chain.
+       */
+      address: string;
+
+      /**
+       * Token ID of the specific NFT being bridged.
+       */
+      token_id: string;
+
+      /**
+       * Type of the asset (`NON_FUNGIBLE`)
+       */
+      type: 'NON_FUNGIBLE';
+
+      /**
+       * Approximate USD value of the received amount at time of the request.
+       */
+      usd_price?: string;
+    }
+  }
+
+  /**
+   * Fallback for unrecognized or future hint types. Accepts any hint with a `type`
+   * field.
+   */
+  export interface GenericTransactionHint {
     /**
-     * Hint for cross-chain bridge deposits where the protocol negotiates the
-     * destination address off-chain and does not emit it in any on-chain event.
+     * Hint type identifier for unrecognized or future hint types.
      */
-    export interface CrossChainBridge {
-      /**
-       * The intended recipient address on the destination chain. Required when the
-       * bridge protocol does not emit this on-chain (e.g. Relay, some Across deposit
-       * routes).
-       */
-      destination_address?: string;
-
-      /**
-       * Details of the asset the recipient will receive on the destination chain. May
-       * differ from the source asset (e.g. wrapped vs. native, canonical vs. bridged
-       * token).
-       */
-      destination_asset?:
-        | CrossChainBridge.CrossChainBridgeNativeAsset
-        | CrossChainBridge.CrossChainBridgeFungibleAsset
-        | CrossChainBridge.CrossChainBridgeNonFungibleAsset;
-
-      /**
-       * The destination chain for the bridged assets.
-       */
-      destination_chain?: EvmAPI.TransactionScanSupportedChain | (string & {});
-    }
-
-    export namespace CrossChainBridge {
-      export interface CrossChainBridgeNativeAsset {
-        /**
-         * Type of the asset (`NATIVE`)
-         */
-        type: 'NATIVE';
-
-        /**
-         * Amount to be received in the asset's smallest unit (before decimal division),
-         * e.g. wei for ETH.
-         */
-        raw_value?: string;
-
-        /**
-         * Approximate USD value of the received amount at time of the request.
-         */
-        usd_price?: string;
-      }
-
-      export interface CrossChainBridgeFungibleAsset {
-        /**
-         * Token contract address on the destination chain.
-         */
-        address: string;
-
-        /**
-         * Type of the asset (`FUNGIBLE`)
-         */
-        type: 'FUNGIBLE';
-
-        /**
-         * Amount to be received in the asset's smallest unit (before decimal division),
-         * e.g. base units for ERC-20 tokens.
-         */
-        raw_value?: string;
-
-        /**
-         * Approximate USD value of the received amount at time of the request.
-         */
-        usd_price?: string;
-      }
-
-      export interface CrossChainBridgeNonFungibleAsset {
-        /**
-         * NFT collection contract address on the destination chain.
-         */
-        address: string;
-
-        /**
-         * Token ID of the specific NFT being bridged.
-         */
-        token_id: string;
-
-        /**
-         * Type of the asset (`NON_FUNGIBLE`)
-         */
-        type: 'NON_FUNGIBLE';
-
-        /**
-         * Approximate USD value of the received amount at time of the request.
-         */
-        usd_price?: string;
-      }
-    }
+    type: string;
   }
 }
 

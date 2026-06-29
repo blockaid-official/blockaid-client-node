@@ -50,8 +50,9 @@ describe('resource transaction', () => {
       transaction:
         'AAACAAgA4fUFAAAAAAAgHvls2mKzo/48s/fPdWP8xKtE4BhIjR2O8gMaZ6bI1+sCAgABAQAAAQECAAABAQBF6Qs+ouGSDEPZLSJGMNaoZcG1intOdwwqwVbqsw60kQFySkLceU6uis9QxxK4CDYqttqK3ilc9/yEcCgxdaeA0cl/xhwAAAAAIEuXU9TpAtIJmbPVFpxdc70+RWUqlSrfyIUKT9q1Au0ERekLPqLhkgxD2S0iRjDWqGXBtYp7TncMKsFW6rMOtJHuAgAAAAAAACAKNQAAAAAAAA==',
       options: ['simulation'],
-      transaction_hints: {
-        cross_chain_bridge: {
+      transaction_hints: [
+        {
+          type: 'cross_chain_bridge',
           destination_address: 'destination_address',
           destination_asset: {
             type: 'NATIVE',
@@ -60,7 +61,7 @@ describe('resource transaction', () => {
           },
           destination_chain: 'arbitrum',
         },
-      },
+      ],
     });
   });
 });
