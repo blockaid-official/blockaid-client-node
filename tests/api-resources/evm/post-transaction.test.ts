@@ -85,11 +85,7 @@ describe('resource postTransaction', () => {
         {
           type: 'cross_chain_bridge',
           destination_address: 'destination_address',
-          destination_asset: {
-            type: 'NATIVE',
-            raw_value: 'raw_value',
-            usd_price: 'usd_price',
-          },
+          destination_asset: { type: 'NATIVE', raw_value: 'raw_value' },
           destination_chain: 'arbitrum',
         },
       ],

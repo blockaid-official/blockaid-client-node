@@ -256,11 +256,6 @@ export namespace StellarTransactionScanRequest {
        * e.g. wei for ETH.
        */
       raw_value?: string;
-
-      /**
-       * Approximate USD value of the received amount at time of the request.
-       */
-      usd_price?: string;
     }
 
     export interface CrossChainBridgeFungibleAsset {
@@ -279,11 +274,6 @@ export namespace StellarTransactionScanRequest {
        * e.g. base units for ERC-20 tokens.
        */
       raw_value?: string;
-
-      /**
-       * Approximate USD value of the received amount at time of the request.
-       */
-      usd_price?: string;
     }
 
     export interface CrossChainBridgeNonFungibleAsset {
@@ -301,11 +291,6 @@ export namespace StellarTransactionScanRequest {
        * Type of the asset (`NON_FUNGIBLE`)
        */
       type: 'NON_FUNGIBLE';
-
-      /**
-       * Approximate USD value of the received amount at time of the request.
-       */
-      usd_price?: string;
     }
   }
 
