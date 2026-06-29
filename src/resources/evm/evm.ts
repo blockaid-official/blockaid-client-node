@@ -393,7 +393,8 @@ export type TokenScanSupportedChain =
   | 'tempo'
   | 'sei'
   | 'kaia'
-  | 'tron';
+  | 'tron'
+  | 'robinhood';
 
 /**
  * The chain name
