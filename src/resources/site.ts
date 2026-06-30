@@ -8,17 +8,7 @@ export class Site extends APIResource {
   /**
    * Report a misclassification of a site.
    *
-   * @example
-   * ```ts
-   * const response = await client.site.report({
-   *   details: 'Details about the report',
-   *   event: 'FALSE_POSITIVE',
-   *   report: {
-   *     type: 'request_id',
-   *     request_id: '11111111-1111-1111-1111-111111111111',
-   *   },
-   * });
-   * ```
+   * @deprecated
    */
   report(body: SiteReportParams, options?: RequestOptions): APIPromise<unknown> {
     return this._client.post('/v0/site/report', { body, ...options });

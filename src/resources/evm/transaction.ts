@@ -9,17 +9,7 @@ export class Transaction extends APIResource {
   /**
    * Report a misclassification of a transaction.
    *
-   * @example
-   * ```ts
-   * const response = await client.evm.transaction.report({
-   *   details: 'Details about the report',
-   *   event: 'FALSE_POSITIVE',
-   *   report: {
-   *     type: 'request_id',
-   *     request_id: '11111111-1111-1111-1111-111111111111',
-   *   },
-   * });
-   * ```
+   * @deprecated
    */
   report(body: TransactionReportParams, options?: RequestOptions): APIPromise<unknown> {
     return this._client.post('/v0/evm/transaction/report', { body, ...options });

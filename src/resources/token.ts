@@ -9,17 +9,7 @@ export class Token extends APIResource {
   /**
    * Report for misclassification of a token.
    *
-   * @example
-   * ```ts
-   * const response = await client.token.report({
-   *   details: 'Details about the report',
-   *   event: 'FALSE_POSITIVE',
-   *   report: {
-   *     type: 'request_id',
-   *     request_id: '11111111-1111-1111-1111-111111111111',
-   *   },
-   * });
-   * ```
+   * @deprecated
    */
   report(body: TokenReportParams, options?: RequestOptions): APIPromise<unknown> {
     return this._client.post('/v0/token/report', { body, ...options });
