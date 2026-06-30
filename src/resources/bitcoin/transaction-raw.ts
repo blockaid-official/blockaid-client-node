@@ -10,6 +10,8 @@ export class TransactionRaw extends APIResource {
    * Submit an appeal or false-positive report for a Bitcoin transaction scan. Use
    * when you believe a scan result was incorrect (e.g. should_be_benign,
    * should_be_malicious, wrong_simulation_result).
+   *
+   * @deprecated
    */
   report(
     body: TransactionRawReportParams,

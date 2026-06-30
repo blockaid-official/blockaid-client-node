@@ -9,14 +9,7 @@ export class Transaction extends APIResource {
   /**
    * Report Transaction
    *
-   * @example
-   * ```ts
-   * const response = await client.starknet.transaction.report({
-   *   details: 'details',
-   *   event: 'should_be_malicious',
-   *   report: { id: 'id' },
-   * });
-   * ```
+   * @deprecated
    */
   report(body: TransactionReportParams, options?: RequestOptions): APIPromise<TransactionReportResponse> {
     return this._client.post('/v0/starknet/transaction/report', { body, ...options });
