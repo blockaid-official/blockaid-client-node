@@ -30,8 +30,8 @@ export class RiskExposureConfiguration extends APIResource {
    *   await client.organization.riskExposureConfiguration.update(
    *     {
    *       category_overrides: {
-   *         stolen_funds: 0.7,
-   *         mixer: null,
+   *         sanctioned_entity: 0.7,
+   *         stolen_funds: 0.5,
    *       },
    *       verdict_overrides: {
    *         warning: 0.3,
