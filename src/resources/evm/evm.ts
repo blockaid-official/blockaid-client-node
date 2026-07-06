@@ -120,7 +120,8 @@ export interface AddressReportParams {
     | 'stellar'
     | 'plasma'
     | 'mantle'
-    | 'robinhood';
+    | 'robinhood'
+    | 'arc';
 
   /**
    * The domain related to this address.
@@ -449,7 +450,8 @@ export type TransactionScanSupportedChain =
   | 'kaia'
   | 'plasma'
   | 'mantle'
-  | 'robinhood';
+  | 'robinhood'
+  | 'arc';
 
 export interface UserOperationData {
   /**
