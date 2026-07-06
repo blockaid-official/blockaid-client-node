@@ -72,7 +72,8 @@ export interface EnrichmentReportAddress {
     | 'kaia'
     | 'plasma'
     | 'mantle'
-    | 'robinhood';
+    | 'robinhood'
+    | 'arc';
 }
 
 export interface EnrichmentReportAddresses {

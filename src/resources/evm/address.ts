@@ -119,7 +119,8 @@ export namespace AddressReportParams {
         | 'kaia'
         | 'plasma'
         | 'mantle'
-        | 'robinhood';
+        | 'robinhood'
+        | 'arc';
 
       /**
        * The domain related to this address.
