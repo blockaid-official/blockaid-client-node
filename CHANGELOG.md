@@ -1,5 +1,35 @@
 # Changelog
 
+## 1.5.0 (2026-07-11)
+
+Full Changelog: [v1.4.0...v1.5.0](https://github.com/blockaid-official/blockaid-client-node/compare/v1.4.0...v1.5.0)
+
+### Features
+
+* **api:** api update ([3c30c7b](https://github.com/blockaid-official/blockaid-client-node/commit/3c30c7b434648975fe09abb6df278dfab158d518))
+* **api:** api update ([74969f4](https://github.com/blockaid-official/blockaid-client-node/commit/74969f4ce8d50bcb17d9b7a4c09335c1147125a1))
+* **api:** api update ([6d30001](https://github.com/blockaid-official/blockaid-client-node/commit/6d30001383c02b8840a15147047a9f6e5e29ddf7))
+* **api:** api update ([38587a7](https://github.com/blockaid-official/blockaid-client-node/commit/38587a7b29b3f02817ea6eecd3e8a41f220e0b79))
+* **api:** api update ([110cb2d](https://github.com/blockaid-official/blockaid-client-node/commit/110cb2dd973a9300f25c6658a9b3ba89e7dfaadf))
+* **api:** api update ([f007a18](https://github.com/blockaid-official/blockaid-client-node/commit/f007a18cd66e0e7db32d9c70b01785c10633c7ab))
+* **api:** api update ([64ce543](https://github.com/blockaid-official/blockaid-client-node/commit/64ce543bdd3f2a8bb9937640793f0b711e360ac2))
+* **api:** api update ([f0daf1f](https://github.com/blockaid-official/blockaid-client-node/commit/f0daf1f83f953d2d851f6aa0c23a10b45094e094))
+* **api:** api update ([28a598a](https://github.com/blockaid-official/blockaid-client-node/commit/28a598af053753dd1d9ac8e73a4fc3873847646c))
+* **api:** api update ([83a2c01](https://github.com/blockaid-official/blockaid-client-node/commit/83a2c011423719005efb5146640f519e5ff38a65))
+* **api:** api update ([b8cee38](https://github.com/blockaid-official/blockaid-client-node/commit/b8cee380929c6792886dc3e6a64fae2dd53fec11))
+* **api:** api update ([c581ebb](https://github.com/blockaid-official/blockaid-client-node/commit/c581ebb69935401699ba006fcb3957170b0071e4))
+* **api:** api update ([73c5ce9](https://github.com/blockaid-official/blockaid-client-node/commit/73c5ce96012cdc928600f73d2d98fba3afcac4b7))
+
+
+### Bug Fixes
+
+* **ci:** bump @arethetypeswrong/cli to ^0.18.0 and run CI workflows on Node 24 ([400d428](https://github.com/blockaid-official/blockaid-client-node/commit/400d428fc204dea911aca0b54f4bc2fc5307be9d))
+
+
+### Chores
+
+* **internal:** codegen related update ([78b52a5](https://github.com/blockaid-official/blockaid-client-node/commit/78b52a5c06a273535c0a76abd8369d3faa47195c))
+
 ## 1.4.0 (2026-06-22)
 
 Full Changelog: [v1.3.0...v1.4.0](https://github.com/blockaid-official/blockaid-client-node/compare/v1.3.0...v1.4.0)
