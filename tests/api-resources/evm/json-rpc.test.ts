@@ -71,6 +71,14 @@ describe('resource jsonRpc', () => {
           stateDiff: { foo: 'string' },
         },
       },
+      transaction_hints: [
+        {
+          type: 'cross_chain_bridge',
+          destination_address: 'destination_address',
+          destination_asset: { type: 'NATIVE', raw_value: 'raw_value' },
+          destination_chain: 'arbitrum',
+        },
+      ],
     });
   });
 });

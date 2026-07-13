@@ -71,7 +71,9 @@ export interface EnrichmentReportAddress {
     | 'kite-ai'
     | 'kaia'
     | 'plasma'
-    | 'mantle';
+    | 'mantle'
+    | 'robinhood'
+    | 'arc';
 }
 
 export interface EnrichmentReportAddresses {

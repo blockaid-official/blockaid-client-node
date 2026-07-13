@@ -44,6 +44,7 @@ describe('resource scan', () => {
           walletconnect_name: 'walletconnect_name',
         },
         domain: 'https://app.uniswap.org',
+        non_dapp: true,
       },
       request_id: '11111111-1111-1111-1111-111111111111',
     });

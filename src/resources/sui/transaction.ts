@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as EvmAPI from '../evm/evm';
 import * as SuiAPI from './sui';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
@@ -51,6 +52,14 @@ export interface TransactionScanParams {
    * - `Options.simulation`: Include Options.simulation output in the response
    */
   options?: Array<'validation' | 'simulation'>;
+
+  /**
+   * Optional customer-supplied hints about transaction intent that cannot be
+   * inferred from on-chain simulation.
+   */
+  transaction_hints?: Array<
+    TransactionScanParams.CrossChainBridgeHint | TransactionScanParams.GenericTransactionHint
+  >;
 }
 
 export namespace TransactionScanParams {
@@ -225,6 +234,100 @@ export namespace TransactionScanParams {
        */
       walletconnect_name?: string;
     }
+  }
+
+  /**
+   * Customer-supplied context for a cross-chain bridge deposit where the protocol
+   * does not emit the destination on-chain.
+   */
+  export interface CrossChainBridgeHint {
+    /**
+     * Hint type discriminator (`cross_chain_bridge`).
+     */
+    type: 'cross_chain_bridge';
+
+    /**
+     * The intended recipient address on the destination chain. Required when the
+     * bridge protocol does not emit this on-chain (e.g. Relay, some Across deposit
+     * routes).
+     */
+    destination_address?: string;
+
+    /**
+     * Details of the asset the recipient will receive on the destination chain. May
+     * differ from the source asset (e.g. wrapped vs. native, canonical vs. bridged
+     * token).
+     */
+    destination_asset?:
+      | CrossChainBridgeHint.CrossChainBridgeNativeAsset
+      | CrossChainBridgeHint.CrossChainBridgeFungibleAsset
+      | CrossChainBridgeHint.CrossChainBridgeNonFungibleAsset;
+
+    /**
+     * The destination chain for the bridged assets.
+     */
+    destination_chain?: EvmAPI.TransactionScanSupportedChain | (string & {});
+  }
+
+  export namespace CrossChainBridgeHint {
+    export interface CrossChainBridgeNativeAsset {
+      /**
+       * Type of the asset (`NATIVE`)
+       */
+      type: 'NATIVE';
+
+      /**
+       * Amount to be received in the asset's smallest unit (before decimal division),
+       * e.g. wei for ETH.
+       */
+      raw_value?: string;
+    }
+
+    export interface CrossChainBridgeFungibleAsset {
+      /**
+       * Token contract address on the destination chain.
+       */
+      address: string;
+
+      /**
+       * Type of the asset (`FUNGIBLE`)
+       */
+      type: 'FUNGIBLE';
+
+      /**
+       * Amount to be received in the asset's smallest unit (before decimal division),
+       * e.g. base units for ERC-20 tokens.
+       */
+      raw_value?: string;
+    }
+
+    export interface CrossChainBridgeNonFungibleAsset {
+      /**
+       * NFT collection contract address on the destination chain.
+       */
+      address: string;
+
+      /**
+       * Token ID of the specific NFT being bridged.
+       */
+      token_id: string;
+
+      /**
+       * Type of the asset (`NON_FUNGIBLE`)
+       */
+      type: 'NON_FUNGIBLE';
+    }
+  }
+
+  /**
+   * Fallback for unrecognized or future hint types. Accepts any hint with a `type`
+   * field.
+   */
+  export interface GenericTransactionHint {
+    /**
+     * Hint type identifier for unrecognized or future hint types.
+     */
+    type: string;
   }
 }
 

@@ -119,7 +119,9 @@ export interface AddressReportParams {
     | 'bitcoin'
     | 'stellar'
     | 'plasma'
-    | 'mantle';
+    | 'mantle'
+    | 'robinhood'
+    | 'arc';
 
   /**
    * The domain related to this address.
@@ -392,7 +394,8 @@ export type TokenScanSupportedChain =
   | 'tempo'
   | 'sei'
   | 'kaia'
-  | 'tron';
+  | 'tron'
+  | 'robinhood';
 
 /**
  * The chain name
@@ -446,7 +449,9 @@ export type TransactionScanSupportedChain =
   | 'kite-ai'
   | 'kaia'
   | 'plasma'
-  | 'mantle';
+  | 'mantle'
+  | 'robinhood'
+  | 'arc';
 
 export interface UserOperationData {
   /**
