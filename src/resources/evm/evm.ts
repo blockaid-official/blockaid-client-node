@@ -121,7 +121,8 @@ export interface AddressReportParams {
     | 'plasma'
     | 'mantle'
     | 'robinhood'
-    | 'arc';
+    | 'arc'
+    | 'flare';
 
   /**
    * The domain related to this address.
@@ -395,7 +396,8 @@ export type TokenScanSupportedChain =
   | 'sei'
   | 'kaia'
   | 'tron'
-  | 'robinhood';
+  | 'robinhood'
+  | 'flare';
 
 /**
  * The chain name
@@ -451,7 +453,8 @@ export type TransactionScanSupportedChain =
   | 'plasma'
   | 'mantle'
   | 'robinhood'
-  | 'arc';
+  | 'arc'
+  | 'flare';
 
 export interface UserOperationData {
   /**

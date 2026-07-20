@@ -251,7 +251,8 @@ export namespace TransactionScanParams {
       | 'plasma'
       | 'mantle'
       | 'robinhood'
-      | 'arc';
+      | 'arc'
+      | 'flare';
 
     /**
      * Destination address or identifier for the transaction
