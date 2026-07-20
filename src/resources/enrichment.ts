@@ -73,7 +73,8 @@ export interface EnrichmentReportAddress {
     | 'plasma'
     | 'mantle'
     | 'robinhood'
-    | 'arc';
+    | 'arc'
+    | 'flare';
 }
 
 export interface EnrichmentReportAddresses {
