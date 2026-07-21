@@ -5243,7 +5243,7 @@ export interface TransactionBulkScanParams {
   /**
    * The chain name or chain ID
    */
-  chain: EvmAPI.TransactionScanSupportedChain | (string & {});
+  chain: EvmAPI.BulkTransactionScanSupportedChain | (string & {});
 
   /**
    * Transaction bulk parameters
