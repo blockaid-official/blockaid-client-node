@@ -121,7 +121,8 @@ export interface AddressReportParams {
     | 'plasma'
     | 'mantle'
     | 'robinhood'
-    | 'arc';
+    | 'arc'
+    | 'flare';
 
   /**
    * The domain related to this address.
@@ -276,6 +277,24 @@ export interface Authorization {
   yParity?: string;
 }
 
+/**
+ * Chains supported by the bulk transaction scan endpoint. Narrower than
+ * TransactionScanSupportedChains: limited to chains whose node exposes a batched
+ * trace call (debug_traceCallMany / trace_callMany).
+ */
+export type BulkTransactionScanSupportedChain =
+  | 'arbitrum'
+  | 'avalanche'
+  | 'base'
+  | 'base-sepolia'
+  | 'bsc'
+  | 'ethereum'
+  | 'optimism'
+  | 'polygon'
+  | 'gnosis'
+  | 'soneium'
+  | 'unichain';
+
 export interface MetadataParam {
   /**
    * Account information associated with the request
@@ -395,7 +414,8 @@ export type TokenScanSupportedChain =
   | 'sei'
   | 'kaia'
   | 'tron'
-  | 'robinhood';
+  | 'robinhood'
+  | 'flare';
 
 /**
  * The chain name
@@ -451,7 +471,8 @@ export type TransactionScanSupportedChain =
   | 'plasma'
   | 'mantle'
   | 'robinhood'
-  | 'arc';
+  | 'arc'
+  | 'flare';
 
 export interface UserOperationData {
   /**
@@ -1224,6 +1245,7 @@ export declare namespace Evm {
     type AddressReportParams as AddressReportParams,
     type AddressValidation as AddressValidation,
     type Authorization as Authorization,
+    type BulkTransactionScanSupportedChain as BulkTransactionScanSupportedChain,
     type MetadataParam as MetadataParam,
     type TokenScanSupportedChain as TokenScanSupportedChain,
     type TransactionScanSupportedChain as TransactionScanSupportedChain,

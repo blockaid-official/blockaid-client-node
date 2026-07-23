@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.6.0 (2026-07-23)
+
+Full Changelog: [v1.5.0...v1.6.0](https://github.com/blockaid-official/blockaid-client-node/compare/v1.5.0...v1.6.0)
+
+### Features
+
+* **api:** api update ([df958ff](https://github.com/blockaid-official/blockaid-client-node/commit/df958ff3dc79756a6ce3266837fad4bf5a98fc2d))
+* **api:** api update ([01b1b83](https://github.com/blockaid-official/blockaid-client-node/commit/01b1b835888f3ed44ddd15fa932e8cfe35357df2))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([e27c600](https://github.com/blockaid-official/blockaid-client-node/commit/e27c600e72513588e6e194b1477d5f509cfbb5f1))
+
 ## 1.5.0 (2026-07-11)
 
 Full Changelog: [v1.4.0...v1.5.0](https://github.com/blockaid-official/blockaid-client-node/compare/v1.4.0...v1.5.0)

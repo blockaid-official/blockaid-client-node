@@ -5,6 +5,7 @@ Types:
 - <code><a href="./src/resources/evm/evm.ts">AddressReportParams</a></code>
 - <code><a href="./src/resources/evm/evm.ts">AddressValidation</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Authorization</a></code>
+- <code><a href="./src/resources/evm/evm.ts">BulkTransactionScanSupportedChain</a></code>
 - <code><a href="./src/resources/evm/evm.ts">MetadataParam</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TokenScanSupportedChain</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionScanSupportedChain</a></code>
