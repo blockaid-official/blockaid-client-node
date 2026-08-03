@@ -95,8 +95,11 @@ export interface TransactionScanParams {
    * - `Options.validation`: Include Options.validation output in the response
    *
    * - `Options.simulation`: Include Options.simulation output in the response
+   *
+   * - `Options.gas_estimation`: Include Options.gas_estimation output in the
+   *   response
    */
-  options?: Array<'validation' | 'simulation'>;
+  options?: Array<'validation' | 'simulation' | 'gas_estimation'>;
 
   /**
    * Optional customer-supplied hints about transaction intent that cannot be

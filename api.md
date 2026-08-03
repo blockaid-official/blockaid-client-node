@@ -5,6 +5,7 @@ Types:
 - <code><a href="./src/resources/evm/evm.ts">AddressReportParams</a></code>
 - <code><a href="./src/resources/evm/evm.ts">AddressValidation</a></code>
 - <code><a href="./src/resources/evm/evm.ts">Authorization</a></code>
+- <code><a href="./src/resources/evm/evm.ts">BulkTransactionScanSupportedChain</a></code>
 - <code><a href="./src/resources/evm/evm.ts">MetadataParam</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TokenScanSupportedChain</a></code>
 - <code><a href="./src/resources/evm/evm.ts">TransactionScanSupportedChain</a></code>
@@ -117,6 +118,11 @@ Methods:
 
 # Solana
 
+Types:
+
+- <code><a href="./src/resources/solana/solana.ts">SolanaAccountRentFee</a></code>
+- <code><a href="./src/resources/solana/solana.ts">SolanaGasEstimation</a></code>
+
 ## Message
 
 Types:
@@ -165,9 +171,13 @@ Types:
 
 - <code><a href="./src/resources/stellar/stellar.ts">StellarAssetContractDetails</a></code>
 - <code><a href="./src/resources/stellar/stellar.ts">StellarAssetTransferDetails</a></code>
+- <code><a href="./src/resources/stellar/stellar.ts">StellarClassicGasEstimation</a></code>
+- <code><a href="./src/resources/stellar/stellar.ts">StellarGasEstimationError</a></code>
 - <code><a href="./src/resources/stellar/stellar.ts">StellarLegacyAssetDetails</a></code>
 - <code><a href="./src/resources/stellar/stellar.ts">StellarNativeAssetDetails</a></code>
 - <code><a href="./src/resources/stellar/stellar.ts">StellarSingleAssetExposure</a></code>
+- <code><a href="./src/resources/stellar/stellar.ts">StellarSorobanGasEstimation</a></code>
+- <code><a href="./src/resources/stellar/stellar.ts">StellarSorobanResources</a></code>
 - <code><a href="./src/resources/stellar/stellar.ts">StellarTransactionScanRequest</a></code>
 - <code><a href="./src/resources/stellar/stellar.ts">StellarTransactionScanResponse</a></code>
 
@@ -239,6 +249,8 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/sui/sui.ts">SuiAssetTransferDetailsSchema</a></code>
+- <code><a href="./src/resources/sui/sui.ts">SuiGasEstimation</a></code>
+- <code><a href="./src/resources/sui/sui.ts">SuiGasEstimationError</a></code>
 - <code><a href="./src/resources/sui/sui.ts">SuiNativeAssetDetailsSchema</a></code>
 - <code><a href="./src/resources/sui/sui.ts">SuiNFTDetailsSchema</a></code>
 - <code><a href="./src/resources/sui/sui.ts">SuiNFTDiffSchema</a></code>

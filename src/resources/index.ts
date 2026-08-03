@@ -20,6 +20,7 @@ export {
   type AddressReportParams,
   type AddressValidation,
   type Authorization,
+  type BulkTransactionScanSupportedChain,
   type MetadataParam,
   type TokenScanSupportedChain,
   type TransactionScanSupportedChain,
@@ -53,7 +54,7 @@ export {
   type SiteReportParams,
   type SiteScanParams,
 } from './site';
-export { Solana } from './solana/solana';
+export { Solana, type SolanaAccountRentFee, type SolanaGasEstimation } from './solana/solana';
 export {
   Starknet,
   type StarknetErc1155Details,
@@ -69,15 +70,21 @@ export {
   Stellar,
   type StellarAssetContractDetails,
   type StellarAssetTransferDetails,
+  type StellarClassicGasEstimation,
+  type StellarGasEstimationError,
   type StellarLegacyAssetDetails,
   type StellarNativeAssetDetails,
   type StellarSingleAssetExposure,
+  type StellarSorobanGasEstimation,
+  type StellarSorobanResources,
   type StellarTransactionScanRequest,
   type StellarTransactionScanResponse,
 } from './stellar/stellar';
 export {
   Sui,
   type SuiAssetTransferDetailsSchema,
+  type SuiGasEstimation,
+  type SuiGasEstimationError,
   type SuiNativeAssetDetailsSchema,
   type SuiNFTDetailsSchema,
   type SuiNFTDiffSchema,

@@ -12,6 +12,7 @@ export {
   type AddressReportParams,
   type AddressValidation,
   type Authorization,
+  type BulkTransactionScanSupportedChain,
   type MetadataParam,
   type TokenScanSupportedChain,
   type TransactionScanSupportedChain,

@@ -9,6 +9,8 @@ export {
 export {
   Sui,
   type SuiAssetTransferDetailsSchema,
+  type SuiGasEstimation,
+  type SuiGasEstimationError,
   type SuiNativeAssetDetailsSchema,
   type SuiNFTDetailsSchema,
   type SuiNFTDiffSchema,

@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as SolanaAPI from './solana';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -138,7 +139,7 @@ export namespace MessageScanResponse {
     /**
      * Transaction Gas Estimation
      */
-    gas_estimation: Result.GasEstimation | null;
+    gas_estimation: SolanaAPI.SolanaGasEstimation | null;
 
     /**
      * Transaction Simulation Result
@@ -152,41 +153,6 @@ export namespace MessageScanResponse {
   }
 
   export namespace Result {
-    /**
-     * Transaction Gas Estimation
-     */
-    export interface GasEstimation {
-      /**
-       * Base transaction fee in lamports
-       */
-      network_fee: string;
-
-      /**
-       * Prioritization fee in lamports
-       */
-      priority_fee: string;
-
-      /**
-       * Total fee in lamports
-       */
-      total: string;
-
-      /**
-       * Rent deposit fees for newly created accounts
-       */
-      account_rent_fees?: Array<GasEstimation.AccountRentFee>;
-    }
-
-    export namespace GasEstimation {
-      export interface AccountRentFee {
-        account_address: string;
-
-        account_type: string;
-
-        lamports: string;
-      }
-    }
-
     /**
      * Transaction Simulation Result
      */

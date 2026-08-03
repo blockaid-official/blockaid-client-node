@@ -37,6 +37,50 @@ export interface SuiAssetTransferDetailsSchema {
   usd_price?: number | null;
 }
 
+export interface SuiGasEstimation {
+  /**
+   * Cost of the computation performed by the transaction, in MIST.
+   */
+  computation_cost: string;
+
+  /**
+   * Portion of the storage fee that is not refundable, in MIST.
+   */
+  non_refundable_storage_fee: string;
+
+  /**
+   * Gas estimation succeeded.
+   */
+  status: 'Success';
+
+  /**
+   * Cost of the storage the transaction consumes, in MIST.
+   */
+  storage_cost: string;
+
+  /**
+   * Rebate for storage freed by the transaction, in MIST.
+   */
+  storage_rebate: string;
+
+  /**
+   * Net fee charged (computation_cost + storage_cost - storage_rebate), in MIST.
+   */
+  used: string;
+}
+
+export interface SuiGasEstimationError {
+  /**
+   * Reason gas estimation could not be produced (e.g. the simulation failed).
+   */
+  error: string;
+
+  /**
+   * Gas estimation failed.
+   */
+  status: 'Error';
+}
+
 export interface SuiNativeAssetDetailsSchema {
   /**
    * Decimals of the asset
@@ -114,6 +158,12 @@ export interface SuiNFTDiffSchema {
 }
 
 export interface SuiTransactionScanResponse {
+  /**
+   * Gas estimation for the transaction; only present when the gas_estimation option
+   * is requested.
+   */
+  gas_estimation?: SuiGasEstimation | SuiGasEstimationError | null;
+
   /**
    * Simulation result; Only present if simulation option is included in the request
    */
@@ -496,6 +546,8 @@ Sui.Address = Address;
 export declare namespace Sui {
   export {
     type SuiAssetTransferDetailsSchema as SuiAssetTransferDetailsSchema,
+    type SuiGasEstimation as SuiGasEstimation,
+    type SuiGasEstimationError as SuiGasEstimationError,
     type SuiNativeAssetDetailsSchema as SuiNativeAssetDetailsSchema,
     type SuiNFTDetailsSchema as SuiNFTDetailsSchema,
     type SuiNFTDiffSchema as SuiNFTDiffSchema,

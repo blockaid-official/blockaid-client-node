@@ -120,7 +120,8 @@ export namespace AddressReportParams {
         | 'plasma'
         | 'mantle'
         | 'robinhood'
-        | 'arc';
+        | 'arc'
+        | 'flare';
 
       /**
        * The domain related to this address.

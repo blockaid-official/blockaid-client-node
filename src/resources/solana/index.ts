@@ -2,4 +2,4 @@
 
 export { Address, type AddressScanResponse, type AddressScanParams } from './address';
 export { Message, type MessageScanResponse, type MessageScanParams } from './message';
-export { Solana } from './solana';
+export { Solana, type SolanaAccountRentFee, type SolanaGasEstimation } from './solana';

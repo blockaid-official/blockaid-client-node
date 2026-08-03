@@ -433,7 +433,7 @@ export interface PostTransactionScanParams {
    *
    * - `Options.simulation`: Include Options.simulation output in the response
    */
-  options?: Array<'validation' | 'simulation'>;
+  options?: Array<'validation' | 'simulation' | 'gas_estimation'>;
 }
 
 export namespace PostTransactionScanParams {
