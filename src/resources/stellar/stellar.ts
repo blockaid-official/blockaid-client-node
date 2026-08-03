@@ -62,6 +62,42 @@ export interface StellarAssetTransferDetails {
   usd_price?: number | null;
 }
 
+export interface StellarClassicGasEstimation {
+  /**
+   * The network's minimum fee per operation, in stroops (currently 100).
+   */
+  base_fee: string;
+
+  /**
+   * Number of operations in the transaction.
+   */
+  operation_count: string;
+
+  /**
+   * Gas estimation succeeded.
+   */
+  status: 'Success';
+
+  /**
+   * Fee charged, in stroops. On-chain: the real fee taken. Pre-sign: the
+   * network-minimum estimate (base_fee times operation_count, plus one operation for
+   * a fee-bump). Surge pricing can make the real on-chain charge higher.
+   */
+  used: string;
+}
+
+export interface StellarGasEstimationError {
+  /**
+   * Reason gas estimation could not be produced (e.g. the simulation failed).
+   */
+  error: string;
+
+  /**
+   * Gas estimation failed.
+   */
+  status: 'Error';
+}
+
 export interface StellarLegacyAssetDetails {
   /**
    * Asset code
@@ -144,6 +180,53 @@ export namespace StellarSingleAssetExposure {
   }
 }
 
+export interface StellarSorobanGasEstimation {
+  /**
+   * The inclusion (priority) fee - paid to get the transaction into a ledger,
+   * separate from resource costs. In stroops.
+   */
+  inclusion_fee: string;
+
+  /**
+   * The fee for the contract invocation's resource usage - CPU, ledger reads/writes,
+   * and bandwidth. In stroops.
+   */
+  resource_fee: string;
+
+  /**
+   * Raw resource usage that drives the resource fee.
+   */
+  resources: StellarSorobanResources;
+
+  /**
+   * Gas estimation succeeded.
+   */
+  status: 'Success';
+
+  /**
+   * Fee charged, in stroops. On-chain: the real fee taken. Pre-sign: the estimated
+   * total (inclusion_fee + resource_fee).
+   */
+  used: string;
+}
+
+export interface StellarSorobanResources {
+  /**
+   * Number of CPU instructions the invocation consumes.
+   */
+  cpu_instructions: string;
+
+  /**
+   * Bytes read from the ledger.
+   */
+  read_bytes: string;
+
+  /**
+   * Bytes written to the ledger.
+   */
+  write_bytes: string;
+}
+
 export interface StellarTransactionScanRequest {
   account_address: string;
 
@@ -167,8 +250,11 @@ export interface StellarTransactionScanRequest {
    * - `Options.validation`: Include Options.validation output in the response
    *
    * - `Options.simulation`: Include Options.simulation output in the response
+   *
+   * - `Options.gas_estimation`: Include Options.gas_estimation output in the
+   *   response
    */
-  options?: Array<'validation' | 'simulation'>;
+  options?: Array<'validation' | 'simulation' | 'gas_estimation'>;
 
   /**
    * Optional customer-supplied hints about transaction intent that cannot be
@@ -307,6 +393,17 @@ export namespace StellarTransactionScanRequest {
 }
 
 export interface StellarTransactionScanResponse {
+  /**
+   * Gas estimation for the transaction; only present when the gas_estimation option
+   * is requested. Classic and Soroban transactions each return their respective
+   * variant.
+   */
+  gas_estimation?:
+    | StellarClassicGasEstimation
+    | StellarSorobanGasEstimation
+    | StellarGasEstimationError
+    | null;
+
   /**
    * Simulation result; Only present if simulation option is included in the request
    */
@@ -694,9 +791,13 @@ export declare namespace Stellar {
   export {
     type StellarAssetContractDetails as StellarAssetContractDetails,
     type StellarAssetTransferDetails as StellarAssetTransferDetails,
+    type StellarClassicGasEstimation as StellarClassicGasEstimation,
+    type StellarGasEstimationError as StellarGasEstimationError,
     type StellarLegacyAssetDetails as StellarLegacyAssetDetails,
     type StellarNativeAssetDetails as StellarNativeAssetDetails,
     type StellarSingleAssetExposure as StellarSingleAssetExposure,
+    type StellarSorobanGasEstimation as StellarSorobanGasEstimation,
+    type StellarSorobanResources as StellarSorobanResources,
     type StellarTransactionScanRequest as StellarTransactionScanRequest,
     type StellarTransactionScanResponse as StellarTransactionScanResponse,
   };

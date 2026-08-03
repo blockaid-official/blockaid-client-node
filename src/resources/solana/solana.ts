@@ -11,10 +11,50 @@ export class Solana extends APIResource {
   address: AddressAPI.Address = new AddressAPI.Address(this._client);
 }
 
+export interface SolanaAccountRentFee {
+  account_address: string;
+
+  account_type: string;
+
+  lamports: string;
+}
+
+export interface SolanaGasEstimation {
+  /**
+   * Base transaction fee in lamports
+   */
+  network_fee: string;
+
+  /**
+   * Prioritization fee in lamports
+   */
+  priority_fee: string;
+
+  /**
+   * Total fee in lamports
+   */
+  total: string;
+
+  /**
+   * Total fee in lamports (equal to total; added for cross-chain consistency)
+   */
+  used: string;
+
+  /**
+   * Rent deposit fees for newly created accounts
+   */
+  account_rent_fees?: Array<SolanaAccountRentFee>;
+}
+
 Solana.Message = Message;
 Solana.Address = Address;
 
 export declare namespace Solana {
+  export {
+    type SolanaAccountRentFee as SolanaAccountRentFee,
+    type SolanaGasEstimation as SolanaGasEstimation,
+  };
+
   export {
     Message as Message,
     type MessageScanResponse as MessageScanResponse,
