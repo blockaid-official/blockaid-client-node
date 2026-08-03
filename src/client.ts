@@ -110,7 +110,7 @@ import {
 import { ExchangeProtection } from './resources/exchange-protection/exchange-protection';
 import { Hedera } from './resources/hedera/hedera';
 import { Organization } from './resources/organization/organization';
-import { Solana } from './resources/solana/solana';
+import { Solana, SolanaAccountRentFee, SolanaGasEstimation } from './resources/solana/solana';
 import {
   Starknet,
   StarknetErc1155Details,
@@ -126,15 +126,21 @@ import {
   Stellar,
   StellarAssetContractDetails,
   StellarAssetTransferDetails,
+  StellarClassicGasEstimation,
+  StellarGasEstimationError,
   StellarLegacyAssetDetails,
   StellarNativeAssetDetails,
   StellarSingleAssetExposure,
+  StellarSorobanGasEstimation,
+  StellarSorobanResources,
   StellarTransactionScanRequest,
   StellarTransactionScanResponse,
 } from './resources/stellar/stellar';
 import {
   Sui,
   SuiAssetTransferDetailsSchema,
+  SuiGasEstimation,
+  SuiGasEstimationError,
   SuiNFTDetailsSchema,
   SuiNFTDiffSchema,
   SuiNativeAssetDetailsSchema,
@@ -968,7 +974,11 @@ export declare namespace Blockaid {
     type ValidateBulkExtendedAddressesResponse as ValidateBulkExtendedAddressesResponse,
   };
 
-  export { Solana as Solana };
+  export {
+    Solana as Solana,
+    type SolanaAccountRentFee as SolanaAccountRentFee,
+    type SolanaGasEstimation as SolanaGasEstimation,
+  };
 
   export { Hedera as Hedera };
 
@@ -976,9 +986,13 @@ export declare namespace Blockaid {
     Stellar as Stellar,
     type StellarAssetContractDetails as StellarAssetContractDetails,
     type StellarAssetTransferDetails as StellarAssetTransferDetails,
+    type StellarClassicGasEstimation as StellarClassicGasEstimation,
+    type StellarGasEstimationError as StellarGasEstimationError,
     type StellarLegacyAssetDetails as StellarLegacyAssetDetails,
     type StellarNativeAssetDetails as StellarNativeAssetDetails,
     type StellarSingleAssetExposure as StellarSingleAssetExposure,
+    type StellarSorobanGasEstimation as StellarSorobanGasEstimation,
+    type StellarSorobanResources as StellarSorobanResources,
     type StellarTransactionScanRequest as StellarTransactionScanRequest,
     type StellarTransactionScanResponse as StellarTransactionScanResponse,
   };
@@ -1004,6 +1018,8 @@ export declare namespace Blockaid {
   export {
     Sui as Sui,
     type SuiAssetTransferDetailsSchema as SuiAssetTransferDetailsSchema,
+    type SuiGasEstimation as SuiGasEstimation,
+    type SuiGasEstimationError as SuiGasEstimationError,
     type SuiNativeAssetDetailsSchema as SuiNativeAssetDetailsSchema,
     type SuiNFTDetailsSchema as SuiNFTDetailsSchema,
     type SuiNFTDiffSchema as SuiNFTDiffSchema,

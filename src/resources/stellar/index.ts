@@ -5,9 +5,13 @@ export {
   Stellar,
   type StellarAssetContractDetails,
   type StellarAssetTransferDetails,
+  type StellarClassicGasEstimation,
+  type StellarGasEstimationError,
   type StellarLegacyAssetDetails,
   type StellarNativeAssetDetails,
   type StellarSingleAssetExposure,
+  type StellarSorobanGasEstimation,
+  type StellarSorobanResources,
   type StellarTransactionScanRequest,
   type StellarTransactionScanResponse,
 } from './stellar';
