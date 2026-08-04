@@ -362,6 +362,18 @@ Methods:
 - <code title="get /v0/token/snapshot/diff">client.tokenSnapshot.<a href="./src/resources/token-snapshot.ts">diff</a>({ ...params }) -> TokenSnapshotDiffResponse</code>
 - <code title="get /v0/token/snapshot/full">client.tokenSnapshot.<a href="./src/resources/token-snapshot.ts">full</a>({ ...params }) -> TokenSnapshotFullResponse</code>
 
+# TokenBulkExport
+
+Types:
+
+- <code><a href="./src/resources/token-bulk-export.ts">TokenBulkExportCreateResponse</a></code>
+- <code><a href="./src/resources/token-bulk-export.ts">TokenBulkExportStatusResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/token/bulk-export/jobs">client.tokenBulkExport.<a href="./src/resources/token-bulk-export.ts">create</a>({ ...params }) -> TokenBulkExportCreateResponse</code>
+- <code title="get /v0/token/bulk-export/jobs/{job_id}">client.tokenBulkExport.<a href="./src/resources/token-bulk-export.ts">status</a>(jobID) -> TokenBulkExportStatusResponse</code>
+
 # ExchangeProtection
 
 ## Withdrawal
