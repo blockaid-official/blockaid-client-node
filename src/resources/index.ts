@@ -104,6 +104,12 @@ export {
 } from './token';
 export { TokenBulk, type TokenBulkScanResponse, type TokenBulkScanParams } from './token-bulk';
 export {
+  TokenBulkExport,
+  type TokenBulkExportCreateResponse,
+  type TokenBulkExportStatusResponse,
+  type TokenBulkExportCreateParams,
+} from './token-bulk-export';
+export {
   TokenSnapshot,
   type TokenSnapshotDiffResponse,
   type TokenSnapshotFullResponse,
