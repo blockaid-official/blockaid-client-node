@@ -59,6 +59,12 @@ import {
 } from './resources/token';
 import { TokenBulk, TokenBulkScanParams, TokenBulkScanResponse } from './resources/token-bulk';
 import {
+  TokenBulkExport,
+  TokenBulkExportCreateParams,
+  TokenBulkExportCreateResponse,
+  TokenBulkExportStatusResponse,
+} from './resources/token-bulk-export';
+import {
   TokenSnapshot,
   TokenSnapshotDiffParams,
   TokenSnapshotDiffResponse,
@@ -926,6 +932,7 @@ export class Blockaid {
   tokenBulk: API.TokenBulk = new API.TokenBulk(this);
   tokenWebhooks: API.TokenWebhooks = new API.TokenWebhooks(this);
   tokenSnapshot: API.TokenSnapshot = new API.TokenSnapshot(this);
+  tokenBulkExport: API.TokenBulkExport = new API.TokenBulkExport(this);
   exchangeProtection: API.ExchangeProtection = new API.ExchangeProtection(this);
   chainAgnostic: API.ChainAgnostic = new API.ChainAgnostic(this);
   enrichment: API.Enrichment = new API.Enrichment(this);
@@ -945,6 +952,7 @@ Blockaid.Token = Token;
 Blockaid.TokenBulk = TokenBulk;
 Blockaid.TokenWebhooks = TokenWebhooks;
 Blockaid.TokenSnapshot = TokenSnapshot;
+Blockaid.TokenBulkExport = TokenBulkExport;
 Blockaid.ExchangeProtection = ExchangeProtection;
 Blockaid.ChainAgnostic = ChainAgnostic;
 Blockaid.Enrichment = Enrichment;
@@ -1077,6 +1085,13 @@ export declare namespace Blockaid {
     type TokenSnapshotFullResponse as TokenSnapshotFullResponse,
     type TokenSnapshotDiffParams as TokenSnapshotDiffParams,
     type TokenSnapshotFullParams as TokenSnapshotFullParams,
+  };
+
+  export {
+    TokenBulkExport as TokenBulkExport,
+    type TokenBulkExportCreateResponse as TokenBulkExportCreateResponse,
+    type TokenBulkExportStatusResponse as TokenBulkExportStatusResponse,
+    type TokenBulkExportCreateParams as TokenBulkExportCreateParams,
   };
 
   export { ExchangeProtection as ExchangeProtection };
