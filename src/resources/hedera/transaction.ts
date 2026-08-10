@@ -1005,7 +1005,9 @@ export namespace TransactionScanResponse {
   export interface HederaValidationResult {
     /**
      * A textual classification that can be presented to the user explaining the
-     * reason.
+     * reason. See the
+     * [Classifications reference](/api-reference/end-user-protection/transaction-scanning/hedera/hedera-transaction-scanning-response-reference#classifications)
+     * for possible values.
      */
     classification: string;
 
@@ -1014,11 +1016,18 @@ export namespace TransactionScanResponse {
      */
     description: string;
 
+    /**
+     * See the
+     * [Features reference](/api-reference/end-user-protection/transaction-scanning/hedera/hedera-transaction-scanning-response-reference#features)
+     * for possible feature IDs.
+     */
     features: Array<HederaValidationResult.Feature>;
 
     /**
      * A textual description about the reasons the transaction was flagged with
-     * result_type
+     * result_type. See the
+     * [Reasons reference](/api-reference/end-user-protection/transaction-scanning/hedera/hedera-transaction-scanning-response-reference#reasons)
+     * for possible values.
      */
     reason: string;
 

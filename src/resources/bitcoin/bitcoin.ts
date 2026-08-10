@@ -946,7 +946,9 @@ export namespace BitcoinTransactionScanResponse {
   export interface BitcoinValidationResult {
     /**
      * A textual classification that can be presented to the user explaining the
-     * reason.
+     * reason. See the
+     * [Classifications reference](/api-reference/end-user-protection/transaction-scanning/bitcoin/bitcoin-transaction-scanning-response-reference#classifications)
+     * for possible values.
      */
     classification: string;
 
@@ -957,13 +959,17 @@ export namespace BitcoinTransactionScanResponse {
 
     /**
      * List of validation findings (addresses and classifications) that contributed to
-     * the verdict.
+     * the verdict. See the
+     * [Features reference](/api-reference/end-user-protection/transaction-scanning/bitcoin/bitcoin-transaction-scanning-response-reference#features)
+     * for possible feature IDs.
      */
     features: Array<BitcoinValidationResult.Feature>;
 
     /**
      * Human-readable explanation of why the transaction received the given
-     * `result_type` verdict.
+     * `result_type` verdict. See the
+     * [Reasons reference](/api-reference/end-user-protection/transaction-scanning/bitcoin/bitcoin-transaction-scanning-response-reference#reasons)
+     * for possible values.
      */
     reason: string;
 

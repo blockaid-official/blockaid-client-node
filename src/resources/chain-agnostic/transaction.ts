@@ -76,7 +76,9 @@ export namespace TransactionScanResponse {
     status: 'Success' | 'Error';
 
     /**
-     * List of features detected during the scan
+     * List of features detected during the scan. See the
+     * [Available Features reference](/api-reference/crypto-fraud-prevention/crypto-fraud-transaction-scan-response-reference#common-feature-ids)
+     * for possible feature IDs.
      */
     features?: Array<Validation.AddressFeature | Validation.URLFeature | Validation.TransactionFeature>;
   }

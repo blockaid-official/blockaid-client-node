@@ -143,7 +143,9 @@ export interface AddressValidation {
 
   /**
    * A list of features explaining the scan result (each feature includes a type,
-   * feature_id, and description).
+   * feature_id, and description). See the
+   * [Features reference](/api-reference/end-user-protection/address-scanning/address-scanning-response-reference#features)
+   * for possible feature IDs.
    */
   features?: Array<AddressValidation.UnionMember0> | Array<string>;
 }

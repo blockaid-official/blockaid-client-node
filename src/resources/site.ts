@@ -31,6 +31,12 @@ export class Site extends APIResource {
 }
 
 export interface SiteScanHitResponse {
+  /**
+   * Object whose keys are attack type identifiers and values are AttackEntry
+   * objects. See the
+   * [Attack Type Reference](/api-reference/end-user-protection/dapp-scanning/dapp-scanning-response-reference#attack-type-reference)
+   * for possible keys.
+   */
   attack_types: { [key: string]: SiteScanHitResponse.AttackTypes };
 
   contract_read: SiteScanHitResponse.ContractRead;

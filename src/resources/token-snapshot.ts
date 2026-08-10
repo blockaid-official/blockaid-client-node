@@ -105,7 +105,12 @@ export namespace TokenSnapshotDiffResponse {
     trading_limits: Item.TradingLimits;
 
     /**
-     * List of features associated with the token
+     * List of features associated with the token. See
+     * [Red Signal Features](/api-reference/end-user-protection/token-scanning/parse-security-risk-and-context#red-signal-features),
+     * [Green Signal Features](/api-reference/end-user-protection/token-scanning/parse-security-risk-and-context#green-signal-features),
+     * and
+     * [Info Features](/api-reference/end-user-protection/token-scanning/parse-security-risk-and-context#info-features)
+     * for the full feature ID catalog.
      */
     features?: Array<Item.Feature>;
   }
@@ -740,7 +745,12 @@ export namespace TokenSnapshotFullResponse {
     trading_limits: Item.TradingLimits;
 
     /**
-     * List of features associated with the token
+     * List of features associated with the token. See
+     * [Red Signal Features](/api-reference/end-user-protection/token-scanning/parse-security-risk-and-context#red-signal-features),
+     * [Green Signal Features](/api-reference/end-user-protection/token-scanning/parse-security-risk-and-context#green-signal-features),
+     * and
+     * [Info Features](/api-reference/end-user-protection/token-scanning/parse-security-risk-and-context#info-features)
+     * for the full feature ID catalog.
      */
     features?: Array<Item.Feature>;
   }
