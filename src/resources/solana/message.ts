@@ -2539,7 +2539,6 @@ export interface MessageScanParams {
     | 'signAndSendTransaction'
     | 'signAndSendAllTransactions'
     | 'signTransaction'
-    | 'sendRawTransaction'
     | 'signAllTransactions';
 
   /**
