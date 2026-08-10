@@ -2535,7 +2535,12 @@ export interface MessageScanParams {
   /**
    * The RPC method used by the dApp to propose the transaction
    */
-  method?: string;
+  method?:
+    | 'signAndSendTransaction'
+    | 'signAndSendAllTransactions'
+    | 'signTransaction'
+    | 'sendRawTransaction'
+    | 'signAllTransactions';
 
   /**
    * List of options to include in the response
