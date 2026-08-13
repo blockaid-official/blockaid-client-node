@@ -600,6 +600,7 @@ export namespace TokenBulkScanResponse {
         | 'INSUFFICIENT_LOCKED_LIQUIDITY'
         | 'UNSTABLE_TOKEN_PRICE'
         | 'RUGPULL'
+        | 'KNOWN_RUGPULL_CODE_PATTERN'
         | 'WASH_TRADING'
         | 'CONSUMER_OVERRIDE'
         | 'INAPPROPRIATE_CONTENT'
