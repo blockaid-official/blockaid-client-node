@@ -609,8 +609,6 @@ export namespace TokenBulkScanResponse {
         | 'HIGH_SELL_FEE'
         | 'UNSELLABLE_TOKEN'
         | 'IS_MINTABLE'
-        | 'REBASE_TOKEN'
-        | 'LIQUID_STAKING_TOKEN'
         | 'MODIFIABLE_TAXES'
         | 'CAN_BLACKLIST'
         | 'CAN_WHITELIST'
