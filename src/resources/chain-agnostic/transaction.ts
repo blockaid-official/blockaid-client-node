@@ -222,7 +222,6 @@ export namespace TransactionScanParams {
       | 'avalanche-fuji'
       | 'degen'
       | 'gnosis'
-      | 'worldchain'
       | 'soneium-minato'
       | 'ronin'
       | 'apechain'
