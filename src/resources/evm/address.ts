@@ -92,7 +92,6 @@ export namespace AddressReportParams {
         | 'degen'
         | 'avalanche-fuji'
         | 'gnosis'
-        | 'worldchain'
         | 'soneium-minato'
         | 'ronin'
         | 'apechain'
