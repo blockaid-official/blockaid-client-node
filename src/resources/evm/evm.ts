@@ -86,7 +86,6 @@ export interface AddressReportParams {
     | 'degen'
     | 'avalanche-fuji'
     | 'gnosis'
-    | 'worldchain'
     | 'soneium-minato'
     | 'ronin'
     | 'apechain'
@@ -143,7 +142,9 @@ export interface AddressValidation {
 
   /**
    * A list of features explaining the scan result (each feature includes a type,
-   * feature_id, and description).
+   * feature_id, and description). See the
+   * [Features reference](/api-reference/end-user-protection/address-scanning/address-scanning-response-reference#features)
+   * for possible feature IDs.
    */
   features?: Array<AddressValidation.UnionMember0> | Array<string>;
 }
@@ -182,6 +183,7 @@ export namespace AddressValidation {
       | 'INSUFFICIENT_LOCKED_LIQUIDITY'
       | 'UNSTABLE_TOKEN_PRICE'
       | 'RUGPULL'
+      | 'KNOWN_RUGPULL_CODE_PATTERN'
       | 'WASH_TRADING'
       | 'CONSUMER_OVERRIDE'
       | 'INAPPROPRIATE_CONTENT'
@@ -190,8 +192,6 @@ export namespace AddressValidation {
       | 'HIGH_SELL_FEE'
       | 'UNSELLABLE_TOKEN'
       | 'IS_MINTABLE'
-      | 'REBASE_TOKEN'
-      | 'LIQUID_STAKING_TOKEN'
       | 'MODIFIABLE_TAXES'
       | 'CAN_BLACKLIST'
       | 'CAN_WHITELIST'
@@ -443,7 +443,6 @@ export type TransactionScanSupportedChain =
   | 'degen'
   | 'avalanche-fuji'
   | 'gnosis'
-  | 'worldchain'
   | 'soneium-minato'
   | 'ronin'
   | 'apechain'
@@ -1172,6 +1171,7 @@ export namespace ValidateBulkExtendedAddressesResponse {
           | 'INSUFFICIENT_LOCKED_LIQUIDITY'
           | 'UNSTABLE_TOKEN_PRICE'
           | 'RUGPULL'
+          | 'KNOWN_RUGPULL_CODE_PATTERN'
           | 'WASH_TRADING'
           | 'CONSUMER_OVERRIDE'
           | 'INAPPROPRIATE_CONTENT'
@@ -1180,8 +1180,6 @@ export namespace ValidateBulkExtendedAddressesResponse {
           | 'HIGH_SELL_FEE'
           | 'UNSELLABLE_TOKEN'
           | 'IS_MINTABLE'
-          | 'REBASE_TOKEN'
-          | 'LIQUID_STAKING_TOKEN'
           | 'MODIFIABLE_TAXES'
           | 'CAN_BLACKLIST'
           | 'CAN_WHITELIST'

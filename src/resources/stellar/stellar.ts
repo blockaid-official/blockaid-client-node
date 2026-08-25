@@ -728,7 +728,9 @@ export namespace StellarTransactionScanResponse {
   export interface StellarValidationResult {
     /**
      * A textual classification that can be presented to the user explaining the
-     * reason.
+     * reason. See the
+     * [Classification reference](/api-reference/end-user-protection/transaction-scanning/stellar/stellar-transaction-scanning-response-reference#classification)
+     * for possible values.
      */
     classification: string;
 
@@ -741,7 +743,9 @@ export namespace StellarTransactionScanResponse {
 
     /**
      * A textual description about the reasons the transaction was flagged with
-     * result_type
+     * result_type. See the
+     * [Reasons reference](/api-reference/end-user-protection/transaction-scanning/stellar/stellar-transaction-scanning-response-reference#reasons)
+     * for possible values.
      */
     reason: string;
 

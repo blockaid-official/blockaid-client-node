@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.8.0 (2026-08-21)
+
+Full Changelog: [v1.7.0...v1.8.0](https://github.com/blockaid-official/blockaid-client-node/compare/v1.7.0...v1.8.0)
+
+### Features
+
+* **api:** api update ([ee15791](https://github.com/blockaid-official/blockaid-client-node/commit/ee1579158c0ca67310bb9fbeed65a15666cc5ffb))
+* **api:** api update ([0e47a83](https://github.com/blockaid-official/blockaid-client-node/commit/0e47a83148797cb137059101c876a4c4306c5e39))
+* **api:** api update ([f258284](https://github.com/blockaid-official/blockaid-client-node/commit/f258284498c5f7ec3097d75c92c74b8ee3d25326))
+* **api:** api update ([edaa3c1](https://github.com/blockaid-official/blockaid-client-node/commit/edaa3c11e1e6b48784f7577100500e68ab2c6ceb))
+* **api:** api update ([0c01f31](https://github.com/blockaid-official/blockaid-client-node/commit/0c01f31ba93b133edea34725148352e92eda158b))
+* **api:** api update ([7755bc9](https://github.com/blockaid-official/blockaid-client-node/commit/7755bc9a7299dd5a6a80c033a21d6ec3d449b34e))
+
+
+### Chores
+
+* **internal:** allow the mock server port to be set with STAINLESS_MOCK_PORT ([d669e3f](https://github.com/blockaid-official/blockaid-client-node/commit/d669e3fa0576c83b2e6ecb5538ae5104e679d54a))
+
 ## 1.7.0 (2026-08-04)
 
 Full Changelog: [v1.6.0...v1.7.0](https://github.com/blockaid-official/blockaid-client-node/compare/v1.6.0...v1.7.0)

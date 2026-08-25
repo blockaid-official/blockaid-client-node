@@ -5103,7 +5103,9 @@ export namespace PostTransactionScanResponse {
 
   export interface RoutersEvmResponseTransactionValidation {
     /**
-     * A list of features about this transaction explaining the validation.
+     * A list of features about this transaction explaining the validation. See the
+     * [Features reference](/api-reference/end-user-protection/transaction-scanning/evm/transaction-scanning-evm/evm-transaction-scanning-response-reference#features)
+     * for possible feature IDs.
      */
     features: Array<RoutersEvmResponseTransactionValidation.Feature>;
 
@@ -5119,7 +5121,9 @@ export namespace PostTransactionScanResponse {
 
     /**
      * A textual classification that can be presented to the user explaining the
-     * reason.
+     * reason. See the
+     * [Classifications reference](/api-reference/end-user-protection/transaction-scanning/evm/transaction-scanning-evm/evm-transaction-scanning-response-reference#classifications)
+     * for possible values.
      */
     classification?: string;
 
@@ -5131,7 +5135,9 @@ export namespace PostTransactionScanResponse {
 
     /**
      * A textual description about the reasons the transaction was flagged with
-     * result_type.
+     * result_type. See the
+     * [Classifications reference](/api-reference/end-user-protection/transaction-scanning/evm/transaction-scanning-evm/evm-transaction-scanning-response-reference#classifications)
+     * for possible values.
      */
     reason?: string;
   }

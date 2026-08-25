@@ -39,7 +39,6 @@ export interface EnrichmentReportAddress {
     | 'avalanche-fuji'
     | 'degen'
     | 'gnosis'
-    | 'worldchain'
     | 'soneium-minato'
     | 'ronin'
     | 'apechain'
