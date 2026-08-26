@@ -81,7 +81,7 @@ export interface StellarClassicGasEstimation {
   /**
    * Fee charged, in stroops. On-chain: the real fee taken. Pre-sign: the
    * network-minimum estimate (base_fee times operation_count, plus one operation for
-   * a fee-bump). Surge pricing can make the real on-chain charge higher.
+   * a fee-bump). Surge pricing can make the real onchain charge higher.
    */
   used: string;
 }
@@ -258,7 +258,7 @@ export interface StellarTransactionScanRequest {
 
   /**
    * Optional customer-supplied hints about transaction intent that cannot be
-   * inferred from on-chain simulation.
+   * inferred from onchain simulation.
    */
   transaction_hints?: Array<
     StellarTransactionScanRequest.CrossChainBridgeHint | StellarTransactionScanRequest.GenericTransactionHint
@@ -299,7 +299,7 @@ export namespace StellarTransactionScanRequest {
 
   /**
    * Customer-supplied context for a cross-chain bridge deposit where the protocol
-   * does not emit the destination on-chain.
+   * does not emit the destination onchain.
    */
   export interface CrossChainBridgeHint {
     /**
@@ -309,7 +309,7 @@ export namespace StellarTransactionScanRequest {
 
     /**
      * The intended recipient address on the destination chain. Required when the
-     * bridge protocol does not emit this on-chain (e.g. Relay, some Across deposit
+     * bridge protocol does not emit this onchain (e.g. Relay, some Across deposit
      * routes).
      */
     destination_address?: string;
