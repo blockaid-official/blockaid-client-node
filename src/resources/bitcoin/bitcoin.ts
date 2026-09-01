@@ -936,7 +936,7 @@ export namespace BitcoinTransactionScanResponse {
 
   export interface BitcoinSimulationErrorSchema {
     /**
-     * Error message
+     * Error message explaining why simulation failed.
      */
     error: string;
 
@@ -974,7 +974,7 @@ export namespace BitcoinTransactionScanResponse {
     reason: string;
 
     /**
-     * Verdict of the validation.
+     * Overall verdict for the transaction: Benign, Warning, or Malicious.
      */
     result_type: 'Benign' | 'Warning' | 'Malicious';
 
@@ -1007,7 +1007,7 @@ export namespace BitcoinTransactionScanResponse {
 
   export interface BitcoinValidationErrorSchema {
     /**
-     * Error message
+     * Error message explaining why validation failed.
      */
     error: string;
 

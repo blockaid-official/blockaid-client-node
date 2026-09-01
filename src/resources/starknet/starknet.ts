@@ -408,7 +408,9 @@ export interface StarknetTransactionScanResponse {
     | null;
 
   /**
-   * Validation result; Only present if validation option is included in the request
+   * Validation result: a success object (`status: "Success"`) with a `result_type`
+   * of Benign, Warning, or Malicious, or an error object (`status: "Error"`). Only
+   * present if the `validation` option is included in the request.
    */
   validation?:
     | StarknetTransactionScanResponse.StarknetValidationResult
@@ -432,8 +434,8 @@ export namespace StarknetTransactionScanResponse {
     address_details?: Array<StarknetStarknetSimulationResultSchema.AddressDetail>;
 
     /**
-     * Mapping between the address of an account to the assets diff during the
-     * transaction
+     * Mapping between the address of an account and the assets diff during the
+     * transaction; values are arrays of ERC20, ERC721, or ERC1155 asset diffs.
      */
     assets_diffs?: {
       [key: string]: Array<
@@ -449,8 +451,8 @@ export namespace StarknetTransactionScanResponse {
     block_number?: string | null;
 
     /**
-     * Mapping between the address of an account to the exposure of the assets during
-     * the transaction
+     * Mapping between the address of an account and the exposure of the assets during
+     * the transaction; values are arrays of ERC20, ERC721, or ERC1155 exposures.
      */
     exposures?: {
       [key: string]: Array<
@@ -807,7 +809,7 @@ export namespace StarknetTransactionScanResponse {
 
   export interface StarknetSimulationErrorSchema {
     /**
-     * Error message
+     * Error message describing what went wrong during the simulation.
      */
     error: string;
 
@@ -829,7 +831,7 @@ export namespace StarknetTransactionScanResponse {
     description: string;
 
     /**
-     * See the
+     * List of features explaining the validation result. See the
      * [Features reference](/api-reference/end-user-protection/transaction-scanning/starknet/starknet-transaction-scanning-response-reference#features)
      * for possible feature IDs.
      */
@@ -844,7 +846,7 @@ export namespace StarknetTransactionScanResponse {
     reason: string;
 
     /**
-     * Verdict of the validation
+     * Verdict of the validation: Benign, Warning, Malicious, or Error.
      */
     result_type: 'Benign' | 'Warning' | 'Malicious' | 'Error';
 
@@ -863,10 +865,15 @@ export namespace StarknetTransactionScanResponse {
        */
       description: string;
 
+      /**
+       * Identifier of the feature. See the
+       * [Features reference](/api-reference/end-user-protection/transaction-scanning/starknet/starknet-transaction-scanning-response-reference#features)
+       * for possible values.
+       */
       feature_id: string;
 
       /**
-       * Feature Classification
+       * Feature classification: Benign, Warning, Malicious, or Info.
        */
       type: 'Benign' | 'Warning' | 'Malicious' | 'Info';
     }
@@ -874,7 +881,7 @@ export namespace StarknetTransactionScanResponse {
 
   export interface StarknetValidationErrorSchema {
     /**
-     * Error message
+     * Error message describing what went wrong during validation.
      */
     error: string;
 

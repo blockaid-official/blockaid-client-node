@@ -62,8 +62,9 @@ export namespace TransactionScanResponse {
     address_details?: Array<HederaSimulationResponse.AddressDetail>;
 
     /**
-     * Mapping between the address of an account to the assets diff during the
-     * transaction
+     * Object keyed by Hedera account address (e.g. "0.0.1234"); each value is an array
+     * of per-asset diffs showing what that account received (`in`) and sent (`out`)
+     * during simulation.
      */
     assets_diffs?: {
       [key: string]: Array<
@@ -74,11 +75,16 @@ export namespace TransactionScanResponse {
     };
 
     /**
-     * Mapping between the address of an account to the exposure of the assets during
-     * the transaction
+     * Object keyed by Hedera account address; each value is an array of exposure
+     * entries, each including an `asset` and a `spenders` map describing which
+     * accounts are granted spending/allowance exposure for that asset.
      */
     exposures?: { [key: string]: Array<HederaSimulationResponse.Exposure> };
 
+    /**
+     * High-level actions detected in the transaction (e.g. native_transfer,
+     * token_transfer, approval).
+     */
     transaction_actions?: Array<
       | 'native_wrap'
       | 'native_transfer'
@@ -106,7 +112,7 @@ export namespace TransactionScanResponse {
       account_exposures: Array<AccountSummary.AccountExposure>;
 
       /**
-       * Total USD diff for the requested account address
+       * Total USD diff (in vs. out) for the requested account address.
        */
       total_usd_diff: AccountSummary.TotalUsdDiff;
 
@@ -250,7 +256,7 @@ export namespace TransactionScanResponse {
       }
 
       /**
-       * Total USD diff for the requested account address
+       * Total USD diff (in vs. out) for the requested account address.
        */
       export interface TotalUsdDiff {
         /**
@@ -966,7 +972,7 @@ export namespace TransactionScanResponse {
 
   export interface HederaSimulationErrorSchema {
     /**
-     * Error message
+     * Error message describing what went wrong during simulation.
      */
     error: string;
 
@@ -1017,7 +1023,7 @@ export namespace TransactionScanResponse {
     description: string;
 
     /**
-     * See the
+     * Structured findings that explain the validation decision. See the
      * [Features reference](/api-reference/end-user-protection/transaction-scanning/hedera/hedera-transaction-scanning-response-reference#features)
      * for possible feature IDs.
      */
@@ -1032,10 +1038,14 @@ export namespace TransactionScanResponse {
     reason: string;
 
     /**
-     * Verdict of the validation
+     * The overall verdict of the validation: "Benign", "Warning", "Malicious", or
+     * "Error".
      */
     result_type: 'Benign' | 'Warning' | 'Malicious' | 'Error';
 
+    /**
+     * Always "Success" for a successful validation.
+     */
     status: 'Success';
   }
 
@@ -1065,10 +1075,13 @@ export namespace TransactionScanResponse {
 
   export interface HederaValidationErrorSchema {
     /**
-     * Error message
+     * Error message describing what went wrong during validation.
      */
     error: string;
 
+    /**
+     * Always "Error" when the validation request could not be completed.
+     */
     status: 'Error';
   }
 }
