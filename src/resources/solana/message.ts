@@ -33,6 +33,9 @@ export class Message extends APIResource {
 }
 
 export interface MessageScanResponse {
+  /**
+   * Encoding used for the transactions in this request, either base58 or base64.
+   */
   encoding: 'base58' | 'base64';
 
   /**
@@ -40,15 +43,26 @@ export interface MessageScanResponse {
    */
   request_id: string | null;
 
+  /**
+   * "SUCCESS" for successful processing, or "ERROR" when the scan fails.
+   */
   status: 'SUCCESS' | 'ERROR';
 
   /**
-   * Error message if the simulation failed
+   * User-friendly error message if the scan or simulation failed, e.g. "Simulation
+   * failed due to an error" or "The transaction was reverted".
    */
   error?: string | null;
 
   /**
-   * Error details
+   * Structured error details; the `type` discriminator determines the shape:
+   * TransactionError (category "REVERT"; `type`, `category`, `message`,
+   * `transaction_index`; common codes AccountNotFound, ProgramAccountNotFound),
+   * InstructionError (category "REVERT"; adds `instruction_index`,
+   * `program_account`, `number`, `code`; common codes InsufficientFunds,
+   * ExceededDesiredSlippageLimit), or ApiError (category "NODE_ERROR"; returned when
+   * the request itself is malformed, e.g. an account address not associated with the
+   * provided transactions).
    */
   error_details?:
     | MessageScanResponse.SolanamodulesTransactionScanningControllersSchemasErrorAPIErrorDetails
@@ -57,7 +71,9 @@ export interface MessageScanResponse {
     | null;
 
   /**
-   * Result of the request
+   * The scan result payload, present when `status` is "SUCCESS". Contains
+   * `validation` and, when requested via `options`, `simulation` and
+   * `gas_estimation`.
    */
   result?: MessageScanResponse.Result | null;
 }
@@ -133,16 +149,21 @@ export namespace MessageScanResponse {
   }
 
   /**
-   * Result of the request
+   * The scan result payload, present when `status` is "SUCCESS". Contains
+   * `validation` and, when requested via `options`, `simulation` and
+   * `gas_estimation`.
    */
   export interface Result {
     /**
-     * Transaction Gas Estimation
+     * Transaction gas estimation, present when the `gas_estimation` option is
+     * included. All fee amounts are returned as strings denominated in lamports.
      */
     gas_estimation: SolanaAPI.SolanaGasEstimation | null;
 
     /**
-     * Transaction Simulation Result
+     * Transaction simulation result, present when the `simulation` option was
+     * requested. If simulation fails, the top-level `error` and `error_details` fields
+     * are returned instead.
      */
     simulation: Result.Simulation | null;
 
@@ -154,7 +175,9 @@ export namespace MessageScanResponse {
 
   export namespace Result {
     /**
-     * Transaction Simulation Result
+     * Transaction simulation result, present when the `simulation` option was
+     * requested. If simulation fails, the top-level `error` and `error_details` fields
+     * are returned instead.
      */
     export interface Simulation {
       /**
@@ -164,7 +187,8 @@ export namespace MessageScanResponse {
       account_summary: Simulation.AccountSummary;
 
       /**
-       * Ownership diffs of the account addresses
+       * Mapping between an account address and its array of asset ownership changes
+       * detected during the simulation.
        */
       assets_ownership_diff: {
         [key: string]: Array<
@@ -176,7 +200,14 @@ export namespace MessageScanResponse {
       };
 
       /**
-       * Details of addresses involved in the transaction
+       * Details of the addresses involved in the transaction. Each entry has a `type`
+       * discriminator (PDA, SYSTEM_ACCOUNT, PROGRAM/NATIVE_PROGRAM, TOKEN_ACCOUNT,
+       * FUNGIBLE_MINT_ACCOUNT, NON_FUNGIBLE_MINT_ACCOUNT, or CNFT_MINT_ACCOUNT) that
+       * determines which additional fields are present, e.g. `account_address`,
+       * `was_written_to`, `was_created` (pair with `gas_estimation.account_rent_fees` to
+       * surface rent deposits for newly created accounts), `owner` (for PDAs),
+       * `mint_address`/`owner_address` (for token accounts), and
+       * `name`/`symbol`/`logo`/`uri` (for mint accounts).
        */
       accounts_details?: Array<
         | Simulation.SolanaPdaAccountSchema
@@ -189,8 +220,9 @@ export namespace MessageScanResponse {
       >;
 
       /**
-       * Mapping between the address of an account to the assets diff during the
-       * transaction
+       * Mapping between an account address and its array of asset changes from the
+       * simulation — native SOL, fungible SPL, non-fungible SPL, or compressed NFT
+       * (cNFT) diffs.
        */
       assets_diff?: {
         [key: string]: Array<
@@ -213,6 +245,9 @@ export namespace MessageScanResponse {
         >;
       };
 
+      /**
+       * High-level actions inferred from the transaction's instructions.
+       */
       transaction_actions?: Array<
         | 'native_wrap'
         | 'native_transfer'
@@ -2480,15 +2515,18 @@ export namespace MessageScanResponse {
     export namespace Validation {
       export interface ExtendedFeature {
         /**
-         * Address the feature refers to
+         * Onchain address associated with this finding, or null when not applicable.
          */
         address: string | null;
 
         /**
-         * Textual description
+         * Textual description of this specific finding.
          */
         description: string;
 
+        /**
+         * Identifier of the specific finding within its feature type.
+         */
         feature_id: string;
 
         /**

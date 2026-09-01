@@ -39,29 +39,36 @@ export class Transaction extends APIResource {
 
 export interface TransactionScanResponse {
   /**
-   * Complete validation result containing all scan details and findings
+   * Complete validation result containing all scan details and findings. The
+   * `status` field indicates whether the scan succeeded ("Success") or encountered
+   * an error ("Error").
    */
   validation: TransactionScanResponse.Validation;
 
   /**
-   * Deep-link URL to the Blockaid platform address overview page for the scanned
-   * `to` address. Null if no URL is available for the given chain.
+   * Deep-link URL to the scanned `to` address overview page in the Blockaid platform
+   * (e.g. `https://app.blockaid.io/scanner/address/{to_address}?chain={chain}`).
+   * Null if no URL is available for the given chain.
    */
   platform_url?: string | null;
 }
 
 export namespace TransactionScanResponse {
   /**
-   * Complete validation result containing all scan details and findings
+   * Complete validation result containing all scan details and findings. The
+   * `status` field indicates whether the scan succeeded ("Success") or encountered
+   * an error ("Error").
    */
   export interface Validation {
     /**
-     * Classification of the scan result based on the detected features
+     * Classification of the scan result based on the detected features (e.g. "Other",
+     * "Known malicious")
      */
     classification: string;
 
     /**
-     * Detailed description of the validation result
+     * Detailed, human-readable description of the validation result. In the error
+     * case, this describes what went wrong or what could still be determined.
      */
     description: string;
 

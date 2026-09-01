@@ -34,29 +34,68 @@ export class JsonRpc extends APIResource {
 }
 
 export interface JsonRpcScanResponse {
+  /**
+   * The block number or tag used for the scan (e.g. "latest" or a specific block
+   * number as a string).
+   */
   block: string;
 
+  /**
+   * The blockchain the transaction is being scanned on (e.g. ethereum, base,
+   * polygon).
+   */
   chain: string;
 
+  /**
+   * The account address whose perspective is used for simulation and validation. If
+   * omitted, it is inferred from the transaction's `from` field.
+   */
   account_address?: string;
 
+  /**
+   * Events decoded/emitted during simulation, when available.
+   */
   events?: Array<JsonRpcScanResponse.Event>;
 
   features?: unknown;
 
+  /**
+   * Included when the `gas_estimation` option is requested. Either a successful
+   * estimate (`status: "Success"`, `used`, `estimate`) or an error
+   * (`status: "Error"`, `error`).
+   */
   gas_estimation?:
     | JsonRpcScanResponse.RoutersEvmModelsTransactionScanGasEstimation
     | JsonRpcScanResponse.RoutersEvmModelsTransactionScanGasEstimationError;
 
+  /**
+   * Included when the `simulation` option is requested. Either a successful
+   * simulation result or a simulation-error result (`status: "Error"`, with an
+   * `error` message and optional `error_details`).
+   */
   simulation?:
     | JsonRpcScanResponse.RoutersEvmResponseTransactionSimulation
     | JsonRpcScanResponse.RoutersEvmResponseTransactionSimulationError;
 
+  /**
+   * Gas estimation for ERC-4337 user operations, when applicable. Success (v6/v7):
+   * `status: "Success"` with `pre_verification_gas_estimate`,
+   * `verification_gas_estimate`, `call_gas_estimate` (plus
+   * `paymaster_verification_gas_estimate` for v7). Error: `status: "Error"`,
+   * `error`.
+   */
   user_operation_gas_estimation?:
     | EvmAPI.UserOperationV6GasEstimation
     | EvmAPI.UserOperationV7GasEstimation
     | JsonRpcScanResponse.RoutersEvmModelsTransactionScanGasEstimationError;
 
+  /**
+   * Included when the `validation` option is requested. Either a successful
+   * validation result (`status: "Success"`, `result_type` one of
+   * Benign/Warning/Malicious) or a validation-error result (`status: "Success"`,
+   * `result_type: "Error"`, with `description`/`reason`/`classification` empty and a
+   * top-level `error` message).
+   */
   validation?:
     | JsonRpcScanResponse.RoutersEvmResponseTransactionValidation
     | JsonRpcScanResponse.RoutersEvmResponseTransactionValidationError;
@@ -64,16 +103,34 @@ export interface JsonRpcScanResponse {
 
 export namespace JsonRpcScanResponse {
   export interface Event {
+    /**
+     * The raw log data of the event.
+     */
     data: string;
 
+    /**
+     * The address that emitted the event.
+     */
     emitter_address: string;
 
+    /**
+     * The raw log topics of the event.
+     */
     topics: Array<string>;
 
+    /**
+     * The name of the contract/token that emitted the event, when known.
+     */
     emitter_name?: string;
 
+    /**
+     * The decoded event name, when available.
+     */
     name?: string;
 
+    /**
+     * Decoded event parameters, when available.
+     */
     params?: Array<Event.Param>;
   }
 
@@ -112,8 +169,8 @@ export namespace JsonRpcScanResponse {
     account_summary: RoutersEvmResponseTransactionSimulation.AccountSummary;
 
     /**
-     * a dictionary including additional information about each relevant address in the
-     * transaction.
+     * Dictionary of per-address details, keyed by address. Values may include
+     * `name_tag`, `contract_name`, and `is_eoa` when available.
      */
     address_details: { [key: string]: RoutersEvmResponseTransactionSimulation.AddressDetails };
 
@@ -154,8 +211,8 @@ export namespace JsonRpcScanResponse {
     status: 'Success';
 
     /**
-     * dictionary represents the usd value each address gained / lost during this
-     * transaction
+     * Dictionary of per-address USD value changes from this transaction, keyed by
+     * address; each value has `in`, `out`, and `total` USD amounts as strings.
      */
     total_usd_diff: { [key: string]: RoutersEvmResponseTransactionSimulation.TotalUsdDiff };
 
@@ -166,7 +223,10 @@ export namespace JsonRpcScanResponse {
     total_usd_exposure: { [key: string]: { [key: string]: string } };
 
     /**
-     * Describes the nature of the transaction and what happened as part of it
+     * High-level actions detected during simulation. Values are either a known
+     * `TransactionAction` enum (e.g. mint, swap, native_transfer, token_transfer,
+     * approval, proxy_upgrade, ownership_change, bridge) or an arbitrary string for
+     * actions without a dedicated type.
      */
     transaction_actions: Array<
       | 'mint'
@@ -183,8 +243,8 @@ export namespace JsonRpcScanResponse {
     >;
 
     /**
-     * Describes the state differences as a result of this transaction for every
-     * involved address
+     * Contract-management findings for every involved address, keyed by address (e.g.
+     * proxy upgrades, ownership changes, module changes, contract creation).
      */
     contract_management?: {
       [key: string]: Array<
@@ -197,18 +257,25 @@ export namespace JsonRpcScanResponse {
     };
 
     /**
-     * Cross-chain asset diffs per address, showing asset movements across different
-     * chains (e.g. bridge transactions)
+     * Per-address asset diffs on the destination chain for cross-chain transactions
+     * (bridges and offchain transfers); each entry's `obj` array holds the diffs,
+     * including a `chain` field identifying the destination chain. Present only when
+     * the transaction involves a cross-chain operation. Use alongside `assets_diffs`:
+     * what leaves the source chain (`assets_diffs`) vs. what arrives on the
+     * destination chain (`cross_chain_asset_diffs`). Supported bridges: `hyperliquid`
+     * (cross-chain), `hyperliquid_internal` (within-chain).
      */
     cross_chain_asset_diffs?: Array<RoutersEvmResponseTransactionSimulation.CrossChainAssetDiff> | null;
 
     /**
-     * Missing balances in the transaction
+     * Missing balances encountered during simulation (e.g. insufficient token/ETH
+     * balance for an action).
      */
     missing_balances?: Array<RoutersEvmResponseTransactionSimulation.MissingBalance>;
 
     /**
-     * The parameters of the transaction that was simulated.
+     * JSON-RPC parameters used for simulation (from, to, value, data, gas, gas_price,
+     * block_tag, chain), including parsed calldata when available.
      */
     params?: RoutersEvmResponseTransactionSimulation.Params;
 
@@ -4698,7 +4765,8 @@ export namespace JsonRpcScanResponse {
     }
 
     /**
-     * The parameters of the transaction that was simulated.
+     * JSON-RPC parameters used for simulation (from, to, value, data, gas, gas_price,
+     * block_tag, chain), including parsed calldata when available.
      */
     export interface Params {
       /**
@@ -4812,7 +4880,9 @@ export namespace JsonRpcScanResponse {
     status: 'Error';
 
     /**
-     * Error details if the simulation failed.
+     * Structured error details when simulation fails; shape varies by error type —
+     * insufficient funds, invalid address, unsupported EIP-712 message, or a generic
+     * error.
      */
     error_details?:
       | RoutersEvmResponseTransactionSimulationError.RoutersEvmResponseGeneralInsufficientFundsErrorDetails
