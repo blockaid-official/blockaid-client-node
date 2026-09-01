@@ -173,7 +173,9 @@ export interface SuiTransactionScanResponse {
     | null;
 
   /**
-   * Validation result; Only present if validation option is included in the request
+   * Validation result: a success object (`status: "Success"`) with a `result_type`
+   * of Benign, Warning, Malicious, or Error, or an error object (`status: "Error"`).
+   * Only present if the `validation` option is included in the request.
    */
   validation?:
     | SuiTransactionScanResponse.SuiValidationResult
@@ -197,8 +199,8 @@ export namespace SuiTransactionScanResponse {
     address_details?: Array<SuiSimulationResult.AddressDetail>;
 
     /**
-     * Mapping between the address of an account to the assets diff during the
-     * transaction
+     * Mapping between the address of an account and the assets diff during the
+     * transaction; values are arrays of native, NFT, or coins asset diffs.
      */
     assets_diffs?: {
       [key: string]: Array<
@@ -473,7 +475,7 @@ export namespace SuiTransactionScanResponse {
 
   export interface SuiSimulationErrorSchema {
     /**
-     * Error message
+     * Error message describing what went wrong during the simulation.
      */
     error: string;
 
@@ -495,7 +497,7 @@ export namespace SuiTransactionScanResponse {
     description: string;
 
     /**
-     * See the
+     * List of features explaining the validation result. See the
      * [Features reference](/api-reference/end-user-protection/transaction-scanning/sui/sui-transaction-scanning-response-reference#features)
      * for possible feature IDs.
      */
@@ -510,7 +512,7 @@ export namespace SuiTransactionScanResponse {
     reason: string;
 
     /**
-     * Verdict of the validation
+     * Verdict of the validation: Benign, Warning, Malicious, or Error.
      */
     result_type: 'Benign' | 'Warning' | 'Malicious' | 'Error';
 
@@ -529,10 +531,15 @@ export namespace SuiTransactionScanResponse {
        */
       description: string;
 
+      /**
+       * Identifier of the feature. See the
+       * [Features reference](/api-reference/end-user-protection/transaction-scanning/sui/sui-transaction-scanning-response-reference#features)
+       * for possible values.
+       */
       feature_id: string;
 
       /**
-       * Feature Classification
+       * Feature classification: Benign, Warning, Malicious, or Info.
        */
       type: 'Benign' | 'Warning' | 'Malicious' | 'Info';
     }
@@ -540,7 +547,7 @@ export namespace SuiTransactionScanResponse {
 
   export interface SuiValidationErrorSchema {
     /**
-     * Error message
+     * Error message describing what went wrong during validation.
      */
     error: string;
 

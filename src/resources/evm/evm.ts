@@ -136,13 +136,14 @@ export interface AddressValidation {
   result_type: 'Malicious' | 'Warning' | 'Benign' | 'Error';
 
   /**
-   * An error message returned when `result_type` is `Error`.
+   * An error message returned when `result_type` is `Error` (e.g. invalid address
+   * format, unsupported chain, network error).
    */
   error?: string;
 
   /**
-   * A list of features explaining the scan result (each feature includes a type,
-   * feature_id, and description). See the
+   * A list of security features and characteristics for the address (each feature
+   * includes a type, feature_id, and description). See the
    * [Features reference](/api-reference/end-user-protection/address-scanning/address-scanning-response-reference#features)
    * for possible feature IDs.
    */

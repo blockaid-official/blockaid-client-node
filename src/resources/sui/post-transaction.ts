@@ -353,7 +353,7 @@ export namespace PostTransactionScanResponse {
 
   export interface SuiSimulationErrorSchema {
     /**
-     * Error message
+     * Error message describing what went wrong during the simulation.
      */
     error: string;
 
@@ -375,7 +375,7 @@ export namespace PostTransactionScanResponse {
     description: string;
 
     /**
-     * See the
+     * List of features explaining the validation result. See the
      * [Features reference](/api-reference/end-user-protection/transaction-scanning/sui/sui-transaction-scanning-response-reference#features)
      * for possible feature IDs.
      */
@@ -390,7 +390,7 @@ export namespace PostTransactionScanResponse {
     reason: string;
 
     /**
-     * Verdict of the validation
+     * Verdict of the validation: Benign, Warning, Malicious, or Error.
      */
     result_type: 'Benign' | 'Warning' | 'Malicious' | 'Error';
 
@@ -409,10 +409,15 @@ export namespace PostTransactionScanResponse {
        */
       description: string;
 
+      /**
+       * Identifier of the feature. See the
+       * [Features reference](/api-reference/end-user-protection/transaction-scanning/sui/sui-transaction-scanning-response-reference#features)
+       * for possible values.
+       */
       feature_id: string;
 
       /**
-       * Feature Classification
+       * Feature classification: Benign, Warning, Malicious, or Info.
        */
       type: 'Benign' | 'Warning' | 'Malicious' | 'Info';
     }
@@ -420,7 +425,7 @@ export namespace PostTransactionScanResponse {
 
   export interface SuiValidationErrorSchema {
     /**
-     * Error message
+     * Error message describing what went wrong during validation.
      */
     error: string;
 
