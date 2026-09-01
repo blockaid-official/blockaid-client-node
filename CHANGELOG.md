@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.9.0 (2026-09-01)
+
+Full Changelog: [v1.8.0...v1.9.0](https://github.com/blockaid-official/blockaid-client-node/compare/v1.8.0...v1.9.0)
+
+### Features
+
+* **api:** api update ([50214da](https://github.com/blockaid-official/blockaid-client-node/commit/50214da941bc3847eb56c6a4d90fd80cd4d5ecdf))
+* **api:** api update ([eb5c151](https://github.com/blockaid-official/blockaid-client-node/commit/eb5c151451d35054c26fab9ab67c8c9b630f88fd))
+
 ## 1.8.0 (2026-08-21)
 
 Full Changelog: [v1.7.0...v1.8.0](https://github.com/blockaid-official/blockaid-client-node/compare/v1.7.0...v1.8.0)
