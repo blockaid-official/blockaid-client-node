@@ -416,7 +416,8 @@ export type TokenScanSupportedChain =
   | 'kaia'
   | 'tron'
   | 'robinhood'
-  | 'flare';
+  | 'flare'
+  | 'arc';
 
 /**
  * The chain name
