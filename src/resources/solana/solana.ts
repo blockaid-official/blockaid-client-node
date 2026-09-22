@@ -12,10 +12,19 @@ export class Solana extends APIResource {
 }
 
 export interface SolanaAccountRentFee {
+  /**
+   * Encoded public key of the account that rent was deposited for.
+   */
   account_address: string;
 
+  /**
+   * Type of the newly created account, e.g. TOKEN_ACCOUNT or SYSTEM_ACCOUNT.
+   */
   account_type: string;
 
+  /**
+   * Rent deposit amount in lamports, as a string.
+   */
   lamports: string;
 }
 
@@ -31,7 +40,7 @@ export interface SolanaGasEstimation {
   priority_fee: string;
 
   /**
-   * Total fee in lamports
+   * Total fee in lamports: network fee plus priority fee plus account rent fees.
    */
   total: string;
 
@@ -41,7 +50,8 @@ export interface SolanaGasEstimation {
   used: string;
 
   /**
-   * Rent deposit fees for newly created accounts
+   * Rent deposit fees for accounts created by the transaction; empty when no new
+   * accounts are created.
    */
   account_rent_fees?: Array<SolanaAccountRentFee>;
 }

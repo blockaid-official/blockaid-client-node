@@ -39,28 +39,56 @@ export interface SiteScanHitResponse {
    */
   attack_types: { [key: string]: SiteScanHitResponse.AttackTypes };
 
+  /**
+   * Same shape as `contract_write`.
+   */
   contract_read: SiteScanHitResponse.ContractRead;
 
   contract_write: SiteScanHitResponse.ContractWrite;
 
+  /**
+   * Overall malicious verdict for the site.
+   */
   is_malicious: boolean;
 
+  /**
+   * Whether the site was reachable during the scan.
+   */
   is_reachable: boolean;
 
+  /**
+   * Whether the site is treated as Web3-related for the scan.
+   */
   is_web3_site: boolean;
 
+  /**
+   * JSON-RPC method names observed during the scan.
+   */
   json_rpc_operations: Array<string>;
 
+  /**
+   * Numeric score for the site; interpret together with `is_malicious` and other
+   * fields.
+   */
   malicious_score: number;
 
+  /**
+   * Hosts/domains observed during the scan.
+   */
   network_operations: Array<string>;
 
   scan_end_time: string;
 
   scan_start_time: string;
 
+  /**
+   * Literal "hit", indicating a scan result was found for this URL.
+   */
   status: 'hit';
 
+  /**
+   * Scanned URL.
+   */
   url: string;
 }
 
@@ -71,6 +99,9 @@ export namespace SiteScanHitResponse {
     threshold: number;
   }
 
+  /**
+   * Same shape as `contract_write`.
+   */
   export interface ContractRead {
     contract_addresses: Array<string>;
 
@@ -85,6 +116,9 @@ export namespace SiteScanHitResponse {
 }
 
 export interface SiteScanMissResponse {
+  /**
+   * Literal "miss", indicating no scan result was found for this URL.
+   */
   status: 'miss';
 }
 
