@@ -103,7 +103,7 @@ export interface TransactionScanParams {
 
   /**
    * Optional customer-supplied hints about transaction intent that cannot be
-   * inferred from on-chain simulation.
+   * inferred from onchain simulation.
    */
   transaction_hints?: Array<
     TransactionScanParams.CrossChainBridgeHint | TransactionScanParams.GenericTransactionHint
@@ -144,7 +144,7 @@ export namespace TransactionScanParams {
 
   /**
    * Customer-supplied context for a cross-chain bridge deposit where the protocol
-   * does not emit the destination on-chain.
+   * does not emit the destination onchain.
    */
   export interface CrossChainBridgeHint {
     /**
@@ -154,7 +154,7 @@ export namespace TransactionScanParams {
 
     /**
      * The intended recipient address on the destination chain. Required when the
-     * bridge protocol does not emit this on-chain (e.g. Relay, some Across deposit
+     * bridge protocol does not emit this onchain (e.g. Relay, some Across deposit
      * routes).
      */
     destination_address?: string;

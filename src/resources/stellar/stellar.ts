@@ -81,7 +81,7 @@ export interface StellarClassicGasEstimation {
   /**
    * Fee charged, in stroops. On-chain: the real fee taken. Pre-sign: the
    * network-minimum estimate (base_fee times operation_count, plus one operation for
-   * a fee-bump). Surge pricing can make the real on-chain charge higher.
+   * a fee-bump). Surge pricing can make the real onchain charge higher.
    */
   used: string;
 }
@@ -258,7 +258,7 @@ export interface StellarTransactionScanRequest {
 
   /**
    * Optional customer-supplied hints about transaction intent that cannot be
-   * inferred from on-chain simulation.
+   * inferred from onchain simulation.
    */
   transaction_hints?: Array<
     StellarTransactionScanRequest.CrossChainBridgeHint | StellarTransactionScanRequest.GenericTransactionHint
@@ -299,7 +299,7 @@ export namespace StellarTransactionScanRequest {
 
   /**
    * Customer-supplied context for a cross-chain bridge deposit where the protocol
-   * does not emit the destination on-chain.
+   * does not emit the destination onchain.
    */
   export interface CrossChainBridgeHint {
     /**
@@ -309,7 +309,7 @@ export namespace StellarTransactionScanRequest {
 
     /**
      * The intended recipient address on the destination chain. Required when the
-     * bridge protocol does not emit this on-chain (e.g. Relay, some Across deposit
+     * bridge protocol does not emit this onchain (e.g. Relay, some Across deposit
      * routes).
      */
     destination_address?: string;
@@ -413,7 +413,9 @@ export interface StellarTransactionScanResponse {
     | null;
 
   /**
-   * Validation result; Only present if validation option is included in the request
+   * Validation result: a success object (`status: "Success"`) with a `result_type`
+   * of Benign, Warning, or Malicious, or an error object (`status: "Error"`). Only
+   * present if the `validation` option is included in the request.
    */
   validation?:
     | StellarTransactionScanResponse.StellarValidationResult
@@ -442,8 +444,9 @@ export namespace StellarTransactionScanResponse {
     address_details?: Array<StellarSimulationResult.AddressDetail>;
 
     /**
-     * Mapping between the address of an account to the assets diff during the
-     * transaction
+     * Mapping between the address of an account and the assets diff during the
+     * transaction; values are arrays of legacy, native, or contract-backed asset
+     * diffs.
      */
     assets_diffs?: {
       [key: string]: Array<
@@ -454,8 +457,8 @@ export namespace StellarTransactionScanResponse {
     };
 
     /**
-     * Mapping between the address of an account to the exposure of the assets during
-     * the transaction
+     * Mapping between the address of an account and the exposure of the assets during
+     * the transaction; values are arrays of legacy or native asset exposures.
      */
     exposures?: {
       [key: string]: Array<
@@ -718,7 +721,7 @@ export namespace StellarTransactionScanResponse {
 
   export interface StellarSimulationErrorSchema {
     /**
-     * Error message
+     * Error message describing what went wrong during the simulation.
      */
     error: string;
 
@@ -739,6 +742,11 @@ export namespace StellarTransactionScanResponse {
      */
     description: string;
 
+    /**
+     * List of features explaining the validation result. See the
+     * [Features reference](/api-reference/end-user-protection/transaction-scanning/stellar/stellar-transaction-scanning-response-reference#features)
+     * for possible feature IDs.
+     */
     features: Array<StellarValidationResult.Feature>;
 
     /**
@@ -750,7 +758,7 @@ export namespace StellarTransactionScanResponse {
     reason: string;
 
     /**
-     * Verdict of the validation
+     * Verdict of the validation: Benign, Warning, or Malicious.
      */
     result_type: 'Benign' | 'Warning' | 'Malicious';
 
@@ -769,10 +777,15 @@ export namespace StellarTransactionScanResponse {
        */
       description: string;
 
+      /**
+       * Identifier of the feature. See the
+       * [Features reference](/api-reference/end-user-protection/transaction-scanning/stellar/stellar-transaction-scanning-response-reference#features)
+       * for possible values.
+       */
       feature_id: string;
 
       /**
-       * Feature Classification
+       * Feature classification: Benign, Warning, Malicious, or Info.
        */
       type: 'Benign' | 'Warning' | 'Malicious' | 'Info';
     }
@@ -780,7 +793,7 @@ export namespace StellarTransactionScanResponse {
 
   export interface StellarValidationErrorSchema {
     /**
-     * Error message
+     * Error message describing what went wrong during validation.
      */
     error: string;
 
