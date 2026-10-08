@@ -2539,6 +2539,10 @@ export namespace MessageScanResponse {
 }
 
 export interface MessageScanParams {
+  /**
+   * The user's Solana account address. Can be either base58 or base64, independent
+   * of the `encoding` field, which applies to `transactions` only.
+   */
   account_address: string;
 
   metadata: MessageScanParams.Metadata;
@@ -2559,6 +2563,10 @@ export interface MessageScanParams {
     | 'EtWTRABZaYq6iMfeYKouRu166VU2xqa1'
     | 'EAQLJCV2mh23BsK2P9oYpV5CHVLDNHTxY';
 
+  /**
+   * Encoding used for the transactions in this request, either base58 or base64.
+   * Does not affect account_address, which can be both base58 and base64.
+   */
   encoding?: 'base58' | 'base64';
 
   /**
