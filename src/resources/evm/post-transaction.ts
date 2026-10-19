@@ -245,6 +245,7 @@ export namespace PostTransactionScanResponse {
       | 'proxy_upgrade'
       | 'ownership_change'
       | 'bridge'
+      | 'exchange_batch_withdrawal'
       | (string & {})
     >;
 
