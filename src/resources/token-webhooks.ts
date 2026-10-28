@@ -39,10 +39,12 @@ export class TokenWebhooks extends APIResource {
 
   /**
    * Updates an existing webhook subscription in place. Only the provided fields are
-   * changed; omitted fields keep their current value. The filter's token_addresses
-   * can be replaced in full via `filter`, or adjusted incrementally via
-   * `add_token_addresses`/`remove_token_addresses` (mutually exclusive with
-   * `filter`).
+   * changed; omitted fields keep their current value. `filter` replaces the hook's
+   * entire filter (token-address or token-type) in one call. For a token-address
+   * filter specifically, `add_token_addresses`/`remove_token_addresses` let you
+   * adjust the address list incrementally without resending it; they are mutually
+   * exclusive with `filter` and only valid when the existing (or resulting) filter
+   * is a token-address filter.
    *
    * @example
    * ```ts
@@ -125,7 +127,7 @@ export interface TokenWebhookCreateResponse {
   url: string;
 
   /**
-   * Filter for webhook updates
+   * The webhook's currently registered filter.
    */
   filter?: TokenWebhookCreateResponse.TokenAddressFilter | TokenWebhookCreateResponse.TokenTypeFilter | null;
 
@@ -176,7 +178,7 @@ export interface TokenWebhookUpdateResponse {
   url: string;
 
   /**
-   * Filter for webhook updates
+   * The webhook's currently registered filter.
    */
   filter?: TokenWebhookUpdateResponse.TokenAddressFilter | TokenWebhookUpdateResponse.TokenTypeFilter | null;
 
@@ -227,7 +229,7 @@ export interface TokenWebhookGetResponse {
   url: string;
 
   /**
-   * Filter for webhook updates
+   * The webhook's currently registered filter.
    */
   filter?: TokenWebhookGetResponse.TokenAddressFilter | TokenWebhookGetResponse.TokenTypeFilter | null;
 
@@ -281,7 +283,7 @@ export namespace TokenWebhookGetAllResponse {
     url: string;
 
     /**
-     * Filter for webhook updates
+     * The webhook's currently registered filter.
      */
     filter?:
       | TokenWebhookGetAllResponseItem.TokenAddressFilter
