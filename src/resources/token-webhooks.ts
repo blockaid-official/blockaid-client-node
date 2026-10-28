@@ -38,6 +38,36 @@ export class TokenWebhooks extends APIResource {
   }
 
   /**
+   * Updates an existing webhook subscription in place. Only the provided fields are
+   * changed; omitted fields keep their current value. The filter's token_addresses
+   * can be replaced in full via `filter`, or adjusted incrementally via
+   * `add_token_addresses`/`remove_token_addresses` (mutually exclusive with
+   * `filter`).
+   *
+   * @example
+   * ```ts
+   * const tokenWebhook = await client.tokenWebhooks.update(
+   *   'arbitrum',
+   *   {
+   *     filter: {
+   *       filter_type: 'token_address',
+   *       token_addresses: [
+   *         '0x1234567890abcdef1234567890abcdef12345678',
+   *       ],
+   *     },
+   *   },
+   * );
+   * ```
+   */
+  update(
+    chain: EvmAPI.TokenScanSupportedChain,
+    body: TokenWebhookUpdateParams,
+    options?: RequestOptions,
+  ): APIPromise<TokenWebhookUpdateResponse> {
+    return this._client.patch(path`/v0/token/hooks/${chain}`, { body, ...options });
+  }
+
+  /**
    * Deletes the webhook subscription for a chain and stops further token scan
    * updates.
    *
@@ -95,9 +125,91 @@ export interface TokenWebhookCreateResponse {
   url: string;
 
   /**
+   * Filter for webhook updates
+   */
+  filter?: TokenWebhookCreateResponse.TokenAddressFilter | TokenWebhookCreateResponse.TokenTypeFilter | null;
+
+  /**
    * Optional shared secret key (32 characters), used to calculate the HMAC signature
    */
   shared_secret_key?: string | null;
+}
+
+export namespace TokenWebhookCreateResponse {
+  export interface TokenAddressFilter {
+    /**
+     * List of up to 100000 token addresses to filter webhook updates
+     */
+    token_addresses: Array<string>;
+
+    /**
+     * Type of filter applied to the webhook updates
+     */
+    filter_type?: 'token_address';
+  }
+
+  export interface TokenTypeFilter {
+    /**
+     * Type of token to filter
+     */
+    token_type: 'Fungible' | 'NonFungible';
+
+    /**
+     * Type of filter applied to the webhook updates
+     */
+    filter_type?: 'token_type';
+  }
+}
+
+export interface TokenWebhookUpdateResponse {
+  active: boolean;
+
+  /**
+   * The chain name
+   */
+  chain: EvmAPI.TokenScanSupportedChain;
+
+  created_at: string;
+
+  updated_at: string;
+
+  url: string;
+
+  /**
+   * Filter for webhook updates
+   */
+  filter?: TokenWebhookUpdateResponse.TokenAddressFilter | TokenWebhookUpdateResponse.TokenTypeFilter | null;
+
+  /**
+   * Optional shared secret key (32 characters), used to calculate the HMAC signature
+   */
+  shared_secret_key?: string | null;
+}
+
+export namespace TokenWebhookUpdateResponse {
+  export interface TokenAddressFilter {
+    /**
+     * List of up to 100000 token addresses to filter webhook updates
+     */
+    token_addresses: Array<string>;
+
+    /**
+     * Type of filter applied to the webhook updates
+     */
+    filter_type?: 'token_address';
+  }
+
+  export interface TokenTypeFilter {
+    /**
+     * Type of token to filter
+     */
+    token_type: 'Fungible' | 'NonFungible';
+
+    /**
+     * Type of filter applied to the webhook updates
+     */
+    filter_type?: 'token_type';
+  }
 }
 
 export interface TokenWebhookGetResponse {
@@ -115,9 +227,40 @@ export interface TokenWebhookGetResponse {
   url: string;
 
   /**
+   * Filter for webhook updates
+   */
+  filter?: TokenWebhookGetResponse.TokenAddressFilter | TokenWebhookGetResponse.TokenTypeFilter | null;
+
+  /**
    * Optional shared secret key (32 characters), used to calculate the HMAC signature
    */
   shared_secret_key?: string | null;
+}
+
+export namespace TokenWebhookGetResponse {
+  export interface TokenAddressFilter {
+    /**
+     * List of up to 100000 token addresses to filter webhook updates
+     */
+    token_addresses: Array<string>;
+
+    /**
+     * Type of filter applied to the webhook updates
+     */
+    filter_type?: 'token_address';
+  }
+
+  export interface TokenTypeFilter {
+    /**
+     * Type of token to filter
+     */
+    token_type: 'Fungible' | 'NonFungible';
+
+    /**
+     * Type of filter applied to the webhook updates
+     */
+    filter_type?: 'token_type';
+  }
 }
 
 export type TokenWebhookGetAllResponse = Array<TokenWebhookGetAllResponse.TokenWebhookGetAllResponseItem>;
@@ -138,9 +281,43 @@ export namespace TokenWebhookGetAllResponse {
     url: string;
 
     /**
+     * Filter for webhook updates
+     */
+    filter?:
+      | TokenWebhookGetAllResponseItem.TokenAddressFilter
+      | TokenWebhookGetAllResponseItem.TokenTypeFilter
+      | null;
+
+    /**
      * Optional shared secret key (32 characters), used to calculate the HMAC signature
      */
     shared_secret_key?: string | null;
+  }
+
+  export namespace TokenWebhookGetAllResponseItem {
+    export interface TokenAddressFilter {
+      /**
+       * List of up to 100000 token addresses to filter webhook updates
+       */
+      token_addresses: Array<string>;
+
+      /**
+       * Type of filter applied to the webhook updates
+       */
+      filter_type?: 'token_address';
+    }
+
+    export interface TokenTypeFilter {
+      /**
+       * Type of token to filter
+       */
+      token_type: 'Fungible' | 'NonFungible';
+
+      /**
+       * Type of filter applied to the webhook updates
+       */
+      filter_type?: 'token_type';
+    }
   }
 }
 
@@ -184,11 +361,69 @@ export namespace TokenWebhookCreateParams {
   }
 }
 
+export interface TokenWebhookUpdateParams {
+  /**
+   * Token addresses to add to the hook's existing token_address filter, without
+   * having to resend the full list. Mutually exclusive with filter.
+   */
+  add_token_addresses?: Array<string> | null;
+
+  /**
+   * If provided, replaces the hook's filter in full. Mutually exclusive with
+   * add_token_addresses/remove_token_addresses.
+   */
+  filter?: TokenWebhookUpdateParams.TokenAddressFilter | TokenWebhookUpdateParams.TokenTypeFilter | null;
+
+  /**
+   * Token addresses to remove from the hook's existing token_address filter.
+   * Mutually exclusive with filter.
+   */
+  remove_token_addresses?: Array<string> | null;
+
+  /**
+   * If provided, replaces the hook's shared secret key
+   */
+  shared_secret_key?: string | null;
+
+  /**
+   * If provided, replaces the hook's url
+   */
+  url?: string | null;
+}
+
+export namespace TokenWebhookUpdateParams {
+  export interface TokenAddressFilter {
+    /**
+     * List of up to 100000 token addresses to filter webhook updates
+     */
+    token_addresses: Array<string>;
+
+    /**
+     * Type of filter applied to the webhook updates
+     */
+    filter_type?: 'token_address';
+  }
+
+  export interface TokenTypeFilter {
+    /**
+     * Type of token to filter
+     */
+    token_type: 'Fungible' | 'NonFungible';
+
+    /**
+     * Type of filter applied to the webhook updates
+     */
+    filter_type?: 'token_type';
+  }
+}
+
 export declare namespace TokenWebhooks {
   export {
     type TokenWebhookCreateResponse as TokenWebhookCreateResponse,
+    type TokenWebhookUpdateResponse as TokenWebhookUpdateResponse,
     type TokenWebhookGetResponse as TokenWebhookGetResponse,
     type TokenWebhookGetAllResponse as TokenWebhookGetAllResponse,
     type TokenWebhookCreateParams as TokenWebhookCreateParams,
+    type TokenWebhookUpdateParams as TokenWebhookUpdateParams,
   };
 }
