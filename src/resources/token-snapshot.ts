@@ -667,7 +667,8 @@ export namespace TokenSnapshotDiffResponse {
         | 'TOKEN_BACKDOOR'
         | 'CREATED_VIA_LAUNCHPAD'
         | 'COMPROMISED_TOKEN'
-        | 'LONG_FUND_TRAIL';
+        | 'LONG_FUND_TRAIL'
+        | 'METADATA_PROMPT_INJECTION';
 
       /**
        * Type of the feature
@@ -1306,7 +1307,8 @@ export namespace TokenSnapshotFullResponse {
         | 'TOKEN_BACKDOOR'
         | 'CREATED_VIA_LAUNCHPAD'
         | 'COMPROMISED_TOKEN'
-        | 'LONG_FUND_TRAIL';
+        | 'LONG_FUND_TRAIL'
+        | 'METADATA_PROMPT_INJECTION';
 
       /**
        * Type of the feature

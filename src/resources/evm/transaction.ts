@@ -248,6 +248,7 @@ export namespace TransactionScanResponse {
       | 'proxy_upgrade'
       | 'ownership_change'
       | 'bridge'
+      | 'exchange_batch_withdrawal'
       | (string & {})
     >;
 
@@ -5375,6 +5376,13 @@ export namespace TransactionReportParams {
         from: string;
 
         /**
+         * The EIP-2930 access list of addresses and storage keys the transaction plans to
+         * access. Note: this field name is camelCase, unlike the other snake_case fields
+         * in this object.
+         */
+        accessList?: Array<RoutersEvmTransactionModelsTransaction.AccessList>;
+
+        /**
          * The authorization list
          */
         authorization_list?: Array<EvmAPI.Authorization>;
@@ -5403,6 +5411,20 @@ export namespace TransactionReportParams {
          * The value of the transaction in Wei in hex string format
          */
         value?: string;
+      }
+
+      export namespace RoutersEvmTransactionModelsTransaction {
+        export interface AccessList {
+          /**
+           * The address to be accessed by the transaction, in hex string format
+           */
+          address: string;
+
+          /**
+           * The storage keys to be accessed by the transaction, in hex string format
+           */
+          storageKeys: Array<string>;
+        }
       }
 
       export interface JsonRpc {
@@ -5612,6 +5634,13 @@ export namespace TransactionScanParams {
     from: string;
 
     /**
+     * The EIP-2930 access list of addresses and storage keys the transaction plans to
+     * access. Note: this field name is camelCase, unlike the other snake_case fields
+     * in this object.
+     */
+    accessList?: Array<Data.AccessList>;
+
+    /**
      * The authorization list
      */
     authorization_list?: Array<EvmAPI.Authorization>;
@@ -5640,6 +5669,20 @@ export namespace TransactionScanParams {
      * The value of the transaction in Wei in hex string format
      */
     value?: string;
+  }
+
+  export namespace Data {
+    export interface AccessList {
+      /**
+       * The address to be accessed by the transaction, in hex string format
+       */
+      address: string;
+
+      /**
+       * The storage keys to be accessed by the transaction, in hex string format
+       */
+      storageKeys: Array<string>;
+    }
   }
 
   /**
