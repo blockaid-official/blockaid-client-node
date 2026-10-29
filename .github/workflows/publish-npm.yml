@@ -1,12 +1,12 @@
-# This workflow is triggered when a GitHub release is created.
-# It can also be run manually to re-publish to NPM in case it failed for some reason.
+# Manual re-publish to NPM, e.g. if the publish step in release-please.yml
+# failed for some reason. release-please.yml now does the normal publish
+# (in the same run that creates the release), since a GITHUB_TOKEN-created
+# release never fires the `release: published` event this workflow used to
+# listen for.
 # You can run this workflow by navigating to https://www.github.com/blockaid-official/blockaid-client-node/actions/workflows/publish-npm.yml
 name: Publish NPM
 on:
   workflow_dispatch:
-
-  release:
-    types: [published]
 
 jobs:
   publish:
