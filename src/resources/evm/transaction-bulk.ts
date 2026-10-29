@@ -248,6 +248,7 @@ export namespace TransactionBulkScanResponse {
         | 'proxy_upgrade'
         | 'ownership_change'
         | 'bridge'
+        | 'exchange_batch_withdrawal'
         | (string & {})
       >;
 
@@ -5369,6 +5370,13 @@ export namespace TransactionBulkScanParams {
     from: string;
 
     /**
+     * The EIP-2930 access list of addresses and storage keys the transaction plans to
+     * access. Note: this field name is camelCase, unlike the other snake_case fields
+     * in this object.
+     */
+    accessList?: Array<Data.AccessList>;
+
+    /**
      * The authorization list
      */
     authorization_list?: Array<EvmAPI.Authorization>;
@@ -5397,6 +5405,20 @@ export namespace TransactionBulkScanParams {
      * The value of the transaction in Wei in hex string format
      */
     value?: string;
+  }
+
+  export namespace Data {
+    export interface AccessList {
+      /**
+       * The address to be accessed by the transaction, in hex string format
+       */
+      address: string;
+
+      /**
+       * The storage keys to be accessed by the transaction, in hex string format
+       */
+      storageKeys: Array<string>;
+    }
   }
 
   /**
