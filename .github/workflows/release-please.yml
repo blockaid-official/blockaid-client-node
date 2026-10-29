@@ -1,0 +1,65 @@
+# Cuts releases from Conventional Commit history on main, then publishes to
+# npm.
+#
+# Stainless previously ran this (release-please, triggered through its own
+# hosted automation) and the published GitHub Release in turn triggered
+# publish-npm.yml. Stainless has wound down, so this workflow self-hosts the
+# whole chain with the upstream release-please action.
+#
+# Note: a release created here is created with the workflow's own
+# GITHUB_TOKEN, and GitHub does not fire `release: published` (or any other
+# event) for activity performed by that token, so publish-npm.yml would
+# never run on its own. This workflow publishes directly in the same run
+# instead of relying on that event. publish-npm.yml still works standalone
+# via its `workflow_dispatch` trigger, for a manual re-publish.
+name: Release Please
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  release-please:
+    if: github.repository == 'blockaid-official/blockaid-client-node'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        id: release
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  publish:
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ needs.release-please.outputs.tag_name }}
+
+      - name: Set up Node
+        uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        run: |
+          yarn install
+
+      - name: Publish to NPM
+        run: |
+          bash ./bin/publish-npm
