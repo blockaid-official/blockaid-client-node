@@ -2557,7 +2557,6 @@ export interface MessageScanParams {
     | 'testnet'
     | 'devnet'
     | 'eclipse_mainnet'
-    | 'eclipse_devnet'
     | 'sonic_mainnet'
     | '5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp'
     | 'EtWTRABZaYq6iMfeYKouRu166VU2xqa1'
