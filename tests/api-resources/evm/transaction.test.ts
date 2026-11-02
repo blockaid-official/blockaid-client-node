@@ -53,6 +53,7 @@ describe('resource transaction', () => {
       chain: 'ethereum',
       data: {
         from: '0x5e1a0d484c5f0de722e82f9dca3a9d5a421d47cb',
+        accessList: [{ address: 'address', storageKeys: ['string'] }],
         authorization_list: [
           {
             address: 'address',
