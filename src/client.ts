@@ -76,6 +76,8 @@ import {
   TokenWebhookCreateResponse,
   TokenWebhookGetAllResponse,
   TokenWebhookGetResponse,
+  TokenWebhookUpdateParams,
+  TokenWebhookUpdateResponse,
   TokenWebhooks,
 } from './resources/token-webhooks';
 import { readEnv } from './internal/utils/env';
@@ -1074,9 +1076,11 @@ export declare namespace Blockaid {
   export {
     TokenWebhooks as TokenWebhooks,
     type TokenWebhookCreateResponse as TokenWebhookCreateResponse,
+    type TokenWebhookUpdateResponse as TokenWebhookUpdateResponse,
     type TokenWebhookGetResponse as TokenWebhookGetResponse,
     type TokenWebhookGetAllResponse as TokenWebhookGetAllResponse,
     type TokenWebhookCreateParams as TokenWebhookCreateParams,
+    type TokenWebhookUpdateParams as TokenWebhookUpdateParams,
   };
 
   export {
