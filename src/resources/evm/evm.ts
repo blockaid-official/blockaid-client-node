@@ -230,7 +230,8 @@ export namespace AddressValidation {
       | 'TOKEN_BACKDOOR'
       | 'CREATED_VIA_LAUNCHPAD'
       | 'COMPROMISED_TOKEN'
-      | 'LONG_FUND_TRAIL';
+      | 'LONG_FUND_TRAIL'
+      | 'METADATA_PROMPT_INJECTION';
 
     /**
      * Type of the feature
@@ -1219,7 +1220,8 @@ export namespace ValidateBulkExtendedAddressesResponse {
           | 'TOKEN_BACKDOOR'
           | 'CREATED_VIA_LAUNCHPAD'
           | 'COMPROMISED_TOKEN'
-          | 'LONG_FUND_TRAIL';
+          | 'LONG_FUND_TRAIL'
+          | 'METADATA_PROMPT_INJECTION';
 
         /**
          * Type of the feature
