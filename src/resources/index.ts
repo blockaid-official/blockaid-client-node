@@ -119,7 +119,9 @@ export {
 export {
   TokenWebhooks,
   type TokenWebhookCreateResponse,
+  type TokenWebhookUpdateResponse,
   type TokenWebhookGetResponse,
   type TokenWebhookGetAllResponse,
   type TokenWebhookCreateParams,
+  type TokenWebhookUpdateParams,
 } from './token-webhooks';
