@@ -33,6 +33,22 @@ describe('resource scan', () => {
           account_id: 'user-abc-123',
           account_addresses: ['string'],
           account_creation_timestamp: '2023-01-15T00:00:00Z',
+          bank_accounts: [
+            {
+              account_number: 'account_number',
+              country_code: 'country_code',
+              iban: 'iban',
+              routing_number: 'routing_number',
+            },
+          ],
+          bank_wires: [
+            {
+              account_number: 'account_number',
+              iban: 'iban',
+              routing_number: 'routing_number',
+              swift: 'swift',
+            },
+          ],
           user_age: 30,
           user_country_code: 'US',
         },
