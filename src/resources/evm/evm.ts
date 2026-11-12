@@ -332,6 +332,18 @@ export namespace MetadataParam {
     account_creation_timestamp?: string;
 
     /**
+     * Fiat bank accounts linked to this user (account numbers, IBANs, ACH routing
+     * numbers).
+     */
+    bank_accounts?: Array<Account.BankAccount>;
+
+    /**
+     * Bank wire identifiers linked to this user (Fedwire routing numbers, SWIFT/BIC
+     * codes).
+     */
+    bank_wires?: Array<Account.BankWire>;
+
+    /**
      * Age of the user in years
      */
     user_age?: number;
@@ -340,6 +352,58 @@ export namespace MetadataParam {
      * ISO country code of the user's location.
      */
     user_country_code?: string;
+  }
+
+  export namespace Account {
+    /**
+     * A fiat bank account identifier for the end user.
+     */
+    export interface BankAccount {
+      /**
+       * Domestic bank account number.
+       */
+      account_number?: string;
+
+      /**
+       * ISO 3166-1 alpha-2 code of the account's country.
+       */
+      country_code?: string;
+
+      /**
+       * International Bank Account Number.
+       */
+      iban?: string;
+
+      /**
+       * ABA routing number used for ACH transfers.
+       */
+      routing_number?: string;
+    }
+
+    /**
+     * A bank wire identifier for the end user.
+     */
+    export interface BankWire {
+      /**
+       * Beneficiary account number used for the wire.
+       */
+      account_number?: string;
+
+      /**
+       * Beneficiary International Bank Account Number used for the wire.
+       */
+      iban?: string;
+
+      /**
+       * ABA routing number used for US domestic wires (Fedwire).
+       */
+      routing_number?: string;
+
+      /**
+       * SWIFT/BIC code used for international wires.
+       */
+      swift?: string;
+    }
   }
 
   /**
@@ -548,8 +612,8 @@ export namespace UserOperationRequest {
    */
   export interface Metadata {
     /**
-     * End-user account context (id, age, country, creation time, and
-     * account_addresses).
+     * End-user account context (id, age, country, creation time, account_addresses,
+     * bank_accounts, and bank_wires).
      */
     account?: Metadata.Account;
 
@@ -574,8 +638,8 @@ export namespace UserOperationRequest {
 
   export namespace Metadata {
     /**
-     * End-user account context (id, age, country, creation time, and
-     * account_addresses).
+     * End-user account context (id, age, country, creation time, account_addresses,
+     * bank_accounts, and bank_wires).
      */
     export interface Account {
       /**
@@ -596,6 +660,18 @@ export namespace UserOperationRequest {
       account_creation_timestamp?: string;
 
       /**
+       * Fiat bank accounts linked to this user (account numbers, IBANs, ACH routing
+       * numbers).
+       */
+      bank_accounts?: Array<Account.BankAccount>;
+
+      /**
+       * Bank wire identifiers linked to this user (Fedwire routing numbers, SWIFT/BIC
+       * codes).
+       */
+      bank_wires?: Array<Account.BankWire>;
+
+      /**
        * Age of the user in years
        */
       user_age?: number;
@@ -604,6 +680,58 @@ export namespace UserOperationRequest {
        * ISO country code of the user's location.
        */
       user_country_code?: string;
+    }
+
+    export namespace Account {
+      /**
+       * A fiat bank account identifier for the end user.
+       */
+      export interface BankAccount {
+        /**
+         * Domestic bank account number.
+         */
+        account_number?: string;
+
+        /**
+         * ISO 3166-1 alpha-2 code of the account's country.
+         */
+        country_code?: string;
+
+        /**
+         * International Bank Account Number.
+         */
+        iban?: string;
+
+        /**
+         * ABA routing number used for ACH transfers.
+         */
+        routing_number?: string;
+      }
+
+      /**
+       * A bank wire identifier for the end user.
+       */
+      export interface BankWire {
+        /**
+         * Beneficiary account number used for the wire.
+         */
+        account_number?: string;
+
+        /**
+         * Beneficiary International Bank Account Number used for the wire.
+         */
+        iban?: string;
+
+        /**
+         * ABA routing number used for US domestic wires (Fedwire).
+         */
+        routing_number?: string;
+
+        /**
+         * SWIFT/BIC code used for international wires.
+         */
+        swift?: string;
+      }
     }
 
     /**
@@ -836,8 +964,8 @@ export namespace ValidateAddress {
    */
   export interface Metadata {
     /**
-     * End-user account context (id, age, country, creation time, and
-     * account_addresses).
+     * End-user account context (id, age, country, creation time, account_addresses,
+     * bank_accounts, and bank_wires).
      */
     account?: Metadata.Account;
 
@@ -862,8 +990,8 @@ export namespace ValidateAddress {
 
   export namespace Metadata {
     /**
-     * End-user account context (id, age, country, creation time, and
-     * account_addresses).
+     * End-user account context (id, age, country, creation time, account_addresses,
+     * bank_accounts, and bank_wires).
      */
     export interface Account {
       /**
@@ -884,6 +1012,18 @@ export namespace ValidateAddress {
       account_creation_timestamp?: string;
 
       /**
+       * Fiat bank accounts linked to this user (account numbers, IBANs, ACH routing
+       * numbers).
+       */
+      bank_accounts?: Array<Account.BankAccount>;
+
+      /**
+       * Bank wire identifiers linked to this user (Fedwire routing numbers, SWIFT/BIC
+       * codes).
+       */
+      bank_wires?: Array<Account.BankWire>;
+
+      /**
        * Age of the user in years
        */
       user_age?: number;
@@ -892,6 +1032,58 @@ export namespace ValidateAddress {
        * ISO country code of the user's location.
        */
       user_country_code?: string;
+    }
+
+    export namespace Account {
+      /**
+       * A fiat bank account identifier for the end user.
+       */
+      export interface BankAccount {
+        /**
+         * Domestic bank account number.
+         */
+        account_number?: string;
+
+        /**
+         * ISO 3166-1 alpha-2 code of the account's country.
+         */
+        country_code?: string;
+
+        /**
+         * International Bank Account Number.
+         */
+        iban?: string;
+
+        /**
+         * ABA routing number used for ACH transfers.
+         */
+        routing_number?: string;
+      }
+
+      /**
+       * A bank wire identifier for the end user.
+       */
+      export interface BankWire {
+        /**
+         * Beneficiary account number used for the wire.
+         */
+        account_number?: string;
+
+        /**
+         * Beneficiary International Bank Account Number used for the wire.
+         */
+        iban?: string;
+
+        /**
+         * ABA routing number used for US domestic wires (Fedwire).
+         */
+        routing_number?: string;
+
+        /**
+         * SWIFT/BIC code used for international wires.
+         */
+        swift?: string;
+      }
     }
 
     /**
@@ -954,8 +1146,8 @@ export namespace ValidateBulkAddresses {
    */
   export interface Metadata {
     /**
-     * End-user account context (id, age, country, creation time, and
-     * account_addresses).
+     * End-user account context (id, age, country, creation time, account_addresses,
+     * bank_accounts, and bank_wires).
      */
     account?: Metadata.Account;
 
@@ -980,8 +1172,8 @@ export namespace ValidateBulkAddresses {
 
   export namespace Metadata {
     /**
-     * End-user account context (id, age, country, creation time, and
-     * account_addresses).
+     * End-user account context (id, age, country, creation time, account_addresses,
+     * bank_accounts, and bank_wires).
      */
     export interface Account {
       /**
@@ -1002,6 +1194,18 @@ export namespace ValidateBulkAddresses {
       account_creation_timestamp?: string;
 
       /**
+       * Fiat bank accounts linked to this user (account numbers, IBANs, ACH routing
+       * numbers).
+       */
+      bank_accounts?: Array<Account.BankAccount>;
+
+      /**
+       * Bank wire identifiers linked to this user (Fedwire routing numbers, SWIFT/BIC
+       * codes).
+       */
+      bank_wires?: Array<Account.BankWire>;
+
+      /**
        * Age of the user in years
        */
       user_age?: number;
@@ -1010,6 +1214,58 @@ export namespace ValidateBulkAddresses {
        * ISO country code of the user's location.
        */
       user_country_code?: string;
+    }
+
+    export namespace Account {
+      /**
+       * A fiat bank account identifier for the end user.
+       */
+      export interface BankAccount {
+        /**
+         * Domestic bank account number.
+         */
+        account_number?: string;
+
+        /**
+         * ISO 3166-1 alpha-2 code of the account's country.
+         */
+        country_code?: string;
+
+        /**
+         * International Bank Account Number.
+         */
+        iban?: string;
+
+        /**
+         * ABA routing number used for ACH transfers.
+         */
+        routing_number?: string;
+      }
+
+      /**
+       * A bank wire identifier for the end user.
+       */
+      export interface BankWire {
+        /**
+         * Beneficiary account number used for the wire.
+         */
+        account_number?: string;
+
+        /**
+         * Beneficiary International Bank Account Number used for the wire.
+         */
+        iban?: string;
+
+        /**
+         * ABA routing number used for US domestic wires (Fedwire).
+         */
+        routing_number?: string;
+
+        /**
+         * SWIFT/BIC code used for international wires.
+         */
+        swift?: string;
+      }
     }
 
     /**
