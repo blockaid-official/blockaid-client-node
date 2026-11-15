@@ -53,6 +53,7 @@ describe('resource transaction', () => {
       chain: 'ethereum',
       data: {
         from: '0x5e1a0d484c5f0de722e82f9dca3a9d5a421d47cb',
+        accessList: [{ address: 'address', storageKeys: ['string'] }],
         authorization_list: [
           {
             address: 'address',
@@ -75,6 +76,22 @@ describe('resource transaction', () => {
           account_id: 'account_id',
           account_addresses: ['string'],
           account_creation_timestamp: '2019-12-27T18:11:19.117Z',
+          bank_accounts: [
+            {
+              account_number: 'account_number',
+              country_code: 'country_code',
+              iban: 'iban',
+              routing_number: 'routing_number',
+            },
+          ],
+          bank_wires: [
+            {
+              account_number: 'account_number',
+              iban: 'iban',
+              routing_number: 'routing_number',
+              swift: 'swift',
+            },
+          ],
           user_age: 1,
           user_country_code: 'user_country_code',
         },
