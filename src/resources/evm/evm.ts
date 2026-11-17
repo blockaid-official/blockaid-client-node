@@ -148,6 +148,12 @@ export interface AddressValidation {
    * for possible feature IDs.
    */
   features?: Array<AddressValidation.UnionMember0> | Array<string>;
+
+  /**
+   * A human-readable name for the address, resolved from its public tag or, if none,
+   * its contract name. Omitted when no name is known.
+   */
+  label?: string;
 }
 
 export namespace AddressValidation {
