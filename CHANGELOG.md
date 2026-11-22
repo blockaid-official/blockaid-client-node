@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.10.0](https://github.com/blockaid-official/blockaid-client-node/compare/v1.9.0...v1.10.0) (2026-11-22)
+
+
+### Features
+
+* **PLA-4747:** document the My Incidents API ([279e82a](https://github.com/blockaid-official/blockaid-client-node/commit/279e82a78a23ae25d13a6f46fecc88c44e4c7484))
+* **token-hooks:** add PATCH /v0/token/hooks/{chain} update endpoint ([61aa566](https://github.com/blockaid-official/blockaid-client-node/commit/61aa56615c9bb3ca92b07c1ac5908ff5c93eea77))
+
+
+### Documentation
+
+* **PLA-4747:** remove published_at, tags and exploit_name from My Incidents ([c317856](https://github.com/blockaid-official/blockaid-client-node/commit/c3178563e41c36172c84e1a25a340429adb546e6))
+
 ## [1.9.0](https://github.com/blockaid-official/blockaid-client-node/compare/v1.8.0...v1.9.0) (2026-10-29)
 
 
