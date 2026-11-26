@@ -148,6 +148,12 @@ export interface AddressValidation {
    * for possible feature IDs.
    */
   features?: Array<AddressValidation.UnionMember0> | Array<string>;
+
+  /**
+   * A human-readable name for the address, resolved from its public tag or, if none,
+   * its contract name. Omitted when no name is known.
+   */
+  label?: string;
 }
 
 export namespace AddressValidation {
@@ -230,7 +236,8 @@ export namespace AddressValidation {
       | 'TOKEN_BACKDOOR'
       | 'CREATED_VIA_LAUNCHPAD'
       | 'COMPROMISED_TOKEN'
-      | 'LONG_FUND_TRAIL';
+      | 'LONG_FUND_TRAIL'
+      | 'METADATA_PROMPT_INJECTION';
 
     /**
      * Type of the feature
@@ -284,17 +291,55 @@ export interface Authorization {
  * trace call (debug_traceCallMany / trace_callMany).
  */
 export type BulkTransactionScanSupportedChain =
+  | 'abstract'
+  | 'abstract-testnet'
+  | 'apechain'
   | 'arbitrum'
+  | 'arc'
   | 'avalanche'
+  | 'avalanche-fuji'
   | 'base'
   | 'base-sepolia'
+  | 'berachain'
   | 'bsc'
   | 'ethereum'
-  | 'optimism'
-  | 'polygon'
+  | 'ethereum-sepolia'
+  | 'flare'
+  | 'flow-evm'
+  | 'giwa-sepolia'
   | 'gnosis'
+  | 'hedera'
+  | 'hyperevm'
+  | 'ink'
+  | 'ink-sepolia'
+  | 'kaia'
+  | 'katana'
+  | 'kite-ai'
+  | 'linea'
+  | 'mantle'
+  | 'megaeth'
+  | 'monad'
+  | 'monad-testnet'
+  | 'optimism'
+  | 'plasma'
+  | 'plume'
+  | 'polygon'
+  | 'robinhood'
+  | 'ronin'
+  | 'scroll'
+  | 'sei'
   | 'soneium'
-  | 'unichain';
+  | 'soneium-minato'
+  | 'tempo'
+  | 'tempo-testnet'
+  | 'tron'
+  | 'unichain'
+  | 'worldchain'
+  | 'xdc'
+  | 'xlayer'
+  | 'zksync'
+  | 'zksync-sepolia'
+  | 'zora';
 
 export interface MetadataParam {
   /**
@@ -331,6 +376,18 @@ export namespace MetadataParam {
     account_creation_timestamp?: string;
 
     /**
+     * Fiat bank accounts linked to this user (account numbers, IBANs, ACH routing
+     * numbers).
+     */
+    bank_accounts?: Array<Account.BankAccount>;
+
+    /**
+     * Bank wire identifiers linked to this user (Fedwire routing numbers, SWIFT/BIC
+     * codes).
+     */
+    bank_wires?: Array<Account.BankWire>;
+
+    /**
      * Age of the user in years
      */
     user_age?: number;
@@ -339,6 +396,58 @@ export namespace MetadataParam {
      * ISO country code of the user's location.
      */
     user_country_code?: string;
+  }
+
+  export namespace Account {
+    /**
+     * A fiat bank account identifier for the end user.
+     */
+    export interface BankAccount {
+      /**
+       * Domestic bank account number.
+       */
+      account_number?: string;
+
+      /**
+       * ISO 3166-1 alpha-2 code of the account's country.
+       */
+      country_code?: string;
+
+      /**
+       * International Bank Account Number.
+       */
+      iban?: string;
+
+      /**
+       * ABA routing number used for ACH transfers.
+       */
+      routing_number?: string;
+    }
+
+    /**
+     * A bank wire identifier for the end user.
+     */
+    export interface BankWire {
+      /**
+       * Beneficiary account number used for the wire.
+       */
+      account_number?: string;
+
+      /**
+       * Beneficiary International Bank Account Number used for the wire.
+       */
+      iban?: string;
+
+      /**
+       * ABA routing number used for US domestic wires (Fedwire).
+       */
+      routing_number?: string;
+
+      /**
+       * SWIFT/BIC code used for international wires.
+       */
+      swift?: string;
+    }
   }
 
   /**
@@ -379,101 +488,95 @@ export namespace MetadataParam {
  * The chain name
  */
 export type TokenScanSupportedChain =
+  | 'abstract'
   | 'arbitrum'
+  | 'arc'
   | 'avalanche'
   | 'base'
+  | 'base-sepolia'
+  | 'berachain'
   | 'bsc'
   | 'ethereum'
+  | 'flare'
+  | 'hedera'
+  | 'hyperevm'
+  | 'ink'
+  | 'linea'
+  | 'megaeth'
+  | 'monad'
   | 'optimism'
   | 'polygon'
-  | 'zora'
+  | 'robinhood'
+  | 'ronin'
+  | 'scroll'
+  | 'sei'
   | 'solana'
+  | 'soneium'
+  | 'soneium-minato'
   | 'starknet'
   | 'starknet-sepolia'
   | 'stellar'
-  | 'linea'
-  | 'degen'
-  | 'zksync'
-  | 'scroll'
-  | 'blast'
-  | 'soneium-minato'
-  | 'base-sepolia'
-  | 'bitcoin'
-  | 'abstract'
-  | 'soneium'
-  | 'ink'
-  | 'berachain'
-  | 'unichain'
-  | 'ronin'
   | 'sui'
-  | 'hedera'
-  | 'hyperevm'
-  | 'xlayer'
-  | 'monad'
-  | 'megaeth'
   | 'tempo'
-  | 'sei'
-  | 'kaia'
   | 'tron'
-  | 'robinhood'
-  | 'flare'
-  | 'arc';
+  | 'unichain'
+  | 'xlayer'
+  | 'zksync'
+  | 'zora';
 
 /**
  * The chain name
  */
 export type TransactionScanSupportedChain =
-  | 'arbitrum'
-  | 'avalanche'
-  | 'base'
-  | 'base-sepolia'
-  | 'lordchain'
-  | 'lordchain-testnet'
-  | 'metacade'
-  | 'metacade-testnet'
-  | 'bsc'
-  | 'ethereum'
-  | 'optimism'
-  | 'polygon'
-  | 'zksync'
-  | 'zksync-sepolia'
-  | 'zora'
-  | 'linea'
-  | 'blast'
-  | 'scroll'
-  | 'ethereum-sepolia'
-  | 'degen'
-  | 'avalanche-fuji'
-  | 'gnosis'
-  | 'soneium-minato'
-  | 'ronin'
-  | 'apechain'
-  | 'berachain'
-  | 'berachain-bartio'
-  | 'ink'
-  | 'ink-sepolia'
   | 'abstract'
   | 'abstract-testnet'
-  | 'soneium'
-  | 'unichain'
-  | 'sei'
+  | 'apechain'
+  | 'arbitrum'
+  | 'arc'
+  | 'avalanche'
+  | 'avalanche-fuji'
+  | 'base'
+  | 'base-sepolia'
+  | 'berachain'
+  | 'bsc'
+  | 'ethereum'
+  | 'ethereum-sepolia'
+  | 'flare'
   | 'flow-evm'
+  | 'giwa-sepolia'
+  | 'gnosis'
+  | 'hedera'
   | 'hyperevm'
-  | 'megaeth'
+  | 'ink'
+  | 'ink-sepolia'
+  | 'kaia'
   | 'katana'
-  | 'plume'
-  | 'xlayer'
+  | 'kite-ai'
+  | 'linea'
+  | 'mantle'
+  | 'megaeth'
   | 'monad'
   | 'monad-testnet'
+  | 'optimism'
+  | 'plasma'
+  | 'plume'
+  | 'polygon'
+  | 'robinhood'
+  | 'ronin'
+  | 'scroll'
+  | 'sei'
+  | 'soneium'
+  | 'soneium-minato'
   | 'tempo'
   | 'tempo-testnet'
-  | 'kite-ai'
-  | 'kaia'
-  | 'plasma'
-  | 'mantle'
-  | 'robinhood'
-  | 'arc'
-  | 'flare';
+  | 'tron'
+  | 'unichain'
+  | 'worldchain'
+  | 'xdc'
+  | 'xlayer'
+  | 'zksync'
+  | 'zksync-sepolia'
+  | 'zora';
 
 export interface UserOperationData {
   /**
@@ -547,8 +650,8 @@ export namespace UserOperationRequest {
    */
   export interface Metadata {
     /**
-     * End-user account context (id, age, country, creation time, and
-     * account_addresses).
+     * End-user account context (id, age, country, creation time, account_addresses,
+     * bank_accounts, and bank_wires).
      */
     account?: Metadata.Account;
 
@@ -573,8 +676,8 @@ export namespace UserOperationRequest {
 
   export namespace Metadata {
     /**
-     * End-user account context (id, age, country, creation time, and
-     * account_addresses).
+     * End-user account context (id, age, country, creation time, account_addresses,
+     * bank_accounts, and bank_wires).
      */
     export interface Account {
       /**
@@ -595,6 +698,18 @@ export namespace UserOperationRequest {
       account_creation_timestamp?: string;
 
       /**
+       * Fiat bank accounts linked to this user (account numbers, IBANs, ACH routing
+       * numbers).
+       */
+      bank_accounts?: Array<Account.BankAccount>;
+
+      /**
+       * Bank wire identifiers linked to this user (Fedwire routing numbers, SWIFT/BIC
+       * codes).
+       */
+      bank_wires?: Array<Account.BankWire>;
+
+      /**
        * Age of the user in years
        */
       user_age?: number;
@@ -603,6 +718,58 @@ export namespace UserOperationRequest {
        * ISO country code of the user's location.
        */
       user_country_code?: string;
+    }
+
+    export namespace Account {
+      /**
+       * A fiat bank account identifier for the end user.
+       */
+      export interface BankAccount {
+        /**
+         * Domestic bank account number.
+         */
+        account_number?: string;
+
+        /**
+         * ISO 3166-1 alpha-2 code of the account's country.
+         */
+        country_code?: string;
+
+        /**
+         * International Bank Account Number.
+         */
+        iban?: string;
+
+        /**
+         * ABA routing number used for ACH transfers.
+         */
+        routing_number?: string;
+      }
+
+      /**
+       * A bank wire identifier for the end user.
+       */
+      export interface BankWire {
+        /**
+         * Beneficiary account number used for the wire.
+         */
+        account_number?: string;
+
+        /**
+         * Beneficiary International Bank Account Number used for the wire.
+         */
+        iban?: string;
+
+        /**
+         * ABA routing number used for US domestic wires (Fedwire).
+         */
+        routing_number?: string;
+
+        /**
+         * SWIFT/BIC code used for international wires.
+         */
+        swift?: string;
+      }
     }
 
     /**
@@ -835,8 +1002,8 @@ export namespace ValidateAddress {
    */
   export interface Metadata {
     /**
-     * End-user account context (id, age, country, creation time, and
-     * account_addresses).
+     * End-user account context (id, age, country, creation time, account_addresses,
+     * bank_accounts, and bank_wires).
      */
     account?: Metadata.Account;
 
@@ -861,8 +1028,8 @@ export namespace ValidateAddress {
 
   export namespace Metadata {
     /**
-     * End-user account context (id, age, country, creation time, and
-     * account_addresses).
+     * End-user account context (id, age, country, creation time, account_addresses,
+     * bank_accounts, and bank_wires).
      */
     export interface Account {
       /**
@@ -883,6 +1050,18 @@ export namespace ValidateAddress {
       account_creation_timestamp?: string;
 
       /**
+       * Fiat bank accounts linked to this user (account numbers, IBANs, ACH routing
+       * numbers).
+       */
+      bank_accounts?: Array<Account.BankAccount>;
+
+      /**
+       * Bank wire identifiers linked to this user (Fedwire routing numbers, SWIFT/BIC
+       * codes).
+       */
+      bank_wires?: Array<Account.BankWire>;
+
+      /**
        * Age of the user in years
        */
       user_age?: number;
@@ -891,6 +1070,58 @@ export namespace ValidateAddress {
        * ISO country code of the user's location.
        */
       user_country_code?: string;
+    }
+
+    export namespace Account {
+      /**
+       * A fiat bank account identifier for the end user.
+       */
+      export interface BankAccount {
+        /**
+         * Domestic bank account number.
+         */
+        account_number?: string;
+
+        /**
+         * ISO 3166-1 alpha-2 code of the account's country.
+         */
+        country_code?: string;
+
+        /**
+         * International Bank Account Number.
+         */
+        iban?: string;
+
+        /**
+         * ABA routing number used for ACH transfers.
+         */
+        routing_number?: string;
+      }
+
+      /**
+       * A bank wire identifier for the end user.
+       */
+      export interface BankWire {
+        /**
+         * Beneficiary account number used for the wire.
+         */
+        account_number?: string;
+
+        /**
+         * Beneficiary International Bank Account Number used for the wire.
+         */
+        iban?: string;
+
+        /**
+         * ABA routing number used for US domestic wires (Fedwire).
+         */
+        routing_number?: string;
+
+        /**
+         * SWIFT/BIC code used for international wires.
+         */
+        swift?: string;
+      }
     }
 
     /**
@@ -953,8 +1184,8 @@ export namespace ValidateBulkAddresses {
    */
   export interface Metadata {
     /**
-     * End-user account context (id, age, country, creation time, and
-     * account_addresses).
+     * End-user account context (id, age, country, creation time, account_addresses,
+     * bank_accounts, and bank_wires).
      */
     account?: Metadata.Account;
 
@@ -979,8 +1210,8 @@ export namespace ValidateBulkAddresses {
 
   export namespace Metadata {
     /**
-     * End-user account context (id, age, country, creation time, and
-     * account_addresses).
+     * End-user account context (id, age, country, creation time, account_addresses,
+     * bank_accounts, and bank_wires).
      */
     export interface Account {
       /**
@@ -1001,6 +1232,18 @@ export namespace ValidateBulkAddresses {
       account_creation_timestamp?: string;
 
       /**
+       * Fiat bank accounts linked to this user (account numbers, IBANs, ACH routing
+       * numbers).
+       */
+      bank_accounts?: Array<Account.BankAccount>;
+
+      /**
+       * Bank wire identifiers linked to this user (Fedwire routing numbers, SWIFT/BIC
+       * codes).
+       */
+      bank_wires?: Array<Account.BankWire>;
+
+      /**
        * Age of the user in years
        */
       user_age?: number;
@@ -1009,6 +1252,58 @@ export namespace ValidateBulkAddresses {
        * ISO country code of the user's location.
        */
       user_country_code?: string;
+    }
+
+    export namespace Account {
+      /**
+       * A fiat bank account identifier for the end user.
+       */
+      export interface BankAccount {
+        /**
+         * Domestic bank account number.
+         */
+        account_number?: string;
+
+        /**
+         * ISO 3166-1 alpha-2 code of the account's country.
+         */
+        country_code?: string;
+
+        /**
+         * International Bank Account Number.
+         */
+        iban?: string;
+
+        /**
+         * ABA routing number used for ACH transfers.
+         */
+        routing_number?: string;
+      }
+
+      /**
+       * A bank wire identifier for the end user.
+       */
+      export interface BankWire {
+        /**
+         * Beneficiary account number used for the wire.
+         */
+        account_number?: string;
+
+        /**
+         * Beneficiary International Bank Account Number used for the wire.
+         */
+        iban?: string;
+
+        /**
+         * ABA routing number used for US domestic wires (Fedwire).
+         */
+        routing_number?: string;
+
+        /**
+         * SWIFT/BIC code used for international wires.
+         */
+        swift?: string;
+      }
     }
 
     /**
@@ -1219,7 +1514,8 @@ export namespace ValidateBulkExtendedAddressesResponse {
           | 'TOKEN_BACKDOOR'
           | 'CREATED_VIA_LAUNCHPAD'
           | 'COMPROMISED_TOKEN'
-          | 'LONG_FUND_TRAIL';
+          | 'LONG_FUND_TRAIL'
+          | 'METADATA_PROMPT_INJECTION';
 
         /**
          * Type of the feature

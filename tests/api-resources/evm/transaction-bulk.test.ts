@@ -32,6 +32,7 @@ describe('resource transactionBulk', () => {
       data: [
         {
           from: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+          accessList: [{ address: 'address', storageKeys: ['string'] }],
           authorization_list: [
             {
               address: 'address',
@@ -51,6 +52,7 @@ describe('resource transactionBulk', () => {
         },
         {
           from: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+          accessList: [{ address: 'address', storageKeys: ['string'] }],
           authorization_list: [
             {
               address: 'address',
@@ -74,6 +76,22 @@ describe('resource transactionBulk', () => {
           account_id: 'account_id',
           account_addresses: ['string'],
           account_creation_timestamp: '2019-12-27T18:11:19.117Z',
+          bank_accounts: [
+            {
+              account_number: 'account_number',
+              country_code: 'country_code',
+              iban: 'iban',
+              routing_number: 'routing_number',
+            },
+          ],
+          bank_wires: [
+            {
+              account_number: 'account_number',
+              iban: 'iban',
+              routing_number: 'routing_number',
+              swift: 'swift',
+            },
+          ],
           user_age: 1,
           user_country_code: 'user_country_code',
         },
