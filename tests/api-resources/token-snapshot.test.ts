@@ -9,7 +9,7 @@ const client = new Blockaid({
 
 describe('resource tokenSnapshot', () => {
   test('diff: only required params', async () => {
-    const responsePromise = client.tokenSnapshot.diff({ chain: 'arbitrum' });
+    const responsePromise = client.tokenSnapshot.diff({ chain: 'abstract' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,7 +21,7 @@ describe('resource tokenSnapshot', () => {
 
   test('diff: required and optional params', async () => {
     const response = await client.tokenSnapshot.diff({
-      chain: 'arbitrum',
+      chain: 'abstract',
       cursor: 'cursor',
       size: 1,
       timeframe: 1,
@@ -29,7 +29,7 @@ describe('resource tokenSnapshot', () => {
   });
 
   test('full: only required params', async () => {
-    const responsePromise = client.tokenSnapshot.full({ chain: 'arbitrum' });
+    const responsePromise = client.tokenSnapshot.full({ chain: 'abstract' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -41,7 +41,7 @@ describe('resource tokenSnapshot', () => {
 
   test('full: required and optional params', async () => {
     const response = await client.tokenSnapshot.full({
-      chain: 'arbitrum',
+      chain: 'abstract',
       cursor: 'cursor',
       size: 1,
       token_type: 'Fungible',
