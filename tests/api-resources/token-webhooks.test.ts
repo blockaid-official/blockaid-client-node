@@ -9,7 +9,7 @@ const client = new Blockaid({
 
 describe('resource tokenWebhooks', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.tokenWebhooks.create('arbitrum', { url: 'https://example.com/' });
+    const responsePromise = client.tokenWebhooks.create('abstract', { url: 'https://example.com/' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,7 +20,7 @@ describe('resource tokenWebhooks', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.tokenWebhooks.create('arbitrum', {
+    const response = await client.tokenWebhooks.create('abstract', {
       url: 'https://example.com/',
       filter: {
         token_addresses: ['0x1234567890abcdef1234567890abcdef12345678'],
@@ -31,7 +31,7 @@ describe('resource tokenWebhooks', () => {
   });
 
   test('update', async () => {
-    const responsePromise = client.tokenWebhooks.update('arbitrum', {});
+    const responsePromise = client.tokenWebhooks.update('abstract', {});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -42,7 +42,7 @@ describe('resource tokenWebhooks', () => {
   });
 
   test('delete', async () => {
-    const responsePromise = client.tokenWebhooks.delete('arbitrum');
+    const responsePromise = client.tokenWebhooks.delete('abstract');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -53,7 +53,7 @@ describe('resource tokenWebhooks', () => {
   });
 
   test('get', async () => {
-    const responsePromise = client.tokenWebhooks.get('arbitrum');
+    const responsePromise = client.tokenWebhooks.get('abstract');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

@@ -15,7 +15,7 @@ export class TokenWebhooks extends APIResource {
    * @example
    * ```ts
    * const tokenWebhook = await client.tokenWebhooks.create(
-   *   'arbitrum',
+   *   'abstract',
    *   {
    *     url: 'https://example.com/',
    *     filter: {
@@ -49,7 +49,7 @@ export class TokenWebhooks extends APIResource {
    * @example
    * ```ts
    * const tokenWebhook = await client.tokenWebhooks.update(
-   *   'arbitrum',
+   *   'abstract',
    *   {
    *     filter: {
    *       filter_type: 'token_address',
@@ -75,7 +75,7 @@ export class TokenWebhooks extends APIResource {
    *
    * @example
    * ```ts
-   * await client.tokenWebhooks.delete('arbitrum');
+   * await client.tokenWebhooks.delete('abstract');
    * ```
    */
   delete(chain: EvmAPI.TokenScanSupportedChain, options?: RequestOptions): APIPromise<void> {
@@ -91,7 +91,7 @@ export class TokenWebhooks extends APIResource {
    * @example
    * ```ts
    * const tokenWebhook = await client.tokenWebhooks.get(
-   *   'arbitrum',
+   *   'abstract',
    * );
    * ```
    */
